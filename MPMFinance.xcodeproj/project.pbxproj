@@ -14,6 +14,7 @@
 		483F392D1EC3085E00C03253 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 483F392C1EC3085E00C03253 /* Assets.xcassets */; };
 		483F39301EC3085E00C03253 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 483F392E1EC3085E00C03253 /* LaunchScreen.storyboard */; };
 		5C9DB2361EC3312200FC0CC9 /* MPMGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9DB2351EC3312200FC0CC9 /* MPMGlobal.m */; };
+		5C9DB2421EC3393000FC0CC9 /* MPMUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9DB2411EC3393000FC0CC9 /* MPMUserInfo.m */; };
 		D3738F410048C92A1AE2571B /* libPods-MPMFinance.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F2B2C34A7F4351773F253B9A /* libPods-MPMFinance.a */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,8 @@
 		5C9DB2341EC3312200FC0CC9 /* MPMGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMGlobal.h; sourceTree = "<group>"; };
 		5C9DB2351EC3312200FC0CC9 /* MPMGlobal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMGlobal.m; sourceTree = "<group>"; };
 		5C9DB2371EC3314200FC0CC9 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		5C9DB2401EC3393000FC0CC9 /* MPMUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMUserInfo.h; sourceTree = "<group>"; };
+		5C9DB2411EC3393000FC0CC9 /* MPMUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMUserInfo.m; sourceTree = "<group>"; };
 		B57DB931C16BC9C4B3252B1C /* Pods-MPMFinance.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MPMFinance.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MPMFinance/Pods-MPMFinance.debug.xcconfig"; sourceTree = "<group>"; };
 		F2B2C34A7F4351773F253B9A /* libPods-MPMFinance.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MPMFinance.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F475CB99739A3281EC48B7D3 /* Pods-MPMFinance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MPMFinance.release.xcconfig"; path = "Pods/Target Support Files/Pods-MPMFinance/Pods-MPMFinance.release.xcconfig"; sourceTree = "<group>"; };
@@ -69,6 +72,7 @@
 		483F391F1EC3085E00C03253 /* MPMFinance */ = {
 			isa = PBXGroup;
 			children = (
+				5C9DB23A1EC338B700FC0CC9 /* Model */,
 				5C9DB2331EC3310600FC0CC9 /* Global */,
 				483F39231EC3085E00C03253 /* AppDelegate.h */,
 				483F39241EC3085E00C03253 /* AppDelegate.m */,
@@ -99,6 +103,15 @@
 				5C9DB2351EC3312200FC0CC9 /* MPMGlobal.m */,
 			);
 			name = Global;
+			sourceTree = "<group>";
+		};
+		5C9DB23A1EC338B700FC0CC9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5C9DB2401EC3393000FC0CC9 /* MPMUserInfo.h */,
+				5C9DB2411EC3393000FC0CC9 /* MPMUserInfo.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		6C2E6E6C6CDAB2318F73C3D6 /* Pods */ = {
@@ -244,6 +257,7 @@
 				5C9DB2361EC3312200FC0CC9 /* MPMGlobal.m in Sources */,
 				483F39251EC3085E00C03253 /* AppDelegate.m in Sources */,
 				483F39221EC3085E00C03253 /* main.m in Sources */,
+				5C9DB2421EC3393000FC0CC9 /* MPMUserInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
