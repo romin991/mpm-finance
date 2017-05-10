@@ -13,6 +13,7 @@
 		483F392B1EC3085E00C03253 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 483F39291EC3085E00C03253 /* Main.storyboard */; };
 		483F392D1EC3085E00C03253 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 483F392C1EC3085E00C03253 /* Assets.xcassets */; };
 		483F39301EC3085E00C03253 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 483F392E1EC3085E00C03253 /* LaunchScreen.storyboard */; };
+		5C9DB2361EC3312200FC0CC9 /* MPMGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9DB2351EC3312200FC0CC9 /* MPMGlobal.m */; };
 		D3738F410048C92A1AE2571B /* libPods-MPMFinance.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F2B2C34A7F4351773F253B9A /* libPods-MPMFinance.a */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,9 @@
 		483F392C1EC3085E00C03253 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		483F392F1EC3085E00C03253 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		483F39311EC3085E00C03253 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5C9DB2341EC3312200FC0CC9 /* MPMGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMGlobal.h; sourceTree = "<group>"; };
+		5C9DB2351EC3312200FC0CC9 /* MPMGlobal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMGlobal.m; sourceTree = "<group>"; };
+		5C9DB2371EC3314200FC0CC9 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		B57DB931C16BC9C4B3252B1C /* Pods-MPMFinance.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MPMFinance.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MPMFinance/Pods-MPMFinance.debug.xcconfig"; sourceTree = "<group>"; };
 		F2B2C34A7F4351773F253B9A /* libPods-MPMFinance.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MPMFinance.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F475CB99739A3281EC48B7D3 /* Pods-MPMFinance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MPMFinance.release.xcconfig"; path = "Pods/Target Support Files/Pods-MPMFinance/Pods-MPMFinance.release.xcconfig"; sourceTree = "<group>"; };
@@ -65,6 +69,7 @@
 		483F391F1EC3085E00C03253 /* MPMFinance */ = {
 			isa = PBXGroup;
 			children = (
+				5C9DB2331EC3310600FC0CC9 /* Global */,
 				483F39231EC3085E00C03253 /* AppDelegate.h */,
 				483F39241EC3085E00C03253 /* AppDelegate.m */,
 				483F39261EC3085E00C03253 /* ViewController.h */,
@@ -82,8 +87,18 @@
 			isa = PBXGroup;
 			children = (
 				483F39211EC3085E00C03253 /* main.m */,
+				5C9DB2371EC3314200FC0CC9 /* PrefixHeader.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5C9DB2331EC3310600FC0CC9 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				5C9DB2341EC3312200FC0CC9 /* MPMGlobal.h */,
+				5C9DB2351EC3312200FC0CC9 /* MPMGlobal.m */,
+			);
+			name = Global;
 			sourceTree = "<group>";
 		};
 		6C2E6E6C6CDAB2318F73C3D6 /* Pods */ = {
@@ -226,6 +241,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				483F39281EC3085E00C03253 /* ViewController.m in Sources */,
+				5C9DB2361EC3312200FC0CC9 /* MPMGlobal.m in Sources */,
 				483F39251EC3085E00C03253 /* AppDelegate.m in Sources */,
 				483F39221EC3085E00C03253 /* main.m in Sources */,
 			);
@@ -348,6 +364,7 @@
 			baseConfigurationReference = B57DB931C16BC9C4B3252B1C /* Pods-MPMFinance.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = MPMFinance/PrefixHeader.pch;
 				INFOPLIST_FILE = MPMFinance/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -361,6 +378,7 @@
 			baseConfigurationReference = F475CB99739A3281EC48B7D3 /* Pods-MPMFinance.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = MPMFinance/PrefixHeader.pch;
 				INFOPLIST_FILE = MPMFinance/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
