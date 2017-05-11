@@ -16,6 +16,7 @@
 		483F393A1EC3518500C03253 /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 483F39391EC3518500C03253 /* ForgotPasswordViewController.m */; };
 		5C9DB2361EC3312200FC0CC9 /* MPMGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9DB2351EC3312200FC0CC9 /* MPMGlobal.m */; };
 		5C9DB2421EC3393000FC0CC9 /* MPMUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9DB2411EC3393000FC0CC9 /* MPMUserInfo.m */; };
+		5CDC30421EC3E274001D97DB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC30411EC3E274001D97DB /* GoogleService-Info.plist */; };
 		D3738F410048C92A1AE2571B /* libPods-MPMFinance.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F2B2C34A7F4351773F253B9A /* libPods-MPMFinance.a */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +38,8 @@
 		5C9DB2371EC3314200FC0CC9 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		5C9DB2401EC3393000FC0CC9 /* MPMUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMUserInfo.h; sourceTree = "<group>"; };
 		5C9DB2411EC3393000FC0CC9 /* MPMUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMUserInfo.m; sourceTree = "<group>"; };
+		5CD07BD91EC342B0007C8C08 /* MPMFinance.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MPMFinance.entitlements; sourceTree = "<group>"; };
+		5CDC30411EC3E274001D97DB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B57DB931C16BC9C4B3252B1C /* Pods-MPMFinance.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MPMFinance.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MPMFinance/Pods-MPMFinance.debug.xcconfig"; sourceTree = "<group>"; };
 		F2B2C34A7F4351773F253B9A /* libPods-MPMFinance.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MPMFinance.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F475CB99739A3281EC48B7D3 /* Pods-MPMFinance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MPMFinance.release.xcconfig"; path = "Pods/Target Support Files/Pods-MPMFinance/Pods-MPMFinance.release.xcconfig"; sourceTree = "<group>"; };
@@ -75,6 +78,7 @@
 		483F391F1EC3085E00C03253 /* MPMFinance */ = {
 			isa = PBXGroup;
 			children = (
+				5CD07BD91EC342B0007C8C08 /* MPMFinance.entitlements */,
 				5C9DB23A1EC338B700FC0CC9 /* Model */,
 				5C9DB2331EC3310600FC0CC9 /* Global */,
 				483F39371EC3513800C03253 /* ViewController */,
@@ -92,6 +96,7 @@
 		483F39201EC3085E00C03253 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5CDC30411EC3E274001D97DB /* GoogleService-Info.plist */,
 				483F39211EC3085E00C03253 /* main.m */,
 				5C9DB2371EC3314200FC0CC9 /* PrefixHeader.pch */,
 			);
@@ -179,6 +184,11 @@
 					483F391C1EC3085E00C03253 = {
 						CreatedOnToolsVersion = 8.3.1;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -208,6 +218,7 @@
 				483F39301EC3085E00C03253 /* LaunchScreen.storyboard in Resources */,
 				483F392D1EC3085E00C03253 /* Assets.xcassets in Resources */,
 				483F392B1EC3085E00C03253 /* Main.storyboard in Resources */,
+				5CDC30421EC3E274001D97DB /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,11 +403,13 @@
 			baseConfigurationReference = B57DB931C16BC9C4B3252B1C /* Pods-MPMFinance.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MPMFinance/MPMFinance.entitlements;
+				DEVELOPMENT_TEAM = 7WELLXNPG5;
 				GCC_PREFIX_HEADER = MPMFinance/PrefixHeader.pch;
 				INFOPLIST_FILE = MPMFinance/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mpm-finance.MPMFinance";
+				PRODUCT_BUNDLE_IDENTIFIER = com.infomedia.MPMFinance;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -407,11 +420,13 @@
 			baseConfigurationReference = F475CB99739A3281EC48B7D3 /* Pods-MPMFinance.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MPMFinance/MPMFinance.entitlements;
+				DEVELOPMENT_TEAM = 7WELLXNPG5;
 				GCC_PREFIX_HEADER = MPMFinance/PrefixHeader.pch;
 				INFOPLIST_FILE = MPMFinance/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mpm-finance.MPMFinance";
+				PRODUCT_BUNDLE_IDENTIFIER = com.infomedia.MPMFinance;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
