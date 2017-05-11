@@ -14,6 +14,7 @@
 		483F392D1EC3085E00C03253 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 483F392C1EC3085E00C03253 /* Assets.xcassets */; };
 		483F39301EC3085E00C03253 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 483F392E1EC3085E00C03253 /* LaunchScreen.storyboard */; };
 		483F393A1EC3518500C03253 /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 483F39391EC3518500C03253 /* ForgotPasswordViewController.m */; };
+		4886BAFD1EC42EDD000F8DBE /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4886BAFC1EC42EDD000F8DBE /* MenuViewController.m */; };
 		5C9DB2361EC3312200FC0CC9 /* MPMGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9DB2351EC3312200FC0CC9 /* MPMGlobal.m */; };
 		5C9DB2421EC3393000FC0CC9 /* MPMUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9DB2411EC3393000FC0CC9 /* MPMUserInfo.m */; };
 		5CDC30421EC3E274001D97DB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC30411EC3E274001D97DB /* GoogleService-Info.plist */; };
@@ -33,6 +34,8 @@
 		483F39311EC3085E00C03253 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		483F39381EC3518500C03253 /* ForgotPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ForgotPasswordViewController.h; path = ViewController/ForgotPasswordViewController.h; sourceTree = "<group>"; };
 		483F39391EC3518500C03253 /* ForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ForgotPasswordViewController.m; path = ViewController/ForgotPasswordViewController.m; sourceTree = "<group>"; };
+		4886BAFB1EC42EDD000F8DBE /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuViewController.h; path = ViewController/MenuViewController.h; sourceTree = "<group>"; };
+		4886BAFC1EC42EDD000F8DBE /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = ViewController/MenuViewController.m; sourceTree = "<group>"; };
 		5C9DB2341EC3312200FC0CC9 /* MPMGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMGlobal.h; sourceTree = "<group>"; };
 		5C9DB2351EC3312200FC0CC9 /* MPMGlobal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMGlobal.m; sourceTree = "<group>"; };
 		5C9DB2371EC3314200FC0CC9 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -110,6 +113,8 @@
 				483F39271EC3085E00C03253 /* LoginViewController.m */,
 				483F39381EC3518500C03253 /* ForgotPasswordViewController.h */,
 				483F39391EC3518500C03253 /* ForgotPasswordViewController.m */,
+				4886BAFB1EC42EDD000F8DBE /* MenuViewController.h */,
+				4886BAFC1EC42EDD000F8DBE /* MenuViewController.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -183,6 +188,7 @@
 				TargetAttributes = {
 					483F391C1EC3085E00C03253 = {
 						CreatedOnToolsVersion = 8.3.1;
+						DevelopmentTeam = 7WELLXNPG5;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -281,6 +287,7 @@
 				483F39281EC3085E00C03253 /* LoginViewController.m in Sources */,
 				5C9DB2361EC3312200FC0CC9 /* MPMGlobal.m in Sources */,
 				483F39251EC3085E00C03253 /* AppDelegate.m in Sources */,
+				4886BAFD1EC42EDD000F8DBE /* MenuViewController.m in Sources */,
 				483F39221EC3085E00C03253 /* main.m in Sources */,
 				5C9DB2421EC3393000FC0CC9 /* MPMUserInfo.m in Sources */,
 			);
