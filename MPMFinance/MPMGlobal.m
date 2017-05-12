@@ -10,4 +10,11 @@
 
 @implementation MPMGlobal
 
+NSString *const kRoleCustomer = @"Customer";
+NSString *const kRoleAgent = @"Agent";
+NSString *const kRoleDealer = @"Dealer";
+NSString *const kRoleSupervisor = @"Supervisor";
+NSString *const kRoleOfficer = @"Officer";
+NSString *const kRoleDedicated = @"Dedicated";
+
 @end

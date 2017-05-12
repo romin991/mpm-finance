@@ -7,8 +7,11 @@
 //
 
 #import "MenuViewController.h"
+#import "Menu.h"
 
 @interface MenuViewController ()
+
+@property RLMResults *menus;
 
 @end
 
@@ -17,11 +20,37 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.menus = [Menu getMenuForRole:kRoleDedicated];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Collection View Data Source
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return self.menus.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    UICollectionViewCell *cell = (UICollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+
+    Menu *menu = [self.menus objectAtIndex:indexPath.row];
+    
+    UIImageView *imageView = (UIImageView *) [cell viewWithTag:1];
+    imageView.image = [UIImage imageNamed:menu.imageName];
+    
+    UILabel *label = (UILabel *) [cell viewWithTag:2];
+    label.text = menu.title;
+    
+    return cell;
 }
 
 /*
