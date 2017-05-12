@@ -15,6 +15,9 @@
 		483F39301EC3085E00C03253 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 483F392E1EC3085E00C03253 /* LaunchScreen.storyboard */; };
 		483F393A1EC3518500C03253 /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 483F39391EC3518500C03253 /* ForgotPasswordViewController.m */; };
 		4886BAFD1EC42EDD000F8DBE /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4886BAFC1EC42EDD000F8DBE /* MenuViewController.m */; };
+		4886BB051EC4ABD1000F8DBE /* PopulateRealmDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4886BB041EC4ABD1000F8DBE /* PopulateRealmDatabase.m */; };
+		4886BB081EC4ABF8000F8DBE /* Menu.m in Sources */ = {isa = PBXBuildFile; fileRef = 4886BB071EC4ABF8000F8DBE /* Menu.m */; };
+		48F7F4061EC5C931008DB808 /* Role.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F7F4051EC5C931008DB808 /* Role.m */; };
 		5C9DB2361EC3312200FC0CC9 /* MPMGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9DB2351EC3312200FC0CC9 /* MPMGlobal.m */; };
 		5C9DB2421EC3393000FC0CC9 /* MPMUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9DB2411EC3393000FC0CC9 /* MPMUserInfo.m */; };
 		5CDC30421EC3E274001D97DB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC30411EC3E274001D97DB /* GoogleService-Info.plist */; };
@@ -36,6 +39,12 @@
 		483F39391EC3518500C03253 /* ForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ForgotPasswordViewController.m; path = ViewController/ForgotPasswordViewController.m; sourceTree = "<group>"; };
 		4886BAFB1EC42EDD000F8DBE /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuViewController.h; path = ViewController/MenuViewController.h; sourceTree = "<group>"; };
 		4886BAFC1EC42EDD000F8DBE /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = ViewController/MenuViewController.m; sourceTree = "<group>"; };
+		4886BB031EC4ABD1000F8DBE /* PopulateRealmDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PopulateRealmDatabase.h; path = Object/Realm/PopulateRealmDatabase.h; sourceTree = "<group>"; };
+		4886BB041EC4ABD1000F8DBE /* PopulateRealmDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PopulateRealmDatabase.m; path = Object/Realm/PopulateRealmDatabase.m; sourceTree = "<group>"; };
+		4886BB061EC4ABF8000F8DBE /* Menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Menu.h; path = Object/Realm/Menu.h; sourceTree = "<group>"; };
+		4886BB071EC4ABF8000F8DBE /* Menu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Menu.m; path = Object/Realm/Menu.m; sourceTree = "<group>"; };
+		48F7F4041EC5C931008DB808 /* Role.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Role.h; path = Object/Realm/Role.h; sourceTree = "<group>"; };
+		48F7F4051EC5C931008DB808 /* Role.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Role.m; path = Object/Realm/Role.m; sourceTree = "<group>"; };
 		5C9DB2341EC3312200FC0CC9 /* MPMGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMGlobal.h; sourceTree = "<group>"; };
 		5C9DB2351EC3312200FC0CC9 /* MPMGlobal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMGlobal.m; sourceTree = "<group>"; };
 		5C9DB2371EC3314200FC0CC9 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -82,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				5CD07BD91EC342B0007C8C08 /* MPMFinance.entitlements */,
+				4886BAFE1EC4A0F7000F8DBE /* Object */,
 				5C9DB23A1EC338B700FC0CC9 /* Model */,
 				5C9DB2331EC3310600FC0CC9 /* Global */,
 				483F39371EC3513800C03253 /* ViewController */,
@@ -117,6 +127,27 @@
 				4886BAFC1EC42EDD000F8DBE /* MenuViewController.m */,
 			);
 			name = ViewController;
+			sourceTree = "<group>";
+		};
+		4886BAFE1EC4A0F7000F8DBE /* Object */ = {
+			isa = PBXGroup;
+			children = (
+				4886BB021EC4A614000F8DBE /* Realm */,
+			);
+			name = Object;
+			sourceTree = "<group>";
+		};
+		4886BB021EC4A614000F8DBE /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				4886BB061EC4ABF8000F8DBE /* Menu.h */,
+				4886BB071EC4ABF8000F8DBE /* Menu.m */,
+				4886BB031EC4ABD1000F8DBE /* PopulateRealmDatabase.h */,
+				4886BB041EC4ABD1000F8DBE /* PopulateRealmDatabase.m */,
+				48F7F4041EC5C931008DB808 /* Role.h */,
+				48F7F4051EC5C931008DB808 /* Role.m */,
+			);
+			name = Realm;
 			sourceTree = "<group>";
 		};
 		5C9DB2331EC3310600FC0CC9 /* Global */ = {
@@ -288,7 +319,10 @@
 				5C9DB2361EC3312200FC0CC9 /* MPMGlobal.m in Sources */,
 				483F39251EC3085E00C03253 /* AppDelegate.m in Sources */,
 				4886BAFD1EC42EDD000F8DBE /* MenuViewController.m in Sources */,
+				48F7F4061EC5C931008DB808 /* Role.m in Sources */,
 				483F39221EC3085E00C03253 /* main.m in Sources */,
+				4886BB081EC4ABF8000F8DBE /* Menu.m in Sources */,
+				4886BB051EC4ABD1000F8DBE /* PopulateRealmDatabase.m in Sources */,
 				5C9DB2421EC3393000FC0CC9 /* MPMUserInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

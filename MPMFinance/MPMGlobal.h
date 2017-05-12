@@ -10,4 +10,11 @@
 
 @interface MPMGlobal : NSObject
 
+extern NSString *const kRoleCustomer;
+extern NSString *const kRoleAgent;
+extern NSString *const kRoleDealer;
+extern NSString *const kRoleSupervisor;
+extern NSString *const kRoleOfficer;
+extern NSString *const kRoleDedicated;
+
 @end

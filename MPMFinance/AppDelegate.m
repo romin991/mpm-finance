@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "PopulateRealmDatabase.h"
 
 #define SYSTEM_VERSION_GRATERTHAN_OR_EQUALTO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
@@ -20,6 +21,9 @@
 NSString *const kGCMMessageIDKey = @"gcm.message_id";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [PopulateRealmDatabase removeAllData];
+    [PopulateRealmDatabase generateData];
+    
     // Override point for customization after application launch.
     
     UIBarButtonItem *barButtonAppearance = [UIBarButtonItem appearance];
