@@ -8,11 +8,12 @@
 
 #import "MenuViewController.h"
 #import "Menu.h"
-
-@interface MenuViewController ()
+#import "KASlideShow.h"
+@interface MenuViewController ()<KASlideShowDelegate,KASlideShowDataSource>
 
 @property RLMResults *menus;
-
+@property (strong,nonatomic) IBOutlet KASlideShow * slideshow;
+@property NSMutableArray * datasource;
 @end
 
 @implementation MenuViewController
@@ -22,6 +23,23 @@
     // Do any additional setup after loading the view.
     
     self.menus = [Menu getMenuForRole:kRoleDedicated];
+    // KASlideshow
+    [self reloadSlideShow];
+    _slideshow.datasource = self;
+    _slideshow.delegate = self;
+    [_slideshow setDelay:1]; // Delay between transitions
+    [_slideshow setTransitionDuration:.5]; // Transition duration
+    [_slideshow setTransitionType:KASlideShowTransitionSlideHorizontal]; // Choose a transition type (fade or slide)
+    [_slideshow setImagesContentMode:UIViewContentModeScaleAspectFill]; // Choose a content mode for images to display
+    [_slideshow addGesture:KASlideShowGestureTap]; // Gesture to go previous/next directly on the image
+
+}
+-(void)reloadSlideShow
+{
+    _datasource = [@[[UIImage imageNamed:@"iklan"],
+                     [NSURL URLWithString:@"https://i.imgur.com/7jDvjyt.jpg"],
+                     [UIImage imageNamed:@"iklan"]] mutableCopy];
+    
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -35,6 +53,18 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark - KASlideShow datasource
+
+- (NSObject *)slideShow:(KASlideShow *)slideShow objectAtIndex:(NSUInteger)index
+{
+    return _datasource[index];
+}
+
+- (NSUInteger)slideShowImagesNumber:(KASlideShow *)slideShow
+{
+    return _datasource.count;
+}
+
 
 #pragma mark - Collection View Data Source
 

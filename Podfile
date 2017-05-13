@@ -10,4 +10,5 @@ target 'MPMFinance' do
     pod 'Realm', '~> 2.7.0'
     pod 'Firebase/Core'
     pod 'Firebase/Messaging'
+    pod 'SDWebImage'
 end

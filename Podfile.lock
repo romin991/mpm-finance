@@ -42,12 +42,16 @@ PODS:
   - Realm (2.7.0):
     - Realm/Headers (= 2.7.0)
   - Realm/Headers (2.7.0)
+  - SDWebImage (4.0.0):
+    - SDWebImage/Core (= 4.0.0)
+  - SDWebImage/Core (4.0.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
   - Firebase/Core
   - Firebase/Messaging
   - Realm (~> 2.7.0)
+  - SDWebImage
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
@@ -59,7 +63,8 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   Protobuf: 2ccbaf193f6c65adc67745453ca0c13234c32796
   Realm: 07e5d3a9e0e41d65fd5f9f05150ed6295d0f093b
+  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
 
-PODFILE CHECKSUM: dbd39ca5c5f116a9a0224357f027ea314c1a8f3d
+PODFILE CHECKSUM: 959c7396778cd269704bc1633974a0b1a8102ad2
 
 COCOAPODS: 1.1.1
