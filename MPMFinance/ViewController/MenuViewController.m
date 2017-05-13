@@ -23,7 +23,14 @@
     
     self.menus = [Menu getMenuForRole:kRoleDedicated];
 }
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+}
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -52,6 +59,16 @@
     
     return cell;
 }
+#pragma mark - Collection View Delegate
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    Menu *menu = [self.menus objectAtIndex:indexPath.row];
+    if (menu.type == kMenuOnlineSubmission ) {
+        [self performSegueWithIdentifier:@"onlineSubmissionSegue" sender:self];
+    }
+}
+
+
 
 /*
 #pragma mark - Navigation

@@ -17,4 +17,11 @@ extern NSString *const kRoleSupervisor;
 extern NSString *const kRoleOfficer;
 extern NSString *const kRoleDedicated;
 
+extern const int kMenuListWorkOrder;
+extern const int kMenuOnlineSubmission;
+extern const int kMenuCalculatorMarketing;
+extern const int kMenuListMap;
+extern const int kMenuListSurvey;
+extern const int kMenuDashboard;
+
 @end

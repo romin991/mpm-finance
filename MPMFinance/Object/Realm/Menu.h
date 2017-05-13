@@ -13,6 +13,7 @@
 
 @property NSString *imageName;
 @property NSString *title;
+@property int type;
 
 @property RLMArray<Role> *roles;
 

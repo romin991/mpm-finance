@@ -17,4 +17,11 @@ NSString *const kRoleSupervisor = @"Supervisor";
 NSString *const kRoleOfficer = @"Officer";
 NSString *const kRoleDedicated = @"Dedicated";
 
+const int kMenuListWorkOrder = 1;
+const int kMenuOnlineSubmission = 2;
+const int kMenuCalculatorMarketing = 3;
+const int kMenuListMap = 4;
+const int kMenuListSurvey = 5;
+const int kMenuDashboard = 6;
+
 @end
