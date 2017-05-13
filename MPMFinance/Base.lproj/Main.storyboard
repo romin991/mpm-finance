@@ -186,10 +186,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="detail_background" translatesAutoresizingMaskIntoConstraints="NO" id="hBU-DR-FfU">
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="detail_background" translatesAutoresizingMaskIntoConstraints="NO" id="hBU-DR-FfU">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="278"/>
                             </imageView>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="garis" translatesAutoresizingMaskIntoConstraints="NO" id="kh5-P9-76Q">
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="garis" translatesAutoresizingMaskIntoConstraints="NO" id="kh5-P9-76Q">
                                 <rect key="frame" x="0.0" y="275" width="414" height="5"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="composeCircleIcon" translatesAutoresizingMaskIntoConstraints="NO" id="P39-o7-EnX">

@@ -75,9 +75,16 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tokenRefreshNotification:)
                                                  name:kFIRInstanceIDTokenRefreshNotification object:nil];
     
-    
+    [self setNavigationBarColor];
     [self loadFirstController];
     return YES;
+}
+-(void)setNavigationBarColor
+{
+    
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setBarTintColor:UIColorFromRGB(0xF26F21)];
+    
 }
 - (void)tokenRefreshNotification:(NSNotification *)notification {
     // Note that this callback will be fired everytime a new token is generated, including the first
