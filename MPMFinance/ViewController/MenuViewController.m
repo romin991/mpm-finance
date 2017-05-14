@@ -93,7 +93,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     Menu *menu = [self.menus objectAtIndex:indexPath.row];
-    if (menu.type == kMenuOnlineSubmission ) {
+    if ([menu.title isEqualToString:kMenuOnlineSubmission]) {
         [self performSegueWithIdentifier:@"onlineSubmissionSegue" sender:self];
     }
 }

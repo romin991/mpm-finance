@@ -11,4 +11,7 @@ target 'MPMFinance' do
     pod 'Firebase/Core'
     pod 'Firebase/Messaging'
     pod 'SDWebImage'
+    pod 'SVProgressHUD'
+    pod 'TPKeyboardAvoiding'
+    pod 'XLForm', '~> 3.0'
 end

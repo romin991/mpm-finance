@@ -20,11 +20,17 @@ extern NSString *const kRoleSupervisor;
 extern NSString *const kRoleOfficer;
 extern NSString *const kRoleDedicated;
 
-extern const int kMenuListWorkOrder;
-extern const int kMenuOnlineSubmission;
-extern const int kMenuCalculatorMarketing;
-extern const int kMenuListMap;
-extern const int kMenuListSurvey;
-extern const int kMenuDashboard;
+extern NSString *const kMenuListWorkOrder;
+extern NSString *const kMenuOnlineSubmission;
+extern NSString *const kMenuCalculatorMarketing;
+extern NSString *const kMenuListMap;
+extern NSString *const kMenuListSurvey;
+extern NSString *const kMenuDashboard;
+
+extern NSString *const kSubmenuListPengajuanApplikasi;
+extern NSString *const kSubmenuDataMAP;
+extern NSString *const kSubmenuSurvey;
+extern NSString *const kSubmenuMelengkapiData;
+extern NSString *const kSubmenuAssignMarketing;
 
 @end

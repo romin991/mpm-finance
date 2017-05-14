@@ -9,15 +9,19 @@
 #import <Realm/Realm.h>
 #import "Role.h"
 
+RLM_ARRAY_TYPE(Menu)
 @interface Menu : RLMObject
 
 @property NSString *imageName;
 @property NSString *title;
-@property int type;
+@property Menu *parentMenu;
+@property NSInteger sort;
 
 @property RLMArray<Role> *roles;
+@property RLMArray<Menu> *submenus;
 
 + (RLMResults *)getMenuForRole:(NSString *)roleName;
++ (RLMResults *)getSubmenuForMenu:(NSString *)menuTitle role:(NSString *)roleName;
 + (void)generateMenus;
 
 @end

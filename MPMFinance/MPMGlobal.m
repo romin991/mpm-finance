@@ -17,11 +17,17 @@ NSString *const kRoleSupervisor = @"Supervisor";
 NSString *const kRoleOfficer = @"Officer";
 NSString *const kRoleDedicated = @"Dedicated";
 
-const int kMenuListWorkOrder = 1;
-const int kMenuOnlineSubmission = 2;
-const int kMenuCalculatorMarketing = 3;
-const int kMenuListMap = 4;
-const int kMenuListSurvey = 5;
-const int kMenuDashboard = 6;
+NSString *const kMenuListWorkOrder = @"List Work Order";
+NSString *const kMenuOnlineSubmission = @"Online Submission";
+NSString *const kMenuCalculatorMarketing = @"Calculator Marketing";
+NSString *const kMenuListMap = @"List Map";
+NSString *const kMenuListSurvey = @"List Survey";
+NSString *const kMenuDashboard = @"Dashboard";
+
+NSString *const kSubmenuListPengajuanApplikasi = @"List Pengajuan Applikasi";
+NSString *const kSubmenuDataMAP = @"Data MAP";
+NSString *const kSubmenuSurvey = @"Survey";
+NSString *const kSubmenuMelengkapiData = @"Melengkapi Data";
+NSString *const kSubmenuAssignMarketing = @"Assign Marketing";
 
 @end
