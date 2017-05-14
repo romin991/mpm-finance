@@ -9,6 +9,8 @@
 #import "MenuViewController.h"
 #import "Menu.h"
 #import "KASlideShow.h"
+#import "FormViewController.h"
+
 @interface MenuViewController ()<KASlideShowDelegate,KASlideShowDataSource>
 
 @property RLMResults *menus;
@@ -95,6 +97,9 @@
     Menu *menu = [self.menus objectAtIndex:indexPath.row];
     if ([menu.title isEqualToString:kMenuOnlineSubmission]) {
         [self performSegueWithIdentifier:@"onlineSubmissionSegue" sender:self];
+    } else {
+        FormViewController *formViewController = [[FormViewController alloc] init];
+        [self.navigationController pushViewController:formViewController animated:YES];
     }
 }
 
