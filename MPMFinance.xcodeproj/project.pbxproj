@@ -26,6 +26,10 @@
 		4886BAFD1EC42EDD000F8DBE /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4886BAFC1EC42EDD000F8DBE /* MenuViewController.m */; };
 		4886BB051EC4ABD1000F8DBE /* PopulateRealmDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4886BB041EC4ABD1000F8DBE /* PopulateRealmDatabase.m */; };
 		4886BB081EC4ABF8000F8DBE /* Menu.m in Sources */ = {isa = PBXBuildFile; fileRef = 4886BB071EC4ABF8000F8DBE /* Menu.m */; };
+		48CDD82C1EC9B1FB0038D626 /* SimpleListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CDD82A1EC9B1FB0038D626 /* SimpleListViewController.m */; };
+		48CDD82D1EC9B1FB0038D626 /* SimpleListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48CDD82B1EC9B1FB0038D626 /* SimpleListViewController.xib */; };
+		48CDD8341EC9B3AD0038D626 /* SimpleListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CDD8321EC9B3AD0038D626 /* SimpleListTableViewCell.m */; };
+		48CDD8351EC9B3AD0038D626 /* SimpleListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48CDD8331EC9B3AD0038D626 /* SimpleListTableViewCell.xib */; };
 		48F7F4061EC5C931008DB808 /* Role.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F7F4051EC5C931008DB808 /* Role.m */; };
 		5C9DB2361EC3312200FC0CC9 /* MPMGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9DB2351EC3312200FC0CC9 /* MPMGlobal.m */; };
 		5C9DB2421EC3393000FC0CC9 /* MPMUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9DB2411EC3393000FC0CC9 /* MPMUserInfo.m */; };
@@ -68,6 +72,12 @@
 		4886BB041EC4ABD1000F8DBE /* PopulateRealmDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PopulateRealmDatabase.m; path = Object/Realm/PopulateRealmDatabase.m; sourceTree = "<group>"; };
 		4886BB061EC4ABF8000F8DBE /* Menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Menu.h; path = Object/Realm/Menu.h; sourceTree = "<group>"; };
 		4886BB071EC4ABF8000F8DBE /* Menu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Menu.m; path = Object/Realm/Menu.m; sourceTree = "<group>"; };
+		48CDD8291EC9B1FB0038D626 /* SimpleListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SimpleListViewController.h; path = ViewController/SimpleListViewController.h; sourceTree = "<group>"; };
+		48CDD82A1EC9B1FB0038D626 /* SimpleListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SimpleListViewController.m; path = ViewController/SimpleListViewController.m; sourceTree = "<group>"; };
+		48CDD82B1EC9B1FB0038D626 /* SimpleListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SimpleListViewController.xib; path = ViewController/SimpleListViewController.xib; sourceTree = "<group>"; };
+		48CDD8311EC9B3AD0038D626 /* SimpleListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SimpleListTableViewCell.h; path = ViewController/SimpleListTableViewCell.h; sourceTree = "<group>"; };
+		48CDD8321EC9B3AD0038D626 /* SimpleListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SimpleListTableViewCell.m; path = ViewController/SimpleListTableViewCell.m; sourceTree = "<group>"; };
+		48CDD8331EC9B3AD0038D626 /* SimpleListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SimpleListTableViewCell.xib; path = ViewController/SimpleListTableViewCell.xib; sourceTree = "<group>"; };
 		48F7F4041EC5C931008DB808 /* Role.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Role.h; path = Object/Realm/Role.h; sourceTree = "<group>"; };
 		48F7F4051EC5C931008DB808 /* Role.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Role.m; path = Object/Realm/Role.m; sourceTree = "<group>"; };
 		5C9DB2341EC3312200FC0CC9 /* MPMGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMGlobal.h; sourceTree = "<group>"; };
@@ -146,23 +156,17 @@
 		483F39371EC3513800C03253 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				48CDD8281EC9B1C20038D626 /* SimpleListViewController */,
+				48CDD8271EC9B1B10038D626 /* FormViewController */,
+				48CDD8261EC9B1A30038D626 /* ListViewController */,
 				483F39261EC3085E00C03253 /* LoginViewController.h */,
 				483F39271EC3085E00C03253 /* LoginViewController.m */,
 				483F39381EC3518500C03253 /* ForgotPasswordViewController.h */,
 				483F39391EC3518500C03253 /* ForgotPasswordViewController.m */,
 				4886BAFB1EC42EDD000F8DBE /* MenuViewController.h */,
 				4886BAFC1EC42EDD000F8DBE /* MenuViewController.m */,
-				4849EEDE1EC8815000415E4B /* FormViewController.h */,
-				4849EEDF1EC8815000415E4B /* FormViewController.m */,
-				4849EEE01EC8815000415E4B /* FormViewController.xib */,
 				4849EEE31EC899B400415E4B /* FormGeneratorViewController.h */,
 				4849EEE41EC899B400415E4B /* FormGeneratorViewController.m */,
-				48482E6B1EC999B30029ACBE /* ListViewController.h */,
-				48482E6C1EC999B30029ACBE /* ListViewController.m */,
-				48482E6D1EC999B30029ACBE /* ListViewController.xib */,
-				48482E701EC99B230029ACBE /* ListTableViewCell.h */,
-				48482E711EC99B230029ACBE /* ListTableViewCell.m */,
-				48482E721EC99B230029ACBE /* ListTableViewCell.xib */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -190,6 +194,42 @@
 				4849EEDC1EC8190300415E4B /* Option.m */,
 			);
 			name = Realm;
+			sourceTree = "<group>";
+		};
+		48CDD8261EC9B1A30038D626 /* ListViewController */ = {
+			isa = PBXGroup;
+			children = (
+				48482E6B1EC999B30029ACBE /* ListViewController.h */,
+				48482E6C1EC999B30029ACBE /* ListViewController.m */,
+				48482E6D1EC999B30029ACBE /* ListViewController.xib */,
+				48482E701EC99B230029ACBE /* ListTableViewCell.h */,
+				48482E711EC99B230029ACBE /* ListTableViewCell.m */,
+				48482E721EC99B230029ACBE /* ListTableViewCell.xib */,
+			);
+			name = ListViewController;
+			sourceTree = "<group>";
+		};
+		48CDD8271EC9B1B10038D626 /* FormViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4849EEDE1EC8815000415E4B /* FormViewController.h */,
+				4849EEDF1EC8815000415E4B /* FormViewController.m */,
+				4849EEE01EC8815000415E4B /* FormViewController.xib */,
+			);
+			name = FormViewController;
+			sourceTree = "<group>";
+		};
+		48CDD8281EC9B1C20038D626 /* SimpleListViewController */ = {
+			isa = PBXGroup;
+			children = (
+				48CDD8291EC9B1FB0038D626 /* SimpleListViewController.h */,
+				48CDD82A1EC9B1FB0038D626 /* SimpleListViewController.m */,
+				48CDD82B1EC9B1FB0038D626 /* SimpleListViewController.xib */,
+				48CDD8311EC9B3AD0038D626 /* SimpleListTableViewCell.h */,
+				48CDD8321EC9B3AD0038D626 /* SimpleListTableViewCell.m */,
+				48CDD8331EC9B3AD0038D626 /* SimpleListTableViewCell.xib */,
+			);
+			name = SimpleListViewController;
 			sourceTree = "<group>";
 		};
 		5C9DB2331EC3310600FC0CC9 /* Global */ = {
@@ -298,10 +338,12 @@
 			files = (
 				483F39301EC3085E00C03253 /* LaunchScreen.storyboard in Resources */,
 				483F392D1EC3085E00C03253 /* Assets.xcassets in Resources */,
+				48CDD82D1EC9B1FB0038D626 /* SimpleListViewController.xib in Resources */,
 				48482E6F1EC999B30029ACBE /* ListViewController.xib in Resources */,
 				483F392B1EC3085E00C03253 /* Main.storyboard in Resources */,
 				4849EEE21EC8815000415E4B /* FormViewController.xib in Resources */,
 				5CDC30421EC3E274001D97DB /* GoogleService-Info.plist in Resources */,
+				48CDD8351EC9B3AD0038D626 /* SimpleListTableViewCell.xib in Resources */,
 				48482E741EC99B230029ACBE /* ListTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -363,6 +405,7 @@
 			files = (
 				4849EEDD1EC8190300415E4B /* Option.m in Sources */,
 				48482E731EC99B230029ACBE /* ListTableViewCell.m in Sources */,
+				48CDD82C1EC9B1FB0038D626 /* SimpleListViewController.m in Sources */,
 				483F393A1EC3518500C03253 /* ForgotPasswordViewController.m in Sources */,
 				483F39281EC3085E00C03253 /* LoginViewController.m in Sources */,
 				5CF6819C1EC747A60056ACD3 /* KASlideShow.m in Sources */,
@@ -373,6 +416,7 @@
 				4886BAFD1EC42EDD000F8DBE /* MenuViewController.m in Sources */,
 				48F7F4061EC5C931008DB808 /* Role.m in Sources */,
 				48482E6E1EC999B30029ACBE /* ListViewController.m in Sources */,
+				48CDD8341EC9B3AD0038D626 /* SimpleListTableViewCell.m in Sources */,
 				483F39221EC3085E00C03253 /* main.m in Sources */,
 				4886BB081EC4ABF8000F8DBE /* Menu.m in Sources */,
 				4849EEDA1EC8185E00415E4B /* Form.m in Sources */,

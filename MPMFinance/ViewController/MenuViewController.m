@@ -11,6 +11,7 @@
 #import "KASlideShow.h"
 #import "FormViewController.h"
 #import "ListViewController.h"
+#import "SimpleListViewController.h"
 
 @interface MenuViewController ()<KASlideShowDelegate,KASlideShowDataSource>
 
@@ -101,9 +102,12 @@
     } else if ([menu.title isEqualToString:kMenuCalculatorMarketing]){
         FormViewController *formViewController = [[FormViewController alloc] init];
         [self.navigationController pushViewController:formViewController animated:YES];
-    } else {
+    } else if ([menu.title isEqualToString:kMenuListWorkOrder]){
         ListViewController *listViewController = [[ListViewController alloc] init];
         [self.navigationController pushViewController:listViewController animated:YES];
+    } else {
+        SimpleListViewController *simpleListViewController = [[SimpleListViewController alloc] init];
+        [self.navigationController pushViewController:simpleListViewController animated:YES];
     }
 }
 

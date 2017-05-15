@@ -10,4 +10,9 @@
 
 @interface ListTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIImageView *icon;
+@property (weak, nonatomic) IBOutlet UILabel *title;
+@property (weak, nonatomic) IBOutlet UILabel *date;
+@property (weak, nonatomic) IBOutlet UILabel *assignee;
+
 @end
