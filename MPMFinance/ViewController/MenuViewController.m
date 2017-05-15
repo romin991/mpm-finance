@@ -12,6 +12,7 @@
 #import "FormViewController.h"
 #import "ListViewController.h"
 #import "SimpleListViewController.h"
+#import "SubmenuViewController.h"
 
 @interface MenuViewController ()<KASlideShowDelegate,KASlideShowDataSource>
 
@@ -40,9 +41,9 @@
 }
 -(void)reloadSlideShow
 {
-    _datasource = [@[[UIImage imageNamed:@"iklan"],
+    _datasource = [@[[UIImage imageNamed:@"Iklan"],
                      [NSURL URLWithString:@"https://i.imgur.com/7jDvjyt.jpg"],
-                     [UIImage imageNamed:@"iklan"]] mutableCopy];
+                     [UIImage imageNamed:@"Iklan"]] mutableCopy];
     
 }
 -(void)viewWillAppear:(BOOL)animated
@@ -105,9 +106,12 @@
     } else if ([menu.title isEqualToString:kMenuListWorkOrder]){
         ListViewController *listViewController = [[ListViewController alloc] init];
         [self.navigationController pushViewController:listViewController animated:YES];
-    } else {
+    } else if ([menu.title isEqualToString:kMenuListSurvey]){
         SimpleListViewController *simpleListViewController = [[SimpleListViewController alloc] init];
         [self.navigationController pushViewController:simpleListViewController animated:YES];
+    } else {
+        SubmenuViewController *submenuViewController = [[SubmenuViewController alloc] init];
+        [self.navigationController pushViewController:submenuViewController animated:YES];
     }
 }
 

@@ -30,6 +30,10 @@
 		48CDD82D1EC9B1FB0038D626 /* SimpleListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48CDD82B1EC9B1FB0038D626 /* SimpleListViewController.xib */; };
 		48CDD8341EC9B3AD0038D626 /* SimpleListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CDD8321EC9B3AD0038D626 /* SimpleListTableViewCell.m */; };
 		48CDD8351EC9B3AD0038D626 /* SimpleListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48CDD8331EC9B3AD0038D626 /* SimpleListTableViewCell.xib */; };
+		48CDD83A1EC9B8A50038D626 /* SubmenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CDD8381EC9B8A50038D626 /* SubmenuViewController.m */; };
+		48CDD83B1EC9B8A50038D626 /* SubmenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48CDD8391EC9B8A50038D626 /* SubmenuViewController.xib */; };
+		48CDD8421EC9BA1A0038D626 /* SubmenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CDD8401EC9BA1A0038D626 /* SubmenuTableViewCell.m */; };
+		48CDD8431EC9BA1A0038D626 /* SubmenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48CDD8411EC9BA1A0038D626 /* SubmenuTableViewCell.xib */; };
 		48F7F4061EC5C931008DB808 /* Role.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F7F4051EC5C931008DB808 /* Role.m */; };
 		5C9DB2361EC3312200FC0CC9 /* MPMGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9DB2351EC3312200FC0CC9 /* MPMGlobal.m */; };
 		5C9DB2421EC3393000FC0CC9 /* MPMUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9DB2411EC3393000FC0CC9 /* MPMUserInfo.m */; };
@@ -78,6 +82,12 @@
 		48CDD8311EC9B3AD0038D626 /* SimpleListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SimpleListTableViewCell.h; path = ViewController/SimpleListTableViewCell.h; sourceTree = "<group>"; };
 		48CDD8321EC9B3AD0038D626 /* SimpleListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SimpleListTableViewCell.m; path = ViewController/SimpleListTableViewCell.m; sourceTree = "<group>"; };
 		48CDD8331EC9B3AD0038D626 /* SimpleListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SimpleListTableViewCell.xib; path = ViewController/SimpleListTableViewCell.xib; sourceTree = "<group>"; };
+		48CDD8371EC9B8A50038D626 /* SubmenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SubmenuViewController.h; path = ViewController/SubmenuViewController.h; sourceTree = "<group>"; };
+		48CDD8381EC9B8A50038D626 /* SubmenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SubmenuViewController.m; path = ViewController/SubmenuViewController.m; sourceTree = "<group>"; };
+		48CDD8391EC9B8A50038D626 /* SubmenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SubmenuViewController.xib; path = ViewController/SubmenuViewController.xib; sourceTree = "<group>"; };
+		48CDD83F1EC9BA1A0038D626 /* SubmenuTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SubmenuTableViewCell.h; path = ViewController/SubmenuTableViewCell.h; sourceTree = "<group>"; };
+		48CDD8401EC9BA1A0038D626 /* SubmenuTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SubmenuTableViewCell.m; path = ViewController/SubmenuTableViewCell.m; sourceTree = "<group>"; };
+		48CDD8411EC9BA1A0038D626 /* SubmenuTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SubmenuTableViewCell.xib; path = ViewController/SubmenuTableViewCell.xib; sourceTree = "<group>"; };
 		48F7F4041EC5C931008DB808 /* Role.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Role.h; path = Object/Realm/Role.h; sourceTree = "<group>"; };
 		48F7F4051EC5C931008DB808 /* Role.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Role.m; path = Object/Realm/Role.m; sourceTree = "<group>"; };
 		5C9DB2341EC3312200FC0CC9 /* MPMGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMGlobal.h; sourceTree = "<group>"; };
@@ -156,6 +166,7 @@
 		483F39371EC3513800C03253 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				48CDD8361EC9B8840038D626 /* SubmenuViewController */,
 				48CDD8281EC9B1C20038D626 /* SimpleListViewController */,
 				48CDD8271EC9B1B10038D626 /* FormViewController */,
 				48CDD8261EC9B1A30038D626 /* ListViewController */,
@@ -230,6 +241,19 @@
 				48CDD8331EC9B3AD0038D626 /* SimpleListTableViewCell.xib */,
 			);
 			name = SimpleListViewController;
+			sourceTree = "<group>";
+		};
+		48CDD8361EC9B8840038D626 /* SubmenuViewController */ = {
+			isa = PBXGroup;
+			children = (
+				48CDD8371EC9B8A50038D626 /* SubmenuViewController.h */,
+				48CDD8381EC9B8A50038D626 /* SubmenuViewController.m */,
+				48CDD8391EC9B8A50038D626 /* SubmenuViewController.xib */,
+				48CDD83F1EC9BA1A0038D626 /* SubmenuTableViewCell.h */,
+				48CDD8401EC9BA1A0038D626 /* SubmenuTableViewCell.m */,
+				48CDD8411EC9BA1A0038D626 /* SubmenuTableViewCell.xib */,
+			);
+			name = SubmenuViewController;
 			sourceTree = "<group>";
 		};
 		5C9DB2331EC3310600FC0CC9 /* Global */ = {
@@ -344,7 +368,9 @@
 				4849EEE21EC8815000415E4B /* FormViewController.xib in Resources */,
 				5CDC30421EC3E274001D97DB /* GoogleService-Info.plist in Resources */,
 				48CDD8351EC9B3AD0038D626 /* SimpleListTableViewCell.xib in Resources */,
+				48CDD83B1EC9B8A50038D626 /* SubmenuViewController.xib in Resources */,
 				48482E741EC99B230029ACBE /* ListTableViewCell.xib in Resources */,
+				48CDD8431EC9BA1A0038D626 /* SubmenuTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,7 +440,9 @@
 				4849EEE51EC899B400415E4B /* FormGeneratorViewController.m in Sources */,
 				483F39251EC3085E00C03253 /* AppDelegate.m in Sources */,
 				4886BAFD1EC42EDD000F8DBE /* MenuViewController.m in Sources */,
+				48CDD8421EC9BA1A0038D626 /* SubmenuTableViewCell.m in Sources */,
 				48F7F4061EC5C931008DB808 /* Role.m in Sources */,
+				48CDD83A1EC9B8A50038D626 /* SubmenuViewController.m in Sources */,
 				48482E6E1EC999B30029ACBE /* ListViewController.m in Sources */,
 				48CDD8341EC9B3AD0038D626 /* SimpleListTableViewCell.m in Sources */,
 				483F39221EC3085E00C03253 /* main.m in Sources */,
