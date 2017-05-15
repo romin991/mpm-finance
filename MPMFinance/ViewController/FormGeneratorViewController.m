@@ -43,7 +43,6 @@
     // Name
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"Name" rowType:XLFormRowDescriptorTypeText title:@"Name"];
     [row.cellConfigAtConfigure setObject:@"Required..." forKey:@"textField.placeholder"];
-    [row.cellConfigAtConfigure setObject:@(NSTextAlignmentRight) forKey:@"textField.textAlignment"];
     row.required = YES;
     row.value = @"Martin";
     [section addFormRow:row];

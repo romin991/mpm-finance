@@ -10,6 +10,7 @@
 #import "Menu.h"
 #import "KASlideShow.h"
 #import "FormViewController.h"
+#import "ListViewController.h"
 
 @interface MenuViewController ()<KASlideShowDelegate,KASlideShowDataSource>
 
@@ -97,9 +98,12 @@
     Menu *menu = [self.menus objectAtIndex:indexPath.row];
     if ([menu.title isEqualToString:kMenuOnlineSubmission]) {
         [self performSegueWithIdentifier:@"onlineSubmissionSegue" sender:self];
-    } else {
+    } else if ([menu.title isEqualToString:kMenuCalculatorMarketing]){
         FormViewController *formViewController = [[FormViewController alloc] init];
         [self.navigationController pushViewController:formViewController animated:YES];
+    } else {
+        ListViewController *listViewController = [[ListViewController alloc] init];
+        [self.navigationController pushViewController:listViewController animated:YES];
     }
 }
 
