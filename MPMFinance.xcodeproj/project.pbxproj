@@ -35,6 +35,7 @@
 		48CDD8421EC9BA1A0038D626 /* SubmenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CDD8401EC9BA1A0038D626 /* SubmenuTableViewCell.m */; };
 		48CDD8431EC9BA1A0038D626 /* SubmenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48CDD8411EC9BA1A0038D626 /* SubmenuTableViewCell.xib */; };
 		48F7F4061EC5C931008DB808 /* Role.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F7F4051EC5C931008DB808 /* Role.m */; };
+		5C586E9A1ECB183200A5A626 /* HelpTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C586E991ECB183200A5A626 /* HelpTableViewController.m */; };
 		5C9B08EC1EC9DB8700B5E9AC /* MenuNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9B08EB1EC9DB8700B5E9AC /* MenuNavigationViewController.m */; };
 		5C9B08F11EC9DB9300B5E9AC /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9B08EE1EC9DB9300B5E9AC /* HistoryViewController.m */; };
 		5C9B08F21EC9DB9300B5E9AC /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9B08F01EC9DB9300B5E9AC /* HomeViewController.m */; };
@@ -93,6 +94,8 @@
 		48CDD8411EC9BA1A0038D626 /* SubmenuTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SubmenuTableViewCell.xib; path = ViewController/SubmenuTableViewCell.xib; sourceTree = "<group>"; };
 		48F7F4041EC5C931008DB808 /* Role.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Role.h; path = Object/Realm/Role.h; sourceTree = "<group>"; };
 		48F7F4051EC5C931008DB808 /* Role.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Role.m; path = Object/Realm/Role.m; sourceTree = "<group>"; };
+		5C586E981ECB183200A5A626 /* HelpTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpTableViewController.h; sourceTree = "<group>"; };
+		5C586E991ECB183200A5A626 /* HelpTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpTableViewController.m; sourceTree = "<group>"; };
 		5C9B08EA1EC9DB8700B5E9AC /* MenuNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuNavigationViewController.h; sourceTree = "<group>"; };
 		5C9B08EB1EC9DB8700B5E9AC /* MenuNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuNavigationViewController.m; sourceTree = "<group>"; };
 		5C9B08ED1EC9DB9300B5E9AC /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
@@ -275,6 +278,8 @@
 				5C9B08F01EC9DB9300B5E9AC /* HomeViewController.m */,
 				5C9B08EA1EC9DB8700B5E9AC /* MenuNavigationViewController.h */,
 				5C9B08EB1EC9DB8700B5E9AC /* MenuNavigationViewController.m */,
+				5C586E981ECB183200A5A626 /* HelpTableViewController.h */,
+				5C586E991ECB183200A5A626 /* HelpTableViewController.m */,
 			);
 			name = TabMenuContainer;
 			sourceTree = "<group>";
@@ -474,6 +479,7 @@
 				4886BB081EC4ABF8000F8DBE /* Menu.m in Sources */,
 				4849EEDA1EC8185E00415E4B /* Form.m in Sources */,
 				4886BB051EC4ABD1000F8DBE /* PopulateRealmDatabase.m in Sources */,
+				5C586E9A1ECB183200A5A626 /* HelpTableViewController.m in Sources */,
 				5C9DB2421EC3393000FC0CC9 /* MPMUserInfo.m in Sources */,
 				5C9B08F21EC9DB9300B5E9AC /* HomeViewController.m in Sources */,
 			);

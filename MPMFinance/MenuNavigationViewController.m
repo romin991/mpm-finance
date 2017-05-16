@@ -9,9 +9,11 @@
 #import "MenuNavigationViewController.h"
 #import "HomeViewController.h"
 #import "HistoryViewController.h"
+#import "HelpTableViewController.h"
 @interface MenuNavigationViewController ()
 @property HomeViewController *homeVC;
 @property HistoryViewController *historyVC;
+@property HelpTableViewController *helpVC;
 @property (nonatomic) ContainerView selectedIndex;
 @end
 
@@ -22,7 +24,7 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     self.homeVC = [storyboard instantiateViewControllerWithIdentifier:@"HomeViewController"];
     self.historyVC = [storyboard instantiateViewControllerWithIdentifier:@"HistoryViewController"];
-    
+    self.helpVC = [storyboard instantiateViewControllerWithIdentifier:@"HelpTableViewController"];
     // Do any additional setup after loading the view.
 }
 -(void)viewWillAppear:(BOOL)animated
@@ -42,7 +44,7 @@
     } else if (selectedIndex == kHistory){
         [self setViewControllers:[NSArray arrayWithObject:self.historyVC] animated:NO];
     } else if (selectedIndex == kHelp){
-        //[self setViewControllers:[NSArray arrayWithObject:self.numpadViewController] animated:NO];
+        [self setViewControllers:[NSArray arrayWithObject:self.helpVC] animated:NO];
     } else{
     
     }

@@ -39,6 +39,9 @@
     else if(item.tag == 2){
         [_containerView setSelectedIndex:kHistory];
     }
+    else if(item.tag == 3){
+        [_containerView setSelectedIndex:kHelp];
+    }
 }
 
 
