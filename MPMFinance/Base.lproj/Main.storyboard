@@ -398,27 +398,36 @@
                                 </connections>
                             </tabBar>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rp2-lP-0Cc">
-                                <rect key="frame" x="0.0" y="115" width="414" height="621"/>
+                                <rect key="frame" x="0.0" y="121" width="414" height="615"/>
                                 <connections>
                                     <segue destination="0Ug-Lq-z0p" kind="embed" identifier="embedContainerSegue" id="UHL-ER-7yA"/>
                                 </connections>
                             </containerView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="Garis" translatesAutoresizingMaskIntoConstraints="NO" id="HTf-I1-sx0">
+                                <rect key="frame" x="0.0" y="118" width="414" height="5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="5" id="jB8-Ss-Zon"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Rp2-lP-0Cc" firstAttribute="leading" secondItem="WV2-ML-oQG" secondAttribute="leading" id="4U4-If-FQp"/>
+                            <constraint firstItem="HTf-I1-sx0" firstAttribute="top" secondItem="Fjs-9I-j9k" secondAttribute="bottom" constant="3" id="ElH-ZA-AjD"/>
                             <constraint firstItem="GzH-Zy-2cu" firstAttribute="top" secondItem="dSh-LE-Q8T" secondAttribute="bottom" id="Q25-Yi-iWJ"/>
                             <constraint firstItem="MXu-3G-i5M" firstAttribute="top" secondItem="dSh-LE-Q8T" secondAttribute="bottom" id="REQ-OG-9Wh"/>
+                            <constraint firstItem="HTf-I1-sx0" firstAttribute="leading" secondItem="WV2-ML-oQG" secondAttribute="leading" id="SM8-rC-GIk"/>
+                            <constraint firstAttribute="trailing" secondItem="HTf-I1-sx0" secondAttribute="trailing" id="a1k-eq-SSh"/>
                             <constraint firstItem="Fjs-9I-j9k" firstAttribute="top" secondItem="GzH-Zy-2cu" secondAttribute="bottom" constant="9" id="atU-Et-LpG"/>
                             <constraint firstItem="RE8-6S-OXT" firstAttribute="top" secondItem="Rp2-lP-0Cc" secondAttribute="bottom" id="gS3-VZ-NvI"/>
                             <constraint firstAttribute="trailing" secondItem="Fjs-9I-j9k" secondAttribute="trailing" id="hrw-GE-tos"/>
                             <constraint firstItem="MXu-3G-i5M" firstAttribute="trailing" secondItem="WV2-ML-oQG" secondAttribute="trailingMargin" id="ibI-Aj-fcO"/>
                             <constraint firstItem="MXu-3G-i5M" firstAttribute="leading" secondItem="Dff-Oy-cQn" secondAttribute="trailing" id="kSX-TY-Vj6"/>
+                            <constraint firstItem="Rp2-lP-0Cc" firstAttribute="top" secondItem="HTf-I1-sx0" secondAttribute="bottom" constant="-2" id="nwC-DS-iDg"/>
                             <constraint firstItem="MXu-3G-i5M" firstAttribute="centerY" secondItem="Dff-Oy-cQn" secondAttribute="centerY" id="ofP-zu-WoC"/>
                             <constraint firstAttribute="trailing" secondItem="Rp2-lP-0Cc" secondAttribute="trailing" id="rl2-BY-b52"/>
                             <constraint firstItem="GzH-Zy-2cu" firstAttribute="leading" secondItem="WV2-ML-oQG" secondAttribute="leadingMargin" id="s0b-eg-2JE"/>
                             <constraint firstItem="Fjs-9I-j9k" firstAttribute="leading" secondItem="WV2-ML-oQG" secondAttribute="leading" id="wyE-pW-ttR"/>
-                            <constraint firstItem="Rp2-lP-0Cc" firstAttribute="top" secondItem="Fjs-9I-j9k" secondAttribute="bottom" id="zAE-E8-RlW"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Z6t-ce-GFv"/>
@@ -456,11 +465,11 @@
                         <viewControllerLayoutGuide type="bottom" id="ewe-0V-9Kt"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ysq-KT-xnS">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="621"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="615"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="d5Q-Zo-5Ha">
-                                <rect key="frame" x="0.0" y="232" width="414" height="389"/>
+                                <rect key="frame" x="0.0" y="232" width="414" height="383"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="vqh-v5-NT4">
                                     <size key="itemSize" width="103" height="103"/>
@@ -615,7 +624,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="egU-MW-XyX" id="u6C-5u-8Ti">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="64.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="64.666666666666671"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Product" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VFY-Jd-2Yp">
@@ -640,7 +649,7 @@
                                         <rect key="frame" x="0.0" y="65" width="414" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="os2-K9-3Jc" id="PwF-qP-xE7">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="64.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="64.666666666666671"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Credit Simulation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vV7-uU-0vJ">

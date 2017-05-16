@@ -29,7 +29,22 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
+#pragma mark - Table view delegate
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) { // menu Product
+        NSLog(@"product");
+    }
+    else if (indexPath.section == 1) { // menu Product
+        NSLog(@"Credit Simulation");
+    }
+    else if (indexPath.section == 2) { // menu Product
+        NSLog(@"Contact US");
+    }
+    else if (indexPath.section == 3) { // menu Product
+        NSLog(@"Online Submission");
+    }
+}
 
 
 /*
