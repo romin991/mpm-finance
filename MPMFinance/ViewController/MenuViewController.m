@@ -42,6 +42,9 @@
     else if(item.tag == 3){
         [_containerView setSelectedIndex:kHelp];
     }
+    else if(item.tag == 4){
+        [_containerView setSelectedIndex:kProfile];
+    }
 }
 
 

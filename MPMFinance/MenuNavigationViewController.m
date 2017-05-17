@@ -10,10 +10,12 @@
 #import "HomeViewController.h"
 #import "HistoryViewController.h"
 #import "HelpTableViewController.h"
+#import "MyProfileTableViewController.h"
 @interface MenuNavigationViewController ()
 @property HomeViewController *homeVC;
 @property HistoryViewController *historyVC;
 @property HelpTableViewController *helpVC;
+@property MyProfileTableViewController *myProfileVC;
 @property (nonatomic) ContainerView selectedIndex;
 @end
 
@@ -25,6 +27,7 @@
     self.homeVC = [storyboard instantiateViewControllerWithIdentifier:@"HomeViewController"];
     self.historyVC = [storyboard instantiateViewControllerWithIdentifier:@"HistoryViewController"];
     self.helpVC = [storyboard instantiateViewControllerWithIdentifier:@"HelpTableViewController"];
+    self.myProfileVC = [storyboard instantiateViewControllerWithIdentifier:@"MyProfileTableViewController"];
     // Do any additional setup after loading the view.
 }
 -(void)viewWillAppear:(BOOL)animated
@@ -45,8 +48,8 @@
         [self setViewControllers:[NSArray arrayWithObject:self.historyVC] animated:NO];
     } else if (selectedIndex == kHelp){
         [self setViewControllers:[NSArray arrayWithObject:self.helpVC] animated:NO];
-    } else{
-    
+    } else if (selectedIndex == kProfile){
+        [self setViewControllers:[NSArray arrayWithObject:self.myProfileVC] animated:NO];
     }
 }
 
