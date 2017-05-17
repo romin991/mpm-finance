@@ -11,6 +11,6 @@
 
 @interface SubmenuViewController : UIViewController
 
-@property (weak, nonatomic) Menu *menu;
+@property Menu *menu;
 
 @end

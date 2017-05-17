@@ -13,8 +13,10 @@
 @interface Form : RLMObject
 
 @property NSString *title;
+@property NSString *tag;
 @property NSString *placeholder;
 @property NSString *type;
+@property BOOL required;
 @property NSString *validation;
 @property NSInteger sort;
 @property NSInteger page;
@@ -23,7 +25,7 @@
 @property RLMArray<Option> *options;
 @property RLMArray<Menu> *menus;
 
-+ (RLMResults *)getFormForMenu:(NSString *)menuTitle role:(NSString *)roleName;
++ (RLMResults *)getFormForMenu:(NSString *)menuTitle;
 + (void)generateForms;
 
 @end

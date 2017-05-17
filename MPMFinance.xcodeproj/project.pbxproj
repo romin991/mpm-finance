@@ -23,7 +23,6 @@
 		4849EEDD1EC8190300415E4B /* Option.m in Sources */ = {isa = PBXBuildFile; fileRef = 4849EEDC1EC8190300415E4B /* Option.m */; };
 		4849EEE11EC8815000415E4B /* FormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4849EEDF1EC8815000415E4B /* FormViewController.m */; };
 		4849EEE21EC8815000415E4B /* FormViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4849EEE01EC8815000415E4B /* FormViewController.xib */; };
-		4849EEE51EC899B400415E4B /* FormGeneratorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4849EEE41EC899B400415E4B /* FormGeneratorViewController.m */; };
 		4886BAFD1EC42EDD000F8DBE /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4886BAFC1EC42EDD000F8DBE /* MenuViewController.m */; };
 		4886BB051EC4ABD1000F8DBE /* PopulateRealmDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4886BB041EC4ABD1000F8DBE /* PopulateRealmDatabase.m */; };
 		4886BB081EC4ABF8000F8DBE /* Menu.m in Sources */ = {isa = PBXBuildFile; fileRef = 4886BB071EC4ABF8000F8DBE /* Menu.m */; };
@@ -75,8 +74,6 @@
 		4849EEDE1EC8815000415E4B /* FormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FormViewController.h; path = ViewController/FormViewController.h; sourceTree = "<group>"; };
 		4849EEDF1EC8815000415E4B /* FormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormViewController.m; path = ViewController/FormViewController.m; sourceTree = "<group>"; };
 		4849EEE01EC8815000415E4B /* FormViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FormViewController.xib; path = ViewController/FormViewController.xib; sourceTree = "<group>"; };
-		4849EEE31EC899B400415E4B /* FormGeneratorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FormGeneratorViewController.h; path = ViewController/FormGeneratorViewController.h; sourceTree = "<group>"; };
-		4849EEE41EC899B400415E4B /* FormGeneratorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormGeneratorViewController.m; path = ViewController/FormGeneratorViewController.m; sourceTree = "<group>"; };
 		4886BAFB1EC42EDD000F8DBE /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuViewController.h; path = ViewController/MenuViewController.h; sourceTree = "<group>"; };
 		4886BAFC1EC42EDD000F8DBE /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = ViewController/MenuViewController.m; sourceTree = "<group>"; };
 		4886BB031EC4ABD1000F8DBE /* PopulateRealmDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PopulateRealmDatabase.h; path = Object/Realm/PopulateRealmDatabase.h; sourceTree = "<group>"; };
@@ -192,8 +189,6 @@
 				483F39391EC3518500C03253 /* ForgotPasswordViewController.m */,
 				4886BAFB1EC42EDD000F8DBE /* MenuViewController.h */,
 				4886BAFC1EC42EDD000F8DBE /* MenuViewController.m */,
-				4849EEE31EC899B400415E4B /* FormGeneratorViewController.h */,
-				4849EEE41EC899B400415E4B /* FormGeneratorViewController.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -483,7 +478,6 @@
 				5CF6819C1EC747A60056ACD3 /* KASlideShow.m in Sources */,
 				4849EEE11EC8815000415E4B /* FormViewController.m in Sources */,
 				5C9DB2361EC3312200FC0CC9 /* MPMGlobal.m in Sources */,
-				4849EEE51EC899B400415E4B /* FormGeneratorViewController.m in Sources */,
 				483F39251EC3085E00C03253 /* AppDelegate.m in Sources */,
 				4886BAFD1EC42EDD000F8DBE /* MenuViewController.m in Sources */,
 				5C9B08EC1EC9DB8700B5E9AC /* MenuNavigationViewController.m in Sources */,

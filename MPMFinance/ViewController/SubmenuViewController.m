@@ -8,6 +8,7 @@
 
 #import "SubmenuViewController.h"
 #import "SubmenuTableViewCell.h"
+#import "FormViewController.h"
 
 @interface SubmenuViewController ()
 
@@ -15,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *icon;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (weak, nonatomic) RLMResults *submenus;
+@property RLMResults *submenus;
 
 @end
 
@@ -43,6 +44,21 @@
     return self.submenus.count;
 }
 
+- (void)buttonClicked:(id)sender{
+    UIButton *button = (UIButton *)sender;
+    
+    Menu *submenu;
+    @try {
+        submenu = [self.submenus objectAtIndex:button.tag];
+    } @catch (NSException * e) {
+        NSLog(@"Exception : %@", e);
+    }
+    
+    FormViewController *formViewController = [[FormViewController alloc] init];
+    formViewController.menu = submenu;
+    [self.navigationController pushViewController:formViewController animated:YES];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SubmenuTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (!cell){
@@ -52,6 +68,8 @@
     
     cell.button.layer.borderWidth = 1;
     cell.button.layer.borderColor = [[UIColor greenColor] CGColor];
+    cell.button.tag = indexPath.row;
+    [cell.button addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
     Menu *submenu;
     @try {

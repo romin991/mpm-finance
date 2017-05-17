@@ -11,8 +11,8 @@
 
 @implementation Form
 
-+ (RLMResults *)getFormForMenu:(NSString *)menuTitle role:(NSString *)roleName{
-    return [Form objectsWhere:@"ANY roles.name = %@ and ANY menus.title = %@", roleName, menuTitle];
++ (RLMResults *)getFormForMenu:(NSString *)menuTitle{
+    return [Form objectsWhere:@"ANY menus.title = %@", menuTitle];
 }
 
 #pragma mark - Populate Data
@@ -22,7 +22,9 @@
     
     Form *form = [[Form alloc] init];
     form.title = @"Nama Calon Debitur";
+    form.tag = @"Name";
     form.type = XLFormRowDescriptorTypeText;
+    form.required = NO;
     form.sort = 0;
     form.page = 0;
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
@@ -31,7 +33,9 @@
     
     form = [[Form alloc] init];
     form.title = @"No KTP";
+    form.tag = @"IDNumber";
     form.type = XLFormRowDescriptorTypeText;
+    form.required = NO;
     form.sort = 0;
     form.page = 0;
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
