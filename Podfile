@@ -14,4 +14,5 @@ target 'MPMFinance' do
     pod 'SVProgressHUD'
     pod 'TPKeyboardAvoiding'
     pod 'XLForm', '~> 3.0'
+    pod 'APAvatarImageView'
 end
