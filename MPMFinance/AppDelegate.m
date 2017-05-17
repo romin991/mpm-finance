@@ -81,7 +81,8 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
 }
 -(void)setNavigationBarColor
 {
-    
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],
+                                                           NSFontAttributeName:[UIFont fontWithName:@"Avenir-Book" size:18]}];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setBarTintColor:UIColorFromRGB(0xF26F21)];
     

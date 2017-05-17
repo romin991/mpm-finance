@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "List.h"
+#import "Menu.h"
 
 @interface ListViewController : UIViewController
+
+@property Menu *menu;
+- (void)setDataSource:(NSArray<List *> *)lists;
 
 @end

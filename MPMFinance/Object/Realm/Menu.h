@@ -13,6 +13,8 @@ RLM_ARRAY_TYPE(Menu)
 @interface Menu : RLMObject
 
 @property NSString *imageName;
+@property NSString *backgroundImageName;
+@property NSString *circleIconImageName;
 @property NSString *title;
 @property Menu *parentMenu;
 @property NSInteger sort;

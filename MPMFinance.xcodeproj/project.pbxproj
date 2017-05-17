@@ -14,6 +14,7 @@
 		483F392D1EC3085E00C03253 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 483F392C1EC3085E00C03253 /* Assets.xcassets */; };
 		483F39301EC3085E00C03253 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 483F392E1EC3085E00C03253 /* LaunchScreen.storyboard */; };
 		483F393A1EC3518500C03253 /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 483F39391EC3518500C03253 /* ForgotPasswordViewController.m */; };
+		4842780A1ECABC3000183A60 /* List.m in Sources */ = {isa = PBXBuildFile; fileRef = 484278091ECABC3000183A60 /* List.m */; };
 		48482E6E1EC999B30029ACBE /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48482E6C1EC999B30029ACBE /* ListViewController.m */; };
 		48482E6F1EC999B30029ACBE /* ListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48482E6D1EC999B30029ACBE /* ListViewController.xib */; };
 		48482E731EC99B230029ACBE /* ListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48482E711EC99B230029ACBE /* ListTableViewCell.m */; };
@@ -59,6 +60,8 @@
 		483F39311EC3085E00C03253 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		483F39381EC3518500C03253 /* ForgotPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ForgotPasswordViewController.h; path = ViewController/ForgotPasswordViewController.h; sourceTree = "<group>"; };
 		483F39391EC3518500C03253 /* ForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ForgotPasswordViewController.m; path = ViewController/ForgotPasswordViewController.m; sourceTree = "<group>"; };
+		484278081ECABC3000183A60 /* List.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = List.h; path = Object/Plain/List.h; sourceTree = "<group>"; };
+		484278091ECABC3000183A60 /* List.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = List.m; path = Object/Plain/List.m; sourceTree = "<group>"; };
 		48482E6B1EC999B30029ACBE /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListViewController.h; path = ViewController/ListViewController.h; sourceTree = "<group>"; };
 		48482E6C1EC999B30029ACBE /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListViewController.m; path = ViewController/ListViewController.m; sourceTree = "<group>"; };
 		48482E6D1EC999B30029ACBE /* ListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ListViewController.xib; path = ViewController/ListViewController.xib; sourceTree = "<group>"; };
@@ -195,9 +198,19 @@
 			name = ViewController;
 			sourceTree = "<group>";
 		};
+		484278071ECABBF800183A60 /* Plain */ = {
+			isa = PBXGroup;
+			children = (
+				484278081ECABC3000183A60 /* List.h */,
+				484278091ECABC3000183A60 /* List.m */,
+			);
+			name = Plain;
+			sourceTree = "<group>";
+		};
 		4886BAFE1EC4A0F7000F8DBE /* Object */ = {
 			isa = PBXGroup;
 			children = (
+				484278071ECABBF800183A60 /* Plain */,
 				4886BB021EC4A614000F8DBE /* Realm */,
 			);
 			name = Object;
@@ -358,6 +371,9 @@
 						DevelopmentTeam = 7WELLXNPG5;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -447,7 +463,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -462,6 +478,7 @@
 				48482E731EC99B230029ACBE /* ListTableViewCell.m in Sources */,
 				48CDD82C1EC9B1FB0038D626 /* SimpleListViewController.m in Sources */,
 				483F393A1EC3518500C03253 /* ForgotPasswordViewController.m in Sources */,
+				4842780A1ECABC3000183A60 /* List.m in Sources */,
 				483F39281EC3085E00C03253 /* LoginViewController.m in Sources */,
 				5CF6819C1EC747A60056ACD3 /* KASlideShow.m in Sources */,
 				4849EEE11EC8815000415E4B /* FormViewController.m in Sources */,

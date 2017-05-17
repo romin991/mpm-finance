@@ -92,6 +92,7 @@
         [self.navigationController.navigationController pushViewController:formViewController animated:YES];
     } else if ([menu.title isEqualToString:kMenuListWorkOrder]){
         ListViewController *listViewController = [[ListViewController alloc] init];
+        listViewController.menu = menu;
         [self.navigationController.navigationController pushViewController:listViewController animated:YES];
     } else if ([menu.title isEqualToString:kMenuListSurvey]){
         SimpleListViewController *simpleListViewController = [[SimpleListViewController alloc] init];

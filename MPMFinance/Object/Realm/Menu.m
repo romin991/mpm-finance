@@ -29,6 +29,8 @@
     
     Menu *menu = [[Menu alloc] init];
     menu.imageName = @"ListWorkOrderIcon";
+    menu.backgroundImageName = @"ListWorkOrderBackground";
+    menu.circleIconImageName = @"ListWorkOrderCircleIcon";
     menu.title = kMenuListWorkOrder;
     menu.sort = 0;
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
@@ -78,7 +80,7 @@
     
     if ([menu.title isEqualToString:kMenuListWorkOrder]) {
         Menu *submenu = [[Menu alloc] init];
-        submenu.imageName = @"";
+        submenu.imageName = @"ListPengajuanApplikasiSubmenuIcon";
         submenu.title = kSubmenuListPengajuanApplikasi;
         submenu.sort = 0;
         submenu.parentMenu = menu;
@@ -87,7 +89,7 @@
         [submenus addObject:submenu];
         
         submenu = [[Menu alloc] init];
-        submenu.imageName = @"";
+        submenu.imageName = @"DataMAPSubmenuIcon";
         submenu.title = kSubmenuDataMAP;
         submenu.sort = 1;
         submenu.parentMenu = menu;
@@ -96,7 +98,7 @@
         [submenus addObject:submenu];
         
         submenu = [[Menu alloc] init];
-        submenu.imageName = @"";
+        submenu.imageName = @"SurveySubmenuIcon";
         submenu.title = kSubmenuSurvey;
         submenu.sort = 2;
         submenu.parentMenu = menu;

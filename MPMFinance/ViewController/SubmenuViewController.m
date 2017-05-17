@@ -15,6 +15,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *icon;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+@property (weak, nonatomic) RLMResults *submenus;
+
 @end
 
 @implementation SubmenuViewController
@@ -22,6 +24,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [self setTitle:@"Detail"];
+    self.banner.image = [UIImage imageNamed:self.menu.backgroundImageName];
+    self.icon.image = [UIImage imageNamed:self.menu.circleIconImageName];
+    self.submenus = [Menu getSubmenuForMenu:self.menu.title role:kRoleDedicated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,8 +40,9 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return self.submenus.count;
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SubmenuTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (!cell){
@@ -45,6 +52,21 @@
     
     cell.button.layer.borderWidth = 1;
     cell.button.layer.borderColor = [[UIColor greenColor] CGColor];
+    
+    Menu *submenu;
+    @try {
+        submenu = [self.submenus objectAtIndex:indexPath.row];
+    } @catch (NSException * e) {
+        NSLog(@"Exception : %@", e);
+    }
+    
+    if (submenu){
+        cell.icon.image = [UIImage imageNamed:submenu.imageName];
+        cell.title.text = submenu.title;
+    } else {
+        cell.icon.image = nil;
+        cell.title.text = @"";
+    }
     
     return cell;
 }
