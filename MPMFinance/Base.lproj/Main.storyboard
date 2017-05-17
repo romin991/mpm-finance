@@ -729,6 +729,24 @@
             </objects>
             <point key="canvasLocation" x="4043.4782608695655" y="1547.2826086956522"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="tOF-k9-5FE">
+            <objects>
+                <viewController id="77z-4y-rFA" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mRA-8x-ZTG"/>
+                        <viewControllerLayoutGuide type="bottom" id="5Yp-iw-YMz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="43w-Fi-pJv">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6CL-Ar-6CQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4853" y="1544"/>
+        </scene>
     </scenes>
     <resources>
         <image name="ComposeCircleIcon" width="47" height="47"/>
