@@ -9,6 +9,7 @@
 #import "MenuViewController.h"
 #import "MenuNavigationViewController.h"
 @interface MenuViewController ()<UITabBarDelegate>
+@property (weak, nonatomic) IBOutlet UITabBar *tabBar;
 @property MenuNavigationViewController *containerView;
 @end
 
@@ -16,10 +17,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.tabBar setSelectedItem:[self.tabBar.items objectAtIndex:0]];
+    [self.tabBar.items[1] setEnabled:NO];
+    [self.tabBar.items[3] setEnabled:NO];
     // Do any additional setup after loading the view.
 }
 -(void)viewWillAppear:(BOOL)animated
 {
+    
     [self.navigationController setNavigationBarHidden:YES animated:NO];
 }
 -(void)viewWillDisappear:(BOOL)animated
@@ -46,10 +51,6 @@
         [_containerView setSelectedIndex:kProfile];
     }
 }
-
-
-
-
 
 
 #pragma mark - Navigation
