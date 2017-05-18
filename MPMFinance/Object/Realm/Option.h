@@ -12,7 +12,5 @@
 
 @property NSString *name;
 
-//+ (void)generateOptions;
-
 @end
 RLM_ARRAY_TYPE(Option)

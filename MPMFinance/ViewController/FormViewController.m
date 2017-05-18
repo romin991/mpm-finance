@@ -9,6 +9,9 @@
 #import "FormViewController.h"
 #import <XLForm.h>
 #import "Form.h"
+#import <JVFloatLabeledTextField/JVFloatLabeledTextView.h>
+#import "FloatLabeledTextFieldCell.h"
+#import <TPKeyboardAvoidingTableView.h>
 
 @interface FormViewController ()
 
@@ -17,7 +20,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *thirdLabel;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 
-@property RLMResults *questions;
+@property RLMResults *forms;
+@property RLMArray *formRows;
 @property XLFormDescriptor *formDescriptor;
 
 @end
@@ -35,12 +39,36 @@
     [self.navigationItem setRightBarButtonItem:barButtonItem];
     
     [self setTitle:self.menu.title];
-    self.questions = [Form getFormForMenu:self.menu.title];
+    self.forms = [Form getFormForMenu:self.menu.title];
+    if (self.forms.count > self.index) self.formRows = ((Form *) [self.forms objectAtIndex:self.index]).rows;
+    
     [self generateFormDescriptor];
+    [self setHorizontalLabel];
 }
 
 - (void)nextButtonClicked:(id)sender{
+    if (self.forms.count == self.index + 1){
+        
+    } else {
+        FormViewController *nextFormViewController = [[FormViewController alloc] init];
+        nextFormViewController.menu = self.menu;
+        nextFormViewController.index = self.index + 1;
+        [self.navigationController pushViewController:nextFormViewController animated:YES];
+    }
+}
+
+- (void)setHorizontalLabel{
+    Form *firstForm;
+    Form *secondForm;
+    Form *thirdForm;
     
+    if (self.forms.count > self.index) firstForm = [self.forms objectAtIndex:self.index];
+    if (self.forms.count > self.index + 1) secondForm = [self.forms objectAtIndex:self.index + 1];
+    if (self.forms.count > self.index + 2) thirdForm = [self.forms objectAtIndex:self.index + 2];
+    
+    self.firstLabel.text = firstForm ? firstForm.title : @"";
+    self.secondLabel.text = secondForm ? secondForm.title : @"";
+    self.thirdLabel.text = thirdForm ? thirdForm.title : @"";
 }
 
 - (void)generateFormDescriptor{
@@ -54,10 +82,18 @@
     [self.formDescriptor addFormSection:section];
     
     // Row
-    for (Form *form in self.questions) {
-        row = [XLFormRowDescriptor formRowDescriptorWithTag:form.tag rowType:form.type title:form.title];
-        if (form.placeholder) [row.cellConfigAtConfigure setObject:form.placeholder forKey:@"textField.placeholder"];
-        row.required = form.required;
+    for (FormRow *formRow in self.formRows) {
+        row = [XLFormRowDescriptor formRowDescriptorWithTag:formRow.tag rowType:formRow.type title:formRow.title];
+        if (formRow.placeholder) [row.cellConfigAtConfigure setObject:formRow.placeholder forKey:@"textField.placeholder"];
+        if (formRow.options.count > 0) {
+            NSMutableArray *options = [NSMutableArray array];
+            for (Option *option in formRow.options) {
+                [options addObject:[XLFormOptionsObject formOptionsObjectWithValue:option.name displayText:option.name]];
+            }
+            row.selectorTitle = formRow.title;
+            row.selectorOptions = options;
+        }
+        row.required = formRow.required;
         
         [section addFormRow:row];
     }

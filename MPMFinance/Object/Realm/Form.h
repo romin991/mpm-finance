@@ -7,22 +7,15 @@
 //
 
 #import <Realm/Realm.h>
+#import "FormRow.h"
 #import "Menu.h"
-#import "Option.h"
 
 @interface Form : RLMObject
 
 @property NSString *title;
-@property NSString *tag;
-@property NSString *placeholder;
-@property NSString *type;
-@property BOOL required;
-@property NSString *validation;
 @property NSInteger sort;
-@property NSInteger page;
-@property NSString *apiURL;
 
-@property RLMArray<Option> *options;
+@property RLMArray<FormRow> *rows;
 @property RLMArray<Menu> *menus;
 
 + (RLMResults *)getFormForMenu:(NSString *)menuTitle;

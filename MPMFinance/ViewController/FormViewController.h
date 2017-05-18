@@ -12,5 +12,6 @@
 @interface FormViewController : UIViewController
 
 @property Menu *menu;
+@property NSInteger index;
 
 @end
