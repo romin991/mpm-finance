@@ -31,7 +31,7 @@
     
     form = [[Form alloc] init];
     form.title = @"Data Pasangan";
-    form.sort = 1;
+    form.sort = 10;
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
     [form.rows addObjects:[self generateFormRowsWithRealm:realm form:form]];
@@ -39,7 +39,7 @@
     
     form = [[Form alloc] init];
     form.title = @"Data Aset";
-    form.sort = 2;
+    form.sort = 20;
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
     [form.rows addObjects:[self generateFormRowsWithRealm:realm form:form]];
@@ -47,7 +47,7 @@
     
     form = [[Form alloc] init];
     form.title = @"Struktur Pembiayaan";
-    form.sort = 3;
+    form.sort = 30;
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
     [form.rows addObjects:[self generateFormRowsWithRealm:realm form:form]];
@@ -55,7 +55,7 @@
     
     form = [[Form alloc] init];
     form.title = @"Data Pekerjaan";
-    form.sort = 4;
+    form.sort = 40;
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
     [form.rows addObjects:[self generateFormRowsWithRealm:realm form:form]];
@@ -63,9 +63,102 @@
     
     form = [[Form alloc] init];
     form.title = @"Data E-con";
-    form.sort = 5;
+    form.sort = 50;
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
+    [form.rows addObjects:[self generateFormRowsWithRealm:realm form:form]];
+    [realm addObject:form];
+    
+    //=====
+    
+    form = [[Form alloc] init];
+    form.title = @"MAP Data Aplikasi";
+    form.sort = 0;
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuDataMAP]];
+    [form.rows addObjects:[self generateFormRowsWithRealm:realm form:form]];
+    [realm addObject:form];
+    
+    form = [[Form alloc] init];
+    form.title = @"Data Pribadi";
+    form.sort = 10;
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuDataMAP]];
+    [form.rows addObjects:[self generateFormRowsWithRealm:realm form:form]];
+    [realm addObject:form];
+    
+    form = [[Form alloc] init];
+    form.title = @"Data Pekerjaan";
+    form.sort = 20;
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuDataMAP]];
+    [form.rows addObjects:[self generateFormRowsWithRealm:realm form:form]];
+    [realm addObject:form];
+    
+    form = [[Form alloc] init];
+    form.title = @"Kartu Kredit / Pinjaman Lain";
+    form.sort = 30;
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuDataMAP]];
+    [form.rows addObjects:[self generateFormRowsWithRealm:realm form:form]];
+    [realm addObject:form];
+    
+    form = [[Form alloc] init];
+    form.title = @"Data Pasangan";
+    form.sort = 40;
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuDataMAP]];
+    [form.rows addObjects:[self generateFormRowsWithRealm:realm form:form]];
+    [realm addObject:form];
+    
+    form = [[Form alloc] init];
+    form.title = @"Data Pekerjaan Pasangan";
+    form.sort = 50;
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuDataMAP]];
+    [form.rows addObjects:[self generateFormRowsWithRealm:realm form:form]];
+    [realm addObject:form];
+    
+    form = [[Form alloc] init];
+    form.title = @"Data Keluarga";
+    form.sort = 60;
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuDataMAP]];
+    [form.rows addObjects:[self generateFormRowsWithRealm:realm form:form]];
+    [realm addObject:form];
+    
+    form = [[Form alloc] init];
+    form.title = @"Struktur Pembayaran";
+    form.sort = 70;
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuDataMAP]];
+    [form.rows addObjects:[self generateFormRowsWithRealm:realm form:form]];
+    [realm addObject:form];
+    
+    form = [[Form alloc] init];
+    form.title = @"Asuransi";
+    form.sort = 80;
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuDataMAP]];
+    [form.rows addObjects:[self generateFormRowsWithRealm:realm form:form]];
+    [realm addObject:form];
+    
+    form = [[Form alloc] init];
+    form.title = @"Data Aset";
+    form.sort = 90;
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuDataMAP]];
+    [form.rows addObjects:[self generateFormRowsWithRealm:realm form:form]];
+    [realm addObject:form];
+    
+    form = [[Form alloc] init];
+    form.title = @"Data E-con";
+    form.sort = 100;
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuDataMAP]];
+    [form.rows addObjects:[self generateFormRowsWithRealm:realm form:form]];
+    [realm addObject:form];
+    
+    form = [[Form alloc] init];
+    form.title = @"MAP Penjamin";
+    form.sort = 110;
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuDataMAP]];
+    [form.rows addObjects:[self generateFormRowsWithRealm:realm form:form]];
+    [realm addObject:form];
+    
+    form = [[Form alloc] init];
+    form.title = @"Data Marketing";
+    form.sort = 120;
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuDataMAP]];
     [form.rows addObjects:[self generateFormRowsWithRealm:realm form:form]];
     [realm addObject:form];
     
@@ -92,7 +185,7 @@
         row.tag = @"1";
         row.type = XLFormRowDescriptorTypeFloatLabeledTextField;
         row.required = NO;
-        row.sort = 1;
+        row.sort = 10;
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
         [realm addObject:row];
@@ -103,7 +196,7 @@
         row.tag = @"2";
         row.type = XLFormRowDescriptorTypeFloatLabeledTextField;
         row.required = NO;
-        row.sort = 2;
+        row.sort = 20;
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
         [realm addObject:row];
@@ -114,7 +207,7 @@
         row.tag = @"3";
         row.type = XLFormRowDescriptorTypeDateInline;
         row.required = NO;
-        row.sort = 3;
+        row.sort = 30;
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
         [realm addObject:row];
@@ -125,7 +218,7 @@
         row.tag = @"4";
         row.type = XLFormRowDescriptorTypeFloatLabeledTextField;
         row.required = NO;
-        row.sort = 4;
+        row.sort = 40;
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
         [realm addObject:row];
@@ -149,7 +242,7 @@
         row.tag = @"1";
         row.type = XLFormRowDescriptorTypeFloatLabeledTextField;
         row.required = NO;
-        row.sort = 1;
+        row.sort = 10;
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
         [realm addObject:row];
@@ -160,7 +253,7 @@
         row.tag = @"2";
         row.type = XLFormRowDescriptorTypeFloatLabeledTextField;
         row.required = NO;
-        row.sort = 2;
+        row.sort = 20;
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
         [realm addObject:row];
@@ -171,7 +264,7 @@
         row.tag = @"3";
         row.type = XLFormRowDescriptorTypeDateInline;
         row.required = NO;
-        row.sort = 3;
+        row.sort = 30;
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
         [realm addObject:row];
@@ -182,7 +275,7 @@
         row.tag = @"4";
         row.type = XLFormRowDescriptorTypeFloatLabeledTextField;
         row.required = NO;
-        row.sort = 4;
+        row.sort = 40;
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
         [realm addObject:row];
@@ -207,7 +300,7 @@
         row.tag = @"1";
         row.type = XLFormRowDescriptorTypeSelectorPush;
         row.required = NO;
-        row.sort = 1;
+        row.sort = 10;
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
         [row.options addObjects:[self generateOptionWithRealm:realm formRow:row]];
@@ -232,7 +325,7 @@
         row.tag = @"1";
         row.type = XLFormRowDescriptorTypeFloatLabeledTextField;
         row.required = NO;
-        row.sort = 1;
+        row.sort = 10;
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
         [realm addObject:row];
@@ -243,7 +336,7 @@
         row.tag = @"2";
         row.type = XLFormRowDescriptorTypeFloatLabeledTextField;
         row.required = NO;
-        row.sort = 2;
+        row.sort = 20;
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
         [realm addObject:row];
@@ -254,7 +347,7 @@
         row.tag = @"3";
         row.type = XLFormRowDescriptorTypeFloatLabeledTextField;
         row.required = NO;
-        row.sort = 3;
+        row.sort = 30;
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
         [realm addObject:row];
@@ -278,7 +371,7 @@
         row.tag = @"1";
         row.type = XLFormRowDescriptorTypeFloatLabeledTextField;
         row.required = NO;
-        row.sort = 1;
+        row.sort = 10;
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
         [realm addObject:row];
@@ -302,7 +395,7 @@
         row.tag = @"1";
         row.type = XLFormRowDescriptorTypeFloatLabeledTextField;
         row.required = NO;
-        row.sort = 1;
+        row.sort = 10;
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
         [realm addObject:row];
@@ -313,7 +406,7 @@
         row.tag = @"2";
         row.type = XLFormRowDescriptorTypeFloatLabeledTextField;
         row.required = NO;
-        row.sort = 2;
+        row.sort = 20;
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
         [realm addObject:row];

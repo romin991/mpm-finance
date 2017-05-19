@@ -74,10 +74,13 @@
     }
     
     if (list){
-        if (self.menu && [self.menu.title isEqualToString:kMenuListWorkOrder]) {
+        if ([self.menu.menuTypeNext isEqualToString:kMenuTypeSubmenu]) {
             SubmenuViewController *submenuViewController = [[SubmenuViewController alloc] init];
             submenuViewController.menu = self.menu;
             [self.navigationController pushViewController:submenuViewController animated:YES];
+        } else if ([self.menu.menuTypeNext isEqualToString:kMenuTypeMap]){
+            //create map view controller
+            
         }
     }
 }

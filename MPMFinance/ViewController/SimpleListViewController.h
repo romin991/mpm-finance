@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Menu.h"
 
 @interface SimpleListViewController : UIViewController
+
+@property Menu *menu;
 
 @end

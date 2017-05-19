@@ -18,6 +18,8 @@ RLM_ARRAY_TYPE(Menu)
 @property NSString *title;
 @property Menu *parentMenu;
 @property NSInteger sort;
+@property NSString *menuType;
+@property NSString *menuTypeNext; //for list
 
 @property RLMArray<Role> *roles;
 @property RLMArray<Menu> *submenus;

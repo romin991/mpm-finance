@@ -9,6 +9,8 @@
 #import "SubmenuViewController.h"
 #import "SubmenuTableViewCell.h"
 #import "FormViewController.h"
+#import "SimpleListViewController.h"
+#import "ListViewController.h"
 
 @interface SubmenuViewController ()
 
@@ -54,9 +56,19 @@
         NSLog(@"Exception : %@", e);
     }
     
-    FormViewController *formViewController = [[FormViewController alloc] init];
-    formViewController.menu = submenu;
-    [self.navigationController pushViewController:formViewController animated:YES];
+    if ([submenu.menuType isEqualToString:kMenuTypeFormHorizontal]) {
+        FormViewController *formViewController = [[FormViewController alloc] init];
+        formViewController.menu = submenu;
+        [self.navigationController pushViewController:formViewController animated:YES];
+    } else if ([submenu.menuType isEqualToString:kMenuTypeFormVertical]) {
+        SimpleListViewController *simpleListViewController = [[SimpleListViewController alloc] init];
+        simpleListViewController.menu = submenu;
+        [self.navigationController pushViewController:simpleListViewController animated:YES];
+    } else if ([submenu.menuType isEqualToString:kMenuTypeList]) {
+        ListViewController *listViewController = [[ListViewController alloc] init];
+        listViewController.menu = submenu;
+        [self.navigationController pushViewController:listViewController animated:YES];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

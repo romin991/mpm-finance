@@ -24,7 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.menus = [Menu getMenuForRole:kRoleDedicated];
+    self.menus = [Menu getMenuForRole:kRoleSupervisor];
     // KASlideshow
     [self reloadSlideShow];
     _slideshow.datasource = self;
@@ -85,22 +85,17 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     Menu *menu = [self.menus objectAtIndex:indexPath.row];
-    if ([menu.title isEqualToString:kMenuOnlineSubmission]) {
-        [self.navigationController.parentViewController performSegueWithIdentifier:@"onlineSubmissionSegue" sender:self];
-    } else if ([menu.title isEqualToString:kMenuCalculatorMarketing]){
-        FormViewController *formViewController = [[FormViewController alloc] init];
-        [self.navigationController.navigationController pushViewController:formViewController animated:YES];
-    } else if ([menu.title isEqualToString:kMenuListWorkOrder]){
+    if ([menu.menuType isEqualToString:kMenuTypeList]){
         ListViewController *listViewController = [[ListViewController alloc] init];
         listViewController.menu = menu;
         [self.navigationController.navigationController pushViewController:listViewController animated:YES];
-    } else if ([menu.title isEqualToString:kMenuListSurvey]){
-        SimpleListViewController *simpleListViewController = [[SimpleListViewController alloc] init];
-        [self.navigationController.navigationController pushViewController:simpleListViewController animated:YES];
-    } else {
+        
+    } else if ([menu.menuType isEqualToString:kMenuTypeSubmenu]){
         SubmenuViewController *submenuViewController = [[SubmenuViewController alloc] init];
+        submenuViewController.menu = menu;
         [self.navigationController.navigationController pushViewController:submenuViewController animated:YES];
     }
+
 }
 
 /*

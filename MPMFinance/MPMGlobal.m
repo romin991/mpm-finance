@@ -19,6 +19,7 @@ NSString *const kRoleDedicated = @"Dedicated";
 
 NSString *const kMenuListWorkOrder = @"List Work Order";
 NSString *const kMenuOnlineSubmission = @"Online Submission";
+NSString *const kMenuTrackingMarketing = @"Tracking Marketing";
 NSString *const kMenuCalculatorMarketing = @"Calculator Marketing";
 NSString *const kMenuListMap = @"List Map";
 NSString *const kMenuListSurvey = @"List Survey";
@@ -29,5 +30,14 @@ NSString *const kSubmenuDataMAP = @"Data MAP";
 NSString *const kSubmenuSurvey = @"Survey";
 NSString *const kSubmenuMelengkapiData = @"Melengkapi Data";
 NSString *const kSubmenuAssignMarketing = @"Assign Marketing";
+
+//NSString *const kSubmenuListPengajuanApplikasi = @"Monitoring";
+NSString *const kSubmenuMonitoring = @"Monitoring";
+
+NSString *const kMenuTypeFormVertical = @"Vertical";
+NSString *const kMenuTypeFormHorizontal = @"Horizontal";
+NSString *const kMenuTypeList = @"List";
+NSString *const kMenuTypeSubmenu = @"Submenu";
+NSString *const kMenuTypeMap = @"Map";
 
 @end

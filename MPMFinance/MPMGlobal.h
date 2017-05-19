@@ -22,6 +22,7 @@ extern NSString *const kRoleDedicated;
 
 extern NSString *const kMenuListWorkOrder;
 extern NSString *const kMenuOnlineSubmission;
+extern NSString *const kMenuTrackingMarketing;
 extern NSString *const kMenuCalculatorMarketing;
 extern NSString *const kMenuListMap;
 extern NSString *const kMenuListSurvey;
@@ -32,5 +33,13 @@ extern NSString *const kSubmenuDataMAP;
 extern NSString *const kSubmenuSurvey;
 extern NSString *const kSubmenuMelengkapiData;
 extern NSString *const kSubmenuAssignMarketing;
+
+extern NSString *const kSubmenuMonitoring;
+
+extern NSString *const kMenuTypeFormVertical;
+extern NSString *const kMenuTypeFormHorizontal;
+extern NSString *const kMenuTypeList;
+extern NSString *const kMenuTypeSubmenu;
+extern NSString *const kMenuTypeMap;
 
 @end

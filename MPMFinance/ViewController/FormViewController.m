@@ -12,6 +12,7 @@
 #import <JVFloatLabeledTextField/JVFloatLabeledTextView.h>
 #import "FloatLabeledTextFieldCell.h"
 #import <TPKeyboardAvoidingTableView.h>
+#import "SimpleListViewController.h"
 
 @interface FormViewController ()
 
@@ -19,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *secondLabel;
 @property (weak, nonatomic) IBOutlet UILabel *thirdLabel;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *horizontalViewHeightConstraint;
 
 @property RLMResults *forms;
 @property RLMArray *formRows;
@@ -32,18 +34,53 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Next"
-                                                                      style:UIBarButtonItemStylePlain
-                                                                     target:self
-                                                                     action:@selector(nextButtonClicked:)];
-    [self.navigationItem setRightBarButtonItem:barButtonItem];
-    
-    [self setTitle:self.menu.title];
     self.forms = [Form getFormForMenu:self.menu.title];
-    if (self.forms.count > self.index) self.formRows = ((Form *) [self.forms objectAtIndex:self.index]).rows;
+    Form *currentForm = [self.forms objectAtIndex:self.index];
+    if (self.forms.count > self.index) self.formRows = currentForm.rows;
+    
+    UIViewController *viewController = [self.navigationController.viewControllers objectAtIndex: self.navigationController.viewControllers.count - 2];
+    if ([viewController isKindOfClass:[SimpleListViewController class]]) {
+        [self setTitle:currentForm.title];
+        
+    } else {
+        [self setTitle:self.menu.title];
+    
+    }
     
     [self generateFormDescriptor];
     [self setHorizontalLabel];
+    [self setRightBarButton];
+}
+
+- (void)hideHorizontalView{
+    self.horizontalViewHeightConstraint.constant = 0;
+}
+
+- (void)showHorizontalView{
+    self.horizontalViewHeightConstraint.constant = 48;
+}
+
+- (void)setRightBarButton{
+    UIViewController *viewController = [self.navigationController.viewControllers objectAtIndex: self.navigationController.viewControllers.count - 2];
+    if ([viewController isKindOfClass:[SimpleListViewController class]]) {
+        UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save"
+                                                                          style:UIBarButtonItemStylePlain
+                                                                         target:self
+                                                                         action:@selector(saveButtonClicked:)];
+        [self.navigationItem setRightBarButtonItem:barButtonItem];
+        
+    } else {
+        UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Next"
+                                                                          style:UIBarButtonItemStylePlain
+                                                                         target:self
+                                                                         action:@selector(nextButtonClicked:)];
+        [self.navigationItem setRightBarButtonItem:barButtonItem];
+    }
+}
+
+- (void)saveButtonClicked:(id)sender{
+    //save to object, call delegate, then pop navigation
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)nextButtonClicked:(id)sender{
@@ -58,17 +95,23 @@
 }
 
 - (void)setHorizontalLabel{
-    Form *firstForm;
-    Form *secondForm;
-    Form *thirdForm;
-    
-    if (self.forms.count > self.index) firstForm = [self.forms objectAtIndex:self.index];
-    if (self.forms.count > self.index + 1) secondForm = [self.forms objectAtIndex:self.index + 1];
-    if (self.forms.count > self.index + 2) thirdForm = [self.forms objectAtIndex:self.index + 2];
-    
-    self.firstLabel.text = firstForm ? firstForm.title : @"";
-    self.secondLabel.text = secondForm ? secondForm.title : @"";
-    self.thirdLabel.text = thirdForm ? thirdForm.title : @"";
+    UIViewController *viewController = [self.navigationController.viewControllers objectAtIndex: self.navigationController.viewControllers.count - 2];
+    if ([viewController isKindOfClass:[SimpleListViewController class]]) {
+        [self hideHorizontalView];
+        
+    } else {
+        Form *firstForm;
+        Form *secondForm;
+        Form *thirdForm;
+        
+        if (self.forms.count > self.index) firstForm = [self.forms objectAtIndex:self.index];
+        if (self.forms.count > self.index + 1) secondForm = [self.forms objectAtIndex:self.index + 1];
+        if (self.forms.count > self.index + 2) thirdForm = [self.forms objectAtIndex:self.index + 2];
+        
+        self.firstLabel.text = firstForm ? firstForm.title : @"";
+        self.secondLabel.text = secondForm ? secondForm.title : @"";
+        self.thirdLabel.text = thirdForm ? thirdForm.title : @"";
+    }
 }
 
 - (void)generateFormDescriptor{
