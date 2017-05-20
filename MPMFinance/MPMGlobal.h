@@ -41,5 +41,6 @@ extern NSString *const kMenuTypeFormHorizontal;
 extern NSString *const kMenuTypeList;
 extern NSString *const kMenuTypeSubmenu;
 extern NSString *const kMenuTypeMap;
+extern NSString *const kApiUrl;
 
 @end
