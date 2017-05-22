@@ -26,7 +26,11 @@
     // Do any additional setup after loading the view from its nib.
     
     self.forms = [Form getFormForMenu:self.menu.title];
-    [self setTitle:self.menu.title];
+    if (self.navigationTitle.length != 0) {
+        [self setTitle:self.navigationTitle];
+    } else {
+        [self setTitle:self.menu.title];
+    }
     [self setRightBarButton];
 }
 

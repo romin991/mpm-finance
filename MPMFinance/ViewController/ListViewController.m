@@ -11,11 +11,13 @@
 #import "UIImageView+AFNetworking.h"
 #import "SubmenuViewController.h"
 #import <SVProgressHUD.h>
+#import "SimpleListViewController.h"
 
 @interface ListViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property NSMutableArray *lists;
+@property Menu *submenu;
 
 @end
 
@@ -24,7 +26,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    if (self.menu) [self setTitle:self.menu.title];
+    if (self.navigationTitle.length == 0) {
+        [self setTitle:self.menu.title];
+    } else {
+        [self setTitle:self.navigationTitle];
+    }
+    self.submenu = self.menu.submenus.firstObject;
     
     __block ListViewController *weakSelf = self;
     [SVProgressHUD show];
@@ -74,11 +81,23 @@
     }
     
     if (list){
-        if ([self.menu.menuTypeNext isEqualToString:kMenuTypeSubmenu]) {
+        Menu *submenu = self.submenu;
+        if (submenu.submenus.count == 1){
+           submenu = submenu.submenus.firstObject;
+        }
+        
+        if ([submenu.menuType isEqualToString:kMenuTypeSubmenu]) {
             SubmenuViewController *submenuViewController = [[SubmenuViewController alloc] init];
-            submenuViewController.menu = self.menu;
+            submenuViewController.menu = submenu;
             [self.navigationController pushViewController:submenuViewController animated:YES];
-        } else if ([self.menu.menuTypeNext isEqualToString:kMenuTypeMap]){
+            
+        } else if ([submenu.menuType isEqualToString:kMenuTypeFormVertical]){
+            SimpleListViewController *simpleListViewController = [[SimpleListViewController alloc] init];
+            simpleListViewController.menu = submenu;
+            simpleListViewController.title = self.menu.title;
+            [self.navigationController pushViewController:simpleListViewController animated:YES];
+            
+        } else if ([self.submenu.menuType isEqualToString:kMenuTypeMap]){
             //create map view controller
             
         }

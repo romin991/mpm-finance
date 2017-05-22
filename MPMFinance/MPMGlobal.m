@@ -25,6 +25,9 @@ NSString *const kMenuListMap = @"List Map";
 NSString *const kMenuListSurvey = @"List Survey";
 NSString *const kMenuDashboard = @"Dashboard";
 
+NSString *const kSubmenuListWorkOrder = @"List Work Order API";
+NSString *const kSubmenuListMAP = @"List MAP API";
+
 NSString *const kSubmenuListPengajuanApplikasi = @"List Pengajuan Applikasi";
 NSString *const kSubmenuDataMAP = @"Data MAP";
 NSString *const kSubmenuSurvey = @"Survey";

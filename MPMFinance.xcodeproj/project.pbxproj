@@ -189,9 +189,9 @@
 			children = (
 				5C9B08E91EC9DB7300B5E9AC /* TabMenuContainer */,
 				48CDD8361EC9B8840038D626 /* SubmenuViewController */,
+				48CDD8261EC9B1A30038D626 /* ListViewController */,
 				48CDD8281EC9B1C20038D626 /* SimpleListViewController */,
 				48CDD8271EC9B1B10038D626 /* FormViewController */,
-				48CDD8261EC9B1A30038D626 /* ListViewController */,
 				483F39261EC3085E00C03253 /* LoginViewController.h */,
 				483F39271EC3085E00C03253 /* LoginViewController.m */,
 				483F39381EC3518500C03253 /* ForgotPasswordViewController.h */,

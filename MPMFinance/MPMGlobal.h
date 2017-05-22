@@ -28,6 +28,9 @@ extern NSString *const kMenuListMap;
 extern NSString *const kMenuListSurvey;
 extern NSString *const kMenuDashboard;
 
+extern NSString *const kSubmenuListWorkOrder;
+extern NSString *const kSubmenuListMAP;
+
 extern NSString *const kSubmenuListPengajuanApplikasi;
 extern NSString *const kSubmenuDataMAP;
 extern NSString *const kSubmenuSurvey;

@@ -12,5 +12,6 @@
 @interface SimpleListViewController : UIViewController
 
 @property Menu *menu;
+@property NSString *navigationTitle;
 
 @end
