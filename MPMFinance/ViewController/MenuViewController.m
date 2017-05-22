@@ -8,8 +8,10 @@
 
 #import "MenuViewController.h"
 #import "MenuNavigationViewController.h"
+#import "MPMUserInfo.h"
 @interface MenuViewController ()<UITabBarDelegate>
 @property (weak, nonatomic) IBOutlet UITabBar *tabBar;
+@property (weak, nonatomic) IBOutlet UIView *signInView;
 @property MenuNavigationViewController *containerView;
 @end
 
@@ -18,8 +20,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.tabBar setSelectedItem:[self.tabBar.items objectAtIndex:0]];
-    [self.tabBar.items[1] setEnabled:NO];
-    [self.tabBar.items[3] setEnabled:NO];
+    if (![MPMUserInfo getUserInfo])
+    {
+        [self.tabBar.items[1] setEnabled:NO];
+        [self.tabBar.items[3] setEnabled:NO];
+        [self.signInView setHidden:NO];
+    }
     // Do any additional setup after loading the view.
 }
 -(void)viewWillAppear:(BOOL)animated
