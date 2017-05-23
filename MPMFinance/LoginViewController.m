@@ -46,18 +46,19 @@
                                     }
                             };
     NSLog(@"%@",param);
-    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    
-    [manager.requestSerializer setValue:@"Basic TVBNRmluYW5jZToxbmZvbWVkaWE=" forHTTPHeaderField:@"authorization"];
-
+    AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
     [manager POST:[NSString stringWithFormat:@"%@/login",kApiUrl] parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
         ;
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([[responseObject objectForKey:@"status"] isEqualToString:@"success"]) {
             [MPMUserInfo save:responseObject[@"data"]];
+            UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"Success" message:@"Login Success" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction* okButton = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                [self dismissViewControllerAnimated:YES completion:nil];;
+            }];
+            [alertController addAction:okButton];
+            [self presentViewController:alertController animated:YES completion:nil];
+        
         }
         NSLog(@"%@",responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

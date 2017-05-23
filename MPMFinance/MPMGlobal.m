@@ -7,7 +7,7 @@
 //
 
 #import "MPMGlobal.h"
-
+#import <AFHTTPSessionManager.h>
 @implementation MPMGlobal
 
 NSString *const kRoleCustomer = @"Customer";
@@ -44,4 +44,18 @@ NSString *const kMenuTypeList = @"List";
 NSString *const kMenuTypeSubmenu = @"Submenu";
 NSString *const kMenuTypeMap = @"Map";
 
+
++(AFHTTPSessionManager*)sessionManager
+{
+    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    [manager.requestSerializer setValue:@"Basic TVBNRmluYW5jZToxbmZvbWVkaWE=" forHTTPHeaderField:@"authorization"];
+    return manager;
+}
++ (NSString *)encodeToBase64String:(UIImage *)image {
+    return [UIImageJPEGRepresentation(image, 0.5) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+}
 @end

@@ -5,8 +5,9 @@
 //  Created by Romin Adi Santoso on 5/10/17.
 //  Copyright © 2017 MPMFinance. All rights reserved.
 //
-
+#import <AFHTTPSessionManager.h>
 #import <Foundation/Foundation.h>
+#import <SVProgressHUD.h>
 #define UIColorFromRGB(rgbValue) [UIColor \
 colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
@@ -46,4 +47,6 @@ extern NSString *const kMenuTypeSubmenu;
 extern NSString *const kMenuTypeMap;
 extern NSString *const kApiUrl;
 
++(AFHTTPSessionManager*)sessionManager;
++ (NSString *)encodeToBase64String:(UIImage *)image;
 @end

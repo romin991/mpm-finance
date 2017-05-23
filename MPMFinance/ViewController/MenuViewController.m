@@ -19,6 +19,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Do any additional setup after loading the view.
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self refreshUi];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+}
+-(void)refreshUi
+{
     [self.tabBar setSelectedItem:[self.tabBar.items objectAtIndex:0]];
     if (![MPMUserInfo getUserInfo])
     {
@@ -26,12 +36,6 @@
         [self.tabBar.items[3] setEnabled:NO];
         [self.signInView setHidden:NO];
     }
-    // Do any additional setup after loading the view.
-}
--(void)viewWillAppear:(BOOL)animated
-{
-    
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
