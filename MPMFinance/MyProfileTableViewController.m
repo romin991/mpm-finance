@@ -8,13 +8,20 @@
 
 #import "MyProfileTableViewController.h"
 #import <APAvatarImageView.h>
+#import <UIImageView+AFNetworking.h>
 @interface MyProfileTableViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet APAvatarImageView *profilePictureImageView;
 @property NSString* fileName;
 @property NSString* fileSize;
 @property NSString* fileType;
 @property NSString* fileMimeType;
+@property (weak, nonatomic) IBOutlet UITextField *txtPassword;
 @property NSData* imgData;
+@property (weak, nonatomic) IBOutlet UITextField *txtDateOfBirth;
+@property (weak, nonatomic) IBOutlet UITextField *txtPhoneNumber;
+@property (weak, nonatomic) IBOutlet UILabel *txtEmail;
+@property (weak, nonatomic) IBOutlet UILabel *txtFullName;
+@property (weak, nonatomic) IBOutlet UITextField *txtIdCardNumber;
 @end
 
 @implementation MyProfileTableViewController
@@ -28,6 +35,24 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+    AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
+    [manager GET:[MPMUserInfo getUserInfo][@"photo"] parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+        ;
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@",responseObject);
+        self.profilePictureImageView.image = [UIImage imageWithData:responseObject];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@",error);
+    }];
+    self.txtEmail.text = [MPMUserInfo getUserInfo][@"email"];
+    self.txtFullName.text = [MPMUserInfo getUserInfo][@"username"];
+    
+    self.txtDateOfBirth.text = [MPMUserInfo getUserInfo][@"dob"];
+    self.txtIdCardNumber.text = [MPMUserInfo getUserInfo][@"ktp"];
+    
 }
 
 - (void)didReceiveMemoryWarning {

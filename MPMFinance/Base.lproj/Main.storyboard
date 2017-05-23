@@ -1033,6 +1033,12 @@
                     </tableView>
                     <connections>
                         <outlet property="profilePictureImageView" destination="h19-4z-3Bd" id="rDj-ny-QWH"/>
+                        <outlet property="txtDateOfBirth" destination="jtN-sR-jfQ" id="1kQ-GK-4We"/>
+                        <outlet property="txtEmail" destination="Om5-Dw-v7w" id="1eb-RR-OMr"/>
+                        <outlet property="txtFullName" destination="yJN-tg-G3t" id="GJL-6g-1eW"/>
+                        <outlet property="txtIdCardNumber" destination="1c6-dV-Ny3" id="xIG-9B-pVD"/>
+                        <outlet property="txtPassword" destination="XDK-1r-3bP" id="omF-f6-EPd"/>
+                        <outlet property="txtPhoneNumber" destination="2ck-1w-eJl" id="zKh-XH-p5w"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fMF-18-uv0" userLabel="First Responder" sceneMemberID="firstResponder"/>

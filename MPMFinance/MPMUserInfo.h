@@ -12,4 +12,5 @@
 +(NSDictionary*)getUserInfo;
 +(void)deleteUserInfo;
 +(void)save:(NSDictionary*)dictionary;
++(NSInteger)getGroupLevel;
 @end

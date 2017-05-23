@@ -13,7 +13,7 @@
 {
     NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"userInfo"];
     NSDictionary *dictionary = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-    return dictionary;
+    return dictionary[@"customerProfile"];
 }
 +(void)save:(NSDictionary *)dictionary
 {
@@ -26,5 +26,11 @@
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"userInfo"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
+}
+
++(NSInteger)getGroupLevel
+{
+    NSDictionary* userInfo = [MPMUserInfo getUserInfo];
+    return [userInfo[@"groupLevel"] integerValue];
 }
 @end

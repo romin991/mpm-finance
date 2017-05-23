@@ -25,6 +25,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [self refreshUi];
+    NSLog(@"group level %li",(long)[MPMUserInfo getGroupLevel]);
     [self.navigationController setNavigationBarHidden:YES animated:NO];
 }
 -(void)refreshUi
@@ -35,6 +36,12 @@
         [self.tabBar.items[1] setEnabled:NO];
         [self.tabBar.items[3] setEnabled:NO];
         [self.signInView setHidden:NO];
+    }
+    else
+    {
+        [self.tabBar.items[1] setEnabled:YES];
+        [self.tabBar.items[3] setEnabled:YES];
+        [self.signInView setHidden:YES];
     }
 }
 -(void)viewWillDisappear:(BOOL)animated
