@@ -32,6 +32,7 @@ extern NSString *const kMenuDashboard;
 extern NSString *const kSubmenuListOnlineSubmission;
 extern NSString *const kSubmenuListWorkOrder;
 extern NSString *const kSubmenuListMAP;
+extern NSString *const kSubmenuListMarketing;
 
 extern NSString *const kSubmenuFormPengajuanApplikasi;
 extern NSString *const kSubmenuDataMAP;

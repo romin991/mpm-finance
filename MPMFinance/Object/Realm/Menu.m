@@ -205,7 +205,6 @@
     menuList.title = kSubmenuListMAP;
     menuList.sort = 0;
     menuList.menuType = kMenuTypeSubmenu;
-    menu.isRootMenu = YES;
     [menuList.roles addObjects:menu.roles];
     [menuList.submenus addObject:[Menu objectForPrimaryKey:kSubmenuDataMAP]];
     [realm addObject:menuList];
@@ -217,10 +216,20 @@
     menu.imageName = @"ListSurveyIcon";
     menu.title = kMenuListSurvey;
     menu.sort = 40;
+    menu.menuType = kMenuTypeList;
     menu.isRootMenu = YES;
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
-//    [menu.submenus addObjects:[self generateSubmenusWithRealm:realm menu:menu]];
+    
+    menuList = [[Menu alloc] init];
+    menuList.imageName = @"";
+    menuList.title = kSubmenuListMarketing;
+    menuList.sort = 0;
+    menuList.menuType = kMenuTypeMap;
+    [menuList.roles addObjects:menu.roles];
+    [realm addObject:menuList];
+    
+    [menu.submenus addObject:menuList];
     [realm addObject:menu];
     
     menu = [[Menu alloc] init];

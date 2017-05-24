@@ -28,6 +28,7 @@ NSString *const kMenuDashboard = @"Dashboard";
 NSString *const kSubmenuListOnlineSubmission = @"List Online Submission API";
 NSString *const kSubmenuListWorkOrder = @"List Work Order API";
 NSString *const kSubmenuListMAP = @"List MAP API";
+NSString *const kSubmenuListMarketing = @"List Marketing API";
 
 NSString *const kSubmenuFormPengajuanApplikasi = @"Form Pengajuan Applikasi";
 NSString *const kSubmenuDataMAP = @"Data MAP";
