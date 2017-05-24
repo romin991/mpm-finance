@@ -25,18 +25,26 @@ NSString *const kMenuListMap = @"List Map";
 NSString *const kMenuListSurvey = @"List Survey";
 NSString *const kMenuDashboard = @"Dashboard";
 
+NSString *const kSubmenuListOnlineSubmission = @"List Online Submission API";
 NSString *const kSubmenuListWorkOrder = @"List Work Order API";
 NSString *const kSubmenuListMAP = @"List MAP API";
 
-NSString *const kSubmenuListPengajuanApplikasi = @"List Pengajuan Applikasi";
+NSString *const kSubmenuFormPengajuanApplikasi = @"Form Pengajuan Applikasi";
 NSString *const kSubmenuDataMAP = @"Data MAP";
 NSString *const kSubmenuSurvey = @"Survey";
 NSString *const kSubmenuMelengkapiData = @"Melengkapi Data";
 NSString *const kSubmenuAssignMarketing = @"Assign Marketing";
 NSString *const kApiUrl = @"http://oms-api.infomedia-platform.com/mpmfinance";
 
-//NSString *const kSubmenuListPengajuanApplikasi = @"Monitoring";
+NSString *const kSubmenuListPengajuanApplikasi = @"List Pengajuan Applikasi";
 NSString *const kSubmenuMonitoring = @"Monitoring";
+
+NSString *const kSubmenuDahsyat = @"Dahsyat";
+NSString *const kSubmenuUsedCar = @"Used Car";
+NSString *const kSubmenuNewCar = @"New Car";
+
+NSString *const kSubmenuYearToDate = @"Year to Date";
+NSString *const kSubmenuMonthToDate = @"Month to Date";
 
 NSString *const kMenuTypeFormVertical = @"Vertical";
 NSString *const kMenuTypeFormHorizontal = @"Horizontal";

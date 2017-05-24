@@ -24,7 +24,8 @@
     Form *form = [[Form alloc] init];
     form.title = @"Data Pemohon";
     form.sort = 0;
-    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListOnlineSubmission]];
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
     [form.rows addObjects:[self generateFormRowsWithRealm:realm form:form]];
     [realm addObject:form];
@@ -32,7 +33,8 @@
     form = [[Form alloc] init];
     form.title = @"Data Pasangan";
     form.sort = 10;
-    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListOnlineSubmission]];
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
     [form.rows addObjects:[self generateFormRowsWithRealm:realm form:form]];
     [realm addObject:form];
@@ -40,7 +42,8 @@
     form = [[Form alloc] init];
     form.title = @"Data Aset";
     form.sort = 20;
-    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListOnlineSubmission]];
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
     [form.rows addObjects:[self generateFormRowsWithRealm:realm form:form]];
     [realm addObject:form];
@@ -48,7 +51,8 @@
     form = [[Form alloc] init];
     form.title = @"Struktur Pembiayaan";
     form.sort = 30;
-    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListOnlineSubmission]];
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
     [form.rows addObjects:[self generateFormRowsWithRealm:realm form:form]];
     [realm addObject:form];
@@ -56,7 +60,8 @@
     form = [[Form alloc] init];
     form.title = @"Data Pekerjaan";
     form.sort = 40;
-    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListOnlineSubmission]];
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
     [form.rows addObjects:[self generateFormRowsWithRealm:realm form:form]];
     [realm addObject:form];
@@ -64,7 +69,8 @@
     form = [[Form alloc] init];
     form.title = @"Data E-con";
     form.sort = 50;
-    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListOnlineSubmission]];
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
     [form.rows addObjects:[self generateFormRowsWithRealm:realm form:form]];
     [realm addObject:form];
@@ -175,7 +181,8 @@
         row.type = XLFormRowDescriptorTypeFloatLabeledTextField;
         row.required = NO;
         row.sort = 0;
-        [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
+        [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
+        [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListOnlineSubmission]];
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
         [realm addObject:row];
         [rows addObject:row];
@@ -186,7 +193,8 @@
         row.type = XLFormRowDescriptorTypeFloatLabeledTextField;
         row.required = NO;
         row.sort = 10;
-        [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
+        [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
+        [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListOnlineSubmission]];
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
         [realm addObject:row];
         [rows addObject:row];
@@ -197,7 +205,8 @@
         row.type = XLFormRowDescriptorTypeFloatLabeledTextField;
         row.required = NO;
         row.sort = 20;
-        [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
+        [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
+        [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListOnlineSubmission]];
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
         [realm addObject:row];
         [rows addObject:row];
@@ -208,7 +217,8 @@
         row.type = XLFormRowDescriptorTypeDateInline;
         row.required = NO;
         row.sort = 30;
-        [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
+        [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
+        [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListOnlineSubmission]];
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
         [realm addObject:row];
         [rows addObject:row];
@@ -219,7 +229,8 @@
         row.type = XLFormRowDescriptorTypeFloatLabeledTextField;
         row.required = NO;
         row.sort = 40;
-        [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
+        [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
+        [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListOnlineSubmission]];
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
         [realm addObject:row];
         [rows addObject:row];
@@ -232,7 +243,8 @@
         row.type = XLFormRowDescriptorTypeFloatLabeledTextField;
         row.required = NO;
         row.sort = 0;
-        [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
+        [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
+        [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListOnlineSubmission]];
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
         [realm addObject:row];
         [rows addObject:row];
@@ -243,7 +255,8 @@
         row.type = XLFormRowDescriptorTypeFloatLabeledTextField;
         row.required = NO;
         row.sort = 10;
-        [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
+        [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
+        [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListOnlineSubmission]];
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
         [realm addObject:row];
         [rows addObject:row];
@@ -254,7 +267,8 @@
         row.type = XLFormRowDescriptorTypeFloatLabeledTextField;
         row.required = NO;
         row.sort = 20;
-        [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
+        [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
+        [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListOnlineSubmission]];
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
         [realm addObject:row];
         [rows addObject:row];
@@ -265,7 +279,8 @@
         row.type = XLFormRowDescriptorTypeDateInline;
         row.required = NO;
         row.sort = 30;
-        [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
+        [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
+        [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListOnlineSubmission]];
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
         [realm addObject:row];
         [rows addObject:row];
@@ -276,7 +291,8 @@
         row.type = XLFormRowDescriptorTypeFloatLabeledTextField;
         row.required = NO;
         row.sort = 40;
-        [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
+        [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
+        [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListOnlineSubmission]];
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
         [realm addObject:row];
         [rows addObject:row];
@@ -289,7 +305,8 @@
         row.type = XLFormRowDescriptorTypeSelectorPush;
         row.required = NO;
         row.sort = 0;
-        [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
+        [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
+        [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListOnlineSubmission]];
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
         [row.options addObjects:[self generateOptionWithRealm:realm formRow:row]];
         [realm addObject:row];
@@ -301,7 +318,8 @@
         row.type = XLFormRowDescriptorTypeSelectorPush;
         row.required = NO;
         row.sort = 10;
-        [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
+        [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
+        [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListOnlineSubmission]];
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
         [row.options addObjects:[self generateOptionWithRealm:realm formRow:row]];
         [realm addObject:row];
@@ -315,7 +333,8 @@
         row.type = XLFormRowDescriptorTypeFloatLabeledTextField;
         row.required = NO;
         row.sort = 0;
-        [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
+        [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
+        [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListOnlineSubmission]];
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
         [realm addObject:row];
         [rows addObject:row];
@@ -326,7 +345,8 @@
         row.type = XLFormRowDescriptorTypeFloatLabeledTextField;
         row.required = NO;
         row.sort = 10;
-        [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
+        [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
+        [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListOnlineSubmission]];
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
         [realm addObject:row];
         [rows addObject:row];
@@ -337,7 +357,8 @@
         row.type = XLFormRowDescriptorTypeFloatLabeledTextField;
         row.required = NO;
         row.sort = 20;
-        [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
+        [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
+        [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListOnlineSubmission]];
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
         [realm addObject:row];
         [rows addObject:row];
@@ -348,7 +369,8 @@
         row.type = XLFormRowDescriptorTypeFloatLabeledTextField;
         row.required = NO;
         row.sort = 30;
-        [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
+        [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
+        [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListOnlineSubmission]];
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
         [realm addObject:row];
         [rows addObject:row];
@@ -361,7 +383,8 @@
         row.type = XLFormRowDescriptorTypeFloatLabeledTextField;
         row.required = NO;
         row.sort = 0;
-        [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
+        [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
+        [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListOnlineSubmission]];
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
         [realm addObject:row];
         [rows addObject:row];
@@ -372,7 +395,8 @@
         row.type = XLFormRowDescriptorTypeFloatLabeledTextField;
         row.required = NO;
         row.sort = 10;
-        [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
+        [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
+        [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListOnlineSubmission]];
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
         [realm addObject:row];
         [rows addObject:row];
@@ -385,7 +409,8 @@
         row.type = XLFormRowDescriptorTypeFloatLabeledTextField;
         row.required = NO;
         row.sort = 0;
-        [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
+        [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
+        [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListOnlineSubmission]];
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
         [realm addObject:row];
         [rows addObject:row];
@@ -396,7 +421,8 @@
         row.type = XLFormRowDescriptorTypeFloatLabeledTextField;
         row.required = NO;
         row.sort = 10;
-        [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
+        [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
+        [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListOnlineSubmission]];
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
         [realm addObject:row];
         [rows addObject:row];
@@ -407,7 +433,8 @@
         row.type = XLFormRowDescriptorTypeFloatLabeledTextField;
         row.required = NO;
         row.sort = 20;
-        [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
+        [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
+        [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListOnlineSubmission]];
         [row.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
         [realm addObject:row];
         [rows addObject:row];

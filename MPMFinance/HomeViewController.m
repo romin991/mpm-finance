@@ -24,7 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.menus = [Menu getMenuForRole:kRoleSupervisor];
+    self.menus = [Menu getMenuForRole:kRoleDedicated];
     // KASlideshow
     [self reloadSlideShow];
     _slideshow.datasource = self;

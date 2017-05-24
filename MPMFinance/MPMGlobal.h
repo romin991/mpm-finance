@@ -29,16 +29,25 @@ extern NSString *const kMenuListMap;
 extern NSString *const kMenuListSurvey;
 extern NSString *const kMenuDashboard;
 
+extern NSString *const kSubmenuListOnlineSubmission;
 extern NSString *const kSubmenuListWorkOrder;
 extern NSString *const kSubmenuListMAP;
 
-extern NSString *const kSubmenuListPengajuanApplikasi;
+extern NSString *const kSubmenuFormPengajuanApplikasi;
 extern NSString *const kSubmenuDataMAP;
 extern NSString *const kSubmenuSurvey;
 extern NSString *const kSubmenuMelengkapiData;
 extern NSString *const kSubmenuAssignMarketing;
 
+extern NSString *const kSubmenuListPengajuanApplikasi;
 extern NSString *const kSubmenuMonitoring;
+
+extern NSString *const kSubmenuDahsyat;
+extern NSString *const kSubmenuUsedCar;
+extern NSString *const kSubmenuNewCar;
+
+extern NSString *const kSubmenuYearToDate;
+extern NSString *const kSubmenuMonthToDate;
 
 extern NSString *const kMenuTypeFormVertical;
 extern NSString *const kMenuTypeFormHorizontal;
