@@ -11,7 +11,7 @@
 #import "KASlideShow.h"
 
 #import "FormViewController.h"
-#import "ListViewController.h"
+#import "workOrderListViewController.h"
 #import "SimpleListViewController.h"
 #import "SubmenuViewController.h"
 @interface HomeViewController ()<KASlideShowDelegate,KASlideShowDataSource>
@@ -38,6 +38,14 @@
 }
 -(void)reloadSlideShow
 {
+    AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
+    [manager POST:[NSString stringWithFormat:@"%@/slider",kApiUrl] parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@",responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
     _datasource = [@[[NSURL URLWithString:@"https://i.imgur.com/7jDvjyt.jpg"],
                      [NSURL URLWithString:@"https://i.imgur.com/7jDvjyt.jpg"]] mutableCopy];
     
@@ -86,7 +94,7 @@
 {
     Menu *menu = [self.menus objectAtIndex:indexPath.row];
     if ([menu.menuType isEqualToString:kMenuTypeList]){
-        ListViewController *listViewController = [[ListViewController alloc] init];
+        workOrderListViewController *listViewController = [[workOrderListViewController alloc] initWithNibName:@"ListViewController" bundle:nil];
         listViewController.menu = menu;
         [self.navigationController.navigationController pushViewController:listViewController animated:YES];
         

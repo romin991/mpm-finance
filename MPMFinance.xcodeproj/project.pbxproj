@@ -38,6 +38,7 @@
 		48CDD8431EC9BA1A0038D626 /* SubmenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48CDD8411EC9BA1A0038D626 /* SubmenuTableViewCell.xib */; };
 		48F7F4061EC5C931008DB808 /* Role.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F7F4051EC5C931008DB808 /* Role.m */; };
 		5C586E9A1ECB183200A5A626 /* HelpTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C586E991ECB183200A5A626 /* HelpTableViewController.m */; };
+		5C5B47F71ED5DE8C008E7E2E /* workOrderListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C5B47F61ED5DE8C008E7E2E /* workOrderListViewController.m */; };
 		5C9B08EC1EC9DB8700B5E9AC /* MenuNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9B08EB1EC9DB8700B5E9AC /* MenuNavigationViewController.m */; };
 		5C9B08F11EC9DB9300B5E9AC /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9B08EE1EC9DB9300B5E9AC /* HistoryViewController.m */; };
 		5C9B08F21EC9DB9300B5E9AC /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9B08F01EC9DB9300B5E9AC /* HomeViewController.m */; };
@@ -104,6 +105,8 @@
 		48F7F4051EC5C931008DB808 /* Role.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Role.m; path = Object/Realm/Role.m; sourceTree = "<group>"; };
 		5C586E981ECB183200A5A626 /* HelpTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpTableViewController.h; sourceTree = "<group>"; };
 		5C586E991ECB183200A5A626 /* HelpTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpTableViewController.m; sourceTree = "<group>"; };
+		5C5B47F51ED5DE8C008E7E2E /* workOrderListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = workOrderListViewController.h; sourceTree = "<group>"; };
+		5C5B47F61ED5DE8C008E7E2E /* workOrderListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = workOrderListViewController.m; sourceTree = "<group>"; };
 		5C9B08EA1EC9DB8700B5E9AC /* MenuNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuNavigationViewController.h; sourceTree = "<group>"; };
 		5C9B08EB1EC9DB8700B5E9AC /* MenuNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuNavigationViewController.m; sourceTree = "<group>"; };
 		5C9B08ED1EC9DB9300B5E9AC /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
@@ -253,6 +256,8 @@
 				48482E701EC99B230029ACBE /* ListTableViewCell.h */,
 				48482E711EC99B230029ACBE /* ListTableViewCell.m */,
 				48482E721EC99B230029ACBE /* ListTableViewCell.xib */,
+				5C5B47F51ED5DE8C008E7E2E /* workOrderListViewController.h */,
+				5C5B47F61ED5DE8C008E7E2E /* workOrderListViewController.m */,
 			);
 			name = ListViewController;
 			sourceTree = "<group>";
@@ -295,9 +300,17 @@
 			name = SubmenuViewController;
 			sourceTree = "<group>";
 		};
+		5C5B47F11ED5CB8D008E7E2E /* HomeSubmenu */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = HomeSubmenu;
+			sourceTree = "<group>";
+		};
 		5C9B08E91EC9DB7300B5E9AC /* TabMenuContainer */ = {
 			isa = PBXGroup;
 			children = (
+				5C5B47F11ED5CB8D008E7E2E /* HomeSubmenu */,
 				5C9B08ED1EC9DB9300B5E9AC /* HistoryViewController.h */,
 				5C9B08EE1EC9DB9300B5E9AC /* HistoryViewController.m */,
 				5C9B08EF1EC9DB9300B5E9AC /* HomeViewController.h */,
@@ -506,6 +519,7 @@
 				48F7F4061EC5C931008DB808 /* Role.m in Sources */,
 				5CBC4C771ECC8A67002ED03C /* MyProfileTableViewController.m in Sources */,
 				48CDD83A1EC9B8A50038D626 /* SubmenuViewController.m in Sources */,
+				5C5B47F71ED5DE8C008E7E2E /* workOrderListViewController.m in Sources */,
 				48859A701ECC3FEC006EFDE6 /* FormRow.m in Sources */,
 				48482E6E1EC999B30029ACBE /* ListViewController.m in Sources */,
 				48CDD8341EC9B3AD0038D626 /* SimpleListTableViewCell.m in Sources */,
