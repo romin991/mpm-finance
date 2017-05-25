@@ -35,19 +35,24 @@
     self.submenu = self.menu.submenus.firstObject;
     
     __block ListViewController *weakSelf = self;
+    __block NSString *methodName = self.submenu.listAPIMethodName;
     [SVProgressHUD show];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        //get API call here
-        [APIModel getListWorkOrder:^(NSArray *lists, NSError *error) {
-            //set the result here
-            if (error == nil) {
-                if (lists) [weakSelf setDataSource:lists];
-                [SVProgressHUD dismiss];
-            } else {
-                [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
-                [SVProgressHUD dismissWithDelay:1.5];
-            }
-        }];
+        if ([APIModel respondsToSelector:NSSelectorFromString(methodName)]) {
+            [APIModel performSelector:NSSelectorFromString(methodName) withObject:^(NSArray *lists, NSError *error) {
+                //set the result here
+                if (error == nil) {
+                    if (lists) [weakSelf setDataSource:lists];
+                    [SVProgressHUD dismiss];
+                } else {
+                    [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+                    [SVProgressHUD dismissWithDelay:1.5];
+                }
+            }];
+        } else {
+            [SVProgressHUD showErrorWithStatus:@"No method found"];
+            [SVProgressHUD dismissWithDelay:1.5];
+        }
     });
 }
 

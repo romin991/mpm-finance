@@ -143,6 +143,7 @@
     menuList.title = kSubmenuListWorkOrder;
     menuList.sort = 0;
     menuList.menuType = kMenuTypeSubmenu;
+    menuList.listAPIMethodName = @"getListWorkOrder:";
     [menuList.roles addObjects:menu.roles];
     [menuList.submenus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
     [menuList.submenus addObject:[Menu objectForPrimaryKey:kSubmenuDataMAP]];
