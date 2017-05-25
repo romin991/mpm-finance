@@ -11,7 +11,7 @@
 #import "KASlideShow.h"
 
 #import "FormViewController.h"
-#import "workOrderListViewController.h"
+#import "ListViewController.h"
 #import "SimpleListViewController.h"
 #import "SubmenuViewController.h"
 @interface HomeViewController ()<KASlideShowDelegate,KASlideShowDataSource>
@@ -94,7 +94,7 @@
 {
     Menu *menu = [self.menus objectAtIndex:indexPath.row];
     if ([menu.menuType isEqualToString:kMenuTypeList]){
-        workOrderListViewController *listViewController = [[workOrderListViewController alloc] initWithNibName:@"ListViewController" bundle:nil];
+        ListViewController *listViewController = [[ListViewController alloc] initWithNibName:@"ListViewController" bundle:nil];
         listViewController.menu = menu;
         [self.navigationController.navigationController pushViewController:listViewController animated:YES];
         

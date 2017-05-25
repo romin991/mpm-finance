@@ -12,6 +12,7 @@
 #import "SubmenuViewController.h"
 #import <SVProgressHUD.h>
 #import "SimpleListViewController.h"
+#import "APIModel.h"
 
 @interface ListViewController ()
 
@@ -37,20 +38,16 @@
     [SVProgressHUD show];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         //get API call here
-        dispatch_async(dispatch_get_main_queue(), ^{
+        [APIModel getListWorkOrder:^(NSArray *lists, NSError *error) {
             //set the result here
-            NSMutableArray *dataSource = [NSMutableArray array];
-            
-            List *list = [[List alloc] init];
-            list.title = @"PK1235";
-            list.date = @"12 March 2017";
-            list.assignee = @"Bejo";
-            list.imageURL = @"https://image.flaticon.com/teams/new/1-freepik.jpg";
-            [dataSource addObject:list];
-            
-            [weakSelf setDataSource:dataSource];
-            [SVProgressHUD dismiss];
-        });
+            if (error == nil) {
+                if (lists) [weakSelf setDataSource:lists];
+                [SVProgressHUD dismiss];
+            } else {
+                [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+                [SVProgressHUD dismissWithDelay:1.5];
+            }
+        }];
     });
 }
 
