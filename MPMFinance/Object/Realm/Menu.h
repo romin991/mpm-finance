@@ -14,13 +14,14 @@ RLM_ARRAY_TYPE(Menu)
 @interface Menu : RLMObject
 
 @property NSString *imageName; //for root menu
-@property NSString *backgroundImageName; //for menuType submenu
-@property NSString *circleIconImageName; //for menuType submenu
+@property NSString *backgroundImageName; //for menuType submenu (parent)
+@property NSString *circleIconImageName; //for menuType submenu (parent)
+@property NSString *borderColor; //for menuType submenu (child)
 @property NSString *title;
 @property NSInteger sort;
 @property NSString *menuType;
-@property NSString *listAPIMethodName; //for menuType list
 @property BOOL isRootMenu;
+@property Action *fetchDataFromAPI; //for menuType list
 @property Action *rightButtonAction; //for menuType list
 
 @property RLMArray<Role> *roles;

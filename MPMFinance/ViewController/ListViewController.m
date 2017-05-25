@@ -36,7 +36,7 @@
     self.submenu = self.menu.submenus.firstObject;
     
     __block ListViewController *weakSelf = self;
-    __block NSString *methodName = self.submenu.listAPIMethodName;
+    __block NSString *methodName = self.submenu.fetchDataFromAPI ? self.submenu.fetchDataFromAPI.methodName : @"";
     [SVProgressHUD show];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         if ([APIModel respondsToSelector:NSSelectorFromString(methodName)]) {
@@ -77,7 +77,7 @@
 }
 
 - (void)rightButtonClicked:(id)sender{
-    
+    [self selectedList:nil withSubmenu:self.submenu];
 }
 
 - (void)didReceiveMemoryWarning {

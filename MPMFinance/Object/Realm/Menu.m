@@ -69,7 +69,7 @@
     
 //=====================================================================================================
     submenu = [[Menu alloc] init];
-    submenu.imageName = @"";
+    submenu.imageName = @"ListPengajuanApplikasiSubmenuIcon";
     submenu.title = kSubmenuListPengajuanApplikasi;
     submenu.sort = 0;
     submenu.menuType = kMenuTypeList;
@@ -112,7 +112,7 @@
     
 //=====================================================================================================
     submenu = [[Menu alloc] init];
-    submenu.imageName = @"";
+    submenu.imageName = @"MonitoringIcon";
     submenu.title = kSubmenuMonitoring;
     submenu.sort = 1;
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
@@ -123,6 +123,7 @@
     submenu.imageName = @"DahsyatIcon";
     submenu.title = kSubmenuDahsyat;
     submenu.sort = 0;
+    submenu.borderColor = @"0091EA";
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [realm addObject:submenu];
     
@@ -131,6 +132,7 @@
     submenu.imageName = @"UsedCarIcon";
     submenu.title = kSubmenuUsedCar;
     submenu.sort = 1;
+    submenu.borderColor = @"546E7A";
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [realm addObject:submenu];
     
@@ -139,6 +141,7 @@
     submenu.imageName = @"NewCarIcon";
     submenu.title = kSubmenuNewCar;
     submenu.sort = 2;
+    submenu.borderColor = @"B30808";
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [realm addObject:submenu];
     
@@ -181,7 +184,14 @@
     menuList.title = kSubmenuListWorkOrder;
     menuList.sort = 0;
     menuList.menuType = kMenuTypeSubmenu;
-    menuList.listAPIMethodName = @"getListWorkOrder:";
+    
+    Action *action = [[Action alloc] init];
+    action.name = @"Get List Work Order";
+    action.methodName = @"getListWorkOrder:";
+    action.actionType = kActionTypeAPICall;
+    [realm addObject:action];
+    
+    menuList.fetchDataFromAPI = action;
     [menuList.roles addObjects:menu.roles];
     [menuList.submenus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
     [menuList.submenus addObject:[Menu objectForPrimaryKey:kSubmenuDataMAP]];
