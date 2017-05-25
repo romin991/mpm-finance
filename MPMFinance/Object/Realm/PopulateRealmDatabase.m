@@ -10,6 +10,8 @@
 #import "Menu.h"
 #import "Role.h"
 #import "Form.h"
+#import "Option.h"
+#import "FormRow.h"
 #import <Realm/Realm.h>
 
 @implementation PopulateRealmDatabase
@@ -19,6 +21,8 @@
     [realm beginWriteTransaction];
     [realm deleteObjects:[Menu allObjects]];
     [realm deleteObjects:[Role allObjects]];
+    [realm deleteObjects:[Option allObjects]];
+    [realm deleteObjects:[FormRow allObjects]];
     [realm deleteObjects:[Form allObjects]];
     [realm commitWriteTransaction];
 }
@@ -26,6 +30,8 @@
 + (void)generateData{
     [Role generateRoles];
     [Menu generateMenus];
+    [Option generateOptions];
+    [FormRow generateFields];
     [Form generateForms];
 }
 

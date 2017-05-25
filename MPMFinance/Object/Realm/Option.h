@@ -14,5 +14,8 @@
 @property NSInteger sort;
 @property NSInteger category;
 
++ (RLMResults *)getOptionWithCategoryNumber:(NSInteger)category;
++ (void)generateOptions;
+
 @end
 RLM_ARRAY_TYPE(Option)

@@ -13,16 +13,24 @@
 @interface FormRow : RLMObject
 
 @property NSString *title;
-@property NSString *tag;
-@property NSString *placeholder;
 @property NSString *type;
 @property BOOL required;
-@property NSString *validation;
 @property NSInteger sort;
-@property NSString *apiURL;
+@property NSInteger category;
 
 @property RLMArray<Option> *options;
-@property RLMArray<Menu> *menus;
+
++ (void)generateFields;
++ (RLMResults *)getRowsWithCategoryNumber:(NSInteger)category;
+
+
+
+//@property NSString *placeholder;
+//@property NSString *tag;
+//@property NSString *apiURL;
+//@property NSString *validation;
+//@property RLMArray<Menu> *menus;
 
 @end
 RLM_ARRAY_TYPE(FormRow)
+

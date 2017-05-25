@@ -10,6 +10,10 @@
 
 @implementation Option
 
++ (RLMResults *)getOptionWithCategoryNumber:(NSInteger)category{
+    return [Option objectsWhere:@"category = %li", category];
+}
+
 + (void)generateOptions{
     RLMRealm *realm = [RLMRealm defaultRealm];
     [realm beginWriteTransaction];

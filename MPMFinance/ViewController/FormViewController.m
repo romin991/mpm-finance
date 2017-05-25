@@ -126,8 +126,7 @@
     
     // Row
     for (FormRow *formRow in self.formRows) {
-        row = [XLFormRowDescriptor formRowDescriptorWithTag:formRow.tag rowType:formRow.type title:formRow.title];
-        if (formRow.placeholder) [row.cellConfigAtConfigure setObject:formRow.placeholder forKey:@"textField.placeholder"];
+        row = [XLFormRowDescriptor formRowDescriptorWithTag:nil rowType:formRow.type title:formRow.title];
         if (formRow.options.count > 0) {
             NSMutableArray *options = [NSMutableArray array];
             for (Option *option in formRow.options) {
