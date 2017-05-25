@@ -24,6 +24,7 @@
 
 #pragma mark - Populate Data
 + (void)generateSubmenusWithRealm:(RLMRealm *)realm{
+//=====================================================================================================
     Menu *submenu = [[Menu alloc] init];
     submenu.imageName = @"ListPengajuanApplikasiSubmenuIcon";
     submenu.title = kSubmenuFormPengajuanApplikasi;
@@ -32,6 +33,7 @@
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [realm addObject:submenu];
     
+//=====================================================================================================
     submenu = [[Menu alloc] init];
     submenu.imageName = @"DataMAPSubmenuIcon";
     submenu.title = kSubmenuDataMAP;
@@ -39,7 +41,8 @@
     submenu.menuType = kMenuTypeFormVertical;
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [realm addObject:submenu];
-    
+
+//=====================================================================================================
     submenu = [[Menu alloc] init];
     submenu.imageName = @"SurveySubmenuIcon";
     submenu.title = kSubmenuSurvey;
@@ -48,6 +51,7 @@
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [realm addObject:submenu];
     
+//=====================================================================================================
     submenu = [[Menu alloc] init];
     submenu.imageName = @"";
     submenu.title = kSubmenuMelengkapiData;
@@ -55,6 +59,7 @@
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
     [realm addObject:submenu];
     
+//=====================================================================================================
     submenu = [[Menu alloc] init];
     submenu.imageName = @"";
     submenu.title = kSubmenuAssignMarketing;
@@ -62,6 +67,7 @@
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
     [realm addObject:submenu];
     
+//=====================================================================================================
     submenu = [[Menu alloc] init];
     submenu.imageName = @"";
     submenu.title = kSubmenuListPengajuanApplikasi;
@@ -72,13 +78,39 @@
     Menu *menuList = [[Menu alloc] init];
     menuList.title = kSubmenuListOnlineSubmission;
     menuList.sort = 0;
-    menuList.menuType = kMenuTypeFormHorizontal;
+    menuList.menuType = kMenuTypeSubmenu;
+    
+    Action *action = [[Action alloc] init];
+    action.name = @"Add";
+    action.methodName = @"";
+    action.actionType = kActionTypeForward;
+    [realm addObject:action];
+    menuList.rightButtonAction = action;
+    
+    [menuList.submenus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
     [menuList.roles addObjects:submenu.roles];
+    
+    action = [[Action alloc] init];
+    action.name = @"Send Data";
+    action.methodName = @"";
+    action.actionType = kActionTypeAPICall;
+    [realm addObject:action];
+    
+    [menuList.actions addObject:action];
+    
+    action = [[Action alloc] init];
+    action.name = @"Edit";
+    action.methodName = @"";
+    action.actionType = kActionTypeForward;
+    [realm addObject:action];
+    
+    [menuList.actions addObject:action];
     [realm addObject:menuList];
     
     [submenu.submenus addObject:menuList];
     [realm addObject:submenu];
     
+//=====================================================================================================
     submenu = [[Menu alloc] init];
     submenu.imageName = @"";
     submenu.title = kSubmenuMonitoring;
@@ -86,6 +118,7 @@
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [realm addObject:submenu];
     
+//=====================================================================================================
     submenu = [[Menu alloc] init];
     submenu.imageName = @"DahsyatIcon";
     submenu.title = kSubmenuDahsyat;
@@ -93,6 +126,7 @@
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [realm addObject:submenu];
     
+//=====================================================================================================
     submenu = [[Menu alloc] init];
     submenu.imageName = @"UsedCarIcon";
     submenu.title = kSubmenuUsedCar;
@@ -100,6 +134,7 @@
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [realm addObject:submenu];
     
+//=====================================================================================================
     submenu = [[Menu alloc] init];
     submenu.imageName = @"NewCarIcon";
     submenu.title = kSubmenuNewCar;
@@ -107,6 +142,7 @@
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [realm addObject:submenu];
     
+//=====================================================================================================
     submenu = [[Menu alloc] init];
     submenu.imageName = @"YearToDateIcon";
     submenu.title = kSubmenuYearToDate;
@@ -114,6 +150,7 @@
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [realm addObject:submenu];
     
+//=====================================================================================================
     submenu = [[Menu alloc] init];
     submenu.imageName = @"MonthToDateIcon";
     submenu.title = kSubmenuMonthToDate;
@@ -128,6 +165,7 @@
     
     [self generateSubmenusWithRealm:realm];
     
+//=====================================================================================================
     Menu *menu = [[Menu alloc] init];
     menu.imageName = @"ListWorkOrderIcon";
     menu.title = kMenuListWorkOrder;
@@ -155,6 +193,7 @@
     [menu.submenus addObject:menuList];
     [realm addObject:menu];
     
+//=====================================================================================================
     menu = [[Menu alloc] init];
     menu.imageName = @"OnlineSubmissionIcon";
     menu.backgroundImageName = @"OnlineSubmissionBackground";
@@ -168,6 +207,7 @@
     [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuMonitoring]];
     [realm addObject:menu];
     
+//=====================================================================================================
     menu = [[Menu alloc] init];
     menu.imageName = @"TrackingMarketingIcon";
     menu.title = kMenuTrackingMarketing;
@@ -177,6 +217,7 @@
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
     [realm addObject:menu];
     
+//=====================================================================================================
     menu = [[Menu alloc] init];
     menu.imageName = @"CalculatorMarketingIcon";
     menu.backgroundImageName = @"CalculatorMarketingBackground";
@@ -192,6 +233,7 @@
     [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuNewCar]];
     [realm addObject:menu];
     
+//=====================================================================================================
     menu = [[Menu alloc] init];
     menu.imageName = @"ListMapIcon";
     menu.title = kMenuListMap;
@@ -213,6 +255,7 @@
     [menu.submenus addObject:menuList];
     [realm addObject:menu];
     
+//=====================================================================================================
     menu = [[Menu alloc] init];
     menu.imageName = @"ListSurveyIcon";
     menu.title = kMenuListSurvey;
@@ -233,6 +276,7 @@
     [menu.submenus addObject:menuList];
     [realm addObject:menu];
     
+//=====================================================================================================
     menu = [[Menu alloc] init];
     menu.imageName = @"DashboardIcon";
     menu.backgroundImageName = @"DashboardBackground";

@@ -12,9 +12,10 @@
 #import "SubmenuViewController.h"
 #import <SVProgressHUD.h>
 #import "SimpleListViewController.h"
+#import "FormViewController.h"
 #import "APIModel.h"
 
-@interface ListViewController ()
+@interface ListViewController ()<UIActionSheetDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property NSMutableArray *lists;
@@ -52,8 +53,31 @@
         } else {
             [SVProgressHUD showErrorWithStatus:@"No method found"];
             [SVProgressHUD dismissWithDelay:1.5];
+            
+            //set dummy here
+            NSMutableArray *dataSource = [NSMutableArray array];
+            
+            List *list = [[List alloc] init];
+            list.title = @"PK1235";
+            list.date = @"12 March 2017";
+            list.assignee = @"Bejo";
+            list.imageURL = @"https://image.flaticon.com/teams/new/1-freepik.jpg";
+            [dataSource addObject:list];
+            
+            [weakSelf setDataSource:dataSource];
         }
     });
+    
+    Action *rightButtonAction = self.submenu.rightButtonAction;
+    if (rightButtonAction) {
+        UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:rightButtonAction.name style:UIBarButtonItemStylePlain target:self action:@selector(rightButtonClicked:)];
+        
+        [self.navigationItem setRightBarButtonItem:rightButton];
+    }
+}
+
+- (void)rightButtonClicked:(id)sender{
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -83,26 +107,73 @@
     }
     
     if (list){
-        Menu *submenu = self.submenu;
-        if (submenu.submenus.count == 1){
-           submenu = submenu.submenus.firstObject;
+        if (self.submenu.actions.count > 0) {
+            NSString *alertMessage = [NSString stringWithFormat:@"Select action for %@ %@:", list.title, list.assignee];
+            UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:@"Select Action"
+                                                                                 message:alertMessage
+                                                                          preferredStyle:UIAlertControllerStyleActionSheet];
+            
+            [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+                // Cancel button tappped.
+                [actionSheet dismissViewControllerAnimated:YES completion:^{
+                    NSLog(@"close");
+                }];
+            }]];
+            
+            for (Action *action in self.submenu.actions) {
+                [actionSheet addAction:[UIAlertAction actionWithTitle:action.name style:UIAlertActionStyleDefault handler:^(UIAlertAction *alertAction) {
+                    if ([action.actionType isEqualToString:kActionTypeAPICall]){
+                        //call API send list
+                        
+                        __block NSString *methodName = action.methodName;
+                        [SVProgressHUD show];
+                        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                            if ([APIModel respondsToSelector:NSSelectorFromString(methodName)]) {
+                                [APIModel performSelector:NSSelectorFromString(methodName) withObject:list];
+                            } else {
+                                [SVProgressHUD showErrorWithStatus:@"No method found"];
+                                [SVProgressHUD dismissWithDelay:1.5];
+                            }
+                        });
+                    }
+                    
+                    if ([action.actionType isEqualToString:kActionTypeForward]){
+                        [self selectedList:list withSubmenu:self.submenu];
+                    }
+                }]];
+            }
+            
+            // Present action sheet.
+            [self presentViewController:actionSheet animated:YES completion:nil];
+        } else {
+            [self selectedList:list withSubmenu:self.submenu];
         }
+    }
+}
+
+- (void)selectedList:(List *)list withSubmenu:(Menu *)submenu{
+    if (submenu.submenus.count == 1){
+        submenu = submenu.submenus.firstObject;
+    }
+    
+    if ([submenu.menuType isEqualToString:kMenuTypeSubmenu]) {
+        SubmenuViewController *submenuViewController = [[SubmenuViewController alloc] init];
+        submenuViewController.menu = submenu;
+        [self.navigationController pushViewController:submenuViewController animated:YES];
         
-        if ([submenu.menuType isEqualToString:kMenuTypeSubmenu]) {
-            SubmenuViewController *submenuViewController = [[SubmenuViewController alloc] init];
-            submenuViewController.menu = submenu;
-            [self.navigationController pushViewController:submenuViewController animated:YES];
-            
-        } else if ([submenu.menuType isEqualToString:kMenuTypeFormVertical]){
-            SimpleListViewController *simpleListViewController = [[SimpleListViewController alloc] init];
-            simpleListViewController.menu = submenu;
-            simpleListViewController.title = self.menu.title;
-            [self.navigationController pushViewController:simpleListViewController animated:YES];
-            
-        } else if ([self.submenu.menuType isEqualToString:kMenuTypeMap]){
-            //create map view controller
-            
-        }
+    } else if ([submenu.menuType isEqualToString:kMenuTypeFormVertical]){
+        SimpleListViewController *simpleListViewController = [[SimpleListViewController alloc] init];
+        simpleListViewController.menu = submenu;
+        simpleListViewController.title = self.menu.title;
+        [self.navigationController pushViewController:simpleListViewController animated:YES];
+        
+    } else if ([submenu.menuType isEqualToString:kMenuTypeMap]){
+        //create map view controller
+        
+    } else if ([submenu.menuType isEqualToString:kMenuTypeFormHorizontal]){
+        FormViewController *formViewController = [[FormViewController alloc] init];
+        formViewController.menu = submenu;
+        [self.navigationController pushViewController:formViewController animated:YES];
     }
 }
 

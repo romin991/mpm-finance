@@ -57,6 +57,9 @@ extern NSString *const kMenuTypeSubmenu;
 extern NSString *const kMenuTypeMap;
 extern NSString *const kApiUrl;
 
+extern NSString *const kActionTypeForward;
+extern NSString *const kActionTypeAPICall;
+
 +(AFHTTPSessionManager*)sessionManager;
 + (NSString *)encodeToBase64String:(UIImage *)image;
 @end

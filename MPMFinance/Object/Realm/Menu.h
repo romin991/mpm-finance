@@ -8,6 +8,7 @@
 
 #import <Realm/Realm.h>
 #import "Role.h"
+#import "Action.h"
 
 RLM_ARRAY_TYPE(Menu)
 @interface Menu : RLMObject
@@ -20,9 +21,11 @@ RLM_ARRAY_TYPE(Menu)
 @property NSString *menuType;
 @property NSString *listAPIMethodName; //for menuType list
 @property BOOL isRootMenu;
+@property Action *rightButtonAction; //for menuType list
 
 @property RLMArray<Role> *roles;
 @property RLMArray<Menu> *submenus;
+@property RLMArray<Action> *actions;
 
 + (RLMResults *)getMenuForRole:(NSString *)roleName;
 + (RLMResults *)getSubmenuForMenu:(NSString *)menuTitle role:(NSString *)roleName;
