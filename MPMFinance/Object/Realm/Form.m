@@ -91,6 +91,8 @@
     form = [[Form alloc] init];
     form.title = @"MAP Data Aplikasi";
     form.sort = 0;
+    [form.rows addObjects:[FormRow getRowsWithCategoryNumber:6]];
+    
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuDataMAP]];
     [realm addObject:form];
     
@@ -98,6 +100,8 @@
     form = [[Form alloc] init];
     form.title = @"Data Pribadi";
     form.sort = 10;
+    [form.rows addObjects:[FormRow getRowsWithCategoryNumber:7]];
+    
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuDataMAP]];
     [realm addObject:form];
     

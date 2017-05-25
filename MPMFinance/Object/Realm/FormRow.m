@@ -96,6 +96,36 @@
     [FormRow new:realm :5 :1 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Telepon E-con"];
     [FormRow new:realm :5 :2 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Tambahan"];
     
+    //MAP Data Aplikasi
+    [FormRow new:realm :6 :0 :NO :XLFormRowDescriptorTypeSelectorPush :@"Sumber Aplikasi"];
+    [FormRow new:realm :6 :1 :NO :XLFormRowDescriptorTypeSelectorPush :@"Tujuan Pembiayaan" :0];
+    [FormRow new:realm :6 :2 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kode Aplikasi"];
+    [FormRow new:realm :6 :3 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kode Cabang"];
+    [FormRow new:realm :6 :4 :NO :XLFormRowDescriptorTypeDateInline :@"Tanggal Perjanjian"];
+    [FormRow new:realm :6 :5 :NO :XLFormRowDescriptorTypeSelectorPush :@"Source of application"];
+    [FormRow new:realm :6 :6 :NO :XLFormRowDescriptorTypeSelectorPush :@"Product" :2];
+    [FormRow new:realm :6 :7 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Product Offering"];
+    [FormRow new:realm :6 :8 :NO :XLFormRowDescriptorTypeSelectorPush :@"Jarak Tempuh" :3];
+    [FormRow new:realm :6 :9 :NO :XLFormRowDescriptorTypeSelectorPush :@"Application Priority" :4];
+    [FormRow new:realm :6 :10 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kode Applikasi"];
+    
+    //Data Pribadi
+    [FormRow new:realm :7 :0 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Lengkap"];
+    [FormRow new:realm :7 :1 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"KTP"];
+    [FormRow new:realm :7 :2 :NO :XLFormRowDescriptorTypeSelectorPush :@"Jenis Kelamin" :6];
+    [FormRow new:realm :7 :3 :NO :XLFormRowDescriptorTypeSelectorPush :@"Agama" :7];
+    [FormRow new:realm :7 :4 :NO :XLFormRowDescriptorTypeSelectorPush :@"Status" :12];
+    [FormRow new:realm :7 :5 :NO :XLFormRowDescriptorTypeSelectorPush :@"Status Kepemilikan Rumah" :13];
+    [FormRow new:realm :7 :6 :NO :XLFormRowDescriptorTypeDateInline :@"Tanggal Selesai Kontrak Rumah"];
+    [FormRow new:realm :7 :7 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Lokasi Rumah" :14];
+    [FormRow new:realm :7 :8 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Tahun Menempati"];
+    [FormRow new:realm :7 :9 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor NPWP"];
+    [FormRow new:realm :7 :10 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Kartu Keluarga"];
+    [FormRow new:realm :7 :11 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Jumlah Tanggunan"];
+    [FormRow new:realm :7 :12 :NO :XLFormRowDescriptorTypeSelectorPush :@"Pendidikan Terakhir" :15];
+    [FormRow new:realm :7 :13 :NO :XLFormRowDescriptorTypeSelectorPush :@"Alamat Pengiriman Surat" :16];
+    [FormRow new:realm :7 :14 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Email"];
+    
     [realm commitWriteTransaction];
 }
 
