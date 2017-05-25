@@ -29,6 +29,7 @@
     submenu.imageName = @"ListPengajuanApplikasiSubmenuIcon";
     submenu.title = kSubmenuFormPengajuanApplikasi;
     submenu.sort = 0;
+    submenu.borderColor = @"F26F21";
     submenu.menuType = kMenuTypeFormHorizontal;
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [realm addObject:submenu];
@@ -38,6 +39,7 @@
     submenu.imageName = @"DataMAPSubmenuIcon";
     submenu.title = kSubmenuDataMAP;
     submenu.sort = 1;
+    submenu.borderColor = @"FB9E15";
     submenu.menuType = kMenuTypeFormVertical;
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [realm addObject:submenu];
@@ -47,23 +49,26 @@
     submenu.imageName = @"SurveySubmenuIcon";
     submenu.title = kSubmenuSurvey;
     submenu.sort = 2;
+    submenu.borderColor = @"FF8A65";
     submenu.menuType = kMenuTypeFormHorizontal;
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [realm addObject:submenu];
     
 //=====================================================================================================
     submenu = [[Menu alloc] init];
-    submenu.imageName = @"";
+    submenu.imageName = @"ListPengajuanApplikasiSubmenuIcon";
     submenu.title = kSubmenuMelengkapiData;
     submenu.sort = 0;
+    submenu.borderColor = @"F26F21";
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
     [realm addObject:submenu];
     
 //=====================================================================================================
     submenu = [[Menu alloc] init];
-    submenu.imageName = @"";
+    submenu.imageName = @"SurveySubmenuIcon";
     submenu.title = kSubmenuAssignMarketing;
     submenu.sort = 1;
+    submenu.borderColor = @"FF8A65";
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
     [realm addObject:submenu];
     
@@ -72,6 +77,7 @@
     submenu.imageName = @"ListPengajuanApplikasiSubmenuIcon";
     submenu.title = kSubmenuListPengajuanApplikasi;
     submenu.sort = 0;
+    submenu.borderColor = @"F26F21";
     submenu.menuType = kMenuTypeList;
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     
@@ -115,6 +121,7 @@
     submenu.imageName = @"MonitoringIcon";
     submenu.title = kSubmenuMonitoring;
     submenu.sort = 1;
+    submenu.borderColor = @"558B2F";
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [realm addObject:submenu];
     
@@ -150,6 +157,7 @@
     submenu.imageName = @"YearToDateIcon";
     submenu.title = kSubmenuYearToDate;
     submenu.sort = 0;
+    submenu.borderColor = @"F26F21";
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [realm addObject:submenu];
     
@@ -158,6 +166,7 @@
     submenu.imageName = @"MonthToDateIcon";
     submenu.title = kSubmenuMonthToDate;
     submenu.sort = 1;
+    submenu.borderColor = @"B00000";
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [realm addObject:submenu];
 }
