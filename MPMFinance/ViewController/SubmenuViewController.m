@@ -79,7 +79,7 @@
     }
     
     cell.button.layer.borderWidth = 1;
-    cell.button.layer.borderColor = [[UIColor greenColor] CGColor];
+    cell.button.layer.borderColor = [[UIColor grayColor] CGColor];
     cell.button.tag = indexPath.row;
     [cell.button addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -93,6 +93,12 @@
     if (submenu){
         cell.icon.image = [UIImage imageNamed:submenu.imageName];
         cell.title.text = submenu.title;
+        
+        if (submenu.borderColor) {
+            unsigned int hex;
+            [[NSScanner scannerWithString:submenu.borderColor] scanHexInt:&hex];
+            cell.button.layer.borderColor = [UIColorFromRGB(hex) CGColor];
+        }
     } else {
         cell.icon.image = nil;
         cell.title.text = @"";

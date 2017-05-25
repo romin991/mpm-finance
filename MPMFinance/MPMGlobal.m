@@ -66,6 +66,8 @@ NSString *const kMenuTypeList = @"List";
 NSString *const kMenuTypeSubmenu = @"Submenu";
 NSString *const kMenuTypeMap = @"Map";
 
+NSString *const kActionTypeForward = @"Forward";
+NSString *const kActionTypeAPICall = @"APICall";
 
 +(AFHTTPSessionManager*)sessionManager
 {

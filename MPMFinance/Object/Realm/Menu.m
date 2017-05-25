@@ -55,100 +55,149 @@
 
 #pragma mark - Populate Data
 + (void)generateSubmenusWithRealm:(RLMRealm *)realm{
+//=====================================================================================================
     Menu *submenu = [[Menu alloc] init];
     submenu.imageName = @"ListPengajuanApplikasiSubmenuIcon";
     submenu.title = kSubmenuFormPengajuanApplikasi;
     submenu.sort = 0;
+    submenu.borderColor = @"F26F21";
     submenu.menuType = kMenuTypeFormHorizontal;
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [realm addObject:submenu];
     
+//=====================================================================================================
     submenu = [[Menu alloc] init];
     submenu.imageName = @"DataMAPSubmenuIcon";
     submenu.title = kSubmenuDataMAP;
     submenu.sort = 1;
+    submenu.borderColor = @"FB9E15";
     submenu.menuType = kMenuTypeFormVertical;
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [realm addObject:submenu];
-    
+
+//=====================================================================================================
     submenu = [[Menu alloc] init];
     submenu.imageName = @"SurveySubmenuIcon";
     submenu.title = kSubmenuSurvey;
     submenu.sort = 2;
+    submenu.borderColor = @"FF8A65";
     submenu.menuType = kMenuTypeFormHorizontal;
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [realm addObject:submenu];
     
+//=====================================================================================================
     submenu = [[Menu alloc] init];
-    submenu.imageName = @"";
+    submenu.imageName = @"ListPengajuanApplikasiSubmenuIcon";
     submenu.title = kSubmenuMelengkapiData;
     submenu.sort = 0;
+    submenu.borderColor = @"F26F21";
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
     [realm addObject:submenu];
     
+//=====================================================================================================
     submenu = [[Menu alloc] init];
-    submenu.imageName = @"";
+    submenu.imageName = @"SurveySubmenuIcon";
     submenu.title = kSubmenuAssignMarketing;
     submenu.sort = 1;
+    submenu.borderColor = @"FF8A65";
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
     [realm addObject:submenu];
     
+//=====================================================================================================
     submenu = [[Menu alloc] init];
-    submenu.imageName = @"";
+    submenu.imageName = @"ListPengajuanApplikasiSubmenuIcon";
     submenu.title = kSubmenuListPengajuanApplikasi;
     submenu.sort = 0;
+    submenu.borderColor = @"F26F21";
     submenu.menuType = kMenuTypeList;
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     
     Menu *menuList = [[Menu alloc] init];
     menuList.title = kSubmenuListOnlineSubmission;
     menuList.sort = 0;
-    menuList.menuType = kMenuTypeFormHorizontal;
+    menuList.menuType = kMenuTypeSubmenu;
+    
+    Action *action = [[Action alloc] init];
+    action.name = @"Add";
+    action.methodName = @"";
+    action.actionType = kActionTypeForward;
+    [realm addObject:action];
+    menuList.rightButtonAction = action;
+    
+    [menuList.submenus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
     [menuList.roles addObjects:submenu.roles];
+    
+    action = [[Action alloc] init];
+    action.name = @"Send Data";
+    action.methodName = @"";
+    action.actionType = kActionTypeAPICall;
+    [realm addObject:action];
+    
+    [menuList.actions addObject:action];
+    
+    action = [[Action alloc] init];
+    action.name = @"Edit";
+    action.methodName = @"";
+    action.actionType = kActionTypeForward;
+    [realm addObject:action];
+    
+    [menuList.actions addObject:action];
     [realm addObject:menuList];
     
     [submenu.submenus addObject:menuList];
     [realm addObject:submenu];
     
+//=====================================================================================================
     submenu = [[Menu alloc] init];
-    submenu.imageName = @"";
+    submenu.imageName = @"MonitoringIcon";
     submenu.title = kSubmenuMonitoring;
     submenu.sort = 1;
+    submenu.borderColor = @"558B2F";
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [realm addObject:submenu];
     
+//=====================================================================================================
     submenu = [[Menu alloc] init];
     submenu.imageName = @"DahsyatIcon";
     submenu.title = kSubmenuDahsyat;
     submenu.sort = 0;
+    submenu.borderColor = @"0091EA";
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [realm addObject:submenu];
     
+//=====================================================================================================
     submenu = [[Menu alloc] init];
     submenu.imageName = @"UsedCarIcon";
     submenu.title = kSubmenuUsedCar;
     submenu.sort = 1;
+    submenu.borderColor = @"546E7A";
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [realm addObject:submenu];
     
+//=====================================================================================================
     submenu = [[Menu alloc] init];
     submenu.imageName = @"NewCarIcon";
     submenu.title = kSubmenuNewCar;
     submenu.sort = 2;
+    submenu.borderColor = @"B30808";
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [realm addObject:submenu];
     
+//=====================================================================================================
     submenu = [[Menu alloc] init];
     submenu.imageName = @"YearToDateIcon";
     submenu.title = kSubmenuYearToDate;
     submenu.sort = 0;
+    submenu.borderColor = @"F26F21";
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [realm addObject:submenu];
     
+//=====================================================================================================
     submenu = [[Menu alloc] init];
     submenu.imageName = @"MonthToDateIcon";
     submenu.title = kSubmenuMonthToDate;
     submenu.sort = 1;
+    submenu.borderColor = @"B00000";
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [realm addObject:submenu];
 }
@@ -159,7 +208,8 @@
     
     [self generateSubmenusWithRealm:realm];
     
-    
+
+//=====================================================================================================
     Menu *menu = [[Menu alloc] init];
     menu.imageName = @"ListWorkOrderIcon";
     menu.title = kMenuListWorkOrder;
@@ -175,7 +225,14 @@
     menuList.title = kSubmenuListWorkOrder;
     menuList.sort = 0;
     menuList.menuType = kMenuTypeSubmenu;
-    menuList.listAPIMethodName = @"getListWorkOrder:";
+    
+    Action *action = [[Action alloc] init];
+    action.name = @"Get List Work Order";
+    action.methodName = @"getListWorkOrder:";
+    action.actionType = kActionTypeAPICall;
+    [realm addObject:action];
+    
+    menuList.fetchDataFromAPI = action;
     [menuList.roles addObjects:menu.roles];
     [menuList.submenus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
     [menuList.submenus addObject:[Menu objectForPrimaryKey:kSubmenuDataMAP]];
@@ -187,6 +244,7 @@
     [menu.submenus addObject:menuList];
     [realm addObject:menu];
     
+//=====================================================================================================
     menu = [[Menu alloc] init];
     menu.imageName = @"cartIcon";
     menu.title = kMenuProduct;
@@ -315,6 +373,7 @@
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
     [realm addObject:menu];
     
+//=====================================================================================================
     menu = [[Menu alloc] init];
     menu.imageName = @"CalculatorMarketingIcon";
     menu.backgroundImageName = @"CalculatorMarketingBackground";
@@ -330,6 +389,7 @@
     [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuNewCar]];
     [realm addObject:menu];
     
+//=====================================================================================================
     menu = [[Menu alloc] init];
     menu.imageName = @"ListMapIcon";
     menu.title = kMenuListMap;
@@ -351,6 +411,7 @@
     [menu.submenus addObject:menuList];
     [realm addObject:menu];
     
+//=====================================================================================================
     menu = [[Menu alloc] init];
     menu.imageName = @"ListSurveyIcon";
     menu.title = kMenuListSurvey;
@@ -371,6 +432,7 @@
     [menu.submenus addObject:menuList];
     [realm addObject:menu];
     
+//=====================================================================================================
     menu = [[Menu alloc] init];
     menu.imageName = @"DashboardIcon";
     menu.backgroundImageName = @"DashboardBackground";
