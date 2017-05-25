@@ -126,6 +126,18 @@
     [FormRow new:realm :7 :13 :NO :XLFormRowDescriptorTypeSelectorPush :@"Alamat Pengiriman Surat" :16];
     [FormRow new:realm :7 :14 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Email"];
     
+    //Data Pekerjaan
+    [FormRow new:realm :8 :0 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Pekerjaan"];
+    [FormRow new:realm :8 :1 :NO :XLFormRowDescriptorTypeSelectorPush :@"Jenis Pekerjaan" :17];
+    [FormRow new:realm :8 :2 :NO :XLFormRowDescriptorTypeSelectorPush :@"Status Pekerjaan" :18];
+    [FormRow new:realm :8 :3 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Bidang Usaha"];
+    [FormRow new:realm :8 :4 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Posisi Jabatan"];
+    [FormRow new:realm :8 :5 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Alamat Kantor"];
+    [FormRow new:realm :8 :6 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Lama Bekerja"];
+    [FormRow new:realm :8 :7 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Pendapatan Per Tahun"];
+    [FormRow new:realm :8 :8 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Perusahaan"];
+
+    
     [realm commitWriteTransaction];
 }
 
