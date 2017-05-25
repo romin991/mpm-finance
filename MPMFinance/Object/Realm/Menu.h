@@ -24,8 +24,8 @@ RLM_ARRAY_TYPE(Menu)
 @property RLMArray<Role> *roles;
 @property RLMArray<Menu> *submenus;
 
-+ (RLMResults *)getMenuForRole:(NSString *)roleName;
-+ (RLMResults *)getSubmenuForMenu:(NSString *)menuTitle role:(NSString *)roleName;
++ (RLMResults *)getMenuForRole:(NSInteger)roleCode;
++ (RLMResults *)getSubmenuForMenu:(NSString *)menuTitle role:(NSInteger)roleName;
 + (void)generateMenus;
 
 @end

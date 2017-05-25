@@ -30,7 +30,7 @@
     [self setTitle:@"Detail"];
     self.banner.image = [UIImage imageNamed:self.menu.backgroundImageName];
     self.icon.image = [UIImage imageNamed:self.menu.circleIconImageName];
-    self.submenus = [Menu getSubmenuForMenu:self.menu.title role:kRoleDedicated];
+    self.submenus = [Menu getSubmenuForMenu:self.menu.title role:[MPMUserInfo getGroupLevel]];
 }
 
 - (void)didReceiveMemoryWarning {

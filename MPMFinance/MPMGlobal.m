@@ -16,6 +16,8 @@ NSString *const kRoleDealer = @"Dealer";
 NSString *const kRoleSupervisor = @"Supervisor";
 NSString *const kRoleOfficer = @"Officer";
 NSString *const kRoleDedicated = @"Dedicated";
+NSString *const kNoRole = @"NotLogin";
+
 
 NSString *const kMenuListWorkOrder = @"List Work Order";
 NSString *const kMenuOnlineSubmission = @"Online Submission";
@@ -24,6 +26,17 @@ NSString *const kMenuCalculatorMarketing = @"Calculator Marketing";
 NSString *const kMenuListMap = @"List Map";
 NSString *const kMenuListSurvey = @"List Survey";
 NSString *const kMenuDashboard = @"Dashboard";
+NSString *const kMenuContactUs = @"Contact Us";
+NSString *const kMenuProduct = @"Product";
+NSString *const kMenuPengajuanKembali = @"Pengajuan Kembali";
+NSString *const kMenuHistoryTransaksi = @"History Transaksi";
+NSString *const kMenuLegalisirFCBPKB = @"Legalisir FC BPKB";
+NSString *const kMenuKlaimAsuransi = @"Klaim Asuransi";
+NSString *const kMenuCreditSimulation = @"Credit Simulation";
+NSString *const kMenuPelunasanDipercepat = @"Pelunasan Dipercepat";
+NSString *const kMenuPengembalianBPKB = @"Pengembalian BPKB";
+NSString *const kMenuSaranPengaduan = @"Saran & Pengaduan";
+NSString *const kMenuCustomerGetCustomer = @"Customer Get Customer";
 
 NSString *const kSubmenuListOnlineSubmission = @"List Online Submission API";
 NSString *const kSubmenuListWorkOrder = @"List Work Order API";

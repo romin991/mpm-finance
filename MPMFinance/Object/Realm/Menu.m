@@ -7,19 +7,50 @@
 //
 
 #import "Menu.h"
-
+#define kGroupLevelNil 0
+#define kGroupLevelCustomer 2
+#define kGroupLevelAgent 3
+#define kGroupLevelDealer 4
+#define kGroupLevelMarketingOfficer 5
+#define kGroupLevelMarketingDedicated 6
+#define kGroupLevelMarketingSpv 7
 @implementation Menu
 
 + (NSString *)primaryKey {
     return @"title";
 }
-
-+ (RLMResults *)getMenuForRole:(NSString *)roleName{
-    return [Menu objectsWhere:@"ANY roles.name = %@ and isRootMenu = YES", roleName];
++(NSString*)roleCodeToRoleName:(NSInteger)roleCode
+{
+    NSString *roleName;
+    if (roleCode == kGroupLevelCustomer) {
+        roleName = kRoleCustomer;
+    }
+    else if(roleCode == kGroupLevelAgent) {
+        roleName = kRoleAgent;
+    }
+    else if(roleCode == kGroupLevelDealer) {
+        roleName = kRoleDealer;
+    }
+    else if(roleCode == kGroupLevelMarketingOfficer) {
+        roleName = kRoleOfficer;
+    }
+    else if(roleCode == kGroupLevelMarketingDedicated) {
+        roleName = kRoleDedicated;
+    }
+    else if(roleCode == kGroupLevelMarketingSpv) {
+        roleName = kRoleSupervisor;
+    }
+    else if(roleCode == kGroupLevelNil){
+        roleName = kNoRole;
+    }
+    return roleName;
+}
++ (RLMResults *)getMenuForRole:(NSInteger)roleCode{
+    return [Menu objectsWhere:@"ANY roles.name = %@ and isRootMenu = YES", [Menu roleCodeToRoleName:roleCode]];
 }
 
-+ (RLMResults *)getSubmenuForMenu:(NSString *)menuTitle role:(NSString *)roleName{
-    return [[Menu objectForPrimaryKey:menuTitle].submenus objectsWhere:@"ANY roles.name = %@", roleName];
++ (RLMResults *)getSubmenuForMenu:(NSString *)menuTitle role:(NSInteger)roleCode{
+    return [[Menu objectForPrimaryKey:menuTitle].submenus objectsWhere:@"ANY roles.name = %@", [Menu roleCodeToRoleName:roleCode]];
 }
 
 #pragma mark - Populate Data
@@ -128,6 +159,7 @@
     
     [self generateSubmenusWithRealm:realm];
     
+    
     Menu *menu = [[Menu alloc] init];
     menu.imageName = @"ListWorkOrderIcon";
     menu.title = kMenuListWorkOrder;
@@ -156,6 +188,38 @@
     [realm addObject:menu];
     
     menu = [[Menu alloc] init];
+    menu.imageName = @"cartIcon";
+    menu.title = kMenuProduct;
+    menu.sort = 20;
+    menu.menuType = kMenuTypeList;
+    menu.isRootMenu = YES;
+    [menu.roles addObject:[Role objectForPrimaryKey:kNoRole]];
+    [menu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [realm addObject:menu];
+    
+    menu = [[Menu alloc] init];
+    menu.imageName = @"creditIcon";
+    menu.title = kMenuCreditSimulation;
+    menu.sort = 20;
+    menu.menuType = kMenuTypeList;
+    menu.isRootMenu = YES;
+    [menu.roles addObject:[Role objectForPrimaryKey:kNoRole]];
+    [menu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [realm addObject:menu];
+    
+    
+    menu = [[Menu alloc] init];
+    menu.imageName = @"contactUsIcon";
+    menu.title = kMenuContactUs;
+    menu.sort = 20;
+    menu.menuType = kMenuTypeList;
+    menu.isRootMenu = YES;
+    [menu.roles addObject:[Role objectForPrimaryKey:kNoRole]];
+    [menu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [realm addObject:menu];
+    
+    
+    menu = [[Menu alloc] init];
     menu.imageName = @"OnlineSubmissionIcon";
     menu.backgroundImageName = @"OnlineSubmissionBackground";
     menu.circleIconImageName = @"OnlineSubmissionCircleIcon";
@@ -164,9 +228,83 @@
     menu.menuType = kMenuTypeSubmenu;
     menu.isRootMenu = YES;
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
+    [menu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
     [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuMonitoring]];
     [realm addObject:menu];
+    
+    menu = [[Menu alloc] init];
+    menu.imageName = @"pengajuanKembaliIcon";
+    menu.title = kMenuPengajuanKembali;
+    menu.sort = 20;
+    menu.menuType = kMenuTypeList;
+    menu.isRootMenu = YES;
+    [menu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [realm addObject:menu];
+    
+    menu = [[Menu alloc] init];
+    menu.imageName = @"historyTransaksiIcon";
+    menu.title = kMenuHistoryTransaksi;
+    menu.sort = 20;
+    menu.menuType = kMenuTypeList;
+    menu.isRootMenu = YES;
+    [menu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [realm addObject:menu];
+    
+    menu = [[Menu alloc] init];
+    menu.imageName = @"legalisirBpkb";
+    menu.title = kMenuLegalisirFCBPKB;
+    menu.sort = 20;
+    menu.menuType = kMenuTypeList;
+    menu.isRootMenu = YES;
+    [menu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [realm addObject:menu];
+    
+    menu = [[Menu alloc] init];
+    menu.imageName = @"klaimAsuransiIcon";
+    menu.title = kMenuKlaimAsuransi;
+    menu.sort = 20;
+    menu.menuType = kMenuTypeList;
+    menu.isRootMenu = YES;
+    [menu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [realm addObject:menu];
+    
+    menu = [[Menu alloc] init];
+    menu.imageName = @"pelunasanIcon";
+    menu.title = kMenuPelunasanDipercepat;
+    menu.sort = 20;
+    menu.menuType = kMenuTypeList;
+    menu.isRootMenu = YES;
+    [menu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [realm addObject:menu];
+    
+    menu = [[Menu alloc] init];
+    menu.imageName = @"pengembalianBPKBIcon";
+    menu.title = kMenuPengembalianBPKB;
+    menu.sort = 20;
+    menu.menuType = kMenuTypeList;
+    menu.isRootMenu = YES;
+    [menu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [realm addObject:menu];
+    
+    menu = [[Menu alloc] init];
+    menu.imageName = @"saranIcon";
+    menu.title = kMenuSaranPengaduan;
+    menu.sort = 20;
+    menu.menuType = kMenuTypeList;
+    menu.isRootMenu = YES;
+    [menu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [realm addObject:menu];
+    
+    menu = [[Menu alloc] init];
+    menu.imageName = @"customerGetCustomerIcon";
+    menu.title = kMenuCustomerGetCustomer;
+    menu.sort = 20;
+    menu.menuType = kMenuTypeList;
+    menu.isRootMenu = YES;
+    [menu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [realm addObject:menu];
+    
     
     menu = [[Menu alloc] init];
     menu.imageName = @"TrackingMarketingIcon";

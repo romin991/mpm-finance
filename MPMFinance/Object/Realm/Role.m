@@ -18,6 +18,7 @@
 + (void)generateRoles{
     RLMRealm *realm = [RLMRealm defaultRealm];
     [realm beginWriteTransaction];
+    [realm addObject:[self createRoleWithName:kNoRole]];
     [realm addObject:[self createRoleWithName:kRoleCustomer]];
     [realm addObject:[self createRoleWithName:kRoleAgent]];
     [realm addObject:[self createRoleWithName:kRoleDealer]];

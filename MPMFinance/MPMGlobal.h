@@ -20,6 +20,7 @@ extern NSString *const kRoleDealer;
 extern NSString *const kRoleSupervisor;
 extern NSString *const kRoleOfficer;
 extern NSString *const kRoleDedicated;
+extern NSString *const kNoRole;
 
 extern NSString *const kMenuListWorkOrder;
 extern NSString *const kMenuOnlineSubmission;
@@ -28,6 +29,17 @@ extern NSString *const kMenuCalculatorMarketing;
 extern NSString *const kMenuListMap;
 extern NSString *const kMenuListSurvey;
 extern NSString *const kMenuDashboard;
+extern NSString *const kMenuContactUs;
+extern NSString *const kMenuProduct;
+extern NSString *const kMenuPengajuanKembali;
+extern NSString *const kMenuHistoryTransaksi;
+extern NSString *const kMenuLegalisirFCBPKB;
+extern NSString *const kMenuKlaimAsuransi;
+extern NSString *const kMenuCreditSimulation;
+extern NSString *const kMenuPelunasanDipercepat;
+extern NSString *const kMenuPengembalianBPKB;
+extern NSString *const kMenuSaranPengaduan;
+extern NSString *const kMenuCustomerGetCustomer;
 
 extern NSString *const kSubmenuListOnlineSubmission;
 extern NSString *const kSubmenuListWorkOrder;
