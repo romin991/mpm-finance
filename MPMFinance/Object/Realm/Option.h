@@ -11,6 +11,8 @@
 @interface Option : RLMObject
 
 @property NSString *name;
+@property NSInteger sort;
+@property NSInteger category;
 
 @end
 RLM_ARRAY_TYPE(Option)
