@@ -30,7 +30,7 @@
 {
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"userInfo"];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"UserLoginNotification" object:nil];
 }
 
 +(NSInteger)getGroupLevel

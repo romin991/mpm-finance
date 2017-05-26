@@ -54,6 +54,10 @@
     self.txtIdCardNumber.text = [MPMUserInfo getUserInfo][@"ktp"];
     
 }
+- (IBAction)logOut:(id)sender {
+    NSLog(@"logout");
+    [MPMUserInfo deleteUserInfo];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -63,9 +67,7 @@
 #pragma mark - Table view delegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
-        NSLog(@"print");
-    }
+    // the tableview can't be selected 
 }
 - (IBAction)changeProfilePicture:(id)sender {
     UIAlertController * alert = [UIAlertController
@@ -81,7 +83,6 @@
                                         picker.allowsEditing = YES;
                                         picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
                                         [self presentViewController:picker animated:YES completion:NULL];
-                                        
                                     }];
     UIAlertAction* cameraButton = [UIAlertAction
                                    actionWithTitle:@"Camera"

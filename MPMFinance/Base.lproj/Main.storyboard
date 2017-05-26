@@ -953,7 +953,19 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ptV-17-Z3t">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                                    <connections>
+                                                        <action selector="logOut:" destination="G2X-Nb-pTl" eventType="touchUpInside" id="S4S-AJ-jac"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="ptV-17-Z3t" secondAttribute="trailing" id="4dG-qR-CaS"/>
+                                                <constraint firstItem="ptV-17-Z3t" firstAttribute="top" secondItem="lLA-6s-qux" secondAttribute="top" id="6g8-e8-nga"/>
+                                                <constraint firstItem="ptV-17-Z3t" firstAttribute="leading" secondItem="lLA-6s-qux" secondAttribute="leading" id="Fks-AE-6qy"/>
+                                                <constraint firstAttribute="bottom" secondItem="ptV-17-Z3t" secondAttribute="bottom" id="ST5-yr-Ue0"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>

@@ -19,16 +19,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshUI) name:@"UserLoginNotification" object:nil];
     // Do any additional setup after loading the view.
 }
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self refreshUi];
+    [self refreshUI];
     NSLog(@"group level %li",(long)[MPMUserInfo getGroupLevel]);
     [self.navigationController setNavigationBarHidden:YES animated:NO];
 }
--(void)refreshUi
+-(void)refreshUI
 {
     [self.tabBar setSelectedItem:[self.tabBar.items objectAtIndex:0]];
     if (![MPMUserInfo getUserInfo])
