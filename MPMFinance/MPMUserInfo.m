@@ -20,6 +20,11 @@
     NSData *dataSave = [NSKeyedArchiver archivedDataWithRootObject:dictionary];
     [[NSUserDefaults standardUserDefaults] setObject:dataSave forKey:@"userInfo"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    //need notify these UI to be refreshed :
+    //-HomeViewcontroller
+    //-...
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"UserLoginNotification" object:nil];
 }
 +(void)deleteUserInfo
 {

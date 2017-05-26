@@ -16,6 +16,7 @@
 #import "SubmenuViewController.h"
 @interface HomeViewController ()<KASlideShowDelegate,KASlideShowDataSource>
 @property RLMResults *menus;
+@property (weak, nonatomic) IBOutlet UICollectionView *menuCollectionView;
 @property (strong,nonatomic) IBOutlet KASlideShow * slideshow;
 @property NSMutableArray * datasource;
 @end
@@ -26,6 +27,7 @@
     [super viewDidLoad];
     self.menus = [Menu getMenuForRole:[MPMUserInfo getGroupLevel]];
     // KASlideshow
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshUI) name:@"UserLoginNotification" object:nil];
     [self reloadSlideShow];
     _slideshow.datasource = self;
     _slideshow.delegate = self;
@@ -35,6 +37,11 @@
     [_slideshow setImagesContentMode:UIViewContentModeScaleAspectFill]; // Choose a content mode for images to display
     [_slideshow addGesture:KASlideShowGestureTap]; // Gesture to go previous/next directly on the image
 
+}
+-(void)refreshUI
+{
+    self.menus = [Menu getMenuForRole:[MPMUserInfo getGroupLevel]];
+    [self.menuCollectionView reloadData];
 }
 -(void)reloadSlideShow
 {
