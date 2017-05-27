@@ -244,7 +244,7 @@
     
     [menu.submenus addObject:menuList];
     [realm addObject:menu];
-    
+
 //=====================================================================================================
     menu = [[Menu alloc] init];
     menu.imageName = @"cartIcon";
@@ -288,6 +288,7 @@
     menu.isRootMenu = YES;
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [menu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
     [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuMonitoring]];
     [realm addObject:menu];
@@ -391,6 +392,7 @@
     menu.isRootMenu = YES;
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
+    [menu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuDahsyat]];
     [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuUsedCar]];
     [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuNewCar]];
@@ -405,6 +407,7 @@
     menu.isRootMenu = YES;
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
+    [menu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     
     menuList = [[Menu alloc] init];
     menuList.imageName = @"";
@@ -427,6 +430,7 @@
     menu.isRootMenu = YES;
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
+    [menu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     
     menuList = [[Menu alloc] init];
     menuList.imageName = @"";
@@ -450,6 +454,7 @@
     menu.isRootMenu = YES;
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
+    [menu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuYearToDate]];
     [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuMonthToDate]];
     [realm addObject:menu];
