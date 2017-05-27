@@ -29,7 +29,13 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+/*
+ spv :
+ marketing_spv_mobile/password
+ marketing :
+ officer_spv_mobile/password
+ officer_spv_mobile_2/password
+ */
 - (IBAction)signInButtonClicked:(id)sender {
     if (self.usernameField.text.length < 1) {
         return;
