@@ -218,6 +218,7 @@
     menu.isRootMenu = YES;
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
+    [menu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     
     Menu *menuList = [[Menu alloc] init];
     menuList.backgroundImageName = @"ListWorkOrderBackground";
@@ -342,6 +343,12 @@
     menu.sort = 20;
     menu.menuType = kMenuTypeList;
     menu.isRootMenu = YES;
+    action = [[Action alloc] init];
+    action.name = @"Get List Pengembalian BPKB";
+    action.methodName = @"getListPengembalianBPKB:";
+    action.actionType = kActionTypeAPICall;
+    [realm addObject:action];
+    menu.fetchDataFromAPI = action;
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [realm addObject:menu];
     

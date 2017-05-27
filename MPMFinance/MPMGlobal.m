@@ -82,4 +82,58 @@ NSString *const kActionTypeAPICall = @"APICall";
 + (NSString *)encodeToBase64String:(UIImage *)image {
     return [UIImageJPEGRepresentation(image, 0.5) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
 }
++ (UIView *)giveBorderTo:(UIView *)view withBorderColor:(NSString *)hexColorString withCornerRadius:(CGFloat)cornerRadius{
+    UIColor* borderColor = [MPMGlobal colorFromHexString:hexColorString];
+    return [self giveBorderTo:view withBorderColor:borderColor withCornerRadius:cornerRadius withRoundingCorners:UIRectCornerAllCorners withBorderWidth:1.0];
+}
++ (UIView *)giveBorderTo:(UIView *)view withBorderColor:(UIColor *)borderColor withCornerRadius:(CGFloat)cornerRadius withRoundingCorners:(UIRectCorner)corners withBorderWidth:(CGFloat)borderWidth{
+    if (corners == UIRectCornerAllCorners){
+        [view.layer setMasksToBounds:YES];
+        [view.layer setCornerRadius:cornerRadius];
+        [view.layer setBorderWidth:borderWidth];
+        [view.layer setBorderColor:[borderColor CGColor]];
+        CAShapeLayer *oldLayer = [view.layer valueForKey:@"CustomLayer"];
+        if (oldLayer) [oldLayer removeFromSuperlayer];
+    } else {
+        UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:view.bounds
+                                                       byRoundingCorners:corners
+                                                             cornerRadii:CGSizeMake(cornerRadius, cornerRadius)];
+        
+        UIBezierPath *borderPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(view.bounds.origin.x + (borderWidth / 2), view.bounds.origin.y + (borderWidth / 2), view.bounds.size.width - borderWidth, view.bounds.size.height - borderWidth)
+                                                         byRoundingCorners:corners
+                                                               cornerRadii:CGSizeMake(cornerRadius, cornerRadius)];
+        
+        CAShapeLayer *maskLayer = [CAShapeLayer layer];
+        maskLayer.frame = view.bounds;
+        maskLayer.path = maskPath.CGPath;
+        
+        CAShapeLayer *borderLayer = [CAShapeLayer layer];
+        borderLayer.frame = view.bounds;
+        borderLayer.path = borderPath.CGPath;
+        borderLayer.strokeColor = [borderColor CGColor];
+        borderLayer.lineWidth = borderWidth;
+        borderLayer.fillColor = [[UIColor clearColor] CGColor];
+        
+        CAShapeLayer *oldLayer = [view.layer valueForKey:@"CustomLayer"];
+        if (oldLayer) [oldLayer removeFromSuperlayer];
+        
+        [view.layer setCornerRadius:0];
+        [view.layer setBorderWidth:0];
+        [view.layer addSublayer:borderLayer];
+        [view.layer setValue:borderLayer forKey:@"CustomLayer"];
+        [view.layer setMask:maskLayer];
+        [view.layer setMasksToBounds:YES];
+    }
+    [view.layer setShouldRasterize:YES];
+    [view.layer setRasterizationScale:[UIScreen mainScreen].scale];
+    return view;
+}
++ (UIColor *)colorFromHexString:(NSString *)hexString {
+    unsigned rgbValue = 0;
+    NSScanner *scanner = [NSScanner scannerWithString:hexString];
+    [scanner setScanLocation:1]; // bypass '#' character
+    [scanner scanHexInt:&rgbValue];
+    return [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16)/255.0 green:((rgbValue & 0xFF00) >> 8)/255.0 blue:(rgbValue & 0xFF)/255.0 alpha:1.0];
+}
+
 @end

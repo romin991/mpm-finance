@@ -74,4 +74,6 @@ extern NSString *const kActionTypeAPICall;
 
 +(AFHTTPSessionManager*)sessionManager;
 + (NSString *)encodeToBase64String:(UIImage *)image;
++ (UIView *)giveBorderTo:(UIView *)view withBorderColor:(NSString *)hexColorString withCornerRadius:(CGFloat)cornerRadius;
++ (UIColor *)colorFromHexString:(NSString *)hexString;
 @end

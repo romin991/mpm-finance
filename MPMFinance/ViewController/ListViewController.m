@@ -61,6 +61,7 @@
             list.title = @"PK1235";
             list.date = @"12 March 2017";
             list.assignee = @"Bejo";
+            list.type = 
             list.imageURL = @"https://image.flaticon.com/teams/new/1-freepik.jpg";
             [dataSource addObject:list];
             
@@ -195,6 +196,7 @@
     if (list){
         if (list.imageURL.length > 0){
             cell.icon.image = nil;
+            [cell.icon setContentMode:UIViewContentModeScaleAspectFit];
             NSURLRequest *imageRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:list.imageURL]
                                                           cachePolicy:NSURLRequestReturnCacheDataElseLoad
                                                       timeoutInterval:60];
@@ -209,11 +211,17 @@
                                           if (weakImageView) weakImageView.image = nil;
                                       }];
         }
-        
+        [MPMGlobal giveBorderTo:cell.status withBorderColor:list.statusColor withCornerRadius:8.0f];
+        cell.status.text = list.status;
+        CGRect frame = cell.status.frame;
+        frame.size.width = cell.status.intrinsicContentSize.width + 5;
+        cell.status.frame  = frame;
+        cell.status.textColor = [MPMGlobal colorFromHexString:list.statusColor];
         cell.title.text = list.title;
         cell.date.text = list.date;
         cell.assignee.text = list.assignee;
     } else {
+        cell.status.text = @"";
         cell.icon.image = nil;
         cell.title.text = @"";
         cell.date.text = @"";

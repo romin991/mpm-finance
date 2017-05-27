@@ -13,4 +13,5 @@
 +(void)deleteUserInfo;
 +(void)save:(NSDictionary*)dictionary;
 +(NSInteger)getGroupLevel;
++(NSString*)getToken;
 @end
