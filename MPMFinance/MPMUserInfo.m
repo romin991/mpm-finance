@@ -19,7 +19,9 @@
 {
     NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"userInfo"];
     NSDictionary *dictionary = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    NSLog(@"%@",dictionary[@"token"]);
     return dictionary[@"token"];
+    
 }
 +(void)save:(NSDictionary *)dictionary
 {

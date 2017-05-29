@@ -14,7 +14,8 @@
 + (void)getListWorkOrder:(void(^)(NSArray *lists, NSError *error))block{
     AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
     NSDictionary* param = @{@"userid" : [MPMUserInfo getUserInfo][@"userId"],
-                            @"token" : [MPMUserInfo getToken]};
+                            @"token" : [MPMUserInfo getToken],
+                            @"data" : @{@"status" : @"all"}};
     [manager POST:[NSString stringWithFormat:@"%@/datamap/getworkorder",kApiUrl] parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
         ;
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -36,7 +37,9 @@
             if (block) block(lists, nil);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@",error);
         if (block) block(nil, error);
+        
     }];
     
 }

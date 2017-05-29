@@ -73,6 +73,7 @@
     submenu.borderColor = @"FB9E15";
     submenu.menuType = kMenuTypeFormVertical;
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     [realm addObject:submenu];
 
 //=====================================================================================================
@@ -83,6 +84,7 @@
     submenu.borderColor = @"FF8A65";
     submenu.menuType = kMenuTypeFormHorizontal;
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     [realm addObject:submenu];
     
 //=====================================================================================================
@@ -90,6 +92,7 @@
     submenu.imageName = @"ListPengajuanApplikasiSubmenuIcon";
     submenu.title = kSubmenuMelengkapiData;
     submenu.sort = 0;
+    submenu.menuType = kMenuTypeFormHorizontal;
     submenu.borderColor = @"F26F21";
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
     [realm addObject:submenu];

@@ -57,6 +57,11 @@
 - (IBAction)logOut:(id)sender {
     NSLog(@"logout");
     [MPMUserInfo deleteUserInfo];
+    self.txtEmail.text = @"";
+    self.txtFullName.text = @"";
+    self.txtDateOfBirth.text = @"";
+    self.txtIdCardNumber.text = @"";
+    
 }
 
 - (void)didReceiveMemoryWarning {
