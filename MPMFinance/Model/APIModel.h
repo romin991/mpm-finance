@@ -11,6 +11,8 @@
 @interface APIModel : NSObject
 
 + (void)getListWorkOrder:(void(^)(NSArray *lists, NSError *error))block;
++ (void)getListSurvey:(void(^)(NSArray *lists, NSError *error))block;
++ (void)getListMapDraft:(void(^)(NSArray *lists, NSError *error))block;
 + (void)getListPengembalianBPKB:(void(^)(NSArray *lists, NSError *error))block;
 
 @end

@@ -50,7 +50,7 @@ NSString *const kSubmenuMelengkapiData = @"Melengkapi Data";
 NSString *const kSubmenuAssignMarketing = @"Assign Marketing";
 NSString *const kApiUrl = @"http://oms-api.infomedia-platform.com/mpmfinance";
 
-NSString *const kSubmenuListPengajuanApplikasi = @"List Pengajuan Applikasi";
+NSString *const kSubmenuListPengajuanApplikasi = @"List Pengajuan Aplikasi";
 NSString *const kSubmenuMonitoring = @"Monitoring";
 
 NSString *const kSubmenuDahsyat = @"Dahsyat";

@@ -12,10 +12,33 @@
 @implementation APIModel
 
 + (void)getListWorkOrder:(void(^)(NSArray *lists, NSError *error))block{
+    [self getListWorkOrderWithStatus:@"all" block:^(NSArray *lists, NSError *error) {
+        if (block) {
+            block(lists,error);
+        }
+    }];
+}
++ (void)getListSurvey:(void(^)(NSArray *lists, NSError *error))block{
+    [self getListWorkOrderWithStatus:@"listSurveyDraft" block:^(NSArray *lists, NSError *error) {
+        if (block) {
+            block(lists,error);
+        }
+    }];
+}
++ (void)getListMapDraft:(void(^)(NSArray *lists, NSError *error))block{
+    [self getListWorkOrderWithStatus:@"listMapDraft" block:^(NSArray *lists, NSError *error) {
+        if (block) {
+            block(lists,error);
+        }
+    }];
+}
+
++ (void)getListWorkOrderWithStatus:(NSString*)status block:(void(^)(NSArray *lists, NSError *error))block{
     AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
     NSDictionary* param = @{@"userid" : [MPMUserInfo getUserInfo][@"userId"],
                             @"token" : [MPMUserInfo getToken],
-                            @"data" : @{@"status" : @"all"}};
+                            @"data" : @{@"status" : status}};
+    NSLog(@"%@",param);
     [manager POST:[NSString stringWithFormat:@"%@/datamap/getworkorder",kApiUrl] parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
         ;
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

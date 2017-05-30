@@ -114,6 +114,7 @@
     submenu.borderColor = @"F26F21";
     submenu.menuType = kMenuTypeList;
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     
     Menu *menuList = [[Menu alloc] init];
     menuList.title = kSubmenuListOnlineSubmission;
@@ -156,6 +157,7 @@
     submenu.title = kSubmenuMonitoring;
     submenu.sort = 1;
     submenu.borderColor = @"558B2F";
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [realm addObject:submenu];
     
@@ -165,6 +167,9 @@
     submenu.title = kSubmenuDahsyat;
     submenu.sort = 0;
     submenu.borderColor = @"0091EA";
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [realm addObject:submenu];
     
@@ -174,6 +179,8 @@
     submenu.title = kSubmenuUsedCar;
     submenu.sort = 1;
     submenu.borderColor = @"546E7A";
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [realm addObject:submenu];
     
@@ -183,6 +190,8 @@
     submenu.title = kSubmenuNewCar;
     submenu.sort = 2;
     submenu.borderColor = @"B30808";
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [realm addObject:submenu];
     
@@ -192,6 +201,7 @@
     submenu.title = kSubmenuYearToDate;
     submenu.sort = 0;
     submenu.borderColor = @"F26F21";
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [realm addObject:submenu];
     
@@ -201,6 +211,7 @@
     submenu.title = kSubmenuMonthToDate;
     submenu.sort = 1;
     submenu.borderColor = @"B00000";
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [realm addObject:submenu];
 }
@@ -253,20 +264,29 @@
     menu.imageName = @"cartIcon";
     menu.title = kMenuProduct;
     menu.sort = 20;
-    menu.menuType = kMenuTypeList;
+    menu.menuType = kMenuListMap;
     menu.isRootMenu = YES;
     [menu.roles addObject:[Role objectForPrimaryKey:kNoRole]];
+    [menu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [realm addObject:menu];
     
     menu = [[Menu alloc] init];
     menu.imageName = @"creditIcon";
+    menu.backgroundImageName = @"CalculatorMarketingBackground";
+    menu.circleIconImageName = @"CalculatorMarketingCircleIcon";
     menu.title = kMenuCreditSimulation;
     menu.sort = 20;
-    menu.menuType = kMenuTypeList;
+    menu.menuType = kMenuTypeSubmenu;
     menu.isRootMenu = YES;
     [menu.roles addObject:[Role objectForPrimaryKey:kNoRole]];
+    [menu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
+    [menu.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    
+    [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuDahsyat]];
+    [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuNewCar]];
+    [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuUsedCar]];
     [realm addObject:menu];
     
     
@@ -277,6 +297,7 @@
     menu.menuType = kMenuTypeList;
     menu.isRootMenu = YES;
     [menu.roles addObject:[Role objectForPrimaryKey:kNoRole]];
+    [menu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [realm addObject:menu];
     
@@ -292,6 +313,7 @@
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
+    [menu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
     [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuMonitoring]];
     [realm addObject:menu];
@@ -440,6 +462,11 @@
     menuList.title = kSubmenuListMarketing;
     menuList.sort = 0;
     menuList.menuType = kMenuTypeMap;
+    action = [[Action alloc] init];
+    action.name = @"Get List Survey";
+    action.methodName = @"getListSurvey:";
+    action.actionType = kActionTypeAPICall;
+    menuList.fetchDataFromAPI = action;
     [menuList.roles addObjects:menu.roles];
     [realm addObject:menuList];
     
