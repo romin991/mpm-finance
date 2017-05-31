@@ -64,6 +64,7 @@ NSString *const kMenuTypeFormVertical = @"Vertical";
 NSString *const kMenuTypeFormHorizontal = @"Horizontal";
 NSString *const kMenuTypeList = @"List";
 NSString *const kMenuTypeSubmenu = @"Submenu";
+NSString *const kMenuTypeSubmenu2 = @"Submenu2";
 NSString *const kMenuTypeMap = @"Map";
 
 NSString *const kActionTypeForward = @"Forward";

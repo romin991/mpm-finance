@@ -10,6 +10,7 @@
 #import "ListTableViewCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "SubmenuViewController.h"
+#import "SubmenuCollectionViewController.h"
 #import <SVProgressHUD.h>
 #import "SimpleListViewController.h"
 #import "FormViewController.h"
@@ -164,6 +165,11 @@
         SubmenuViewController *submenuViewController = [[SubmenuViewController alloc] init];
         submenuViewController.menu = submenu;
         [self.navigationController pushViewController:submenuViewController animated:YES];
+        
+    } else if ([submenu.menuType isEqualToString:kMenuTypeSubmenu2]) {
+        SubmenuCollectionViewController *submenuCollectionViewController = [[SubmenuCollectionViewController alloc] init];
+        submenuCollectionViewController.menu = submenu;
+        [self.navigationController pushViewController:submenuCollectionViewController animated:YES];
         
     } else if ([submenu.menuType isEqualToString:kMenuTypeFormVertical]){
         SimpleListViewController *simpleListViewController = [[SimpleListViewController alloc] init];

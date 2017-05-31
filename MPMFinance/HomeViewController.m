@@ -14,11 +14,15 @@
 #import "ListViewController.h"
 #import "SimpleListViewController.h"
 #import "SubmenuViewController.h"
+#import "SubmenuCollectionViewController.h"
+
 @interface HomeViewController ()<KASlideShowDelegate,KASlideShowDataSource>
+
 @property RLMResults *menus;
 @property (weak, nonatomic) IBOutlet UICollectionView *menuCollectionView;
 @property (strong,nonatomic) IBOutlet KASlideShow * slideshow;
 @property NSMutableArray * datasource;
+
 @end
 
 @implementation HomeViewController
@@ -109,6 +113,11 @@
         SubmenuViewController *submenuViewController = [[SubmenuViewController alloc] init];
         submenuViewController.menu = menu;
         [self.navigationController.navigationController pushViewController:submenuViewController animated:YES];
+        
+    } else if ([menu.menuType isEqualToString:kMenuTypeSubmenu2]){
+        SubmenuCollectionViewController *submenuCollectionViewController = [[SubmenuCollectionViewController alloc] init];
+        submenuCollectionViewController.menu = menu;
+        [self.navigationController.navigationController pushViewController:submenuCollectionViewController animated:YES];
     }
 
 }

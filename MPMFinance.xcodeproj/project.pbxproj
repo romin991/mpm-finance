@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4831CD1F1EDE97A6001EF223 /* SubmenuCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4831CD1D1EDE97A6001EF223 /* SubmenuCollectionViewController.m */; };
+		4831CD201EDE97A6001EF223 /* SubmenuCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4831CD1E1EDE97A6001EF223 /* SubmenuCollectionViewController.xib */; };
+		4831CD271EDE97D7001EF223 /* SubmenuCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4831CD251EDE97D7001EF223 /* SubmenuCollectionViewCell.m */; };
+		4831CD281EDE97D7001EF223 /* SubmenuCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4831CD261EDE97D7001EF223 /* SubmenuCollectionViewCell.xib */; };
 		483F39221EC3085E00C03253 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 483F39211EC3085E00C03253 /* main.m */; };
 		483F39251EC3085E00C03253 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 483F39241EC3085E00C03253 /* AppDelegate.m */; };
 		483F39281EC3085E00C03253 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 483F39271EC3085E00C03253 /* LoginViewController.m */; };
@@ -40,7 +44,6 @@
 		48CDD8431EC9BA1A0038D626 /* SubmenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48CDD8411EC9BA1A0038D626 /* SubmenuTableViewCell.xib */; };
 		48F7F4061EC5C931008DB808 /* Role.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F7F4051EC5C931008DB808 /* Role.m */; };
 		5C586E9A1ECB183200A5A626 /* HelpTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C586E991ECB183200A5A626 /* HelpTableViewController.m */; };
-		5C5B47F71ED5DE8C008E7E2E /* workOrderListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C5B47F61ED5DE8C008E7E2E /* workOrderListViewController.m */; };
 		5C9B08EC1EC9DB8700B5E9AC /* MenuNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9B08EB1EC9DB8700B5E9AC /* MenuNavigationViewController.m */; };
 		5C9B08F11EC9DB9300B5E9AC /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9B08EE1EC9DB9300B5E9AC /* HistoryViewController.m */; };
 		5C9B08F21EC9DB9300B5E9AC /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9B08F01EC9DB9300B5E9AC /* HomeViewController.m */; };
@@ -54,6 +57,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4831CD1C1EDE97A6001EF223 /* SubmenuCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SubmenuCollectionViewController.h; path = ViewController/SubmenuCollectionViewController.h; sourceTree = "<group>"; };
+		4831CD1D1EDE97A6001EF223 /* SubmenuCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SubmenuCollectionViewController.m; path = ViewController/SubmenuCollectionViewController.m; sourceTree = "<group>"; };
+		4831CD1E1EDE97A6001EF223 /* SubmenuCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SubmenuCollectionViewController.xib; path = ViewController/SubmenuCollectionViewController.xib; sourceTree = "<group>"; };
+		4831CD241EDE97D7001EF223 /* SubmenuCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SubmenuCollectionViewCell.h; path = ViewController/SubmenuCollectionViewCell.h; sourceTree = "<group>"; };
+		4831CD251EDE97D7001EF223 /* SubmenuCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SubmenuCollectionViewCell.m; path = ViewController/SubmenuCollectionViewCell.m; sourceTree = "<group>"; };
+		4831CD261EDE97D7001EF223 /* SubmenuCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SubmenuCollectionViewCell.xib; path = ViewController/SubmenuCollectionViewCell.xib; sourceTree = "<group>"; };
 		483F391D1EC3085E00C03253 /* MPMFinance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MPMFinance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		483F39211EC3085E00C03253 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		483F39231EC3085E00C03253 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -111,8 +120,6 @@
 		48F7F4051EC5C931008DB808 /* Role.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Role.m; path = Object/Realm/Role.m; sourceTree = "<group>"; };
 		5C586E981ECB183200A5A626 /* HelpTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpTableViewController.h; sourceTree = "<group>"; };
 		5C586E991ECB183200A5A626 /* HelpTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpTableViewController.m; sourceTree = "<group>"; };
-		5C5B47F51ED5DE8C008E7E2E /* workOrderListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = workOrderListViewController.h; sourceTree = "<group>"; };
-		5C5B47F61ED5DE8C008E7E2E /* workOrderListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = workOrderListViewController.m; sourceTree = "<group>"; };
 		5C9B08EA1EC9DB8700B5E9AC /* MenuNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuNavigationViewController.h; sourceTree = "<group>"; };
 		5C9B08EB1EC9DB8700B5E9AC /* MenuNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuNavigationViewController.m; sourceTree = "<group>"; };
 		5C9B08ED1EC9DB9300B5E9AC /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
@@ -149,6 +156,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4831CD1B1EDE974D001EF223 /* SubmenuCollectionViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4831CD1C1EDE97A6001EF223 /* SubmenuCollectionViewController.h */,
+				4831CD1D1EDE97A6001EF223 /* SubmenuCollectionViewController.m */,
+				4831CD1E1EDE97A6001EF223 /* SubmenuCollectionViewController.xib */,
+				4831CD241EDE97D7001EF223 /* SubmenuCollectionViewCell.h */,
+				4831CD251EDE97D7001EF223 /* SubmenuCollectionViewCell.m */,
+				4831CD261EDE97D7001EF223 /* SubmenuCollectionViewCell.xib */,
+			);
+			name = SubmenuCollectionViewController;
+			sourceTree = "<group>";
+		};
 		483F39141EC3085E00C03253 = {
 			isa = PBXGroup;
 			children = (
@@ -201,6 +221,7 @@
 			children = (
 				5C9B08E91EC9DB7300B5E9AC /* TabMenuContainer */,
 				48CDD8361EC9B8840038D626 /* SubmenuViewController */,
+				4831CD1B1EDE974D001EF223 /* SubmenuCollectionViewController */,
 				48CDD8261EC9B1A30038D626 /* ListViewController */,
 				48CDD8281EC9B1C20038D626 /* SimpleListViewController */,
 				48CDD8271EC9B1B10038D626 /* FormViewController */,
@@ -273,8 +294,6 @@
 				48482E701EC99B230029ACBE /* ListTableViewCell.h */,
 				48482E711EC99B230029ACBE /* ListTableViewCell.m */,
 				48482E721EC99B230029ACBE /* ListTableViewCell.xib */,
-				5C5B47F51ED5DE8C008E7E2E /* workOrderListViewController.h */,
-				5C5B47F61ED5DE8C008E7E2E /* workOrderListViewController.m */,
 			);
 			name = ListViewController;
 			sourceTree = "<group>";
@@ -460,6 +479,8 @@
 				48CDD8351EC9B3AD0038D626 /* SimpleListTableViewCell.xib in Resources */,
 				48CDD83B1EC9B8A50038D626 /* SubmenuViewController.xib in Resources */,
 				48482E741EC99B230029ACBE /* ListTableViewCell.xib in Resources */,
+				4831CD281EDE97D7001EF223 /* SubmenuCollectionViewCell.xib in Resources */,
+				4831CD201EDE97A6001EF223 /* SubmenuCollectionViewController.xib in Resources */,
 				48CDD8431EC9BA1A0038D626 /* SubmenuTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -522,6 +543,7 @@
 				5C9B08F11EC9DB9300B5E9AC /* HistoryViewController.m in Sources */,
 				487F39F91ED678D400D6E580 /* Action.m in Sources */,
 				4849EEDD1EC8190300415E4B /* Option.m in Sources */,
+				4831CD271EDE97D7001EF223 /* SubmenuCollectionViewCell.m in Sources */,
 				48482E731EC99B230029ACBE /* ListTableViewCell.m in Sources */,
 				48CDD82C1EC9B1FB0038D626 /* SimpleListViewController.m in Sources */,
 				483F393A1EC3518500C03253 /* ForgotPasswordViewController.m in Sources */,
@@ -537,8 +559,8 @@
 				48CDD8421EC9BA1A0038D626 /* SubmenuTableViewCell.m in Sources */,
 				48F7F4061EC5C931008DB808 /* Role.m in Sources */,
 				5CBC4C771ECC8A67002ED03C /* MyProfileTableViewController.m in Sources */,
+				4831CD1F1EDE97A6001EF223 /* SubmenuCollectionViewController.m in Sources */,
 				48CDD83A1EC9B8A50038D626 /* SubmenuViewController.m in Sources */,
-				5C5B47F71ED5DE8C008E7E2E /* workOrderListViewController.m in Sources */,
 				48859A701ECC3FEC006EFDE6 /* FormRow.m in Sources */,
 				48482E6E1EC999B30029ACBE /* ListViewController.m in Sources */,
 				48CDD8341EC9B3AD0038D626 /* SimpleListTableViewCell.m in Sources */,

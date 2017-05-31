@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="gTV-IL-0wX" customClass="SubmenuCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="103" height="103"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="103" height="103"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CeP-L9-nP8">
+                        <rect key="frame" x="0.0" y="70" width="103" height="33"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="33" id="FeQ-Om-9iw"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="utK-c8-Ik5">
+                        <rect key="frame" x="0.0" y="0.0" width="103" height="70"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0DP-TV-eKW">
+                                <rect key="frame" x="30" y="13.5" width="43" height="43"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="43" id="MG0-KA-Vsy"/>
+                                    <constraint firstAttribute="width" constant="43" id="QvD-L9-Afy"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="0DP-TV-eKW" firstAttribute="centerX" secondItem="utK-c8-Ik5" secondAttribute="centerX" id="Mtx-eF-Vm1"/>
+                            <constraint firstItem="0DP-TV-eKW" firstAttribute="centerY" secondItem="utK-c8-Ik5" secondAttribute="centerY" id="NLq-nn-TU3"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="CeP-L9-nP8" secondAttribute="bottom" id="4ig-TR-IGN"/>
+                <constraint firstItem="utK-c8-Ik5" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="560-Sg-2Bc"/>
+                <constraint firstItem="CeP-L9-nP8" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="H8e-o7-Owh"/>
+                <constraint firstAttribute="trailing" secondItem="utK-c8-Ik5" secondAttribute="trailing" id="RF1-lD-nO8"/>
+                <constraint firstItem="CeP-L9-nP8" firstAttribute="top" secondItem="utK-c8-Ik5" secondAttribute="bottom" id="b5d-O1-nER"/>
+                <constraint firstItem="utK-c8-Ik5" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="sE9-ZN-O3j"/>
+                <constraint firstAttribute="trailing" secondItem="CeP-L9-nP8" secondAttribute="trailing" id="yql-Cy-Ncd"/>
+            </constraints>
+            <connections>
+                <outlet property="icon" destination="0DP-TV-eKW" id="6Bo-uZ-YzH"/>
+                <outlet property="title" destination="CeP-L9-nP8" id="J0V-VP-eic"/>
+            </connections>
+            <point key="canvasLocation" x="33.5" y="53.5"/>
+        </collectionViewCell>
+    </objects>
+</document>
