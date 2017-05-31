@@ -37,6 +37,10 @@
     self.forms = [Form getFormForMenu:self.menu.title];
     Form *currentForm = [self.forms objectAtIndex:self.index];
     if (self.forms.count > self.index) self.formRows = currentForm.rows;
+    if (currentForm.title.length < 1) {
+        //hide containerView
+        [self hideHorizontalView];
+    }
     
     UIViewController *viewController = [self.navigationController.viewControllers objectAtIndex: self.navigationController.viewControllers.count - 2];
     if ([viewController isKindOfClass:[SimpleListViewController class]]) {
@@ -85,7 +89,11 @@
 
 - (void)nextButtonClicked:(id)sender{
     if (self.forms.count == self.index + 1){
-        
+        NSLog(@"%@",self.formDescriptor.formValues);
+        XLFormSectionDescriptor* section = self.formDescriptor.formSections[0];
+        for (XLFormRowDescriptor* row in section.formRows) {
+            NSLog(@"%@",row.value);
+        }
     } else {
         FormViewController *nextFormViewController = [[FormViewController alloc] init];
         nextFormViewController.menu = self.menu;
@@ -136,7 +144,7 @@
             row.selectorOptions = options;
         }
         row.required = formRow.required;
-        
+        row.disabled = @(formRow.disabled);
         [section addFormRow:row];
     }
 }

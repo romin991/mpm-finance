@@ -182,6 +182,15 @@
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuDataMAP]];
     [realm addObject:form];
     
+//=====================================================================================================
+    form = [[Form alloc] init];
+    form.sort = 130;
+    [form.rows addObjects:[FormRow getRowsWithCategoryNumber:9]];
+    
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuNewBike]];
+    [realm addObject:form];
+
+    
     [realm commitWriteTransaction];
 }
 

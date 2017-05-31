@@ -290,6 +290,12 @@
     [Option new:realm :30 :22 :@"Bukan Pemilik - Bendahara"];
     [Option new:realm :30 :23 :@"Bukan Pemilik - Lainnya"];
     
+    [Option new:realm :31 :0 :@"12"];
+    [Option new:realm :31 :1 :@"18"];
+    [Option new:realm :31 :2 :@"24"];
+    [Option new:realm :31 :2 :@"30"];
+    [Option new:realm :31 :2 :@"36"];
+    
     [realm commitWriteTransaction];
 }
 
