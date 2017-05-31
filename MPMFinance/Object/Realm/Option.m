@@ -293,8 +293,8 @@
     [Option new:realm :31 :0 :@"12"];
     [Option new:realm :31 :1 :@"18"];
     [Option new:realm :31 :2 :@"24"];
-    [Option new:realm :31 :2 :@"30"];
-    [Option new:realm :31 :2 :@"36"];
+    [Option new:realm :31 :3 :@"30"];
+    [Option new:realm :31 :4 :@"36"];
     
     [realm commitWriteTransaction];
 }
