@@ -113,6 +113,7 @@
     submenu.sort = 0;
     submenu.borderColor = @"F26F21";
     submenu.menuType = kMenuTypeList;
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     
@@ -157,6 +158,7 @@
     submenu.title = kSubmenuMonitoring;
     submenu.sort = 1;
     submenu.borderColor = @"558B2F";
+     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [realm addObject:submenu];

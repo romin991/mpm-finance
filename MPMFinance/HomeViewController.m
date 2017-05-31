@@ -32,6 +32,7 @@
     self.menus = [Menu getMenuForRole:[MPMUserInfo getGroupLevel]];
     // KASlideshow
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshUI) name:@"UserLoginNotification" object:nil];
+    self.datasource = [NSMutableArray array];
     [self reloadSlideShow];
     _slideshow.datasource = self;
     _slideshow.delegate = self;
@@ -54,11 +55,18 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"%@",responseObject);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            for (NSDictionary *imageDict in responseObject[@"data"]) {
+                [_datasource addObject:[NSURL URLWithString:imageDict[@"image"]]];
+            }
+            [self.slideshow reloadData];
+        });
+        
+        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
     }];
-    _datasource = [@[[NSURL URLWithString:@"https://i.imgur.com/7jDvjyt.jpg"],
-                     [NSURL URLWithString:@"https://i.imgur.com/7jDvjyt.jpg"]] mutableCopy];
+   
     
 }
 - (void)didReceiveMemoryWarning {
