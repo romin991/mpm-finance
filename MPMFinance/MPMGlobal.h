@@ -58,6 +58,10 @@ extern NSString *const kSubmenuMonitoring;
 extern NSString *const kSubmenuDahsyat;
 extern NSString *const kSubmenuUsedCar;
 extern NSString *const kSubmenuNewCar;
+extern NSString *const kSubmenuDahsyat2W;
+extern NSString *const kSubmenuDahsyat4W;
+extern NSString *const kSubmenuNewBike;
+extern NSString *const kSubmenuProperty;
 
 extern NSString *const kSubmenuYearToDate;
 extern NSString *const kSubmenuMonthToDate;

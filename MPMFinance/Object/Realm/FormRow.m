@@ -137,8 +137,16 @@
     [FormRow new:realm :8 :7 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Pendapatan Per Tahun"];
     [FormRow new:realm :8 :8 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Perusahaan"];
 
-    
+    [FormRow generateCreditSimulationFieldsWithRealm:realm];
     [realm commitWriteTransaction];
+}
++(void)generateCreditSimulationFieldsWithRealm:(RLMRealm*)realm
+{
+    [FormRow new:realm :9 :0 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Harga"];
+    [FormRow new:realm :9 :1 :YES :XLFormRowDescriptorTypeSelectorPush :@"Lama Pembiayaan" :31];
+    [FormRow new:realm :9 :2 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nilai Pembiayaan" :-1];
+    [FormRow new:realm :9 :3 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Angsuran" :-1];
+    
 }
 
 + (void)new:(RLMRealm *)realm :(NSInteger)category :(NSInteger)sort :(BOOL)required :(NSString *)type :(NSString *)title{
@@ -146,13 +154,17 @@
 }
 
 + (void)new:(RLMRealm *)realm :(NSInteger)category :(NSInteger)sort :(BOOL)required :(NSString *)type :(NSString *)title :(NSInteger)optionCategory{
+    [FormRow new:realm :category :sort :required :NO :type :title :optionCategory];
+}
+
++ (void)new:(RLMRealm *)realm :(NSInteger)category :(NSInteger)sort :(BOOL)required :(BOOL)disabled :(NSString *)type :(NSString *)title :(NSInteger)optionCategory{
     FormRow *row = [[FormRow alloc] init];
     row.title = title;
     row.type = type;
     row.sort = sort;
     row.category = category;
     row.required = required;
-    
+    row.disabled = disabled;
     if (optionCategory >= 0) {
         RLMResults *options = [Option getOptionWithCategoryNumber:optionCategory];
         [row.options addObjects:options];

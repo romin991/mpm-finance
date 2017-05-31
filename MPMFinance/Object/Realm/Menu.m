@@ -186,6 +186,51 @@
     
 //=====================================================================================================
     submenu = [[Menu alloc] init];
+    submenu.imageName = @"";
+    submenu.title = kSubmenuProperty;
+    submenu.sort = 2;
+    submenu.borderColor = @"B30808";
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
+    [realm addObject:submenu];
+    
+//=====================================================================================================
+    submenu = [[Menu alloc] init];
+    submenu.imageName = @"";
+    submenu.title = kSubmenuDahsyat4W;
+    submenu.sort = 2;
+    submenu.borderColor = @"B30808";
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
+    [realm addObject:submenu];
+    
+//=====================================================================================================
+    submenu = [[Menu alloc] init];
+    submenu.imageName = @"";
+    submenu.title = kSubmenuDahsyat2W;
+    submenu.sort = 2;
+    submenu.borderColor = @"B30808";
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
+    [realm addObject:submenu];
+    
+//=====================================================================================================
+    submenu = [[Menu alloc] init];
+    submenu.imageName = @"";
+    submenu.title = kSubmenuNewBike;
+    submenu.menuType = kMenuTypeFormHorizontal;
+    submenu.sort = 2;
+    submenu.borderColor = @"B30808";
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
+    [realm addObject:submenu];
+    
+//=====================================================================================================
+    submenu = [[Menu alloc] init];
     submenu.imageName = @"NewCarIcon";
     submenu.title = kSubmenuNewCar;
     submenu.sort = 2;
@@ -284,9 +329,12 @@
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     
-    [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuDahsyat]];
+    [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuNewBike]];
     [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuNewCar]];
     [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuUsedCar]];
+    [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuDahsyat2W]];
+    [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuDahsyat4W]];
+    [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuProperty]];
     [realm addObject:menu];
     
     

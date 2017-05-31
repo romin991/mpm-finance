@@ -56,6 +56,10 @@ NSString *const kSubmenuMonitoring = @"Monitoring";
 NSString *const kSubmenuDahsyat = @"Dahsyat";
 NSString *const kSubmenuUsedCar = @"Used Car";
 NSString *const kSubmenuNewCar = @"New Car";
+NSString *const kSubmenuNewBike = @"New Bike";
+NSString *const kSubmenuDahsyat2W = @"Dahsyat 2W";
+NSString *const kSubmenuDahsyat4W = @"Dahsyat 4W";
+NSString *const kSubmenuProperty = @"Property";
 
 NSString *const kSubmenuYearToDate = @"Year to Date";
 NSString *const kSubmenuMonthToDate = @"Month to Date";
