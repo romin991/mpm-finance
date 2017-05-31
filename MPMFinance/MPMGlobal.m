@@ -79,13 +79,16 @@ NSString *const kActionTypeAPICall = @"APICall";
     [manager.requestSerializer setValue:@"Basic TVBNRmluYW5jZToxbmZvbWVkaWE=" forHTTPHeaderField:@"authorization"];
     return manager;
 }
+
 + (NSString *)encodeToBase64String:(UIImage *)image {
     return [UIImageJPEGRepresentation(image, 0.5) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
 }
+
 + (UIView *)giveBorderTo:(UIView *)view withBorderColor:(NSString *)hexColorString withCornerRadius:(CGFloat)cornerRadius{
     UIColor* borderColor = [MPMGlobal colorFromHexString:hexColorString];
     return [self giveBorderTo:view withBorderColor:borderColor withCornerRadius:cornerRadius withRoundingCorners:UIRectCornerAllCorners withBorderWidth:1.0];
 }
+
 + (UIView *)giveBorderTo:(UIView *)view withBorderColor:(UIColor *)borderColor withCornerRadius:(CGFloat)cornerRadius withRoundingCorners:(UIRectCorner)corners withBorderWidth:(CGFloat)borderWidth{
     if (corners == UIRectCornerAllCorners){
         [view.layer setMasksToBounds:YES];
@@ -128,12 +131,17 @@ NSString *const kActionTypeAPICall = @"APICall";
     [view.layer setRasterizationScale:[UIScreen mainScreen].scale];
     return view;
 }
+
 + (UIColor *)colorFromHexString:(NSString *)hexString {
-    unsigned rgbValue = 0;
-    NSScanner *scanner = [NSScanner scannerWithString:hexString];
-    [scanner setScanLocation:1]; // bypass '#' character
-    [scanner scanHexInt:&rgbValue];
-    return [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16)/255.0 green:((rgbValue & 0xFF00) >> 8)/255.0 blue:(rgbValue & 0xFF)/255.0 alpha:1.0];
+    if (hexString.length > 0) {
+        unsigned rgbValue = 0;
+        NSScanner *scanner = [NSScanner scannerWithString:hexString];
+        [scanner setScanLocation:1]; // bypass '#' character
+        [scanner scanHexInt:&rgbValue];
+        return [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16)/255.0 green:((rgbValue & 0xFF00) >> 8)/255.0 blue:(rgbValue & 0xFF)/255.0 alpha:1.0];
+    } else {
+        return [UIColor grayColor];
+    }
 }
 
 @end

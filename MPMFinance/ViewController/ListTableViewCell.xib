@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="105"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="104.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="105"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d4t-fk-FW5">
@@ -34,24 +34,26 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="In Progress" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dkQ-ow-hdN">
-                        <rect key="frame" x="88" y="67" width="213" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In Progress" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dkQ-ow-hdN">
+                        <rect key="frame" x="88" y="67" width="224" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="3VD-Jf-NLx"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15 April 2017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7yO-Jb-haf">
-                        <rect key="frame" x="227" y="19" width="85" height="21"/>
+                        <rect key="frame" x="227" y="16" width="85" height="24"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="21" id="fDL-oq-FMd"/>
+                            <constraint firstAttribute="height" constant="24" id="t8b-Vj-E4H"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                         <color key="textColor" red="0.94901960780000005" green="0.43529411759999997" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Haviza Amelia" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JZE-W7-z1v">
-                        <rect key="frame" x="88" y="42" width="88" height="21"/>
+                        <rect key="frame" x="88" y="43" width="224" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="QYh-aC-RmH"/>
                         </constraints>
@@ -62,12 +64,16 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="JZE-W7-z1v" firstAttribute="leading" secondItem="d4t-fk-FW5" secondAttribute="trailing" constant="8" id="Gda-So-lAc"/>
-                    <constraint firstItem="7yO-Jb-haf" firstAttribute="leading" secondItem="d4t-fk-FW5" secondAttribute="trailing" constant="147" id="QEd-Ln-Mg9"/>
+                    <constraint firstItem="7yO-Jb-haf" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="NHJ-1y-H5a"/>
                     <constraint firstItem="nn4-P5-iDy" firstAttribute="leading" secondItem="d4t-fk-FW5" secondAttribute="trailing" constant="8" id="Swo-VJ-dJX"/>
-                    <constraint firstItem="JZE-W7-z1v" firstAttribute="top" secondItem="7yO-Jb-haf" secondAttribute="bottom" constant="2" id="T8Q-qG-jNp"/>
-                    <constraint firstItem="7yO-Jb-haf" firstAttribute="top" secondItem="nn4-P5-iDy" secondAttribute="bottom" constant="-21" id="VF0-jO-Epi"/>
+                    <constraint firstItem="7yO-Jb-haf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="8" id="V7J-wE-xgC"/>
+                    <constraint firstItem="dkQ-ow-hdN" firstAttribute="top" secondItem="JZE-W7-z1v" secondAttribute="bottom" constant="3" id="XeI-XG-qhu"/>
                     <constraint firstItem="d4t-fk-FW5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="8" id="aEc-ke-tq2"/>
+                    <constraint firstItem="dkQ-ow-hdN" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="cRg-xT-PwA"/>
                     <constraint firstItem="d4t-fk-FW5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="dRb-bI-Igv"/>
+                    <constraint firstItem="JZE-W7-z1v" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="dt5-AH-x01"/>
+                    <constraint firstItem="dkQ-ow-hdN" firstAttribute="leading" secondItem="d4t-fk-FW5" secondAttribute="trailing" constant="8" id="mQG-SI-ocd"/>
+                    <constraint firstItem="JZE-W7-z1v" firstAttribute="top" secondItem="nn4-P5-iDy" secondAttribute="bottom" constant="3" id="pJR-Dx-eVH"/>
                     <constraint firstItem="nn4-P5-iDy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="8" id="qIR-yu-CGx"/>
                 </constraints>
             </tableViewCellContentView>

@@ -35,39 +35,42 @@
     }
     self.submenu = self.menu.submenus.firstObject;
     
-    __block ListViewController *weakSelf = self;
     __block NSString *methodName = self.submenu.fetchDataFromAPI ? self.submenu.fetchDataFromAPI.methodName : @"";
-    [SVProgressHUD show];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        if ([APIModel respondsToSelector:NSSelectorFromString(methodName)]) {
+    if ([APIModel respondsToSelector:NSSelectorFromString(methodName)]) {
+        __block ListViewController *weakSelf = self;
+        [SVProgressHUD show];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            
             [APIModel performSelector:NSSelectorFromString(methodName) withObject:^(NSArray *lists, NSError *error) {
-                //set the result here
-                if (error == nil) {
-                    if (lists) [weakSelf setDataSource:lists];
-                    [SVProgressHUD dismiss];
-                } else {
-                    [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
-                    [SVProgressHUD dismissWithDelay:1.5];
-                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    //set the result here
+                    if (error == nil) {
+                        if (lists) [weakSelf setDataSource:lists];
+                        [SVProgressHUD dismiss];
+                    } else {
+                        [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+                        [SVProgressHUD dismissWithDelay:1.5];
+                    }
+                });
             }];
-        } else {
-            [SVProgressHUD showErrorWithStatus:@"No method found"];
-            [SVProgressHUD dismissWithDelay:1.5];
-            
-            //set dummy here
-            NSMutableArray *dataSource = [NSMutableArray array];
-            
-            List *list = [[List alloc] init];
-            list.title = @"PK1235";
-            list.date = @"12 March 2017";
-            list.assignee = @"Bejo";
-            list.type = 
-            list.imageURL = @"https://image.flaticon.com/teams/new/1-freepik.jpg";
-            [dataSource addObject:list];
-            
-            [weakSelf setDataSource:dataSource];
-        }
-    });
+        });
+    } else {
+        [SVProgressHUD showErrorWithStatus:@"No method found"];
+        [SVProgressHUD dismissWithDelay:1.5];
+        
+        //set dummy here
+        NSMutableArray *dataSource = [NSMutableArray array];
+        
+        List *list = [[List alloc] init];
+        list.title = @"PK1235";
+        list.date = @"12 March 2017";
+        list.assignee = @"Bejo";
+        list.type =
+        list.imageURL = @"https://image.flaticon.com/teams/new/1-freepik.jpg";
+        [dataSource addObject:list];
+        
+        [self setDataSource:dataSource];
+    }
     
     Action *rightButtonAction = self.submenu.rightButtonAction;
     if (rightButtonAction) {
@@ -127,15 +130,15 @@
                         //call API send list
                         
                         __block NSString *methodName = action.methodName;
-                        [SVProgressHUD show];
-                        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                            if ([APIModel respondsToSelector:NSSelectorFromString(methodName)]) {
+                        if ([APIModel respondsToSelector:NSSelectorFromString(methodName)]) {
+                            [SVProgressHUD show];
+                            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                                 [APIModel performSelector:NSSelectorFromString(methodName) withObject:list];
-                            } else {
-                                [SVProgressHUD showErrorWithStatus:@"No method found"];
-                                [SVProgressHUD dismissWithDelay:1.5];
-                            }
-                        });
+                            });
+                        } else {
+                            [SVProgressHUD showErrorWithStatus:@"No method found"];
+                            [SVProgressHUD dismissWithDelay:1.5];
+                        }
                     }
                     
                     if ([action.actionType isEqualToString:kActionTypeForward]){
@@ -211,12 +214,15 @@
                                           if (weakImageView) weakImageView.image = nil;
                                       }];
         }
-        [MPMGlobal giveBorderTo:cell.status withBorderColor:list.statusColor withCornerRadius:8.0f];
-        cell.status.text = list.status;
-        CGRect frame = cell.status.frame;
-        frame.size.width = cell.status.intrinsicContentSize.width + 5;
-        cell.status.frame  = frame;
-        cell.status.textColor = [MPMGlobal colorFromHexString:list.statusColor];
+        
+        if (list.status.length > 0) {
+            [MPMGlobal giveBorderTo:cell.status withBorderColor:list.statusColor withCornerRadius:8.0f];
+            cell.status.text = list.status;
+            cell.status.textColor = [MPMGlobal colorFromHexString:list.statusColor];
+            cell.status.hidden = NO;
+        } else {
+            cell.status.hidden = YES;
+        }
         cell.title.text = list.title;
         cell.date.text = list.date;
         cell.assignee.text = list.assignee;

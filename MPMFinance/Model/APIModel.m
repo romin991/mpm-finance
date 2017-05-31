@@ -58,7 +58,22 @@
             }
             
             if (block) block(lists, nil);
+        } else {
+            NSInteger code = 0;
+            NSString *message = @"";
+            @try {
+                if (responseObject[@"statusCode"]) code = [responseObject[@"statusCode"] integerValue];
+                if (responseObject[@"message"]) message = responseObject[@"message"];
+            } @catch (NSException *exception) {
+                NSLog(@"%@", exception);
+            } @finally {
+                if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                          code:code
+                                                      userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(message, nil)}]);
+            }
+            
         }
+        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@",error);
         if (block) block(nil, error);
@@ -66,6 +81,7 @@
     }];
     
 }
+
 +(void)getListProduct:(void(^)(NSArray *lists, NSError *error))block
 {
     AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
@@ -79,11 +95,27 @@
             NSMutableArray *lists = [NSMutableArray array];
             lists = responseObject[@"data"];
             if (block) block(lists, nil);
+        } else {
+            NSInteger code = 0;
+            NSString *message = @"";
+            @try {
+                if (responseObject[@"statusCode"]) code = [responseObject[@"statusCode"] integerValue];
+                if (responseObject[@"message"]) message = responseObject[@"message"];
+            } @catch (NSException *exception) {
+                NSLog(@"%@", exception);
+            } @finally {
+                if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                          code:code
+                                                      userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(message, nil)}]);
+            }
+            
         }
+        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (block) block(nil, error);
     }];
 }
+
 + (void)getListPengembalianBPKB:(void(^)(NSArray *lists, NSError *error))block
 {
     AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
@@ -105,7 +137,22 @@
             }
             
             if (block) block(lists, nil);
+        } else {
+            NSInteger code = 0;
+            NSString *message = @"";
+            @try {
+                if (responseObject[@"statusCode"]) code = [responseObject[@"statusCode"] integerValue];
+                if (responseObject[@"message"]) message = responseObject[@"message"];
+            } @catch (NSException *exception) {
+                NSLog(@"%@", exception);
+            } @finally {
+                if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                          code:code
+                                                      userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(message, nil)}]);
+            }
+            
         }
+        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (block) block(nil, error);
     }];
