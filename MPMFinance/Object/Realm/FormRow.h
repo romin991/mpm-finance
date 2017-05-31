@@ -17,7 +17,7 @@
 @property BOOL required;
 @property NSInteger sort;
 @property NSInteger category;
-
+@property BOOL disabled;
 @property RLMArray<Option> *options;
 
 + (void)generateFields;
