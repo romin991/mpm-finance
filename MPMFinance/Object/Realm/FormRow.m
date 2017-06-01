@@ -10,6 +10,7 @@
 #import <XLForm.h>
 #import "FloatLabeledTextFieldCell.h"
 #import "Option.h"
+#import "NSString+MixedCasing.h"
 
 //XLFormRowDescriptorTypeFloatLabeledTextField
 //extern NSString *const XLFormRowDescriptorTypeAccount;
@@ -83,7 +84,7 @@
     
     //Struktur Pembiayaan
     [FormRow new:realm :3 :0 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Harga Perolehan"];
-    [FormRow new:realm :3 :1 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Uang Muka (DP)"];
+    [[FormRow new:realm :3 :1 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Uang Muka (DP)"] setKey:@"uangMuka"];
     [FormRow new:realm :3 :2 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Jangka Waktu Pembiayaan"];
     [FormRow new:realm :3 :3 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Angsuran"];
     
@@ -144,20 +145,20 @@
 {
     [FormRow new:realm :9 :0 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Harga"];
     [FormRow new:realm :9 :1 :YES :XLFormRowDescriptorTypeSelectorPush :@"Lama Pembiayaan" :31];
-    [FormRow new:realm :9 :2 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nilai Pembiayaan" :-1];
-    [FormRow new:realm :9 :3 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Angsuran" :-1];
+    [[FormRow new:realm :9 :2 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nilai Pembiayaan"] setDisabled:YES];
+    [[FormRow new:realm :9 :3 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Angsuran"] setDisabled:YES];
     
 }
 
-+ (void)new:(RLMRealm *)realm :(NSInteger)category :(NSInteger)sort :(BOOL)required :(NSString *)type :(NSString *)title{
-    [FormRow new:realm :category :sort :required :type :title :-1];
++ (FormRow *)new:(RLMRealm *)realm :(NSInteger)category :(NSInteger)sort :(BOOL)required :(NSString *)type :(NSString *)title{
+    return [FormRow new:realm :category :sort :required :NO :type :title :nil :-1];
 }
 
-+ (void)new:(RLMRealm *)realm :(NSInteger)category :(NSInteger)sort :(BOOL)required :(NSString *)type :(NSString *)title :(NSInteger)optionCategory{
-    [FormRow new:realm :category :sort :required :NO :type :title :optionCategory];
++ (FormRow *)new:(RLMRealm *)realm :(NSInteger)category :(NSInteger)sort :(BOOL)required :(NSString *)type :(NSString *)title :(NSInteger)optionCategory{
+    return [FormRow new:realm :category :sort :required :NO :type :title :nil :optionCategory];
 }
 
-+ (void)new:(RLMRealm *)realm :(NSInteger)category :(NSInteger)sort :(BOOL)required :(BOOL)disabled :(NSString *)type :(NSString *)title :(NSInteger)optionCategory{
++ (FormRow *)new:(RLMRealm *)realm :(NSInteger)category :(NSInteger)sort :(BOOL)required :(BOOL)disabled :(NSString *)type :(NSString *)title :(NSString *)key :(NSInteger)optionCategory{
     FormRow *row = [[FormRow alloc] init];
     row.title = title;
     row.type = type;
@@ -165,12 +166,15 @@
     row.category = category;
     row.required = required;
     row.disabled = disabled;
+    row.key = (key.length == 0) ? [title camelCased] : [key camelCased];
     if (optionCategory >= 0) {
         RLMResults *options = [Option getOptionWithCategoryNumber:optionCategory];
         [row.options addObjects:options];
     }
     
     [realm addObject:row];
+    
+    return row;
 }
 
 @end

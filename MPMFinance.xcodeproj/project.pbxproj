@@ -42,6 +42,7 @@
 		48CDD83B1EC9B8A50038D626 /* SubmenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48CDD8391EC9B8A50038D626 /* SubmenuViewController.xib */; };
 		48CDD8421EC9BA1A0038D626 /* SubmenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CDD8401EC9BA1A0038D626 /* SubmenuTableViewCell.m */; };
 		48CDD8431EC9BA1A0038D626 /* SubmenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48CDD8411EC9BA1A0038D626 /* SubmenuTableViewCell.xib */; };
+		48D44D4C1EDF8F28005FC8DB /* NSString+MixedCasing.m in Sources */ = {isa = PBXBuildFile; fileRef = 48D44D4B1EDF8F28005FC8DB /* NSString+MixedCasing.m */; };
 		48F7F4061EC5C931008DB808 /* Role.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F7F4051EC5C931008DB808 /* Role.m */; };
 		5C586E9A1ECB183200A5A626 /* HelpTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C586E991ECB183200A5A626 /* HelpTableViewController.m */; };
 		5C9B08EC1EC9DB8700B5E9AC /* MenuNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9B08EB1EC9DB8700B5E9AC /* MenuNavigationViewController.m */; };
@@ -116,6 +117,8 @@
 		48CDD83F1EC9BA1A0038D626 /* SubmenuTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SubmenuTableViewCell.h; path = ViewController/SubmenuTableViewCell.h; sourceTree = "<group>"; };
 		48CDD8401EC9BA1A0038D626 /* SubmenuTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SubmenuTableViewCell.m; path = ViewController/SubmenuTableViewCell.m; sourceTree = "<group>"; };
 		48CDD8411EC9BA1A0038D626 /* SubmenuTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SubmenuTableViewCell.xib; path = ViewController/SubmenuTableViewCell.xib; sourceTree = "<group>"; };
+		48D44D4A1EDF8F28005FC8DB /* NSString+MixedCasing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MixedCasing.h"; sourceTree = "<group>"; };
+		48D44D4B1EDF8F28005FC8DB /* NSString+MixedCasing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MixedCasing.m"; sourceTree = "<group>"; };
 		48F7F4041EC5C931008DB808 /* Role.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Role.h; path = Object/Realm/Role.h; sourceTree = "<group>"; };
 		48F7F4051EC5C931008DB808 /* Role.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Role.m; path = Object/Realm/Role.m; sourceTree = "<group>"; };
 		5C586E981ECB183200A5A626 /* HelpTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpTableViewController.h; sourceTree = "<group>"; };
@@ -212,6 +215,8 @@
 				5CDC30411EC3E274001D97DB /* GoogleService-Info.plist */,
 				483F39211EC3085E00C03253 /* main.m */,
 				5C9DB2371EC3314200FC0CC9 /* PrefixHeader.pch */,
+				48D44D4A1EDF8F28005FC8DB /* NSString+MixedCasing.h */,
+				48D44D4B1EDF8F28005FC8DB /* NSString+MixedCasing.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -542,6 +547,7 @@
 			files = (
 				5C9B08F11EC9DB9300B5E9AC /* HistoryViewController.m in Sources */,
 				487F39F91ED678D400D6E580 /* Action.m in Sources */,
+				48D44D4C1EDF8F28005FC8DB /* NSString+MixedCasing.m in Sources */,
 				4849EEDD1EC8190300415E4B /* Option.m in Sources */,
 				4831CD271EDE97D7001EF223 /* SubmenuCollectionViewCell.m in Sources */,
 				48482E731EC99B230029ACBE /* ListTableViewCell.m in Sources */,

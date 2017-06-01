@@ -18,6 +18,7 @@
 @property NSInteger sort;
 @property NSInteger category;
 @property BOOL disabled;
+@property NSString *key; //for NSDictionary
 @property RLMArray<Option> *options;
 
 + (void)generateFields;

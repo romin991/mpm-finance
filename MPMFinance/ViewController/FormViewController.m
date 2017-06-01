@@ -13,6 +13,7 @@
 #import "FloatLabeledTextFieldCell.h"
 #import <TPKeyboardAvoidingTableView.h>
 #import "SimpleListViewController.h"
+#import "APIModel.h"
 
 @interface FormViewController ()
 
@@ -88,16 +89,37 @@
 }
 
 - (void)nextButtonClicked:(id)sender{
-    if (self.forms.count == self.index + 1){
-        NSLog(@"%@",self.formDescriptor.formValues);
-        XLFormSectionDescriptor* section = self.formDescriptor.formSections[0];
-        for (XLFormRowDescriptor* row in section.formRows) {
-            NSLog(@"%@",row.value);
+    for (XLFormSectionDescriptor *section in self.formDescriptor.formSections) {
+        for (XLFormRowDescriptor *row in section.formRows) {
+            if (self.valueDictionary == nil) self.valueDictionary = [NSMutableDictionary dictionary];
+            [self.valueDictionary setObject:((row.value != nil) ? row.value : [NSNull null]) forKey:row.tag];
         }
+    }
+    
+    if (self.forms.count == self.index + 1){
+        //call API here
+        void (^handler)(UIAlertAction *action) = ^void(UIAlertAction *action){
+            //callback api here
+        };
+        
+        __block NSString *methodName = self.menu.rightButtonAction ? self.menu.rightButtonAction.methodName : @"";
+        NSMutableDictionary *valueDictionary = self.valueDictionary;
+        if ([APIModel respondsToSelector:NSSelectorFromString(methodName)]) {
+            NSMethodSignature * mySignature = [APIModel methodSignatureForSelector:NSSelectorFromString(methodName)];
+            NSInvocation * myInvocation = [NSInvocation invocationWithMethodSignature:mySignature];
+            [myInvocation setTarget:[APIModel class]];
+            [myInvocation setSelector:NSSelectorFromString(methodName)];
+            [myInvocation setArgument:&valueDictionary atIndex:2];
+            [myInvocation setArgument:&handler atIndex:3];
+            [myInvocation retainArguments];
+            [myInvocation performSelector:@selector(invoke) withObject:nil afterDelay:0.1];
+        }
+        
     } else {
         FormViewController *nextFormViewController = [[FormViewController alloc] init];
         nextFormViewController.menu = self.menu;
         nextFormViewController.index = self.index + 1;
+        nextFormViewController.valueDictionary = self.valueDictionary;
         [self.navigationController pushViewController:nextFormViewController animated:YES];
     }
 }
@@ -134,7 +156,7 @@
     
     // Row
     for (FormRow *formRow in self.formRows) {
-        row = [XLFormRowDescriptor formRowDescriptorWithTag:nil rowType:formRow.type title:formRow.title];
+        row = [XLFormRowDescriptor formRowDescriptorWithTag:formRow.key rowType:formRow.type title:formRow.title];
         if (formRow.options.count > 0) {
             NSMutableArray *options = [NSMutableArray array];
             for (Option *option in formRow.options) {

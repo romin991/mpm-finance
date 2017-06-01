@@ -62,6 +62,13 @@
     submenu.sort = 0;
     submenu.borderColor = @"F26F21";
     submenu.menuType = kMenuTypeFormHorizontal;
+    
+    Action *action = [[Action alloc] init];
+    action.name = @"Send";
+    action.methodName = @"createListWorkOrder:completion:";
+    action.actionType = kActionTypeAPICall;
+    
+    submenu.rightButtonAction = action;
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [realm addObject:submenu];
     
@@ -122,7 +129,7 @@
     menuList.sort = 0;
     menuList.menuType = kMenuTypeSubmenu;
     
-    Action *action = [[Action alloc] init];
+    action = [[Action alloc] init];
     action.name = @"Add";
     action.methodName = @"";
     action.actionType = kActionTypeForward;

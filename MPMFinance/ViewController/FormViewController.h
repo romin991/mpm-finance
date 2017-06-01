@@ -13,5 +13,6 @@
 
 @property Menu *menu;
 @property NSInteger index;
+@property NSMutableDictionary *valueDictionary;
 
 @end
