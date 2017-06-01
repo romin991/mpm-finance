@@ -122,7 +122,7 @@
     NSDictionary* param = @{@"userid" :[MPMUserInfo getUserInfo][@"userId"],
                             @"token" : [MPMUserInfo getToken]};
     
-    [manager POST:[NSString stringWithFormat:@"%@/pengajuan/customer/input", kApiUrl] parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
+    [manager POST:[NSString stringWithFormat:@"%@/datamap/getworkorder", kApiUrl] parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"statusCode"] isEqual:@200]) {
@@ -195,7 +195,7 @@
     
     [param setObject:dataDictionary forKey:@"data"];
     
-    [manager POST:[NSString stringWithFormat:@"%@/datamap/getworkorder",kApiUrl] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [manager POST:[NSString stringWithFormat:@"%@/pengajuan/customer/input",kApiUrl] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"statusCode"] isEqual:@200]) {
             if (block) block(nil);
         } else {
