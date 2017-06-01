@@ -81,4 +81,7 @@ extern NSString *const kActionTypeAPICall;
 + (NSString *)encodeToBase64String:(UIImage *)image;
 + (UIView *)giveBorderTo:(UIView *)view withBorderColor:(NSString *)hexColorString withCornerRadius:(CGFloat)cornerRadius;
 + (UIColor *)colorFromHexString:(NSString *)hexString;
++ (NSString *)stringFromDate:(NSDate *)object;
++ (NSDate *)dateFromString:(NSString *)object;
+
 @end

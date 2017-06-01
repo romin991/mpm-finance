@@ -92,7 +92,18 @@
     for (XLFormSectionDescriptor *section in self.formDescriptor.formSections) {
         for (XLFormRowDescriptor *row in section.formRows) {
             if (self.valueDictionary == nil) self.valueDictionary = [NSMutableDictionary dictionary];
-            [self.valueDictionary setObject:((row.value != nil) ? row.value : [NSNull null]) forKey:row.tag];
+            NSString *valueString;
+            id value = row.value;
+            if ([value isKindOfClass:[XLFormOptionsObject class]]){
+                value = ((XLFormOptionsObject *) value).valueData;
+            }
+            if ([value isKindOfClass:[NSDate class]]){
+                valueString = [MPMGlobal stringFromDate:value];
+            }
+            if ([value isKindOfClass:[NSString class]]){
+                valueString = value;
+            }
+            [self.valueDictionary setObject:((valueString != nil) ? valueString : [NSNull null]) forKey:row.tag];
         }
     }
     

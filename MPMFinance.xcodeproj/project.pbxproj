@@ -43,6 +43,7 @@
 		48CDD8421EC9BA1A0038D626 /* SubmenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CDD8401EC9BA1A0038D626 /* SubmenuTableViewCell.m */; };
 		48CDD8431EC9BA1A0038D626 /* SubmenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48CDD8411EC9BA1A0038D626 /* SubmenuTableViewCell.xib */; };
 		48D44D4C1EDF8F28005FC8DB /* NSString+MixedCasing.m in Sources */ = {isa = PBXBuildFile; fileRef = 48D44D4B1EDF8F28005FC8DB /* NSString+MixedCasing.m */; };
+		48D44D4F1EDFD2AF005FC8DB /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 48D44D4E1EDFD2AF005FC8DB /* ISO8601DateFormatter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		48F7F4061EC5C931008DB808 /* Role.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F7F4051EC5C931008DB808 /* Role.m */; };
 		5C586E9A1ECB183200A5A626 /* HelpTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C586E991ECB183200A5A626 /* HelpTableViewController.m */; };
 		5C9B08EC1EC9DB8700B5E9AC /* MenuNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9B08EB1EC9DB8700B5E9AC /* MenuNavigationViewController.m */; };
@@ -119,6 +120,8 @@
 		48CDD8411EC9BA1A0038D626 /* SubmenuTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SubmenuTableViewCell.xib; path = ViewController/SubmenuTableViewCell.xib; sourceTree = "<group>"; };
 		48D44D4A1EDF8F28005FC8DB /* NSString+MixedCasing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MixedCasing.h"; sourceTree = "<group>"; };
 		48D44D4B1EDF8F28005FC8DB /* NSString+MixedCasing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MixedCasing.m"; sourceTree = "<group>"; };
+		48D44D4D1EDFD2AF005FC8DB /* ISO8601DateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISO8601DateFormatter.h; sourceTree = "<group>"; };
+		48D44D4E1EDFD2AF005FC8DB /* ISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISO8601DateFormatter.m; sourceTree = "<group>"; };
 		48F7F4041EC5C931008DB808 /* Role.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Role.h; path = Object/Realm/Role.h; sourceTree = "<group>"; };
 		48F7F4051EC5C931008DB808 /* Role.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Role.m; path = Object/Realm/Role.m; sourceTree = "<group>"; };
 		5C586E981ECB183200A5A626 /* HelpTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpTableViewController.h; sourceTree = "<group>"; };
@@ -217,6 +220,8 @@
 				5C9DB2371EC3314200FC0CC9 /* PrefixHeader.pch */,
 				48D44D4A1EDF8F28005FC8DB /* NSString+MixedCasing.h */,
 				48D44D4B1EDF8F28005FC8DB /* NSString+MixedCasing.m */,
+				48D44D4D1EDFD2AF005FC8DB /* ISO8601DateFormatter.h */,
+				48D44D4E1EDFD2AF005FC8DB /* ISO8601DateFormatter.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -579,6 +584,7 @@
 				5CF497B81ED330FF0005327D /* registerViewController.m in Sources */,
 				5C9DB2421EC3393000FC0CC9 /* MPMUserInfo.m in Sources */,
 				5C9B08F21EC9DB9300B5E9AC /* HomeViewController.m in Sources */,
+				48D44D4F1EDFD2AF005FC8DB /* ISO8601DateFormatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

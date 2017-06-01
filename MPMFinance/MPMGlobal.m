@@ -8,6 +8,8 @@
 
 #import "MPMGlobal.h"
 #import <AFHTTPSessionManager.h>
+#import "ISO8601DateFormatter.h"
+
 @implementation MPMGlobal
 
 NSString *const kRoleCustomer = @"Customer";
@@ -147,6 +149,31 @@ NSString *const kActionTypeAPICall = @"APICall";
     } else {
         return [UIColor grayColor];
     }
+}
+
++ (ISO8601DateFormatter *)getISO8601DateFormatter{
+    NSTimeZone *timeZone = [NSTimeZone timeZoneForSecondsFromGMT:25200];
+    ISO8601DateFormatter *formatter = [[ISO8601DateFormatter alloc] init];
+    [formatter setDefaultTimeZone:timeZone];
+    [formatter setIncludeTime:YES];
+    [formatter setTimeZoneSeparator:ISO8601DefaultTimeSeparatorCharacter];
+    [formatter setUseMillisecondPrecision:YES];
+    
+    return formatter;
+}
+
++ (NSString *)stringFromDate:(NSDate *)object{
+    ISO8601DateFormatter *formatter = [self getISO8601DateFormatter];
+    NSDate *date = object;
+    if (date == nil || [date isKindOfClass:[NSNull class]]) return [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:0]];
+    else return [formatter stringFromDate:date];
+}
+
++ (NSDate *)dateFromString:(NSString *)object{
+    ISO8601DateFormatter *formatter = [self getISO8601DateFormatter];
+    NSString *string = object;
+    if (string == nil || [string isKindOfClass:[NSNull class]]) return [NSDate dateWithTimeIntervalSince1970:0];
+    else return [formatter dateFromString:string];
 }
 
 @end
