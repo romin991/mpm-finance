@@ -109,8 +109,11 @@
     
     if (self.forms.count == self.index + 1){
         //call API here
-        void (^handler)(UIAlertAction *action) = ^void(UIAlertAction *action){
+        void (^handler)(NSError *error) = ^void(NSError *error){
             //callback api here
+            if (error){
+                
+            }
         };
         
         __block NSString *methodName = self.menu.rightButtonAction ? self.menu.rightButtonAction.methodName : @"";
