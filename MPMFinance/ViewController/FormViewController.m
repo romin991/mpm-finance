@@ -26,6 +26,7 @@
 @property RLMResults *forms;
 @property RLMArray *formRows;
 @property XLFormDescriptor *formDescriptor;
+@property NSDictionary *fetchResult;
 
 @end
 
@@ -52,9 +53,52 @@
     
     }
     
+    if (self.list) {
+        [self fetchData];
+    }
+    
     [self generateFormDescriptor];
     [self setHorizontalLabel];
     [self setRightBarButton];
+}
+
+- (void)fetchData{
+    //call API here
+    __block FormViewController *weakSelf = self;
+    __block void (^handler)(NSDictionary *dictionary, NSError *error) = ^void(NSDictionary *dictionary, NSError *error){
+        //callback api here
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //set the result here
+            if (error == nil) {
+                if (dictionary) [weakSelf setFetchResult:dictionary];
+                [SVProgressHUD dismiss];
+            } else {
+                [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+                [SVProgressHUD dismissWithDelay:1.5];
+            }
+        });
+    };
+    
+    __block NSString *methodName = self.menu.fetchDataFromAPI ? self.menu.fetchDataFromAPI.methodName : @"";
+    __block NSInteger primaryKey = self.list.primaryKey;
+    if ([APIModel respondsToSelector:NSSelectorFromString(methodName)]) {
+        [SVProgressHUD show];
+
+        NSMethodSignature * mySignature = [APIModel methodSignatureForSelector:NSSelectorFromString(methodName)];
+        NSInvocation * myInvocation = [NSInvocation invocationWithMethodSignature:mySignature];
+        [myInvocation setTarget:[APIModel class]];
+        [myInvocation setSelector:NSSelectorFromString(methodName)];
+        [myInvocation setArgument:&primaryKey atIndex:2];
+        [myInvocation setArgument:&handler atIndex:3];
+        [myInvocation retainArguments];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [myInvocation invoke];
+        });
+        
+    } else {
+        [SVProgressHUD showErrorWithStatus:@"No method found"];
+        [SVProgressHUD dismissWithDelay:1.5];
+    }
 }
 
 - (void)hideHorizontalView{
@@ -181,6 +225,12 @@
         }
         row.required = formRow.required;
         row.disabled = @(formRow.disabled);
+        if (self.list && self.fetchResult) {
+            //set value here
+            if (formRow.key && [self.fetchResult objectForKey:formRow.key]) {
+                row.value = [self.fetchResult objectForKey:formRow.key];
+            }
+        }
         [section addFormRow:row];
     }
 }

@@ -183,6 +183,7 @@
     } else if ([submenu.menuType isEqualToString:kMenuTypeFormHorizontal]){
         FormViewController *formViewController = [[FormViewController alloc] init];
         formViewController.menu = submenu;
+        formViewController.list = list;
         [self.navigationController pushViewController:formViewController animated:YES];
     }
 }

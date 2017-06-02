@@ -10,6 +10,7 @@
 
 @interface List : NSObject
 
+@property NSInteger primaryKey;
 @property NSString *imageURL;
 @property NSString *title;
 @property NSString *date;
@@ -17,4 +18,5 @@
 @property NSString *status;
 @property NSString *statusColor;
 @property NSString *type;
+
 @end

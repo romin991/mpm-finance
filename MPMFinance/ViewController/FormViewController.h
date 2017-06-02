@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "Menu.h"
+#import "List.h"
 
 @interface FormViewController : UIViewController
 
 @property Menu *menu;
 @property NSInteger index;
 @property NSMutableDictionary *valueDictionary;
+@property List *list;
 
 @end

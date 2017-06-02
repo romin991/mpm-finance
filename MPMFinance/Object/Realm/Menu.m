@@ -67,8 +67,14 @@
     action.name = @"Send";
     action.methodName = @"createListWorkOrder:completion:";
     action.actionType = kActionTypeAPICall;
-    
     submenu.rightButtonAction = action;
+    
+    action = [[Action alloc] init];
+    action.name = @"";
+    action.methodName = @"getListWorkOrderDetailWithID:completion:";
+    action.actionType = kActionTypeAPICall;
+    submenu.fetchDataFromAPI = action;
+    
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [realm addObject:submenu];
     
@@ -128,6 +134,14 @@
     menuList.title = kSubmenuListOnlineSubmission;
     menuList.sort = 0;
     menuList.menuType = kMenuTypeSubmenu;
+    
+    action = [[Action alloc] init];
+    action.name = @"Get List Work Order";
+    action.methodName = @"getListWorkOrder:";
+    action.actionType = kActionTypeAPICall;
+    [realm addObject:action];
+    
+    menuList.fetchDataFromAPI = action;
     
     action = [[Action alloc] init];
     action.name = @"Add";
