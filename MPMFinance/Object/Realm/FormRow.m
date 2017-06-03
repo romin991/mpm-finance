@@ -249,6 +249,9 @@
     
     [FormRow generateCreditSimulationFieldsWithRealm:realm];
     [FormRow generateListSurveyWithRealm:realm];
+    [FormRow generateCalculatorMarketingWithRealm:realm];
+    [FormRow generateCustomerGetCustomerWithRealm:realm];
+    
     [realm commitWriteTransaction];
 }
 
@@ -355,6 +358,15 @@
     [FormRow new:realm :22 :22 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Biaya Survey (Jika Ada)"];
     
     [FormRow new:realm :22 :23 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Biaya Cek / Blokir BPKB (Jika Ada)"];
+}
+
++ (void)generateCustomerGetCustomerWithRealm:(RLMRealm *)realm{
+    [FormRow new:realm :23 :0 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama"];
+    [FormRow new:realm :23 :1 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Handphone"];
+    [FormRow new:realm :23 :2 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Email"];
+    [FormRow new:realm :23 :3 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Alamat"];
+    [FormRow new:realm :23 :4 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Merk"];
+    [FormRow new:realm :23 :5 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Tahun Kendaraan"];
 }
 
 + (void)generateCreditSimulationFieldsWithRealm:(RLMRealm*)realm{
