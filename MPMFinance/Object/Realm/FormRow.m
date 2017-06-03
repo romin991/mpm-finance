@@ -112,7 +112,7 @@
     
     //Data Pribadi
     [FormRow new:realm :7 :0 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Lengkap"];
-    [FormRow new:realm :7 :1 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"KTP"];
+    [FormRow new:realm :7 :1 :NO :XLFormRowDescriptorTypeDateInline :@"KTP Berlaku Hingga"];
     [FormRow new:realm :7 :2 :NO :XLFormRowDescriptorTypeSelectorPush :@"Jenis Kelamin" :6];
     [FormRow new:realm :7 :3 :NO :XLFormRowDescriptorTypeSelectorPush :@"Agama" :7];
     [FormRow new:realm :7 :4 :NO :XLFormRowDescriptorTypeSelectorPush :@"Status" :12];
@@ -141,13 +141,14 @@
     [FormRow generateCreditSimulationFieldsWithRealm:realm];
     [realm commitWriteTransaction];
 }
-+(void)generateCreditSimulationFieldsWithRealm:(RLMRealm*)realm
-{
+
+
+
++ (void)generateCreditSimulationFieldsWithRealm:(RLMRealm*)realm{
     [FormRow new:realm :9 :0 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Harga"];
     [FormRow new:realm :9 :1 :YES :XLFormRowDescriptorTypeSelectorPush :@"Lama Pembiayaan" :31];
     [[FormRow new:realm :9 :2 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nilai Pembiayaan"] setDisabled:YES];
     [[FormRow new:realm :9 :3 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Angsuran"] setDisabled:YES];
-    
 }
 
 + (FormRow *)new:(RLMRealm *)realm :(NSInteger)category :(NSInteger)sort :(BOOL)required :(NSString *)type :(NSString *)title{

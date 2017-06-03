@@ -27,6 +27,7 @@
 @property RLMArray *formRows;
 @property XLFormDescriptor *formDescriptor;
 @property NSDictionary *fetchResult;
+@property XLFormViewController *formViewController;
 
 @end
 
@@ -71,6 +72,7 @@
             //set the result here
             if (error == nil) {
                 if (dictionary) [weakSelf setFetchResult:dictionary];
+                [weakSelf setFormValueWithDictionary:dictionary];
                 [SVProgressHUD dismiss];
             } else {
                 [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
@@ -98,6 +100,22 @@
     } else {
         [SVProgressHUD showErrorWithStatus:@"No method found"];
         [SVProgressHUD dismissWithDelay:1.5];
+    }
+}
+
+- (void)setFormValueWithDictionary:(NSDictionary *)dictionary{
+    for (XLFormSectionDescriptor *section in self.formDescriptor.formSections) {
+        for (XLFormRowDescriptor *row in section.formRows) {
+            NSString *value;
+            if ([dictionary objectForKey:row.tag]){
+                value = [dictionary objectForKey:row.tag];
+            }
+            if (value){
+                row.value = value;
+            }
+            
+            [self.formViewController reloadFormRow:row];
+        }
     }
 }
 
@@ -238,6 +256,7 @@
 - (void)viewDidLayoutSubviews{
     XLFormViewController *formViewController = [[XLFormViewController alloc] init];
     formViewController.form = self.formDescriptor;
+    self.formViewController = formViewController;
     
     [self addChildViewController:formViewController];
     formViewController.view.frame = self.containerView.frame;
