@@ -109,6 +109,8 @@
     form = [[Form alloc] init];
     form.title = @"Data Pekerjaan";
     form.sort = 20;
+    [form.rows addObjects:[FormRow getRowsWithCategoryNumber:8]];
+    
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuDataMAP]];
     [realm addObject:form];
     
@@ -116,6 +118,8 @@
     form = [[Form alloc] init];
     form.title = @"Kartu Kredit / Pinjaman Lain";
     form.sort = 30;
+    [form.rows addObjects:[FormRow getRowsWithCategoryNumber:9]];
+    
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuDataMAP]];
     [realm addObject:form];
     
@@ -123,6 +127,8 @@
     form = [[Form alloc] init];
     form.title = @"Data Pasangan";
     form.sort = 40;
+    [form.rows addObjects:[FormRow getRowsWithCategoryNumber:10]];
+    
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuDataMAP]];
     [realm addObject:form];
     
@@ -130,6 +136,8 @@
     form = [[Form alloc] init];
     form.title = @"Data Pekerjaan Pasangan";
     form.sort = 50;
+    [form.rows addObjects:[FormRow getRowsWithCategoryNumber:11]];
+    
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuDataMAP]];
     [realm addObject:form];
     
@@ -137,6 +145,8 @@
     form = [[Form alloc] init];
     form.title = @"Data Keluarga";
     form.sort = 60;
+    [form.rows addObjects:[FormRow getRowsWithCategoryNumber:12]];
+    
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuDataMAP]];
     [realm addObject:form];
     
@@ -144,6 +154,8 @@
     form = [[Form alloc] init];
     form.title = @"Struktur Pembayaran";
     form.sort = 70;
+    [form.rows addObjects:[FormRow getRowsWithCategoryNumber:13]];
+    
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuDataMAP]];
     [realm addObject:form];
     
@@ -151,6 +163,8 @@
     form = [[Form alloc] init];
     form.title = @"Asuransi";
     form.sort = 80;
+    [form.rows addObjects:[FormRow getRowsWithCategoryNumber:14]];
+    
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuDataMAP]];
     [realm addObject:form];
     
@@ -158,6 +172,8 @@
     form = [[Form alloc] init];
     form.title = @"Data Aset";
     form.sort = 90;
+    [form.rows addObjects:[FormRow getRowsWithCategoryNumber:15]];
+    
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuDataMAP]];
     [realm addObject:form];
     
@@ -165,6 +181,8 @@
     form = [[Form alloc] init];
     form.title = @"Data E-con";
     form.sort = 100;
+    [form.rows addObjects:[FormRow getRowsWithCategoryNumber:16]];
+    
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuDataMAP]];
     [realm addObject:form];
     
@@ -172,6 +190,8 @@
     form = [[Form alloc] init];
     form.title = @"MAP Penjamin";
     form.sort = 110;
+    [form.rows addObjects:[FormRow getRowsWithCategoryNumber:17]];
+    
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuDataMAP]];
     [realm addObject:form];
     
@@ -179,6 +199,8 @@
     form = [[Form alloc] init];
     form.title = @"Data Marketing";
     form.sort = 120;
+    [form.rows addObjects:[FormRow getRowsWithCategoryNumber:18]];
+    
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuDataMAP]];
     [realm addObject:form];
     

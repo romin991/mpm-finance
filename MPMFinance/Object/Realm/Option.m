@@ -296,6 +296,19 @@
     [Option new:realm :31 :3 :@"30"];
     [Option new:realm :31 :4 :@"36"];
     
+    [Option new:realm :32 :0 :@"Cabang"];
+    [Option new:realm :32 :1 :@"KP"];
+    [Option new:realm :32 :2 :@"B-Sat"];
+    
+    [Option new:realm :33 :0 :@"Regular Fixed Installment"];
+    [Option new:realm :33 :1 :@"Irregular Installment"];
+    [Option new:realm :33 :2 :@"Step Up / Step Down"];
+    [Option new:realm :33 :3 :@"Basic Step up / down"];
+    [Option new:realm :33 :4 :@"Normal Step up / down"];
+    [Option new:realm :33 :5 :@"Leasing Step up / down"];
+    [Option new:realm :33 :6 :@"Even Principle"];
+    [Option new:realm :33 :7 :@"Daily Interest"];
+    
     [realm commitWriteTransaction];
 }
 

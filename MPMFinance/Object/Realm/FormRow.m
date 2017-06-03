@@ -98,12 +98,12 @@
     [FormRow new:realm :5 :2 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Tambahan"];
     
     //MAP Data Aplikasi
-    [FormRow new:realm :6 :0 :NO :XLFormRowDescriptorTypeSelectorPush :@"Sumber Aplikasi"];
+    [FormRow new:realm :6 :0 :NO :XLFormRowDescriptorTypeSelectorPush :@"Sumber Aplikasi" :32];
     [FormRow new:realm :6 :1 :NO :XLFormRowDescriptorTypeSelectorPush :@"Tujuan Pembiayaan" :0];
     [FormRow new:realm :6 :2 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kode Aplikasi"];
     [FormRow new:realm :6 :3 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kode Cabang"];
     [FormRow new:realm :6 :4 :NO :XLFormRowDescriptorTypeDateInline :@"Tanggal Perjanjian"];
-    [FormRow new:realm :6 :5 :NO :XLFormRowDescriptorTypeSelectorPush :@"Source of application"];
+    [FormRow new:realm :6 :5 :NO :XLFormRowDescriptorTypeSelectorPush :@"Source of application" :1];
     [FormRow new:realm :6 :6 :NO :XLFormRowDescriptorTypeSelectorPush :@"Product" :2];
     [FormRow new:realm :6 :7 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Product Offering"];
     [FormRow new:realm :6 :8 :NO :XLFormRowDescriptorTypeSelectorPush :@"Jarak Tempuh" :3];
@@ -134,10 +134,113 @@
     [FormRow new:realm :8 :3 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Bidang Usaha"];
     [FormRow new:realm :8 :4 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Posisi Jabatan"];
     [FormRow new:realm :8 :5 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Alamat Kantor"];
-    [FormRow new:realm :8 :6 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Lama Bekerja"];
-    [FormRow new:realm :8 :7 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Pendapatan Per Tahun"];
-    [FormRow new:realm :8 :8 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Perusahaan"];
-
+    [FormRow new:realm :8 :6 :NO :XLFormRowDescriptorTypeDateInline :@"Lama Bekerja Dari"];
+    [FormRow new:realm :8 :7 :NO :XLFormRowDescriptorTypeDateInline :@"Sampai Dengan"];
+    [FormRow new:realm :8 :8 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Pendapatan Perbulan"];
+    [FormRow new:realm :8 :9 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Omzet Perbulan"];
+    [FormRow new:realm :8 :10 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Gaji Pokok"];
+    [FormRow new:realm :8 :11 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Tunjangan Tetap"];
+    [FormRow new:realm :8 :12 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Insentif"];
+    [FormRow new:realm :8 :13 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Lembur"];
+    [FormRow new:realm :8 :14 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Bonus"];
+    [FormRow new:realm :8 :15 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Pendapatan Pertahun"];
+    [FormRow new:realm :8 :16 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Perusahaan"];
+    
+    //Kartu Kredit / Pinjaman Lain
+    [FormRow new:realm :9 :0 :NO :XLFormRowDescriptorTypeSelectorPush :@"Pinjaman Tempat Lain" :19];
+    [FormRow new:realm :9 :1 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Kartu Kredit 1"];
+    [FormRow new:realm :9 :2 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomot Kartu Kredit 2"];
+    
+    //Data Pasangan
+    [FormRow new:realm :10 :0 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor KTP"];
+    [FormRow new:realm :10 :1 :NO :XLFormRowDescriptorTypeDateInline :@"KTP Berlaku Hingga"];
+    [FormRow new:realm :10 :2 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kewarganegaraan"];
+    [[FormRow new:realm :10 :3 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Alamat (Sesuai Identitas)"] setKey:@"alamat"];
+    
+    //Data Pekerjaan Pasangan
+    [FormRow new:realm :11 :0 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Perusahaan"];
+    [FormRow new:realm :11 :1 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Alamat Kantor"];
+    
+    //Data Keluarga
+    [FormRow new:realm :12 :0 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama"];
+    [FormRow new:realm :12 :1 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor KK"];
+    [FormRow new:realm :12 :2 :NO :XLFormRowDescriptorTypeDateInline :@"Tanggal Lahir"];
+    [FormRow new:realm :12 :3 :NO :XLFormRowDescriptorTypeSelectorPush :@"Hubungan" :20];
+    [FormRow new:realm :12 :4 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Sekolah Anak"];
+    [FormRow new:realm :12 :5 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Alamat Sekolah Anak"];
+    
+    //Struktur Pembiayaan
+    [FormRow new:realm :13 :0 :NO :XLFormRowDescriptorTypeSelectorPush :@"Cara Pembayaran" :21];
+    [FormRow new:realm :13 :1 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Jumlah Asset"];
+    [FormRow new:realm :13 :2 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Pokok Hutang"];
+    [FormRow new:realm :13 :3 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Subsidi DP"];
+    [[FormRow new:realm :13 :4 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Total Uang Muka Diterima MPMF"] setKey:@"totalUangMuka"];
+    [FormRow new:realm :13 :5 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Biaya Admin"];
+    [FormRow new:realm :13 :6 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Biaya Admin Lainnya"];
+    [FormRow new:realm :13 :7 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Biaya Fidusia"];
+    [[FormRow new:realm :13 :8 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Biaya Notaris / Presentasi"] setKey:@"biayaNotaris"];
+    [FormRow new:realm :13 :9 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Biaya Notaris"];
+    [FormRow new:realm :13 :10 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Biaya Lain"];
+    [FormRow new:realm :13 :11 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Biaya Survey"];
+    [[FormRow new:realm :13 :12 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Biaya Provinsi / Presentasi Provinsi"] setKey:@"biayaProvinsi"];
+    [FormRow new:realm :13 :13 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nilai Kapatalisasi"];
+    [FormRow new:realm :13 :14 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Asuransi Kapatalisasi"];
+    [FormRow new:realm :13 :15 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Flat Rate"];
+    [FormRow new:realm :13 :16 :NO :XLFormRowDescriptorTypeSelectorPush :@"Interest Type" :22];
+    [FormRow new:realm :13 :17 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Effective Rate"];
+    [FormRow new:realm :13 :18 :NO :XLFormRowDescriptorTypeSelectorPush :@"Skema Angsuran" :33];
+    [FormRow new:realm :13 :19 :NO :XLFormRowDescriptorTypeSelectorPush :@"Tipe Angsuran" :23];
+    [FormRow new:realm :13 :20 :NO :XLFormRowDescriptorTypeSelectorPush :@"Sumber Dana" :24];
+    
+    //Asuransi
+    [FormRow new:realm :14 :0 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Asuransi"];
+    [FormRow new:realm :14 :1 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Cabang Asuransi"];
+    [FormRow new:realm :14 :2 :NO :XLFormRowDescriptorTypeSelectorPush :@"Asuransi Dibayar" :26];
+    [FormRow new:realm :14 :3 :NO :XLFormRowDescriptorTypeSelectorPush :@"Jangka Waktu Asuransi" :25];
+    [FormRow new:realm :14 :4 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Periode Asuransi"];
+    [FormRow new:realm :14 :5 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nilai Pertanggungan"];
+    [FormRow new:realm :14 :6 :NO :XLFormRowDescriptorTypeSelectorPush :@"SRCC" :27];
+    [FormRow new:realm :14 :7 :NO :XLFormRowDescriptorTypeSelectorPush :@"Banjir" :27];
+    [FormRow new:realm :14 :8 :NO :XLFormRowDescriptorTypeSelectorPush :@"Gempar Bumi" :27];
+    [FormRow new:realm :14 :9 :NO :XLFormRowDescriptorTypeSelectorPush :@"TPL" :27];
+    [FormRow new:realm :14 :10 :NO :XLFormRowDescriptorTypeSelectorPush :@"PA" :27];
+    [FormRow new:realm :14 :11 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"TPL Amount"];
+    [FormRow new:realm :14 :12 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"PA Amount"];
+    [FormRow new:realm :14 :13 :NO :XLFormRowDescriptorTypeSelectorPush :@"Asuransi Jiwa Kredit" :27];
+    [FormRow new:realm :14 :14 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Asuransi Jiwa Kredit Kapatalisasi"];
+    [FormRow new:realm :14 :15 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nilai Pertanggungan Asuransi Jiwa"];
+    [FormRow new:realm :14 :16 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Premi Asuransi Kerugian Kendaraan"];
+    [FormRow new:realm :14 :17 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Premi Asuransi Jiwa Kredit"];
+    [FormRow new:realm :14 :18 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Perusahaan Asuransi Jiwa"];
+    [FormRow new:realm :14 :19 :NO :XLFormRowDescriptorTypeSelectorPush :@"Tipe Asuransi" :8];
+    [FormRow new:realm :14 :20 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Periode Asuransi Jiwa"];
+    
+    //Data Aset
+    [FormRow new:realm :15 :0 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Supplier"];
+    [FormRow new:realm :15 :1 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Asset Financed"];
+    [FormRow new:realm :15 :2 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Merk"];
+    [FormRow new:realm :15 :3 :NO :XLFormRowDescriptorTypeSelectorPush :@"New / Used" :9];
+    [FormRow new:realm :15 :4 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"No Rangka"];
+    [FormRow new:realm :15 :5 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"No Mesin"];
+    [FormRow new:realm :15 :6 :NO :XLFormRowDescriptorTypeSelectorPush :@"Pemakaian Unit" :10];
+    [FormRow new:realm :15 :7 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Silinder"];
+    [FormRow new:realm :15 :8 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Warna"];
+    [FormRow new:realm :15 :9 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Polisi"];
+    [FormRow new:realm :15 :10 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama BPKP"];
+    [FormRow new:realm :15 :11 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Area Kendaraan" :11];
+    
+    //Data Econ
+    [FormRow new:realm :16 :0 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Hubungan dengan Pemohon"];
+    
+    //MAP Penjamin
+    [FormRow new:realm :17 :0 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Penjamin"];
+    [FormRow new:realm :17 :1 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Hubungan dengan Debitur"];
+    [FormRow new:realm :17 :2 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Pasangan Penjamin"];
+    
+    //Data Marketing
+    [FormRow new:realm :18 :0 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Branch Manager"];
+    [FormRow new:realm :18 :1 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Marketing"];
+    
     [FormRow generateCreditSimulationFieldsWithRealm:realm];
     [realm commitWriteTransaction];
 }
