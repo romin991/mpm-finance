@@ -275,9 +275,86 @@
     
 }
 
-+ (void)generateCalculatorMarketing{
-//    [FormRow new:realm :20 :0 :YES :XLFormRowDescriptorType :@"Vehicle Type"];
-//    [FormRow new:realm :20 :1 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Keterangan Lain"];
++ (void)generateCalculatorMarketingWithRealm:(RLMRealm*)realm{
+    //Dahsyat
+    [FormRow new:realm :20 :0 :YES :XLFormRowDescriptorTypeSelectorPush :@"Vehicle Type"];
+    [FormRow new:realm :20 :1 :YES :XLFormRowDescriptorTypeSelectorPush :@"Manufacture Year"];
+    [FormRow new:realm :20 :2 :YES :XLFormRowDescriptorTypeSelectorPush :@"Package"];
+    [FormRow new:realm :20 :3 :YES :XLFormRowDescriptorTypeSelectorPush :@"Consumer Type"];
+    [FormRow new:realm :20 :4 :YES :XLFormRowDescriptorTypeSelectorPush :@"First Installment"];
+    [FormRow new:realm :20 :5 :YES :XLFormRowDescriptorTypeSelectorPush :@"Tenor"];
+    [FormRow new:realm :20 :6 :YES :XLFormRowDescriptorTypeSelectorPush :@"Grace Period"];
+    [FormRow new:realm :20 :7 :YES :XLFormRowDescriptorTypeSelectorPush :@"Usage"];
+    [FormRow new:realm :20 :8 :YES :XLFormRowDescriptorTypeSelectorPush :@"Coverage Type"];
+    [FormRow new:realm :20 :9 :YES :XLFormRowDescriptorTypeSelectorPush :@"Nilai Pertanggunan"];
+    [FormRow new:realm :20 :10 :YES :XLFormRowDescriptorTypeSelectorPush :@"Provisi"];
+    [FormRow new:realm :20 :11 :YES :XLFormRowDescriptorTypeSelectorPush :@"Admission Fee"];
+    [FormRow new:realm :20 :12 :YES :XLFormRowDescriptorTypeSelectorPush :@"Region"];
+    [FormRow new:realm :20 :13 :YES :XLFormRowDescriptorTypeSelectorPush :@"Life Insurance"];
+    [FormRow new:realm :20 :14 :YES :XLFormRowDescriptorTypeSelectorPush :@"Purpose of Financing"];
+    [FormRow new:realm :20 :15 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"ORT (Price List)"];
+    [FormRow new:realm :20 :16 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"% Loan of Value (LTV)"];
+    [FormRow new:realm :20 :17 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"% Running Rate"];
+    [FormRow new:realm :20 :18 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"% Free Agent"];
+    [FormRow new:realm :20 :19 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Others"];
+    [FormRow new:realm :20 :20 :YES :XLFormRowDescriptorTypeSelectorPush :@"Bulan Pencarian"];
+    
+    //Used Car
+    [FormRow new:realm :21 :0 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"OTR Kendaraan"];
+    [FormRow new:realm :21 :1 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"DP"];
+    [FormRow new:realm :21 :2 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Rate"];
+    [FormRow new:realm :21 :3 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Tahun Kendaraan"];
+    [FormRow new:realm :21 :4 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Tenor"];
+    [FormRow new:realm :21 :5 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Tipe Pembayaran"];
+    [FormRow new:realm :21 :6 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Biaya Provisi"];
+    [FormRow new:realm :21 :7 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Opsi Asuransi Jiwa"];
+    [FormRow new:realm :21 :8 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Opsi Biaya Administrasi"];
+    [FormRow new:realm :21 :9 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Opsi Biaya Fidusia"];
+    [FormRow new:realm :21 :10 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Wilayah Asuransi Kendaraan"];
+    [FormRow new:realm :21 :11 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Penggunaan"];
+    [FormRow new:realm :21 :12 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Opsi Asuransi Kendaraan"];
+    [FormRow new:realm :21 :13 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Pertanggunan (Insurance by MPM)"];
+    [FormRow new:realm :21 :14 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Pilihan Asuransi Kombinasi Tahun Pertama"];
+    [FormRow new:realm :21 :15 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Pilihan Asuransi Kombinasi Tahun Kedua"];
+    [FormRow new:realm :21 :16 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Pilihan Asuransi Kombinasi Tahun Ketiga"];
+    [FormRow new:realm :21 :17 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Pilihan Asuransi Kombinasi Tahun Keempat"];
+    [FormRow new:realm :21 :18 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Pilihan Asuransi Kombinasi Tahun Kelima"];
+    [FormRow new:realm :21 :19 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Pilihan Asuransi Kombinasi Tahun Keenam"];
+    [FormRow new:realm :21 :20 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Asuransi"];
+    [FormRow new:realm :21 :21 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"% Supplier Rate"];
+    [FormRow new:realm :21 :22 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"% Refund Bunga"];
+    [FormRow new:realm :21 :23 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"% Refund Asuransi"];
+    [FormRow new:realm :21 :24 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"% Upping Provisi"];
+    [FormRow new:realm :21 :25 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Biaya Survey (Jika Ada)"];
+    [FormRow new:realm :21 :26 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Biaya Cek / Blokir BPKB (Jika Ada)"];
+    
+    //New Car
+    [FormRow new:realm :22 :0 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"OTR Kendaraan"];
+    [FormRow new:realm :22 :1 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"DP"];
+    [FormRow new:realm :22 :2 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Rate"];
+    [FormRow new:realm :22 :3 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Tenor"];
+    [FormRow new:realm :22 :4 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Tipe Pembayaran"];
+    [FormRow new:realm :22 :5 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Biaya Provisi"];
+    [FormRow new:realm :22 :6 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Opsi Asuransi Jiwa"];
+    [FormRow new:realm :22 :7 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Opsi Biaya Administrasi"];
+    [FormRow new:realm :22 :8 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Opsi Biaya Fidusia"];
+    [FormRow new:realm :22 :9 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Wilayah Asuransi Kendaraan"];
+    [FormRow new:realm :22 :10 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Opsi Premi"];
+    [FormRow new:realm :22 :11 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Penggunaan"];
+    [FormRow new:realm :22 :12 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Opsi Asuransi Kendaraan"];
+    [FormRow new:realm :22 :13 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Pertanggunan (Insurance by MPM)"];
+    [FormRow new:realm :22 :14 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Asuransi"];
+    [FormRow new:realm :22 :15 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"% Supplier Rate"]; //Setting rate
+    [FormRow new:realm :22 :16 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"% Refund Bunga"];
+    [FormRow new:realm :22 :17 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"% Refund Asuransi"];
+    [FormRow new:realm :22 :18 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"% Upping Provisi"];
+    
+    [FormRow new:realm :22 :19 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"% Refund Bunga"]; //Opsi komponen biaya tunai
+    [FormRow new:realm :22 :20 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"% Refund Asuransi"];
+    [FormRow new:realm :22 :21 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"% Upping Provisi"];
+    [FormRow new:realm :22 :22 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Biaya Survey (Jika Ada)"];
+    
+    [FormRow new:realm :22 :23 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Biaya Cek / Blokir BPKB (Jika Ada)"];
 }
 
 + (void)generateCreditSimulationFieldsWithRealm:(RLMRealm*)realm{
