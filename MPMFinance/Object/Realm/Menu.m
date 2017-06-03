@@ -530,15 +530,16 @@
     
     menuList = [[Menu alloc] init];
     menuList.imageName = @"";
-    menuList.title = kSubmenuListMarketing;
+    menuList.title = kSubmenuListSurvey;
     menuList.sort = 0;
-    menuList.menuType = kMenuTypeMap;
+    menuList.menuType = kMenuTypeFormHorizontal;
     action = [[Action alloc] init];
     action.name = @"Get List Survey";
     action.methodName = @"getListSurvey:";
     action.actionType = kActionTypeAPICall;
     menuList.fetchDataFromAPI = action;
     [menuList.roles addObjects:menu.roles];
+    [menuList.submenus addObject:[Menu objectForPrimaryKey:kSubmenuSurvey]];
     [realm addObject:menuList];
     
     [menu.submenus addObject:menuList];

@@ -206,10 +206,11 @@
     
 //=====================================================================================================
     form = [[Form alloc] init];
+    form.title = @"Survey";
     form.sort = 130;
-    [form.rows addObjects:[FormRow getRowsWithCategoryNumber:9]];
+    [form.rows addObjects:[FormRow getRowsWithCategoryNumber:19]];
     
-    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuNewBike]];
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuSurvey]];
     [realm addObject:form];
 
     

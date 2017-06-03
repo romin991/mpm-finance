@@ -70,6 +70,11 @@
     [FormRow new:realm :0 :2 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Tempat Lahir"];
     [FormRow new:realm :0 :3 :NO :XLFormRowDescriptorTypeDateInline :@"Tanggal Lahir"];
     [FormRow new:realm :0 :4 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Alamat Rumah Sesuai KTP"];
+    [FormRow new:realm :1 :5 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Telepon"];
+    [FormRow new:realm :1 :6 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Handphone"];
+    [FormRow new:realm :1 :7 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Alamat Domisili"];
+    [FormRow new:realm :1 :8 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kode Pos Alamat Domisili"];
+    [FormRow new:realm :1 :9 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Gadis Ibu Kandung"];
     
     //Data Pasangan
     [FormRow new:realm :1 :0 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Pasangan"];
@@ -81,6 +86,7 @@
     //Data Aset
     [FormRow new:realm :2 :0 :NO :XLFormRowDescriptorTypeSelectorPush :@"Tipe Produk" :2];
     [FormRow new:realm :2 :1 :NO :XLFormRowDescriptorTypeSelectorPush :@"Tipe Kendaraan"];
+    [FormRow new:realm :2 :2 :NO :XLFormRowDescriptorTypeSelectorPush :@"Tahun Kendaraan"];
     
     //Struktur Pembiayaan
     [FormRow new:realm :3 :0 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Harga Perolehan"];
@@ -242,10 +248,32 @@
     [FormRow new:realm :18 :1 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Marketing"];
     
     [FormRow generateCreditSimulationFieldsWithRealm:realm];
+    [FormRow generateListSurveyWithRealm:realm];
     [realm commitWriteTransaction];
 }
 
-
++ (void)generateListSurveyWithRealm:(RLMRealm *)realm{
+    [FormRow new:realm :19 :0 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Calon Debitur"];
+    [FormRow new:realm :19 :1 :YES :XLFormRowDescriptorTypeDateInline :@"Tanggal Survey"];
+    [FormRow new:realm :19 :2 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Surveyor"];
+    [FormRow new:realm :19 :3 :YES :XLFormRowDescriptorTypeSelectorPush :@"Alamat Survey Ditemukan" :27];
+    [FormRow new:realm :19 :4 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Penjelasan"];
+    [FormRow new:realm :19 :5 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama"];
+    [FormRow new:realm :19 :6 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Hubungan"];
+    [FormRow new:realm :19 :7 :YES :XLFormRowDescriptorTypeSelectorPush :@"Kebenaran Domisili" :27];
+    [FormRow new:realm :19 :8 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Penjelasan"];
+    [FormRow new:realm :19 :9 :YES :XLFormRowDescriptorTypeSelectorPush :@"Status Kepemilikan Rumah" :13];
+    [FormRow new:realm :19 :10 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Lama Tinggal"];
+    [[FormRow new:realm :19 :11 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Jumlah orang yang tinggal serumah"] setKey:@"jumlahOrang"];
+    [FormRow new:realm :19 :12 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Tambahan"];
+    [FormRow new:realm :19 :13 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Jumlah Lantai Rumah"];
+    [FormRow new:realm :19 :14 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Fasilitas Rumah"];
+    [FormRow new:realm :19 :15 :YES :XLFormRowDescriptorTypeSelectorPush :@"Akses Jalan Masuk" :14];
+    [FormRow new:realm :19 :16 :YES :XLFormRowDescriptorTypeSelectorPush :@"Kepemilikan Garasi" : 27];
+    [FormRow new:realm :19 :17 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Harga"];
+    [FormRow new:realm :19 :18 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Keterangan Lain"];
+    
+}
 
 + (void)generateCreditSimulationFieldsWithRealm:(RLMRealm*)realm{
     [FormRow new:realm :9 :0 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Harga"];
