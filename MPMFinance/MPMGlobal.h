@@ -73,6 +73,7 @@ extern NSString *const kMenuTypeList;
 extern NSString *const kMenuTypeSubmenu;
 extern NSString *const kMenuTypeSubmenu2;
 extern NSString *const kMenuTypeMap;
+extern NSString *const kMenuTypeCreditSimulation;
 extern NSString *const kApiUrl;
 
 extern NSString *const kActionTypeForward;

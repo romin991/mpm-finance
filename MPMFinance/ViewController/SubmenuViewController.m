@@ -11,7 +11,7 @@
 #import "FormViewController.h"
 #import "SimpleListViewController.h"
 #import "ListViewController.h"
-
+#import "CreditSimulationViewController.h"
 @interface SubmenuViewController ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *banner;
@@ -69,7 +69,13 @@
         listViewController.menu = submenu;
         [self.navigationController pushViewController:listViewController animated:YES];
     }
+    else if ([submenu.menuType isEqualToString:kMenuTypeCreditSimulation]){
+        CreditSimulationViewController *creditSimulation = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"CreditSimulationViewController"];
+        creditSimulation.menuType = submenu.title;
+        [self.navigationController pushViewController:creditSimulation animated:YES];
+    }
 }
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SubmenuTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];

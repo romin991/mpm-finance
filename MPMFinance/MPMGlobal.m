@@ -69,6 +69,7 @@ NSString *const kSubmenuMonthToDate = @"Month to Date";
 
 NSString *const kMenuTypeFormVertical = @"Vertical";
 NSString *const kMenuTypeFormHorizontal = @"Horizontal";
+NSString *const kMenuTypeCreditSimulation = @"Credit Simulation";
 NSString *const kMenuTypeList = @"List";
 NSString *const kMenuTypeSubmenu = @"Submenu";
 NSString *const kMenuTypeSubmenu2 = @"Submenu2";

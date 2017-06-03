@@ -45,6 +45,7 @@
 		48D44D4C1EDF8F28005FC8DB /* NSString+MixedCasing.m in Sources */ = {isa = PBXBuildFile; fileRef = 48D44D4B1EDF8F28005FC8DB /* NSString+MixedCasing.m */; };
 		48D44D4F1EDFD2AF005FC8DB /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 48D44D4E1EDFD2AF005FC8DB /* ISO8601DateFormatter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		48F7F4061EC5C931008DB808 /* Role.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F7F4051EC5C931008DB808 /* Role.m */; };
+		5C4587651EE2A02D004AC7FE /* CreditSimulationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4587641EE2A02D004AC7FE /* CreditSimulationViewController.m */; };
 		5C586E9A1ECB183200A5A626 /* HelpTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C586E991ECB183200A5A626 /* HelpTableViewController.m */; };
 		5C9B08EC1EC9DB8700B5E9AC /* MenuNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9B08EB1EC9DB8700B5E9AC /* MenuNavigationViewController.m */; };
 		5C9B08F11EC9DB9300B5E9AC /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9B08EE1EC9DB9300B5E9AC /* HistoryViewController.m */; };
@@ -124,6 +125,8 @@
 		48D44D4E1EDFD2AF005FC8DB /* ISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISO8601DateFormatter.m; sourceTree = "<group>"; };
 		48F7F4041EC5C931008DB808 /* Role.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Role.h; path = Object/Realm/Role.h; sourceTree = "<group>"; };
 		48F7F4051EC5C931008DB808 /* Role.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Role.m; path = Object/Realm/Role.m; sourceTree = "<group>"; };
+		5C4587631EE2A02D004AC7FE /* CreditSimulationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditSimulationViewController.h; sourceTree = "<group>"; };
+		5C4587641EE2A02D004AC7FE /* CreditSimulationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditSimulationViewController.m; sourceTree = "<group>"; };
 		5C586E981ECB183200A5A626 /* HelpTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpTableViewController.h; sourceTree = "<group>"; };
 		5C586E991ECB183200A5A626 /* HelpTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpTableViewController.m; sourceTree = "<group>"; };
 		5C9B08EA1EC9DB8700B5E9AC /* MenuNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuNavigationViewController.h; sourceTree = "<group>"; };
@@ -229,6 +232,7 @@
 		483F39371EC3513800C03253 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				5CB037C71EE288C500B47BD6 /* CreditSimulationViewController */,
 				5C9B08E91EC9DB7300B5E9AC /* TabMenuContainer */,
 				48CDD8361EC9B8840038D626 /* SubmenuViewController */,
 				4831CD1B1EDE974D001EF223 /* SubmenuCollectionViewController */,
@@ -388,6 +392,15 @@
 				5C9DB2411EC3393000FC0CC9 /* MPMUserInfo.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		5CB037C71EE288C500B47BD6 /* CreditSimulationViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5C4587631EE2A02D004AC7FE /* CreditSimulationViewController.h */,
+				5C4587641EE2A02D004AC7FE /* CreditSimulationViewController.m */,
+			);
+			name = CreditSimulationViewController;
 			sourceTree = "<group>";
 		};
 		6C2E6E6C6CDAB2318F73C3D6 /* Pods */ = {
@@ -566,6 +579,7 @@
 				4866A89A1ECD8B2200A89E98 /* FloatLabeledTextFieldCell.m in Sources */,
 				483F39251EC3085E00C03253 /* AppDelegate.m in Sources */,
 				4886BAFD1EC42EDD000F8DBE /* MenuViewController.m in Sources */,
+				5C4587651EE2A02D004AC7FE /* CreditSimulationViewController.m in Sources */,
 				5C9B08EC1EC9DB8700B5E9AC /* MenuNavigationViewController.m in Sources */,
 				48CDD8421EC9BA1A0038D626 /* SubmenuTableViewCell.m in Sources */,
 				48F7F4061EC5C931008DB808 /* Role.m in Sources */,
