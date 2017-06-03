@@ -244,7 +244,7 @@
     submenu = [[Menu alloc] init];
     submenu.imageName = @"";
     submenu.title = kSubmenuNewBike;
-    submenu.menuType = kMenuTypeFormHorizontal;
+    submenu.menuType = kMenuTypeCreditSimulation;
     submenu.sort = 2;
     submenu.borderColor = @"B30808";
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
