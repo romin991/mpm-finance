@@ -308,6 +308,11 @@
     [Option new:realm :33 :5 :@"Leasing Step up / down"];
     [Option new:realm :33 :6 :@"Even Principle"];
     [Option new:realm :33 :7 :@"Daily Interest"];
+
+    [Option new:realm :34 :0 :@"1 Lantai"];
+    [Option new:realm :34 :1 :@"2 Lantai"];
+    [Option new:realm :34 :2 :@"3 Lantai"];
+    [Option new:realm :34 :3 :@"> 3 Lantai"];
     
     [realm commitWriteTransaction];
 }

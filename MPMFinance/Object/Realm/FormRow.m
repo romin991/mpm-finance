@@ -266,13 +266,18 @@
     [FormRow new:realm :19 :10 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Lama Tinggal"];
     [[FormRow new:realm :19 :11 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Jumlah orang yang tinggal serumah"] setKey:@"jumlahOrang"];
     [FormRow new:realm :19 :12 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Tambahan"];
-    [FormRow new:realm :19 :13 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Jumlah Lantai Rumah"];
+    [FormRow new:realm :19 :13 :YES :XLFormRowDescriptorTypeSelectorPush :@"Jumlah Lantai Rumah" :34];
     [FormRow new:realm :19 :14 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Fasilitas Rumah"];
     [FormRow new:realm :19 :15 :YES :XLFormRowDescriptorTypeSelectorPush :@"Akses Jalan Masuk" :14];
     [FormRow new:realm :19 :16 :YES :XLFormRowDescriptorTypeSelectorPush :@"Kepemilikan Garasi" : 27];
     [FormRow new:realm :19 :17 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Harga"];
     [FormRow new:realm :19 :18 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Keterangan Lain"];
     
+}
+
++ (void)generateCalculatorMarketing{
+//    [FormRow new:realm :20 :0 :YES :XLFormRowDescriptorType :@"Vehicle Type"];
+//    [FormRow new:realm :20 :1 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Keterangan Lain"];
 }
 
 + (void)generateCreditSimulationFieldsWithRealm:(RLMRealm*)realm{
