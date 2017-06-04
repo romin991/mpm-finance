@@ -45,6 +45,7 @@
 		48D44D4C1EDF8F28005FC8DB /* NSString+MixedCasing.m in Sources */ = {isa = PBXBuildFile; fileRef = 48D44D4B1EDF8F28005FC8DB /* NSString+MixedCasing.m */; };
 		48D44D4F1EDFD2AF005FC8DB /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 48D44D4E1EDFD2AF005FC8DB /* ISO8601DateFormatter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		48F7F4061EC5C931008DB808 /* Role.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F7F4051EC5C931008DB808 /* Role.m */; };
+		5C0138751EE43C9300B9B40B /* ContactUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0138741EE43C9300B9B40B /* ContactUsViewController.m */; };
 		5C4587651EE2A02D004AC7FE /* CreditSimulationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4587641EE2A02D004AC7FE /* CreditSimulationViewController.m */; };
 		5C586E9A1ECB183200A5A626 /* HelpTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C586E991ECB183200A5A626 /* HelpTableViewController.m */; };
 		5C9B08EC1EC9DB8700B5E9AC /* MenuNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9B08EB1EC9DB8700B5E9AC /* MenuNavigationViewController.m */; };
@@ -125,6 +126,8 @@
 		48D44D4E1EDFD2AF005FC8DB /* ISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISO8601DateFormatter.m; sourceTree = "<group>"; };
 		48F7F4041EC5C931008DB808 /* Role.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Role.h; path = Object/Realm/Role.h; sourceTree = "<group>"; };
 		48F7F4051EC5C931008DB808 /* Role.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Role.m; path = Object/Realm/Role.m; sourceTree = "<group>"; };
+		5C0138731EE43C9300B9B40B /* ContactUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactUsViewController.h; sourceTree = "<group>"; };
+		5C0138741EE43C9300B9B40B /* ContactUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactUsViewController.m; sourceTree = "<group>"; };
 		5C4587631EE2A02D004AC7FE /* CreditSimulationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditSimulationViewController.h; sourceTree = "<group>"; };
 		5C4587641EE2A02D004AC7FE /* CreditSimulationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditSimulationViewController.m; sourceTree = "<group>"; };
 		5C586E981ECB183200A5A626 /* HelpTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpTableViewController.h; sourceTree = "<group>"; };
@@ -232,6 +235,7 @@
 		483F39371EC3513800C03253 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				5C0138721EE43C7C00B9B40B /* ContactUsViewController */,
 				5CB037C71EE288C500B47BD6 /* CreditSimulationViewController */,
 				5C9B08E91EC9DB7300B5E9AC /* TabMenuContainer */,
 				48CDD8361EC9B8840038D626 /* SubmenuViewController */,
@@ -348,6 +352,15 @@
 				48CDD8411EC9BA1A0038D626 /* SubmenuTableViewCell.xib */,
 			);
 			name = SubmenuViewController;
+			sourceTree = "<group>";
+		};
+		5C0138721EE43C7C00B9B40B /* ContactUsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5C0138731EE43C9300B9B40B /* ContactUsViewController.h */,
+				5C0138741EE43C9300B9B40B /* ContactUsViewController.m */,
+			);
+			name = ContactUsViewController;
 			sourceTree = "<group>";
 		};
 		5C5B47F11ED5CB8D008E7E2E /* HomeSubmenu */ = {
@@ -573,6 +586,7 @@
 				483F393A1EC3518500C03253 /* ForgotPasswordViewController.m in Sources */,
 				4842780A1ECABC3000183A60 /* List.m in Sources */,
 				483F39281EC3085E00C03253 /* LoginViewController.m in Sources */,
+				5C0138751EE43C9300B9B40B /* ContactUsViewController.m in Sources */,
 				5CF6819C1EC747A60056ACD3 /* KASlideShow.m in Sources */,
 				4849EEE11EC8815000415E4B /* FormViewController.m in Sources */,
 				5C9DB2361EC3312200FC0CC9 /* MPMGlobal.m in Sources */,
