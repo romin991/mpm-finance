@@ -71,8 +71,10 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             //set the result here
             if (error == nil) {
-                if (dictionary) [weakSelf setFetchResult:dictionary];
-                [weakSelf setFormValueWithDictionary:dictionary];
+                if (dictionary) {
+                    [weakSelf setFetchResult:dictionary];
+                    [weakSelf setFormValueWithDictionary:dictionary];
+                }
                 [SVProgressHUD dismiss];
             } else {
                 [SVProgressHUD showErrorWithStatus:[error localizedDescription]];

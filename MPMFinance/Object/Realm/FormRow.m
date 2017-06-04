@@ -65,23 +65,26 @@
     [realm beginWriteTransaction];
     
     //Data Pemohon
-    [FormRow new:realm :0 :0 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Calon Debitur"];
-    [FormRow new:realm :0 :1 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"No KTP"];
-    [FormRow new:realm :0 :2 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Tempat Lahir"];
-    [FormRow new:realm :0 :3 :NO :XLFormRowDescriptorTypeDateInline :@"Tanggal Lahir"];
-    [FormRow new:realm :0 :4 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Alamat Rumah Sesuai KTP"];
-    [FormRow new:realm :1 :5 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Telepon"];
-    [FormRow new:realm :1 :6 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Handphone"];
-    [FormRow new:realm :1 :7 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Alamat Domisili"];
-    [FormRow new:realm :1 :8 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kode Pos Alamat Domisili"];
-    [FormRow new:realm :1 :9 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Gadis Ibu Kandung"];
+    [FormRow new:realm :0 :0 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kode Cabang"];
+    [FormRow new:realm :0 :1 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Calon Debitur"];
+    [FormRow new:realm :0 :2 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"No KTP"];
+    [FormRow new:realm :0 :3 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Tempat Lahir"];
+    [FormRow new:realm :0 :4 :NO :XLFormRowDescriptorTypeDateInline :@"Tanggal Lahir"];
+    [FormRow new:realm :0 :5 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Alamat Rumah Sesuai KTP"];
+    [FormRow new:realm :0 :6 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Telepon"];
+    [FormRow new:realm :0 :7 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Handphone"];
+    [FormRow new:realm :0 :8 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Alamat Domisili"];
+    [FormRow new:realm :0 :9 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kode Pos Alamat Domisili"];
+    [FormRow new:realm :0 :10 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Gadis Ibu Kandung"];
     
     //Data Pasangan
     [FormRow new:realm :1 :0 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Pasangan"];
-    [FormRow new:realm :1 :1 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"No KTP"];
-    [FormRow new:realm :1 :2 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Tempat Lahir"];
-    [FormRow new:realm :1 :3 :NO :XLFormRowDescriptorTypeDateInline :@"Tanggal Lahir"];
-    [FormRow new:realm :1 :4 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Alamat"];
+    [FormRow new:realm :1 :1 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"No KTP Pasangan"];
+    [FormRow new:realm :1 :2 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Tempat Lahir Pasangan"];
+    [FormRow new:realm :1 :3 :NO :XLFormRowDescriptorTypeDateInline :@"Tanggal Lahir Pasangan"];
+    [FormRow new:realm :1 :4 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Alamat Pasangan"];
+    [FormRow new:realm :1 :5 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Telepon Pasangan"];
+    [FormRow new:realm :1 :6 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Gadis Ibu Kandung Pasangan"];
     
     //Data Aset
     [FormRow new:realm :2 :0 :NO :XLFormRowDescriptorTypeSelectorPush :@"Tipe Produk" :2];
