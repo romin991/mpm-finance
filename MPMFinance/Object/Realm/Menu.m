@@ -223,6 +223,7 @@
     submenu.imageName = @"";
     submenu.title = kSubmenuDahsyat4W;
     submenu.sort = 2;
+    submenu.menuType = kMenuTypeCreditSimulation;
     submenu.borderColor = @"B30808";
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
@@ -234,6 +235,7 @@
     submenu.imageName = @"";
     submenu.title = kSubmenuDahsyat2W;
     submenu.sort = 2;
+    submenu.menuType = kMenuTypeCreditSimulation;
     submenu.borderColor = @"B30808";
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
@@ -257,6 +259,7 @@
     submenu.imageName = @"NewCarIcon";
     submenu.title = kSubmenuNewCar;
     submenu.sort = 2;
+    submenu.menuType = kMenuTypeCreditSimulation;
     submenu.borderColor = @"B30808";
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];

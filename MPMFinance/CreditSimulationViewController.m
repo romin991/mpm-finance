@@ -11,7 +11,7 @@
 @interface CreditSimulationViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *txtHarga;
 @property (weak, nonatomic) IBOutlet UITextField *txtLamaPembiayaan;
-@property (weak, nonatomic) IBOutlet UITextField *txtUangMuka;
+@property (weak, nonatomic) IBOutlet UITextField *txtUangMuka; // nilai pembiayaan di dahsyat2w dan 4w
 @property (weak, nonatomic) IBOutlet UITextField *txtTotalBayarAwal;
 @property (weak, nonatomic) IBOutlet UITextField *txtAngsuran;
 @property (weak, nonatomic) IBOutlet UIButton *btnPengajuan;
@@ -30,9 +30,16 @@
 }
 -(void)refreshUI
 {
-    if ([self.menuType isEqualToString:kSubmenuNewBike]) {
+    if ([self.menuType isEqualToString:kSubmenuNewBike] || [self.menuType isEqualToString:kSubmenuNewCar] || [self.menuType isEqualToString:kSubmenuUsedCar]) {
         self.lblDP.hidden = YES;
         self.txtUangMuka.hidden = YES;
+        self.txtTotalBayarAwal.enabled = NO;
+        self.txtAngsuran.enabled = NO;
+    }
+    else if ([self.menuType isEqualToString:kSubmenuDahsyat2W] || [self.menuType isEqualToString:kSubmenuDahsyat4W]) {
+        self.lblDP.hidden = NO;
+        self.lblDP.text = @"Nilai Pembiayaan";
+        self.txtUangMuka.hidden = NO;
         self.txtTotalBayarAwal.enabled = NO;
         self.txtAngsuran.enabled = NO;
     }
@@ -53,12 +60,21 @@
     }
     else if ([self.menuType isEqualToString:kSubmenuNewCar] || [self.menuType isEqualToString:kSubmenuUsedCar]) {
         urlString = [NSString stringWithFormat:@"%@/simulation/mycar",kApiUrl];
+        param = @{@"jenisKendaraan" : self.menuType,
+                  @"lamaPembiayaan" : self.txtLamaPembiayaan.text,
+                  @"hargaKendaraan" : self.txtHarga.text};
     }
     else if ([self.menuType isEqualToString:kSubmenuDahsyat2W]) {
         urlString = [NSString stringWithFormat:@"%@/simulation/dahsyat2w",kApiUrl];
+        param = @{@"nilaiPencairan" : self.txtUangMuka.text,
+                  @"lamaPembiayaan" : self.txtLamaPembiayaan.text,
+                  @"hargaKendaraan" : self.txtHarga.text};
     }
     else if ([self.menuType isEqualToString:kSubmenuDahsyat4W]) {
         urlString = [NSString stringWithFormat:@"%@/simulation/dahsyat4w",kApiUrl];
+        param = @{@"nilaiPencairan" : self.txtUangMuka.text,
+                  @"lamaPembiayaan" : self.txtLamaPembiayaan.text,
+                  @"hargaKendaraan" : self.txtHarga.text};
     }
     else if ([self.menuType isEqualToString:kSubmenuProperty]) {
         urlString = [NSString stringWithFormat:@"%@/simulation/property",kApiUrl];
@@ -69,8 +85,10 @@
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"%@",responseObject);
         if ([responseObject[@"statusCode"] isEqual:@200]) {
+            
             self.txtAngsuran.text = responseObject[@"data"][@"angsuran"];
             self.txtTotalBayarAwal.text = responseObject[@"data"][@"nilaiPembiayaan"];
+            [self.btnPengajuan setHidden:NO];
             
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
