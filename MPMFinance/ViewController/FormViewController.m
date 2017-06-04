@@ -54,13 +54,15 @@
     
     }
     
-    if (self.list) {
-        [self fetchData];
-    }
-    
     [self generateFormDescriptor];
     [self setHorizontalLabel];
     [self setRightBarButton];
+    
+    if (self.list) {
+        [self fetchData];
+    } else if (self.valueDictionary.count > 0){
+        [self setFormValueWithDictionary:self.valueDictionary];
+    }
 }
 
 - (void)fetchData{
@@ -106,6 +108,7 @@
 }
 
 - (void)setFormValueWithDictionary:(NSDictionary *)dictionary{
+    self.valueDictionary = [NSMutableDictionary dictionaryWithDictionary:dictionary];
     for (XLFormSectionDescriptor *section in self.formDescriptor.formSections) {
         for (XLFormRowDescriptor *row in section.formRows) {
             NSString *value;
