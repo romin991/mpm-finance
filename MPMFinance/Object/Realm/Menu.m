@@ -65,7 +65,7 @@
     
     Action *action = [[Action alloc] init];
     action.name = @"Send";
-    action.methodName = @"createListWorkOrder:completion:";
+    action.methodName = @"postListWorkOrder:dictionary:completion:";
     action.actionType = kActionTypeAPICall;
     submenu.rightButtonAction = action;
     

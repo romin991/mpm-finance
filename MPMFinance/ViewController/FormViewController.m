@@ -58,10 +58,10 @@
     [self setHorizontalLabel];
     [self setRightBarButton];
     
-    if (self.list) {
-        [self fetchData];
-    } else if (self.valueDictionary.count > 0){
+    if (self.valueDictionary.count > 0){
         [self setFormValueWithDictionary:self.valueDictionary];
+    } else if (self.list) {
+        [self fetchData];
     }
 }
 
@@ -175,25 +175,38 @@
     }
     
     if (self.forms.count == self.index + 1){
+        [SVProgressHUD show];
+        
         //call API here
-        void (^handler)(NSError *error) = ^void(NSError *error){
+        __block void (^handler)(NSDictionary *dictionary, NSError *error) = ^void(NSDictionary *dictionary, NSError *error){
             //callback api here
-            if (error){
-                
+            if (error == nil) {
+                if (dictionary) {
+                    
+                }
+                [SVProgressHUD dismiss];
+            } else {
+                [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+                [SVProgressHUD dismissWithDelay:1.5];
             }
         };
         
         __block NSString *methodName = self.menu.rightButtonAction ? self.menu.rightButtonAction.methodName : @"";
-        NSMutableDictionary *valueDictionary = self.valueDictionary;
+        __block NSMutableDictionary *valueDictionary = self.valueDictionary;
+        __block List *list = self.list;
         if ([APIModel respondsToSelector:NSSelectorFromString(methodName)]) {
             NSMethodSignature * mySignature = [APIModel methodSignatureForSelector:NSSelectorFromString(methodName)];
             NSInvocation * myInvocation = [NSInvocation invocationWithMethodSignature:mySignature];
             [myInvocation setTarget:[APIModel class]];
             [myInvocation setSelector:NSSelectorFromString(methodName)];
-            [myInvocation setArgument:&valueDictionary atIndex:2];
-            [myInvocation setArgument:&handler atIndex:3];
+            [myInvocation setArgument:&list atIndex:2];
+            [myInvocation setArgument:&valueDictionary atIndex:3];
+            [myInvocation setArgument:&handler atIndex:4];
             [myInvocation retainArguments];
             [myInvocation performSelector:@selector(invoke) withObject:nil afterDelay:0.1];
+        } else {
+            [SVProgressHUD showErrorWithStatus:@"No method found"];
+            [SVProgressHUD dismissWithDelay:1.5];
         }
         
     } else {
@@ -201,6 +214,7 @@
         nextFormViewController.menu = self.menu;
         nextFormViewController.index = self.index + 1;
         nextFormViewController.valueDictionary = self.valueDictionary;
+        nextFormViewController.list = self.list;
         [self.navigationController pushViewController:nextFormViewController animated:YES];
     }
 }
