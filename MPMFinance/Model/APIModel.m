@@ -236,7 +236,7 @@
     
 }
 
-+ (void)createListWorkOrder:(NSDictionary *)dictionary completion:(void(^)(NSError *error))block{
++ (void)postListWorkOrder:(List *)list dictionary:(NSDictionary *)dictionary completion:(void(^)(NSDictionary *dictionary, NSError *error))block{
     AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
     NSMutableDictionary* param = [NSMutableDictionary dictionaryWithDictionary:
                                   @{@"userid" :[MPMUserInfo getUserInfo][@"userId"],
@@ -244,36 +244,52 @@
     
     //try catch??
     NSMutableDictionary *dataDictionary = [NSMutableDictionary dictionary];
-//    [dataDictionary setObject:[dictionary objectForKey:@""] forKey:@"kodeCabang"];
+    [dataDictionary setObject:[dictionary objectForKey:@"kodeCabang"] forKey:@"kodeCabang"];
     [dataDictionary setObject:[dictionary objectForKey:@"namaCalonDebitur"] forKey:@"namaCalon"];
-    [dataDictionary setObject:[dictionary objectForKey:@"noKTP"] forKey:@"noKTP"];
+    [dataDictionary setObject:[dictionary objectForKey:@"noKTP"] forKey:@"noKtp"];
     [dataDictionary setObject:[dictionary objectForKey:@"tempatLahir"] forKey:@"tmpLahir"];
     [dataDictionary setObject:[dictionary objectForKey:@"tanggalLahir"] forKey:@"tglLahir"];
     [dataDictionary setObject:[dictionary objectForKey:@"alamatRumahSesuaiKTP"] forKey:@"alamatLegal"];
-//    [dataDictionary setObject:[dictionary objectForKey:@""] forKey:@"handphone"];
-//    [dataDictionary setObject:[dictionary objectForKey:@""] forKey:@"noTlp"];
-//    [dataDictionary setObject:[dictionary objectForKey:@""] forKey:@"alamatDomisili"];
-//    [dataDictionary setObject:[dictionary objectForKey:@""] forKey:@"kodePostAlamatCalon"];
-//    [dataDictionary setObject:[dictionary objectForKey:@""] forKey:@"namaIbuKandung"];
+    [dataDictionary setObject:[dictionary objectForKey:@"nomorHandphone"] forKey:@"handphone"];
+    [dataDictionary setObject:[dictionary objectForKey:@"nomorTelepon"] forKey:@"noTlp"];
+    [dataDictionary setObject:[dictionary objectForKey:@"alamatDomisili"] forKey:@"alamatDomisili"];
+    [dataDictionary setObject:[dictionary objectForKey:@"kodePosAlamatDomisili"] forKey:@"kodePosAlamatCalon"];
+    [dataDictionary setObject:[dictionary objectForKey:@"namaGadisIbuKandung"] forKey:@"namaIbuKandung"];
+    
     [dataDictionary setObject:[dictionary objectForKey:@"namaPasangan"] forKey:@"namaPasangan"];
-//    [dataDictionary setObject:[dictionary objectForKey:@""] forKey:@"noTlpPasangan"];
+    [dataDictionary setObject:[dictionary objectForKey:@"noKTPPasangan"] forKey:@"ktpPasangan"];
+    [dataDictionary setObject:[dictionary objectForKey:@"tempatLahirPasangan"] forKey:@"tmpLahirPasangan"];
+    [dataDictionary setObject:[dictionary objectForKey:@"tanggalLahirPasangan"] forKey:@"tglLahirPasangan"];
+    [dataDictionary setObject:[dictionary objectForKey:@"alamatPasangan"] forKey:@"alamatLegalPasangan"];
+    [dataDictionary setObject:[dictionary objectForKey:@"nomorTeleponPasangan"] forKey:@"noTlpPasangan"];
+    [dataDictionary setObject:[dictionary objectForKey:@"namaGadisIbuKandungPasangan"] forKey:@"namaIbuKandungPasangan"];
+    
     [dataDictionary setObject:[dictionary objectForKey:@"tipeProduk"] forKey:@"tipeProduk"];
     [dataDictionary setObject:[dictionary objectForKey:@"tipeKendaraan"] forKey:@"tipeKendaraan"];
-//    [dataDictionary setObject:[dictionary objectForKey:@""] forKey:@"tahunKendaraan"];
+    [dataDictionary setObject:[dictionary objectForKey:@"tahunKendaraan"] forKey:@"tahunKendaraan"];
+    
     [dataDictionary setObject:[dictionary objectForKey:@"hargaPerolehan"] forKey:@"hargaPerolehan"];
     [dataDictionary setObject:[dictionary objectForKey:@"uangMuka"] forKey:@"uangMuka"];
     [dataDictionary setObject:[dictionary objectForKey:@"jangkaWaktuPembiayaan"] forKey:@"tenor"];
     [dataDictionary setObject:[dictionary objectForKey:@"angsuran"] forKey:@"angsuran"];
+    
     [dataDictionary setObject:[dictionary objectForKey:@"namaTempatKerja"] forKey:@"namaTmpKerja"];
     [dataDictionary setObject:[dictionary objectForKey:@"nomorTeleponTempatKerja"] forKey:@"tlpTmpKerja"];
+    
     [dataDictionary setObject:[dictionary objectForKey:@"namaE-con"] forKey:@"namaEcon"];
     [dataDictionary setObject:[dictionary objectForKey:@"nomorTeleponE-con"] forKey:@"noTlpEcon"];
     
+    NSString *url = @"input";
+    if (list){
+        [dataDictionary setObject:@(list.primaryKey) forKey:@"id"];
+        url = @"update";
+    }
+    
     [param setObject:dataDictionary forKey:@"data"];
     
-    [manager POST:[NSString stringWithFormat:@"%@/pengajuan/customer/input",kApiUrl] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [manager POST:[NSString stringWithFormat:@"%@/pengajuan/customer/%@", kApiUrl, url] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"statusCode"] isEqual:@200]) {
-            if (block) block(nil);
+            if (block) block(responseObject, nil);
         } else {
             NSInteger code = 0;
             NSString *message = @"";
@@ -283,15 +299,15 @@
             } @catch (NSException *exception) {
                 NSLog(@"%@", exception);
             } @finally {
-                if (block) block([NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
-                                                     code:code
-                                                 userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(message, nil)}]);
+                if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                          code:code
+                                                      userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(message, nil)}]);
             }
             
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        if (block) block(error);
+        if (block) block(nil, error);
     }];
 }
 @end
