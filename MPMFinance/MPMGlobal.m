@@ -12,6 +12,9 @@
 
 @implementation MPMGlobal
 
+
+NSString *const kAPIKey = @"AIzaSyCx8uLneXfyNKCV8emCWt-AD4V1kPgrHJw";
+
 NSString *const kRoleCustomer = @"Customer";
 NSString *const kRoleAgent = @"Agent";
 NSString *const kRoleDealer = @"Dealer";
@@ -70,6 +73,7 @@ NSString *const kSubmenuMonthToDate = @"Month to Date";
 NSString *const kMenuTypeFormVertical = @"Vertical";
 NSString *const kMenuTypeFormHorizontal = @"Horizontal";
 NSString *const kMenuTypeCreditSimulation = @"Credit Simulation";
+NSString *const kMenuTypeContactUs = @"Contact Us";
 NSString *const kMenuTypeList = @"List";
 NSString *const kMenuTypeSubmenu = @"Submenu";
 NSString *const kMenuTypeSubmenu2 = @"Submenu2";

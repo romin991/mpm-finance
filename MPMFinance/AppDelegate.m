@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "PopulateRealmDatabase.h"
-
+#import <GoogleMaps/GoogleMaps.h>
 #define SYSTEM_VERSION_GRATERTHAN_OR_EQUALTO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
 @import Firebase;
@@ -21,6 +21,7 @@
 NSString *const kGCMMessageIDKey = @"gcm.message_id";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [GMSServices provideAPIKey:kAPIKey];
     [PopulateRealmDatabase removeAllData];
     [PopulateRealmDatabase generateData];
     
@@ -79,6 +80,50 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
     [self loadFirstController];
     return YES;
 }
+
+#pragma mark LocationServices
+- (void)checkLocationService {
+    
+    self.locationManager = [[CLLocationManager alloc] init];
+    [self.locationManager setDelegate:self];
+    
+    switch ([CLLocationManager authorizationStatus]) {
+        case kCLAuthorizationStatusNotDetermined:
+            if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
+                [self.locationManager requestAlwaysAuthorization];
+            } else {
+                [self.locationManager startUpdatingLocation];
+            }
+            break;
+        case kCLAuthorizationStatusAuthorizedAlways:
+            //do nothing
+            [self.locationManager startUpdatingLocation];
+            break;
+            
+        default:{
+            
+        }
+            break;
+    }
+}
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{}
+
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status{
+    if (status == kCLAuthorizationStatusAuthorizedAlways){
+        [self.locationManager startUpdatingLocation];
+        
+    }
+}
+
+- (BOOL)isLocationServiceEnabled{
+    return [CLLocationManager locationServicesEnabled] && [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways;
+}
+
++ (AppDelegate *)get {
+    return (AppDelegate *) [[UIApplication sharedApplication] delegate];
+}
+
 -(void)setNavigationBarColor
 {
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],

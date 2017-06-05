@@ -368,7 +368,7 @@
     menu.imageName = @"contactUsIcon";
     menu.title = kMenuContactUs;
     menu.sort = 20;
-    menu.menuType = kMenuTypeList;
+    menu.menuType = kMenuTypeContactUs;
     menu.isRootMenu = YES;
     [menu.roles addObject:[Role objectForPrimaryKey:kNoRole]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];

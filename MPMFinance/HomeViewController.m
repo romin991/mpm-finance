@@ -15,7 +15,7 @@
 #import "SimpleListViewController.h"
 #import "SubmenuViewController.h"
 #import "SubmenuCollectionViewController.h"
-
+#import "ContactUsViewController.h"
 @interface HomeViewController ()<KASlideShowDelegate,KASlideShowDataSource>
 
 @property RLMResults *menus;
@@ -122,9 +122,9 @@
         submenuViewController.menu = menu;
         [self.navigationController.navigationController pushViewController:submenuViewController animated:YES];
         
-    } else if ([menu.menuType isEqualToString:kMenuTypeSubmenu2]){
-        SubmenuCollectionViewController *submenuCollectionViewController = [[SubmenuCollectionViewController alloc] init];
-        submenuCollectionViewController.menu = menu;
+    } else if ([menu.menuType isEqualToString:kMenuTypeContactUs]){
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        ContactUsViewController *submenuCollectionViewController = [storyboard instantiateViewControllerWithIdentifier:@"ContactUsViewController"];
         [self.navigationController.navigationController pushViewController:submenuCollectionViewController animated:YES];
     }
 

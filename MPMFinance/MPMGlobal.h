@@ -12,8 +12,10 @@
 colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
-@interface MPMGlobal : NSObject
 
+
+@interface MPMGlobal : NSObject
+extern NSString *const kAPIKey;
 extern NSString *const kRoleCustomer;
 extern NSString *const kRoleAgent;
 extern NSString *const kRoleDealer;
@@ -73,6 +75,7 @@ extern NSString *const kMenuTypeList;
 extern NSString *const kMenuTypeSubmenu;
 extern NSString *const kMenuTypeSubmenu2;
 extern NSString *const kMenuTypeMap;
+extern NSString *const kMenuTypeContactUs;
 extern NSString *const kMenuTypeCreditSimulation;
 extern NSString *const kApiUrl;
 
