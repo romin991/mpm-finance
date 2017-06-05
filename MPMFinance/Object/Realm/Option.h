@@ -13,6 +13,7 @@
 @property NSString *name;
 @property NSInteger sort;
 @property NSInteger category;
+@property NSInteger primaryKey;
 
 + (RLMResults *)getOptionWithCategoryNumber:(NSInteger)category;
 + (void)generateOptions;
