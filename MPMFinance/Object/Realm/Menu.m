@@ -61,7 +61,7 @@
     submenu.title = kSubmenuFormPengajuanApplikasi;
     submenu.sort = 0;
     submenu.borderColor = @"F26F21";
-    submenu.menuType = kMenuTypeFormHorizontal;
+    submenu.menuType = kMenuTypeFormWorkOrder;
     
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [realm addObject:submenu];
@@ -72,7 +72,7 @@
     submenu.title = kSubmenuDataMAP;
     submenu.sort = 1;
     submenu.borderColor = @"FB9E15";
-    submenu.menuType = kMenuTypeFormVertical;
+    submenu.menuType = kMenuTypeFormDataMAP;
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     [realm addObject:submenu];
@@ -83,7 +83,7 @@
     submenu.title = kSubmenuSurvey;
     submenu.sort = 2;
     submenu.borderColor = @"FF8A65";
-    submenu.menuType = kMenuTypeFormHorizontal;
+    submenu.menuType = @"";
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     [realm addObject:submenu];
@@ -93,7 +93,7 @@
     submenu.imageName = @"ListPengajuanApplikasiSubmenuIcon";
     submenu.title = kSubmenuMelengkapiData;
     submenu.sort = 0;
-    submenu.menuType = kMenuTypeFormHorizontal;
+    submenu.menuType = @"";
     submenu.borderColor = @"F26F21";
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
     [realm addObject:submenu];
@@ -523,7 +523,7 @@
     menuList.imageName = @"";
     menuList.title = kSubmenuListSurvey;
     menuList.sort = 0;
-    menuList.menuType = kMenuTypeFormHorizontal;
+    menuList.menuType = @"";
     action = [[Action alloc] init];
     action.name = @"Get List Survey";
     action.methodName = @"getListSurvey:";

@@ -70,8 +70,8 @@ NSString *const kSubmenuProperty = @"Property";
 NSString *const kSubmenuYearToDate = @"Year to Date";
 NSString *const kSubmenuMonthToDate = @"Month to Date";
 
-NSString *const kMenuTypeFormVertical = @"Vertical";
-NSString *const kMenuTypeFormHorizontal = @"Horizontal";
+NSString *const kMenuTypeFormDataMAP = @"DataMAP";
+NSString *const kMenuTypeFormWorkOrder = @"WorkOrder";
 NSString *const kMenuTypeCreditSimulation = @"Credit Simulation";
 NSString *const kMenuTypeContactUs = @"Contact Us";
 NSString *const kMenuTypeList = @"List";

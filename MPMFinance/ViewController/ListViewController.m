@@ -172,7 +172,7 @@
         submenuCollectionViewController.menu = submenu;
         [self.navigationController pushViewController:submenuCollectionViewController animated:YES];
         
-    } else if ([submenu.menuType isEqualToString:kMenuTypeFormVertical]){
+    } else if ([submenu.menuType isEqualToString:kMenuTypeFormDataMAP]){
         SimpleListViewController *simpleListViewController = [[SimpleListViewController alloc] init];
         simpleListViewController.menu = submenu;
         simpleListViewController.title = self.menu.title;
@@ -182,7 +182,7 @@
     } else if ([submenu.menuType isEqualToString:kMenuTypeMap]){
         //create map view controller
         
-    } else if ([submenu.menuType isEqualToString:kMenuTypeFormHorizontal]){
+    } else if ([submenu.menuType isEqualToString:kMenuTypeFormWorkOrder]){
         FormViewController *formViewController = [[FormViewController alloc] init];
         formViewController.menu = submenu;
         formViewController.list = list;

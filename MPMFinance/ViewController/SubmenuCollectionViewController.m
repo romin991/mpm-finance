@@ -88,11 +88,11 @@
         NSLog(@"Exception : %@", e);
     }
     
-    if ([submenu.menuType isEqualToString:kMenuTypeFormHorizontal]) {
+    if ([submenu.menuType isEqualToString:kMenuTypeFormWorkOrder]) {
         FormViewController *formViewController = [[FormViewController alloc] init];
         formViewController.menu = submenu;
         [self.navigationController pushViewController:formViewController animated:YES];
-    } else if ([submenu.menuType isEqualToString:kMenuTypeFormVertical]) {
+    } else if ([submenu.menuType isEqualToString:kMenuTypeFormDataMAP]) {
         SimpleListViewController *simpleListViewController = [[SimpleListViewController alloc] init];
         simpleListViewController.menu = submenu;
         [self.navigationController pushViewController:simpleListViewController animated:YES];

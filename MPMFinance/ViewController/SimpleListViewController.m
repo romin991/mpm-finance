@@ -66,7 +66,19 @@
 }
 
 - (void)submitButtonClicked:(id)sender{
-    //call API, then ... 
+    //call API, then ...
+    [SVProgressHUD show];
+    [DataMAPModel postDataMAPWithList:self.list dictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
+        if (error == nil) {
+            if (dictionary) {
+                
+            }
+            [SVProgressHUD dismiss];
+        } else {
+            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+            [SVProgressHUD dismissWithDelay:1.5];
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

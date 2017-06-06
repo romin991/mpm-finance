@@ -84,6 +84,7 @@
 
 - (void)saveButtonClicked:(id)sender{
     if (self.delegate) [self.delegate saveDictionary:self.valueDictionary];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)setRightBarButton{

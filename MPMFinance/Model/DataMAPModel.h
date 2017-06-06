@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "List.h"
 
 @interface DataMAPModel : NSObject
 
 + (void)getDataMAPWithID:(NSInteger)pengajuanId completion:(void(^)(NSDictionary *response, NSError *error))block;
++ (void)postDataMAPWithList:(List *)list dictionary:(NSDictionary *)dictionary completion:(void(^)(NSDictionary *dictionary, NSError *error))block;
 
 @end
