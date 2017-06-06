@@ -7,7 +7,6 @@
 //
 
 #import "APIModel.h"
-#import "List.h"
 
 @implementation APIModel
 

@@ -224,6 +224,8 @@
 				5CDC30411EC3E274001D97DB /* GoogleService-Info.plist */,
 				483F39211EC3085E00C03253 /* main.m */,
 				5C9DB2371EC3314200FC0CC9 /* PrefixHeader.pch */,
+				4866A8981ECD8B2200A89E98 /* FloatLabeledTextFieldCell.h */,
+				4866A8991ECD8B2200A89E98 /* FloatLabeledTextFieldCell.m */,
 				48D44D4A1EDF8F28005FC8DB /* NSString+MixedCasing.h */,
 				48D44D4B1EDF8F28005FC8DB /* NSString+MixedCasing.m */,
 				48D44D4D1EDFD2AF005FC8DB /* ISO8601DateFormatter.h */,
@@ -242,7 +244,7 @@
 				4831CD1B1EDE974D001EF223 /* SubmenuCollectionViewController */,
 				48CDD8261EC9B1A30038D626 /* ListViewController */,
 				48CDD8281EC9B1C20038D626 /* SimpleListViewController */,
-				48CDD8271EC9B1B10038D626 /* FormViewController */,
+				48CDD8271EC9B1B10038D626 /* WorkOrderFormViewController */,
 				483F39261EC3085E00C03253 /* LoginViewController.h */,
 				483F39271EC3085E00C03253 /* LoginViewController.m */,
 				483F39381EC3518500C03253 /* ForgotPasswordViewController.h */,
@@ -316,16 +318,14 @@
 			name = ListViewController;
 			sourceTree = "<group>";
 		};
-		48CDD8271EC9B1B10038D626 /* FormViewController */ = {
+		48CDD8271EC9B1B10038D626 /* WorkOrderFormViewController */ = {
 			isa = PBXGroup;
 			children = (
 				4849EEDE1EC8815000415E4B /* FormViewController.h */,
 				4849EEDF1EC8815000415E4B /* FormViewController.m */,
 				4849EEE01EC8815000415E4B /* FormViewController.xib */,
-				4866A8981ECD8B2200A89E98 /* FloatLabeledTextFieldCell.h */,
-				4866A8991ECD8B2200A89E98 /* FloatLabeledTextFieldCell.m */,
 			);
-			name = FormViewController;
+			name = WorkOrderFormViewController;
 			sourceTree = "<group>";
 		};
 		48CDD8281EC9B1C20038D626 /* SimpleListViewController */ = {

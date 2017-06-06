@@ -26,7 +26,6 @@
 @property RLMResults *forms;
 @property RLMArray *formRows;
 @property XLFormDescriptor *formDescriptor;
-@property NSDictionary *fetchResult;
 @property XLFormViewController *formViewController;
 
 @end
@@ -40,20 +39,8 @@
     self.forms = [Form getFormForMenu:self.menu.title];
     Form *currentForm = [self.forms objectAtIndex:self.index];
     if (self.forms.count > self.index) self.formRows = currentForm.rows;
-    if (currentForm.title.length < 1) {
-        //hide containerView
-        [self hideHorizontalView];
-    }
-    
-    UIViewController *viewController = [self.navigationController.viewControllers objectAtIndex: self.navigationController.viewControllers.count - 2];
-    if ([viewController isKindOfClass:[SimpleListViewController class]]) {
-        [self setTitle:currentForm.title];
-        
-    } else {
-        [self setTitle:self.menu.title];
-    
-    }
-    
+
+    [self setTitle:self.menu.title];
     [self generateFormDescriptor];
     [self setHorizontalLabel];
     [self setRightBarButton];
@@ -68,43 +55,18 @@
 - (void)fetchData{
     //call API here
     __block FormViewController *weakSelf = self;
-    __block void (^handler)(NSDictionary *dictionary, NSError *error) = ^void(NSDictionary *dictionary, NSError *error){
-        //callback api here
-        dispatch_async(dispatch_get_main_queue(), ^{
-            //set the result here
-            if (error == nil) {
-                if (dictionary) {
-                    [weakSelf setFetchResult:dictionary];
-                    [weakSelf setFormValueWithDictionary:dictionary];
-                }
-                [SVProgressHUD dismiss];
-            } else {
-                [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
-                [SVProgressHUD dismissWithDelay:1.5];
+    [SVProgressHUD show];
+    [APIModel getListWorkOrderDetailWithID:self.list.primaryKey completion:^(NSDictionary *response, NSError *error) {
+        if (error == nil) {
+            if (response) {
+                [weakSelf setFormValueWithDictionary:response];
             }
-        });
-    };
-    
-    __block NSString *methodName = self.menu.fetchDataFromAPI ? self.menu.fetchDataFromAPI.methodName : @"";
-    __block NSInteger primaryKey = self.list.primaryKey;
-    if ([APIModel respondsToSelector:NSSelectorFromString(methodName)]) {
-        [SVProgressHUD show];
-
-        NSMethodSignature * mySignature = [APIModel methodSignatureForSelector:NSSelectorFromString(methodName)];
-        NSInvocation * myInvocation = [NSInvocation invocationWithMethodSignature:mySignature];
-        [myInvocation setTarget:[APIModel class]];
-        [myInvocation setSelector:NSSelectorFromString(methodName)];
-        [myInvocation setArgument:&primaryKey atIndex:2];
-        [myInvocation setArgument:&handler atIndex:3];
-        [myInvocation retainArguments];
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            [myInvocation invoke];
-        });
-        
-    } else {
-        [SVProgressHUD showErrorWithStatus:@"No method found"];
-        [SVProgressHUD dismissWithDelay:1.5];
-    }
+            [SVProgressHUD dismiss];
+        } else {
+            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+            [SVProgressHUD dismissWithDelay:1.5];
+        }
+    }];
 }
 
 - (void)setFormValueWithDictionary:(NSDictionary *)dictionary{
@@ -124,22 +86,22 @@
     }
 }
 
-- (void)hideHorizontalView{
-    self.horizontalViewHeightConstraint.constant = 0;
-}
-
-- (void)showHorizontalView{
-    self.horizontalViewHeightConstraint.constant = 48;
-}
+//- (void)hideHorizontalView{
+//    self.horizontalViewHeightConstraint.constant = 0;
+//}
+//
+//- (void)showHorizontalView{
+//    self.horizontalViewHeightConstraint.constant = 48;
+//}
 
 - (void)setRightBarButton{
-    UIViewController *viewController = [self.navigationController.viewControllers objectAtIndex: self.navigationController.viewControllers.count - 2];
-    if ([viewController isKindOfClass:[SimpleListViewController class]]) {
+    if (self.forms.count == self.index + 1){
         UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save"
                                                                           style:UIBarButtonItemStylePlain
                                                                          target:self
                                                                          action:@selector(saveButtonClicked:)];
         [self.navigationItem setRightBarButtonItem:barButtonItem];
+
         
     } else {
         UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Next"
@@ -150,12 +112,7 @@
     }
 }
 
-- (void)saveButtonClicked:(id)sender{
-    //save to object, call delegate, then pop navigation
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void)nextButtonClicked:(id)sender{
+- (void)saveValueToDictionary{
     for (XLFormSectionDescriptor *section in self.formDescriptor.formSections) {
         for (XLFormRowDescriptor *row in section.formRows) {
             if (self.valueDictionary == nil) self.valueDictionary = [NSMutableDictionary dictionary];
@@ -173,70 +130,48 @@
             [self.valueDictionary setObject:((valueString != nil) ? valueString : [NSNull null]) forKey:row.tag];
         }
     }
-    
-    if (self.forms.count == self.index + 1){
-        [SVProgressHUD show];
-        
-        //call API here
-        __block void (^handler)(NSDictionary *dictionary, NSError *error) = ^void(NSDictionary *dictionary, NSError *error){
-            //callback api here
-            if (error == nil) {
-                if (dictionary) {
-                    
-                }
-                [SVProgressHUD dismiss];
-            } else {
-                [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
-                [SVProgressHUD dismissWithDelay:1.5];
+}
+
+- (void)saveButtonClicked:(id)sender{
+    //save to object, call delegate, then pop navigation
+    [self saveValueToDictionary];
+    [SVProgressHUD show];
+    [APIModel postListWorkOrder:self.list dictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
+        if (error == nil) {
+            if (dictionary) {
+                
             }
-        };
-        
-        __block NSString *methodName = self.menu.rightButtonAction ? self.menu.rightButtonAction.methodName : @"";
-        __block NSMutableDictionary *valueDictionary = self.valueDictionary;
-        __block List *list = self.list;
-        if ([APIModel respondsToSelector:NSSelectorFromString(methodName)]) {
-            NSMethodSignature * mySignature = [APIModel methodSignatureForSelector:NSSelectorFromString(methodName)];
-            NSInvocation * myInvocation = [NSInvocation invocationWithMethodSignature:mySignature];
-            [myInvocation setTarget:[APIModel class]];
-            [myInvocation setSelector:NSSelectorFromString(methodName)];
-            [myInvocation setArgument:&list atIndex:2];
-            [myInvocation setArgument:&valueDictionary atIndex:3];
-            [myInvocation setArgument:&handler atIndex:4];
-            [myInvocation retainArguments];
-            [myInvocation performSelector:@selector(invoke) withObject:nil afterDelay:0.1];
+            [SVProgressHUD dismiss];
         } else {
-            [SVProgressHUD showErrorWithStatus:@"No method found"];
+            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
             [SVProgressHUD dismissWithDelay:1.5];
         }
-        
-    } else {
-        FormViewController *nextFormViewController = [[FormViewController alloc] init];
-        nextFormViewController.menu = self.menu;
-        nextFormViewController.index = self.index + 1;
-        nextFormViewController.valueDictionary = self.valueDictionary;
-        nextFormViewController.list = self.list;
-        [self.navigationController pushViewController:nextFormViewController animated:YES];
-    }
+    }];
+}
+
+- (void)nextButtonClicked:(id)sender{
+    [self saveValueToDictionary];
+    
+    FormViewController *nextFormViewController = [[FormViewController alloc] init];
+    nextFormViewController.menu = self.menu;
+    nextFormViewController.index = self.index + 1;
+    nextFormViewController.valueDictionary = self.valueDictionary;
+    nextFormViewController.list = self.list;
+    [self.navigationController pushViewController:nextFormViewController animated:YES];
 }
 
 - (void)setHorizontalLabel{
-    UIViewController *viewController = [self.navigationController.viewControllers objectAtIndex: self.navigationController.viewControllers.count - 2];
-    if ([viewController isKindOfClass:[SimpleListViewController class]]) {
-        [self hideHorizontalView];
-        
-    } else {
-        Form *firstForm;
-        Form *secondForm;
-        Form *thirdForm;
-        
-        if (self.forms.count > self.index) firstForm = [self.forms objectAtIndex:self.index];
-        if (self.forms.count > self.index + 1) secondForm = [self.forms objectAtIndex:self.index + 1];
-        if (self.forms.count > self.index + 2) thirdForm = [self.forms objectAtIndex:self.index + 2];
-        
-        self.firstLabel.text = firstForm ? firstForm.title : @"";
-        self.secondLabel.text = secondForm ? secondForm.title : @"";
-        self.thirdLabel.text = thirdForm ? thirdForm.title : @"";
-    }
+    Form *firstForm;
+    Form *secondForm;
+    Form *thirdForm;
+    
+    if (self.forms.count > self.index) firstForm = [self.forms objectAtIndex:self.index];
+    if (self.forms.count > self.index + 1) secondForm = [self.forms objectAtIndex:self.index + 1];
+    if (self.forms.count > self.index + 2) thirdForm = [self.forms objectAtIndex:self.index + 2];
+    
+    self.firstLabel.text = firstForm ? firstForm.title : @"";
+    self.secondLabel.text = secondForm ? secondForm.title : @"";
+    self.thirdLabel.text = thirdForm ? thirdForm.title : @"";
 }
 
 - (void)generateFormDescriptor{
@@ -262,12 +197,6 @@
         }
         row.required = formRow.required;
         row.disabled = @(formRow.disabled);
-        if (self.list && self.fetchResult) {
-            //set value here
-            if (formRow.key && [self.fetchResult objectForKey:formRow.key]) {
-                row.value = [self.fetchResult objectForKey:formRow.key];
-            }
-        }
         [section addFormRow:row];
     }
 }

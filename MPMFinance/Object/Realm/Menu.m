@@ -63,18 +63,6 @@
     submenu.borderColor = @"F26F21";
     submenu.menuType = kMenuTypeFormHorizontal;
     
-    Action *action = [[Action alloc] init];
-    action.name = @"Send";
-    action.methodName = @"postListWorkOrder:dictionary:completion:";
-    action.actionType = kActionTypeAPICall;
-    submenu.rightButtonAction = action;
-    
-    action = [[Action alloc] init];
-    action.name = @"";
-    action.methodName = @"getListWorkOrderDetailWithID:completion:";
-    action.actionType = kActionTypeAPICall;
-    submenu.fetchDataFromAPI = action;
-    
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [realm addObject:submenu];
     
@@ -135,7 +123,7 @@
     menuList.sort = 0;
     menuList.menuType = kMenuTypeSubmenu;
     
-    action = [[Action alloc] init];
+    Action *action = [[Action alloc] init];
     action.name = @"Get List Work Order";
     action.methodName = @"getListWorkOrder:";
     action.actionType = kActionTypeAPICall;
