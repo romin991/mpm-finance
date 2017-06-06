@@ -63,6 +63,7 @@
     } else if ([submenu.menuType isEqualToString:kMenuTypeFormVertical]) {
         SimpleListViewController *simpleListViewController = [[SimpleListViewController alloc] init];
         simpleListViewController.menu = submenu;
+        simpleListViewController.list = self.list;
         [self.navigationController pushViewController:simpleListViewController animated:YES];
     } else if ([submenu.menuType isEqualToString:kMenuTypeList]) {
         ListViewController *listViewController = [[ListViewController alloc] init];

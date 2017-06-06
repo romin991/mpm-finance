@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "Menu.h"
+#import "List.h"
 
 @interface SubmenuViewController : UIViewController
 
 @property Menu *menu;
+@property List *list;
 
 @end

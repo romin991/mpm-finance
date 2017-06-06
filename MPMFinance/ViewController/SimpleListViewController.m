@@ -9,13 +9,15 @@
 #import "SimpleListViewController.h"
 #import "SimpleListTableViewCell.h"
 #import "Form.h"
-#import "FormViewController.h"
+#import "DataMAPFormViewController.h"
+#import "DataMAPModel.h"
 
 @interface SimpleListViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property RLMResults *forms;
+@property NSMutableDictionary *valueDictionary;
 
 @end
 
@@ -32,6 +34,27 @@
         [self setTitle:self.menu.title];
     }
     [self setRightBarButton];
+    
+    if (self.list) {
+        [self fetchData];
+    }
+}
+
+- (void)fetchData{
+    //call API here
+    __block SimpleListViewController *weakSelf = self;
+    [SVProgressHUD show];
+    [DataMAPModel getDataMAPWithID:self.list.primaryKey completion:^(NSDictionary *response, NSError *error) {
+        if (error == nil) {
+            if (response) {
+                weakSelf.valueDictionary = [NSMutableDictionary dictionaryWithDictionary:response];
+            }
+            [SVProgressHUD dismiss];
+        } else {
+            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+            [SVProgressHUD dismissWithDelay:1.5];
+        }
+    }];
 }
 
 - (void)setRightBarButton{
@@ -60,9 +83,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    FormViewController *formViewController = [[FormViewController alloc] init];
+    DataMAPFormViewController *formViewController = [[DataMAPFormViewController alloc] init];
     formViewController.menu = self.menu;
     formViewController.index = indexPath.row;
+    formViewController.valueDictionary = self.valueDictionary;
     [self.navigationController pushViewController:formViewController animated:YES];
 }
 
@@ -87,6 +111,11 @@
     }
     
     return cell;
+}
+
+//dataMAP delegate
+- (void)saveDictionary:(NSDictionary *)dictionary{
+    self.valueDictionary = [NSMutableDictionary dictionaryWithDictionary:dictionary];
 }
 
 /*

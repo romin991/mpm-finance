@@ -164,6 +164,7 @@
     if ([submenu.menuType isEqualToString:kMenuTypeSubmenu]) {
         SubmenuViewController *submenuViewController = [[SubmenuViewController alloc] init];
         submenuViewController.menu = submenu;
+        submenuViewController.list = list;
         [self.navigationController pushViewController:submenuViewController animated:YES];
         
     } else if ([submenu.menuType isEqualToString:kMenuTypeSubmenu2]) {
@@ -175,6 +176,7 @@
         SimpleListViewController *simpleListViewController = [[SimpleListViewController alloc] init];
         simpleListViewController.menu = submenu;
         simpleListViewController.title = self.menu.title;
+        simpleListViewController.list = list;
         [self.navigationController pushViewController:simpleListViewController animated:YES];
         
     } else if ([submenu.menuType isEqualToString:kMenuTypeMap]){

@@ -8,10 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "Menu.h"
+#import "List.h"
 
-@interface SimpleListViewController : UIViewController
+@protocol DataMAPViewControllerDelegate <NSObject>
+
+- (void)saveDictionary:(NSDictionary *)dictionary;
+
+@end
+
+@interface SimpleListViewController : UIViewController <DataMAPViewControllerDelegate>
 
 @property Menu *menu;
 @property NSString *navigationTitle;
+@property List *list;
 
 @end
