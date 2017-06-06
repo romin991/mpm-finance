@@ -87,7 +87,7 @@
     [FormRow new:realm :1 :6 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Gadis Ibu Kandung Pasangan"];
     
     //Data Aset
-    [FormRow new:realm :2 :0 :NO :XLFormRowDescriptorTypeSelectorPush :@"Tipe Produk" :2];
+    [[FormRow new:realm :2 :0 :NO :XLFormRowDescriptorTypeSelectorPush :@"Tipe Produk" :2] setOptionType:@"getProduct"];
     [FormRow new:realm :2 :1 :NO :XLFormRowDescriptorTypeSelectorPush :@"Tipe Kendaraan"];
     [FormRow new:realm :2 :2 :NO :XLFormRowDescriptorTypeSelectorPush :@"Tahun Kendaraan"];
     

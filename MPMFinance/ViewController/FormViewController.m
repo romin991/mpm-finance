@@ -14,6 +14,7 @@
 #import <TPKeyboardAvoidingTableView.h>
 #import "SimpleListViewController.h"
 #import "APIModel.h"
+#import "DropdownModel.h"
 
 @interface FormViewController ()
 
@@ -178,7 +179,6 @@
     // Form
     self.formDescriptor = [XLFormDescriptor formDescriptorWithTitle:@"Text Fields"];
     XLFormSectionDescriptor *section;
-    XLFormRowDescriptor *row;
     
     // Section
     section = [XLFormSectionDescriptor formSection];
@@ -186,18 +186,25 @@
     
     // Row
     for (FormRow *formRow in self.formRows) {
-        row = [XLFormRowDescriptor formRowDescriptorWithTag:formRow.key rowType:formRow.type title:formRow.title];
-        if (formRow.options.count > 0) {
-            NSMutableArray *options = [NSMutableArray array];
-            for (Option *option in formRow.options) {
-                [options addObject:[XLFormOptionsObject formOptionsObjectWithValue:option.name displayText:option.name]];
-            }
-            row.selectorTitle = formRow.title;
-            row.selectorOptions = options;
-        }
+        __block XLFormRowDescriptor *row = [XLFormRowDescriptor formRowDescriptorWithTag:formRow.key rowType:formRow.type title:formRow.title];
         row.required = formRow.required;
         row.disabled = @(formRow.disabled);
+        row.selectorTitle = formRow.title;
         [section addFormRow:row];
+        
+        if (formRow.optionType.length) {
+            [DropdownModel getDropdownForType:formRow.optionType completion:^(NSArray *options, NSError *error) {
+                if (error) {
+                    
+                } else {
+                    NSMutableArray *optionObjects = [NSMutableArray array];
+                    for (Option *option in options) {
+                        [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:@(option.primaryKey) displayText:option.name]];
+                    }
+                    row.selectorOptions = optionObjects;
+                }
+            }];
+        }
     }
 }
 
