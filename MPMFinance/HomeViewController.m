@@ -10,6 +10,7 @@
 #import "Menu.h"
 #import "KASlideShow.h"
 
+#import "DashboardViewController.h"
 #import "FormViewController.h"
 #import "ListViewController.h"
 #import "SimpleListViewController.h"
@@ -125,6 +126,10 @@
     } else if ([menu.menuType isEqualToString:kMenuTypeContactUs]){
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         ContactUsViewController *submenuCollectionViewController = [storyboard instantiateViewControllerWithIdentifier:@"ContactUsViewController"];
+        [self.navigationController.navigationController pushViewController:submenuCollectionViewController animated:YES];
+    }else if ([menu.menuType isEqualToString:kMenuTypeDashboard]){
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        DashboardViewController *submenuCollectionViewController = [storyboard instantiateViewControllerWithIdentifier:@"DashboardViewController"];
         [self.navigationController.navigationController pushViewController:submenuCollectionViewController animated:YES];
     }
 

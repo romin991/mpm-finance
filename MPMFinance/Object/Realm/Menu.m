@@ -190,6 +190,7 @@
     submenu.title = kSubmenuUsedCar;
     submenu.sort = 1;
     submenu.borderColor = @"546E7A";
+    [submenu.roles addObject:[Role objectForPrimaryKey:kNoRole]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
@@ -201,6 +202,7 @@
     submenu.title = kSubmenuProperty;
     submenu.sort = 2;
     submenu.borderColor = @"B30808";
+    [submenu.roles addObject:[Role objectForPrimaryKey:kNoRole]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
@@ -215,6 +217,7 @@
     submenu.borderColor = @"B30808";
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [submenu.roles addObject:[Role objectForPrimaryKey:kNoRole]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [realm addObject:submenu];
     
@@ -226,6 +229,7 @@
     submenu.menuType = kMenuTypeCreditSimulation;
     submenu.borderColor = @"B30808";
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
+    [submenu.roles addObject:[Role objectForPrimaryKey:kNoRole]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [realm addObject:submenu];
@@ -237,6 +241,7 @@
     submenu.menuType = kMenuTypeCreditSimulation;
     submenu.sort = 2;
     submenu.borderColor = @"B30808";
+    [submenu.roles addObject:[Role objectForPrimaryKey:kNoRole]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
@@ -249,6 +254,7 @@
     submenu.sort = 2;
     submenu.menuType = kMenuTypeCreditSimulation;
     submenu.borderColor = @"B30808";
+    [submenu.roles addObject:[Role objectForPrimaryKey:kNoRole]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
@@ -543,7 +549,7 @@
     menu.circleIconImageName = @"DashboardCircleIcon";
     menu.title = kMenuDashboard;
     menu.sort = 50;
-    menu.menuType = kMenuTypeSubmenu;
+    menu.menuType = kMenuTypeDashboard;
     menu.isRootMenu = YES;
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];

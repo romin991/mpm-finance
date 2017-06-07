@@ -74,6 +74,7 @@ NSString *const kMenuTypeFormDataMAP = @"DataMAP";
 NSString *const kMenuTypeFormWorkOrder = @"WorkOrder";
 NSString *const kMenuTypeCreditSimulation = @"Credit Simulation";
 NSString *const kMenuTypeContactUs = @"Contact Us";
+NSString *const kMenuTypeDashboard = @"Dashboard";
 NSString *const kMenuTypeList = @"List";
 NSString *const kMenuTypeSubmenu = @"Submenu";
 NSString *const kMenuTypeSubmenu2 = @"Submenu2";
