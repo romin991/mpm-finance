@@ -71,6 +71,7 @@ extern NSString *const kSubmenuMonthToDate;
 
 extern NSString *const kMenuTypeFormDataMAP;
 extern NSString *const kMenuTypeFormWorkOrder;
+extern NSString *const kMenuTypeFormSurvey;
 extern NSString *const kMenuTypeList;
 extern NSString *const kMenuTypeSubmenu;
 extern NSString *const kMenuTypeSubmenu2;

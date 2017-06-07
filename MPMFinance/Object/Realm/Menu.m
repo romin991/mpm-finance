@@ -83,7 +83,7 @@
     submenu.title = kSubmenuSurvey;
     submenu.sort = 2;
     submenu.borderColor = @"FF8A65";
-    submenu.menuType = @"";
+    submenu.menuType = kMenuTypeFormSurvey;
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     [realm addObject:submenu];
