@@ -49,7 +49,7 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     //set the result here
                     if (error == nil) {
-//                        if (lists) [weakSelf setDataSource:lists];
+                        if (lists) [weakSelf setDataSource:lists];
                         [SVProgressHUD dismiss];
                     } else {
                         [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
