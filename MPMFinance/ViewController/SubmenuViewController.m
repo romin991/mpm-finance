@@ -12,6 +12,8 @@
 #import "SimpleListViewController.h"
 #import "ListViewController.h"
 #import "CreditSimulationViewController.h"
+#import "SurveyFormViewController.h"
+
 @interface SubmenuViewController ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *banner;
@@ -59,18 +61,27 @@
     if ([submenu.menuType isEqualToString:kMenuTypeFormWorkOrder]) {
         FormViewController *formViewController = [[FormViewController alloc] init];
         formViewController.menu = submenu;
+        formViewController.list = self.list;
         [self.navigationController pushViewController:formViewController animated:YES];
+        
     } else if ([submenu.menuType isEqualToString:kMenuTypeFormDataMAP]) {
         SimpleListViewController *simpleListViewController = [[SimpleListViewController alloc] init];
         simpleListViewController.menu = submenu;
         simpleListViewController.list = self.list;
         [self.navigationController pushViewController:simpleListViewController animated:YES];
+        
+    } else if ([submenu.menuType isEqualToString:kMenuTypeFormSurvey]) {
+        SurveyFormViewController *surveyViewController = [[SurveyFormViewController alloc] init];
+        surveyViewController.menu = submenu;
+        surveyViewController.list = self.list;
+        [self.navigationController pushViewController:surveyViewController animated:YES];
+        
     } else if ([submenu.menuType isEqualToString:kMenuTypeList]) {
         ListViewController *listViewController = [[ListViewController alloc] init];
         listViewController.menu = submenu;
         [self.navigationController pushViewController:listViewController animated:YES];
-    }
-    else if ([submenu.menuType isEqualToString:kMenuTypeCreditSimulation]){
+        
+    } else if ([submenu.menuType isEqualToString:kMenuTypeCreditSimulation]){
         CreditSimulationViewController *creditSimulation = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"CreditSimulationViewController"];
         creditSimulation.menuType = submenu.title;
         [self.navigationController pushViewController:creditSimulation animated:YES];

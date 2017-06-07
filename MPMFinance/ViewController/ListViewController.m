@@ -15,6 +15,7 @@
 #import "SimpleListViewController.h"
 #import "FormViewController.h"
 #import "APIModel.h"
+#import "SurveyFormViewController.h"
 
 @interface ListViewController ()<UIActionSheetDelegate>
 
@@ -29,6 +30,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [self setDummyHere];
+    
     if (self.navigationTitle.length == 0) {
         [self setTitle:self.menu.title];
     } else {
@@ -46,7 +49,7 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     //set the result here
                     if (error == nil) {
-                        if (lists) [weakSelf setDataSource:lists];
+//                        if (lists) [weakSelf setDataSource:lists];
                         [SVProgressHUD dismiss];
                     } else {
                         [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
@@ -58,19 +61,6 @@
     } else {
         [SVProgressHUD showErrorWithStatus:@"No method found"];
         [SVProgressHUD dismissWithDelay:1.5];
-        
-        //set dummy here
-        NSMutableArray *dataSource = [NSMutableArray array];
-        
-        List *list = [[List alloc] init];
-        list.title = @"PK1235";
-        list.date = @"12 March 2017";
-        list.assignee = @"Bejo";
-        list.type =
-        list.imageURL = @"https://image.flaticon.com/teams/new/1-freepik.jpg";
-        [dataSource addObject:list];
-        
-        [self setDataSource:dataSource];
     }
     
     Action *rightButtonAction = self.submenu.rightButtonAction;
@@ -79,6 +69,21 @@
         
         [self.navigationItem setRightBarButtonItem:rightButton];
     }
+}
+
+#warning remove it
+- (void)setDummyHere{
+    NSMutableArray *dataSource = [NSMutableArray array];
+    
+    List *list = [[List alloc] init];
+    list.title = @"PK1235";
+    list.date = @"12 March 2017";
+    list.assignee = @"Bejo";
+    list.type =
+    list.imageURL = @"https://image.flaticon.com/teams/new/1-freepik.jpg";
+    [dataSource addObject:list];
+    
+    [self setDataSource:dataSource];
 }
 
 - (void)rightButtonClicked:(id)sender{
@@ -179,14 +184,18 @@
         simpleListViewController.list = list;
         [self.navigationController pushViewController:simpleListViewController animated:YES];
         
-    } else if ([submenu.menuType isEqualToString:kMenuTypeMap]){
-        //create map view controller
-        
     } else if ([submenu.menuType isEqualToString:kMenuTypeFormWorkOrder]){
         FormViewController *formViewController = [[FormViewController alloc] init];
         formViewController.menu = submenu;
         formViewController.list = list;
         [self.navigationController pushViewController:formViewController animated:YES];
+        
+    } else if ([submenu.menuType isEqualToString:kMenuTypeFormSurvey]) {
+        SurveyFormViewController *surveyViewController = [[SurveyFormViewController alloc] init];
+        surveyViewController.menu = submenu;
+        surveyViewController.list = list;
+        [self.navigationController pushViewController:surveyViewController animated:YES];
+        
     }
 }
 

@@ -1,16 +1,17 @@
 //
-//  DataMAPFormViewController.m
+//  SurveyFormViewController.m
 //  MPMFinance
 //
-//  Created by Rudy Suharyadi on 6/6/17.
+//  Created by Rudy Suharyadi on 6/7/17.
 //  Copyright © 2017 MPMFinance. All rights reserved.
 //
 
-#import "DataMAPFormViewController.h"
+#import "SurveyFormViewController.h"
 #import <XLForm.h>
 #import "Form.h"
+#import "SurveyModel.h"
 
-@interface DataMAPFormViewController ()
+@interface SurveyFormViewController ()
 
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 
@@ -21,7 +22,7 @@
 
 @end
 
-@implementation DataMAPFormViewController
+@implementation SurveyFormViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,7 +38,25 @@
     
     if (self.valueDictionary.count > 0){
         [self setFormValueWithDictionary:self.valueDictionary];
+    } else if (self.list) {
+        [self fetchData];
     }
+}
+
+- (void)fetchData{
+    __block SurveyFormViewController *weakSelf = self;
+    [SVProgressHUD show];
+    [SurveyModel getSurveyWithID:self.list.primaryKey completion:^(NSDictionary *dictionary, NSError *error) {
+        if (error == nil) {
+            if (dictionary) {
+                [weakSelf setFormValueWithDictionary:dictionary];
+            }
+            [SVProgressHUD dismiss];
+        } else {
+            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+            [SVProgressHUD dismissWithDelay:1.5];
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -84,8 +103,16 @@
 
 - (void)saveButtonClicked:(id)sender{
     [self saveValueToDictionary];
-    if (self.delegate) [self.delegate saveDictionary:self.valueDictionary];
-    [self.navigationController popViewControllerAnimated:YES];
+    [SVProgressHUD show];
+    [SurveyModel postSurveyWithList:self.list dictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
+        if (error == nil) {
+            [SVProgressHUD dismiss];
+            [self.navigationController popViewControllerAnimated:YES];
+        } else {
+            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+            [SVProgressHUD dismissWithDelay:1.5];
+        }
+    }];
 }
 
 - (void)setRightBarButton{
