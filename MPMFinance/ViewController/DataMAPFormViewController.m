@@ -9,6 +9,7 @@
 #import "DataMAPFormViewController.h"
 #import <XLForm.h>
 #import "Form.h"
+#import "DropdownModel.h"
 
 @interface DataMAPFormViewController ()
 
@@ -32,12 +33,25 @@
     if (self.forms.count > self.index) self.formRows = currentForm.rows;
     
     [self setTitle:self.menu.title];
-    [self generateFormDescriptor];
     [self setRightBarButton];
     
-    if (self.valueDictionary.count > 0){
-        [self setFormValueWithDictionary:self.valueDictionary];
-    }
+    [SVProgressHUD show];
+    [self generateFormDescriptorWithCompletion:^(NSError *error) {
+        if (error){
+            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+            [SVProgressHUD dismissWithDelay:1.5 completion:^{
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
+            
+        } else if (self.valueDictionary.count > 0){
+            [self setFormValueWithDictionary:self.valueDictionary];
+            [SVProgressHUD dismiss];
+            
+        } else {
+            //something wrong i think
+            [SVProgressHUD dismiss];
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -46,7 +60,6 @@
 }
 
 - (void)setFormValueWithDictionary:(NSDictionary *)dictionary{
-    self.valueDictionary = [NSMutableDictionary dictionaryWithDictionary:dictionary];
     for (XLFormSectionDescriptor *section in self.formDescriptor.formSections) {
         for (XLFormRowDescriptor *row in section.formRows) {
             NSString *value;
@@ -54,7 +67,13 @@
                 value = [dictionary objectForKey:row.tag];
             }
             if (value){
-                row.value = value;
+                if ([row.rowType isEqualToString:XLFormRowDescriptorTypeDateInline]){
+                    row.value = [MPMGlobal dateFromString:value];
+                } else if ([row.rowType isEqualToString:XLFormRowDescriptorTypeSelectorPush]){
+                    row.value = [XLFormOptionsObject formOptionsOptionForValue:value fromOptions:row.selectorOptions];
+                } else {
+                    row.value = value;
+                }
             }
             
             [self.formViewController reloadFormRow:row];
@@ -66,18 +85,16 @@
     for (XLFormSectionDescriptor *section in self.formDescriptor.formSections) {
         for (XLFormRowDescriptor *row in section.formRows) {
             if (self.valueDictionary == nil) self.valueDictionary = [NSMutableDictionary dictionary];
-            NSString *valueString;
-            id value = row.value;
-            if ([value isKindOfClass:[XLFormOptionsObject class]]){
-                value = ((XLFormOptionsObject *) value).valueData;
+            id object;
+            if ([row.rowType isEqualToString:XLFormRowDescriptorTypeDateInline]){
+                object = [MPMGlobal stringFromDate:row.value];
+            } else if ([row.rowType isEqualToString:XLFormRowDescriptorTypeSelectorPush]){
+                object = ((XLFormOptionsObject *) row.value).formValue;
+            } else {
+                object = row.value;
             }
-            if ([value isKindOfClass:[NSDate class]]){
-                valueString = [MPMGlobal stringFromDate:value];
-            }
-            if ([value isKindOfClass:[NSString class]]){
-                valueString = value;
-            }
-            [self.valueDictionary setObject:((valueString != nil) ? valueString : [NSNull null]) forKey:row.tag];
+            
+            if (object) [self.valueDictionary setObject:object forKey:row.tag];
         }
     }
 }
@@ -96,11 +113,14 @@
     [self.navigationItem setRightBarButtonItem:barButtonItem];
 }
 
-- (void)generateFormDescriptor{
+- (void)generateFormDescriptorWithCompletion:(void(^)(NSError *error))block{
+    __block dispatch_group_t group = dispatch_group_create();
+    __block dispatch_queue_t queue = dispatch_get_main_queue();
+    __block NSError *weakError;
+    
     // Form
     self.formDescriptor = [XLFormDescriptor formDescriptorWithTitle:@"Text Fields"];
     XLFormSectionDescriptor *section;
-    XLFormRowDescriptor *row;
     
     // Section
     section = [XLFormSectionDescriptor formSection];
@@ -108,19 +128,41 @@
     
     // Row
     for (FormRow *formRow in self.formRows) {
-        row = [XLFormRowDescriptor formRowDescriptorWithTag:formRow.key rowType:formRow.type title:formRow.title];
-        if (formRow.options.count > 0) {
-            NSMutableArray *options = [NSMutableArray array];
-            for (Option *option in formRow.options) {
-                [options addObject:[XLFormOptionsObject formOptionsObjectWithValue:option.name displayText:option.name]];
-            }
-            row.selectorTitle = formRow.title;
-            row.selectorOptions = options;
-        }
+        __block XLFormRowDescriptor *row = [XLFormRowDescriptor formRowDescriptorWithTag:formRow.key rowType:formRow.type title:formRow.title];
         row.required = formRow.required;
         row.disabled = @(formRow.disabled);
+        row.selectorTitle = formRow.title;
         [section addFormRow:row];
+        
+        if (formRow.optionType.length) {
+            dispatch_group_enter(group);
+            NSLog(@"enter");
+            [DropdownModel getDropdownForType:formRow.optionType completion:^(NSArray *options, NSError *error) {
+                @try {
+                    if (error) {
+                        weakError = error;
+                        
+                    } else {
+                        NSMutableArray *optionObjects = [NSMutableArray array];
+                        for (Option *option in options) {
+                            [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:@(option.primaryKey) displayText:option.name]];
+                        }
+                        row.selectorOptions = optionObjects;
+                    }
+                    
+                } @catch (NSException *exception) {
+                    NSLog(@"%@", exception);
+                } @finally {
+                    dispatch_group_leave(group);
+                    NSLog(@"leave");
+                }
+            }];
+        }
     }
+    
+    dispatch_group_notify(group, queue, ^{
+        if (block) block(weakError);
+    });
 }
 
 - (void)viewDidLayoutSubviews{
