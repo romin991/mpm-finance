@@ -13,7 +13,7 @@
 #import "FloatLabeledTextFieldCell.h"
 #import <TPKeyboardAvoidingTableView.h>
 #import "SimpleListViewController.h"
-#import "APIModel.h"
+#import "WorkOrderModel.h"
 #import "DropdownModel.h"
 
 @interface FormViewController ()
@@ -22,7 +22,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *secondLabel;
 @property (weak, nonatomic) IBOutlet UILabel *thirdLabel;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *horizontalViewHeightConstraint;
 
 @property RLMResults *forms;
 @property RLMArray *formRows;
@@ -36,42 +35,49 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
     self.forms = [Form getFormForMenu:self.menu.title];
     Form *currentForm = [self.forms objectAtIndex:self.index];
     if (self.forms.count > self.index) self.formRows = currentForm.rows;
 
     [self setTitle:self.menu.title];
-    [self generateFormDescriptor];
     [self setHorizontalLabel];
     [self setRightBarButton];
     
-    if (self.valueDictionary.count > 0){
-        [self setFormValueWithDictionary:self.valueDictionary];
-    } else if (self.list) {
-        [self fetchData];
-    }
-}
-
-- (void)fetchData{
-    //call API here
-    __block FormViewController *weakSelf = self;
     [SVProgressHUD show];
-    [APIModel getListWorkOrderDetailWithID:self.list.primaryKey completion:^(NSDictionary *response, NSError *error) {
-        if (error == nil) {
-            if (response) {
-                [weakSelf setFormValueWithDictionary:response];
-            }
-            [SVProgressHUD dismiss];
-        } else {
+    [self generateFormDescriptorWithCompletion:^(NSError *error) {
+        if (error){
             [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
-            [SVProgressHUD dismissWithDelay:1.5];
+            [SVProgressHUD dismissWithDelay:1.5 completion:^{
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
+            
+        } else if (self.valueDictionary.count > 0){
+            [self setFormValueWithDictionary:self.valueDictionary];
+            [SVProgressHUD dismiss];
+            
+        } else if (self.list) {
+            __block FormViewController *weakSelf = self;
+            [WorkOrderModel getListWorkOrderDetailWithID:self.list.primaryKey completion:^(NSDictionary *response, NSError *error) {
+                if (error == nil) {
+                    if (response) {
+                        weakSelf.valueDictionary = [NSMutableDictionary dictionaryWithDictionary:response];
+                        [weakSelf setFormValueWithDictionary:weakSelf.valueDictionary];
+                    }
+                    [SVProgressHUD dismiss];
+                    
+                } else {
+                    [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+                    [SVProgressHUD dismissWithDelay:1.5 completion:^{
+                        [self.navigationController popViewControllerAnimated:YES];
+                    }];
+                }
+            }];
+            
         }
     }];
 }
 
 - (void)setFormValueWithDictionary:(NSDictionary *)dictionary{
-    self.valueDictionary = [NSMutableDictionary dictionaryWithDictionary:dictionary];
     for (XLFormSectionDescriptor *section in self.formDescriptor.formSections) {
         for (XLFormRowDescriptor *row in section.formRows) {
             NSString *value;
@@ -79,21 +85,19 @@
                 value = [dictionary objectForKey:row.tag];
             }
             if (value){
-                row.value = value;
+                if ([row.rowType isEqualToString:XLFormRowDescriptorTypeDateInline]){
+                    row.value = [MPMGlobal dateFromString:value];
+                } else if ([row.rowType isEqualToString:XLFormRowDescriptorTypeSelectorPush]){
+                    row.value = [XLFormOptionsObject formOptionsOptionForValue:value fromOptions:row.selectorOptions];
+                } else {
+                    row.value = value;
+                }
             }
             
             [self.formViewController reloadFormRow:row];
         }
     }
 }
-
-//- (void)hideHorizontalView{
-//    self.horizontalViewHeightConstraint.constant = 0;
-//}
-//
-//- (void)showHorizontalView{
-//    self.horizontalViewHeightConstraint.constant = 48;
-//}
 
 - (void)setRightBarButton{
     if (self.forms.count == self.index + 1){
@@ -117,18 +121,16 @@
     for (XLFormSectionDescriptor *section in self.formDescriptor.formSections) {
         for (XLFormRowDescriptor *row in section.formRows) {
             if (self.valueDictionary == nil) self.valueDictionary = [NSMutableDictionary dictionary];
-            NSString *valueString;
-            id value = row.value;
-            if ([value isKindOfClass:[XLFormOptionsObject class]]){
-                value = ((XLFormOptionsObject *) value).valueData;
+            id object;
+            if ([row.rowType isEqualToString:XLFormRowDescriptorTypeDateInline]){
+                object = [MPMGlobal stringFromDate:row.value];
+            } else if ([row.rowType isEqualToString:XLFormRowDescriptorTypeSelectorPush]){
+                object = ((XLFormOptionsObject *) row.value).formValue;
+            } else {
+                object = row.value;
             }
-            if ([value isKindOfClass:[NSDate class]]){
-                valueString = [MPMGlobal stringFromDate:value];
-            }
-            if ([value isKindOfClass:[NSString class]]){
-                valueString = value;
-            }
-            [self.valueDictionary setObject:((valueString != nil) ? valueString : [NSNull null]) forKey:row.tag];
+            
+            if (object) [self.valueDictionary setObject:object forKey:row.tag];
         }
     }
 }
@@ -137,7 +139,7 @@
     //save to object, call delegate, then pop navigation
     [self saveValueToDictionary];
     [SVProgressHUD show];
-    [APIModel postListWorkOrder:self.list dictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
+    [WorkOrderModel postListWorkOrder:self.list dictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
         if (error == nil) {
             if (dictionary) {
                 
@@ -175,7 +177,11 @@
     self.thirdLabel.text = thirdForm ? thirdForm.title : @"";
 }
 
-- (void)generateFormDescriptor{
+- (void)generateFormDescriptorWithCompletion:(void(^)(NSError *error))block{
+    __block dispatch_group_t group = dispatch_group_create();
+    __block dispatch_queue_t queue = dispatch_get_main_queue();
+    __block NSError *weakError;
+    
     // Form
     self.formDescriptor = [XLFormDescriptor formDescriptorWithTitle:@"Text Fields"];
     XLFormSectionDescriptor *section;
@@ -193,19 +199,34 @@
         [section addFormRow:row];
         
         if (formRow.optionType.length) {
+            dispatch_group_enter(group);
+            NSLog(@"enter");
             [DropdownModel getDropdownForType:formRow.optionType completion:^(NSArray *options, NSError *error) {
-                if (error) {
-                    
-                } else {
-                    NSMutableArray *optionObjects = [NSMutableArray array];
-                    for (Option *option in options) {
-                        [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:@(option.primaryKey) displayText:option.name]];
+                @try {
+                    if (error) {
+                        weakError = error;
+                        
+                    } else {
+                        NSMutableArray *optionObjects = [NSMutableArray array];
+                        for (Option *option in options) {
+                            [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:@(option.primaryKey) displayText:option.name]];
+                        }
+                        row.selectorOptions = optionObjects;
                     }
-                    row.selectorOptions = optionObjects;
+                    
+                } @catch (NSException *exception) {
+                    NSLog(@"%@", exception);
+                } @finally {
+                    dispatch_group_leave(group);
+                    NSLog(@"leave");
                 }
             }];
         }
     }
+    
+    dispatch_group_notify(group, queue, ^{
+        if (block) block(weakError);
+    });
 }
 
 - (void)viewDidLayoutSubviews{

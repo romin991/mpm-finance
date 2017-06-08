@@ -51,6 +51,7 @@
 		48D44D541EE7A42C005FC8DB /* SurveyFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48D44D521EE7A42C005FC8DB /* SurveyFormViewController.m */; };
 		48D44D551EE7A42C005FC8DB /* SurveyFormViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48D44D531EE7A42C005FC8DB /* SurveyFormViewController.xib */; };
 		48D44D581EE83A2F005FC8DB /* SurveyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48D44D571EE83A2F005FC8DB /* SurveyModel.m */; };
+		48D44D5B1EE846B5005FC8DB /* WorkOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48D44D5A1EE846B5005FC8DB /* WorkOrderModel.m */; };
 		48F7F4061EC5C931008DB808 /* Role.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F7F4051EC5C931008DB808 /* Role.m */; };
 		5C0138751EE43C9300B9B40B /* ContactUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0138741EE43C9300B9B40B /* ContactUsViewController.m */; };
 		5C4587651EE2A02D004AC7FE /* CreditSimulationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4587641EE2A02D004AC7FE /* CreditSimulationViewController.m */; };
@@ -145,6 +146,8 @@
 		48D44D531EE7A42C005FC8DB /* SurveyFormViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SurveyFormViewController.xib; path = ViewController/SurveyFormViewController.xib; sourceTree = "<group>"; };
 		48D44D561EE83A2F005FC8DB /* SurveyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SurveyModel.h; path = Model/SurveyModel.h; sourceTree = "<group>"; };
 		48D44D571EE83A2F005FC8DB /* SurveyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SurveyModel.m; path = Model/SurveyModel.m; sourceTree = "<group>"; };
+		48D44D591EE846B5005FC8DB /* WorkOrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WorkOrderModel.h; path = Model/WorkOrderModel.h; sourceTree = "<group>"; };
+		48D44D5A1EE846B5005FC8DB /* WorkOrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WorkOrderModel.m; path = Model/WorkOrderModel.m; sourceTree = "<group>"; };
 		48F7F4041EC5C931008DB808 /* Role.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Role.h; path = Object/Realm/Role.h; sourceTree = "<group>"; };
 		48F7F4051EC5C931008DB808 /* Role.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Role.m; path = Object/Realm/Role.m; sourceTree = "<group>"; };
 		5C0138731EE43C9300B9B40B /* ContactUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactUsViewController.h; sourceTree = "<group>"; };
@@ -304,6 +307,8 @@
 				4846E2351EE6E92A000C08B7 /* DropdownModel.m */,
 				48D44D561EE83A2F005FC8DB /* SurveyModel.h */,
 				48D44D571EE83A2F005FC8DB /* SurveyModel.m */,
+				48D44D591EE846B5005FC8DB /* WorkOrderModel.h */,
+				48D44D5A1EE846B5005FC8DB /* WorkOrderModel.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -647,6 +652,7 @@
 				483F393A1EC3518500C03253 /* ForgotPasswordViewController.m in Sources */,
 				48D44D541EE7A42C005FC8DB /* SurveyFormViewController.m in Sources */,
 				4842780A1ECABC3000183A60 /* List.m in Sources */,
+				48D44D5B1EE846B5005FC8DB /* WorkOrderModel.m in Sources */,
 				483F39281EC3085E00C03253 /* LoginViewController.m in Sources */,
 				5C0138751EE43C9300B9B40B /* ContactUsViewController.m in Sources */,
 				5CF6819C1EC747A60056ACD3 /* KASlideShow.m in Sources */,
