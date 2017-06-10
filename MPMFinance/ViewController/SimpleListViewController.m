@@ -52,7 +52,9 @@
             [SVProgressHUD dismiss];
         } else {
             [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
-            [SVProgressHUD dismissWithDelay:1.5];
+            [SVProgressHUD dismissWithDelay:1.5 completion:^{
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
         }
     }];
 }

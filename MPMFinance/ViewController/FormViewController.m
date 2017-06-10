@@ -73,6 +73,9 @@
                 }
             }];
             
+        } else {
+            //something wrong i think
+            [SVProgressHUD dismiss];
         }
     }];
 }
