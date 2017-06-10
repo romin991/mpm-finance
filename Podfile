@@ -12,6 +12,7 @@ target 'MPMFinance' do
     pod 'Firebase/Messaging'
     pod 'SDWebImage'
     pod 'SVProgressHUD'
+    pod 'SVPullToRefresh'
     pod 'TPKeyboardAvoiding'
     pod 'XLForm', '~> 3.0'
     pod 'APAvatarImageView'

@@ -8,36 +8,88 @@
 
 #import "HistoryViewController.h"
 #import <UIImageView+AFNetworking.h>
+#import <UIScrollView+SVInfiniteScrolling.h>
+#import <UIScrollView+SVPullToRefresh.h>
+#define kHistoryPerPage 5
 @interface HistoryViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property NSArray* data;
+@property NSMutableArray* data;
+@property int currentPage;
 @end
 
 @implementation HistoryViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.data = [NSMutableArray array];
+    __weak HistoryViewController *weakSelf = self;
+    [self loadFirstPage];
+    [self.tableView addPullToRefreshWithActionHandler:^{
+        [weakSelf loadFirstPage];
+    }];
+    [self.tableView addInfiniteScrollingWithActionHandler:^{
+        [weakSelf loadMoreData];
+    }];
     // Do any additional setup after loading the view.
 }
--(void)viewWillAppear:(BOOL)animated
+-(void)loadFirstPage
 {
-    NSLog(@"history appear");
-    AFHTTPSessionManager *manager = [MPMGlobal sessionManager];
-    NSDictionary* param = @{@"data" : @{@"limit" : @"10",
-                                        @"offset" : @"0",
+    [self loadDataForPage:0];
+}
+-(void)loadMoreData
+{
+    [self loadDataForPage:_currentPage++];
+    
+    
+}
+
+-(void)loadDataForPage:(int)page
+{
+    __weak HistoryViewController *weakSelf = self;
+    AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
+    int offset = page * kHistoryPerPage;
+    NSString* url = [NSString stringWithFormat:@"%@/pengajuan/getallbyspv",kApiUrl];
+    NSDictionary* param = @{@"data" : @{@"limit" : [NSString stringWithFormat:@"%i",kHistoryPerPage],
+                                        @"offset" : [NSString stringWithFormat:@"%i",offset],
                                         @"status" : @"history"},
                             @"userid" : [MPMUserInfo getUserInfo][@"userId"],
                             @"token" : [MPMUserInfo getToken]};
-    [manager POST:[NSString stringWithFormat:@"%@/pengajuan/getallbyspv",kApiUrl] parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
+    
+    [manager POST:url parameters:param progress:^(NSProgress * _Nonnull downloadProgress) {
         ;
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        if ([responseObject[@"statusCode"] isEqual:@200]) {
-            self.data = responseObject[@"data"];
-            [self.tableView reloadData];
+        if (page == 0) {
+            weakSelf.data = [NSMutableArray arrayWithArray:responseObject[@"data"]];
+            NSLog(@"%@",responseObject);
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                _currentPage = 1;
+                [weakSelf.tableView reloadData];
+                [weakSelf.tableView.pullToRefreshView stopAnimating];
+            });
         }
+        else
+        {
+            
+            [weakSelf.data addObjectsFromArray:responseObject[@"data"]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                _currentPage = page;
+                [weakSelf.tableView reloadData];
+                [weakSelf.tableView.infiniteScrollingView stopAnimating];
+            });
+            
+        }
+
+        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        ;
+        [weakSelf.tableView.pullToRefreshView stopAnimating];
     }];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    NSLog(@"history appear");
+
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
