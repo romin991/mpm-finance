@@ -106,7 +106,7 @@ NSString *const kActionTypeAPICall = @"APICall";
 +(void)checkTokenWithCompletion:(void (^)(BOOL isExpired))block
 {
     AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
-    [manager POST:[NSString stringWithFormat:@"%@/login/checktoken",kApiUrl] parameters:@{@"userid" : [MPMUserInfo getUserInfo][@"userid"],@"token" : [MPMUserInfo getToken]} progress:^(NSProgress * _Nonnull uploadProgress) {
+    [manager POST:[NSString stringWithFormat:@"%@/login/checktoken",kApiUrl] parameters:@{@"userid" : [MPMUserInfo getUserInfo][@"userId"],@"token" : [MPMUserInfo getToken]} progress:^(NSProgress * _Nonnull uploadProgress) {
         ;
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"%@",responseObject);

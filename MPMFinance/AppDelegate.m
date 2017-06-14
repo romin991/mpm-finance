@@ -24,7 +24,7 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
     [GMSServices provideAPIKey:kAPIKey];
     [PopulateRealmDatabase removeAllData];
     [PopulateRealmDatabase generateData];
-    
+
     // Override point for customization after application launch.
     
     UIBarButtonItem *barButtonAppearance = [UIBarButtonItem appearance];

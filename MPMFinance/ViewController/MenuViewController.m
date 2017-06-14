@@ -25,6 +25,12 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [self refreshUI];
+    [MPMGlobal checkTokenWithCompletion:^(BOOL isExpired) {
+        if (isExpired) {
+            [MPMUserInfo deleteUserInfo];
+            [self refreshUI];
+        };
+    }];
     NSLog(@"group level %li",(long)[MPMUserInfo getGroupLevel]);
     [self.navigationController setNavigationBarHidden:YES animated:NO];
 }
