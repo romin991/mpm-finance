@@ -86,7 +86,8 @@ extern NSString *const kApiUrl;
 extern NSString *const kActionTypeForward;
 extern NSString *const kActionTypeAPICall;
 
-+(AFHTTPSessionManager*)sessionManager;
++ (void)checkTokenWithCompletion:(void (^)(BOOL isExpired))block;
++ (AFHTTPSessionManager*)sessionManager;
 + (NSString *)encodeToBase64String:(UIImage *)image;
 + (UIView *)giveBorderTo:(UIView *)view withBorderColor:(NSString *)hexColorString withCornerRadius:(CGFloat)cornerRadius;
 + (UIColor *)colorFromHexString:(NSString *)hexString;

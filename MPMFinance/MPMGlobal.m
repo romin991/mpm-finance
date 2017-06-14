@@ -103,6 +103,23 @@ NSString *const kActionTypeAPICall = @"APICall";
     UIColor* borderColor = [MPMGlobal colorFromHexString:hexColorString];
     return [self giveBorderTo:view withBorderColor:borderColor withCornerRadius:cornerRadius withRoundingCorners:UIRectCornerAllCorners withBorderWidth:1.0];
 }
++(void)checkTokenWithCompletion:(void (^)(BOOL isExpired))block
+{
+    AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
+    [manager POST:[NSString stringWithFormat:@"%@/login/checktoken",kApiUrl] parameters:@{@"userid" : [MPMUserInfo getUserInfo][@"userid"],@"token" : [MPMUserInfo getToken]} progress:^(NSProgress * _Nonnull uploadProgress) {
+        ;
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@",responseObject);
+        if (block) {
+            block(NO);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        ;
+        if(block){
+            block(YES);
+        }
+    }];
+}
 
 + (UIView *)giveBorderTo:(UIView *)view withBorderColor:(UIColor *)borderColor withCornerRadius:(CGFloat)cornerRadius withRoundingCorners:(UIRectCorner)corners withBorderWidth:(CGFloat)borderWidth{
     if (corners == UIRectCornerAllCorners){
