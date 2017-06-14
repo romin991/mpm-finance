@@ -36,6 +36,7 @@
  officer_spv_mobile/password
  officer_spv_mobile_2/password
  */
+
 - (IBAction)signInButtonClicked:(id)sender {
     if (self.usernameField.text.length < 1) {
         return;
@@ -46,7 +47,7 @@
     NSDictionary* param = @{@"userid" : self.usernameField.text,
                             @"token" : @"",
                             @"data" : @{
-                                    @"password" : self.passwordField.text,
+                                    @"password" : [MPMGlobal MD5fromString:self.passwordField.text],
                                     @"deviceId" : @"fcmid here",
                                     @"loginFrom" : @"mobile"
                                     }

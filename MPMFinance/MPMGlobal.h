@@ -8,6 +8,8 @@
 #import <AFHTTPSessionManager.h>
 #import <Foundation/Foundation.h>
 #import <SVProgressHUD.h>
+#import <CommonCrypto/CommonDigest.h>
+
 #define UIColorFromRGB(rgbValue) [UIColor \
 colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
@@ -90,5 +92,6 @@ extern NSString *const kActionTypeAPICall;
 + (UIColor *)colorFromHexString:(NSString *)hexString;
 + (NSString *)stringFromDate:(NSDate *)object;
 + (NSDate *)dateFromString:(NSString *)object;
++ (NSString *)MD5fromString:(NSString *)input;
 
 @end
