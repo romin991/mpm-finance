@@ -86,6 +86,7 @@ extern NSString *const kApiUrl;
 extern NSString *const kActionTypeForward;
 extern NSString *const kActionTypeAPICall;
 
++ (NSInteger)limitPerPage;
 + (AFHTTPSessionManager*)sessionManager;
 + (NSString *)encodeToBase64String:(UIImage *)image;
 + (UIView *)giveBorderTo:(UIView *)view withBorderColor:(NSString *)hexColorString withCornerRadius:(CGFloat)cornerRadius;

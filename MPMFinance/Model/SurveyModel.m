@@ -10,13 +10,15 @@
 
 @implementation SurveyModel
 
-+ (void)getListSurvey:(void(^)(NSArray *lists, NSError *error))block{
++ (void)getListSurveySince:(NSInteger)offset completion:(void(^)(NSArray *lists, NSError *error))block{
     AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
     NSDictionary* param = @{@"userid" : [MPMUserInfo getUserInfo][@"userId"],
                             @"token" : [MPMUserInfo getToken],
-                            @"data" : @{@"status" : @"listSurveyDraff"}};
+                            @"data" : @{@"status" : @"listSurveyDraff",
+                                        @"limit" : @([MPMGlobal limitPerPage]),
+                                        @"offset" : @(offset)}};
     NSLog(@"%@",param);
-    [manager POST:[NSString stringWithFormat:@"%@/survey/getlistdatapengajuansurvey", kApiUrl] parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
+    [manager POST:[NSString stringWithFormat:@"%@/datamap/getworkorder", kApiUrl] parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
         ;
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         @try {

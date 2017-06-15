@@ -84,6 +84,10 @@ NSString *const kMenuTypeMap = @"Map";
 NSString *const kActionTypeForward = @"Forward";
 NSString *const kActionTypeAPICall = @"APICall";
 
++ (NSInteger)limitPerPage{
+    return 50;
+}
+
 +(AFHTTPSessionManager*)sessionManager
 {
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];

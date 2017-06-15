@@ -125,7 +125,7 @@
     
     Action *action = [[Action alloc] init];
     action.name = @"Get List Work Order";
-    action.methodName = @"getListWorkOrder:";
+    action.methodName = @"getListWorkOrderPage:completion:";
     action.actionType = kActionTypeAPICall;
     [realm addObject:action];
     
@@ -308,7 +308,7 @@
     
     Action *action = [[Action alloc] init];
     action.name = @"Get List Work Order";
-    action.methodName = @"getListWorkOrder:";
+    action.methodName = @"getListWorkOrderPage:completion:";
     action.actionType = kActionTypeAPICall;
     [realm addObject:action];
     

@@ -8,18 +8,16 @@
 
 #import "APIModel.h"
 #import "SurveyModel.h"
+#import "WorkOrderModel.h"
 
 @implementation APIModel
 
-+ (void)getListWorkOrder:(void(^)(NSArray *lists, NSError *error))block{
-    [self getListWorkOrderWithStatus:@"all" block:^(NSArray *lists, NSError *error) {
-        if (block) {
-            block(lists,error);
-        }
-    }];
++ (void)getListWorkOrderPage:(NSInteger)page completion:(void(^)(NSArray *lists, NSError *error))block{
+    [WorkOrderModel getListWorkOrderWithPage:page completion:block];
 }
+
 + (void)getListSurvey:(void(^)(NSArray *lists, NSError *error))block{
-    [SurveyModel getListSurvey:block];
+//    [SurveyModel getListSurvey:block];
 }
 + (void)getListMapDraft:(void(^)(NSArray *lists, NSError *error))block{
     [self getListWorkOrderWithStatus:@"listMapDraft" block:^(NSArray *lists, NSError *error) {

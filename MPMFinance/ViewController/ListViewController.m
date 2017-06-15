@@ -16,12 +16,15 @@
 #import "FormViewController.h"
 #import "APIModel.h"
 #import "SurveyFormViewController.h"
+#import <UIScrollView+SVPullToRefresh.h>
+#import <UIScrollView+SVInfiniteScrolling.h>
 
 @interface ListViewController ()<UIActionSheetDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property NSMutableArray *lists;
 @property Menu *submenu;
+@property NSInteger page;
 
 @end
 
@@ -39,35 +42,68 @@
     }
     self.submenu = self.menu.submenus.firstObject;
     
-    __block NSString *methodName = self.submenu.fetchDataFromAPI ? self.submenu.fetchDataFromAPI.methodName : @"";
-    if ([APIModel respondsToSelector:NSSelectorFromString(methodName)]) {
-        __block ListViewController *weakSelf = self;
-        [SVProgressHUD show];
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            
-            [APIModel performSelector:NSSelectorFromString(methodName) withObject:^(NSArray *lists, NSError *error) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    //set the result here
-                    if (error == nil) {
-                        if (lists) [weakSelf setDataSource:lists];
-                        [SVProgressHUD dismiss];
-                    } else {
-                        [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
-                        [SVProgressHUD dismissWithDelay:1.5];
-                    }
-                });
-            }];
-        });
-    } else {
-        [SVProgressHUD showErrorWithStatus:@"No method found"];
-        [SVProgressHUD dismissWithDelay:1.5];
-    }
-    
     Action *rightButtonAction = self.submenu.rightButtonAction;
     if (rightButtonAction) {
         UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:rightButtonAction.name style:UIBarButtonItemStylePlain target:self action:@selector(rightButtonClicked:)];
         
         [self.navigationItem setRightBarButtonItem:rightButton];
+    }
+    
+    self.page = 0;
+    __block ListViewController *weakSelf = self;
+    [self loadDataForPage:0];
+    [self.tableView addPullToRefreshWithActionHandler:^{
+        [weakSelf loadDataForPage:0];
+    }];
+    [self.tableView addInfiniteScrollingWithActionHandler:^{
+        [weakSelf loadDataForPage:weakSelf.page];
+    }];
+}
+
+- (void)loadDataForPage:(NSInteger)page{
+    __block NSString *methodName = self.submenu.fetchDataFromAPI ? self.submenu.fetchDataFromAPI.methodName : @"";
+    if ([APIModel respondsToSelector:NSSelectorFromString(methodName)]) {
+        __block ListViewController *weakSelf = self;
+        __block NSInteger weakPage = page;
+        __block void (^handler)(NSArray *lists, NSError *error) = ^void(NSArray *lists, NSError *error){
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //set the result here
+                if (page == 0) {
+                    if (lists) {
+                        weakSelf.lists = [NSMutableArray arrayWithArray:lists];
+                        if (weakSelf.tableView) [weakSelf.tableView reloadData];
+                    };
+                    weakSelf.page = 1;
+                    [weakSelf.tableView.pullToRefreshView stopAnimating];
+                } else {
+                    if (lists) {
+                        [weakSelf.lists addObjectsFromArray:lists];
+                        if (weakSelf.tableView) [weakSelf.tableView reloadData];
+                    };
+                    [weakSelf.tableView.infiniteScrollingView stopAnimating];
+                }
+                
+                if (error) {
+                    [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+                    [SVProgressHUD dismissWithDelay:1.5];
+                }
+            });
+        };
+        
+        NSMethodSignature * mySignature = [APIModel methodSignatureForSelector:NSSelectorFromString(methodName)];
+        NSInvocation * myInvocation = [NSInvocation invocationWithMethodSignature:mySignature];
+        [myInvocation setTarget:[APIModel class]];
+        [myInvocation setSelector:NSSelectorFromString(methodName)];
+        [myInvocation setArgument:&weakPage atIndex:2];
+        [myInvocation setArgument:&handler atIndex:3];
+        [myInvocation retainArguments];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [myInvocation invoke];
+        });
+        
+    } else {
+        [SVProgressHUD showErrorWithStatus:@"No method found"];
+        [SVProgressHUD dismissWithDelay:1.5];
     }
 }
 
@@ -83,7 +119,8 @@
     list.imageURL = @"https://image.flaticon.com/teams/new/1-freepik.jpg";
     [dataSource addObject:list];
     
-    [self setDataSource:dataSource];
+    self.lists = [NSMutableArray arrayWithArray:dataSource];
+    if (self.tableView) [self.tableView reloadData];
 }
 
 - (void)rightButtonClicked:(id)sender{
@@ -93,11 +130,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)setDataSource:(NSArray<List *> *)lists{
-    self.lists = [NSMutableArray arrayWithArray:lists];
-    if (self.tableView) [self.tableView reloadData];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

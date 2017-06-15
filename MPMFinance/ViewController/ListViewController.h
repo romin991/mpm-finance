@@ -14,6 +14,5 @@
 
 @property Menu *menu;
 @property NSString *navigationTitle;
-- (void)setDataSource:(NSArray<List *> *)lists;
 
 @end
