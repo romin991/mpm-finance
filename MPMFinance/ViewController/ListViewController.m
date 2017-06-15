@@ -60,6 +60,10 @@
     }];
 }
 
+- (void)dealloc{
+    NSLog(@"dealloc");
+}
+
 - (void)loadDataForPage:(NSInteger)page{
     __block NSString *methodName = self.submenu.fetchDataFromAPI ? self.submenu.fetchDataFromAPI.methodName : @"";
     if ([APIModel respondsToSelector:NSSelectorFromString(methodName)]) {
@@ -80,6 +84,7 @@
                         [weakSelf.lists addObjectsFromArray:lists];
                         if (weakSelf.tableView) [weakSelf.tableView reloadData];
                     };
+                    weakSelf.page += 1;
                     [weakSelf.tableView.infiniteScrollingView stopAnimating];
                 }
                 

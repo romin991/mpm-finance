@@ -11,7 +11,7 @@
 @implementation WorkOrderModel
 
 + (void)getListWorkOrderWithPage:(NSInteger)page completion:(void(^)(NSArray *lists, NSError *error))block{
-    NSInteger offset = [MPMGlobal limitPerPage] * page + 1;
+    NSInteger offset = [MPMGlobal limitPerPage] * page;
     
     AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
     NSDictionary* param = @{@"userid" : [MPMUserInfo getUserInfo][@"userId"],
