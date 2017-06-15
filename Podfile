@@ -13,7 +13,7 @@ target 'MPMFinance' do
     pod 'SDWebImage'
     pod 'SVProgressHUD'
     pod 'SVPullToRefresh'
-    pod 'TPKeyboardAvoiding'
+    pod 'IQKeyboardManager'
     pod 'XLForm', '~> 3.0'
     pod 'APAvatarImageView'
     pod 'JVFloatLabeledTextField'

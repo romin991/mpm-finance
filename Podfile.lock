@@ -44,6 +44,7 @@ PODS:
     - GoogleToolboxForMac/Defines (= 2.1.1)
   - GoogleToolboxForMac/NSData+zlib (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
+  - IQKeyboardManager (4.0.10)
   - JVFloatLabeledTextField (1.1.1)
   - Protobuf (3.2.1)
   - Realm (2.7.0):
@@ -54,7 +55,6 @@ PODS:
   - SDWebImage/Core (4.0.0)
   - SVProgressHUD (2.1.2)
   - SVPullToRefresh (0.4.1)
-  - TPKeyboardAvoiding (1.3.1)
   - XLForm (3.3.0)
 
 DEPENDENCIES:
@@ -63,12 +63,12 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Messaging
   - GoogleMaps (= 2.1.0)
+  - IQKeyboardManager
   - JVFloatLabeledTextField
   - Realm (~> 2.7.0)
   - SDWebImage
   - SVProgressHUD
   - SVPullToRefresh
-  - TPKeyboardAvoiding
   - XLForm (~> 3.0)
 
 SPEC CHECKSUMS:
@@ -81,15 +81,15 @@ SPEC CHECKSUMS:
   FirebaseMessaging: 753d05a925e9eb8eadd09a0ffc9b808578b72fac
   GoogleMaps: 06589b9a38097bce0cd6e90f0fd9b5e4b4a9344c
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
+  IQKeyboardManager: 593ee99b88381f4b9ccb22bd680f22606351bd41
   JVFloatLabeledTextField: 0e5524b097f102036214dd8279edc8ecf08b5e18
   Protobuf: 2ccbaf193f6c65adc67745453ca0c13234c32796
   Realm: 07e5d3a9e0e41d65fd5f9f05150ed6295d0f093b
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
-  TPKeyboardAvoiding: 0d6af20e95e2850f4c621841225b59ec7d8dd852
   XLForm: d5c391dfc62865927b5bcab0a5a0dbfb3e02b0ec
 
-PODFILE CHECKSUM: 064abd8a8c0406a916797cc3c35567d040962f1f
+PODFILE CHECKSUM: 8e435c902796a2f1b50633ef2946944a3aab745b
 
 COCOAPODS: 1.2.1

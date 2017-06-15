@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "PopulateRealmDatabase.h"
 #import <GoogleMaps/GoogleMaps.h>
+#import <IQKeyboardManager.h>
+
 #define SYSTEM_VERSION_GRATERTHAN_OR_EQUALTO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
 @import Firebase;
@@ -78,6 +80,10 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
     
     [self setNavigationBarColor];
     [self loadFirstController];
+    
+    [[IQKeyboardManager sharedManager] setEnableAutoToolbar:NO];
+    [[IQKeyboardManager sharedManager] setKeyboardDistanceFromTextField:50];
+    
     return YES;
 }
 
