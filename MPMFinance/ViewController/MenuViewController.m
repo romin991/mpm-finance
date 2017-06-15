@@ -8,7 +8,8 @@
 
 #import "MenuViewController.h"
 #import "MenuNavigationViewController.h"
-#import "MPMUserInfo.h"
+#import "ProfileModel.h"
+
 @interface MenuViewController ()<UITabBarDelegate>
 @property (weak, nonatomic) IBOutlet UITabBar *tabBar;
 @property (weak, nonatomic) IBOutlet UIView *signInView;
@@ -25,7 +26,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [self refreshUI];
-    [MPMGlobal checkTokenWithCompletion:^(BOOL isExpired) {
+    [ProfileModel checkTokenWithCompletion:^(BOOL isExpired) {
         if (isExpired) {
             [MPMUserInfo deleteUserInfo];
             [self refreshUI];

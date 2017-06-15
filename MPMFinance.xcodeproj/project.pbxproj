@@ -11,6 +11,7 @@
 		4831CD201EDE97A6001EF223 /* SubmenuCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4831CD1E1EDE97A6001EF223 /* SubmenuCollectionViewController.xib */; };
 		4831CD271EDE97D7001EF223 /* SubmenuCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4831CD251EDE97D7001EF223 /* SubmenuCollectionViewCell.m */; };
 		4831CD281EDE97D7001EF223 /* SubmenuCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4831CD261EDE97D7001EF223 /* SubmenuCollectionViewCell.xib */; };
+		483F1E981EF2874F005D3945 /* ProfileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 483F1E971EF2874F005D3945 /* ProfileModel.m */; };
 		483F39221EC3085E00C03253 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 483F39211EC3085E00C03253 /* main.m */; };
 		483F39251EC3085E00C03253 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 483F39241EC3085E00C03253 /* AppDelegate.m */; };
 		483F39281EC3085E00C03253 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 483F39271EC3085E00C03253 /* LoginViewController.m */; };
@@ -77,6 +78,8 @@
 		4831CD241EDE97D7001EF223 /* SubmenuCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SubmenuCollectionViewCell.h; path = ViewController/SubmenuCollectionViewCell.h; sourceTree = "<group>"; };
 		4831CD251EDE97D7001EF223 /* SubmenuCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SubmenuCollectionViewCell.m; path = ViewController/SubmenuCollectionViewCell.m; sourceTree = "<group>"; };
 		4831CD261EDE97D7001EF223 /* SubmenuCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SubmenuCollectionViewCell.xib; path = ViewController/SubmenuCollectionViewCell.xib; sourceTree = "<group>"; };
+		483F1E961EF2874F005D3945 /* ProfileModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileModel.h; path = Model/ProfileModel.h; sourceTree = "<group>"; };
+		483F1E971EF2874F005D3945 /* ProfileModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileModel.m; path = Model/ProfileModel.m; sourceTree = "<group>"; };
 		483F391D1EC3085E00C03253 /* MPMFinance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MPMFinance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		483F39211EC3085E00C03253 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		483F39231EC3085E00C03253 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -309,6 +312,8 @@
 				48D44D571EE83A2F005FC8DB /* SurveyModel.m */,
 				48D44D591EE846B5005FC8DB /* WorkOrderModel.h */,
 				48D44D5A1EE846B5005FC8DB /* WorkOrderModel.m */,
+				483F1E961EF2874F005D3945 /* ProfileModel.h */,
+				483F1E971EF2874F005D3945 /* ProfileModel.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -661,6 +666,7 @@
 				4866A89A1ECD8B2200A89E98 /* FloatLabeledTextFieldCell.m in Sources */,
 				483F39251EC3085E00C03253 /* AppDelegate.m in Sources */,
 				4886BAFD1EC42EDD000F8DBE /* MenuViewController.m in Sources */,
+				483F1E981EF2874F005D3945 /* ProfileModel.m in Sources */,
 				5C4587651EE2A02D004AC7FE /* CreditSimulationViewController.m in Sources */,
 				5C9B08EC1EC9DB8700B5E9AC /* MenuNavigationViewController.m in Sources */,
 				48CDD8421EC9BA1A0038D626 /* SubmenuTableViewCell.m in Sources */,

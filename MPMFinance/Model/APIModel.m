@@ -7,6 +7,7 @@
 //
 
 #import "APIModel.h"
+#import "SurveyModel.h"
 
 @implementation APIModel
 
@@ -18,11 +19,7 @@
     }];
 }
 + (void)getListSurvey:(void(^)(NSArray *lists, NSError *error))block{
-    [self getListWorkOrderWithStatus:@"listSurveyDraft" block:^(NSArray *lists, NSError *error) {
-        if (block) {
-            block(lists,error);
-        }
-    }];
+    [SurveyModel getListSurvey:block];
 }
 + (void)getListMapDraft:(void(^)(NSArray *lists, NSError *error))block{
     [self getListWorkOrderWithStatus:@"listMapDraft" block:^(NSArray *lists, NSError *error) {

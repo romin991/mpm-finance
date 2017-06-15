@@ -267,7 +267,7 @@
     [FormRow new:realm :19 :5 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama"];
     [FormRow new:realm :19 :6 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Hubungan"];
     [FormRow new:realm :19 :7 :YES :XLFormRowDescriptorTypeSelectorPush :@"Kebenaran Domisili" :27];
-    [FormRow new:realm :19 :8 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Penjelasan"];
+    [FormRow new:realm :19 :8 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Keterangan Domisili"];
     [FormRow new:realm :19 :9 :YES :XLFormRowDescriptorTypeSelectorPush :@"Status Kepemilikan Rumah" :13];
     [FormRow new:realm :19 :10 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Lama Tinggal"];
     [[FormRow new:realm :19 :11 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Jumlah orang yang tinggal serumah"] setKey:@"jumlahOrang"];

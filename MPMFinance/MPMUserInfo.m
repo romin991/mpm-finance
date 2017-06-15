@@ -9,6 +9,15 @@
 #import "MPMUserInfo.h"
 
 @implementation MPMUserInfo
+
++ (BOOL)isLoggedIn{
+    NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"userInfo"];
+    if (data) {
+        return YES;
+    }
+    return NO;
+}
+
 +(NSDictionary*)getUserInfo
 {
     NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"userInfo"];

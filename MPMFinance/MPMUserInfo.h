@@ -9,9 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @interface MPMUserInfo : NSObject
+
++ (BOOL)isLoggedIn;
 +(NSDictionary*)getUserInfo;
 +(void)deleteUserInfo;
 +(void)save:(NSDictionary*)dictionary;
 +(NSInteger)getGroupLevel;
 +(NSString*)getToken;
+
 @end

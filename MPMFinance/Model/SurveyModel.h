@@ -11,6 +11,7 @@
 
 @interface SurveyModel : NSObject
 
++ (void)getListSurvey:(void(^)(NSArray *lists, NSError *error))block;
 + (void)getSurveyWithID:(NSInteger)pengajuanId completion:(void(^)(NSDictionary *dictionary, NSError *error))block;
 + (void)postSurveyWithList:(List *)list dictionary:(NSDictionary *)dictionary completion:(void(^)(NSDictionary *dictionary, NSError *error))block;
 
