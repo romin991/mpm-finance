@@ -74,7 +74,7 @@
                         if (weakSelf.tableView) [weakSelf.tableView reloadData];
                     };
                     weakSelf.page = 1;
-                    [weakSelf.tableView.pullToRefreshView stopAnimating];
+//                    [weakSelf.tableView.pullToRefreshView stopAnimating];
                 } else {
                     if (lists) {
                         [weakSelf.lists addObjectsFromArray:lists];
