@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1lC-WT-m55">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1lC-WT-m55">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -226,7 +226,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="D32-7L-i5n"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
                                         <state key="normal" title="Reset password for marketing office or dedicated? Reset Here">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -2179,11 +2179,146 @@
                         <outlet property="txtNoTelpon" destination="vWp-Na-nM5" id="fEl-MR-Pda"/>
                         <outlet property="txtPassword" destination="2NV-GA-sRt" id="Jlh-TY-o6b"/>
                         <outlet property="txtPlaceOfBirth" destination="ViI-bT-N8w" id="t92-es-WmN"/>
+                        <segue destination="sUU-AU-rwb" kind="show" identifier="sendOTPViewController" id="DTe-A5-6oM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kxz-mt-VkI" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-659.4202898550725" y="516.84782608695662"/>
+        </scene>
+        <!--SendOTP View Controller-->
+        <scene sceneID="cem-Ba-bNh">
+            <objects>
+                <viewController storyboardIdentifier="sendOTPViewController" id="sUU-AU-rwb" customClass="sendOTPViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="NvK-m5-P0J"/>
+                        <viewControllerLayoutGuide type="bottom" id="6of-Rh-8Xq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ekd-WN-hzG">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="signInBackground" translatesAutoresizingMaskIntoConstraints="NO" id="6ca-eG-Qwy">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="234"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="234" id="QXY-Vx-Ynb"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SignInLogo" translatesAutoresizingMaskIntoConstraints="NO" id="VgY-hu-kDc">
+                                <rect key="frame" x="89" y="85" width="143" height="64"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="amc-F8-NK5">
+                                <rect key="frame" x="16" y="181" width="288" height="367"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Input OTP Code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xxg-BE-QAk">
+                                        <rect key="frame" x="0.0" y="8" width="288" height="31"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="31" id="EEN-XI-Q4R"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="24"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uSG-IL-11p">
+                                        <rect key="frame" x="40" y="191" width="208" height="48"/>
+                                        <color key="backgroundColor" red="0.94901960780000005" green="0.43529411759999997" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="3eu-nM-W40"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <state key="normal" title="SUBMIT">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="resetPasswordButtonClicked:" destination="sUU-AU-rwb" eventType="touchUpInside" id="Vpu-tE-c8t"/>
+                                            <action selector="submit:" destination="sUU-AU-rwb" eventType="touchUpInside" id="fCT-r6-dXb"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zPg-xi-hid">
+                                        <rect key="frame" x="40" y="272" width="208" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="snZ-bq-6y3"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
+                                        <state key="normal" title="Resend OTP Code">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="resend:" destination="sUU-AU-rwb" eventType="touchUpInside" id="aM2-Vu-jXj"/>
+                                            <action selector="resetNavigateButtonClicked:" destination="sUU-AU-rwb" eventType="touchUpInside" id="xxk-t1-BJg"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AYB-Fl-zIb">
+                                        <rect key="frame" x="0.0" y="72" width="288" height="44"/>
+                                        <subviews>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rzQ-L8-3or">
+                                                <rect key="frame" x="62" y="0.0" width="206" height="44"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="Ea5-l5-XIl"/>
+                                                </constraints>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EmailIcon" translatesAutoresizingMaskIntoConstraints="NO" id="aDG-10-egn">
+                                                <rect key="frame" x="20" y="12" width="28" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="LG9-Ry-C0E"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="rzQ-L8-3or" firstAttribute="top" secondItem="AYB-Fl-zIb" secondAttribute="top" id="Acc-6H-ID8"/>
+                                            <constraint firstItem="rzQ-L8-3or" firstAttribute="leading" secondItem="aDG-10-egn" secondAttribute="trailing" constant="14" id="JF3-0V-UPe"/>
+                                            <constraint firstItem="aDG-10-egn" firstAttribute="top" secondItem="AYB-Fl-zIb" secondAttribute="top" constant="12" id="aeG-QF-VhS"/>
+                                            <constraint firstAttribute="trailing" secondItem="rzQ-L8-3or" secondAttribute="trailing" constant="20" id="gNo-mg-Pam"/>
+                                            <constraint firstItem="aDG-10-egn" firstAttribute="leading" secondItem="AYB-Fl-zIb" secondAttribute="leading" constant="20" id="hyI-6S-30u"/>
+                                            <constraint firstAttribute="height" constant="44" id="scM-fZ-Lqd"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="zPg-xi-hid" secondAttribute="bottom" constant="33" id="58i-FO-mwN"/>
+                                    <constraint firstAttribute="trailing" secondItem="AYB-Fl-zIb" secondAttribute="trailing" id="5Pd-L9-kV7"/>
+                                    <constraint firstItem="uSG-IL-11p" firstAttribute="top" secondItem="AYB-Fl-zIb" secondAttribute="bottom" constant="75" id="5z5-CP-o1S"/>
+                                    <constraint firstItem="Xxg-BE-QAk" firstAttribute="leading" secondItem="amc-F8-NK5" secondAttribute="leading" id="7yf-tc-yll"/>
+                                    <constraint firstItem="AYB-Fl-zIb" firstAttribute="top" secondItem="Xxg-BE-QAk" secondAttribute="bottom" constant="33" id="94J-DB-LnB"/>
+                                    <constraint firstItem="uSG-IL-11p" firstAttribute="leading" secondItem="amc-F8-NK5" secondAttribute="leading" constant="40" id="Ak1-fO-DZX"/>
+                                    <constraint firstAttribute="trailing" secondItem="zPg-xi-hid" secondAttribute="trailing" constant="40" id="DeS-Pq-Iuq"/>
+                                    <constraint firstItem="AYB-Fl-zIb" firstAttribute="leading" secondItem="amc-F8-NK5" secondAttribute="leading" id="GRR-eu-kXL"/>
+                                    <constraint firstItem="zPg-xi-hid" firstAttribute="leading" secondItem="amc-F8-NK5" secondAttribute="leading" constant="40" id="dhj-R0-Rxh"/>
+                                    <constraint firstAttribute="trailing" secondItem="uSG-IL-11p" secondAttribute="trailing" constant="40" id="eJO-NS-Pr3"/>
+                                    <constraint firstAttribute="trailing" secondItem="Xxg-BE-QAk" secondAttribute="trailing" id="heP-NR-FaA"/>
+                                    <constraint firstItem="zPg-xi-hid" firstAttribute="top" secondItem="uSG-IL-11p" secondAttribute="bottom" constant="33" id="m1k-cH-gy0"/>
+                                    <constraint firstItem="Xxg-BE-QAk" firstAttribute="top" secondItem="amc-F8-NK5" secondAttribute="top" constant="8" id="ve8-4A-CaP"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6of-Rh-8Xq" firstAttribute="top" secondItem="amc-F8-NK5" secondAttribute="bottom" constant="20" id="93p-J1-eiT"/>
+                            <constraint firstAttribute="trailing" secondItem="6ca-eG-Qwy" secondAttribute="trailing" id="99F-ck-xoI"/>
+                            <constraint firstItem="6ca-eG-Qwy" firstAttribute="top" secondItem="ekd-WN-hzG" secondAttribute="top" id="Dmf-ka-2GE"/>
+                            <constraint firstItem="6ca-eG-Qwy" firstAttribute="leading" secondItem="ekd-WN-hzG" secondAttribute="leading" id="E2G-eI-qVL"/>
+                            <constraint firstItem="amc-F8-NK5" firstAttribute="leading" secondItem="ekd-WN-hzG" secondAttribute="leadingMargin" id="Rge-sR-e8o"/>
+                            <constraint firstItem="VgY-hu-kDc" firstAttribute="centerX" secondItem="6ca-eG-Qwy" secondAttribute="centerX" id="alx-DI-iMJ"/>
+                            <constraint firstItem="amc-F8-NK5" firstAttribute="top" secondItem="VgY-hu-kDc" secondAttribute="bottom" constant="32" id="qYK-PV-hDr"/>
+                            <constraint firstItem="amc-F8-NK5" firstAttribute="trailing" secondItem="ekd-WN-hzG" secondAttribute="trailingMargin" id="svU-8I-VTk"/>
+                            <constraint firstItem="VgY-hu-kDc" firstAttribute="centerY" secondItem="6ca-eG-Qwy" secondAttribute="centerY" id="tvT-vm-B3t"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="resetNavigateButton" destination="zPg-xi-hid" id="dwn-0e-AdL"/>
+                        <outlet property="resetPasswordButton" destination="uSG-IL-11p" id="cKo-5z-kuC"/>
+                        <outlet property="txtCode" destination="rzQ-L8-3or" id="amf-Hq-EqJ"/>
+                        <outlet property="usernameField" destination="rzQ-L8-3or" id="V2T-AC-L8B"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gfu-8t-IF6" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="917" y="833"/>
         </scene>
     </scenes>
     <resources>

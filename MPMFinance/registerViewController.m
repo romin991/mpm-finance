@@ -8,6 +8,7 @@
 
 #import "registerViewController.h"
 #import <APAvatarImageView.h>
+#import "sendOTPViewController.h"
 #import <AFHTTPSessionManager.h>
 @interface registerViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -254,7 +255,7 @@
         if ([responseObject[@"statusCode"] isEqualToString:@"200"]) {
             UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"Success" message:@"Register Success" preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction* okButton = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-                [self dismissViewControllerAnimated:YES completion:nil];;
+                [self performSegueWithIdentifier:@"sendOTPViewController" sender:self];
             }];
             [alertController addAction:okButton];
             [self presentViewController:alertController animated:YES completion:nil];
@@ -267,14 +268,18 @@
         ;
     }];
 }
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"sendOTPViewController"]) {
+        sendOTPViewController *vc = [segue destinationViewController];
+        vc.userId = self.txtEmail.text;
+    }
 }
-*/
+
 
 @end
