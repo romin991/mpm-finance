@@ -22,9 +22,14 @@
 @interface ListViewController ()<UIActionSheetDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIView *segmentedView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *segmentedViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet UIStackView *horizontalStackView;
+
 @property NSMutableArray *lists;
 @property Menu *submenu;
 @property NSInteger page;
+@property NSInteger selectedIndex;
 
 @end
 
@@ -50,22 +55,76 @@
     }
     
     self.page = 0;
+    self.selectedIndex = 0;
     __block ListViewController *weakSelf = self;
-    [self loadDataForPage:0];
+    [self loadDataForSelectedIndex:self.selectedIndex andPage:self.page];
     [self.tableView addPullToRefreshWithActionHandler:^{
-        [weakSelf loadDataForPage:0];
+        [weakSelf loadDataForSelectedIndex:weakSelf.selectedIndex andPage:0];
     }];
     [self.tableView addInfiniteScrollingWithActionHandler:^{
-        [weakSelf loadDataForPage:weakSelf.page];
+        [weakSelf loadDataForSelectedIndex:weakSelf.selectedIndex andPage:weakSelf.page];
     }];
+    
+    [self setupSegmentedControl];
+}
+
+- (void)setupSegmentedControl{
+    if (self.submenu.dataSources.count <= 1) {
+        self.segmentedViewHeightConstraint.constant = 0;
+        
+    } else {
+        for (int i = 0; i < self.submenu.dataSources.count; i++) {
+//        for (Action *action in self.submenu.dataSources) {
+            Action *action = [self.submenu.dataSources objectAtIndex:i];
+            
+            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+            [button setTitle:action.name forState:UIControlStateNormal];
+            [button setTag:i];
+            [button addTarget:self action:@selector(segmentedButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+            if (i == 0){
+                button.titleLabel.font = [UIFont fontWithName:@"Avenir-Heavy" size:18];
+            } else {
+                button.titleLabel.font = [UIFont fontWithName:@"Avenir-Book" size:18];
+            }
+            
+            [self.horizontalStackView addArrangedSubview:button];
+        }
+    }
+}
+
+- (void)segmentedButtonClicked:(id)sender{
+    UIButton *button = sender;
+    @try {
+        Action *dataSource = [self.submenu.dataSources objectAtIndex:button.tag];
+        if (dataSource) {
+            self.page = 0;
+            self.selectedIndex = button.tag;
+            
+            for (UIButton *anotherButton in self.horizontalStackView.arrangedSubviews) {
+                anotherButton.titleLabel.font = [UIFont fontWithName:@"Avenir-Book" size:18];
+            }
+            
+            button.titleLabel.font = [UIFont fontWithName:@"Avenir-Heavy" size:18];
+            
+            [self loadDataForSelectedIndex:self.selectedIndex andPage:self.page];
+        }
+    } @catch (NSException *exception) {
+        NSLog(@"%@", exception);
+    }
 }
 
 - (void)dealloc{
     NSLog(@"dealloc");
 }
 
-- (void)loadDataForPage:(NSInteger)page{
-    __block NSString *methodName = self.submenu.fetchDataFromAPI ? self.submenu.fetchDataFromAPI.methodName : @"";
+- (void)loadDataForSelectedIndex:(NSInteger)index andPage:(NSInteger)page{
+    __block NSString *methodName;
+    
+    if (self.submenu.dataSources.count > index) {
+        Action *dataSource = [self.submenu.dataSources objectAtIndex:index];
+        if (dataSource.methodName) methodName = dataSource.methodName;
+    }
+    
     if ([APIModel respondsToSelector:NSSelectorFromString(methodName)]) {
         __block ListViewController *weakSelf = self;
         __block NSInteger weakPage = page;
@@ -75,14 +134,20 @@
                 if (page == 0) {
                     if (lists) {
                         weakSelf.lists = [NSMutableArray arrayWithArray:lists];
-                        if (weakSelf.tableView) [weakSelf.tableView reloadData];
+                        if (weakSelf.tableView) {
+                            [weakSelf.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionNone animated:YES];
+                            [weakSelf.tableView reloadData];
+                        }
                     };
                     weakSelf.page = 1;
-//                    [weakSelf.tableView.pullToRefreshView stopAnimating];
+                    [weakSelf.tableView.pullToRefreshView stopAnimating];
                 } else {
                     if (lists) {
                         [weakSelf.lists addObjectsFromArray:lists];
-                        if (weakSelf.tableView) [weakSelf.tableView reloadData];
+                        if (weakSelf.tableView) {
+                            [weakSelf.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionNone animated:YES];
+                            [weakSelf.tableView reloadData];
+                        }
                     };
                     weakSelf.page += 1;
                     [weakSelf.tableView.infiniteScrollingView stopAnimating];

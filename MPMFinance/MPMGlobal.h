@@ -45,6 +45,7 @@ extern NSString *const kMenuPengembalianBPKB;
 extern NSString *const kMenuSaranPengaduan;
 extern NSString *const kMenuCustomerGetCustomer;
 
+extern NSString *const kSubmenuListMonitoring;
 extern NSString *const kSubmenuListOnlineSubmission;
 extern NSString *const kSubmenuListWorkOrder;
 extern NSString *const kSubmenuListMAP;
@@ -71,6 +72,10 @@ extern NSString *const kSubmenuProperty;
 extern NSString *const kSubmenuYearToDate;
 extern NSString *const kSubmenuMonthToDate;
 
+extern NSString *const kMenuTypeTrackingMarketing;
+extern NSString *const kMenuTypeFormNewCar;
+extern NSString *const kMenuTypeFormUsedCar;
+extern NSString *const kMenuTypeFormDahsyat;
 extern NSString *const kMenuTypeFormDataMAP;
 extern NSString *const kMenuTypeFormWorkOrder;
 extern NSString *const kMenuTypeFormSurvey;
