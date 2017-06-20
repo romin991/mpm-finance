@@ -7,13 +7,14 @@
 //
 
 #import <Realm/Realm.h>
+#import "Role.h"
 
 @interface Action : RLMObject
 
 @property NSString *name;
 @property NSString *actionType;
 @property NSString *methodName;
-@property NSString *className; //jika diperlukan
+@property RLMArray<Role> *roles;
 
 @end
 RLM_ARRAY_TYPE(Action)

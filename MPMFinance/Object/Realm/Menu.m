@@ -7,52 +7,23 @@
 //
 
 #import "Menu.h"
-#define kGroupLevelNil 0
-#define kGroupLevelCustomer 2
-#define kGroupLevelAgent 3
-#define kGroupLevelDealer 4
-#define kGroupLevelMarketingOfficer 5
-#define kGroupLevelMarketingDedicated 6
-#define kGroupLevelMarketingSpv 7
+
 @implementation Menu
 
 + (NSString *)primaryKey {
     return @"title";
 }
 
-+(NSString*)roleCodeToRoleName:(NSInteger)roleCode
-{
-    NSString *roleName;
-    if (roleCode == kGroupLevelCustomer) {
-        roleName = kRoleCustomer;
-    }
-    else if(roleCode == kGroupLevelAgent) {
-        roleName = kRoleAgent;
-    }
-    else if(roleCode == kGroupLevelDealer) {
-        roleName = kRoleDealer;
-    }
-    else if(roleCode == kGroupLevelMarketingOfficer) {
-        roleName = kRoleOfficer;
-    }
-    else if(roleCode == kGroupLevelMarketingDedicated) {
-        roleName = kRoleDedicated;
-    }
-    else if(roleCode == kGroupLevelMarketingSpv) {
-        roleName = kRoleSupervisor;
-    }
-    else if(roleCode == kGroupLevelNil){
-        roleName = kNoRole;
-    }
-    return roleName;
++ (RLMResults *)getMenuForRole:(NSString *)role{
+    return [Menu objectsWhere:@"ANY roles.name = %@ and isRootMenu = YES", role];
 }
 
-+ (RLMResults *)getMenuForRole:(NSInteger)roleCode{
-    return [Menu objectsWhere:@"ANY roles.name = %@ and isRootMenu = YES", [Menu roleCodeToRoleName:roleCode]];
++ (RLMResults *)getSubmenuForMenu:(NSString *)menuTitle role:(NSString *)role{
+    return [[Menu objectForPrimaryKey:menuTitle].submenus objectsWhere:@"ANY roles.name = %@", role];
 }
 
-+ (RLMResults *)getSubmenuForMenu:(NSString *)menuTitle role:(NSInteger)roleCode{
-    return [[Menu objectForPrimaryKey:menuTitle].submenus objectsWhere:@"ANY roles.name = %@", [Menu roleCodeToRoleName:roleCode]];
++ (RLMResults *)getDataSourcesForMenu:(NSString *)menuTitle role:(NSString *)role{
+    return [[Menu objectForPrimaryKey:menuTitle].dataSources objectsWhere:@"ANY roles.name = %@", role];
 }
 
 #pragma mark - Populate Data
@@ -119,14 +90,12 @@
     action.name = @"Get List Marketing";
     action.methodName = @""; //#APIWARNING pengajuan/getallmarketingbyspv with datapengajuanid
     action.actionType = kActionTypeAPICall;
-    [realm addObject:action];
+    [action.roles addObjects:submenu.roles];
     
     [menuList.dataSources addObject:action];
     [menuList.roles addObjects:submenu.roles];
-    [realm addObject:menuList];
     
     [submenu.submenus addObject:menuList];
-    
     [realm addObject:submenu];
     
 //==Online Submission===================================================================================================
@@ -149,22 +118,20 @@
     
     action = [[Action alloc] init];
     action.name = @"Get List Work Order";
-    action.methodName = @"getListWorkOrderPage:completion:"; //#APIWARNING pengajuan/getallbyuser with status new
+    action.methodName = @"getNewByUserListWorkOrderPage:completion:"; //pengajuan/getallbyuser with status new
     action.actionType = kActionTypeAPICall;
-    [realm addObject:action];
-    
+    [action.roles addObjects:submenu.roles];
     [menuList.dataSources addObject:action];
     
     action = [[Action alloc] init];
     action.name = @"Add";
     action.methodName = @"";
     action.actionType = kActionTypeForward;
-    [realm addObject:action];
+    [action.roles addObjects:submenu.roles];
     menuList.rightButtonAction = action;
     
     [menuList.submenus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
     [menuList.roles addObjects:submenu.roles];
-    [realm addObject:menuList];
     
     [submenu.submenus addObject:menuList];
     [realm addObject:submenu];
@@ -188,14 +155,14 @@
     
     action = [[Action alloc] init];
     action.name = @"Get List Work Order";
-    action.methodName = @"getListWorkOrderPage:completion:"; //#APIWARNING pengajuan/getallbyuser with status monitoring
+    action.methodName = @"getMonitoringByUserListWorkOrderPage:completion:"; //pengajuan/getallbyuser with status monitoring
     action.actionType = kActionTypeAPICall;
-    [realm addObject:action];
+    [action.roles addObjects:submenu.roles];
     
     [menuList.dataSources addObject:action];
     [menuList.submenus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]]; //#FLOWWARNING maybe not editable for monitoring
     [menuList.roles addObjects:submenu.roles];
-    [realm addObject:menuList];
+    [action.roles addObjects:submenu.roles];
     
     [submenu.submenus addObject:menuList];
     [realm addObject:submenu];
@@ -284,15 +251,49 @@
     
     Action *action = [[Action alloc] init];
     action.name = @"All";
-    action.methodName = @"getListWorkOrderPage:completion:"; //#APIWARNING datamap/getworkorder with status all
+    action.methodName = @"getAllListWorkOrderPage:completion:"; //datamap/getworkorder with status all
     action.actionType = kActionTypeAPICall;
+    [action.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     
     [menuList.dataSources addObject:action];
     
     action = [[Action alloc] init];
     action.name = @"Approve";
-    action.methodName = @"getListWorkOrderPage:completion:"; //#APIWARNING datamap/getworkorder with status need approval
+    action.methodName = @"getNeedApprovalListWorkOrderPage:completion:"; //datamap/getworkorder with status need approval
     action.actionType = kActionTypeAPICall;
+    [action.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
+    
+    [menuList.dataSources addObject:action];
+    
+    action = [[Action alloc] init];
+    action.name = @"Clear";
+    action.methodName = @"getAllListWorkOrderPage:completion:"; //datamap/getworkorder with status all
+    action.actionType = kActionTypeAPICall;
+    [action.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
+    
+    [menuList.dataSources addObject:action];
+    
+    action = [[Action alloc] init];
+    action.name = @"Negative";
+    action.methodName = @"getBadUsersListWorkOrderPage:completion:"; //datamap/getworkorder with status badUsers
+    action.actionType = kActionTypeAPICall;
+    [action.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
+    
+    [menuList.dataSources addObject:action];
+    
+    action = [[Action alloc] init];
+    action.name = @"Clear";
+    action.methodName = @"getNewBySupervisorListWorkOrderPage:completion:"; //pengajuan/getallbyspv status new
+    action.actionType = kActionTypeAPICall;
+    [action.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
+    
+    [menuList.dataSources addObject:action];
+    
+    action = [[Action alloc] init];
+    action.name = @"Negative";
+    action.methodName = @"getBadUsersBySupervisorListWorkOrderPage:completion:"; //pengajuan/getallbyspv status badUsers
+    action.actionType = kActionTypeAPICall;
+    [action.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
     
     [menuList.dataSources addObject:action];
     
@@ -368,9 +369,18 @@
     
     action = [[Action alloc] init];
     action.name = @"Get List Work Order";
-    action.methodName = @"getListWorkOrderPage:completion:"; //#APIWARNING datamap/getworkorder with status listMapDraff
+    action.methodName = @"getMapDraftListWorkOrderPage:completion:"; //datamap/getworkorder with status listMapDraff
     action.actionType = kActionTypeAPICall;
-    [realm addObject:action];
+    [action.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
+    [action.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
+    
+    [menuList.dataSources addObject:action];
+    
+    action = [[Action alloc] init];
+    action.name = @"Get List Work Order";
+    action.methodName = @"getMapBySupervisorListWorkOrderPage:completion:"; //pengajuan/getallbyspv status listMap
+    action.actionType = kActionTypeAPICall;
+    [action.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
     
     [menuList.dataSources addObject:action];
     
@@ -378,7 +388,7 @@
     action.name = @"Edit";
     action.methodName = @"";
     action.actionType = kActionTypeForward;
-    [realm addObject:action];
+    [action.roles addObjects:menu.roles];
     
     [menuList.actions addObject:action];
     
@@ -386,13 +396,12 @@
     action.name = @"Submit";
     action.methodName = @""; //#APIWARNING datamap/submitmap with status id
     action.actionType = kActionTypeAPICall;
-    [realm addObject:action];
+    [action.roles addObjects:menu.roles];
     
     [menuList.actions addObject:action];
     
     [menuList.roles addObjects:menu.roles];
     [menuList.submenus addObject:[Menu objectForPrimaryKey:kSubmenuDataMAP]];
-    [realm addObject:menuList];
     
     [menu.submenus addObject:menuList];
     [realm addObject:menu];
@@ -413,14 +422,25 @@
     menuList.title = kSubmenuListSurvey;
     menuList.sort = 0;
     menuList.menuType = @"";
+    
     action = [[Action alloc] init];
     action.name = @"Get List Survey";
-    action.methodName = @"";
+    action.methodName = @"getSurveyBySupervisorListWorkOrderPage:completion:"; //pengajuan/getallbyspv status listSurvey
     action.actionType = kActionTypeAPICall;
+    [action.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
+    
+    [menuList.dataSources addObject:action];
+    
+    action = [[Action alloc] init];
+    action.name = @"Get List Survey";
+    action.methodName = @"getSurveyDraftListWorkOrderPage:completion:"; //#APIWARNING datamap/getworkorder status listSurveyDraff
+    action.actionType = kActionTypeAPICall;
+    [action.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
+    [action.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
+    
     [menuList.dataSources addObject:action];
     [menuList.roles addObjects:menu.roles];
     [menuList.submenus addObject:[Menu objectForPrimaryKey:kSubmenuSurvey]];
-    [realm addObject:menuList];
     
     [menu.submenus addObject:menuList];
     [realm addObject:menu];

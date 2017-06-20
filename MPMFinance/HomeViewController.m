@@ -30,7 +30,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.menus = [Menu getMenuForRole:[MPMUserInfo getGroupLevel]];
+    self.menus = [Menu getMenuForRole:[MPMUserInfo getRole]];
     // KASlideshow
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshUI) name:@"UserLoginNotification" object:nil];
     self.datasource = [NSMutableArray array];
@@ -46,7 +46,7 @@
 }
 -(void)refreshUI
 {
-    self.menus = [Menu getMenuForRole:[MPMUserInfo getGroupLevel]];
+    self.menus = [Menu getMenuForRole:[MPMUserInfo getRole]];
     [self.menuCollectionView reloadData];
 }
 -(void)reloadSlideShow

@@ -7,6 +7,13 @@
 //
 
 #import "MPMUserInfo.h"
+#define kGroupLevelNil 0
+#define kGroupLevelCustomer 2
+#define kGroupLevelAgent 3
+#define kGroupLevelDealer 4
+#define kGroupLevelMarketingOfficer 5
+#define kGroupLevelMarketingDedicated 6
+#define kGroupLevelMarketingSpv 7
 
 @implementation MPMUserInfo
 
@@ -69,6 +76,32 @@
     return [userInfo[@"groupLevel"] integerValue];
 }
 
++ (NSString *)getRole{
+    NSString *roleName;
+    NSInteger roleCode = [self getGroupLevel];
+    if (roleCode == kGroupLevelCustomer) {
+        roleName = kRoleCustomer;
+    }
+    else if(roleCode == kGroupLevelAgent) {
+        roleName = kRoleAgent;
+    }
+    else if(roleCode == kGroupLevelDealer) {
+        roleName = kRoleDealer;
+    }
+    else if(roleCode == kGroupLevelMarketingOfficer) {
+        roleName = kRoleOfficer;
+    }
+    else if(roleCode == kGroupLevelMarketingDedicated) {
+        roleName = kRoleDedicated;
+    }
+    else if(roleCode == kGroupLevelMarketingSpv) {
+        roleName = kRoleSupervisor;
+    }
+    else if(roleCode == kGroupLevelNil){
+        roleName = kNoRole;
+    }
+    return roleName;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////                     CONTENT OF USER INFO                                /////////////////

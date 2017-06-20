@@ -16,5 +16,6 @@
 +(void)save:(NSDictionary*)dictionary;
 +(NSInteger)getGroupLevel;
 +(NSString*)getToken;
++ (NSString *)getRole;
 
 @end

@@ -28,8 +28,9 @@ RLM_ARRAY_TYPE(Menu)
 @property RLMArray<Action> *actions; //for menuType list
 @property RLMArray<Action> *dataSources; //for menuType list
 
-+ (RLMResults *)getMenuForRole:(NSInteger)roleCode;
-+ (RLMResults *)getSubmenuForMenu:(NSString *)menuTitle role:(NSInteger)roleName;
++ (RLMResults *)getMenuForRole:(NSString *)role;
++ (RLMResults *)getSubmenuForMenu:(NSString *)menuTitle role:(NSString *)role;
++ (RLMResults *)getDataSourcesForMenu:(NSString *)menuTitle role:(NSString *)role;
 + (void)generateMenus;
 
 @end

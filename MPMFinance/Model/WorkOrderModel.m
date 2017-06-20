@@ -10,13 +10,121 @@
 
 @implementation WorkOrderModel
 
-+ (void)getListWorkOrderWithPage:(NSInteger)page completion:(void(^)(NSArray *lists, NSError *error))block{
++ (void)getListWorkOrderBySupervisorWithStatus:(NSString *)status page:(NSInteger)page completion:(void(^)(NSArray *lists, NSError *error))block{
     NSInteger offset = [MPMGlobal limitPerPage] * page;
     
     AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
     NSDictionary* param = @{@"userid" : [MPMUserInfo getUserInfo][@"userId"],
                             @"token" : [MPMUserInfo getToken],
-                            @"data" : @{@"status" : @"all",
+                            @"data" : @{@"status" : status,
+                                        @"limit" : @([MPMGlobal limitPerPage]),
+                                        @"offset" : @(offset)}};
+    NSLog(@"%@",param);
+    [manager POST:[NSString stringWithFormat:@"%@/pengajuan/getallbyspv",kApiUrl] parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
+        ;
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"statusCode"] isEqual:@200]) {
+            NSMutableArray *lists = [NSMutableArray array];
+            NSLog(@"%@",responseObject);
+            for (NSDictionary* listDict in responseObject[@"data"]) {
+                List *list = [[List alloc] init];
+                list.primaryKey = [listDict[@"id"] integerValue];
+                list.title = listDict[@"noRegistrasi"];
+                list.date = listDict[@"tanggal"];
+                list.assignee = listDict[@"namaPengaju"];
+                list.status = listDict[@"status"];
+                list.type = listDict[@"tipeProduk"];
+                list.statusColor = listDict[@"color"];
+                list.imageURL = listDict[@"imageIconIos"];
+                [lists addObject:list];
+            }
+            
+            if (block) block(lists, nil);
+        } else {
+            NSInteger code = 0;
+            NSString *message = @"";
+            @try {
+                if (responseObject[@"statusCode"]) code = [responseObject[@"statusCode"] integerValue];
+                if (responseObject[@"message"]) message = responseObject[@"message"];
+            } @catch (NSException *exception) {
+                NSLog(@"%@", exception);
+            } @finally {
+                if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                          code:code
+                                                      userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(message, nil)}]);
+            }
+            
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@",error);
+        if (block) block(nil, error);
+        
+    }];
+    
+}
+
++ (void)getListWorkOrderByUserWithStatus:(NSString *)status page:(NSInteger)page completion:(void(^)(NSArray *lists, NSError *error))block{
+    NSInteger offset = [MPMGlobal limitPerPage] * page;
+    
+    AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
+    NSDictionary* param = @{@"userid" : [MPMUserInfo getUserInfo][@"userId"],
+                            @"token" : [MPMUserInfo getToken],
+                            @"data" : @{@"status" : status,
+                                        @"limit" : @([MPMGlobal limitPerPage]),
+                                        @"offset" : @(offset)}};
+    NSLog(@"%@",param);
+    [manager POST:[NSString stringWithFormat:@"%@/pengajuan/getallbyuser",kApiUrl] parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
+        ;
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"statusCode"] isEqual:@200]) {
+            NSMutableArray *lists = [NSMutableArray array];
+            NSLog(@"%@",responseObject);
+            for (NSDictionary* listDict in responseObject[@"data"]) {
+                List *list = [[List alloc] init];
+                list.primaryKey = [listDict[@"id"] integerValue];
+                list.title = listDict[@"noRegistrasi"];
+                list.date = listDict[@"tanggal"];
+                list.assignee = listDict[@"namaPengaju"];
+                list.status = listDict[@"status"];
+                list.type = listDict[@"tipeProduk"];
+                list.statusColor = listDict[@"color"];
+                list.imageURL = listDict[@"imageIconIos"];
+                [lists addObject:list];
+            }
+            
+            if (block) block(lists, nil);
+        } else {
+            NSInteger code = 0;
+            NSString *message = @"";
+            @try {
+                if (responseObject[@"statusCode"]) code = [responseObject[@"statusCode"] integerValue];
+                if (responseObject[@"message"]) message = responseObject[@"message"];
+            } @catch (NSException *exception) {
+                NSLog(@"%@", exception);
+            } @finally {
+                if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                          code:code
+                                                      userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(message, nil)}]);
+            }
+            
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@",error);
+        if (block) block(nil, error);
+        
+    }];
+    
+}
+
++ (void)getListWorkOrderWithStatus:(NSString *)status page:(NSInteger)page completion:(void(^)(NSArray *lists, NSError *error))block{
+    NSInteger offset = [MPMGlobal limitPerPage] * page;
+    
+    AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
+    NSDictionary* param = @{@"userid" : [MPMUserInfo getUserInfo][@"userId"],
+                            @"token" : [MPMUserInfo getToken],
+                            @"data" : @{@"status" : status,
                                         @"limit" : @([MPMGlobal limitPerPage]),
                                         @"offset" : @(offset)}};
     NSLog(@"%@",param);

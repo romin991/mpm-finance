@@ -12,72 +12,66 @@
 
 @implementation APIModel
 
-+ (void)getListWorkOrderPage:(NSInteger)page completion:(void(^)(NSArray *lists, NSError *error))block{
-    [WorkOrderModel getListWorkOrderWithPage:page completion:block];
++ (void)getAllListWorkOrderPage:(NSInteger)page completion:(void(^)(NSArray *lists, NSError *error))block{
+    [WorkOrderModel getListWorkOrderWithStatus:@"all" page:page completion:block];
 }
 
-+ (void)getListSurvey:(void(^)(NSArray *lists, NSError *error))block{
-//    [SurveyModel getListSurvey:block];
-}
-+ (void)getListMapDraft:(void(^)(NSArray *lists, NSError *error))block{
-    [self getListWorkOrderWithStatus:@"listMapDraft" block:^(NSArray *lists, NSError *error) {
-        if (block) {
-            block(lists,error);
-        }
-    }];
++ (void)getNeedApprovalListWorkOrderPage:(NSInteger)page completion:(void(^)(NSArray *lists, NSError *error))block{
+    [WorkOrderModel getListWorkOrderWithStatus:@"needApproval" page:page completion:block];
 }
 
-+ (void)getListWorkOrderWithStatus:(NSString*)status block:(void(^)(NSArray *lists, NSError *error))block{
-    AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
-    NSDictionary* param = @{@"userid" : [MPMUserInfo getUserInfo][@"userId"],
-                            @"token" : [MPMUserInfo getToken],
-                            @"data" : @{@"status" : status,
-                                        @"limit" : @20,
-                                        @"offset" : @0}};
-    NSLog(@"%@",param);
-    [manager POST:[NSString stringWithFormat:@"%@/datamap/getworkorder",kApiUrl] parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
-        ;
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        if ([responseObject[@"statusCode"] isEqual:@200]) {
-            NSMutableArray *lists = [NSMutableArray array];
-            NSLog(@"%@",responseObject);
-            for (NSDictionary* listDict in responseObject[@"data"]) {
-                List *list = [[List alloc] init];
-                list.primaryKey = [listDict[@"id"] integerValue];
-                list.title = listDict[@"noRegistrasi"];
-                list.date = listDict[@"tanggal"];
-                list.assignee = listDict[@"namaPengaju"];
-                list.status = listDict[@"status"];
-                list.type = listDict[@"tipeProduk"];
-                list.statusColor = listDict[@"color"];
-                list.imageURL = listDict[@"imageIconIos"];
-                [lists addObject:list];
-            }
-            
-            if (block) block(lists, nil);
-        } else {
-            NSInteger code = 0;
-            NSString *message = @"";
-            @try {
-                if (responseObject[@"statusCode"]) code = [responseObject[@"statusCode"] integerValue];
-                if (responseObject[@"message"]) message = responseObject[@"message"];
-            } @catch (NSException *exception) {
-                NSLog(@"%@", exception);
-            } @finally {
-                if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
-                                                          code:code
-                                                      userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(message, nil)}]);
-            }
-            
-        }
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"%@",error);
-        if (block) block(nil, error);
-        
-    }];
-    
++ (void)getBadUsersListWorkOrderPage:(NSInteger)page completion:(void(^)(NSArray *lists, NSError *error))block{
+    [WorkOrderModel getListWorkOrderWithStatus:@"badUsers" page:page completion:block];
 }
+
++ (void)getMapDraftListWorkOrderPage:(NSInteger)page completion:(void(^)(NSArray *lists, NSError *error))block{
+    [WorkOrderModel getListWorkOrderWithStatus:@"listMapDraff" page:page completion:block];
+}
+
++ (void)getSurveyDraftListWorkOrderPage:(NSInteger)page completion:(void(^)(NSArray *lists, NSError *error))block{
+    [WorkOrderModel getListWorkOrderWithStatus:@"listSurveyDraff" page:page completion:block];
+}
+
++ (void)getNewByUserListWorkOrderPage:(NSInteger)page completion:(void(^)(NSArray *lists, NSError *error))block{
+    [WorkOrderModel getListWorkOrderByUserWithStatus:@"new" page:page completion:block];
+}
+
++ (void)getMonitoringByUserListWorkOrderPage:(NSInteger)page completion:(void(^)(NSArray *lists, NSError *error))block{
+    [WorkOrderModel getListWorkOrderByUserWithStatus:@"monitoring" page:page completion:block];
+}
+
++ (void)getNewBySupervisorListWorkOrderPage:(NSInteger)page completion:(void(^)(NSArray *lists, NSError *error))block{
+    [WorkOrderModel getListWorkOrderBySupervisorWithStatus:@"new" page:page completion:block];
+}
+
++ (void)getBadUsersBySupervisorListWorkOrderPage:(NSInteger)page completion:(void(^)(NSArray *lists, NSError *error))block{
+    [WorkOrderModel getListWorkOrderBySupervisorWithStatus:@"badUsers" page:page completion:block];
+}
+
++ (void)getMapBySupervisorListWorkOrderPage:(NSInteger)page completion:(void(^)(NSArray *lists, NSError *error))block{
+    [WorkOrderModel getListWorkOrderBySupervisorWithStatus:@"listMap" page:page completion:block];
+}
+
++ (void)getSurveyBySupervisorListWorkOrderPage:(NSInteger)page completion:(void(^)(NSArray *lists, NSError *error))block{
+    [WorkOrderModel getListWorkOrderBySupervisorWithStatus:@"listSurvey" page:page completion:block];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 +(void)getListProduct:(void(^)(NSArray *lists, NSError *error))block
 {

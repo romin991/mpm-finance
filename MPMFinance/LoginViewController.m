@@ -35,6 +35,9 @@
  marketing :
  officer_spv_mobile/password
  officer_spv_mobile_2/password
+ marketing_dedicated_mobile / password
+ vika@gmail.com / password
+ hadi / password
  */
 
 - (IBAction)signInButtonClicked:(id)sender {

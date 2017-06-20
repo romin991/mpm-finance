@@ -30,6 +30,7 @@
 @property Menu *submenu;
 @property NSInteger page;
 @property NSInteger selectedIndex;
+@property RLMResults *dataSources;
 
 @end
 
@@ -46,6 +47,7 @@
         [self setTitle:self.navigationTitle];
     }
     self.submenu = self.menu.submenus.firstObject;
+    self.dataSources = [Menu getDataSourcesForMenu:self.submenu.title role:[MPMUserInfo getRole]];
     
     Action *rightButtonAction = self.submenu.rightButtonAction;
     if (rightButtonAction) {
@@ -69,13 +71,12 @@
 }
 
 - (void)setupSegmentedControl{
-    if (self.submenu.dataSources.count <= 1) {
+    if (self.dataSources.count <= 1) {
         self.segmentedViewHeightConstraint.constant = 0;
         
     } else {
-        for (int i = 0; i < self.submenu.dataSources.count; i++) {
-//        for (Action *action in self.submenu.dataSources) {
-            Action *action = [self.submenu.dataSources objectAtIndex:i];
+        for (int i = 0; i < self.dataSources.count; i++) {
+            Action *action = [self.dataSources objectAtIndex:i];
             
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
             [button setTitle:action.name forState:UIControlStateNormal];
@@ -95,7 +96,7 @@
 - (void)segmentedButtonClicked:(id)sender{
     UIButton *button = sender;
     @try {
-        Action *dataSource = [self.submenu.dataSources objectAtIndex:button.tag];
+        Action *dataSource = [self.dataSources objectAtIndex:button.tag];
         if (dataSource) {
             self.page = 0;
             self.selectedIndex = button.tag;
@@ -120,8 +121,8 @@
 - (void)loadDataForSelectedIndex:(NSInteger)index andPage:(NSInteger)page{
     __block NSString *methodName;
     
-    if (self.submenu.dataSources.count > index) {
-        Action *dataSource = [self.submenu.dataSources objectAtIndex:index];
+    if (self.dataSources.count > index) {
+        Action *dataSource = [self.dataSources objectAtIndex:index];
         if (dataSource.methodName) methodName = dataSource.methodName;
     }
     
@@ -135,7 +136,7 @@
                     if (lists) {
                         weakSelf.lists = [NSMutableArray arrayWithArray:lists];
                         if (weakSelf.tableView) {
-                            [weakSelf.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionNone animated:YES];
+                            [weakSelf.tableView scrollRectToVisible:CGRectMake(0, 0, 0, 0) animated:YES];
                             [weakSelf.tableView reloadData];
                         }
                     };
@@ -145,7 +146,7 @@
                     if (lists) {
                         [weakSelf.lists addObjectsFromArray:lists];
                         if (weakSelf.tableView) {
-                            [weakSelf.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionNone animated:YES];
+                            [weakSelf.tableView scrollRectToVisible:CGRectMake(0, 0, 0, 0) animated:YES];
                             [weakSelf.tableView reloadData];
                         }
                     };
