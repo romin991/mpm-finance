@@ -21,12 +21,12 @@ RLM_ARRAY_TYPE(Menu)
 @property NSInteger sort;
 @property NSString *menuType;
 @property BOOL isRootMenu;
-@property Action *fetchDataFromAPI; //for menuType list
 @property Action *rightButtonAction; //for menuType list
 
 @property RLMArray<Role> *roles;
 @property RLMArray<Menu> *submenus;
-@property RLMArray<Action> *actions;
+@property RLMArray<Action> *actions; //for menuType list
+@property RLMArray<Action> *dataSources; //for menuType list
 
 + (RLMResults *)getMenuForRole:(NSInteger)roleCode;
 + (RLMResults *)getSubmenuForMenu:(NSString *)menuTitle role:(NSInteger)roleName;

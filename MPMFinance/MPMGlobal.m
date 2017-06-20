@@ -43,6 +43,7 @@ NSString *const kMenuPengembalianBPKB = @"Pengembalian BPKB";
 NSString *const kMenuSaranPengaduan = @"Saran & Pengaduan";
 NSString *const kMenuCustomerGetCustomer = @"Customer Get Customer";
 
+NSString *const kSubmenuListMonitoring = @"List Monitoring API";
 NSString *const kSubmenuListOnlineSubmission = @"List Online Submission API";
 NSString *const kSubmenuListWorkOrder = @"List Work Order API";
 NSString *const kSubmenuListMAP = @"List MAP API";
@@ -70,6 +71,10 @@ NSString *const kSubmenuProperty = @"Property";
 NSString *const kSubmenuYearToDate = @"Year to Date";
 NSString *const kSubmenuMonthToDate = @"Month to Date";
 
+NSString *const kMenuTypeTrackingMarketing = @"TrackingMarketing";
+NSString *const kMenuTypeFormUsedCar = @"UsedCar";
+NSString *const kMenuTypeFormNewCar = @"NewCar";
+NSString *const kMenuTypeFormDahsyat = @"Dahsyat";
 NSString *const kMenuTypeFormDataMAP = @"DataMAP";
 NSString *const kMenuTypeFormWorkOrder = @"WorkOrder";
 NSString *const kMenuTypeFormSurvey = @"Survey";
