@@ -65,6 +65,7 @@
 		5C9DB2361EC3312200FC0CC9 /* MPMGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9DB2351EC3312200FC0CC9 /* MPMGlobal.m */; };
 		5C9DB2421EC3393000FC0CC9 /* MPMUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9DB2411EC3393000FC0CC9 /* MPMUserInfo.m */; };
 		5CBC4C771ECC8A67002ED03C /* MyProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CBC4C761ECC8A67002ED03C /* MyProfileTableViewController.m */; };
+		5CCD2A221EF9577D000336AF /* sendOTPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCD2A211EF9577D000336AF /* sendOTPViewController.m */; };
 		5CDC30421EC3E274001D97DB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC30411EC3E274001D97DB /* GoogleService-Info.plist */; };
 		5CF497B81ED330FF0005327D /* registerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF497B71ED330FF0005327D /* registerViewController.m */; };
 		5CF6819C1EC747A60056ACD3 /* KASlideShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF6819B1EC747A60056ACD3 /* KASlideShow.m */; };
@@ -176,6 +177,8 @@
 		5C9DB2411EC3393000FC0CC9 /* MPMUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMUserInfo.m; sourceTree = "<group>"; };
 		5CBC4C751ECC8A67002ED03C /* MyProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProfileTableViewController.h; sourceTree = "<group>"; };
 		5CBC4C761ECC8A67002ED03C /* MyProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProfileTableViewController.m; sourceTree = "<group>"; };
+		5CCD2A201EF9577D000336AF /* sendOTPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sendOTPViewController.h; sourceTree = "<group>"; };
+		5CCD2A211EF9577D000336AF /* sendOTPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = sendOTPViewController.m; sourceTree = "<group>"; };
 		5CD07BD91EC342B0007C8C08 /* MPMFinance.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MPMFinance.entitlements; sourceTree = "<group>"; };
 		5CDC30411EC3E274001D97DB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5CF497B61ED330FF0005327D /* registerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = registerViewController.h; sourceTree = "<group>"; };
@@ -286,6 +289,8 @@
 				4886BAFC1EC42EDD000F8DBE /* MenuViewController.m */,
 				5CF497B61ED330FF0005327D /* registerViewController.h */,
 				5CF497B71ED330FF0005327D /* registerViewController.m */,
+				5CCD2A201EF9577D000336AF /* sendOTPViewController.h */,
+				5CCD2A211EF9577D000336AF /* sendOTPViewController.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -691,6 +696,7 @@
 				5C9DB2421EC3393000FC0CC9 /* MPMUserInfo.m in Sources */,
 				5C9B08F21EC9DB9300B5E9AC /* HomeViewController.m in Sources */,
 				48D44D4F1EDFD2AF005FC8DB /* ISO8601DateFormatter.m in Sources */,
+				5CCD2A221EF9577D000336AF /* sendOTPViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
