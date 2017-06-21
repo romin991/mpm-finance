@@ -439,6 +439,23 @@
     [action.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     
     [menuList.dataSources addObject:action];
+    
+    action = [[Action alloc] init];
+    action.name = @"Edit";
+    action.methodName = @"";
+    action.actionType = kActionTypeForward;
+    [action.roles addObjects:menu.roles];
+    
+    [menuList.actions addObject:action];
+    
+    action = [[Action alloc] init];
+    action.name = @"Submit";
+    action.methodName = @""; //#APIWARNING
+    action.actionType = kActionTypeAPICall;
+    [action.roles addObjects:menu.roles];
+    
+    [menuList.actions addObject:action];
+    
     [menuList.roles addObjects:menu.roles];
     [menuList.submenus addObject:[Menu objectForPrimaryKey:kSubmenuSurvey]];
     
