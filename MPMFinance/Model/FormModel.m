@@ -104,4 +104,59 @@
     });
 }
 
++ (void)generate:(XLFormDescriptor *)formDescriptor form:(Form *)form completion:(void(^)(XLFormDescriptor *, NSError *error))block{
+    __block dispatch_group_t group = dispatch_group_create();
+    __block dispatch_queue_t queue = dispatch_get_main_queue();
+    __block NSError *weakError;
+    
+    // Form
+    formDescriptor = [XLFormDescriptor formDescriptorWithTitle:@"Text Fields"];
+    
+    for (FormSection *formSection in form.sections) {
+        // Section
+        XLFormSectionDescriptor *section = [XLFormSectionDescriptor formSection];
+        section.title = formSection.title;
+        [formDescriptor addFormSection:section];
+        
+        // Row
+        for (FormRow *formRow in formSection.rows) {
+            __block XLFormRowDescriptor *row = [XLFormRowDescriptor formRowDescriptorWithTag:formRow.key rowType:formRow.type title:formRow.title];
+            row.required = formRow.required;
+            row.disabled = @(formRow.disabled);
+            row.selectorTitle = formRow.title;
+            [section addFormRow:row];
+            
+            if (formRow.optionType.length) {
+                dispatch_group_enter(group);
+                NSLog(@"enter");
+                [DropdownModel getDropdownForType:formRow.optionType completion:^(NSArray *options, NSError *error) {
+                    @try {
+                        if (error) {
+                            weakError = error;
+                            
+                        } else {
+                            NSMutableArray *optionObjects = [NSMutableArray array];
+                            for (Option *option in options) {
+                                [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:@(option.primaryKey) displayText:option.name]];
+                            }
+                            row.selectorOptions = optionObjects;
+                        }
+                        
+                    } @catch (NSException *exception) {
+                        NSLog(@"%@", exception);
+                    } @finally {
+                        dispatch_group_leave(group);
+                        NSLog(@"leave");
+                    }
+                }];
+            }
+        }
+    }
+    
+    
+    dispatch_group_notify(group, queue, ^{
+        if (block) block(formDescriptor, weakError);
+    });
+}
+
 @end

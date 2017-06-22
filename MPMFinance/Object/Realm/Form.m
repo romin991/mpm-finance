@@ -217,7 +217,13 @@
     form = [[Form alloc] init];
     form.title = @"Dahsyat";
     form.sort = 0;
-    [form.rows addObjects:[FormRow getRowsWithCategoryNumber:20]];
+    
+    FormSection *section = [[FormSection alloc] init];
+    section.title = @"Dahsyat";
+    [section.rows addObjects:[FormRow getRowsWithCategoryNumber:20]];
+    
+    [form.sections addObject:section];
+//    [form.rows addObjects:[FormRow getRowsWithCategoryNumber:20]];
     
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuDahsyat]];
     [realm addObject:form];

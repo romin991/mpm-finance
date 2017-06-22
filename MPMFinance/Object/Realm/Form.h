@@ -9,6 +9,7 @@
 #import <Realm/Realm.h>
 #import "FormRow.h"
 #import "Menu.h"
+#import "FormSection.h"
 
 @interface Form : RLMObject
 
@@ -16,6 +17,7 @@
 @property NSInteger sort;
 
 @property RLMArray<FormRow> *rows;
+@property RLMArray<FormSection> *sections;
 @property RLMArray<Menu> *menus;
 
 + (RLMResults *)getFormForMenu:(NSString *)menuTitle;

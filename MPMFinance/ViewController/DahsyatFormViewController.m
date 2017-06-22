@@ -15,8 +15,6 @@
 
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 
-@property RLMResults *forms;
-@property RLMArray *formRows;
 @property XLFormDescriptor *formDescriptor;
 @property XLFormViewController *formViewController;
 
@@ -28,16 +26,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.forms = [Form getFormForMenu:self.menu.title];
-    Form *currentForm = self.forms.firstObject;
-    if (currentForm) self.formRows = currentForm.rows;
+    RLMResults *forms = [Form getFormForMenu:self.menu.title];
+    Form *currentForm = forms.firstObject;
     
     [self setTitle:self.menu.title];
 //    [self setRightBarButton];
     
     [SVProgressHUD show];
     __block DahsyatFormViewController *weakSelf = self;
-    [FormModel generate:self.formDescriptor dataSource:self.formRows completion:^(XLFormDescriptor *formDescriptor, NSError *error) {
+    [FormModel generate:self.formDescriptor form:currentForm completion:^(XLFormDescriptor *formDescriptor, NSError *error) {
         if (error){
             [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
             [SVProgressHUD dismissWithDelay:1.5 completion:^{
