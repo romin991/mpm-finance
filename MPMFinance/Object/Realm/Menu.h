@@ -13,11 +13,15 @@
 RLM_ARRAY_TYPE(Menu)
 @interface Menu : RLMObject
 
+@property NSString *primaryKey;
+@property NSString *indonesiaTitle;
+@property NSString *englishTitle;
+@property (nonatomic) NSString *title;
+
 @property NSString *imageName; //for root menu
 @property NSString *backgroundImageName; //for menuType submenu (parent)
 @property NSString *circleIconImageName; //for menuType submenu (parent)
 @property NSString *borderColor; //for menuType submenu (child)
-@property NSString *title;
 @property NSInteger sort;
 @property NSString *menuType;
 @property BOOL isRootMenu;

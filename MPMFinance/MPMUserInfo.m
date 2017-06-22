@@ -7,6 +7,7 @@
 //
 
 #import "MPMUserInfo.h"
+
 #define kGroupLevelNil 0
 #define kGroupLevelCustomer 2
 #define kGroupLevelAgent 3
@@ -25,22 +26,21 @@
     return NO;
 }
 
-+(NSDictionary*)getUserInfo
-{
++(NSDictionary *)getUserInfo{
     NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"userInfo"];
     NSDictionary *dictionary = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     return dictionary[@"customerProfile"];
 }
-+(NSString*)getToken
-{
+
++ (NSString *)getToken{
     NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"userInfo"];
     NSDictionary *dictionary = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     NSLog(@"%@",dictionary[@"token"]);
     return dictionary[@"token"];
     
 }
-+(void)save:(NSDictionary *)dictionary
-{
+
++ (void)save:(NSDictionary *)dictionary{
     NSData *dataSave = [NSKeyedArchiver archivedDataWithRootObject:dictionary];
     [[NSUserDefaults standardUserDefaults] setObject:dataSave forKey:@"userInfo"];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -50,8 +50,8 @@
     //-...
     [[NSNotificationCenter defaultCenter] postNotificationName:@"UserLoginNotification" object:nil];
 }
-+(void)deleteUserInfo
-{
+
++ (void)deleteUserInfo{
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"userInfo"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"UserLoginNotification" object:nil];
@@ -70,15 +70,11 @@
 
 7	marketing spv
 */
-+(NSInteger)getGroupLevel
-{
-    NSDictionary* userInfo = [MPMUserInfo getUserInfo];
-    return [userInfo[@"groupLevel"] integerValue];
-}
 
 + (NSString *)getRole{
     NSString *roleName;
-    NSInteger roleCode = [self getGroupLevel];
+    NSDictionary* userInfo = [MPMUserInfo getUserInfo];
+    NSInteger roleCode = [userInfo[@"groupLevel"] integerValue];
     if (roleCode == kGroupLevelCustomer) {
         roleName = kRoleCustomer;
     }

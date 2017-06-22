@@ -12,7 +12,7 @@
 
 @implementation MPMGlobal
 
-
+NSString *const kApiUrl = @"http://202.152.10.90:8080/mpmfinance";
 NSString *const kAPIKey = @"AIzaSyCx8uLneXfyNKCV8emCWt-AD4V1kPgrHJw";
 
 NSString *const kRoleCustomer = @"Customer";
@@ -22,7 +22,6 @@ NSString *const kRoleSupervisor = @"Supervisor";
 NSString *const kRoleOfficer = @"Officer";
 NSString *const kRoleDedicated = @"Dedicated";
 NSString *const kNoRole = @"NotLogin";
-
 
 NSString *const kMenuListWorkOrder = @"List Work Order";
 NSString *const kMenuOnlineSubmission = @"Online Submission";
@@ -55,7 +54,6 @@ NSString *const kSubmenuDataMAP = @"Data MAP";
 NSString *const kSubmenuSurvey = @"Survey";
 NSString *const kSubmenuMelengkapiData = @"Melengkapi Data";
 NSString *const kSubmenuAssignMarketing = @"Assign Marketing";
-NSString *const kApiUrl = @"http://202.152.10.90:8080/mpmfinance";
 
 NSString *const kSubmenuListPengajuanApplikasi = @"List Pengajuan Aplikasi";
 NSString *const kSubmenuMonitoring = @"Monitoring";

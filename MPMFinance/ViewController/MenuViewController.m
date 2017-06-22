@@ -32,7 +32,6 @@
             [self refreshUI];
         };
     }];
-    NSLog(@"group level %li",(long)[MPMUserInfo getGroupLevel]);
     [self.navigationController setNavigationBarHidden:YES animated:NO];
 }
 -(void)refreshUI

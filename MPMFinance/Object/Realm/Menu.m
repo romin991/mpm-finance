@@ -7,11 +7,16 @@
 //
 
 #import "Menu.h"
+#import "MPMUserInfo.h"
 
 @implementation Menu
 
 + (NSString *)primaryKey {
-    return @"title";
+    return @"primaryKey";
+}
+
++ (NSArray *)ignoredProperties {
+    return @[@"title"];
 }
 
 + (RLMResults *)getMenuForRole:(NSString *)role{
@@ -26,12 +31,18 @@
     return [[Menu objectForPrimaryKey:menuTitle].dataSources objectsWhere:@"ANY roles.name = %@", role];
 }
 
+- (NSString *)title{
+    //if user select english, then return englishTitle, etc
+    return self.indonesiaTitle;
+}
+
 #pragma mark - Populate Data
 + (void)generateSubmenusWithRealm:(RLMRealm *)realm{
 //==Work Order===================================================================================================
     Menu *submenu = [[Menu alloc] init];
     submenu.imageName = @"ListPengajuanApplikasiSubmenuIcon";
-    submenu.title = kSubmenuFormPengajuanApplikasi;
+    submenu.primaryKey = kSubmenuFormPengajuanApplikasi;
+    submenu.indonesiaTitle = submenu.primaryKey;
     submenu.sort = 0;
     submenu.borderColor = @"F26F21";
     submenu.menuType = kMenuTypeFormWorkOrder;
@@ -42,7 +53,8 @@
 //======
     submenu = [[Menu alloc] init];
     submenu.imageName = @"DataMAPSubmenuIcon";
-    submenu.title = kSubmenuDataMAP;
+    submenu.primaryKey = kSubmenuDataMAP;
+    submenu.indonesiaTitle = submenu.primaryKey;
     submenu.sort = 1;
     submenu.borderColor = @"FB9E15";
     submenu.menuType = kMenuTypeFormDataMAP;
@@ -53,7 +65,8 @@
 //======
     submenu = [[Menu alloc] init];
     submenu.imageName = @"SurveySubmenuIcon";
-    submenu.title = kSubmenuSurvey;
+    submenu.primaryKey = kSubmenuSurvey;
+    submenu.indonesiaTitle = submenu.primaryKey;
     submenu.sort = 2;
     submenu.borderColor = @"FF8A65";
     submenu.menuType = kMenuTypeFormSurvey;
@@ -64,7 +77,8 @@
 //======
     submenu = [[Menu alloc] init];
     submenu.imageName = @"ListPengajuanApplikasiSubmenuIcon"; //#IMAGEWARNING
-    submenu.title = kSubmenuMelengkapiData;
+    submenu.primaryKey = kSubmenuMelengkapiData;
+    submenu.indonesiaTitle = submenu.primaryKey;
     submenu.sort = 0;
     submenu.menuType = kMenuTypeFormWorkOrder;
     submenu.borderColor = @"F26F21";
@@ -74,14 +88,16 @@
 //======
     submenu = [[Menu alloc] init];
     submenu.imageName = @"SurveySubmenuIcon"; //#IMAGEWARNING
-    submenu.title = kSubmenuAssignMarketing;
+    submenu.primaryKey = kSubmenuAssignMarketing;
+    submenu.indonesiaTitle = submenu.primaryKey;
     submenu.sort = 1;
     submenu.borderColor = @"FF8A65";
     submenu.menuType = kMenuTypeList;
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
     
     Menu *menuList = [[Menu alloc] init];
-    menuList.title = kSubmenuListMarketing;
+    menuList.primaryKey = kSubmenuListMarketing;
+    menuList.indonesiaTitle = menuList.primaryKey;
     menuList.sort = 0;
     menuList.isOnePageOnly = YES;
     menuList.menuType = kMenuTypeTrackingMarketing;
@@ -101,7 +117,8 @@
 //==Online Submission===================================================================================================
     submenu = [[Menu alloc] init];
     submenu.imageName = @"ListPengajuanApplikasiSubmenuIcon";
-    submenu.title = kSubmenuListPengajuanApplikasi;
+    submenu.primaryKey = kSubmenuListPengajuanApplikasi;
+    submenu.indonesiaTitle = submenu.primaryKey;
     submenu.sort = 0;
     submenu.borderColor = @"F26F21";
     submenu.menuType = kMenuTypeList;
@@ -112,7 +129,8 @@
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     
     menuList = [[Menu alloc] init];
-    menuList.title = kSubmenuListOnlineSubmission;
+    menuList.primaryKey = kSubmenuListOnlineSubmission;
+    menuList.indonesiaTitle = menuList.primaryKey;
     menuList.sort = 0;
     menuList.menuType = kMenuTypeSubmenu;
     
@@ -139,7 +157,8 @@
 //=========
     submenu = [[Menu alloc] init];
     submenu.imageName = @"MonitoringIcon";
-    submenu.title = kSubmenuMonitoring;
+    submenu.primaryKey = kSubmenuMonitoring;
+    submenu.indonesiaTitle = submenu.primaryKey;
     submenu.sort = 1;
     submenu.borderColor = @"558B2F";
     submenu.menuType = kMenuTypeList;
@@ -149,7 +168,8 @@
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     
     menuList = [[Menu alloc] init];
-    menuList.title = kSubmenuListMonitoring;
+    menuList.primaryKey = kSubmenuListMonitoring;
+    menuList.indonesiaTitle = menuList.primaryKey;
     menuList.sort = 0;
     menuList.menuType = kMenuTypeSubmenu;
     
@@ -170,7 +190,8 @@
 //==Calculator Marketing ===================================================================================================
     submenu = [[Menu alloc] init];
     submenu.imageName = @"DahsyatIcon";
-    submenu.title = kSubmenuDahsyat;
+    submenu.primaryKey = kSubmenuDahsyat;
+    submenu.indonesiaTitle = submenu.primaryKey;
     submenu.sort = 0;
     submenu.borderColor = @"0091EA";
     submenu.menuType = kMenuTypeFormDahsyat;
@@ -182,7 +203,8 @@
 //=======
     submenu = [[Menu alloc] init];
     submenu.imageName = @"UsedCarIcon";
-    submenu.title = kSubmenuUsedCar;
+    submenu.primaryKey = kSubmenuUsedCar;
+    submenu.indonesiaTitle = submenu.primaryKey;
     submenu.sort = 1;
     submenu.borderColor = @"546E7A";
     submenu.menuType = kMenuTypeFormUsedCar;
@@ -194,7 +216,8 @@
 //========
     submenu = [[Menu alloc] init];
     submenu.imageName = @"NewCarIcon";
-    submenu.title = kSubmenuNewCar;
+    submenu.primaryKey = kSubmenuNewCar;
+    submenu.indonesiaTitle = submenu.primaryKey;
     submenu.sort = 2;
     submenu.borderColor = @"B30808";
     submenu.menuType = kMenuTypeFormNewCar;
@@ -206,7 +229,8 @@
 //=====================================================================================================
     submenu = [[Menu alloc] init];
     submenu.imageName = @"YearToDateIcon";
-    submenu.title = kSubmenuYearToDate;
+    submenu.primaryKey = kSubmenuYearToDate;
+    submenu.indonesiaTitle = submenu.primaryKey;
     submenu.sort = 0;
     submenu.borderColor = @"F26F21";
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
@@ -216,7 +240,8 @@
 //=====================================================================================================
     submenu = [[Menu alloc] init];
     submenu.imageName = @"MonthToDateIcon";
-    submenu.title = kSubmenuMonthToDate;
+    submenu.primaryKey = kSubmenuMonthToDate;
+    submenu.indonesiaTitle = submenu.primaryKey;
     submenu.sort = 1;
     submenu.borderColor = @"B00000";
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
@@ -235,7 +260,8 @@
 //==Work Order===================================================================================================
     Menu *menu = [[Menu alloc] init];
     menu.imageName = @"ListWorkOrderIcon";
-    menu.title = kMenuListWorkOrder;
+    menu.primaryKey = kMenuListWorkOrder;
+    menu.indonesiaTitle = menu.primaryKey;
     menu.menuType = kMenuTypeList;
     menu.isRootMenu = YES;
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
@@ -245,7 +271,8 @@
     Menu *menuList = [[Menu alloc] init];
     menuList.backgroundImageName = @"ListWorkOrderBackground";
     menuList.circleIconImageName = @"ListWorkOrderCircleIcon";
-    menuList.title = kSubmenuListWorkOrder;
+    menuList.primaryKey = kSubmenuListWorkOrder;
+    menuList.indonesiaTitle = menuList.primaryKey;
     menuList.sort = 0;
     menuList.menuType = kMenuTypeSubmenu;
     
@@ -312,7 +339,8 @@
     menu.imageName = @"OnlineSubmissionIcon";
     menu.backgroundImageName = @"OnlineSubmissionBackground";
     menu.circleIconImageName = @"OnlineSubmissionCircleIcon";
-    menu.title = kMenuOnlineSubmission;
+    menu.primaryKey = kMenuOnlineSubmission;
+    menu.indonesiaTitle = menu.primaryKey;
     menu.sort = 10;
     menu.menuType = kMenuTypeSubmenu;
     menu.isRootMenu = YES;
@@ -327,7 +355,8 @@
 //=====================================================================================================
     menu = [[Menu alloc] init];
     menu.imageName = @"TrackingMarketingIcon";
-    menu.title = kMenuTrackingMarketing;
+    menu.primaryKey = kMenuTrackingMarketing;
+    menu.indonesiaTitle = menu.primaryKey;
     menu.sort = 11;
     menu.menuType = kMenuTypeMap;
     menu.isRootMenu = YES;
@@ -339,7 +368,8 @@
     menu.imageName = @"CalculatorMarketingIcon";
     menu.backgroundImageName = @"CalculatorMarketingBackground";
     menu.circleIconImageName = @"CalculatorMarketingCircleIcon";
-    menu.title = kMenuCalculatorMarketing;
+    menu.primaryKey = kMenuCalculatorMarketing;
+    menu.indonesiaTitle = menu.primaryKey;
     menu.sort = 20;
     menu.menuType = kMenuTypeSubmenu;
     menu.isRootMenu = YES;
@@ -354,7 +384,8 @@
 //=====================================================================================================
     menu = [[Menu alloc] init];
     menu.imageName = @"ListMapIcon";
-    menu.title = kMenuListMap;
+    menu.primaryKey = kMenuListMap;
+    menu.indonesiaTitle = menu.primaryKey;
     menu.sort = 30;
     menu.menuType = kMenuTypeList;
     menu.isRootMenu = YES;
@@ -363,7 +394,8 @@
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     
     menuList = [[Menu alloc] init];
-    menuList.title = kSubmenuListMAP;
+    menuList.primaryKey = kSubmenuListMAP;
+    menuList.indonesiaTitle = menuList.primaryKey;
     menuList.sort = 0;
     menuList.menuType = kMenuTypeSubmenu;
     
@@ -409,7 +441,8 @@
 //=====================================================================================================
     menu = [[Menu alloc] init];
     menu.imageName = @"ListSurveyIcon";
-    menu.title = kMenuListSurvey;
+    menu.primaryKey = kMenuListSurvey;
+    menu.indonesiaTitle = menu.primaryKey;
     menu.sort = 40;
     menu.menuType = kMenuTypeList;
     menu.isRootMenu = YES;
@@ -419,7 +452,8 @@
     
     menuList = [[Menu alloc] init];
     menuList.imageName = @"";
-    menuList.title = kSubmenuListSurvey;
+    menuList.primaryKey = kSubmenuListSurvey;
+    menuList.indonesiaTitle = menuList.primaryKey;
     menuList.sort = 0;
     menuList.menuType = @"";
     
@@ -467,7 +501,8 @@
     menu.imageName = @"DashboardIcon";
     menu.backgroundImageName = @"DashboardBackground";
     menu.circleIconImageName = @"DashboardCircleIcon";
-    menu.title = kMenuDashboard;
+    menu.primaryKey = kMenuDashboard;
+    menu.indonesiaTitle = menu.primaryKey;
     menu.sort = 50;
     menu.menuType = kMenuTypeDashboard;
     menu.isRootMenu = YES;
@@ -485,7 +520,7 @@
     //=====================================================================================================
     Menu *submenu = [[Menu alloc] init];
     submenu.imageName = @"";
-    submenu.title = kSubmenuDahsyat4W;
+    submenu.primaryKey = kSubmenuDahsyat4W;
     submenu.sort = 2;
     submenu.menuType = kMenuTypeCreditSimulation;
     submenu.borderColor = @"B30808";
@@ -498,7 +533,7 @@
     //=====================================================================================================
     submenu = [[Menu alloc] init];
     submenu.imageName = @"";
-    submenu.title = kSubmenuDahsyat2W;
+    submenu.primaryKey = kSubmenuDahsyat2W;
     submenu.sort = 2;
     submenu.menuType = kMenuTypeCreditSimulation;
     submenu.borderColor = @"B30808";
@@ -511,7 +546,7 @@
     //=====================================================================================================
     submenu = [[Menu alloc] init];
     submenu.imageName = @"";
-    submenu.title = kSubmenuNewBike;
+    submenu.primaryKey = kSubmenuNewBike;
     submenu.menuType = kMenuTypeCreditSimulation;
     submenu.sort = 2;
     submenu.borderColor = @"B30808";
@@ -524,7 +559,7 @@
     //=====================================================================================================
     //    submenu = [[Menu alloc] init];
     //    submenu.imageName = @"NewCarIcon";
-    //    submenu.title = kSubmenuNewCar;
+    //    submenu.primaryKey = kSubmenuNewCar;
     //    submenu.sort = 2;
     //    submenu.menuType = kMenuTypeCreditSimulation;
     //    submenu.borderColor = @"B30808";
@@ -539,7 +574,7 @@
     
     Menu *menu = [[Menu alloc] init];
     menu.imageName = @"cartIcon";
-    menu.title = kMenuProduct;
+    menu.primaryKey = kMenuProduct;
     menu.sort = 20;
     menu.menuType = kMenuListMap;
     menu.isRootMenu = YES;
@@ -552,7 +587,7 @@
     menu.imageName = @"creditIcon";
     menu.backgroundImageName = @"CalculatorMarketingBackground";
     menu.circleIconImageName = @"CalculatorMarketingCircleIcon";
-    menu.title = kMenuCreditSimulation;
+    menu.primaryKey = kMenuCreditSimulation;
     menu.sort = 20;
     menu.menuType = kMenuTypeSubmenu;
     menu.isRootMenu = YES;
@@ -571,7 +606,7 @@
 
     menu = [[Menu alloc] init];
     menu.imageName = @"contactUsIcon";
-    menu.title = kMenuContactUs;
+    menu.primaryKey = kMenuContactUs;
     menu.sort = 20;
     menu.menuType = kMenuTypeContactUs;
     menu.isRootMenu = YES;
@@ -582,7 +617,7 @@
     
     menu = [[Menu alloc] init];
     menu.imageName = @"pengajuanKembaliIcon";
-    menu.title = kMenuPengajuanKembali;
+    menu.primaryKey = kMenuPengajuanKembali;
     menu.sort = 20;
     menu.menuType = kMenuTypeList;
     menu.isRootMenu = YES;
@@ -591,7 +626,7 @@
     
     menu = [[Menu alloc] init];
     menu.imageName = @"historyTransaksiIcon";
-    menu.title = kMenuHistoryTransaksi;
+    menu.primaryKey = kMenuHistoryTransaksi;
     menu.sort = 20;
     menu.menuType = kMenuTypeList;
     menu.isRootMenu = YES;
@@ -600,7 +635,7 @@
     
     menu = [[Menu alloc] init];
     menu.imageName = @"legalisirBpkb";
-    menu.title = kMenuLegalisirFCBPKB;
+    menu.primaryKey = kMenuLegalisirFCBPKB;
     menu.sort = 20;
     menu.menuType = kMenuTypeList;
     menu.isRootMenu = YES;
@@ -609,7 +644,7 @@
     
     menu = [[Menu alloc] init];
     menu.imageName = @"klaimAsuransiIcon";
-    menu.title = kMenuKlaimAsuransi;
+    menu.primaryKey = kMenuKlaimAsuransi;
     menu.sort = 20;
     menu.menuType = kMenuTypeList;
     menu.isRootMenu = YES;
@@ -618,7 +653,7 @@
     
     menu = [[Menu alloc] init];
     menu.imageName = @"pelunasanIcon";
-    menu.title = kMenuPelunasanDipercepat;
+    menu.primaryKey = kMenuPelunasanDipercepat;
     menu.sort = 20;
     menu.menuType = kMenuTypeList;
     menu.isRootMenu = YES;
@@ -627,7 +662,7 @@
     
     menu = [[Menu alloc] init];
     menu.imageName = @"pengembalianBPKBIcon";
-    menu.title = kMenuPengembalianBPKB;
+    menu.primaryKey = kMenuPengembalianBPKB;
     menu.sort = 20;
     menu.menuType = kMenuTypeList;
     menu.isRootMenu = YES;
@@ -642,7 +677,7 @@
     
     menu = [[Menu alloc] init];
     menu.imageName = @"saranIcon";
-    menu.title = kMenuSaranPengaduan;
+    menu.primaryKey = kMenuSaranPengaduan;
     menu.sort = 20;
     menu.menuType = kMenuTypeList;
     menu.isRootMenu = YES;
@@ -651,7 +686,7 @@
     
     menu = [[Menu alloc] init];
     menu.imageName = @"customerGetCustomerIcon";
-    menu.title = kMenuCustomerGetCustomer;
+    menu.primaryKey = kMenuCustomerGetCustomer;
     menu.sort = 20;
     menu.menuType = kMenuTypeList;
     menu.isRootMenu = YES;

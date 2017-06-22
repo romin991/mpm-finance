@@ -11,11 +11,10 @@
 @interface MPMUserInfo : NSObject
 
 + (BOOL)isLoggedIn;
-+(NSDictionary*)getUserInfo;
-+(void)deleteUserInfo;
-+(void)save:(NSDictionary*)dictionary;
-+(NSInteger)getGroupLevel;
-+(NSString*)getToken;
++ (NSDictionary *)getUserInfo;
++ (void)deleteUserInfo;
++ (void)save:(NSDictionary *)dictionary;
++ (NSString *)getToken;
 + (NSString *)getRole;
 
 @end
