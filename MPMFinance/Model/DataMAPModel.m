@@ -23,43 +23,43 @@
             NSDictionary *data = responseObject[@"data"];
             NSDictionary *dictionary;
             @try {
-                dictionary = @{@"" : data[@""],
-                               @"" : data[@""],
-                               @"" : data[@""],
-                               @"kodeCabang" : data[@"kodeCabang"],
-                               @"namaCalonDebitur" : data[@"namaCalon"],
-                               @"noKTP" : data[@"noKtp"],
-                               @"tempatLahir" : data[@"tmpLahir"],
-                               @"tanggalLahir" : data[@"tglLahir"],
-                               @"alamatRumahSesuaiKTP" : data[@"alamatLegal"],
-                               @"nomorHandphone" : data[@"handphone"],
-                               @"nomorTelepon" : data[@"noTlp"],
-                               @"alamatDomisili" : data[@"alamatDomisili"],
-                               @"kodePosAlamatDomisili" : data[@"kodePosAlamatCalon"],
-                               @"namaGadisIbuKandung" : data[@"namaIbuKandung"],
-                               
-                               @"namaPasangan" : data[@"namaPasangan"],
-                               @"noKTPPasangan" : data[@"ktpPasangan"],
-                               @"tempatLahirPasangan" : data[@"tmpLahirPasangan"],
-                               @"tanggalLahirPasangan" : data[@"tglLahirPasangan"],
-                               @"alamatPasangan" : data[@"alamatLegalPasangan"],
-                               @"nomorTeleponPasangan" : data[@"noTlpPasangan"],
-                               @"namaGadisIbuKandungPasangan" : data[@"namaIbuKandungPasangan"],
-                               
-                               @"tipeProduk" : data[@"tipeProduk"],
-                               @"tipeKendaraan" : data[@"tipeKendaraan"],
-                               @"tahunKendaraan" : data[@"tahunKendaraan"],
-                               
-                               @"hargaPerolehan" : data[@"hargaPerolehan"],
-                               @"uangMuka" : data[@"uangMuka"],
-                               @"jangkaWaktuPembiayaan" : data[@"tenor"],
-                               @"angsuran" : data[@"angsuran"],
-                               
-                               @"namaTempatKerja" : data[@"namaTmpKerja"],
-                               @"nomorTeleponTempatKerja" : data[@"tlpTmpKerja"],
-                               
-                               @"namaE-con" : data[@"namaEcon"],
-                               @"nomorTeleponE-con" : data[@"noTlpEcon"],
+                dictionary = @{@"namaLengkap" : data[@"nama_lengkap"],
+//                               @"" : data[@""],
+//                               @"" : data[@""],
+//                               @"kodeCabang" : data[@"kodeCabang"],
+//                               @"namaCalonDebitur" : data[@"namaCalon"],
+//                               @"noKTP" : data[@"noKtp"],
+//                               @"tempatLahir" : data[@"tmpLahir"],
+//                               @"tanggalLahir" : data[@"tglLahir"],
+//                               @"alamatRumahSesuaiKTP" : data[@"alamatLegal"],
+//                               @"nomorHandphone" : data[@"handphone"],
+//                               @"nomorTelepon" : data[@"noTlp"],
+//                               @"alamatDomisili" : data[@"alamatDomisili"],
+//                               @"kodePosAlamatDomisili" : data[@"kodePosAlamatCalon"],
+//                               @"namaGadisIbuKandung" : data[@"namaIbuKandung"],
+//                               
+//                               @"namaPasangan" : data[@"namaPasangan"],
+//                               @"noKTPPasangan" : data[@"ktpPasangan"],
+//                               @"tempatLahirPasangan" : data[@"tmpLahirPasangan"],
+//                               @"tanggalLahirPasangan" : data[@"tglLahirPasangan"],
+//                               @"alamatPasangan" : data[@"alamatLegalPasangan"],
+//                               @"nomorTeleponPasangan" : data[@"noTlpPasangan"],
+//                               @"namaGadisIbuKandungPasangan" : data[@"namaIbuKandungPasangan"],
+//                               
+//                               @"tipeProduk" : data[@"tipeProduk"],
+//                               @"tipeKendaraan" : data[@"tipeKendaraan"],
+//                               @"tahunKendaraan" : data[@"tahunKendaraan"],
+//                               
+//                               @"hargaPerolehan" : data[@"hargaPerolehan"],
+//                               @"uangMuka" : data[@"uangMuka"],
+//                               @"jangkaWaktuPembiayaan" : data[@"tenor"],
+//                               @"angsuran" : data[@"angsuran"],
+//                               
+//                               @"namaTempatKerja" : data[@"namaTmpKerja"],
+//                               @"nomorTeleponTempatKerja" : data[@"tlpTmpKerja"],
+//                               
+//                               @"namaE-con" : data[@"namaEcon"],
+//                               @"nomorTeleponE-con" : data[@"noTlpEcon"],
                                };
             } @catch (NSException *exception) {
                 NSLog(@"%@", exception);

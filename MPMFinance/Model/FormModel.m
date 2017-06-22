@@ -14,7 +14,7 @@
 + (void)loadValueFrom:(NSDictionary *)dictionary to:(XLFormDescriptor *)formDescriptor on:(XLFormViewController *)formViewController{
     for (XLFormSectionDescriptor *section in formDescriptor.formSections) {
         for (XLFormRowDescriptor *row in section.formRows) {
-            NSString *value;
+            id value;
             if ([dictionary objectForKey:row.tag]){
                 value = [dictionary objectForKey:row.tag];
             }
@@ -23,6 +23,10 @@
                     row.value = [MPMGlobal dateFromString:value];
                 } else if ([row.rowType isEqualToString:XLFormRowDescriptorTypeSelectorPush]){
                     row.value = [XLFormOptionsObject formOptionsOptionForValue:value fromOptions:row.selectorOptions];
+                } else if ([row.rowType isEqualToString:XLFormRowDescriptorTypeImage]){
+                    row.value = [UIImage imageWithData:value];
+                } else if ([row.rowType isEqualToString:XLFormRowDescriptorTypeButton]){
+                    //do nothing, no need to include on dictionary
                 } else {
                     row.value = value;
                 }
@@ -42,6 +46,10 @@
                 object = [MPMGlobal stringFromDate:row.value];
             } else if ([row.rowType isEqualToString:XLFormRowDescriptorTypeSelectorPush]){
                 object = ((XLFormOptionsObject *) row.value).formValue;
+            } else if ([row.rowType isEqualToString:XLFormRowDescriptorTypeImage]){
+                object = UIImageJPEGRepresentation(row.value, 0.0f);
+            } else if ([row.rowType isEqualToString:XLFormRowDescriptorTypeButton]){
+                //do nothing, no need to include on dictionary
             } else {
                 object = row.value;
             }

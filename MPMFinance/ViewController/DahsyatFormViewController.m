@@ -15,6 +15,7 @@
 
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 
+@property NSMutableDictionary *valueDictionary;
 @property XLFormDescriptor *formDescriptor;
 @property XLFormViewController *formViewController;
 
@@ -30,7 +31,6 @@
     Form *currentForm = forms.firstObject;
     
     [self setTitle:self.menu.title];
-//    [self setRightBarButton];
     
     [SVProgressHUD show];
     __block DahsyatFormViewController *weakSelf = self;
@@ -65,15 +65,10 @@
 - (void)calculateNow:(XLFormRowDescriptor *)row{
     NSLog(@"calculateNow called");
     [self.formViewController deselectFormRow:row];
+    [FormModel saveValueFrom:self.formDescriptor to:self.valueDictionary];
+    
+    //calculate base on valueDictionary here
 }
-
-//- (void)setRightBarButton{
-//    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save"
-//                                                                      style:UIBarButtonItemStylePlain
-//                                                                     target:self
-//                                                                     action:@selector(saveButtonClicked:)];
-//    [self.navigationItem setRightBarButtonItem:barButtonItem];
-//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
