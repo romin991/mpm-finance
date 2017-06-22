@@ -193,7 +193,7 @@
     
 //========
     submenu = [[Menu alloc] init];
-    submenu.imageName = @"";
+    submenu.imageName = @"NewCarIcon";
     submenu.title = kSubmenuNewCar;
     submenu.sort = 2;
     submenu.borderColor = @"B30808";

@@ -44,38 +44,44 @@
     [self setRightBarButton];
     
     [SVProgressHUD show];
-    [FormModel generate:self.formDescriptor dataSource:self.formRows completion:^(NSError *error) {
+    __block FormViewController *weakSelf = self;
+    [FormModel generate:self.formDescriptor dataSource:self.formRows completion:^(XLFormDescriptor *formDescriptor, NSError *error) {
         if (error){
             [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
             [SVProgressHUD dismissWithDelay:1.5 completion:^{
-                [self.navigationController popViewControllerAnimated:YES];
+                [weakSelf.navigationController popViewControllerAnimated:YES];
             }];
             
-        } else if (self.valueDictionary.count > 0){
-            [FormModel loadValueFrom:self.valueDictionary to:self.formDescriptor on:self.formViewController];
+        } else if (weakSelf.valueDictionary.count > 0){
+            weakSelf.formDescriptor = formDescriptor;
+            [FormModel loadValueFrom:weakSelf.valueDictionary to:weakSelf.formDescriptor on:weakSelf.formViewController];
             [SVProgressHUD dismiss];
+            [weakSelf viewDidLayoutSubviews];
             
-        } else if (self.list) {
-            __block FormViewController *weakSelf = self;
-            [WorkOrderModel getListWorkOrderDetailWithID:self.list.primaryKey completion:^(NSDictionary *response, NSError *error) {
+        } else if (weakSelf.list) {
+            weakSelf.formDescriptor = formDescriptor;
+            [WorkOrderModel getListWorkOrderDetailWithID:weakSelf.list.primaryKey completion:^(NSDictionary *response, NSError *error) {
                 if (error == nil) {
                     if (response) {
                         weakSelf.valueDictionary = [NSMutableDictionary dictionaryWithDictionary:response];
                         [FormModel loadValueFrom:weakSelf.valueDictionary to:weakSelf.formDescriptor on:weakSelf.formViewController];
                     }
                     [SVProgressHUD dismiss];
+                    [weakSelf viewDidLayoutSubviews];
                     
                 } else {
                     [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
                     [SVProgressHUD dismissWithDelay:1.5 completion:^{
-                        [self.navigationController popViewControllerAnimated:YES];
+                        [weakSelf.navigationController popViewControllerAnimated:YES];
                     }];
                 }
             }];
             
         } else {
             //something wrong i think
+            weakSelf.formDescriptor = formDescriptor;
             [SVProgressHUD dismiss];
+            [weakSelf viewDidLayoutSubviews];
         }
     }];
 }

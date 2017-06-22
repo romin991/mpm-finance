@@ -37,20 +37,21 @@
     [self setRightBarButton];
     
     [SVProgressHUD show];
-    [FormModel generate:self.formDescriptor dataSource:self.formRows completion:^(NSError *error) {
+    __block DataMAPFormViewController *weakSelf = self;
+    [FormModel generate:self.formDescriptor dataSource:self.formRows completion:^(XLFormDescriptor *formDescriptor, NSError *error) {
         if (error){
             [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
             [SVProgressHUD dismissWithDelay:1.5 completion:^{
-                [self.navigationController popViewControllerAnimated:YES];
+                [weakSelf.navigationController popViewControllerAnimated:YES];
             }];
             
-        } else if (self.valueDictionary.count > 0){
-            [FormModel loadValueFrom:self.valueDictionary to:self.formDescriptor on:self.formViewController];
-            [SVProgressHUD dismiss];
-            
         } else {
-            //something wrong i think
             [SVProgressHUD dismiss];
+            weakSelf.formDescriptor = formDescriptor;
+            if (weakSelf.valueDictionary.count > 0){
+                [FormModel loadValueFrom:weakSelf.valueDictionary to:weakSelf.formDescriptor on:weakSelf.formViewController];
+            }
+            [weakSelf viewDidLayoutSubviews];
         }
     }];
 }
