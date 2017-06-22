@@ -1,18 +1,17 @@
 //
-//  DataMAPFormViewController.m
+//  DahsyatFormViewController.m
 //  MPMFinance
 //
-//  Created by Rudy Suharyadi on 6/6/17.
+//  Created by Rudy Suharyadi on 6/22/17.
 //  Copyright © 2017 MPMFinance. All rights reserved.
 //
 
-#import "DataMAPFormViewController.h"
+#import "DahsyatFormViewController.h"
 #import <XLForm.h>
-#import "Form.h"
-#import "DropdownModel.h"
 #import "FormModel.h"
+#import "Form.h"
 
-@interface DataMAPFormViewController ()
+@interface DahsyatFormViewController ()
 
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 
@@ -23,56 +22,65 @@
 
 @end
 
-@implementation DataMAPFormViewController
+@implementation DahsyatFormViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
     self.forms = [Form getFormForMenu:self.menu.title];
-    Form *currentForm = [self.forms objectAtIndex:self.index];
-    if (self.forms.count > self.index) self.formRows = currentForm.rows;
+    Form *currentForm = self.forms.firstObject;
+    if (currentForm) self.formRows = currentForm.rows;
     
     [self setTitle:self.menu.title];
-    [self setRightBarButton];
+//    [self setRightBarButton];
     
     [SVProgressHUD show];
-    __block DataMAPFormViewController *weakSelf = self;
+    __block DahsyatFormViewController *weakSelf = self;
     [FormModel generate:self.formDescriptor dataSource:self.formRows completion:^(XLFormDescriptor *formDescriptor, NSError *error) {
         if (error){
             [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
             [SVProgressHUD dismissWithDelay:1.5 completion:^{
-                [weakSelf.navigationController popViewControllerAnimated:YES];
+                [self.navigationController popViewControllerAnimated:YES];
             }];
             
         } else {
-            [SVProgressHUD dismiss];
+            formDescriptor = [weakSelf setAdditionalFormDescriptor:formDescriptor];
+            
             weakSelf.formDescriptor = formDescriptor;
-            if (weakSelf.valueDictionary.count > 0){
-                [FormModel loadValueFrom:weakSelf.valueDictionary to:weakSelf.formDescriptor on:weakSelf.formViewController];
-            }
+            [SVProgressHUD dismiss];
             [weakSelf viewDidLayoutSubviews];
         }
     }];
 }
 
+- (XLFormDescriptor *)setAdditionalFormDescriptor:(XLFormDescriptor *)formDescriptor{
+    XLFormSectionDescriptor *section = formDescriptor.formSections.firstObject;
+    if (section){
+        XLFormRowDescriptor *row = [XLFormRowDescriptor formRowDescriptorWithTag:nil rowType:XLFormRowDescriptorTypeButton title:@"Calculate"];
+        row.action.formSelector = @selector(calculateNow:);
+        [section addFormRow:row];
+    }
+    
+    return formDescriptor;
+}
+
+- (void)calculateNow:(XLFormRowDescriptor *)row{
+    NSLog(@"calculateNow called");
+    [self.formViewController deselectFormRow:row];
+}
+
+//- (void)setRightBarButton{
+//    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save"
+//                                                                      style:UIBarButtonItemStylePlain
+//                                                                     target:self
+//                                                                     action:@selector(saveButtonClicked:)];
+//    [self.navigationItem setRightBarButtonItem:barButtonItem];
+//}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)saveButtonClicked:(id)sender{
-    [FormModel saveValueFrom:self.formDescriptor to:self.valueDictionary];
-    if (self.delegate) [self.delegate saveDictionary:self.valueDictionary];
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void)setRightBarButton{
-    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save"
-                                                                      style:UIBarButtonItemStylePlain
-                                                                     target:self
-                                                                     action:@selector(saveButtonClicked:)];
-    [self.navigationItem setRightBarButtonItem:barButtonItem];
 }
 
 - (void)viewDidLayoutSubviews{
