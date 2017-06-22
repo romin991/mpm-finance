@@ -60,12 +60,15 @@
     self.selectedIndex = 0;
     __block ListViewController *weakSelf = self;
     [self loadDataForSelectedIndex:self.selectedIndex andPage:self.page];
-    [self.tableView addPullToRefreshWithActionHandler:^{
-        [weakSelf loadDataForSelectedIndex:weakSelf.selectedIndex andPage:0];
-    }];
-    [self.tableView addInfiniteScrollingWithActionHandler:^{
-        [weakSelf loadDataForSelectedIndex:weakSelf.selectedIndex andPage:weakSelf.page];
-    }];
+    
+    if (self.submenu.isOnePageOnly == NO) {
+        [self.tableView addPullToRefreshWithActionHandler:^{
+            [weakSelf loadDataForSelectedIndex:weakSelf.selectedIndex andPage:0];
+        }];
+        [self.tableView addInfiniteScrollingWithActionHandler:^{
+            [weakSelf loadDataForSelectedIndex:weakSelf.selectedIndex andPage:weakSelf.page];
+        }];
+    }
     
     [self setupSegmentedControl];
 }
@@ -143,14 +146,14 @@
                     weakSelf.page = 1;
                     [weakSelf.tableView.pullToRefreshView stopAnimating];
                 } else {
-                    if (lists) {
+                    if (lists && lists.count > 0) {
                         [weakSelf.lists addObjectsFromArray:lists];
                         if (weakSelf.tableView) {
                             [weakSelf.tableView scrollRectToVisible:CGRectMake(0, 0, 0, 0) animated:YES];
                             [weakSelf.tableView reloadData];
                         }
+                        weakSelf.page += 1;
                     };
-                    weakSelf.page += 1;
                     [weakSelf.tableView.infiniteScrollingView stopAnimating];
                 }
                 

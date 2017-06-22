@@ -14,6 +14,7 @@
 		482652811EFBF9DA0002A606 /* UsedCarFormViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4826527F1EFBF9DA0002A606 /* UsedCarFormViewController.xib */; };
 		482652881EFBFA050002A606 /* NewCarFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 482652861EFBFA050002A606 /* NewCarFormViewController.m */; };
 		482652891EFBFA050002A606 /* NewCarFormViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 482652871EFBFA050002A606 /* NewCarFormViewController.xib */; };
+		4826528F1EFC02390002A606 /* MarketingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4826528E1EFC02390002A606 /* MarketingModel.m */; };
 		4831CD1F1EDE97A6001EF223 /* SubmenuCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4831CD1D1EDE97A6001EF223 /* SubmenuCollectionViewController.m */; };
 		4831CD201EDE97A6001EF223 /* SubmenuCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4831CD1E1EDE97A6001EF223 /* SubmenuCollectionViewController.xib */; };
 		4831CD271EDE97D7001EF223 /* SubmenuCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4831CD251EDE97D7001EF223 /* SubmenuCollectionViewCell.m */; };
@@ -92,6 +93,8 @@
 		482652851EFBFA050002A606 /* NewCarFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewCarFormViewController.h; path = ViewController/NewCarFormViewController.h; sourceTree = "<group>"; };
 		482652861EFBFA050002A606 /* NewCarFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewCarFormViewController.m; path = ViewController/NewCarFormViewController.m; sourceTree = "<group>"; };
 		482652871EFBFA050002A606 /* NewCarFormViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NewCarFormViewController.xib; path = ViewController/NewCarFormViewController.xib; sourceTree = "<group>"; };
+		4826528D1EFC02390002A606 /* MarketingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MarketingModel.h; path = Model/MarketingModel.h; sourceTree = "<group>"; };
+		4826528E1EFC02390002A606 /* MarketingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MarketingModel.m; path = Model/MarketingModel.m; sourceTree = "<group>"; };
 		4831CD1C1EDE97A6001EF223 /* SubmenuCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SubmenuCollectionViewController.h; path = ViewController/SubmenuCollectionViewController.h; sourceTree = "<group>"; };
 		4831CD1D1EDE97A6001EF223 /* SubmenuCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SubmenuCollectionViewController.m; path = ViewController/SubmenuCollectionViewController.m; sourceTree = "<group>"; };
 		4831CD1E1EDE97A6001EF223 /* SubmenuCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SubmenuCollectionViewController.xib; path = ViewController/SubmenuCollectionViewController.xib; sourceTree = "<group>"; };
@@ -373,6 +376,8 @@
 				48D44D5A1EE846B5005FC8DB /* WorkOrderModel.m */,
 				483F1E961EF2874F005D3945 /* ProfileModel.h */,
 				483F1E971EF2874F005D3945 /* ProfileModel.m */,
+				4826528D1EFC02390002A606 /* MarketingModel.h */,
+				4826528E1EFC02390002A606 /* MarketingModel.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -716,6 +721,7 @@
 				487F39F91ED678D400D6E580 /* Action.m in Sources */,
 				48D44D4C1EDF8F28005FC8DB /* NSString+MixedCasing.m in Sources */,
 				4849EEDD1EC8190300415E4B /* Option.m in Sources */,
+				4826528F1EFC02390002A606 /* MarketingModel.m in Sources */,
 				4846E2331EE6C650000C08B7 /* DataMAPModel.m in Sources */,
 				4831CD271EDE97D7001EF223 /* SubmenuCollectionViewCell.m in Sources */,
 				48482E731EC99B230029ACBE /* ListTableViewCell.m in Sources */,

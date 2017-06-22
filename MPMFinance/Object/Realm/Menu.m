@@ -66,9 +66,8 @@
     submenu.imageName = @"ListPengajuanApplikasiSubmenuIcon"; //#IMAGEWARNING
     submenu.title = kSubmenuMelengkapiData;
     submenu.sort = 0;
-    submenu.menuType = kMenuTypeSubmenu;
+    submenu.menuType = kMenuTypeFormWorkOrder;
     submenu.borderColor = @"F26F21";
-    [submenu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
     [realm addObject:submenu];
     
@@ -84,11 +83,12 @@
     Menu *menuList = [[Menu alloc] init];
     menuList.title = kSubmenuListMarketing;
     menuList.sort = 0;
+    menuList.isOnePageOnly = YES;
     menuList.menuType = kMenuTypeTrackingMarketing;
     
     Action *action = [[Action alloc] init];
     action.name = @"Get List Marketing";
-    action.methodName = @""; //#APIWARNING pengajuan/getallmarketingbyspv with datapengajuanid
+    action.methodName = @"getAllMarketingBySupervisor:completion:"; //pengajuan/getallmarketingbyspv with datapengajuanid
     action.actionType = kActionTypeAPICall;
     [action.roles addObjects:submenu.roles];
     

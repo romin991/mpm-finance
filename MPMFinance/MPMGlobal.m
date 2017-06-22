@@ -55,7 +55,7 @@ NSString *const kSubmenuDataMAP = @"Data MAP";
 NSString *const kSubmenuSurvey = @"Survey";
 NSString *const kSubmenuMelengkapiData = @"Melengkapi Data";
 NSString *const kSubmenuAssignMarketing = @"Assign Marketing";
-NSString *const kApiUrl = @"http://oms-api.infomedia-platform.com/mpmfinance";
+NSString *const kApiUrl = @"http://202.152.10.90:8080/mpmfinance";
 
 NSString *const kSubmenuListPengajuanApplikasi = @"List Pengajuan Aplikasi";
 NSString *const kSubmenuMonitoring = @"Monitoring";

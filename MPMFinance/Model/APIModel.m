@@ -9,6 +9,7 @@
 #import "APIModel.h"
 #import "SurveyModel.h"
 #import "WorkOrderModel.h"
+#import "MarketingModel.h"
 
 @implementation APIModel
 
@@ -56,6 +57,9 @@
     [WorkOrderModel getListWorkOrderBySupervisorWithStatus:@"listSurvey" page:page completion:block];
 }
 
++ (void)getAllMarketingBySupervisor:(NSInteger)dataPengajuanId completion:(void(^)(NSArray *lists, NSError *error))block{
+    [MarketingModel getAllMarketingBySupervisor:dataPengajuanId completion:block];
+}
 
 
 

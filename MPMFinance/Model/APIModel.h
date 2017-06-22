@@ -44,6 +44,10 @@
 //pengajuan/getallbyspv with status listSurvey
 + (void)getSurveyBySupervisorListWorkOrderPage:(NSInteger)page completion:(void(^)(NSArray *lists, NSError *error))block;
 
+//pengajuan/getallmarketingbyspv with dataPengajuanId
++ (void)getAllMarketingBySupervisor:(NSInteger)dataPengajuanId completion:(void(^)(NSArray *lists, NSError *error))block;
+
+
 
 
 

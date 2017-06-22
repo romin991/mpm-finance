@@ -21,6 +21,7 @@ RLM_ARRAY_TYPE(Menu)
 @property NSInteger sort;
 @property NSString *menuType;
 @property BOOL isRootMenu;
+@property BOOL isOnePageOnly; //for menuType list (paginate)
 @property Action *rightButtonAction; //for menuType list
 
 @property RLMArray<Role> *roles;
