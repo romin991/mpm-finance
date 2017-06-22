@@ -14,6 +14,8 @@
 #import "CreditSimulationViewController.h"
 #import "SurveyFormViewController.h"
 #import "DahsyatFormViewController.h"
+#import "UsedCarFormViewController.h"
+#import "NewCarFormViewController.h"
 
 @interface SubmenuViewController ()
 
@@ -81,6 +83,16 @@
         DahsyatFormViewController *dahsyatViewController = [[DahsyatFormViewController alloc] init];
         dahsyatViewController.menu = submenu;
         [self.navigationController pushViewController:dahsyatViewController animated:YES];
+        
+    } else if ([submenu.menuType isEqualToString:kMenuTypeFormUsedCar]) {
+        UsedCarFormViewController *usedCarViewController = [[UsedCarFormViewController alloc] init];
+        usedCarViewController.menu = submenu;
+        [self.navigationController pushViewController:usedCarViewController animated:YES];
+        
+    } else if ([submenu.menuType isEqualToString:kMenuTypeFormNewCar]) {
+        NewCarFormViewController *newCarViewController = [[NewCarFormViewController alloc] init];
+        newCarViewController.menu = submenu;
+        [self.navigationController pushViewController:newCarViewController animated:YES];
         
     } else if ([submenu.menuType isEqualToString:kMenuTypeList]) {
         ListViewController *listViewController = [[ListViewController alloc] init];

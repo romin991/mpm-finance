@@ -228,6 +228,36 @@
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuDahsyat]];
     [realm addObject:form];
     
+//=====================================================================================================
+    form = [[Form alloc] init];
+    form.title = @"Used Car";
+    form.sort = 0;
+    
+    section = [[FormSection alloc] init];
+    section.title = @"Used Car";
+    [section.rows addObjects:[FormRow getRowsWithCategoryNumber:21]];
+    
+    [form.sections addObject:section];
+    //    [form.rows addObjects:[FormRow getRowsWithCategoryNumber:21]];
+    
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuUsedCar]];
+    [realm addObject:form];
+    
+//=====================================================================================================
+    form = [[Form alloc] init];
+    form.title = @"Dahsyat";
+    form.sort = 0;
+    
+    section = [[FormSection alloc] init];
+    section.title = @"Dahsyat";
+    [section.rows addObjects:[FormRow getRowsWithCategoryNumber:22]];
+    
+    [form.sections addObject:section];
+    //    [form.rows addObjects:[FormRow getRowsWithCategoryNumber:22]];
+    
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuNewCar]];
+    [realm addObject:form];
+    
     [realm commitWriteTransaction];
 }
 
