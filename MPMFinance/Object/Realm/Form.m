@@ -213,6 +213,14 @@
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuSurvey]];
     [realm addObject:form];
 
+//=====================================================================================================
+    form = [[Form alloc] init];
+    form.title = @"Dahsyat";
+    form.sort = 0;
+    [form.rows addObjects:[FormRow getRowsWithCategoryNumber:20]];
+    
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuDahsyat]];
+    [realm addObject:form];
     
     [realm commitWriteTransaction];
 }

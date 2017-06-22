@@ -13,6 +13,7 @@
 #import "ListViewController.h"
 #import "CreditSimulationViewController.h"
 #import "SurveyFormViewController.h"
+#import "DahsyatFormViewController.h"
 
 @interface SubmenuViewController ()
 
@@ -75,6 +76,11 @@
         surveyViewController.menu = submenu;
         surveyViewController.list = self.list;
         [self.navigationController pushViewController:surveyViewController animated:YES];
+        
+    } else if ([submenu.menuType isEqualToString:kMenuTypeFormDahsyat]) {
+        DahsyatFormViewController *dahsyatViewController = [[DahsyatFormViewController alloc] init];
+        dahsyatViewController.menu = submenu;
+        [self.navigationController pushViewController:dahsyatViewController animated:YES];
         
     } else if ([submenu.menuType isEqualToString:kMenuTypeList]) {
         ListViewController *listViewController = [[ListViewController alloc] init];
