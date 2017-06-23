@@ -30,13 +30,13 @@
 }
 -(void)refreshUI
 {
-    if ([self.menuType isEqualToString:kSubmenuNewBike] || [self.menuType isEqualToString:kSubmenuNewCar] || [self.menuType isEqualToString:kSubmenuUsedCar]) {
+    if ([self.menuType isEqualToString:kSubmenuCreditSimulationNewBike] || [self.menuType isEqualToString:kSubmenuCreditSimulationNewCar] || [self.menuType isEqualToString:kSubmenuCreditSimulationUsedCar]) {
         self.lblDP.hidden = YES;
         self.txtUangMuka.hidden = YES;
         self.txtTotalBayarAwal.enabled = NO;
         self.txtAngsuran.enabled = NO;
     }
-    else if ([self.menuType isEqualToString:kSubmenuDahsyat2W] || [self.menuType isEqualToString:kSubmenuDahsyat4W]) {
+    else if ([self.menuType isEqualToString:kSubmenuCreditSimulationDahsyat2W] || [self.menuType isEqualToString:kSubmenuCreditSimulationDahsyat4W]) {
         self.lblDP.hidden = NO;
         self.lblDP.text = @"Nilai Pembiayaan";
         self.txtUangMuka.hidden = NO;
@@ -53,30 +53,30 @@
     AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
     NSString* urlString;
     NSDictionary* param;
-    if ([self.menuType isEqualToString:kSubmenuNewBike]) {
+    if ([self.menuType isEqualToString:kSubmenuCreditSimulationNewBike]) {
         urlString = [NSString stringWithFormat:@"%@/simulation/newbike",kApiUrl];
         param = @{@"lamaPembiayaan" : self.txtLamaPembiayaan.text,
                   @"hargaKendaraan" : self.txtHarga.text};
     }
-    else if ([self.menuType isEqualToString:kSubmenuNewCar] || [self.menuType isEqualToString:kSubmenuUsedCar]) {
+    else if ([self.menuType isEqualToString:kSubmenuCreditSimulationNewCar] || [self.menuType isEqualToString:kSubmenuCreditSimulationUsedCar]) {
         urlString = [NSString stringWithFormat:@"%@/simulation/mycar",kApiUrl];
         param = @{@"jenisKendaraan" : self.menuType,
                   @"lamaPembiayaan" : self.txtLamaPembiayaan.text,
                   @"hargaKendaraan" : self.txtHarga.text};
     }
-    else if ([self.menuType isEqualToString:kSubmenuDahsyat2W]) {
+    else if ([self.menuType isEqualToString:kSubmenuCreditSimulationDahsyat2W]) {
         urlString = [NSString stringWithFormat:@"%@/simulation/dahsyat2w",kApiUrl];
         param = @{@"nilaiPencairan" : self.txtUangMuka.text,
                   @"lamaPembiayaan" : self.txtLamaPembiayaan.text,
                   @"hargaKendaraan" : self.txtHarga.text};
     }
-    else if ([self.menuType isEqualToString:kSubmenuDahsyat4W]) {
+    else if ([self.menuType isEqualToString:kSubmenuCreditSimulationDahsyat4W]) {
         urlString = [NSString stringWithFormat:@"%@/simulation/dahsyat4w",kApiUrl];
         param = @{@"nilaiPencairan" : self.txtUangMuka.text,
                   @"lamaPembiayaan" : self.txtLamaPembiayaan.text,
                   @"hargaKendaraan" : self.txtHarga.text};
     }
-    else if ([self.menuType isEqualToString:kSubmenuProperty]) {
+    else if ([self.menuType isEqualToString:kSubmenuCreditSimulationProperty]) {
         urlString = [NSString stringWithFormat:@"%@/simulation/property",kApiUrl];
     }
     

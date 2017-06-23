@@ -64,10 +64,13 @@ extern NSString *const kSubmenuMonitoring;
 extern NSString *const kSubmenuDahsyat;
 extern NSString *const kSubmenuUsedCar;
 extern NSString *const kSubmenuNewCar;
-extern NSString *const kSubmenuDahsyat2W;
-extern NSString *const kSubmenuDahsyat4W;
-extern NSString *const kSubmenuNewBike;
-extern NSString *const kSubmenuProperty;
+
+extern NSString *const kSubmenuCreditSimulationDahsyat2W;
+extern NSString *const kSubmenuCreditSimulationDahsyat4W;
+extern NSString *const kSubmenuCreditSimulationNewBike;
+extern NSString *const kSubmenuCreditSimulationProperty;
+extern NSString *const kSubmenuCreditSimulationUsedCar;
+extern NSString *const kSubmenuCreditSimulationNewCar;
 
 extern NSString *const kSubmenuYearToDate;
 extern NSString *const kSubmenuMonthToDate;
