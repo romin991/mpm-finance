@@ -23,12 +23,12 @@
     return [Menu objectsWhere:@"ANY roles.name = %@ and isRootMenu = YES", role];
 }
 
-+ (RLMResults *)getSubmenuForMenu:(NSString *)menuTitle role:(NSString *)role{
-    return [[Menu objectForPrimaryKey:menuTitle].submenus objectsWhere:@"ANY roles.name = %@", role];
++ (RLMResults *)getSubmenuForMenu:(NSString *)primaryKey role:(NSString *)role{
+    return [[Menu objectForPrimaryKey:primaryKey].submenus objectsWhere:@"ANY roles.name = %@", role];
 }
 
-+ (RLMResults *)getDataSourcesForMenu:(NSString *)menuTitle role:(NSString *)role{
-    return [[Menu objectForPrimaryKey:menuTitle].dataSources objectsWhere:@"ANY roles.name = %@", role];
++ (RLMResults *)getDataSourcesForMenu:(NSString *)primaryKey role:(NSString *)role{
+    return [[Menu objectForPrimaryKey:primaryKey].dataSources objectsWhere:@"ANY roles.name = %@", role];
 }
 
 - (NSString *)title{

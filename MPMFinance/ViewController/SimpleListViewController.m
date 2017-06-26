@@ -27,7 +27,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.forms = [Form getFormForMenu:self.menu.title];
+    self.forms = [Form getFormForMenu:self.menu.primaryKey];
     if (self.navigationTitle.length != 0) {
         [self setTitle:self.navigationTitle];
     } else {

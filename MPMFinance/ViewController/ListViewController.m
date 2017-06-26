@@ -47,7 +47,7 @@
         [self setTitle:self.navigationTitle];
     }
     self.submenu = self.menu.submenus.firstObject;
-    self.dataSources = [Menu getDataSourcesForMenu:self.submenu.title role:[MPMUserInfo getRole]];
+    self.dataSources = [Menu getDataSourcesForMenu:self.submenu.primaryKey role:[MPMUserInfo getRole]];
     
     Action *rightButtonAction = self.submenu.rightButtonAction;
     if (rightButtonAction) {

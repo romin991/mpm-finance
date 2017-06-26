@@ -12,8 +12,8 @@
 
 @implementation Form
 
-+ (RLMResults *)getFormForMenu:(NSString *)menuTitle{
-    return [[Form objectsWhere:@"ANY menus.title = %@", menuTitle] sortedResultsUsingKeyPath:@"sort" ascending:YES];
++ (RLMResults *)getFormForMenu:(NSString *)primaryKey{
+    return [[Form objectsWhere:@"ANY menus.primaryKey = %@", primaryKey] sortedResultsUsingKeyPath:@"sort" ascending:YES];
 }
 
 #pragma mark - Populate Data

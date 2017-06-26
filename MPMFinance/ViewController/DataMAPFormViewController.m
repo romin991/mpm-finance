@@ -29,7 +29,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.forms = [Form getFormForMenu:self.menu.title];
+    self.forms = [Form getFormForMenu:self.menu.primaryKey];
     Form *currentForm = [self.forms objectAtIndex:self.index];
     if (self.forms.count > self.index) self.formRows = currentForm.rows;
     

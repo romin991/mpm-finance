@@ -26,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    RLMResults *forms = [Form getFormForMenu:self.menu.title];
+    RLMResults *forms = [Form getFormForMenu:self.menu.primaryKey];
     Form *currentForm = forms.firstObject;
     
     [self setTitle:self.menu.title];

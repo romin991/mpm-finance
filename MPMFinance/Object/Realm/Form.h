@@ -20,7 +20,7 @@
 @property RLMArray<FormSection> *sections;
 @property RLMArray<Menu> *menus;
 
-+ (RLMResults *)getFormForMenu:(NSString *)menuTitle;
++ (RLMResults *)getFormForMenu:(NSString *)primaryKey;
 + (void)generateForms;
 
 @end

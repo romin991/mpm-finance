@@ -31,7 +31,7 @@
     [self setTitle:@"Detail"];
     self.banner.image = [UIImage imageNamed:self.menu.backgroundImageName];
     self.icon.image = [UIImage imageNamed:self.menu.circleIconImageName];
-    self.submenus = [Menu getSubmenuForMenu:self.menu.title role:[MPMUserInfo getRole]];
+    self.submenus = [Menu getSubmenuForMenu:self.menu.primaryKey role:[MPMUserInfo getRole]];
     
     [self.collectionView registerNib:[UINib nibWithNibName:@"SubmenuCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"Cell"];
 }

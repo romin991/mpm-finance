@@ -34,8 +34,8 @@ RLM_ARRAY_TYPE(Menu)
 @property RLMArray<Action> *dataSources; //for menuType list
 
 + (RLMResults *)getMenuForRole:(NSString *)role;
-+ (RLMResults *)getSubmenuForMenu:(NSString *)menuTitle role:(NSString *)role;
-+ (RLMResults *)getDataSourcesForMenu:(NSString *)menuTitle role:(NSString *)role;
++ (RLMResults *)getSubmenuForMenu:(NSString *)primaryKey role:(NSString *)role;
++ (RLMResults *)getDataSourcesForMenu:(NSString *)primaryKey role:(NSString *)role;
 + (void)generateMenus;
 
 @end
