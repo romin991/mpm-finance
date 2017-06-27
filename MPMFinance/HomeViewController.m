@@ -13,6 +13,7 @@
 #import "DashboardViewController.h"
 #import "FormViewController.h"
 #import "ListViewController.h"
+#import "WorkOrderListViewController.h"
 #import "SimpleListViewController.h"
 #import "SubmenuViewController.h"
 #import "SubmenuCollectionViewController.h"
@@ -118,6 +119,11 @@
         listViewController.menu = menu;
         [self.navigationController.navigationController pushViewController:listViewController animated:YES];
         
+    } else if ([menu.menuType isEqualToString:kMenuTypeListWorkOrder]){
+        WorkOrderListViewController *listViewController = [[WorkOrderListViewController alloc] initWithNibName:@"WorkOrderListViewController" bundle:nil];
+        listViewController.menu = menu;
+        [self.navigationController.navigationController pushViewController:listViewController animated:YES];
+        
     } else if ([menu.menuType isEqualToString:kMenuTypeSubmenu]){
         SubmenuViewController *submenuViewController = [[SubmenuViewController alloc] init];
         submenuViewController.menu = menu;
@@ -127,7 +133,8 @@
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         ContactUsViewController *submenuCollectionViewController = [storyboard instantiateViewControllerWithIdentifier:@"ContactUsViewController"];
         [self.navigationController.navigationController pushViewController:submenuCollectionViewController animated:YES];
-    }else if ([menu.menuType isEqualToString:kMenuTypeDashboard]){
+    
+    } else if ([menu.menuType isEqualToString:kMenuTypeDashboard]){
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         DashboardViewController *submenuCollectionViewController = [storyboard instantiateViewControllerWithIdentifier:@"DashboardViewController"];
         [self.navigationController.navigationController pushViewController:submenuCollectionViewController animated:YES];

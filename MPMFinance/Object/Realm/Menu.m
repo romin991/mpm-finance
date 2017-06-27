@@ -262,7 +262,7 @@
     menu.imageName = @"ListWorkOrderIcon";
     menu.primaryKey = kMenuListWorkOrder;
     menu.indonesiaTitle = menu.primaryKey;
-    menu.menuType = kMenuTypeList;
+    menu.menuType = kMenuTypeListWorkOrder;
     menu.isRootMenu = YES;
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
@@ -275,54 +275,6 @@
     menuList.indonesiaTitle = menuList.primaryKey;
     menuList.sort = 0;
     menuList.menuType = kMenuTypeSubmenu;
-    
-    Action *action = [[Action alloc] init];
-    action.name = @"All";
-    action.methodName = @"getAllListWorkOrderPage:completion:"; //datamap/getworkorder with status all
-    action.actionType = kActionTypeAPICall;
-    [action.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
-    
-    [menuList.dataSources addObject:action];
-    
-    action = [[Action alloc] init];
-    action.name = @"Approve";
-    action.methodName = @"getNeedApprovalListWorkOrderPage:completion:"; //datamap/getworkorder with status need approval
-    action.actionType = kActionTypeAPICall;
-    [action.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
-    
-    [menuList.dataSources addObject:action];
-    
-    action = [[Action alloc] init];
-    action.name = @"Clear";
-    action.methodName = @"getAllListWorkOrderPage:completion:"; //datamap/getworkorder with status all
-    action.actionType = kActionTypeAPICall;
-    [action.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
-    
-    [menuList.dataSources addObject:action];
-    
-    action = [[Action alloc] init];
-    action.name = @"Negative";
-    action.methodName = @"getBadUsersListWorkOrderPage:completion:"; //datamap/getworkorder with status badUsers
-    action.actionType = kActionTypeAPICall;
-    [action.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
-    
-    [menuList.dataSources addObject:action];
-    
-    action = [[Action alloc] init];
-    action.name = @"Clear";
-    action.methodName = @"getNewBySupervisorListWorkOrderPage:completion:"; //pengajuan/getallbyspv status new
-    action.actionType = kActionTypeAPICall;
-    [action.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
-    
-    [menuList.dataSources addObject:action];
-    
-    action = [[Action alloc] init];
-    action.name = @"Negative";
-    action.methodName = @"getBadUsersBySupervisorListWorkOrderPage:completion:"; //pengajuan/getallbyspv status badUsers
-    action.actionType = kActionTypeAPICall;
-    [action.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
-    
-    [menuList.dataSources addObject:action];
     
     [menuList.roles addObjects:menu.roles];
     [menuList.submenus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
@@ -400,7 +352,7 @@
     menuList.sort = 0;
     menuList.menuType = kMenuTypeSubmenu;
     
-    action = [[Action alloc] init];
+    Action *action = [[Action alloc] init];
     action.name = @"Get List Work Order";
     action.methodName = @"getMapDraftListWorkOrderPage:completion:"; //datamap/getworkorder with status listMapDraff
     action.actionType = kActionTypeAPICall;
