@@ -51,6 +51,11 @@ extern NSString *const kSubmenuListWorkOrder;
 extern NSString *const kSubmenuListMAP;
 extern NSString *const kSubmenuListMarketing;
 extern NSString *const kSubmenuListSurvey;
+extern NSString *const kSubmenuListLegalisirBPKB;
+extern NSString *const kSubmenuListKlaimAsuransi;
+extern NSString *const kSubmenuListPengambilanBPKB;
+extern NSString *const kSubmenuListSaranPengaduan;
+extern NSString *const kSubmenuListCustomerGetCustomer;
 
 extern NSString *const kSubmenuFormPengajuanApplikasi;
 extern NSString *const kSubmenuDataMAP;
@@ -72,6 +77,24 @@ extern NSString *const kSubmenuCreditSimulationProperty;
 extern NSString *const kSubmenuCreditSimulationUsedCar;
 extern NSString *const kSubmenuCreditSimulationNewCar;
 
+extern NSString *const kSubmenuNewSubmissions;
+extern NSString *const kSubmenuTopUp;
+
+extern NSString *const kSubmenuLegalizationBPKB;
+extern NSString *const kSubmenuHistoryBPKB;
+
+extern NSString *const kSubmenuInsuranceClaimForm;
+extern NSString *const kSubmenuHistoryInsuranceClaim;
+
+extern NSString *const kSubmenuPengambilanBPKB;
+extern NSString *const kSubmenuHistoryPengambilanBPKB;
+
+extern NSString *const kSubmenuSaranPengaduan;
+extern NSString *const kSubmenuHistorySaranPengaduan;
+
+extern NSString *const kSubmenuCustomerGetCustomer;
+extern NSString *const kSubmenuHistoryCustomerGetCustomer;
+
 extern NSString *const kSubmenuYearToDate;
 extern NSString *const kSubmenuMonthToDate;
 
@@ -82,6 +105,12 @@ extern NSString *const kMenuTypeFormDahsyat;
 extern NSString *const kMenuTypeFormDataMAP;
 extern NSString *const kMenuTypeFormWorkOrder;
 extern NSString *const kMenuTypeFormSurvey;
+extern NSString *const kMenuTypeFormTopUp;
+extern NSString *const kMenuTypeFormLegalizationBPKB;
+extern NSString *const kMenuTypeFormInsuranceClaim;
+extern NSString *const kMenuTypeFormPengambilanBPKB;
+extern NSString *const kMenuTypeFormSaranPengaduan;
+extern NSString *const kMenuTypeFormCustomerGetCustomer;
 extern NSString *const kMenuTypeList;
 extern NSString *const kMenuTypeListWorkOrder;
 extern NSString *const kMenuTypeSubmenu;
@@ -89,6 +118,8 @@ extern NSString *const kMenuTypeSubmenu2;
 extern NSString *const kMenuTypeMap;
 extern NSString *const kMenuTypeDashboard;
 extern NSString *const kMenuTypeContactUs;
+extern NSString *const kMenuTypeHistory;
+extern NSString *const kMenuTypeAcceleratedReplayment;
 extern NSString *const kMenuTypeCreditSimulation;
 extern NSString *const kApiUrl;
 

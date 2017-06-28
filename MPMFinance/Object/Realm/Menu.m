@@ -531,10 +531,12 @@
     menu.primaryKey = kMenuPengajuanKembali;
     menu.indonesiaTitle = menu.primaryKey;
     menu.sort = 20;
-    menu.menuType = kMenuTypeList;
+    menu.menuType = kMenuTypeSubmenu;
     menu.isRootMenu = YES;
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuNewSubmissions]];
+    [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuTopUp]];
     [realm addObject:menu];
     
 //=====================================================================================================
@@ -543,7 +545,7 @@
     menu.primaryKey = kMenuHistoryTransaksi;
     menu.indonesiaTitle = menu.primaryKey;
     menu.sort = 20;
-    menu.menuType = kMenuTypeList;
+    menu.menuType = kMenuTypeHistory;
     menu.isRootMenu = YES;
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
@@ -555,10 +557,12 @@
     menu.primaryKey = kMenuLegalisirFCBPKB;
     menu.indonesiaTitle = menu.primaryKey;
     menu.sort = 20;
-    menu.menuType = kMenuTypeList;
+    menu.menuType = kMenuTypeSubmenu;
     menu.isRootMenu = YES;
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuLegalizationBPKB]];
+    [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuHistoryBPKB]];
     [realm addObject:menu];
     
 //=====================================================================================================
@@ -567,10 +571,12 @@
     menu.primaryKey = kMenuKlaimAsuransi;
     menu.indonesiaTitle = menu.primaryKey;
     menu.sort = 20;
-    menu.menuType = kMenuTypeList;
+    menu.menuType = kMenuTypeSubmenu;
     menu.isRootMenu = YES;
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuInsuranceClaimForm]];
+    [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuHistoryInsuranceClaim]];
     [realm addObject:menu];
 
 //=====================================================================================================
@@ -579,7 +585,7 @@
     menu.primaryKey = kMenuPelunasanDipercepat;
     menu.indonesiaTitle = menu.primaryKey;
     menu.sort = 20;
-    menu.menuType = kMenuTypeList;
+    menu.menuType = kMenuTypeAcceleratedReplayment;
     menu.isRootMenu = YES;
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
@@ -591,16 +597,12 @@
     menu.primaryKey = kMenuPengembalianBPKB;
     menu.indonesiaTitle = menu.primaryKey;
     menu.sort = 20;
-    menu.menuType = kMenuTypeList;
+    menu.menuType = kMenuTypeSubmenu;
     menu.isRootMenu = YES;
-    Action *action = [[Action alloc] init];
-    action.name = @"Get List Pengembalian BPKB";
-    action.methodName = @"getListPengembalianBPKB:";
-    action.actionType = kActionTypeAPICall;
-    [realm addObject:action];
-    [menu.dataSources addObject:action];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuPengambilanBPKB]];
+    [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuHistoryPengambilanBPKB]];
     [realm addObject:menu];
     
 //=====================================================================================================
@@ -609,10 +611,12 @@
     menu.primaryKey = kMenuSaranPengaduan;
     menu.indonesiaTitle = menu.primaryKey;
     menu.sort = 20;
-    menu.menuType = kMenuTypeList;
+    menu.menuType = kMenuTypeSubmenu;
     menu.isRootMenu = YES;
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuSaranPengaduan]];
+    [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuHistorySaranPengaduan]];
     [realm addObject:menu];
 
 //=====================================================================================================
@@ -621,10 +625,12 @@
     menu.primaryKey = kMenuCustomerGetCustomer;
     menu.indonesiaTitle = menu.primaryKey;
     menu.sort = 20;
-    menu.menuType = kMenuTypeList;
+    menu.menuType = kMenuTypeSubmenu;
     menu.isRootMenu = YES;
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuCustomerGetCustomer]];
+    [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuHistoryCustomerGetCustomer]];
     [realm addObject:menu];
 }
 
@@ -633,82 +639,333 @@
 
 
 + (void)generateSubmenusForCustomerDealerWithRealm:(RLMRealm *)realm{
-    //=====================================================================================================
+//==CreditSimulation===================================================================================================
     Menu *submenu = [[Menu alloc] init];
     submenu.imageName = @"";
     submenu.primaryKey = kSubmenuCreditSimulationNewBike;
+    submenu.indonesiaTitle = submenu.primaryKey;
     submenu.menuType = kMenuTypeCreditSimulation;
     submenu.sort = 2;
     submenu.borderColor = @"B30808";
     [submenu.roles addObject:[Role objectForPrimaryKey:kNoRole]];
-    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [realm addObject:submenu];
     
-    //=====================================================================================================
+    //==========
     submenu = [[Menu alloc] init];
     submenu.imageName = @"NewCarIcon";
     submenu.primaryKey = kSubmenuCreditSimulationNewCar;
+    submenu.indonesiaTitle = submenu.primaryKey;
     submenu.sort = 2;
     submenu.menuType = kMenuTypeCreditSimulation;
     submenu.borderColor = @"B30808";
     [submenu.roles addObject:[Role objectForPrimaryKey:kNoRole]];
-    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [realm addObject:submenu];
     
-    //=====================================================================================================
+    //==========
     submenu = [[Menu alloc] init];
     submenu.imageName = @"";
     submenu.primaryKey = kSubmenuCreditSimulationUsedCar;
+    submenu.indonesiaTitle = submenu.primaryKey;
     submenu.sort = 2;
     submenu.menuType = kMenuTypeCreditSimulation;
     submenu.borderColor = @"B30808";
-    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kNoRole]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [realm addObject:submenu];
     
-    //=====================================================================================================
+    //==========
     submenu = [[Menu alloc] init];
     submenu.imageName = @"";
     submenu.primaryKey = kSubmenuCreditSimulationDahsyat2W;
+    submenu.indonesiaTitle = submenu.primaryKey;
     submenu.sort = 2;
     submenu.menuType = kMenuTypeCreditSimulation;
     submenu.borderColor = @"B30808";
     [submenu.roles addObject:[Role objectForPrimaryKey:kNoRole]];
-    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [realm addObject:submenu];
     
-    //=====================================================================================================
+    //==========
     submenu = [[Menu alloc] init];
     submenu.imageName = @"";
     submenu.primaryKey = kSubmenuCreditSimulationDahsyat4W;
+    submenu.indonesiaTitle = submenu.primaryKey;
     submenu.sort = 2;
     submenu.menuType = kMenuTypeCreditSimulation;
     submenu.borderColor = @"B30808";
     [submenu.roles addObject:[Role objectForPrimaryKey:kNoRole]];
-    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [realm addObject:submenu];
     
-    //=====================================================================================================
+    //==========
     submenu = [[Menu alloc] init];
     submenu.imageName = @"";
     submenu.primaryKey = kSubmenuCreditSimulationProperty;
+    submenu.indonesiaTitle = submenu.primaryKey;
     submenu.sort = 2;
     submenu.menuType = kMenuTypeCreditSimulation;
     submenu.borderColor = @"B30808";
     [submenu.roles addObject:[Role objectForPrimaryKey:kNoRole]];
-    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [realm addObject:submenu];
+
+//==SubmissionBack================================================================================
+    submenu = [[Menu alloc] init];
+    submenu.imageName = @"";
+    submenu.primaryKey = kSubmenuNewSubmissions;
+    submenu.indonesiaTitle = submenu.primaryKey;
+    submenu.sort = 2;
+    submenu.menuType = kMenuTypeFormWorkOrder;
+    submenu.borderColor = @"B30808";
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [realm addObject:submenu];
     
+    //===========
+    submenu = [[Menu alloc] init];
+    submenu.imageName = @"";
+    submenu.primaryKey = kSubmenuTopUp;
+    submenu.indonesiaTitle = submenu.primaryKey;
+    submenu.sort = 2;
+    submenu.menuType = kMenuTypeFormTopUp;
+    submenu.borderColor = @"B30808";
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [realm addObject:submenu];
     
+//==Legalisir BPKB===========================================================================================
+    submenu = [[Menu alloc] init];
+    submenu.imageName = @"";
+    submenu.primaryKey = kSubmenuLegalizationBPKB;
+    submenu.indonesiaTitle = submenu.primaryKey;
+    submenu.sort = 2;
+    submenu.menuType = kMenuTypeFormLegalizationBPKB;
+    submenu.borderColor = @"B30808";
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [realm addObject:submenu];
     
+    //===========
+    submenu = [[Menu alloc] init];
+    submenu.imageName = @"";
+    submenu.primaryKey = kSubmenuHistoryBPKB;
+    submenu.indonesiaTitle = submenu.primaryKey;
+    submenu.sort = 2;
+    submenu.menuType = kMenuTypeList;
+    submenu.borderColor = @"B30808";
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     
+    Menu *menuList = [[Menu alloc] init];
+    menuList.imageName = @"";
+    menuList.primaryKey = kSubmenuListLegalisirBPKB;
+    menuList.indonesiaTitle = menuList.primaryKey;
+    menuList.sort = 0;
+    menuList.menuType = kMenuTypeSubmenu;
     
+    Action *action = [[Action alloc] init];
+    action.name = @"Get List Legalisir BPKB";
+    action.methodName = @""; //bpkb/legalisir/getall
+    action.actionType = kActionTypeAPICall;
+    [action.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
+    [action.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    
+    [menuList.dataSources addObject:action];
+    
+    [menuList.roles addObjects:submenu.roles];
+    [menuList.submenus addObject:[Menu objectForPrimaryKey:kSubmenuLegalizationBPKB]];
+    
+    [submenu.submenus addObject:menuList];
+    
+    [realm addObject:submenu];
+    
+//==Insurance Claim===========================================================================================
+    submenu = [[Menu alloc] init];
+    submenu.imageName = @"";
+    submenu.primaryKey = kSubmenuInsuranceClaimForm;
+    submenu.indonesiaTitle = submenu.primaryKey;
+    submenu.sort = 2;
+    submenu.menuType = kMenuTypeFormInsuranceClaim;
+    submenu.borderColor = @"B30808";
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [realm addObject:submenu];
+    
+    //=======
+    submenu = [[Menu alloc] init];
+    submenu.imageName = @"";
+    submenu.primaryKey = kSubmenuHistoryInsuranceClaim;
+    submenu.indonesiaTitle = submenu.primaryKey;
+    submenu.sort = 2;
+    submenu.menuType = kMenuTypeList;
+    submenu.borderColor = @"B30808";
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    
+    menuList = [[Menu alloc] init];
+    menuList.imageName = @"";
+    menuList.primaryKey = kSubmenuListKlaimAsuransi;
+    menuList.indonesiaTitle = menuList.primaryKey;
+    menuList.sort = 0;
+    menuList.menuType = kMenuTypeSubmenu;
+    
+    action = [[Action alloc] init];
+    action.name = @"Get List Insurance";
+    action.methodName = @""; //klaimasuransi/getall
+    action.actionType = kActionTypeAPICall;
+    [action.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
+    [action.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    
+    [menuList.dataSources addObject:action];
+    
+    [menuList.roles addObjects:submenu.roles];
+    [menuList.submenus addObject:[Menu objectForPrimaryKey:kSubmenuInsuranceClaimForm]];
+    
+    [submenu.submenus addObject:menuList];
+    [realm addObject:submenu];
+    
+//==Pengambilan BPKB=========================================================================================
+    submenu = [[Menu alloc] init];
+    submenu.imageName = @"";
+    submenu.primaryKey = kSubmenuPengambilanBPKB;
+    submenu.indonesiaTitle = submenu.primaryKey;
+    submenu.sort = 2;
+    submenu.menuType = kMenuTypeFormPengambilanBPKB;
+    submenu.borderColor = @"B30808";
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [realm addObject:submenu];
+    
+    //==========
+    submenu = [[Menu alloc] init];
+    submenu.imageName = @"";
+    submenu.primaryKey = kSubmenuHistoryPengambilanBPKB;
+    submenu.indonesiaTitle = submenu.primaryKey;
+    submenu.sort = 2;
+    submenu.menuType = kMenuTypeList;
+    submenu.borderColor = @"B30808";
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    
+    menuList = [[Menu alloc] init];
+    menuList.imageName = @"";
+    menuList.primaryKey = kSubmenuListPengambilanBPKB;
+    menuList.indonesiaTitle = menuList.primaryKey;
+    menuList.sort = 0;
+    menuList.menuType = kMenuTypeSubmenu;
+    
+    action = [[Action alloc] init];
+    action.name = @"Get List Pengambilan BPKB";
+    action.methodName = @""; //bpkb/pengambilan/getall
+    action.actionType = kActionTypeAPICall;
+    [action.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
+    [action.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    
+    [menuList.dataSources addObject:action];
+    
+    [menuList.roles addObjects:submenu.roles];
+    [menuList.submenus addObject:[Menu objectForPrimaryKey:kSubmenuPengambilanBPKB]];
+    
+    [submenu.submenus addObject:menuList];
+    [realm addObject:submenu];
+    
+//==Saran dan Pengaduan ===================================================================================
+    submenu = [[Menu alloc] init];
+    submenu.imageName = @"";
+    submenu.primaryKey = kSubmenuSaranPengaduan;
+    submenu.indonesiaTitle = submenu.primaryKey;
+    submenu.sort = 2;
+    submenu.menuType = kMenuTypeFormSaranPengaduan;
+    submenu.borderColor = @"B30808";
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [realm addObject:submenu];
+    
+    //==========
+    submenu = [[Menu alloc] init];
+    submenu.imageName = @"";
+    submenu.primaryKey = kSubmenuHistorySaranPengaduan;
+    submenu.indonesiaTitle = submenu.primaryKey;
+    submenu.sort = 2;
+    submenu.menuType = kMenuTypeList;
+    submenu.borderColor = @"B30808";
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    
+    menuList = [[Menu alloc] init];
+    menuList.imageName = @"";
+    menuList.primaryKey = kSubmenuListSaranPengaduan;
+    menuList.indonesiaTitle = menuList.primaryKey;
+    menuList.sort = 0;
+    menuList.menuType = kMenuTypeSubmenu;
+    
+    action = [[Action alloc] init];
+    action.name = @"Get List Saran dan Pengaduan";
+    action.methodName = @""; //complain/saran/getall
+    action.actionType = kActionTypeAPICall;
+    [action.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
+    [action.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    
+    [menuList.dataSources addObject:action];
+    
+    [menuList.roles addObjects:submenu.roles];
+    [menuList.submenus addObject:[Menu objectForPrimaryKey:kSubmenuSaranPengaduan]];
+    
+    [submenu.submenus addObject:menuList];
+    [realm addObject:submenu];
+    
+//==Customer get customer ===============================================================================
+    submenu = [[Menu alloc] init];
+    submenu.imageName = @"";
+    submenu.primaryKey = kSubmenuCustomerGetCustomer;
+    submenu.indonesiaTitle = submenu.primaryKey;
+    submenu.sort = 2;
+    submenu.menuType = kMenuTypeFormCustomerGetCustomer;
+    submenu.borderColor = @"B30808";
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [realm addObject:submenu];
+    
+    //==========
+    submenu = [[Menu alloc] init];
+    submenu.imageName = @"";
+    submenu.primaryKey = kSubmenuHistoryCustomerGetCustomer;
+    submenu.indonesiaTitle = submenu.primaryKey;
+    submenu.sort = 2;
+    submenu.menuType = kMenuTypeList;
+    submenu.borderColor = @"B30808";
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    
+    menuList = [[Menu alloc] init];
+    menuList.imageName = @"";
+    menuList.primaryKey = kSubmenuListCustomerGetCustomer;
+    menuList.indonesiaTitle = menuList.primaryKey;
+    menuList.sort = 0;
+    menuList.menuType = kMenuTypeSubmenu;
+    
+    action = [[Action alloc] init];
+    action.name = @"Get List Customer Get Customer";
+    action.methodName = @""; //customergetcustomer/getall
+    action.actionType = kActionTypeAPICall;
+    [action.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
+    [action.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    
+    [menuList.dataSources addObject:action];
+    
+    [menuList.roles addObjects:submenu.roles];
+    [menuList.submenus addObject:[Menu objectForPrimaryKey:kSubmenuCustomerGetCustomer]];
+    
+    [submenu.submenus addObject:menuList];
+    [realm addObject:submenu];
 }
 
 @end

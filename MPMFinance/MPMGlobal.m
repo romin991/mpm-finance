@@ -48,6 +48,11 @@ NSString *const kSubmenuListWorkOrder = @"List Work Order API";
 NSString *const kSubmenuListMAP = @"List MAP API";
 NSString *const kSubmenuListMarketing = @"List Marketing API";
 NSString *const kSubmenuListSurvey = @"List Survey API";
+NSString *const kSubmenuListLegalisirBPKB = @"List Legalisir BPKB API";
+NSString *const kSubmenuListKlaimAsuransi = @"List Klaim Asuransi API";
+NSString *const kSubmenuListPengambilanBPKB = @"List Pengambilan BPKB API";
+NSString *const kSubmenuListSaranPengaduan = @"List Saran & Pengaduan API";
+NSString *const kSubmenuListCustomerGetCustomer = @"List Customer Get Customer API";
 
 NSString *const kSubmenuFormPengajuanApplikasi = @"Form Pengajuan Applikasi";
 NSString *const kSubmenuDataMAP = @"Data MAP";
@@ -69,6 +74,24 @@ NSString *const kSubmenuCreditSimulationDahsyat2W = @"Credit Simulation Dahsyat 
 NSString *const kSubmenuCreditSimulationDahsyat4W = @"Credit Simulation Dahsyat 4W";
 NSString *const kSubmenuCreditSimulationProperty = @"Credit Simulation Property";
 
+NSString *const kSubmenuNewSubmissions = @"New Submissions";
+NSString *const kSubmenuTopUp = @"Top Up";
+
+NSString *const kSubmenuLegalizationBPKB = @"Legalization of BPKB";
+NSString *const kSubmenuHistoryBPKB = @"History of BPKB";
+
+NSString *const kSubmenuInsuranceClaimForm = @"Insurance Claim Form";
+NSString *const kSubmenuHistoryInsuranceClaim = @"History of Insurance Claim";
+
+NSString *const kSubmenuPengambilanBPKB = @"Pengambilan BPKB";
+NSString *const kSubmenuHistoryPengambilanBPKB = @"History pengambilan BPKB";
+
+NSString *const kSubmenuSaranPengaduan = @"Saran dan Pengaduan";
+NSString *const kSubmenuHistorySaranPengaduan = @"History Saran dan Pengaduan";
+
+NSString *const kSubmenuCustomerGetCustomer = @"Form Customer Get Customer";
+NSString *const kSubmenuHistoryCustomerGetCustomer = @"History Customer Get Customer";
+
 NSString *const kSubmenuYearToDate = @"Year to Date";
 NSString *const kSubmenuMonthToDate = @"Month to Date";
 
@@ -79,8 +102,16 @@ NSString *const kMenuTypeFormDahsyat = @"Dahsyat";
 NSString *const kMenuTypeFormDataMAP = @"DataMAP";
 NSString *const kMenuTypeFormWorkOrder = @"WorkOrder";
 NSString *const kMenuTypeFormSurvey = @"Survey";
+NSString *const kMenuTypeFormTopUp = @"TopUp";
+NSString *const kMenuTypeFormLegalizationBPKB = @"LegalizationBPKB";
+NSString *const kMenuTypeFormInsuranceClaim = @"InsuranceClaim";
+NSString *const kMenuTypeFormPengambilanBPKB = @"PengambilanBPKB";
+NSString *const kMenuTypeFormSaranPengaduan = @"SaranPengaduan";
+NSString *const kMenuTypeFormCustomerGetCustomer = @"CustomerGetCustomer";
 NSString *const kMenuTypeCreditSimulation = @"Credit Simulation";
 NSString *const kMenuTypeContactUs = @"Contact Us";
+NSString *const kMenuTypeHistory = @"History";
+NSString *const kMenuTypeAcceleratedReplayment = @"AcceleratedRepayment";
 NSString *const kMenuTypeDashboard = @"Dashboard";
 NSString *const kMenuTypeList = @"List";
 NSString *const kMenuTypeListWorkOrder = @"List Work Order";
