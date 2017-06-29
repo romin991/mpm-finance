@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1lC-WT-m55">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1lC-WT-m55">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -472,7 +473,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="d5Q-Zo-5Ha">
-                                <rect key="frame" x="0.0" y="232" width="320" height="215"/>
+                                <rect key="frame" x="0.0" y="160" width="320" height="287"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="vqh-v5-NT4">
                                     <size key="itemSize" width="103" height="103"/>
@@ -495,15 +496,15 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="101" height="63"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YA6-73-QXS">
-                                                                    <rect key="frame" x="32" y="13" width="37" height="37"/>
+                                                                    <rect key="frame" x="27" y="8" width="47" height="47"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="37" id="SKr-Dy-MYF"/>
-                                                                        <constraint firstAttribute="height" constant="37" id="i3j-u2-4hM"/>
+                                                                        <constraint firstAttribute="width" secondItem="YA6-73-QXS" secondAttribute="height" multiplier="1:1" id="Ptv-XN-LoO"/>
                                                                     </constraints>
                                                                 </imageView>
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
+                                                                <constraint firstItem="YA6-73-QXS" firstAttribute="top" secondItem="bZZ-Mm-5RM" secondAttribute="top" constant="8" id="WVT-TV-lV4"/>
                                                                 <constraint firstItem="YA6-73-QXS" firstAttribute="centerY" secondItem="bZZ-Mm-5RM" secondAttribute="centerY" id="mgI-pL-z75"/>
                                                                 <constraint firstItem="YA6-73-QXS" firstAttribute="centerX" secondItem="bZZ-Mm-5RM" secondAttribute="centerX" id="x2q-zK-0TR"/>
                                                             </constraints>
@@ -546,14 +547,15 @@
                                 </connections>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VvT-8o-8cg" customClass="KASlideShow">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="232"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="232" id="fSJ-xr-jXb"/>
+                                    <constraint firstAttribute="width" secondItem="VvT-8o-8cg" secondAttribute="height" multiplier="2:1" id="SSq-BL-dCx"/>
+                                    <constraint firstAttribute="height" constant="160" id="hGG-uR-HdH"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="VvT-8o-8cg" firstAttribute="top" secondItem="Ysq-KT-xnS" secondAttribute="top" id="8me-7D-hmA"/>
                             <constraint firstAttribute="trailing" secondItem="d5Q-Zo-5Ha" secondAttribute="trailing" id="ORf-Ck-g3Z"/>
@@ -561,12 +563,12 @@
                             <constraint firstAttribute="trailing" secondItem="VvT-8o-8cg" secondAttribute="trailing" id="Sea-C6-ni8"/>
                             <constraint firstItem="d5Q-Zo-5Ha" firstAttribute="leading" secondItem="Ysq-KT-xnS" secondAttribute="leading" id="T5X-b0-UDK"/>
                             <constraint firstItem="d5Q-Zo-5Ha" firstAttribute="top" secondItem="VvT-8o-8cg" secondAttribute="bottom" id="foM-ZU-9dI"/>
-                            <constraint firstItem="d5Q-Zo-5Ha" firstAttribute="top" secondItem="VvT-8o-8cg" secondAttribute="bottom" id="gwI-yo-pRw"/>
                             <constraint firstItem="VvT-8o-8cg" firstAttribute="leading" secondItem="Ysq-KT-xnS" secondAttribute="leading" id="rNa-ky-2P4"/>
-                            <constraint firstItem="d5Q-Zo-5Ha" firstAttribute="top" secondItem="VvT-8o-8cg" secondAttribute="bottom" id="ul9-n3-3qm"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="sci-3k-3ln"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="menuCollectionView" destination="d5Q-Zo-5Ha" id="9aj-UX-J3d"/>
                         <outlet property="slideshow" destination="VvT-8o-8cg" id="F9r-gj-5e5"/>

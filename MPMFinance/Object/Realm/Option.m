@@ -357,6 +357,7 @@
     [Option new:realm :45 :3 :114 :@"Gang Lebar"];
     [Option new:realm :45 :4 :115 :@"Gang Sempit"];
     
+    [Option new:realm :46 :0 :@"ASR"];
     [realm commitWriteTransaction];
 }
 

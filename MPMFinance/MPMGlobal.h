@@ -119,7 +119,7 @@ extern NSString *const kMenuTypeMap;
 extern NSString *const kMenuTypeDashboard;
 extern NSString *const kMenuTypeContactUs;
 extern NSString *const kMenuTypeHistory;
-extern NSString *const kMenuTypeAcceleratedReplayment;
+extern NSString *const kMenuTypeAcceleratedRepayment;
 extern NSString *const kMenuTypeCreditSimulation;
 extern NSString *const kApiUrl;
 

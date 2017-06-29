@@ -18,7 +18,7 @@
 #import "SubmenuViewController.h"
 #import "SubmenuCollectionViewController.h"
 #import "ContactUsViewController.h"
-@interface HomeViewController ()<KASlideShowDelegate,KASlideShowDataSource>
+@interface HomeViewController ()<KASlideShowDelegate,KASlideShowDataSource, UICollectionViewDelegateFlowLayout>
 
 @property RLMResults *menus;
 @property (weak, nonatomic) IBOutlet UICollectionView *menuCollectionView;
@@ -88,6 +88,9 @@
 }
 
 #pragma mark - Collection View Data Source
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    return CGSizeMake(self.view.frame.size.width/4, self.view.frame.size.width/4);
+}
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return 1;

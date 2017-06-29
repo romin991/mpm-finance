@@ -112,7 +112,7 @@
     });
 }
 
-+ (void)generate:(XLFormDescriptor *)formDescriptor form:(Form *)form completion:(void(^)(XLFormDescriptor *, NSError *error))block{
++ (void)generate:(XLFormDescriptor *)formDescriptor form:(Form *)form completion:(void(^)(XLFormDescriptor *formDescriptor, NSError *error))block{
     __block dispatch_group_t group = dispatch_group_create();
     __block dispatch_queue_t queue = dispatch_get_main_queue();
     __block NSError *weakError;

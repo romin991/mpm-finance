@@ -16,6 +16,7 @@
 #import "DahsyatFormViewController.h"
 #import "UsedCarFormViewController.h"
 #import "NewCarFormViewController.h"
+#import "TopUpFormViewController.h"
 
 @interface SubmenuViewController ()
 
@@ -103,6 +104,12 @@
         CreditSimulationViewController *creditSimulation = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"CreditSimulationViewController"];
         creditSimulation.menuType = submenu.title;
         [self.navigationController pushViewController:creditSimulation animated:YES];
+        
+    } else if ([submenu.menuType isEqualToString:kMenuTypeFormTopUp]){
+        TopUpFormViewController *topupFormViewController = [[TopUpFormViewController alloc] init];
+        topupFormViewController.menu = submenu;
+        [self.navigationController pushViewController:topupFormViewController animated:YES];
+
     }
 }
 

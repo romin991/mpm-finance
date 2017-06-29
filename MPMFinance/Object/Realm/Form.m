@@ -258,7 +258,90 @@
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuNewCar]];
     [realm addObject:form];
     
+    
+    
+    [self generateFormsForCustomerDealerWithRealm:realm];
     [realm commitWriteTransaction];
+}
+
++ (void)generateFormsForCustomerDealerWithRealm:(RLMRealm *)realm{
+//=====================================================================================================
+    Form *form = [[Form alloc] init];
+    form.title = @"Customer Get Customer";
+    form.sort = 0;
+    [form.rows addObjects:[FormRow getRowsWithCategoryNumber:23]];
+    
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuCustomerGetCustomer]];
+    [realm addObject:form];
+    
+//=====================================================================================================
+    form = [[Form alloc] init];
+    form.title = @"Saran";
+    form.sort = 0;
+    [form.rows addObjects:[FormRow getRowsWithCategoryNumber:24]];
+    
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuSaranPengaduan]];
+    [realm addObject:form];
+    
+//=====================================================================================================
+    form = [[Form alloc] init];
+    form.title = @"Pengaduan";
+    form.sort = 0;
+    [form.rows addObjects:[FormRow getRowsWithCategoryNumber:25]];
+    
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuSaranPengaduan]];
+    [realm addObject:form];
+
+//=====================================================================================================
+    form = [[Form alloc] init];
+    form.title = @"Pengambilan BPKB";
+    form.sort = 0;
+    [form.rows addObjects:[FormRow getRowsWithCategoryNumber:26]];
+    
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuPengambilanBPKB]];
+    [realm addObject:form];
+
+//=====================================================================================================
+    form = [[Form alloc] init];
+    form.title = @"Pelunasan Dipercepat";
+    form.sort = 0;
+    [form.rows addObjects:[FormRow getRowsWithCategoryNumber:27]];
+    
+    [form.menus addObject:[Menu objectForPrimaryKey:kMenuPelunasanDipercepat]];
+    [realm addObject:form];
+
+//=====================================================================================================
+    form = [[Form alloc] init];
+    form.title = @"Klaim Asuransi";
+    form.sort = 0;
+    [form.rows addObjects:[FormRow getRowsWithCategoryNumber:28]];
+    
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuInsuranceClaimForm]];
+    [realm addObject:form];
+
+//=====================================================================================================
+    form = [[Form alloc] init];
+    form.title = @"Legalisir BPKB";
+    form.sort = 0;
+    [form.rows addObjects:[FormRow getRowsWithCategoryNumber:29]];
+    
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuLegalizationBPKB]];
+    [realm addObject:form];
+    
+//=====================================================================================================
+    form = [[Form alloc] init];
+    form.title = @"Top Up";
+    form.sort = 0;
+    [form.rows addObjects:[FormRow getRowsWithCategoryNumber:30]];
+    
+    FormSection *section = [[FormSection alloc] init];
+    section.title = @"Top Up";
+    [section.rows addObjects:[FormRow getRowsWithCategoryNumber:30]];
+    
+    [form.sections addObject:section];
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuTopUp]];
+    [realm addObject:form];
+    
 }
 
 @end
