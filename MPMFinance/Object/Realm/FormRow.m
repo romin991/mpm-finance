@@ -392,7 +392,7 @@
 }
 
 + (void)generateSuggestionFieldsWithRealm:(RLMRealm*)realm{
-    [FormRow new:realm :25 :0 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama"];
+    [[FormRow new:realm :25 :0 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama"] setDisabled:YES];
     [FormRow new:realm :25 :1 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Handphone"];
     [FormRow new:realm :25 :2 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Alamat"];
     [FormRow new:realm :25 :3 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Email"];
@@ -400,8 +400,8 @@
 }
 
 + (void)generatePengambilanBPKBWithRealm:(RLMRealm *)realm{
-    [FormRow new:realm :26 :0 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama"];
-    [FormRow new:realm :26 :1 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Status Kontrak"];
+    [[FormRow new:realm :26 :0 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama"] setDisabled:YES];
+    [[FormRow new:realm :26 :1 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Status Kontrak"] setDisabled:YES];
     [FormRow new:realm :26 :2 :YES :XLFormRowDescriptorTypeDateTime :@"Tanggal Pengambilan Dokumen"];
 }
 
@@ -411,18 +411,18 @@
 }
 
 + (void)generateKlaimAsuransiWithRealm:(RLMRealm *)realm{
-    [FormRow new:realm :28 :0 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama"];
-    [FormRow new:realm :28 :1 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Plat"];
-    [FormRow new:realm :28 :2 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Insco"];
-    [FormRow new:realm :28 :3 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Hotline"];
+    [[FormRow new:realm :28 :0 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama"] setDisabled:YES];
+    [[FormRow new:realm :28 :1 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Plat"] setDisabled:YES];
+    [[FormRow new:realm :28 :2 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Insco"] setDisabled:YES];
+    [[FormRow new:realm :28 :3 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Hotline"] setDisabled:YES];
     [FormRow new:realm :28 :4 :YES :XLFormRowDescriptorTypeDatePicker :@"Tanggal Kejadian"];
     [FormRow new:realm :28 :5 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Lokasi"];
     [FormRow new:realm :28 :6 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kronologis Kecelakaan"];
 }
 
 + (void)generateLegalisirBPKBWithRealm:(RLMRealm *)realm{
-    [FormRow new:realm :29 :0 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama"];
-    [FormRow new:realm :29 :1 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Plat"];
+    [[FormRow new:realm :29 :0 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama"] setDisabled:YES];
+    [[FormRow new:realm :29 :1 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Plat"] setDisabled:YES];
     [FormRow new:realm :29 :2 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Tanggal Pengambilan Dokumen"];
 }
 

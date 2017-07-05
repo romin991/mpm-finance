@@ -269,8 +269,12 @@
     Form *form = [[Form alloc] init];
     form.title = @"Customer Get Customer";
     form.sort = 0;
-    [form.rows addObjects:[FormRow getRowsWithCategoryNumber:23]];
     
+    FormSection *section = [[FormSection alloc] init];
+    section.title = @"Customer Get Customer";
+    [section.rows addObjects:[FormRow getRowsWithCategoryNumber:23]];
+    
+    [form.sections addObject:section];
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuCustomerGetCustomer]];
     [realm addObject:form];
     
@@ -278,8 +282,12 @@
     form = [[Form alloc] init];
     form.title = @"Saran";
     form.sort = 0;
-    [form.rows addObjects:[FormRow getRowsWithCategoryNumber:24]];
     
+    section = [[FormSection alloc] init];
+    section.title = @"Saran";
+    [section.rows addObjects:[FormRow getRowsWithCategoryNumber:24]];
+    
+    [form.sections addObject:section];
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuSaranPengaduan]];
     [realm addObject:form];
     
@@ -287,8 +295,12 @@
     form = [[Form alloc] init];
     form.title = @"Pengaduan";
     form.sort = 0;
-    [form.rows addObjects:[FormRow getRowsWithCategoryNumber:25]];
     
+    section = [[FormSection alloc] init];
+    section.title = @"Pengaduan";
+    [section.rows addObjects:[FormRow getRowsWithCategoryNumber:25]];
+    
+    [form.sections addObject:section];
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuSaranPengaduan]];
     [realm addObject:form];
 
@@ -296,8 +308,12 @@
     form = [[Form alloc] init];
     form.title = @"Pengambilan BPKB";
     form.sort = 0;
-    [form.rows addObjects:[FormRow getRowsWithCategoryNumber:26]];
     
+    section = [[FormSection alloc] init];
+    section.title = @"Pengambilan BPKB";
+    [section.rows addObjects:[FormRow getRowsWithCategoryNumber:26]];
+    
+    [form.sections addObject:section];
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuPengambilanBPKB]];
     [realm addObject:form];
 
@@ -305,8 +321,12 @@
     form = [[Form alloc] init];
     form.title = @"Pelunasan Dipercepat";
     form.sort = 0;
-    [form.rows addObjects:[FormRow getRowsWithCategoryNumber:27]];
     
+    section = [[FormSection alloc] init];
+    section.title = @"Pelunasan Dipercepat";
+    [section.rows addObjects:[FormRow getRowsWithCategoryNumber:27]];
+    
+    [form.sections addObject:section];
     [form.menus addObject:[Menu objectForPrimaryKey:kMenuPelunasanDipercepat]];
     [realm addObject:form];
 
@@ -314,8 +334,12 @@
     form = [[Form alloc] init];
     form.title = @"Klaim Asuransi";
     form.sort = 0;
-    [form.rows addObjects:[FormRow getRowsWithCategoryNumber:28]];
     
+    section = [[FormSection alloc] init];
+    section.title = @"Klaim Asuransi";
+    [section.rows addObjects:[FormRow getRowsWithCategoryNumber:28]];
+    
+    [form.sections addObject:section];
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuInsuranceClaimForm]];
     [realm addObject:form];
 
@@ -323,8 +347,12 @@
     form = [[Form alloc] init];
     form.title = @"Legalisir BPKB";
     form.sort = 0;
-    [form.rows addObjects:[FormRow getRowsWithCategoryNumber:29]];
     
+    section = [[FormSection alloc] init];
+    section.title = @"Legalisir BPKB";
+    [section.rows addObjects:[FormRow getRowsWithCategoryNumber:29]];
+    
+    [form.sections addObject:section];
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuLegalizationBPKB]];
     [realm addObject:form];
     
@@ -332,9 +360,8 @@
     form = [[Form alloc] init];
     form.title = @"Top Up";
     form.sort = 0;
-    [form.rows addObjects:[FormRow getRowsWithCategoryNumber:30]];
     
-    FormSection *section = [[FormSection alloc] init];
+    section = [[FormSection alloc] init];
     section.title = @"Top Up";
     [section.rows addObjects:[FormRow getRowsWithCategoryNumber:30]];
     

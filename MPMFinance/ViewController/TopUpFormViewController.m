@@ -7,15 +7,12 @@
 //
 
 #import "TopUpFormViewController.h"
-#import <XLForm.h>
 #import "FormModel.h"
 #import "Form.h"
 #import "CustomerModel.h"
 #import "TopUpModel.h"
 
 @interface TopUpFormViewController ()
-
-@property (weak, nonatomic) IBOutlet UIView *containerView;
 
 @property NSMutableDictionary *valueDictionary;
 
@@ -155,53 +152,53 @@
 
 
 
-- (void)setAdditionalFormDescriptor:(XLFormDescriptor *)formDescriptor completion:(void(^)(XLFormDescriptor *formDescriptor, NSError *error))block{
-    __block dispatch_group_t group = dispatch_group_create();
-    __block dispatch_queue_t queue = dispatch_get_main_queue();
-    __block NSError *weakError;
-    
-    XLFormSectionDescriptor *section = [XLFormSectionDescriptor formSection];
-    section.title = @"Pilih no kontrak";
-    [formDescriptor addFormSection:section atIndex:0];
-    
-    __block XLFormRowDescriptor *row = [XLFormRowDescriptor formRowDescriptorWithTag:@"noKontrak" rowType:XLFormRowDescriptorTypeSelectorPush title:@"Pilih no kontrak"];
-    row.selectorTitle = @"Pilih no kontrak";
-    [section addFormRow:row];
-    
-    dispatch_group_enter(group);
-    NSLog(@"enter");
-    [CustomerModel getListContractNumberWithCompletion:^(NSArray *datas, NSError *error) {
-        @try {
-            if (error) {
-                weakError = error;
-                
-            } else {
-                NSMutableArray *optionObjects = [NSMutableArray array];
-                for (Data *data in datas) {
-                    [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:@(data.id) displayText:data.value]];
-                }
-                row.selectorOptions = optionObjects;
-            }
-            
-        } @catch (NSException *exception) {
-            NSLog(@"%@", exception);
-        } @finally {
-            dispatch_group_leave(group);
-            NSLog(@"leave");
-        }
-    }];
-    
-    XLFormSectionDescriptor *section3 = [XLFormSectionDescriptor formSection];
-    section3.title = @"";
-    [formDescriptor addFormSection:section3];
-    
-    XLFormRowDescriptor *row2 = [XLFormRowDescriptor formRowDescriptorWithTag:nil rowType:XLFormRowDescriptorTypeButton title:@"Submit"];
-    row2.action.formSelector = @selector(submitNow:);
-    [section3 addFormRow:row2];
-    
-    dispatch_group_notify(group, queue, ^{
-        if (block) block(formDescriptor, weakError);
-    });
-}
+//- (void)setAdditionalFormDescriptor:(XLFormDescriptor *)formDescriptor completion:(void(^)(XLFormDescriptor *formDescriptor, NSError *error))block{
+//    __block dispatch_group_t group = dispatch_group_create();
+//    __block dispatch_queue_t queue = dispatch_get_main_queue();
+//    __block NSError *weakError;
+//    
+//    XLFormSectionDescriptor *section = [XLFormSectionDescriptor formSection];
+//    section.title = @"Pilih no kontrak";
+//    [formDescriptor addFormSection:section atIndex:0];
+//    
+//    __block XLFormRowDescriptor *row = [XLFormRowDescriptor formRowDescriptorWithTag:@"noKontrak" rowType:XLFormRowDescriptorTypeSelectorPush title:@"Pilih no kontrak"];
+//    row.selectorTitle = @"Pilih no kontrak";
+//    [section addFormRow:row];
+//    
+//    dispatch_group_enter(group);
+//    NSLog(@"enter");
+//    [CustomerModel getListContractNumberWithCompletion:^(NSArray *datas, NSError *error) {
+//        @try {
+//            if (error) {
+//                weakError = error;
+//                
+//            } else {
+//                NSMutableArray *optionObjects = [NSMutableArray array];
+//                for (Data *data in datas) {
+//                    [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:@(data.id) displayText:data.value]];
+//                }
+//                row.selectorOptions = optionObjects;
+//            }
+//            
+//        } @catch (NSException *exception) {
+//            NSLog(@"%@", exception);
+//        } @finally {
+//            dispatch_group_leave(group);
+//            NSLog(@"leave");
+//        }
+//    }];
+//    
+//    XLFormSectionDescriptor *section3 = [XLFormSectionDescriptor formSection];
+//    section3.title = @"";
+//    [formDescriptor addFormSection:section3];
+//    
+//    XLFormRowDescriptor *row2 = [XLFormRowDescriptor formRowDescriptorWithTag:nil rowType:XLFormRowDescriptorTypeButton title:@"Submit"];
+//    row2.action.formSelector = @selector(submitNow:);
+//    [section3 addFormRow:row2];
+//    
+//    dispatch_group_notify(group, queue, ^{
+//        if (block) block(formDescriptor, weakError);
+//    });
+//}
 
 @end

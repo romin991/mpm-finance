@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Menu.h"
+#import <XLForm.h>
 
-@interface LegalizationBPKBFormViewController : UIViewController
+@interface LegalizationBPKBFormViewController : XLFormViewController
+
+@property Menu *menu;
 
 @end

@@ -17,6 +17,8 @@
 #import "UsedCarFormViewController.h"
 #import "NewCarFormViewController.h"
 #import "TopUpFormViewController.h"
+#import "LegalizationBPKBFormViewController.h"
+#import "InsuranceClaimFormViewController.h"
 
 @interface SubmenuViewController ()
 
@@ -110,6 +112,16 @@
         topupFormViewController.menu = submenu;
         [self.navigationController pushViewController:topupFormViewController animated:YES];
 
+    } else if ([submenu.menuType isEqualToString:kMenuTypeFormLegalizationBPKB]){
+        LegalizationBPKBFormViewController *legalizationBPKBViewController = [[LegalizationBPKBFormViewController alloc] init];
+        legalizationBPKBViewController.menu = submenu;
+        [self.navigationController pushViewController:legalizationBPKBViewController animated:YES];
+        
+    } else if ([submenu.menuType isEqualToString:kMenuTypeFormInsuranceClaim]){
+        InsuranceClaimFormViewController *insuranceClaimFormViewController = [[InsuranceClaimFormViewController alloc] init];
+        insuranceClaimFormViewController.menu = submenu;
+        [self.navigationController pushViewController:insuranceClaimFormViewController animated:YES];
+        
     }
 }
 

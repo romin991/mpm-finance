@@ -42,6 +42,8 @@
 		4831CD271EDE97D7001EF223 /* SubmenuCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4831CD251EDE97D7001EF223 /* SubmenuCollectionViewCell.m */; };
 		4831CD281EDE97D7001EF223 /* SubmenuCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4831CD261EDE97D7001EF223 /* SubmenuCollectionViewCell.xib */; };
 		483514841EFAC32500207458 /* FormModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 483514831EFAC32500207458 /* FormModel.m */; };
+		483A9D901F0BA6060033F714 /* LegalizationBPKBModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 483A9D8F1F0BA6060033F714 /* LegalizationBPKBModel.m */; };
+		483A9D931F0BAB9F0033F714 /* InsuranceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 483A9D921F0BAB9F0033F714 /* InsuranceModel.m */; };
 		483F1E981EF2874F005D3945 /* ProfileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 483F1E971EF2874F005D3945 /* ProfileModel.m */; };
 		483F39221EC3085E00C03253 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 483F39211EC3085E00C03253 /* main.m */; };
 		483F39251EC3085E00C03253 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 483F39241EC3085E00C03253 /* AppDelegate.m */; };
@@ -160,6 +162,10 @@
 		4831CD261EDE97D7001EF223 /* SubmenuCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SubmenuCollectionViewCell.xib; path = ViewController/SubmenuCollectionViewCell.xib; sourceTree = "<group>"; };
 		483514821EFAC32500207458 /* FormModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FormModel.h; path = Model/FormModel.h; sourceTree = "<group>"; };
 		483514831EFAC32500207458 /* FormModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormModel.m; path = Model/FormModel.m; sourceTree = "<group>"; };
+		483A9D8E1F0BA6060033F714 /* LegalizationBPKBModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LegalizationBPKBModel.h; path = Model/LegalizationBPKBModel.h; sourceTree = "<group>"; };
+		483A9D8F1F0BA6060033F714 /* LegalizationBPKBModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LegalizationBPKBModel.m; path = Model/LegalizationBPKBModel.m; sourceTree = "<group>"; };
+		483A9D911F0BAB9F0033F714 /* InsuranceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InsuranceModel.h; path = Model/InsuranceModel.h; sourceTree = "<group>"; };
+		483A9D921F0BAB9F0033F714 /* InsuranceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InsuranceModel.m; path = Model/InsuranceModel.m; sourceTree = "<group>"; };
 		483F1E961EF2874F005D3945 /* ProfileModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileModel.h; path = Model/ProfileModel.h; sourceTree = "<group>"; };
 		483F1E971EF2874F005D3945 /* ProfileModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileModel.m; path = Model/ProfileModel.m; sourceTree = "<group>"; };
 		483F391D1EC3085E00C03253 /* MPMFinance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MPMFinance.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -536,6 +542,10 @@
 				481C42B81F03EE7D007D5C3C /* CustomerModel.m */,
 				481C42BD1F04FDB5007D5C3C /* TopUpModel.h */,
 				481C42BE1F04FDB5007D5C3C /* TopUpModel.m */,
+				483A9D8E1F0BA6060033F714 /* LegalizationBPKBModel.h */,
+				483A9D8F1F0BA6060033F714 /* LegalizationBPKBModel.m */,
+				483A9D911F0BAB9F0033F714 /* InsuranceModel.h */,
+				483A9D921F0BAB9F0033F714 /* InsuranceModel.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -889,6 +899,7 @@
 				4849EEDD1EC8190300415E4B /* Option.m in Sources */,
 				4826528F1EFC02390002A606 /* MarketingModel.m in Sources */,
 				481C429C1F03BABA007D5C3C /* LegalizationBPKBFormViewController.m in Sources */,
+				483A9D901F0BA6060033F714 /* LegalizationBPKBModel.m in Sources */,
 				4846E2331EE6C650000C08B7 /* DataMAPModel.m in Sources */,
 				4831CD271EDE97D7001EF223 /* SubmenuCollectionViewCell.m in Sources */,
 				48482E731EC99B230029ACBE /* ListTableViewCell.m in Sources */,
@@ -904,6 +915,7 @@
 				481C428A1F013784007D5C3C /* DataSource.m in Sources */,
 				481C42AB1F03BB01007D5C3C /* IntakeBPKBFormViewController.m in Sources */,
 				4849EEE11EC8815000415E4B /* FormViewController.m in Sources */,
+				483A9D931F0BAB9F0033F714 /* InsuranceModel.m in Sources */,
 				5C9DB2361EC3312200FC0CC9 /* MPMGlobal.m in Sources */,
 				4866A89A1ECD8B2200A89E98 /* FloatLabeledTextFieldCell.m in Sources */,
 				481C42861F00EF29007D5C3C /* WorkOrderListTableViewCell.m in Sources */,

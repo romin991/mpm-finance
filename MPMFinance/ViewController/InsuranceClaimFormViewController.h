@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Menu.h"
+#import <XLForm.h>
 
-@interface InsuranceClaimFormViewController : UIViewController
+@interface InsuranceClaimFormViewController : XLFormViewController
+
+@property Menu *menu;
 
 @end
