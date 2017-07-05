@@ -19,6 +19,7 @@
 #import "TopUpFormViewController.h"
 #import "LegalizationBPKBFormViewController.h"
 #import "InsuranceClaimFormViewController.h"
+#import "IntakeBPKBFormViewController.h"
 
 @interface SubmenuViewController ()
 
@@ -121,6 +122,11 @@
         InsuranceClaimFormViewController *insuranceClaimFormViewController = [[InsuranceClaimFormViewController alloc] init];
         insuranceClaimFormViewController.menu = submenu;
         [self.navigationController pushViewController:insuranceClaimFormViewController animated:YES];
+        
+    } else if ([submenu.menuType isEqualToString:kMenuTypeFormPengambilanBPKB]){
+        IntakeBPKBFormViewController *intakeBPKBFormViewController = [[IntakeBPKBFormViewController alloc] init];
+        intakeBPKBFormViewController.menu = submenu;
+        [self.navigationController pushViewController:intakeBPKBFormViewController animated:YES];
         
     }
 }

@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Menu.h"
+#import <XLForm.h>
 
-@interface IntakeBPKBFormViewController : UIViewController
+@interface IntakeBPKBFormViewController : XLFormViewController
+
+@property Menu *menu;
 
 @end

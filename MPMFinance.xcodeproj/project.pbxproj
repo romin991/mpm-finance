@@ -65,6 +65,7 @@
 		4849EEDD1EC8190300415E4B /* Option.m in Sources */ = {isa = PBXBuildFile; fileRef = 4849EEDC1EC8190300415E4B /* Option.m */; };
 		4849EEE11EC8815000415E4B /* FormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4849EEDF1EC8815000415E4B /* FormViewController.m */; };
 		4849EEE21EC8815000415E4B /* FormViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4849EEE01EC8815000415E4B /* FormViewController.xib */; };
+		484ADB201F0CE3C10006BCB0 /* IntakeBPKBModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 484ADB1F1F0CE3C10006BCB0 /* IntakeBPKBModel.m */; };
 		4866A89A1ECD8B2200A89E98 /* FloatLabeledTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4866A8991ECD8B2200A89E98 /* FloatLabeledTextFieldCell.m */; };
 		487F39F61ED64F9400D6E580 /* APIModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 487F39F51ED64F9400D6E580 /* APIModel.m */; };
 		487F39F91ED678D400D6E580 /* Action.m in Sources */ = {isa = PBXBuildFile; fileRef = 487F39F81ED678D400D6E580 /* Action.m */; };
@@ -202,6 +203,8 @@
 		4849EEDE1EC8815000415E4B /* FormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FormViewController.h; path = ViewController/FormViewController.h; sourceTree = "<group>"; };
 		4849EEDF1EC8815000415E4B /* FormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormViewController.m; path = ViewController/FormViewController.m; sourceTree = "<group>"; };
 		4849EEE01EC8815000415E4B /* FormViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FormViewController.xib; path = ViewController/FormViewController.xib; sourceTree = "<group>"; };
+		484ADB1E1F0CE3C10006BCB0 /* IntakeBPKBModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IntakeBPKBModel.h; path = Model/IntakeBPKBModel.h; sourceTree = "<group>"; };
+		484ADB1F1F0CE3C10006BCB0 /* IntakeBPKBModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IntakeBPKBModel.m; path = Model/IntakeBPKBModel.m; sourceTree = "<group>"; };
 		4866A8981ECD8B2200A89E98 /* FloatLabeledTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatLabeledTextFieldCell.h; sourceTree = "<group>"; };
 		4866A8991ECD8B2200A89E98 /* FloatLabeledTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatLabeledTextFieldCell.m; sourceTree = "<group>"; };
 		487F39F41ED64F9400D6E580 /* APIModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = APIModel.h; path = Model/APIModel.h; sourceTree = "<group>"; };
@@ -546,6 +549,8 @@
 				483A9D8F1F0BA6060033F714 /* LegalizationBPKBModel.m */,
 				483A9D911F0BAB9F0033F714 /* InsuranceModel.h */,
 				483A9D921F0BAB9F0033F714 /* InsuranceModel.m */,
+				484ADB1E1F0CE3C10006BCB0 /* IntakeBPKBModel.h */,
+				484ADB1F1F0CE3C10006BCB0 /* IntakeBPKBModel.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -916,6 +921,7 @@
 				481C42AB1F03BB01007D5C3C /* IntakeBPKBFormViewController.m in Sources */,
 				4849EEE11EC8815000415E4B /* FormViewController.m in Sources */,
 				483A9D931F0BAB9F0033F714 /* InsuranceModel.m in Sources */,
+				484ADB201F0CE3C10006BCB0 /* IntakeBPKBModel.m in Sources */,
 				5C9DB2361EC3312200FC0CC9 /* MPMGlobal.m in Sources */,
 				4866A89A1ECD8B2200A89E98 /* FloatLabeledTextFieldCell.m in Sources */,
 				481C42861F00EF29007D5C3C /* WorkOrderListTableViewCell.m in Sources */,
