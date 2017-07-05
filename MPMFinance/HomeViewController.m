@@ -18,6 +18,8 @@
 #import "SubmenuViewController.h"
 #import "SubmenuCollectionViewController.h"
 #import "ContactUsViewController.h"
+#import "AcceleratedRepaymentFormViewController.h"
+
 @interface HomeViewController ()<KASlideShowDelegate,KASlideShowDataSource, UICollectionViewDelegateFlowLayout>
 
 @property RLMResults *menus;
@@ -141,6 +143,12 @@
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         DashboardViewController *submenuCollectionViewController = [storyboard instantiateViewControllerWithIdentifier:@"DashboardViewController"];
         [self.navigationController.navigationController pushViewController:submenuCollectionViewController animated:YES];
+        
+    } else if ([menu.menuType isEqualToString:kMenuTypeAcceleratedRepayment]){
+        AcceleratedRepaymentFormViewController *acceleratedRepaymentFormViewController = [[AcceleratedRepaymentFormViewController alloc] init];
+        acceleratedRepaymentFormViewController.menu = menu;
+        [self.navigationController.navigationController pushViewController:acceleratedRepaymentFormViewController animated:YES];
+        
     }
 
 }

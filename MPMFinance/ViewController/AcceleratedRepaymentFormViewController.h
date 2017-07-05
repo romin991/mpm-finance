@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Menu.h"
+#import <XLForm.h>
 
-@interface AcceleratedRepaymentFormViewController : UIViewController
+@interface AcceleratedRepaymentFormViewController : XLFormViewController
+
+@property Menu *menu;
 
 @end
