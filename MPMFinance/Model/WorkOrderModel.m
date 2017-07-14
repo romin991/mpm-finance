@@ -244,6 +244,116 @@
     }];
 }
 
+
+
+
+
+
+
+
+
++ (void)postDraftWorkOrder:(List *)list dictionary:(NSDictionary *)dictionary completion:(void(^)(NSDictionary *dictionary, NSError *error))block{
+    AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
+    NSMutableDictionary* param = [NSMutableDictionary dictionaryWithDictionary:
+                                  @{@"userid" :[MPMUserInfo getUserInfo][@"userId"],
+                                    @"token" : [MPMUserInfo getToken]}];
+    
+    NSMutableDictionary *dataDictionary = [NSMutableDictionary dictionary];
+    NSString *url = @"input";
+    @try {
+        if (list){
+            [dataDictionary setObject:@(list.primaryKey) forKey:@"id"];
+            url = @"update";
+        }
+        
+        [dataDictionary addEntriesFromDictionary:
+         @{@"kodeCabang" : [dictionary objectForKey:@"cabang"] ? [dictionary objectForKey:@"cabang"] : @"",
+           @"namaCalon" : [dictionary objectForKey:@"namaLengkap"] ? [dictionary objectForKey:@"namaLengkap"] : @"",
+           @"noKtp" : [dictionary objectForKey:@"noKTP"] ? [dictionary objectForKey:@"noKTP"] : @"",
+           @"tmpLahir" : [dictionary objectForKey:@"tempatLahir"] ? [dictionary objectForKey:@"tempatLahir"] : @"",
+           @"tglLahir" : [dictionary objectForKey:@"tanggalLahir"] ? [MPMGlobal removeTimeFromString:[dictionary objectForKey:@"tanggalLahir"]] : @"",
+           
+           @"alamatLegal" : [dictionary objectForKey:@"alamatRumahSesuaiKTP"] ? [dictionary objectForKey:@"alamatRumahSesuaiKTP"] : @"",
+           @"alamatLegalRt" : [dictionary objectForKey:@"rTSesuaiKTP"] ? [dictionary objectForKey:@"rTSesuaiKTP"] : @"",
+           @"alamatLegalRw" : [dictionary objectForKey:@"rWSesuaiKTP"] ? [dictionary objectForKey:@"rWSesuaiKTP"] : @"",
+           @"kodePosAlamatCalon" : [dictionary objectForKey:@"kodeposSesuaiKTP"] ? [dictionary objectForKey:@"kodeposSesuaiKTP"] : @"",
+           @"alamatLegalKecamatan" : [dictionary objectForKey:@"kecamatanSesuaiKTP"] ? [dictionary objectForKey:@"kecamatanSesuaiKTP"] : @"",
+           @"alamatLegalKelurahan" : [dictionary objectForKey:@"kelurahanSesuaiKTP"] ? [dictionary objectForKey:@"kelurahanSesuaiKTP"] : @"",
+           @"alamatLegalKota" : [dictionary objectForKey:@"kotaSesuaiKTP"] ? [dictionary objectForKey:@"kotaSesuaiKTP"] : @"",
+           
+           @"handphone" : [dictionary objectForKey:@"nomorHandphone"] ? [dictionary objectForKey:@"nomorHandphone"] : @"",
+           @"kodeArea" : [dictionary objectForKey:@"kodeArea"] ? [dictionary objectForKey:@"kodeArea"] : @"",
+           @"noTlp" : [dictionary objectForKey:@"nomorTelepon"] ? [dictionary objectForKey:@"nomorTelepon"] : @"",
+           
+           @"cekAlamatSama" : [dictionary objectForKey:@"samaDenganAlamatLegal"] ? @([[dictionary objectForKey:@"samaDenganAlamatLegal"] integerValue]) : @NO,
+           @"alamatDomisili" : [dictionary objectForKey:@"alamatDomisili"] ? [dictionary objectForKey:@"alamatDomisili"] : @"",
+           @"alamatDomisiliRt" : [dictionary objectForKey:@"rTDomisili"] ? [dictionary objectForKey:@"rTDomisili"] : @"",
+           @"alamatDomisiliRw" : [dictionary objectForKey:@"rWDomisili"] ? [dictionary objectForKey:@"rWDomisili"] : @"",
+           @"alamatDomisiliKecamatan" : [dictionary objectForKey:@"kodeposDomisili"] ? [dictionary objectForKey:@"kodeposDomisili"] : @"",
+           @"alamatDomisiliKelurahan" : [dictionary objectForKey:@"kecamatanDomisili"] ? [dictionary objectForKey:@"kecamatanDomisili"] : @"",
+           @"alamatDomisiliKota" : [dictionary objectForKey:@"kelurahanDomisili"] ? [dictionary objectForKey:@"kelurahanDomisili"] : @"",
+           @"alamatDomisiliKota" : [dictionary objectForKey:@"kotaDomisili"] ? [dictionary objectForKey:@"kotaDomisili"] : @"",
+           
+           @"namaIbuKandung" : [dictionary objectForKey:@"namaGadisIbuKandung"] ? [dictionary objectForKey:@"namaGadisIbuKandung"] : @"",
+           
+           @"namaPasangan" : [dictionary objectForKey:@"namaPasangan"] ? [dictionary objectForKey:@"namaPasangan"] : @"",
+           @"noTlpPasangan" : [dictionary objectForKey:@"noHandphonePasangan"] ? [dictionary objectForKey:@"noHandphonePasangan"] : @"",
+           
+           @"tipeProduk" : [dictionary objectForKey:@"tipeProduk"] ? [dictionary objectForKey:@"tipeProduk"] : @"",
+           @"tipeKendaraan" : [dictionary objectForKey:@"tipeKendaraan"] ? [dictionary objectForKey:@"tipeKendaraan"] : @"",
+           @"tahunKendaraan" : [dictionary objectForKey:@"tahunKendaraan"] ? [dictionary objectForKey:@"tahunKendaraan"] : @"",
+           
+           @"hargaPerolehan" : [dictionary objectForKey:@"hargaPerolehan"] ? [dictionary objectForKey:@"hargaPerolehan"] : @"",
+           @"uangMuka" : [dictionary objectForKey:@"uangMuka"] ? [dictionary objectForKey:@"uangMuka"] : @"",
+           @"tenor" : [dictionary objectForKey:@"jangkaWaktuPembiayaan"] ? [dictionary objectForKey:@"jangkaWaktuPembiayaan"] : @"",
+           @"angsuran" : [dictionary objectForKey:@"angsuran"] ? [dictionary objectForKey:@"angsuran"] : @"",
+           
+           @"namaTmpKerja" : [dictionary objectForKey:@"namaTempatKerja"] ? [dictionary objectForKey:@"namaTempatKerja"] : @"",
+           @"tlpTmpKerja" : [dictionary objectForKey:@"nomorTeleponTempatKerja"] ? [dictionary objectForKey:@"nomorTeleponTempatKerja"] : @"",
+           
+           @"namaEcon" : [dictionary objectForKey:@"namaE-con"] ? [dictionary objectForKey:@"namaE-con"] : @"",
+           @"noTlpEcon" : [dictionary objectForKey:@"nomorTeleponE-con"] ? [dictionary objectForKey:@"nomorTeleponE-con"] : @"",
+           @"kodeAreaTelpTmpKerja" : [dictionary objectForKey:@"kodeAreaTeleponTempatKerja"] ? [dictionary objectForKey:@"kodeAreaTeleponTempatKerja"] : @"",
+           
+           @"pernyataanPemohon" : @TRUE,
+           }];
+        
+        [param setObject:dataDictionary forKey:@"data"];
+        
+        [manager POST:[NSString stringWithFormat:@"%@/pengajuandraft/customer/%@", kApiUrl, url] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            @try {
+                NSInteger code = [[responseObject objectForKey:@"statusCode"] integerValue];
+                NSString *message = [responseObject objectForKey:@"message"];
+                if (code == 200) {
+                    if (block) block(responseObject, nil);
+                    
+                } else {
+                    if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                              code:code
+                                                          userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(message, nil)}]);
+                }
+                
+            } @catch (NSException *exception) {
+                NSLog(@"%@", exception);
+                if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                          code:1
+                                                      userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(exception.reason, nil)}]);
+            }
+            
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            if (block) block(nil, error);
+        }];
+        
+    } @catch (NSException *exception) {
+        NSLog(@"%@", exception);
+        if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                  code:1
+                                              userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(exception.reason, nil)}]);
+        
+    }
+}
+
+
 + (void)postListWorkOrder:(List *)list dictionary:(NSDictionary *)dictionary completion:(void(^)(NSDictionary *dictionary, NSError *error))block{
     AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
     NSMutableDictionary* param = [NSMutableDictionary dictionaryWithDictionary:
@@ -258,50 +368,60 @@
             url = @"update";
         }
         
-        [dataDictionary setObject:[dictionary objectForKey:@"kodeCabang"] forKey:@"kodeCabang"];
-        [dataDictionary setObject:[dictionary objectForKey:@"namaCalonDebitur"] forKey:@"namaCalon"];
-        [dataDictionary setObject:[dictionary objectForKey:@"noKTP"] forKey:@"noKtp"];
-        [dataDictionary setObject:[dictionary objectForKey:@"tempatLahir"] forKey:@"tmpLahir"];
-        [dataDictionary setObject:[dictionary objectForKey:@"tanggalLahir"] forKey:@"tglLahir"];
-        [dataDictionary setObject:[dictionary objectForKey:@"alamatRumahSesuaiKTP"] forKey:@"alamatLegal"];
-        [dataDictionary setObject:[dictionary objectForKey:@"nomorHandphone"] forKey:@"handphone"];
-        [dataDictionary setObject:[dictionary objectForKey:@"nomorTelepon"] forKey:@"noTlp"];
-        [dataDictionary setObject:[dictionary objectForKey:@"alamatDomisili"] forKey:@"alamatDomisili"];
-        [dataDictionary setObject:[dictionary objectForKey:@"kodePosAlamatDomisili"] forKey:@"kodePosAlamatCalon"];
-        [dataDictionary setObject:[dictionary objectForKey:@"namaGadisIbuKandung"] forKey:@"namaIbuKandung"];
-        
-        [dataDictionary setObject:[dictionary objectForKey:@"namaPasangan"] forKey:@"namaPasangan"];
-        [dataDictionary setObject:[dictionary objectForKey:@"noKTPPasangan"] forKey:@"ktpPasangan"];
-        [dataDictionary setObject:[dictionary objectForKey:@"tempatLahirPasangan"] forKey:@"tmpLahirPasangan"];
-        [dataDictionary setObject:[dictionary objectForKey:@"tanggalLahirPasangan"] forKey:@"tglLahirPasangan"];
-        [dataDictionary setObject:[dictionary objectForKey:@"alamatPasangan"] forKey:@"alamatLegalPasangan"];
-        [dataDictionary setObject:[dictionary objectForKey:@"nomorTeleponPasangan"] forKey:@"noTlpPasangan"];
-        [dataDictionary setObject:[dictionary objectForKey:@"namaGadisIbuKandungPasangan"] forKey:@"namaIbuKandungPasangan"];
-        
-        [dataDictionary setObject:[dictionary objectForKey:@"tipeProduk"] forKey:@"tipeProduk"];
-        [dataDictionary setObject:[dictionary objectForKey:@"tipeKendaraan"] forKey:@"tipeKendaraan"];
-        [dataDictionary setObject:[dictionary objectForKey:@"tahunKendaraan"] forKey:@"tahunKendaraan"];
-        
-        [dataDictionary setObject:[dictionary objectForKey:@"hargaPerolehan"] forKey:@"hargaPerolehan"];
-        [dataDictionary setObject:[dictionary objectForKey:@"uangMuka"] forKey:@"uangMuka"];
-        [dataDictionary setObject:[dictionary objectForKey:@"jangkaWaktuPembiayaan"] forKey:@"tenor"];
-        [dataDictionary setObject:[dictionary objectForKey:@"angsuran"] forKey:@"angsuran"];
-        
-        [dataDictionary setObject:[dictionary objectForKey:@"namaTempatKerja"] forKey:@"namaTmpKerja"];
-        [dataDictionary setObject:[dictionary objectForKey:@"nomorTeleponTempatKerja"] forKey:@"tlpTmpKerja"];
-        
-        [dataDictionary setObject:[dictionary objectForKey:@"namaE-con"] forKey:@"namaEcon"];
-        [dataDictionary setObject:[dictionary objectForKey:@"nomorTeleponE-con"] forKey:@"noTlpEcon"];
+        [dataDictionary addEntriesFromDictionary:
+         @{@"kodeCabang" : [dictionary objectForKey:@"cabang"] ? [dictionary objectForKey:@"cabang"] : @"",
+           @"namaCalon" : [dictionary objectForKey:@"namaLengkap"] ? [dictionary objectForKey:@"namaLengkap"] : @"",
+           @"noKtp" : [dictionary objectForKey:@"noKTP"] ? [dictionary objectForKey:@"noKTP"] : @"",
+           @"tmpLahir" : [dictionary objectForKey:@"tempatLahir"] ? [dictionary objectForKey:@"tempatLahir"] : @"",
+           @"tglLahir" : [dictionary objectForKey:@"tanggalLahir"] ? [MPMGlobal removeTimeFromString:[dictionary objectForKey:@"tanggalLahir"]] : @"",
+           
+           @"alamatLegal" : [dictionary objectForKey:@"alamatRumahSesuaiKTP"] ? [dictionary objectForKey:@"alamatRumahSesuaiKTP"] : @"",
+           @"alamatLegalRt" : [dictionary objectForKey:@"rTSesuaiKTP"] ? [dictionary objectForKey:@"rTSesuaiKTP"] : @"",
+           @"alamatLegalRw" : [dictionary objectForKey:@"rWSesuaiKTP"] ? [dictionary objectForKey:@"rWSesuaiKTP"] : @"",
+           @"kodePosAlamatCalon" : [dictionary objectForKey:@"kodeposSesuaiKTP"] ? [dictionary objectForKey:@"kodeposSesuaiKTP"] : @"",
+           @"alamatLegalKecamatan" : [dictionary objectForKey:@"kecamatanSesuaiKTP"] ? [dictionary objectForKey:@"kecamatanSesuaiKTP"] : @"",
+           @"alamatLegalKelurahan" : [dictionary objectForKey:@"kelurahanSesuaiKTP"] ? [dictionary objectForKey:@"kelurahanSesuaiKTP"] : @"",
+           @"alamatLegalKota" : [dictionary objectForKey:@"kotaSesuaiKTP"] ? [dictionary objectForKey:@"kotaSesuaiKTP"] : @"",
+           
+           @"handphone" : [dictionary objectForKey:@"nomorHandphone"] ? [dictionary objectForKey:@"nomorHandphone"] : @"",
+           @"kodeArea" : [dictionary objectForKey:@"kodeArea"] ? [dictionary objectForKey:@"kodeArea"] : @"",
+           @"noTlp" : [dictionary objectForKey:@"nomorTelepon"] ? [dictionary objectForKey:@"nomorTelepon"] : @"",
+           
+           @"cekAlamatSama" : [dictionary objectForKey:@"samaDenganAlamatLegal"] ? @([[dictionary objectForKey:@"samaDenganAlamatLegal"] integerValue]) : @NO,
+           @"alamatDomisili" : [dictionary objectForKey:@"alamatDomisili"] ? [dictionary objectForKey:@"alamatDomisili"] : @"",
+           @"alamatDomisiliRt" : [dictionary objectForKey:@"rTDomisili"] ? [dictionary objectForKey:@"rTDomisili"] : @"",
+           @"alamatDomisiliRw" : [dictionary objectForKey:@"rWDomisili"] ? [dictionary objectForKey:@"rWDomisili"] : @"",
+           @"alamatDomisiliKecamatan" : [dictionary objectForKey:@"kodeposDomisili"] ? [dictionary objectForKey:@"kodeposDomisili"] : @"",
+           @"alamatDomisiliKelurahan" : [dictionary objectForKey:@"kecamatanDomisili"] ? [dictionary objectForKey:@"kecamatanDomisili"] : @"",
+           @"alamatDomisiliKota" : [dictionary objectForKey:@"kelurahanDomisili"] ? [dictionary objectForKey:@"kelurahanDomisili"] : @"",
+           @"alamatDomisiliKota" : [dictionary objectForKey:@"kotaDomisili"] ? [dictionary objectForKey:@"kotaDomisili"] : @"",
+           
+           @"namaIbuKandung" : [dictionary objectForKey:@"namaGadisIbuKandung"] ? [dictionary objectForKey:@"namaGadisIbuKandung"] : @"",
+           
+           @"namaPasangan" : [dictionary objectForKey:@"namaPasangan"] ? [dictionary objectForKey:@"namaPasangan"] : @"",
+           @"noTlpPasangan" : [dictionary objectForKey:@"noHandphonePasangan"] ? [dictionary objectForKey:@"noHandphonePasangan"] : @"",
+           
+           @"tipeProduk" : [dictionary objectForKey:@"tipeProduk"] ? [dictionary objectForKey:@"tipeProduk"] : @"",
+           @"tipeKendaraan" : [dictionary objectForKey:@"tipeKendaraan"] ? [dictionary objectForKey:@"tipeKendaraan"] : @"",
+           @"tahunKendaraan" : [dictionary objectForKey:@"tahunKendaraan"] ? [dictionary objectForKey:@"tahunKendaraan"] : @"",
+           
+           @"hargaPerolehan" : [dictionary objectForKey:@"hargaPerolehan"] ? [dictionary objectForKey:@"hargaPerolehan"] : @"",
+           @"uangMuka" : [dictionary objectForKey:@"uangMuka"] ? [dictionary objectForKey:@"uangMuka"] : @"",
+           @"tenor" : [dictionary objectForKey:@"jangkaWaktuPembiayaan"] ? [dictionary objectForKey:@"jangkaWaktuPembiayaan"] : @"",
+           @"angsuran" : [dictionary objectForKey:@"angsuran"] ? [dictionary objectForKey:@"angsuran"] : @"",
+           
+           @"namaTmpKerja" : [dictionary objectForKey:@"namaTempatKerja"] ? [dictionary objectForKey:@"namaTempatKerja"] : @"",
+           @"tlpTmpKerja" : [dictionary objectForKey:@"nomorTeleponTempatKerja"] ? [dictionary objectForKey:@"nomorTeleponTempatKerja"] : @"",
+           
+           @"namaEcon" : [dictionary objectForKey:@"namaE-con"] ? [dictionary objectForKey:@"namaE-con"] : @"",
+           @"noTlpEcon" : [dictionary objectForKey:@"nomorTeleponE-con"] ? [dictionary objectForKey:@"nomorTeleponE-con"] : @"",
+           @"kodeAreaTelpTmpKerja" : [dictionary objectForKey:@"kodeAreaTeleponTempatKerja"] ? [dictionary objectForKey:@"kodeAreaTeleponTempatKerja"] : @"",
+           
+           @"pernyataanPemohon" : @TRUE,
+           }];
         
         [param setObject:dataDictionary forKey:@"data"];
         
-    } @catch (NSException *exception) {
-        NSLog(@"%@", exception);
-        if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
-                                                  code:1
-                                              userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(exception.reason, nil)}]);
-
-    } @finally {
         [manager POST:[NSString stringWithFormat:@"%@/pengajuan/customer/%@", kApiUrl, url] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             @try {
                 NSInteger code = [[responseObject objectForKey:@"statusCode"] integerValue];
@@ -325,6 +445,12 @@
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             if (block) block(nil, error);
         }];
+        
+    } @catch (NSException *exception) {
+        NSLog(@"%@", exception);
+        if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                  code:1
+                                              userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(exception.reason, nil)}]);
 
     }
 }

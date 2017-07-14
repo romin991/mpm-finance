@@ -122,7 +122,6 @@
     submenu.sort = 0;
     submenu.borderColor = @"F26F21";
     submenu.menuType = kMenuTypeList;
-    [submenu.roles addObject:[Role objectForPrimaryKey:kNoRole]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
@@ -300,7 +299,6 @@
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
-    [menu.roles addObject:[Role objectForPrimaryKey:kNoRole]];
     [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
     [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuMonitoring]];
     [realm addObject:menu];

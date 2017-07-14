@@ -8,7 +8,6 @@
 
 #import "MPMGlobal.h"
 #import <AFHTTPSessionManager.h>
-#import "ISO8601DateFormatter.h"
 
 @implementation MPMGlobal
 
@@ -207,9 +206,17 @@ NSString *const kActionTypeAPICall = @"APICall";
     [formatter setDefaultTimeZone:timeZone];
     [formatter setIncludeTime:YES];
     [formatter setTimeZoneSeparator:ISO8601DefaultTimeSeparatorCharacter];
-    [formatter setUseMillisecondPrecision:YES];
+    [formatter setUseMillisecondPrecision:NO];
     
     return formatter;
+}
+
++ (NSString *)removeTimeFromString:(NSString *)object{
+    ISO8601DateFormatter *formatter = [self getISO8601DateFormatter];
+    if (object == nil || [object isKindOfClass:[NSNull class]]) return object;
+    NSDate *date = [formatter dateFromString:object];
+    [formatter setIncludeTime:NO];
+    return [formatter stringFromDate:date];
 }
 
 + (NSString *)stringFromDate:(NSDate *)object{
@@ -238,6 +245,14 @@ NSString *const kActionTypeAPICall = @"APICall";
         [string appendFormat:@"%02x",md5Buffer[i]];
     
     return string;
+}
+
++ (UIImage *)barcodeFromString:(NSString *)string{
+    NSData *data = [string dataUsingEncoding:NSASCIIStringEncoding];
+    CIFilter *filter = [CIFilter filterWithName:@"CICode128BarcodeGenerator"];
+    [filter setValue:data forKey:@"inputMessage"];
+    
+    return [UIImage imageWithCIImage:filter.outputImage];
 }
 
 @end

@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Menu.h"
+#import <XLForm.h>
 
-@interface SuggestionComplainFormViewController : UIViewController
+@interface SuggestionComplainFormViewController : XLFormViewController
+
+@property Menu *menu;
 
 @end

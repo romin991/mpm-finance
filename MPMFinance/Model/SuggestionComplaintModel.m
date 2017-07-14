@@ -1,16 +1,16 @@
 //
-//  TopUpModel.m
+//  SuggestionComplaintModel.m
 //  MPMFinance
 //
-//  Created by Rudy Suharyadi on 6/29/17.
+//  Created by Rudy Suharyadi on 7/5/17.
 //  Copyright © 2017 MPMFinance. All rights reserved.
 //
 
-#import "TopUpModel.h"
+#import "SuggestionComplaintModel.h"
 
-@implementation TopUpModel
+@implementation SuggestionComplaintModel
 
-+ (void)getTopUpDataWithAgreementNo:(NSString *)agreementNo completion:(void(^)(NSDictionary *dictionary, NSError *error))block{
++ (void)getProfileDataWithAgreementNo:(NSString *)agreementNo completion:(void(^)(NSDictionary *dictionary, NSError *error))block{
     AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
     NSMutableDictionary* param = [NSMutableDictionary dictionaryWithDictionary:
                                   @{@"userid" :[MPMUserInfo getUserInfo][@"userId"],
@@ -23,16 +23,17 @@
         
         [param setObject:dataDictionary forKey:@"data"];
         
-        [manager POST:[NSString stringWithFormat:@"%@/mpmapi/topup", kApiUrl] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [manager POST:[NSString stringWithFormat:@"%@/mpmapi/profilecustomerinfo", kApiUrl] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             @try {
                 NSInteger code = [[responseObject objectForKey:@"statusCode"] integerValue];
                 NSString *message = [responseObject objectForKey:@"message"];
                 if (code == 200) {
                     NSDictionary *data = [responseObject objectForKey:@"data"];
                     NSDictionary *dictionary = @{@"nama" : [data objectForKey:@"customerName"],
-                                                 @"nomorPlat" : [data objectForKey:@"licensePlate"],
-                                                 @"unitPerTahun" : [data objectForKey:@"manufacturingYear"],
-                                                 @"outstanding" : [data objectForKey:@"installmentAmount"],
+                                                 @"nomorTelepon" : [data objectForKey:@"phone"],
+                                                 @"nomorHandphone" : [data objectForKey:@"mobilePhone"],
+                                                 @"alamat" : [data objectForKey:@"address"],
+                                                 @"email" : [data objectForKey:@"email"],
                                                  };
                     
                     if (block) block(dictionary, nil);

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="100" id="KGk-i7-Jjw" customClass="PostalCodeTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LBT-l7-div">
+                        <rect key="frame" x="8" y="8" width="304" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="8TX-tn-V9o"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5tk-dY-aks">
+                        <rect key="frame" x="8" y="29" width="304" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="bbg-BI-h1m"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3BL-Lu-ceN">
+                        <rect key="frame" x="8" y="50" width="304" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="cWv-el-j2t"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4VX-n7-3Qj">
+                        <rect key="frame" x="8" y="71" width="304" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="8HI-if-CWy"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="LBT-l7-div" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="0gJ-m4-xHz"/>
+                    <constraint firstItem="5tk-dY-aks" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="7Ka-J8-Nfh"/>
+                    <constraint firstAttribute="trailing" secondItem="4VX-n7-3Qj" secondAttribute="trailing" constant="8" id="86r-D5-u3P"/>
+                    <constraint firstItem="LBT-l7-div" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="AkE-71-kDT"/>
+                    <constraint firstItem="3BL-Lu-ceN" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="HRe-5V-Pip"/>
+                    <constraint firstItem="3BL-Lu-ceN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="INc-fL-iwV"/>
+                    <constraint firstItem="5tk-dY-aks" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="MV4-7S-4b7"/>
+                    <constraint firstItem="5tk-dY-aks" firstAttribute="top" secondItem="LBT-l7-div" secondAttribute="bottom" id="PF6-Rl-pPj"/>
+                    <constraint firstItem="LBT-l7-div" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="RzW-mj-AKK"/>
+                    <constraint firstItem="4VX-n7-3Qj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="a75-mf-JBq"/>
+                    <constraint firstItem="4VX-n7-3Qj" firstAttribute="top" secondItem="3BL-Lu-ceN" secondAttribute="bottom" id="aab-Kq-MKp"/>
+                    <constraint firstItem="3BL-Lu-ceN" firstAttribute="top" secondItem="5tk-dY-aks" secondAttribute="bottom" id="nyj-5R-yDl"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="city" destination="4VX-n7-3Qj" id="Een-Dc-LE2"/>
+                <outlet property="district" destination="3BL-Lu-ceN" id="dHT-3c-8xo"/>
+                <outlet property="postalCode" destination="LBT-l7-div" id="H7a-eK-qvL"/>
+                <outlet property="subDistrict" destination="5tk-dY-aks" id="FgA-bU-Mph"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>
