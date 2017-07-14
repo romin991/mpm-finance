@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <SVProgressHUD.h>
 #import <CommonCrypto/CommonDigest.h>
+#import "ISO8601DateFormatter.h"
 
 #define UIColorFromRGB(rgbValue) [UIColor \
 colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
@@ -131,8 +132,10 @@ extern NSString *const kActionTypeAPICall;
 + (NSString *)encodeToBase64String:(UIImage *)image;
 + (UIView *)giveBorderTo:(UIView *)view withBorderColor:(NSString *)hexColorString withCornerRadius:(CGFloat)cornerRadius;
 + (UIColor *)colorFromHexString:(NSString *)hexString;
++ (NSString *)removeTimeFromString:(NSString *)object;
 + (NSString *)stringFromDate:(NSDate *)object;
 + (NSDate *)dateFromString:(NSString *)object;
 + (NSString *)MD5fromString:(NSString *)input;
++ (UIImage *)barcodeFromString:(NSString *)string;
 
 @end

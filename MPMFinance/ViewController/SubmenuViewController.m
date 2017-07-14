@@ -20,6 +20,7 @@
 #import "LegalizationBPKBFormViewController.h"
 #import "InsuranceClaimFormViewController.h"
 #import "IntakeBPKBFormViewController.h"
+#import "SuggestionComplainFormViewController.h"
 
 @interface SubmenuViewController ()
 
@@ -127,6 +128,11 @@
         IntakeBPKBFormViewController *intakeBPKBFormViewController = [[IntakeBPKBFormViewController alloc] init];
         intakeBPKBFormViewController.menu = submenu;
         [self.navigationController pushViewController:intakeBPKBFormViewController animated:YES];
+        
+    } else if ([submenu.menuType isEqualToString:kMenuTypeFormSaranPengaduan]){
+        SuggestionComplainFormViewController *suggestionComplainFormViewController = [[SuggestionComplainFormViewController alloc] init];
+        suggestionComplainFormViewController.menu = submenu;
+        [self.navigationController pushViewController:suggestionComplainFormViewController animated:YES];
         
     }
 }

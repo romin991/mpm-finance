@@ -22,12 +22,7 @@
         [dataDictionary setObject:agreementNo forKey:@"agreementNo"];
         
         [param setObject:dataDictionary forKey:@"data"];
-    } @catch (NSException *exception) {
-        NSLog(@"%@", exception);
-        if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
-                                                  code:1
-                                              userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(exception.reason, nil)}]);
-    } @finally {
+        
         [manager POST:[NSString stringWithFormat:@"%@/mpmapi/pengambilanbpkb", kApiUrl] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             @try {
                 NSInteger code = [[responseObject objectForKey:@"statusCode"] integerValue];
@@ -56,6 +51,12 @@
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             if (block) block(nil, error);
         }];
+        
+    } @catch (NSException *exception) {
+        NSLog(@"%@", exception);
+        if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                  code:1
+                                              userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(exception.reason, nil)}]);
     }
 }
 

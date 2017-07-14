@@ -41,6 +41,8 @@
 		4831CD201EDE97A6001EF223 /* SubmenuCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4831CD1E1EDE97A6001EF223 /* SubmenuCollectionViewController.xib */; };
 		4831CD271EDE97D7001EF223 /* SubmenuCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4831CD251EDE97D7001EF223 /* SubmenuCollectionViewCell.m */; };
 		4831CD281EDE97D7001EF223 /* SubmenuCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4831CD261EDE97D7001EF223 /* SubmenuCollectionViewCell.xib */; };
+		48336A9B1F19111300536771 /* BarcodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48336A991F19111300536771 /* BarcodeViewController.m */; };
+		48336A9C1F19111300536771 /* BarcodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48336A9A1F19111300536771 /* BarcodeViewController.xib */; };
 		483514841EFAC32500207458 /* FormModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 483514831EFAC32500207458 /* FormModel.m */; };
 		483A9D901F0BA6060033F714 /* LegalizationBPKBModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 483A9D8F1F0BA6060033F714 /* LegalizationBPKBModel.m */; };
 		483A9D931F0BAB9F0033F714 /* InsuranceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 483A9D921F0BAB9F0033F714 /* InsuranceModel.m */; };
@@ -61,11 +63,22 @@
 		48482E6F1EC999B30029ACBE /* ListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48482E6D1EC999B30029ACBE /* ListViewController.xib */; };
 		48482E731EC99B230029ACBE /* ListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48482E711EC99B230029ACBE /* ListTableViewCell.m */; };
 		48482E741EC99B230029ACBE /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48482E721EC99B230029ACBE /* ListTableViewCell.xib */; };
+		4848B1A71F124BFB00C9DE21 /* PostalCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4848B1A51F124BFB00C9DE21 /* PostalCodeViewController.m */; };
+		4848B1A81F124BFB00C9DE21 /* PostalCodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4848B1A61F124BFB00C9DE21 /* PostalCodeViewController.xib */; };
+		4848B1AB1F1250D800C9DE21 /* PostalCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4848B1AA1F1250D800C9DE21 /* PostalCode.m */; };
+		4848B1B21F1251E700C9DE21 /* PostalCodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4848B1B01F1251E700C9DE21 /* PostalCodeTableViewCell.m */; };
+		4848B1B31F1251E700C9DE21 /* PostalCodeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4848B1B11F1251E700C9DE21 /* PostalCodeTableViewCell.xib */; };
+		4848B1B61F12547700C9DE21 /* PostalCodeValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4848B1B51F12547700C9DE21 /* PostalCodeValueTransformer.m */; };
+		4848B1BB1F13840700C9DE21 /* AssetValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4848B1BA1F13840700C9DE21 /* AssetValueTransformer.m */; };
+		4848B1BF1F13842600C9DE21 /* AssetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4848B1BD1F13842600C9DE21 /* AssetViewController.m */; };
+		4848B1C01F13842600C9DE21 /* AssetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4848B1BE1F13842600C9DE21 /* AssetViewController.xib */; };
+		4848B1CB1F1384EA00C9DE21 /* Asset.m in Sources */ = {isa = PBXBuildFile; fileRef = 4848B1CA1F1384EA00C9DE21 /* Asset.m */; };
 		4849EEDA1EC8185E00415E4B /* Form.m in Sources */ = {isa = PBXBuildFile; fileRef = 4849EED91EC8185E00415E4B /* Form.m */; };
 		4849EEDD1EC8190300415E4B /* Option.m in Sources */ = {isa = PBXBuildFile; fileRef = 4849EEDC1EC8190300415E4B /* Option.m */; };
 		4849EEE11EC8815000415E4B /* FormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4849EEDF1EC8815000415E4B /* FormViewController.m */; };
 		4849EEE21EC8815000415E4B /* FormViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4849EEE01EC8815000415E4B /* FormViewController.xib */; };
 		484ADB201F0CE3C10006BCB0 /* IntakeBPKBModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 484ADB1F1F0CE3C10006BCB0 /* IntakeBPKBModel.m */; };
+		484ADB231F0CEDCE0006BCB0 /* SuggestionComplaintModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 484ADB221F0CEDCE0006BCB0 /* SuggestionComplaintModel.m */; };
 		4866A89A1ECD8B2200A89E98 /* FloatLabeledTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4866A8991ECD8B2200A89E98 /* FloatLabeledTextFieldCell.m */; };
 		487F39F61ED64F9400D6E580 /* APIModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 487F39F51ED64F9400D6E580 /* APIModel.m */; };
 		487F39F91ED678D400D6E580 /* Action.m in Sources */ = {isa = PBXBuildFile; fileRef = 487F39F81ED678D400D6E580 /* Action.m */; };
@@ -161,6 +174,9 @@
 		4831CD241EDE97D7001EF223 /* SubmenuCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SubmenuCollectionViewCell.h; path = ViewController/SubmenuCollectionViewCell.h; sourceTree = "<group>"; };
 		4831CD251EDE97D7001EF223 /* SubmenuCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SubmenuCollectionViewCell.m; path = ViewController/SubmenuCollectionViewCell.m; sourceTree = "<group>"; };
 		4831CD261EDE97D7001EF223 /* SubmenuCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SubmenuCollectionViewCell.xib; path = ViewController/SubmenuCollectionViewCell.xib; sourceTree = "<group>"; };
+		48336A981F19111300536771 /* BarcodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarcodeViewController.h; path = ViewController/BarcodeViewController.h; sourceTree = "<group>"; };
+		48336A991F19111300536771 /* BarcodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarcodeViewController.m; path = ViewController/BarcodeViewController.m; sourceTree = "<group>"; };
+		48336A9A1F19111300536771 /* BarcodeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BarcodeViewController.xib; path = ViewController/BarcodeViewController.xib; sourceTree = "<group>"; };
 		483514821EFAC32500207458 /* FormModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FormModel.h; path = Model/FormModel.h; sourceTree = "<group>"; };
 		483514831EFAC32500207458 /* FormModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormModel.m; path = Model/FormModel.m; sourceTree = "<group>"; };
 		483A9D8E1F0BA6060033F714 /* LegalizationBPKBModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LegalizationBPKBModel.h; path = Model/LegalizationBPKBModel.h; sourceTree = "<group>"; };
@@ -196,6 +212,23 @@
 		48482E701EC99B230029ACBE /* ListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListTableViewCell.h; path = ViewController/ListTableViewCell.h; sourceTree = "<group>"; };
 		48482E711EC99B230029ACBE /* ListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListTableViewCell.m; path = ViewController/ListTableViewCell.m; sourceTree = "<group>"; };
 		48482E721EC99B230029ACBE /* ListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ListTableViewCell.xib; path = ViewController/ListTableViewCell.xib; sourceTree = "<group>"; };
+		4848B1A41F124BFB00C9DE21 /* PostalCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostalCodeViewController.h; path = ViewController/PostalCodeViewController.h; sourceTree = "<group>"; };
+		4848B1A51F124BFB00C9DE21 /* PostalCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostalCodeViewController.m; path = ViewController/PostalCodeViewController.m; sourceTree = "<group>"; };
+		4848B1A61F124BFB00C9DE21 /* PostalCodeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PostalCodeViewController.xib; path = ViewController/PostalCodeViewController.xib; sourceTree = "<group>"; };
+		4848B1A91F1250D800C9DE21 /* PostalCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostalCode.h; path = Object/Plain/PostalCode.h; sourceTree = "<group>"; };
+		4848B1AA1F1250D800C9DE21 /* PostalCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostalCode.m; path = Object/Plain/PostalCode.m; sourceTree = "<group>"; };
+		4848B1AF1F1251E700C9DE21 /* PostalCodeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostalCodeTableViewCell.h; path = ViewController/PostalCodeTableViewCell.h; sourceTree = "<group>"; };
+		4848B1B01F1251E700C9DE21 /* PostalCodeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostalCodeTableViewCell.m; path = ViewController/PostalCodeTableViewCell.m; sourceTree = "<group>"; };
+		4848B1B11F1251E700C9DE21 /* PostalCodeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PostalCodeTableViewCell.xib; path = ViewController/PostalCodeTableViewCell.xib; sourceTree = "<group>"; };
+		4848B1B41F12547700C9DE21 /* PostalCodeValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostalCodeValueTransformer.h; path = ViewController/PostalCodeValueTransformer.h; sourceTree = "<group>"; };
+		4848B1B51F12547700C9DE21 /* PostalCodeValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostalCodeValueTransformer.m; path = ViewController/PostalCodeValueTransformer.m; sourceTree = "<group>"; };
+		4848B1B91F13840700C9DE21 /* AssetValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AssetValueTransformer.h; path = ViewController/AssetValueTransformer.h; sourceTree = "<group>"; };
+		4848B1BA1F13840700C9DE21 /* AssetValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AssetValueTransformer.m; path = ViewController/AssetValueTransformer.m; sourceTree = "<group>"; };
+		4848B1BC1F13842600C9DE21 /* AssetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AssetViewController.h; path = ViewController/AssetViewController.h; sourceTree = "<group>"; };
+		4848B1BD1F13842600C9DE21 /* AssetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AssetViewController.m; path = ViewController/AssetViewController.m; sourceTree = "<group>"; };
+		4848B1BE1F13842600C9DE21 /* AssetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AssetViewController.xib; path = ViewController/AssetViewController.xib; sourceTree = "<group>"; };
+		4848B1C91F1384EA00C9DE21 /* Asset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Asset.h; path = Object/Plain/Asset.h; sourceTree = "<group>"; };
+		4848B1CA1F1384EA00C9DE21 /* Asset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Asset.m; path = Object/Plain/Asset.m; sourceTree = "<group>"; };
 		4849EED81EC8185E00415E4B /* Form.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Form.h; path = Object/Realm/Form.h; sourceTree = "<group>"; };
 		4849EED91EC8185E00415E4B /* Form.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Form.m; path = Object/Realm/Form.m; sourceTree = "<group>"; };
 		4849EEDB1EC8190300415E4B /* Option.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Option.h; path = Object/Realm/Option.h; sourceTree = "<group>"; };
@@ -205,6 +238,8 @@
 		4849EEE01EC8815000415E4B /* FormViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FormViewController.xib; path = ViewController/FormViewController.xib; sourceTree = "<group>"; };
 		484ADB1E1F0CE3C10006BCB0 /* IntakeBPKBModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IntakeBPKBModel.h; path = Model/IntakeBPKBModel.h; sourceTree = "<group>"; };
 		484ADB1F1F0CE3C10006BCB0 /* IntakeBPKBModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IntakeBPKBModel.m; path = Model/IntakeBPKBModel.m; sourceTree = "<group>"; };
+		484ADB211F0CEDCE0006BCB0 /* SuggestionComplaintModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SuggestionComplaintModel.h; path = Model/SuggestionComplaintModel.h; sourceTree = "<group>"; };
+		484ADB221F0CEDCE0006BCB0 /* SuggestionComplaintModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SuggestionComplaintModel.m; path = Model/SuggestionComplaintModel.m; sourceTree = "<group>"; };
 		4866A8981ECD8B2200A89E98 /* FloatLabeledTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatLabeledTextFieldCell.h; sourceTree = "<group>"; };
 		4866A8991ECD8B2200A89E98 /* FloatLabeledTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatLabeledTextFieldCell.m; sourceTree = "<group>"; };
 		487F39F41ED64F9400D6E580 /* APIModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = APIModel.h; path = Model/APIModel.h; sourceTree = "<group>"; };
@@ -520,8 +555,39 @@
 				481C42891F013784007D5C3C /* DataSource.m */,
 				481C42BA1F04DF57007D5C3C /* Data.h */,
 				481C42BB1F04DF57007D5C3C /* Data.m */,
+				4848B1A91F1250D800C9DE21 /* PostalCode.h */,
+				4848B1AA1F1250D800C9DE21 /* PostalCode.m */,
+				4848B1C91F1384EA00C9DE21 /* Asset.h */,
+				4848B1CA1F1384EA00C9DE21 /* Asset.m */,
 			);
 			name = Plain;
+			sourceTree = "<group>";
+		};
+		4848B1B71F1383AE00C9DE21 /* PostalCode */ = {
+			isa = PBXGroup;
+			children = (
+				4848B1A41F124BFB00C9DE21 /* PostalCodeViewController.h */,
+				4848B1A51F124BFB00C9DE21 /* PostalCodeViewController.m */,
+				4848B1A61F124BFB00C9DE21 /* PostalCodeViewController.xib */,
+				4848B1AF1F1251E700C9DE21 /* PostalCodeTableViewCell.h */,
+				4848B1B01F1251E700C9DE21 /* PostalCodeTableViewCell.m */,
+				4848B1B11F1251E700C9DE21 /* PostalCodeTableViewCell.xib */,
+				4848B1B41F12547700C9DE21 /* PostalCodeValueTransformer.h */,
+				4848B1B51F12547700C9DE21 /* PostalCodeValueTransformer.m */,
+			);
+			name = PostalCode;
+			sourceTree = "<group>";
+		};
+		4848B1B81F1383C400C9DE21 /* Asset */ = {
+			isa = PBXGroup;
+			children = (
+				4848B1BC1F13842600C9DE21 /* AssetViewController.h */,
+				4848B1BD1F13842600C9DE21 /* AssetViewController.m */,
+				4848B1BE1F13842600C9DE21 /* AssetViewController.xib */,
+				4848B1B91F13840700C9DE21 /* AssetValueTransformer.h */,
+				4848B1BA1F13840700C9DE21 /* AssetValueTransformer.m */,
+			);
+			name = Asset;
 			sourceTree = "<group>";
 		};
 		4849EEE61ED64E9000415E4B /* API */ = {
@@ -551,6 +617,8 @@
 				483A9D921F0BAB9F0033F714 /* InsuranceModel.m */,
 				484ADB1E1F0CE3C10006BCB0 /* IntakeBPKBModel.h */,
 				484ADB1F1F0CE3C10006BCB0 /* IntakeBPKBModel.m */,
+				484ADB211F0CEDCE0006BCB0 /* SuggestionComplaintModel.h */,
+				484ADB221F0CEDCE0006BCB0 /* SuggestionComplaintModel.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -612,6 +680,11 @@
 				4849EEDE1EC8815000415E4B /* FormViewController.h */,
 				4849EEDF1EC8815000415E4B /* FormViewController.m */,
 				4849EEE01EC8815000415E4B /* FormViewController.xib */,
+				48336A981F19111300536771 /* BarcodeViewController.h */,
+				48336A991F19111300536771 /* BarcodeViewController.m */,
+				48336A9A1F19111300536771 /* BarcodeViewController.xib */,
+				4848B1B81F1383C400C9DE21 /* Asset */,
+				4848B1B71F1383AE00C9DE21 /* PostalCode */,
 			);
 			name = WorkOrderFormViewController;
 			sourceTree = "<group>";
@@ -821,11 +894,15 @@
 				483F392B1EC3085E00C03253 /* Main.storyboard in Resources */,
 				481C42B61F03BB3B007D5C3C /* CustomerGetCustomerFormViewController.xib in Resources */,
 				482652811EFBF9DA0002A606 /* UsedCarFormViewController.xib in Resources */,
+				4848B1A81F124BFB00C9DE21 /* PostalCodeViewController.xib in Resources */,
 				4849EEE21EC8815000415E4B /* FormViewController.xib in Resources */,
 				481C42871F00EF29007D5C3C /* WorkOrderListTableViewCell.xib in Resources */,
+				4848B1B31F1251E700C9DE21 /* PostalCodeTableViewCell.xib in Resources */,
 				5CDC30421EC3E274001D97DB /* GoogleService-Info.plist in Resources */,
 				48CDD8351EC9B3AD0038D626 /* SimpleListTableViewCell.xib in Resources */,
 				481C42B11F03BB22007D5C3C /* SuggestionComplainFormViewController.xib in Resources */,
+				48336A9C1F19111300536771 /* BarcodeViewController.xib in Resources */,
+				4848B1C01F13842600C9DE21 /* AssetViewController.xib in Resources */,
 				48CDD83B1EC9B8A50038D626 /* SubmenuViewController.xib in Resources */,
 				48482E741EC99B230029ACBE /* ListTableViewCell.xib in Resources */,
 				481C429D1F03BABA007D5C3C /* LegalizationBPKBFormViewController.xib in Resources */,
@@ -901,6 +978,7 @@
 				48D44D581EE83A2F005FC8DB /* SurveyModel.m in Sources */,
 				487F39F91ED678D400D6E580 /* Action.m in Sources */,
 				48D44D4C1EDF8F28005FC8DB /* NSString+MixedCasing.m in Sources */,
+				4848B1AB1F1250D800C9DE21 /* PostalCode.m in Sources */,
 				4849EEDD1EC8190300415E4B /* Option.m in Sources */,
 				4826528F1EFC02390002A606 /* MarketingModel.m in Sources */,
 				481C429C1F03BABA007D5C3C /* LegalizationBPKBFormViewController.m in Sources */,
@@ -927,16 +1005,22 @@
 				481C42861F00EF29007D5C3C /* WorkOrderListTableViewCell.m in Sources */,
 				483F39251EC3085E00C03253 /* AppDelegate.m in Sources */,
 				481C42811F00EE23007D5C3C /* WorkOrderListViewController.m in Sources */,
+				4848B1BB1F13840700C9DE21 /* AssetValueTransformer.m in Sources */,
 				4886BAFD1EC42EDD000F8DBE /* MenuViewController.m in Sources */,
 				483F1E981EF2874F005D3945 /* ProfileModel.m in Sources */,
 				5C4587651EE2A02D004AC7FE /* CreditSimulationViewController.m in Sources */,
 				5C9B08EC1EC9DB8700B5E9AC /* MenuNavigationViewController.m in Sources */,
 				481C42A11F03BAD0007D5C3C /* InsuranceClaimFormViewController.m in Sources */,
 				48CDD8421EC9BA1A0038D626 /* SubmenuTableViewCell.m in Sources */,
+				48336A9B1F19111300536771 /* BarcodeViewController.m in Sources */,
+				4848B1B21F1251E700C9DE21 /* PostalCodeTableViewCell.m in Sources */,
+				4848B1B61F12547700C9DE21 /* PostalCodeValueTransformer.m in Sources */,
 				481C42BF1F04FDB5007D5C3C /* TopUpModel.m in Sources */,
 				481C42B01F03BB22007D5C3C /* SuggestionComplainFormViewController.m in Sources */,
+				4848B1BF1F13842600C9DE21 /* AssetViewController.m in Sources */,
 				48F7F4061EC5C931008DB808 /* Role.m in Sources */,
 				5CBC4C771ECC8A67002ED03C /* MyProfileTableViewController.m in Sources */,
+				484ADB231F0CEDCE0006BCB0 /* SuggestionComplaintModel.m in Sources */,
 				5C46F5181EE81914009C6AD6 /* KATCircularProgress.m in Sources */,
 				4831CD1F1EDE97A6001EF223 /* SubmenuCollectionViewController.m in Sources */,
 				4846E2361EE6E92A000C08B7 /* DropdownModel.m in Sources */,
@@ -956,10 +1040,12 @@
 				481C42B51F03BB3B007D5C3C /* CustomerGetCustomerFormViewController.m in Sources */,
 				4886BB081EC4ABF8000F8DBE /* Menu.m in Sources */,
 				4849EEDA1EC8185E00415E4B /* Form.m in Sources */,
+				4848B1A71F124BFB00C9DE21 /* PostalCodeViewController.m in Sources */,
 				4886BB051EC4ABD1000F8DBE /* PopulateRealmDatabase.m in Sources */,
 				5C586E9A1ECB183200A5A626 /* HelpTableViewController.m in Sources */,
 				5CF497B81ED330FF0005327D /* registerViewController.m in Sources */,
 				483514841EFAC32500207458 /* FormModel.m in Sources */,
+				4848B1CB1F1384EA00C9DE21 /* Asset.m in Sources */,
 				5C9DB2421EC3393000FC0CC9 /* MPMUserInfo.m in Sources */,
 				5C9B08F21EC9DB9300B5E9AC /* HomeViewController.m in Sources */,
 				481C42971F03BAA0007D5C3C /* TopUpFormViewController.m in Sources */,

@@ -18,13 +18,14 @@
 @property NSInteger sort;
 @property NSInteger category; //for link to spesific form
 @property BOOL disabled;
+@property BOOL hidden;
 @property NSString *key; //for NSDictionary
 @property NSString *optionType; //for dropdown API type
 @property RLMArray<Option> *options;
 
 + (void)generateFields;
 + (RLMResults *)getRowsWithCategoryNumber:(NSInteger)category;
-
++ (FormRow *)new:(RLMRealm *)realm :(NSInteger)sort :(BOOL)required :(BOOL)disabled :(NSString *)type :(NSString *)title :(NSString *)key :(NSString *)optionType;
 
 
 //@property NSString *placeholder;

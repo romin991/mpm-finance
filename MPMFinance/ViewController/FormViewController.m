@@ -7,7 +7,6 @@
 //
 
 #import "FormViewController.h"
-#import <XLForm.h>
 #import "Form.h"
 #import <JVFloatLabeledTextField/JVFloatLabeledTextView.h>
 #import "FloatLabeledTextFieldCell.h"
@@ -15,18 +14,25 @@
 #import "WorkOrderModel.h"
 #import "DropdownModel.h"
 #import "FormModel.h"
+#import "ProfileModel.h"
+#import "PostalCodeViewController.h"
+#import "PostalCodeValueTransformer.h"
+#import "AssetViewController.h"
+#import "AssetValueTransformer.h"
+#import "BarcodeViewController.h"
+#import "FloatLabeledTextFieldCell.h"
+#import "SubmenuViewController.h"
 
 @interface FormViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *firstLabel;
 @property (weak, nonatomic) IBOutlet UILabel *secondLabel;
 @property (weak, nonatomic) IBOutlet UILabel *thirdLabel;
-@property (weak, nonatomic) IBOutlet UIView *containerView;
+@property (weak, nonatomic) IBOutlet UIView *labelView;
 
 @property RLMResults *forms;
-@property RLMArray *formRows;
-@property XLFormDescriptor *formDescriptor;
-@property XLFormViewController *formViewController;
+
+@property NSString *idCabang;
 
 @end
 
@@ -34,84 +40,88 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.navigationBar.translucent = NO;
+    CGRect frame = self.tableView.frame;
+    frame.origin.y += 44;
+    frame.size.height -= 44;
+    self.tableView.frame = frame;
+    
     // Do any additional setup after loading the view from its nib.
     self.forms = [Form getFormForMenu:self.menu.primaryKey];
     Form *currentForm = [self.forms objectAtIndex:self.index];
-    if (self.forms.count > self.index) self.formRows = currentForm.rows;
 
     [self setTitle:self.menu.title];
     [self setHorizontalLabel];
-    [self setRightBarButton];
     
     [SVProgressHUD show];
     __block FormViewController *weakSelf = self;
-    [FormModel generate:self.formDescriptor dataSource:self.formRows completion:^(XLFormDescriptor *formDescriptor, NSError *error) {
-        if (error){
-            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
-            [SVProgressHUD dismissWithDelay:1.5 completion:^{
-                [weakSelf.navigationController popViewControllerAnimated:YES];
+    [FormModel generate:self.form form:currentForm completion:^(XLFormDescriptor *formDescriptor, NSError *error) {
+        [weakSelf checkError:error];
+        if (weakSelf.valueDictionary.count > 0){
+            weakSelf.form = formDescriptor;
+            [weakSelf postProcessFormDescriptorWithCompletion:^(NSError *error) {
+                [weakSelf checkError:error];
+                [FormModel loadValueFrom:weakSelf.valueDictionary to:weakSelf.form on:weakSelf];
+                [SVProgressHUD dismiss];
             }];
             
-        } else if (weakSelf.valueDictionary.count > 0){
-            weakSelf.formDescriptor = formDescriptor;
-            [FormModel loadValueFrom:weakSelf.valueDictionary to:weakSelf.formDescriptor on:weakSelf.formViewController];
-            [SVProgressHUD dismiss];
-            [weakSelf viewDidLayoutSubviews];
             
         } else if (weakSelf.list) {
-            weakSelf.formDescriptor = formDescriptor;
-            [WorkOrderModel getListWorkOrderDetailWithID:weakSelf.list.primaryKey completion:^(NSDictionary *response, NSError *error) {
-                if (error == nil) {
+            weakSelf.valueDictionary = [NSMutableDictionary dictionary];
+            weakSelf.form = formDescriptor;
+            [weakSelf postProcessFormDescriptorWithCompletion:^(NSError *error) {
+                [weakSelf checkError:error];
+                [WorkOrderModel getListWorkOrderDetailWithID:weakSelf.list.primaryKey completion:^(NSDictionary *response, NSError *error) {
+                    [weakSelf checkError:error];
                     if (response) {
-                        weakSelf.valueDictionary = [NSMutableDictionary dictionaryWithDictionary:response];
-                        [FormModel loadValueFrom:weakSelf.valueDictionary to:weakSelf.formDescriptor on:weakSelf.formViewController];
+                        [weakSelf.valueDictionary addEntriesFromDictionary:response];
+                        [FormModel loadValueFrom:weakSelf.valueDictionary to:weakSelf.form on:weakSelf];
                     }
                     [SVProgressHUD dismiss];
-                    [weakSelf viewDidLayoutSubviews];
-                    
-                } else {
-                    [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
-                    [SVProgressHUD dismissWithDelay:1.5 completion:^{
-                        [weakSelf.navigationController popViewControllerAnimated:YES];
-                    }];
-                }
+                }];
             }];
             
         } else {
-            //something wrong i think
-            weakSelf.formDescriptor = formDescriptor;
-            [SVProgressHUD dismiss];
-            [weakSelf viewDidLayoutSubviews];
+            weakSelf.valueDictionary = [NSMutableDictionary dictionary];
+            weakSelf.form = formDescriptor;
+            [weakSelf postProcessFormDescriptorWithCompletion:^(NSError *error) {
+                [weakSelf checkError:error];
+                [FormModel loadValueFrom:weakSelf.valueDictionary to:weakSelf.form on:weakSelf];
+                [SVProgressHUD dismiss];
+            }];
         }
     }];
 }
 
-- (void)setRightBarButton{
-    if (self.forms.count == self.index + 1){
-        UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save"
-                                                                          style:UIBarButtonItemStylePlain
-                                                                         target:self
-                                                                         action:@selector(saveButtonClicked:)];
-        [self.navigationItem setRightBarButtonItem:barButtonItem];
-
-        
-    } else {
-        UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Next"
-                                                                          style:UIBarButtonItemStylePlain
-                                                                         target:self
-                                                                         action:@selector(nextButtonClicked:)];
-        [self.navigationItem setRightBarButtonItem:barButtonItem];
+- (void)checkError:(NSError *)error{
+    if (error) {
+        [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+        [SVProgressHUD dismissWithDelay:1.5 completion:^{
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
     }
 }
 
 - (void)saveButtonClicked:(id)sender{
     //save to object, call delegate, then pop navigation
-    [FormModel saveValueFrom:self.formDescriptor to:self.valueDictionary];
+    [FormModel saveValueFrom:self.form to:self.valueDictionary];
     [SVProgressHUD show];
     [WorkOrderModel postListWorkOrder:self.list dictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
         if (error == nil) {
             if (dictionary) {
-                
+                @try {
+                    NSString *noRegistrasi = [[dictionary objectForKey:@"data"] objectForKey:@"noRegistrasi"];
+                    
+                    BarcodeViewController *barcodeVC = [[BarcodeViewController alloc] init];
+                    barcodeVC.barcodeString = noRegistrasi;
+                    barcodeVC.modalPresentationStyle = UIModalPresentationFullScreen;
+                    barcodeVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+                    barcodeVC.delegate = self;
+                    
+                    [self presentViewController:barcodeVC animated:YES completion:nil];
+                } @catch (NSException *exception) {
+                    NSLog(@"%@", exception);
+                }
             }
             [SVProgressHUD dismiss];
         } else {
@@ -121,15 +131,38 @@
     }];
 }
 
+- (void)finish{
+    for (UIViewController *vc in self.navigationController.viewControllers) {
+        if ([vc isKindOfClass:[SubmenuViewController class]]) {
+            [self.navigationController popToViewController:vc animated:NO];
+        }
+    }
+}
+
 - (void)nextButtonClicked:(id)sender{
-    [FormModel saveValueFrom:self.formDescriptor to:self.valueDictionary];
-    
-    FormViewController *nextFormViewController = [[FormViewController alloc] init];
-    nextFormViewController.menu = self.menu;
-    nextFormViewController.index = self.index + 1;
-    nextFormViewController.valueDictionary = self.valueDictionary;
-    nextFormViewController.list = self.list;
-    [self.navigationController pushViewController:nextFormViewController animated:YES];
+    NSArray *errors = [self formValidationErrors];
+    if (errors.count) {
+        [SVProgressHUD showErrorWithStatus:((NSError *)errors.firstObject).localizedDescription];
+        [SVProgressHUD dismissWithDelay:1.5];
+        
+    } else {
+        [SVProgressHUD show];
+        [FormModel saveValueFrom:self.form to:self.valueDictionary];
+        [WorkOrderModel postDraftWorkOrder:self.list dictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
+            if (error) {
+                [SVProgressHUD showErrorWithStatus:((NSError *)errors.firstObject).localizedDescription];
+                [SVProgressHUD dismissWithDelay:1.5];
+            } else {
+                [SVProgressHUD dismiss];
+                FormViewController *nextFormViewController = [[FormViewController alloc] init];
+                nextFormViewController.menu = self.menu;
+                nextFormViewController.index = self.index + 1;
+                nextFormViewController.valueDictionary = self.valueDictionary;
+                nextFormViewController.list = self.list;
+                [self.navigationController pushViewController:nextFormViewController animated:YES];
+            }
+        }];
+    }
 }
 
 - (void)setHorizontalLabel{
@@ -146,20 +179,209 @@
     self.thirdLabel.text = thirdForm ? thirdForm.title : @"";
 }
 
-- (void)viewDidLayoutSubviews{
-    XLFormViewController *formViewController = [[XLFormViewController alloc] init];
-    formViewController.form = self.formDescriptor;
-    self.formViewController = formViewController;
-    
-    [self addChildViewController:formViewController];
-    formViewController.view.frame = self.containerView.frame;
-    [self.view addSubview:formViewController.view];
-    [formViewController didMoveToParentViewController:self];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)postProcessFormDescriptorWithCompletion:(void(^)(NSError *error))block{
+    for (XLFormSectionDescriptor *section in self.form.formSections) {
+        for (XLFormRowDescriptor *row in section.formRows) {
+            if ([row.tag isEqualToString:@"submit"]){
+                row.action.formSelector = @selector(saveButtonClicked:);
+            }
+            
+            if ([row.tag isEqualToString:@"next"]){
+                row.action.formSelector = @selector(nextButtonClicked:);
+            }
+            
+            if ([row.tag isEqualToString:@"kodeposSesuaiKTP"] || [row.tag isEqualToString:@"kodeposDomisili"]){
+                row.action.viewControllerNibName = @"PostalCodeViewController";
+                row.valueTransformer = [PostalCodeValueTransformer class];
+            }
+            
+            if ([row.tag isEqualToString:@"tipeKendaraan"]){
+                row.action.viewControllerNibName = @"AssetViewController";
+                row.valueTransformer = [AssetValueTransformer class];
+            }
+            
+            if ([row.tag isEqualToString:@"rTSesuaiKTP"] ||
+                [row.tag isEqualToString:@"rWSesuaiKTP"] ||
+                [row.tag isEqualToString:@"kodeArea"] ||
+                [row.tag isEqualToString:@"nomorTelepon"] ||
+                [row.tag isEqualToString:@"nomorHandphone"] ||
+                [row.tag isEqualToString:@"noHandphonePasangan"] ||
+                [row.tag isEqualToString:@"tahunKendaraan"] ||
+                [row.tag isEqualToString:@"hargaPerolehan"] ||
+                [row.tag isEqualToString:@"uangMuka"] ||
+                [row.tag isEqualToString:@"jangkaWaktuPembayaran"] ||
+                [row.tag isEqualToString:@"angsuran"] ||
+                [row.tag isEqualToString:@"kodeAreaTeleponTempatKerja"] ||
+                [row.tag isEqualToString:@"nomorTeleponTempatKerja"] ||
+                [row.tag isEqualToString:@"nomorTeleponEcon"]
+                ){
+                
+                //Set keyboard type to numberPad
+                if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                    [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
+                }
+            }
+        }
+    }
+    
+    __block typeof (self) weakSelf = self;
+    [ProfileModel getProfileDataWithCompletion:^(NSDictionary *dictionary, NSError *error) {
+        [weakSelf.valueDictionary addEntriesFromDictionary:dictionary];
+        block(error);
+    }];
+}
+
+- (void)formRowDescriptorValueHasChanged:(XLFormRowDescriptor *)formRow oldValue:(id)oldValue newValue:(id)newValue{
+    if ([formRow.tag isEqualToString:@"alamatRumahSesuaiKTP"] ||
+        [formRow.tag isEqualToString:@"rTSesuaiKTP"] ||
+        [formRow.tag isEqualToString:@"rWSesuaiKTP"]){
+        
+        [self setDomicileAddressValueWithTheSameValueAsLegalAddress];
+    }
+    
+    if ([formRow.tag isEqualToString:@"kodeposSesuaiKTP"] && newValue != nil) {
+        @try {
+            PostalCode *postalCode = (PostalCode *)newValue;
+            //set value
+            [self.valueDictionary addEntriesFromDictionary:@{@"kecamatanSesuaiKTP" : postalCode.subDistrict,
+                                                             @"kelurahanSesuaiKTP" : postalCode.disctrict,
+                                                             @"kotaSesuaiKTP" : postalCode.city,}];
+            [FormModel loadValueFrom:self.valueDictionary to:self.form on:self];
+            [self setDomicileAddressValueWithTheSameValueAsLegalAddress];
+        } @catch (NSException *exception) {
+            NSLog(@"%@", exception);
+        }
+    }
+    
+    if ([formRow.tag isEqualToString:@"kodeposDomisili"] && newValue != nil) {
+        @try {
+            PostalCode *postalCode = (PostalCode *)newValue;
+            //set value
+            [self.valueDictionary addEntriesFromDictionary:@{@"kecamatanDomisili" : postalCode.subDistrict,
+                                                             @"kelurahanDomisili" : postalCode.disctrict,
+                                                             @"kotaDomisili" : postalCode.city,}];
+            [FormModel loadValueFrom:self.valueDictionary to:self.form on:self];
+        } @catch (NSException *exception) {
+            NSLog(@"%@", exception);
+        }
+    }
+    
+    if ([formRow.tag isEqualToString:@"samaDenganAlamatLegal"]){
+        if ([newValue boolValue]){
+            [self setDomicileAddressValueWithTheSameValueAsLegalAddress];
+        } else {
+            XLFormRowDescriptor *row = [self.form formRowWithTag:@"alamatDomisili"];
+            if (row) {
+                row.disabled = @NO;
+                row.value = @"";
+                [self reloadFormRow:row];
+            }
+            
+            row = [self.form formRowWithTag:@"rTDomisili"];
+            if (row) {
+                row.disabled = @NO;
+                row.value = @"";
+                [self reloadFormRow:row];
+            }
+            
+            row = [self.form formRowWithTag:@"rWDomisili"];
+            if (row) {
+                row.disabled = @NO;
+                row.value = @"";
+                [self reloadFormRow:row];
+            }
+            
+            row = [self.form formRowWithTag:@"kodeposDomisili"];
+            if (row) {
+                row.disabled = @NO;
+                row.value = nil;
+                [self reloadFormRow:row];
+            }
+            
+            row = [self.form formRowWithTag:@"kecamatanDomisili"];
+            if (row) {
+                row.value = @"";
+                [self reloadFormRow:row];
+            }
+            
+            row = [self.form formRowWithTag:@"kelurahanDomisili"];
+            if (row) {
+                row.value = @"";
+                [self reloadFormRow:row];
+            }
+            
+            row = [self.form formRowWithTag:@"kotaDomisili"];
+            if (row) {
+                row.value = @"";
+                [self reloadFormRow:row];
+            }
+        }
+    }
+    
+    if ([formRow.tag isEqualToString:@"tipeKendaraan"] && newValue != nil) {
+        @try {
+//            Asset *asset = (Asset *)newValue;
+        } @catch (NSException *exception) {
+            NSLog(@"%@", exception);
+        }
+    }
+}
+
+- (void)setDomicileAddressValueWithTheSameValueAsLegalAddress{
+    XLFormRowDescriptor *row = [self.form formRowWithTag:@"samaDenganAlamatLegal"];
+    if ([row.value boolValue]) {
+        row = [self.form formRowWithTag:@"alamatDomisili"];
+        if (row) {
+            row.disabled = @YES;
+            row.value = [self.form formRowWithTag:@"alamatRumahSesuaiKTP"].value;
+            [self reloadFormRow:row];
+        }
+        
+        row = [self.form formRowWithTag:@"rTDomisili"];
+        if (row) {
+            row.disabled = @YES;
+            row.value = [self.form formRowWithTag:@"rTSesuaiKTP"].value;
+            [self reloadFormRow:row];
+        }
+        
+        row = [self.form formRowWithTag:@"rWDomisili"];
+        if (row) {
+            row.disabled = @YES;
+            row.value = [self.form formRowWithTag:@"rWSesuaiKTP"].value;
+            [self reloadFormRow:row];
+        }
+        
+        row = [self.form formRowWithTag:@"kodeposDomisili"];
+        if (row) {
+            row.disabled = @YES;
+            row.value = [self.form formRowWithTag:@"kodeposSesuaiKTP"].value;
+            [self reloadFormRow:row];
+        }
+        
+        row = [self.form formRowWithTag:@"kecamatanDomisili"];
+        if (row) {
+            row.value = [self.form formRowWithTag:@"kecamatanSesuaiKTP"].value;
+            [self reloadFormRow:row];
+        }
+        
+        row = [self.form formRowWithTag:@"kelurahanDomisili"];
+        if (row) {
+            row.value = [self.form formRowWithTag:@"kelurahanSesuaiKTP"].value;
+            [self reloadFormRow:row];
+        }
+        
+        row = [self.form formRowWithTag:@"kotaDomisili"];
+        if (row) {
+            row.value = [self.form formRowWithTag:@"kotaSesuaiKTP"].value;
+            [self reloadFormRow:row];
+        }
+        
+    }
 }
 
 /*

@@ -28,4 +28,7 @@ extern NSString * const XLFormRowDescriptorTypeFloatLabeledTextField;
 
 @interface FloatLabeledTextFieldCell : XLFormBaseCell
 
+- (void)setKeyboardType:(UIKeyboardType)keyboardType;
+
+
 @end

@@ -8,6 +8,8 @@
 
 #import "FormModel.h"
 #import "DropdownModel.h"
+#import "PostalCode.h"
+#import "Asset.h"
 
 @implementation FormModel
 
@@ -42,15 +44,17 @@
         for (XLFormRowDescriptor *row in section.formRows) {
             if (valueDictionary == nil) valueDictionary = [NSMutableDictionary dictionary];
             id object;
-            if ([row.rowType isEqualToString:XLFormRowDescriptorTypeDateInline]){
+            if ([row.value isKindOfClass:NSDate.class]){
                 object = [MPMGlobal stringFromDate:row.value];
-            } else if ([row.rowType isEqualToString:XLFormRowDescriptorTypeSelectorPush]){
+            } else if ([row.value isKindOfClass:XLFormOptionsObject.class]){
                 object = ((XLFormOptionsObject *) row.value).formValue;
-            } else if ([row.rowType isEqualToString:XLFormRowDescriptorTypeImage]){
+            } else if ([row.value isKindOfClass:PostalCode.class]){
+                object = ((PostalCode *) row.value).postalCode;
+            } else if ([row.value isKindOfClass:Asset.class]){
+                object = ((Asset *) row.value).value;
+            } else if ([row.value isKindOfClass:UIImage.class]){
                 object = UIImageJPEGRepresentation(row.value, 0.0f);
-            } else if ([row.rowType isEqualToString:XLFormRowDescriptorTypeButton]){
-                //do nothing, no need to include on dictionary
-            } else {
+            } else if (row.value != nil && ![row.value isKindOfClass:NSNull.class]){
                 object = row.value;
             }
             
@@ -78,6 +82,7 @@
         __block XLFormRowDescriptor *row = [XLFormRowDescriptor formRowDescriptorWithTag:formRow.key rowType:formRow.type title:formRow.title];
         row.required = formRow.required;
         row.disabled = @(formRow.disabled);
+        row.hidden = @(formRow.hidden);
         row.selectorTitle = formRow.title;
         [section addFormRow:row];
         
@@ -131,6 +136,7 @@
             __block XLFormRowDescriptor *row = [XLFormRowDescriptor formRowDescriptorWithTag:formRow.key rowType:formRow.type title:formRow.title];
             row.required = formRow.required;
             row.disabled = @(formRow.disabled);
+            row.hidden = @(formRow.hidden);
             row.selectorTitle = formRow.title;
             [section addFormRow:row];
             

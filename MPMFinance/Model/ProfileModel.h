@@ -11,5 +11,6 @@
 @interface ProfileModel : NSObject
 
 + (void)checkTokenWithCompletion:(void (^)(BOOL isExpired))block;
++ (void)getProfileDataWithCompletion:(void(^)(NSDictionary *dictionary, NSError *error))block;
 
 @end

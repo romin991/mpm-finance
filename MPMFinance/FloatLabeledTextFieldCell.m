@@ -61,6 +61,10 @@ const static CGFloat kFloatingLabelFontSize = 11.0f;
 
 #pragma mark - XLFormDescriptorCell
 
+- (void)setKeyboardType:(UIKeyboardType)keyboardType{
+    self.floatLabeledTextField.keyboardType = keyboardType;
+}
+
 -(void)configure
 {
     [super configure];
