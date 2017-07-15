@@ -73,6 +73,11 @@
         dataSource.name = @"Negative";
         dataSource.type = kDataSourceTypeBadUsers;
         [self.dataSources addObject:dataSource];
+        
+        dataSource = [[DataSource alloc] init];
+        dataSource.name = @"Approval";
+        dataSource.type = kDataSourceTypeNeedApproval;
+        [self.dataSources addObject:dataSource];
     }
 }
 
@@ -141,28 +146,34 @@
 }
 
 - (void)loadDataForSelectedIndex:(NSInteger)index andPage:(NSInteger)page{
+    [SVProgressHUD show];
     DataSource *dataSource = [self.dataSources objectAtIndex:index];
     if (dataSource) {
         __block WorkOrderListViewController *weakSelf = self;
         if ([dataSource.type isEqualToString:kDataSourceTypeAll]){
             [APIModel getAllListWorkOrderPage:self.page completion:^(NSArray *lists, NSError *error) {
                 [weakSelf loadDataWithList:lists page:page error:error];
+                [SVProgressHUD dismiss];
             }];
         } else if ([dataSource.type isEqualToString:kDataSourceTypeBadUsers]){
             [APIModel getBadUsersListWorkOrderPage:self.page completion:^(NSArray *lists, NSError *error) {
                 [weakSelf loadDataWithList:lists page:page error:error];
+                [SVProgressHUD dismiss];
             }];
         } else if ([dataSource.type isEqualToString:kDataSourceTypeNeedApproval]){
             [APIModel getNeedApprovalListWorkOrderPage:self.page completion:^(NSArray *lists, NSError *error) {
                 [weakSelf loadDataWithList:lists page:page error:error];
+                [SVProgressHUD dismiss];
             }];
         } else if ([dataSource.type isEqualToString:kDataSourceTypeSupervisorNew]){
             [APIModel getNewBySupervisorListWorkOrderPage:self.page completion:^(NSArray *lists, NSError *error) {
                 [weakSelf loadDataWithList:lists page:page error:error];
+                [SVProgressHUD dismiss];
             }];
         } else if ([dataSource.type isEqualToString:kDataSourceTypeSupervisorBadUsers]){
             [APIModel getBadUsersBySupervisorListWorkOrderPage:self.page completion:^(NSArray *lists, NSError *error) {
                 [weakSelf loadDataWithList:lists page:page error:error];
+                [SVProgressHUD dismiss];
             }];
         }
     }
@@ -226,14 +237,38 @@
     if (list && dataSource){
         if ([dataSource.type isEqualToString:kDataSourceTypeAll]){
             [self selectedList:list];
+            
         } else if ([dataSource.type isEqualToString:kDataSourceTypeBadUsers]){
             //showing popup you sure want to proceed?
+            
         } else if ([dataSource.type isEqualToString:kDataSourceTypeNeedApproval]){
             //showing popup you sure want to proceed?
+            
         } else if ([dataSource.type isEqualToString:kDataSourceTypeSupervisorNew]){
             [self selectedList:list];
+            
         } else if ([dataSource.type isEqualToString:kDataSourceTypeSupervisorBadUsers]){
             //showing popup you sure want to proceed?
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Stop Progress" message:@"Are you sure want to stop progress?" preferredStyle:UIAlertControllerStyleAlert];
+            [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                //nothing
+                
+            }]];
+            [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                //setblacklist
+                [SVProgressHUD show];
+                [WorkOrderModel setBlackListWithID:list.primaryKey type:@"stopProccess" completion:^(NSDictionary *dictionary, NSError *error) {
+                    if (error) {
+                        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+                        [SVProgressHUD dismissWithDelay:1.5];
+                    } else {
+                        [SVProgressHUD dismiss];
+                    }
+                }];
+                
+            }]];
+            
+            [self presentViewController:alertController animated:YES completion:nil];
         }
     }
 }

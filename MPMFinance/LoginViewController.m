@@ -56,23 +56,25 @@
                                     }
                             };
     NSLog(@"%@",param);
+    
+    [SVProgressHUD show];
     AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
     [manager POST:[NSString stringWithFormat:@"%@/login",kApiUrl] parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
         ;
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([[responseObject objectForKey:@"status"] isEqualToString:@"success"]) {
             [MPMUserInfo save:responseObject[@"data"]];
-            UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"Success" message:@"Login Success" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction* okButton = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-                [self dismissViewControllerAnimated:YES completion:nil];;
+            [SVProgressHUD showSuccessWithStatus:@"Login Success"];
+            [SVProgressHUD dismissWithDelay:1.5 completion:^{
+                [self dismissViewControllerAnimated:YES completion:nil];
             }];
-            [alertController addAction:okButton];
-            [self presentViewController:alertController animated:YES completion:nil];
         
         }
         NSLog(@"%@",responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@",error);
+        [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+        [SVProgressHUD dismissWithDelay:1.5];
     }];
 }
 
