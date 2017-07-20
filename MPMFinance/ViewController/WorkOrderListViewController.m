@@ -151,23 +151,23 @@
     if (dataSource) {
         __block WorkOrderListViewController *weakSelf = self;
         if ([dataSource.type isEqualToString:kDataSourceTypeAll]){
-            [APIModel getAllListWorkOrderPage:self.page completion:^(NSArray *lists, NSError *error) {
+            [APIModel getAllListWorkOrderPage:page completion:^(NSArray *lists, NSError *error) {
                 [weakSelf loadDataWithList:lists page:page error:error];
             }];
         } else if ([dataSource.type isEqualToString:kDataSourceTypeBadUsers]){
-            [APIModel getBadUsersListWorkOrderPage:self.page completion:^(NSArray *lists, NSError *error) {
+            [APIModel getBadUsersListWorkOrderPage:page completion:^(NSArray *lists, NSError *error) {
                 [weakSelf loadDataWithList:lists page:page error:error];
             }];
         } else if ([dataSource.type isEqualToString:kDataSourceTypeNeedApproval]){
-            [APIModel getNeedApprovalListWorkOrderPage:self.page completion:^(NSArray *lists, NSError *error) {
+            [APIModel getNeedApprovalListWorkOrderPage:page completion:^(NSArray *lists, NSError *error) {
                 [weakSelf loadDataWithList:lists page:page error:error];
             }];
         } else if ([dataSource.type isEqualToString:kDataSourceTypeSupervisorNew]){
-            [APIModel getNewBySupervisorListWorkOrderPage:self.page completion:^(NSArray *lists, NSError *error) {
+            [APIModel getNewBySupervisorListWorkOrderPage:page completion:^(NSArray *lists, NSError *error) {
                 [weakSelf loadDataWithList:lists page:page error:error];
             }];
         } else if ([dataSource.type isEqualToString:kDataSourceTypeSupervisorBadUsers]){
-            [APIModel getBadUsersBySupervisorListWorkOrderPage:self.page completion:^(NSArray *lists, NSError *error) {
+            [APIModel getBadUsersBySupervisorListWorkOrderPage:page completion:^(NSArray *lists, NSError *error) {
                 [weakSelf loadDataWithList:lists page:page error:error];
             }];
         }
@@ -240,6 +240,27 @@
             
         } else if ([dataSource.type isEqualToString:kDataSourceTypeNeedApproval]){
             //showing popup you sure want to proceed?
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Approve" message:@"Are you sure want to approve?" preferredStyle:UIAlertControllerStyleAlert];
+            [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                //nothing
+                
+            }]];
+            [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                //approve
+                [SVProgressHUD show];
+                [WorkOrderModel setApproveWithID:list.primaryKey completion:^(NSDictionary *dictionary, NSError *error) {
+                    if (error) {
+                        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+                        [SVProgressHUD dismissWithDelay:1.5];
+                    } else {
+                        [self loadDataForSelectedIndex:self.selectedIndex andPage:0];
+                        [SVProgressHUD dismiss];
+                    }
+                }];
+                
+            }]];
+            
+            [self presentViewController:alertController animated:YES completion:nil];
             
         } else if ([dataSource.type isEqualToString:kDataSourceTypeSupervisorNew]){
             [self selectedList:list];
@@ -259,6 +280,7 @@
                         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
                         [SVProgressHUD dismissWithDelay:1.5];
                     } else {
+                        [self loadDataForSelectedIndex:self.selectedIndex andPage:self.page];
                         [SVProgressHUD dismiss];
                     }
                 }];
