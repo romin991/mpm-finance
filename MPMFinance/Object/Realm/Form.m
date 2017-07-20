@@ -250,8 +250,32 @@
     form = [[Form alloc] init];
     form.title = @"MAP Data Aplikasi";
     form.sort = 0;
-    [form.rows addObjects:[FormRow getRowsWithCategoryNumber:6]];
     
+    //===
+    section = [[FormSection alloc] init];
+    section.title = @"Data Aplikasi";
+    [section.rows addObject:[FormRow new:realm :0 :NO :NO :XLFormRowDescriptorTypeSelectorPush :@"Sumber Aplikasi" :@"" :@"getSumberAplikasi"]];
+    [section.rows addObject:[FormRow new:realm :0 :NO :NO :XLFormRowDescriptorTypeSelectorPush :@"Tujuan Pembiayaan" :@"" :@"tujuanPembiayaan"]];
+    [section.rows addObject:[FormRow new:realm :0 :NO :NO :XLFormRowDescriptorTypeSelectorPush :@"Jenis Aplikasi" :@"" :@"jenisaplikasi"]]; //ws
+    [section.rows addObject:[FormRow new:realm :0 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kode Cabang" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :0 :NO :NO :XLFormRowDescriptorTypeDateInline :@"Tanggal Perjanjian" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :0 :NO :NO :XLFormRowDescriptorTypeSelectorPush :@"Produk" :@"" :@"getProduct"]];
+    [section.rows addObject:[FormRow new:realm :0 :NO :NO :XLFormRowDescriptorTypeSelectorPush :@"Source of Application" :@"" :@"SourceOfApplication"]]; //ws
+    [section.rows addObject:[FormRow new:realm :0 :NO :NO :XLFormRowDescriptorTypeSelectorPush :@"Product Offering" :@"" :@"Product"]]; //ws
+    [section.rows addObject:[FormRow new:realm :0 :NO :NO :XLFormRowDescriptorTypeSelectorPush :@"Jarak Tempuh" :@"" :@"JarakTempuh"]]; //ws
+    [section.rows addObject:[FormRow new:realm :0 :NO :NO :XLFormRowDescriptorTypeSelectorPush :@"Application Priority" :@"" :@"ApplicationPriority"]]; //ws
+    [section.rows addObject:[FormRow new:realm :0 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Tiket Telesales" :@"" :@""]];
+    
+    [form.sections addObject:section];
+    
+    //===
+    section = [[FormSection alloc] init];
+    section.title = @"Submit";
+    [section.rows addObject:[FormRow new:realm :0 :NO :NO :XLFormRowDescriptorTypeButton :@"Submit" :@"" :@""]];
+    
+    [form.sections addObject:section];
+    
+    //===
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuDataMAP]];
     [realm addObject:form];
     

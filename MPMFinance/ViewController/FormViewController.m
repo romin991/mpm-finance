@@ -56,49 +56,54 @@
     [SVProgressHUD show];
     __block FormViewController *weakSelf = self;
     [FormModel generate:self.form form:currentForm completion:^(XLFormDescriptor *formDescriptor, NSError *error) {
-        [weakSelf checkError:error];
-        if (weakSelf.valueDictionary.count > 0){
-            weakSelf.form = formDescriptor;
-            [weakSelf postProcessFormDescriptorWithCompletion:^(NSError *error) {
-                [weakSelf checkError:error];
-                [FormModel loadValueFrom:weakSelf.valueDictionary to:weakSelf.form on:weakSelf];
-                [SVProgressHUD dismiss];
-            }];
-            
-            
-        } else if (weakSelf.list) {
-            weakSelf.valueDictionary = [NSMutableDictionary dictionary];
-            weakSelf.form = formDescriptor;
-            [weakSelf postProcessFormDescriptorWithCompletion:^(NSError *error) {
-                [weakSelf checkError:error];
-                [WorkOrderModel getListWorkOrderDetailWithID:weakSelf.list.primaryKey completion:^(NSDictionary *response, NSError *error) {
-                    [weakSelf checkError:error];
-                    if (response) {
-                        [weakSelf.valueDictionary addEntriesFromDictionary:response];
-                        [FormModel loadValueFrom:weakSelf.valueDictionary to:weakSelf.form on:weakSelf];
-                    }
-                    [SVProgressHUD dismiss];
+        [weakSelf checkError:error completion:^{
+            if (weakSelf.valueDictionary.count > 0){
+                weakSelf.form = formDescriptor;
+                [weakSelf postProcessFormDescriptorWithCompletion:^(NSError *error) {
+                    [weakSelf checkError:error completion:^{
+                        [FormModel loadValueFrom:weakSelf.valueDictionary on:weakSelf partialUpdate:nil];
+                    }];
                 }];
-            }];
-            
-        } else {
-            weakSelf.valueDictionary = [NSMutableDictionary dictionary];
-            weakSelf.form = formDescriptor;
-            [weakSelf postProcessFormDescriptorWithCompletion:^(NSError *error) {
-                [weakSelf checkError:error];
-                [FormModel loadValueFrom:weakSelf.valueDictionary to:weakSelf.form on:weakSelf];
-                [SVProgressHUD dismiss];
-            }];
-        }
+                
+                
+            } else if (weakSelf.list) {
+                weakSelf.valueDictionary = [NSMutableDictionary dictionary];
+                weakSelf.form = formDescriptor;
+                [weakSelf postProcessFormDescriptorWithCompletion:^(NSError *error) {
+                    [weakSelf checkError:error completion:^{
+                        [WorkOrderModel getListWorkOrderDetailWithID:weakSelf.list.primaryKey completion:^(NSDictionary *response, NSError *error) {
+                            [weakSelf checkError:error completion:^{
+                                if (response) {
+                                    [weakSelf.valueDictionary addEntriesFromDictionary:response];
+                                    [FormModel loadValueFrom:weakSelf.valueDictionary on:weakSelf partialUpdate:nil];
+                                }
+                            }];
+                        }];
+                    }];
+                }];
+                
+            } else {
+                weakSelf.valueDictionary = [NSMutableDictionary dictionary];
+                weakSelf.form = formDescriptor;
+                [weakSelf postProcessFormDescriptorWithCompletion:^(NSError *error) {
+                    [weakSelf checkError:error completion:^{
+                        [FormModel loadValueFrom:weakSelf.valueDictionary on:weakSelf partialUpdate:nil];
+                    }];
+                }];
+            }
+        }];
     }];
 }
 
-- (void)checkError:(NSError *)error{
+- (void)checkError:(NSError *)error completion:(void(^)())block{
     if (error) {
         [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
         [SVProgressHUD dismissWithDelay:1.5 completion:^{
             [self.navigationController popViewControllerAnimated:YES];
         }];
+    } else {
+        [SVProgressHUD dismiss];
+        block();
     }
 }
 

@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "Menu.h"
 #import "SimpleListViewController.h"
+#import <XLForm.h>
 
-@interface DataMAPFormViewController : UIViewController
+@interface DataMAPFormViewController : XLFormViewController
 
 @property Menu *menu;
 @property NSInteger index;
