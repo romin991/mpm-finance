@@ -41,6 +41,8 @@
 		4831CD201EDE97A6001EF223 /* SubmenuCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4831CD1E1EDE97A6001EF223 /* SubmenuCollectionViewController.xib */; };
 		4831CD271EDE97D7001EF223 /* SubmenuCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4831CD251EDE97D7001EF223 /* SubmenuCollectionViewCell.m */; };
 		4831CD281EDE97D7001EF223 /* SubmenuCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4831CD261EDE97D7001EF223 /* SubmenuCollectionViewCell.xib */; };
+		48321E531F20806A007D38A0 /* MarketingWorkOrderListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48321E511F20806A007D38A0 /* MarketingWorkOrderListViewController.m */; };
+		48321E541F20806A007D38A0 /* MarketingWorkOrderListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48321E521F20806A007D38A0 /* MarketingWorkOrderListViewController.xib */; };
 		48336A9B1F19111300536771 /* BarcodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48336A991F19111300536771 /* BarcodeViewController.m */; };
 		48336A9C1F19111300536771 /* BarcodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48336A9A1F19111300536771 /* BarcodeViewController.xib */; };
 		483514841EFAC32500207458 /* FormModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 483514831EFAC32500207458 /* FormModel.m */; };
@@ -55,6 +57,11 @@
 		483F39301EC3085E00C03253 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 483F392E1EC3085E00C03253 /* LaunchScreen.storyboard */; };
 		483F393A1EC3518500C03253 /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 483F39391EC3518500C03253 /* ForgotPasswordViewController.m */; };
 		4842780A1ECABC3000183A60 /* List.m in Sources */ = {isa = PBXBuildFile; fileRef = 484278091ECABC3000183A60 /* List.m */; };
+		4846271E1F1A0C3B0049A92A /* AssignMarketingListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4846271C1F1A0C3B0049A92A /* AssignMarketingListViewController.m */; };
+		4846271F1F1A0C3B0049A92A /* AssignMarketingListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4846271D1F1A0C3B0049A92A /* AssignMarketingListViewController.xib */; };
+		484627261F1AED000049A92A /* AssignMarketingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 484627241F1AED000049A92A /* AssignMarketingTableViewCell.m */; };
+		484627271F1AED000049A92A /* AssignMarketingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 484627251F1AED000049A92A /* AssignMarketingTableViewCell.xib */; };
+		4846272A1F1AFA9A0049A92A /* Marketing.m in Sources */ = {isa = PBXBuildFile; fileRef = 484627291F1AFA9A0049A92A /* Marketing.m */; };
 		4846E22F1EE66A70000C08B7 /* DataMAPFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4846E22D1EE66A70000C08B7 /* DataMAPFormViewController.m */; };
 		4846E2301EE66A70000C08B7 /* DataMAPFormViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4846E22E1EE66A70000C08B7 /* DataMAPFormViewController.xib */; };
 		4846E2331EE6C650000C08B7 /* DataMAPModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4846E2321EE6C650000C08B7 /* DataMAPModel.m */; };
@@ -174,6 +181,9 @@
 		4831CD241EDE97D7001EF223 /* SubmenuCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SubmenuCollectionViewCell.h; path = ViewController/SubmenuCollectionViewCell.h; sourceTree = "<group>"; };
 		4831CD251EDE97D7001EF223 /* SubmenuCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SubmenuCollectionViewCell.m; path = ViewController/SubmenuCollectionViewCell.m; sourceTree = "<group>"; };
 		4831CD261EDE97D7001EF223 /* SubmenuCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SubmenuCollectionViewCell.xib; path = ViewController/SubmenuCollectionViewCell.xib; sourceTree = "<group>"; };
+		48321E501F20806A007D38A0 /* MarketingWorkOrderListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MarketingWorkOrderListViewController.h; path = ViewController/MarketingWorkOrderListViewController.h; sourceTree = "<group>"; };
+		48321E511F20806A007D38A0 /* MarketingWorkOrderListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MarketingWorkOrderListViewController.m; path = ViewController/MarketingWorkOrderListViewController.m; sourceTree = "<group>"; };
+		48321E521F20806A007D38A0 /* MarketingWorkOrderListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MarketingWorkOrderListViewController.xib; path = ViewController/MarketingWorkOrderListViewController.xib; sourceTree = "<group>"; };
 		48336A981F19111300536771 /* BarcodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarcodeViewController.h; path = ViewController/BarcodeViewController.h; sourceTree = "<group>"; };
 		48336A991F19111300536771 /* BarcodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarcodeViewController.m; path = ViewController/BarcodeViewController.m; sourceTree = "<group>"; };
 		48336A9A1F19111300536771 /* BarcodeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BarcodeViewController.xib; path = ViewController/BarcodeViewController.xib; sourceTree = "<group>"; };
@@ -199,6 +209,14 @@
 		483F39391EC3518500C03253 /* ForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ForgotPasswordViewController.m; path = ViewController/ForgotPasswordViewController.m; sourceTree = "<group>"; };
 		484278081ECABC3000183A60 /* List.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = List.h; path = Object/Plain/List.h; sourceTree = "<group>"; };
 		484278091ECABC3000183A60 /* List.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = List.m; path = Object/Plain/List.m; sourceTree = "<group>"; };
+		4846271B1F1A0C3B0049A92A /* AssignMarketingListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AssignMarketingListViewController.h; path = ViewController/AssignMarketingListViewController.h; sourceTree = "<group>"; };
+		4846271C1F1A0C3B0049A92A /* AssignMarketingListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AssignMarketingListViewController.m; path = ViewController/AssignMarketingListViewController.m; sourceTree = "<group>"; };
+		4846271D1F1A0C3B0049A92A /* AssignMarketingListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AssignMarketingListViewController.xib; path = ViewController/AssignMarketingListViewController.xib; sourceTree = "<group>"; };
+		484627231F1AED000049A92A /* AssignMarketingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AssignMarketingTableViewCell.h; path = ViewController/AssignMarketingTableViewCell.h; sourceTree = "<group>"; };
+		484627241F1AED000049A92A /* AssignMarketingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AssignMarketingTableViewCell.m; path = ViewController/AssignMarketingTableViewCell.m; sourceTree = "<group>"; };
+		484627251F1AED000049A92A /* AssignMarketingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AssignMarketingTableViewCell.xib; path = ViewController/AssignMarketingTableViewCell.xib; sourceTree = "<group>"; };
+		484627281F1AFA9A0049A92A /* Marketing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Marketing.h; path = Object/Plain/Marketing.h; sourceTree = "<group>"; };
+		484627291F1AFA9A0049A92A /* Marketing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Marketing.m; path = Object/Plain/Marketing.m; sourceTree = "<group>"; };
 		4846E22C1EE66A70000C08B7 /* DataMAPFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataMAPFormViewController.h; path = ViewController/DataMAPFormViewController.h; sourceTree = "<group>"; };
 		4846E22D1EE66A70000C08B7 /* DataMAPFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataMAPFormViewController.m; path = ViewController/DataMAPFormViewController.m; sourceTree = "<group>"; };
 		4846E22E1EE66A70000C08B7 /* DataMAPFormViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DataMAPFormViewController.xib; path = ViewController/DataMAPFormViewController.xib; sourceTree = "<group>"; };
@@ -346,6 +364,7 @@
 		481C428C1F03B8CA007D5C3C /* MarketingOfficerDedicated */ = {
 			isa = PBXGroup;
 			children = (
+				4846271A1F1A0B9E0049A92A /* AssignMarketingViewController */,
 				48CDD8281EC9B1C20038D626 /* DataMAPViewController */,
 				5C46F5191EE81958009C6AD6 /* Dashboard */,
 				48CDD8271EC9B1B10038D626 /* WorkOrderFormViewController */,
@@ -559,8 +578,26 @@
 				4848B1AA1F1250D800C9DE21 /* PostalCode.m */,
 				4848B1C91F1384EA00C9DE21 /* Asset.h */,
 				4848B1CA1F1384EA00C9DE21 /* Asset.m */,
+				484627281F1AFA9A0049A92A /* Marketing.h */,
+				484627291F1AFA9A0049A92A /* Marketing.m */,
 			);
 			name = Plain;
+			sourceTree = "<group>";
+		};
+		4846271A1F1A0B9E0049A92A /* AssignMarketingViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4846271B1F1A0C3B0049A92A /* AssignMarketingListViewController.h */,
+				4846271C1F1A0C3B0049A92A /* AssignMarketingListViewController.m */,
+				4846271D1F1A0C3B0049A92A /* AssignMarketingListViewController.xib */,
+				484627231F1AED000049A92A /* AssignMarketingTableViewCell.h */,
+				484627241F1AED000049A92A /* AssignMarketingTableViewCell.m */,
+				484627251F1AED000049A92A /* AssignMarketingTableViewCell.xib */,
+				48321E501F20806A007D38A0 /* MarketingWorkOrderListViewController.h */,
+				48321E511F20806A007D38A0 /* MarketingWorkOrderListViewController.m */,
+				48321E521F20806A007D38A0 /* MarketingWorkOrderListViewController.xib */,
+			);
+			name = AssignMarketingViewController;
 			sourceTree = "<group>";
 		};
 		4848B1B71F1383AE00C9DE21 /* PostalCode */ = {
@@ -896,6 +933,7 @@
 				482652811EFBF9DA0002A606 /* UsedCarFormViewController.xib in Resources */,
 				4848B1A81F124BFB00C9DE21 /* PostalCodeViewController.xib in Resources */,
 				4849EEE21EC8815000415E4B /* FormViewController.xib in Resources */,
+				484627271F1AED000049A92A /* AssignMarketingTableViewCell.xib in Resources */,
 				481C42871F00EF29007D5C3C /* WorkOrderListTableViewCell.xib in Resources */,
 				4848B1B31F1251E700C9DE21 /* PostalCodeTableViewCell.xib in Resources */,
 				5CDC30421EC3E274001D97DB /* GoogleService-Info.plist in Resources */,
@@ -907,12 +945,14 @@
 				48482E741EC99B230029ACBE /* ListTableViewCell.xib in Resources */,
 				481C429D1F03BABA007D5C3C /* LegalizationBPKBFormViewController.xib in Resources */,
 				4831CD281EDE97D7001EF223 /* SubmenuCollectionViewCell.xib in Resources */,
+				4846271F1F1A0C3B0049A92A /* AssignMarketingListViewController.xib in Resources */,
 				481C42A71F03BAEB007D5C3C /* AcceleratedRepaymentFormViewController.xib in Resources */,
 				4831CD201EDE97A6001EF223 /* SubmenuCollectionViewController.xib in Resources */,
 				482652891EFBFA050002A606 /* NewCarFormViewController.xib in Resources */,
 				481C42A21F03BAD0007D5C3C /* InsuranceClaimFormViewController.xib in Resources */,
 				48D44D551EE7A42C005FC8DB /* SurveyFormViewController.xib in Resources */,
 				481C42981F03BAA0007D5C3C /* TopUpFormViewController.xib in Resources */,
+				48321E541F20806A007D38A0 /* MarketingWorkOrderListViewController.xib in Resources */,
 				48CDD8431EC9BA1A0038D626 /* SubmenuTableViewCell.xib in Resources */,
 				482652771EFBB8BB0002A606 /* DahsyatFormViewController.xib in Resources */,
 			);
@@ -991,8 +1031,10 @@
 				48D44D541EE7A42C005FC8DB /* SurveyFormViewController.m in Sources */,
 				4842780A1ECABC3000183A60 /* List.m in Sources */,
 				482652801EFBF9DA0002A606 /* UsedCarFormViewController.m in Sources */,
+				484627261F1AED000049A92A /* AssignMarketingTableViewCell.m in Sources */,
 				48D44D5B1EE846B5005FC8DB /* WorkOrderModel.m in Sources */,
 				483F39281EC3085E00C03253 /* LoginViewController.m in Sources */,
+				48321E531F20806A007D38A0 /* MarketingWorkOrderListViewController.m in Sources */,
 				5C0138751EE43C9300B9B40B /* ContactUsViewController.m in Sources */,
 				5CF6819C1EC747A60056ACD3 /* KASlideShow.m in Sources */,
 				481C428A1F013784007D5C3C /* DataSource.m in Sources */,
@@ -1006,6 +1048,7 @@
 				483F39251EC3085E00C03253 /* AppDelegate.m in Sources */,
 				481C42811F00EE23007D5C3C /* WorkOrderListViewController.m in Sources */,
 				4848B1BB1F13840700C9DE21 /* AssetValueTransformer.m in Sources */,
+				4846272A1F1AFA9A0049A92A /* Marketing.m in Sources */,
 				4886BAFD1EC42EDD000F8DBE /* MenuViewController.m in Sources */,
 				483F1E981EF2874F005D3945 /* ProfileModel.m in Sources */,
 				5C4587651EE2A02D004AC7FE /* CreditSimulationViewController.m in Sources */,
@@ -1022,6 +1065,7 @@
 				5CBC4C771ECC8A67002ED03C /* MyProfileTableViewController.m in Sources */,
 				484ADB231F0CEDCE0006BCB0 /* SuggestionComplaintModel.m in Sources */,
 				5C46F5181EE81914009C6AD6 /* KATCircularProgress.m in Sources */,
+				4846271E1F1A0C3B0049A92A /* AssignMarketingListViewController.m in Sources */,
 				4831CD1F1EDE97A6001EF223 /* SubmenuCollectionViewController.m in Sources */,
 				4846E2361EE6E92A000C08B7 /* DropdownModel.m in Sources */,
 				48CDD83A1EC9B8A50038D626 /* SubmenuViewController.m in Sources */,

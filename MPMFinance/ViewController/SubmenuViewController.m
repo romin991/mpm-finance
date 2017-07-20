@@ -21,6 +21,7 @@
 #import "InsuranceClaimFormViewController.h"
 #import "IntakeBPKBFormViewController.h"
 #import "SuggestionComplainFormViewController.h"
+#import "AssignMarketingListViewController.h"
 
 @interface SubmenuViewController ()
 
@@ -133,6 +134,12 @@
         SuggestionComplainFormViewController *suggestionComplainFormViewController = [[SuggestionComplainFormViewController alloc] init];
         suggestionComplainFormViewController.menu = submenu;
         [self.navigationController pushViewController:suggestionComplainFormViewController animated:YES];
+        
+    } else if ([submenu.menuType isEqualToString:kMenuTypeListAssignMarketing]){
+        AssignMarketingListViewController *assignMarketingViewController = [[AssignMarketingListViewController alloc] init];
+        assignMarketingViewController.menu = submenu;
+        assignMarketingViewController.list = self.list;
+        [self.navigationController pushViewController:assignMarketingViewController animated:YES];
         
     }
 }

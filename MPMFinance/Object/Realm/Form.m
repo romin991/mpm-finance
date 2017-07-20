@@ -62,7 +62,7 @@
     //===
     section = [[FormSection alloc] init];
     section.title = @"Alamat Domisili";
-    [section.rows addObject:[FormRow new:realm :15 :YES :NO :XLFormRowDescriptorTypeBooleanCheck :@"Sama dengan alamat legal" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :15 :NO :NO :XLFormRowDescriptorTypeBooleanCheck :@"Sama dengan alamat legal" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :16 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Alamat Domisili" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :17 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"RT Domisili" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :18 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"RW Domisili" :@"" :@""]];

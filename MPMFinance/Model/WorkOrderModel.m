@@ -175,6 +175,61 @@
     
 }
 
++ (void)getListWorkOrderWithUserID:(NSString *)userID page:(NSInteger)page completion:(void(^)(NSArray *lists, NSError *error))block{
+    NSInteger offset = [MPMGlobal limitPerPage] * page;
+    
+    AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
+    NSDictionary* param = @{@"userid" : userID,
+                            @"token" : [MPMUserInfo getToken],
+                            @"data" : @{@"status" : @"history",
+                                        @"limit" : @([MPMGlobal limitPerPage]),
+                                        @"offset" : @(offset)}};
+    NSLog(@"%@",param);
+    [manager POST:[NSString stringWithFormat:@"%@/datamap/getworkorder",kApiUrl] parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
+        ;
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        @try {
+            NSInteger code = [[responseObject objectForKey:@"statusCode"] integerValue];
+            NSString *message = [responseObject objectForKey:@"message"];
+            if (code == 200) {
+                NSDictionary *data = responseObject[@"data"];
+                NSMutableArray *lists = [NSMutableArray array];
+                for (NSDictionary* listDict in data) {
+                    List *list = [[List alloc] init];
+                    list.primaryKey = [listDict[@"id"] integerValue];
+                    list.title = listDict[@"noRegistrasi"];
+                    list.date = listDict[@"tanggal"];
+                    list.assignee = listDict[@"namaPengaju"];
+                    list.status = listDict[@"status"];
+                    list.type = listDict[@"tipeProduk"];
+                    list.statusColor = listDict[@"color"];
+                    list.imageURL = listDict[@"imageIconIos"];
+                    [lists addObject:list];
+                }
+                
+                if (block) block(lists, nil);
+                
+            } else {
+                if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                          code:code
+                                                      userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(message, nil)}]);
+            }
+            
+        } @catch (NSException *exception) {
+            NSLog(@"%@", exception);
+            if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                      code:1
+                                                  userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(exception.reason, nil)}]);
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@",error);
+        if (block) block(nil, error);
+        
+    }];
+    
+}
+
 + (void)getListWorkOrderDetailWithID:(NSInteger)pengajuanId completion:(void(^)(NSDictionary *response, NSError *error))block{
     AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
     NSDictionary* param = @{@"userid" : [MPMUserInfo getUserInfo][@"userId"],
@@ -361,11 +416,11 @@
                                     @"token" : [MPMUserInfo getToken]}];
     
     NSMutableDictionary *dataDictionary = [NSMutableDictionary dictionary];
-    NSString *url = @"input";
+    NSString *url = [[MPMUserInfo getRole] isEqualToString:kRoleCustomer] ? @"customer/input" : @"supervisor/input";
     @try {
         if (list){
             [dataDictionary setObject:@(list.primaryKey) forKey:@"id"];
-            url = @"update";
+            url = [[MPMUserInfo getRole] isEqualToString:kRoleCustomer] ? @"customer/update" : @"supervisor/update";
         }
         
         [dataDictionary addEntriesFromDictionary:
@@ -422,7 +477,7 @@
         
         [param setObject:dataDictionary forKey:@"data"];
         
-        [manager POST:[NSString stringWithFormat:@"%@/pengajuan/customer/%@", kApiUrl, url] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [manager POST:[NSString stringWithFormat:@"%@/pengajuan/%@", kApiUrl, url] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             @try {
                 NSInteger code = [[responseObject objectForKey:@"statusCode"] integerValue];
                 NSString *message = [responseObject objectForKey:@"message"];

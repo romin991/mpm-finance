@@ -92,26 +92,9 @@
     submenu.indonesiaTitle = submenu.primaryKey;
     submenu.sort = 1;
     submenu.borderColor = @"FF8A65";
-    submenu.menuType = kMenuTypeList;
+    submenu.menuType = kMenuTypeListAssignMarketing;
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
-    
-    Menu *menuList = [[Menu alloc] init];
-    menuList.primaryKey = kSubmenuListMarketing;
-    menuList.indonesiaTitle = menuList.primaryKey;
-    menuList.sort = 0;
-    menuList.isOnePageOnly = YES;
-    menuList.menuType = kMenuTypeTrackingMarketing;
-    
-    Action *action = [[Action alloc] init];
-    action.name = @"Get List Marketing";
-    action.methodName = @"getAllMarketingBySupervisor:completion:"; //pengajuan/getallmarketingbyspv with datapengajuanid
-    action.actionType = kActionTypeAPICall;
-    [action.roles addObjects:submenu.roles];
-    
-    [menuList.dataSources addObject:action];
-    [menuList.roles addObjects:submenu.roles];
-    
-    [submenu.submenus addObject:menuList];
+
     [realm addObject:submenu];
     
 //==Online Submission===================================================================================================
@@ -127,13 +110,13 @@
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     
-    menuList = [[Menu alloc] init];
+    Menu *menuList = [[Menu alloc] init];
     menuList.primaryKey = kSubmenuListOnlineSubmission;
     menuList.indonesiaTitle = menuList.primaryKey;
     menuList.sort = 0;
     menuList.menuType = kMenuTypeSubmenu;
     
-    action = [[Action alloc] init];
+    Action *action = [[Action alloc] init];
     action.name = @"Get List Work Order";
     action.methodName = @"getNewByUserListWorkOrderPage:completion:"; //pengajuan/getallbyuser with status new
     action.actionType = kActionTypeAPICall;

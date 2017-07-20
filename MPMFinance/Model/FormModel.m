@@ -117,6 +117,35 @@
     });
 }
 
+
+
+//new
++ (void)loadValueFrom:(NSDictionary *)dictionary on:(XLFormViewController *)formViewController partialUpdate:(NSArray *)fields{
+    for (XLFormSectionDescriptor *section in formViewController.form.formSections) {
+        for (XLFormRowDescriptor *row in section.formRows) {
+            id value;
+            if ([dictionary objectForKey:row.tag] && (fields.count == 0 || [fields containsObject:row.tag])){
+                value = [dictionary objectForKey:row.tag];
+            }
+            if (value){
+                if ([row.rowType isEqualToString:XLFormRowDescriptorTypeDateInline]){
+                    row.value = [MPMGlobal dateFromString:value];
+                } else if ([row.rowType isEqualToString:XLFormRowDescriptorTypeSelectorPush]){
+                    row.value = [XLFormOptionsObject formOptionsOptionForValue:value fromOptions:row.selectorOptions];
+                } else if ([row.rowType isEqualToString:XLFormRowDescriptorTypeImage]){
+                    row.value = [UIImage imageWithData:value];
+                } else if ([row.rowType isEqualToString:XLFormRowDescriptorTypeButton]){
+                    //do nothing, no need to include on dictionary
+                } else {
+                    row.value = value;
+                }
+                
+                [formViewController reloadFormRow:row];
+            }
+        }
+    }
+}
+
 + (void)generate:(XLFormDescriptor *)formDescriptor form:(Form *)form completion:(void(^)(XLFormDescriptor *formDescriptor, NSError *error))block{
     __block dispatch_group_t group = dispatch_group_create();
     __block dispatch_queue_t queue = dispatch_get_main_queue();

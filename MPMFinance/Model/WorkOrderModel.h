@@ -19,6 +19,7 @@
 
 //datamap/getworkorder
 + (void)getListWorkOrderWithStatus:(NSString *)status page:(NSInteger)page completion:(void(^)(NSArray *lists, NSError *error))block;
++ (void)getListWorkOrderWithUserID:(NSString *)userID page:(NSInteger)page completion:(void(^)(NSArray *lists, NSError *error))block;
 
 + (void)getListWorkOrderDetailWithID:(NSInteger)pengajuanId completion:(void(^)(NSDictionary *response, NSError *error))block;
 

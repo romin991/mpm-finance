@@ -153,27 +153,22 @@
         if ([dataSource.type isEqualToString:kDataSourceTypeAll]){
             [APIModel getAllListWorkOrderPage:self.page completion:^(NSArray *lists, NSError *error) {
                 [weakSelf loadDataWithList:lists page:page error:error];
-                [SVProgressHUD dismiss];
             }];
         } else if ([dataSource.type isEqualToString:kDataSourceTypeBadUsers]){
             [APIModel getBadUsersListWorkOrderPage:self.page completion:^(NSArray *lists, NSError *error) {
                 [weakSelf loadDataWithList:lists page:page error:error];
-                [SVProgressHUD dismiss];
             }];
         } else if ([dataSource.type isEqualToString:kDataSourceTypeNeedApproval]){
             [APIModel getNeedApprovalListWorkOrderPage:self.page completion:^(NSArray *lists, NSError *error) {
                 [weakSelf loadDataWithList:lists page:page error:error];
-                [SVProgressHUD dismiss];
             }];
         } else if ([dataSource.type isEqualToString:kDataSourceTypeSupervisorNew]){
             [APIModel getNewBySupervisorListWorkOrderPage:self.page completion:^(NSArray *lists, NSError *error) {
                 [weakSelf loadDataWithList:lists page:page error:error];
-                [SVProgressHUD dismiss];
             }];
         } else if ([dataSource.type isEqualToString:kDataSourceTypeSupervisorBadUsers]){
             [APIModel getBadUsersBySupervisorListWorkOrderPage:self.page completion:^(NSArray *lists, NSError *error) {
                 [weakSelf loadDataWithList:lists page:page error:error];
-                [SVProgressHUD dismiss];
             }];
         }
     }
@@ -207,6 +202,8 @@
         if (error) {
             [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
             [SVProgressHUD dismissWithDelay:1.5];
+        } else {
+            [SVProgressHUD dismiss];
         }
     });
 }
@@ -287,7 +284,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     WorkOrderListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (!cell){
-        [tableView registerNib:[UINib nibWithNibName:@"ListTableViewCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
+        [tableView registerNib:[UINib nibWithNibName:@"WorkOrderListTableViewCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
         cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     }

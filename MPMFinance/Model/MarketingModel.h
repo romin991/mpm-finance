@@ -11,6 +11,9 @@
 @interface MarketingModel : NSObject
 
 //pengajuan/getallmarketingbyspv
-+ (void)getAllMarketingBySupervisor:(NSInteger)dataPengajuanId completion:(void(^)(NSArray *lists, NSError *error))block;
++ (void)getAllMarketingBySupervisor:(NSInteger)dataPengajuanId completion:(void(^)(NSArray *marketings, NSError *error))block;
+
+//pengajuan/assignmarketing
++ (void)assignMarketing:(NSInteger)dataPengajuanId marketingId:(NSString *)marketingId completion:(void(^)(NSDictionary *dictionary, NSError *error))block;
 
 @end

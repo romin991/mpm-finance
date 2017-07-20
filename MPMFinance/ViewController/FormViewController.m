@@ -244,28 +244,31 @@
         [self setDomicileAddressValueWithTheSameValueAsLegalAddress];
     }
     
-    if ([formRow.tag isEqualToString:@"kodeposSesuaiKTP"] && newValue != nil) {
+    if ([formRow.tag isEqualToString:@"kodeposSesuaiKTP"] && newValue != nil && [newValue isKindOfClass:PostalCode.class]) {
         @try {
             PostalCode *postalCode = (PostalCode *)newValue;
             //set value
             [self.valueDictionary addEntriesFromDictionary:@{@"kecamatanSesuaiKTP" : postalCode.subDistrict,
                                                              @"kelurahanSesuaiKTP" : postalCode.disctrict,
                                                              @"kotaSesuaiKTP" : postalCode.city,}];
-            [FormModel loadValueFrom:self.valueDictionary to:self.form on:self];
+            [FormModel loadValueFrom:self.valueDictionary on:self partialUpdate:
+             [NSArray arrayWithObjects:@"kecamatanSesuaiKTP", @"kelurahanSesuaiKTP", @"kotaSesuaiKTP", nil]];
             [self setDomicileAddressValueWithTheSameValueAsLegalAddress];
         } @catch (NSException *exception) {
             NSLog(@"%@", exception);
         }
     }
     
-    if ([formRow.tag isEqualToString:@"kodeposDomisili"] && newValue != nil) {
+    if ([formRow.tag isEqualToString:@"kodeposDomisili"] && newValue != nil && [newValue isKindOfClass:PostalCode.class]) {
         @try {
             PostalCode *postalCode = (PostalCode *)newValue;
             //set value
             [self.valueDictionary addEntriesFromDictionary:@{@"kecamatanDomisili" : postalCode.subDistrict,
                                                              @"kelurahanDomisili" : postalCode.disctrict,
                                                              @"kotaDomisili" : postalCode.city,}];
-            [FormModel loadValueFrom:self.valueDictionary to:self.form on:self];
+            
+            [FormModel loadValueFrom:self.valueDictionary on:self partialUpdate:
+             [NSArray arrayWithObjects:@"kecamatanDomisili", @"kelurahanDomisili", @"kotaDomisili", nil]];
         } @catch (NSException *exception) {
             NSLog(@"%@", exception);
         }
