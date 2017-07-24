@@ -83,6 +83,7 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
     
     [[IQKeyboardManager sharedManager] setEnableAutoToolbar:NO];
     [[IQKeyboardManager sharedManager] setKeyboardDistanceFromTextField:50];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
     
     return YES;
 }
