@@ -51,7 +51,7 @@
     }];
 }
 
-+ (void)getDropdownWSType:(NSString *)type keyword:(NSString *)keyword idCabang:(NSString *)idCabang completion:(void(^)(NSArray *options, NSError *error))block{
++ (void)getDropdownWSType:(NSString *)type keyword:(NSString *)keyword idCabang:(NSString *)idCabang additionalURL:(NSString *)additionalURL completion:(void(^)(NSArray *datas, NSError *error))block{
     AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
     NSDictionary* param = @{@"userid" : [MPMUserInfo getUserInfo][@"userId"],
                             @"token" : [MPMUserInfo getToken],
@@ -60,21 +60,21 @@
                                         @"idCabang" : idCabang}
                             };
     
-    [manager POST:[NSString stringWithFormat:@"%@/dropdownws", kApiUrl] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [manager POST:[NSString stringWithFormat:@"%@/dropdownws/%@", kApiUrl, additionalURL] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         @try {
             NSInteger code = [[responseObject objectForKey:@"statusCode"] integerValue];
             NSString *message = [responseObject objectForKey:@"message"];
             if (code == 200) {
-                NSMutableArray *options = [NSMutableArray array];
+                NSMutableArray *datas = [NSMutableArray array];
                 for (NSDictionary *dictionary in [responseObject objectForKey:@"data"]) {
-                    Option *option = [[Option alloc] init];
-                    option.primaryKey = [[dictionary objectForKey:@"id"] integerValue];
-                    option.name = [dictionary objectForKey:@"value"];
+                    Data *data = [[Data alloc] init];
+                    data.value = [dictionary objectForKey:@"id"];
+                    data.name = [dictionary objectForKey:@"name"];
                     
-                    [options addObject:option];
+                    [datas addObject:data];
                 }
                 
-                if (block) block(options, nil);
+                if (block) block(datas, nil);
                 
             } else {
                 if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
@@ -94,7 +94,7 @@
     }];
 }
 
-+ (void)getDropdownWSType:(NSString *)type keyword:(NSString *)keyword idProduct:(NSString *)idProduct idCabang:(NSString *)idCabang completion:(void(^)(NSArray *options, NSError *error))block{
++ (void)getDropdownWSType:(NSString *)type keyword:(NSString *)keyword idProduct:(NSString *)idProduct idCabang:(NSString *)idCabang additionalURL:(NSString *)additionalURL completion:(void(^)(NSArray *datas, NSError *error))block{
     AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
     NSDictionary* param = @{@"userid" : [MPMUserInfo getUserInfo][@"userId"],
                             @"token" : [MPMUserInfo getToken],
@@ -104,21 +104,65 @@
                                         @"idCabang" : idCabang}
                             };
     
-    [manager POST:[NSString stringWithFormat:@"%@/dropdownws", kApiUrl] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [manager POST:[NSString stringWithFormat:@"%@/dropdownws/%@", kApiUrl, additionalURL] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         @try {
             NSInteger code = [[responseObject objectForKey:@"statusCode"] integerValue];
             NSString *message = [responseObject objectForKey:@"message"];
             if (code == 200) {
-                NSMutableArray *options = [NSMutableArray array];
+                NSMutableArray *datas = [NSMutableArray array];
                 for (NSDictionary *dictionary in [responseObject objectForKey:@"data"]) {
-                    Option *option = [[Option alloc] init];
-                    option.primaryKey = [[dictionary objectForKey:@"id"] integerValue];
-                    option.name = [dictionary objectForKey:@"value"];
+                    Data *data = [[Data alloc] init];
+                    data.value = [dictionary objectForKey:@"id"];
+                    data.name = [dictionary objectForKey:@"name"];
                     
-                    [options addObject:option];
+                    [datas addObject:data];
                 }
                 
-                if (block) block(options, nil);
+                if (block) block(datas, nil);
+                
+            } else {
+                if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                          code:code
+                                                      userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(message, nil)}]);
+            }
+            
+        } @catch (NSException *exception) {
+            NSLog(@"%@", exception);
+            if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                      code:1
+                                                  userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(exception.reason, nil)}]);
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (block) block(nil, error);
+    }];
+}
+
++ (void)getDropdownWSType:(NSString *)type keyword:(NSString *)keyword idProductOffering:(NSString *)idProductOffering idCabang:(NSString *)idCabang additionalURL:(NSString *)additionalURL completion:(void(^)(NSArray *datas, NSError *error))block{
+    AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
+    NSDictionary* param = @{@"userid" : [MPMUserInfo getUserInfo][@"userId"],
+                            @"token" : [MPMUserInfo getToken],
+                            @"data" : @{@"tipe" : type,
+                                        @"keyword" : keyword,
+                                        @"productOfferingId" : idProductOffering,
+                                        @"idCabang" : idCabang}
+                            };
+    
+    [manager POST:[NSString stringWithFormat:@"%@/dropdownws/%@", kApiUrl, additionalURL] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        @try {
+            NSInteger code = [[responseObject objectForKey:@"statusCode"] integerValue];
+            NSString *message = [responseObject objectForKey:@"message"];
+            if (code == 200) {
+                NSMutableArray *datas = [NSMutableArray array];
+                for (NSDictionary *dictionary in [responseObject objectForKey:@"data"]) {
+                    Data *data = [[Data alloc] init];
+                    data.value = [dictionary objectForKey:@"id"];
+                    data.name = [dictionary objectForKey:@"name"];
+                    
+                    [datas addObject:data];
+                }
+                
+                if (block) block(datas, nil);
                 
             } else {
                 if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
