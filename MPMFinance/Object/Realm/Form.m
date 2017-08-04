@@ -292,13 +292,13 @@
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Status Pernikahan" :@"" :@""]]; //ws
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Status Kepemilikan Rumah" :@"" :@""]]; //ws
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeDateInline :@"Tanggal Selesai Kontrak" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Lokasi Rumah" :@"" :@"LokasiRumah"]]; //ws
+    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Lokasi Rumah" :@"" :@""]]; //ws
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Tahun Menempati" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor NPWP" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Kartu Keluarga" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Jumlah Tanggungan" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Pendidikan Terakhir" :@"" :@""]]; //ws
-    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Alamat Pengiriman Surat" :@"" :@"getAlamatpengirimansurat"]];
+    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Alamat Pengiriman Surat" :@"" :@"getAlamatpengirimansurat"]];
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Alamat Email" :@"" :@""]];
     
     [form.sections addObject:section];
@@ -404,13 +404,11 @@
     //===
     section = [[FormSection alloc] init];
     section.title = @"Kartu Kredit / Pinjaman Lain";
-    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Pinjaman Tempat Lain 1" :@"" :@"getPinjamantempatlain"]];
+    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Pinjaman Tempat Lain 1" :@"" :@"getPinjamantempatlain"]];
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Kartu Kredit atau Kontrak 1" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Pinjaman Tempat Lain 2" :@"" :@"getPinjamantempatlain"]];
+    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Pinjaman Tempat Lain 2" :@"" :@"getPinjamantempatlain"]];
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Kartu Kredit atau Kontrak 2" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Pinjaman Tempat Lain 3" :@"" :@"getPinjamantempatlain"]];
-    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Kartu Kredit atau Kontrak 3" :@"" :@""]];
-    
+     
     [form.sections addObject:section];
     
     //===
