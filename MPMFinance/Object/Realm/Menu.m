@@ -462,7 +462,8 @@
     Menu *menu = [[Menu alloc] init];
     menu.imageName = @"cartIcon";
     menu.primaryKey = kMenuProduct;
-    menu.indonesiaTitle = menu.primaryKey;
+    menu.englishTitle = menu.primaryKey;
+    menu.indonesiaTitle = @"Produk";
     menu.sort = 20;
     menu.menuType = kMenuTypeSubmenu2;
     menu.isRootMenu = YES;
@@ -477,7 +478,8 @@
     menu.backgroundImageName = @"CalculatorMarketingBackground";
     menu.circleIconImageName = @"CalculatorMarketingCircleIcon";
     menu.primaryKey = kMenuCreditSimulation;
-    menu.indonesiaTitle = menu.primaryKey;
+    menu.englishTitle = menu.primaryKey;
+    menu.indonesiaTitle = @"Kredit Simulasi";
     menu.sort = 20;
     menu.menuType = kMenuTypeSubmenu;
     menu.isRootMenu = YES;
@@ -497,7 +499,8 @@
     menu = [[Menu alloc] init];
     menu.imageName = @"contactUsIcon";
     menu.primaryKey = kMenuContactUs;
-    menu.indonesiaTitle = menu.primaryKey;
+    menu.indonesiaTitle = @"Hubungi Kami";
+    menu.englishTitle = menu.primaryKey;
     menu.sort = 20;
     menu.menuType = kMenuTypeContactUs;
     menu.isRootMenu = YES;
@@ -513,6 +516,7 @@
     menu.circleIconImageName = @"OnlineSubmissionCircleIcon";
     menu.primaryKey = kMenuPengajuanKembali;
     menu.indonesiaTitle = menu.primaryKey;
+    menu.englishTitle = @"Online Submission";
     menu.sort = 20;
     menu.menuType = kMenuTypeSubmenu;
     menu.isRootMenu = YES;
@@ -527,6 +531,7 @@
     menu.imageName = @"historyTransaksiIcon";
     menu.primaryKey = kMenuHistoryTransaksi;
     menu.indonesiaTitle = menu.primaryKey;
+    menu.englishTitle = @"Transaction History";
     menu.sort = 20;
     menu.menuType = kMenuTypeHistory;
     menu.isRootMenu = YES;
@@ -541,6 +546,7 @@
     menu.circleIconImageName = @"OnlineSubmissionCircleIcon";
     menu.primaryKey = kMenuLegalisirFCBPKB;
     menu.indonesiaTitle = menu.primaryKey;
+    menu.englishTitle = @"Validation Of Copy BPKB";
     menu.sort = 20;
     menu.menuType = kMenuTypeSubmenu;
     menu.isRootMenu = YES;
@@ -557,6 +563,7 @@
     menu.circleIconImageName = @"OnlineSubmissionCircleIcon";
     menu.primaryKey = kMenuKlaimAsuransi;
     menu.indonesiaTitle = menu.primaryKey;
+    menu.englishTitle = @"Insurance Claim";
     menu.sort = 20;
     menu.menuType = kMenuTypeSubmenu;
     menu.isRootMenu = YES;
@@ -571,6 +578,7 @@
     menu.imageName = @"pelunasanIcon";
     menu.primaryKey = kMenuPelunasanDipercepat;
     menu.indonesiaTitle = menu.primaryKey;
+    menu.englishTitle = @"Early Termination";
     menu.sort = 20;
     menu.menuType = kMenuTypeAcceleratedRepayment;
     menu.isRootMenu = YES;
@@ -585,6 +593,7 @@
     menu.circleIconImageName = @"OnlineSubmissionCircleIcon";
     menu.primaryKey = kMenuPengembalianBPKB;
     menu.indonesiaTitle = menu.primaryKey;
+    menu.englishTitle = @"BPKB Pick Up";
     menu.sort = 20;
     menu.menuType = kMenuTypeSubmenu;
     menu.isRootMenu = YES;
@@ -601,6 +610,7 @@
     menu.circleIconImageName = @"OnlineSubmissionCircleIcon";
     menu.primaryKey = kMenuSaranPengaduan;
     menu.indonesiaTitle = menu.primaryKey;
+    menu.englishTitle = @"Critics and Suggestions";
     menu.sort = 20;
     menu.menuType = kMenuTypeSubmenu;
     menu.isRootMenu = YES;
@@ -617,6 +627,7 @@
     menu.circleIconImageName = @"OnlineSubmissionCircleIcon";
     menu.primaryKey = kMenuCustomerGetCustomer;
     menu.indonesiaTitle = menu.primaryKey;
+    menu.englishTitle = menu.primaryKey;
     menu.sort = 20;
     menu.menuType = kMenuTypeSubmenu;
     menu.isRootMenu = YES;
@@ -636,7 +647,8 @@
     Menu *submenu = [[Menu alloc] init];
     submenu.imageName = @"NewBike";
     submenu.primaryKey = kSubmenuCreditSimulationNewBike;
-    submenu.indonesiaTitle = @"Motor Baru";
+    submenu.indonesiaTitle = @"Pembiayaan Motor Baru";
+    submenu.englishTitle = @"New Bike";
     submenu.menuType = kMenuTypeCreditSimulation;
     submenu.sort = 2;
     submenu.borderColor = @"F26F21";
@@ -649,7 +661,8 @@
     submenu = [[Menu alloc] init];
     submenu.imageName = @"NewCarIcon";
     submenu.primaryKey = kSubmenuCreditSimulationNewCar;
-    submenu.indonesiaTitle = @"Mobil Baru";
+    submenu.indonesiaTitle = @"Pembiayaan Mobil Baru";
+    submenu.englishTitle = @"New Car";
     submenu.sort = 2;
     submenu.menuType = kMenuTypeCreditSimulation;
     submenu.borderColor = @"B30808";
@@ -662,7 +675,8 @@
     submenu = [[Menu alloc] init];
     submenu.imageName = @"UsedCarIcon";
     submenu.primaryKey = kSubmenuCreditSimulationUsedCar;
-    submenu.indonesiaTitle = @"Mobil Bekas";
+    submenu.indonesiaTitle = @"Pembiayaan Mobil Bekas";
+    submenu.englishTitle = @"Used Car";
     submenu.sort = 2;
     submenu.menuType = kMenuTypeCreditSimulation;
     submenu.borderColor = @"546E7A";
@@ -675,7 +689,8 @@
     submenu = [[Menu alloc] init];
     submenu.imageName = @"";
     submenu.primaryKey = kSubmenuCreditSimulationDahsyat2W;
-    submenu.indonesiaTitle = @"Multiguna 2W";
+    submenu.indonesiaTitle = @"Dahsyat - Multiguna Motor";
+    submenu.englishTitle = @"Dahsyat - Multipurpose Bike";
     submenu.sort = 2;
     submenu.menuType = kMenuTypeCreditSimulation;
     submenu.borderColor = @"1875D1";
@@ -688,7 +703,8 @@
     submenu = [[Menu alloc] init];
     submenu.imageName = @"";
     submenu.primaryKey = kSubmenuCreditSimulationDahsyat4W;
-    submenu.indonesiaTitle = @"Multiguna 4W";
+    submenu.indonesiaTitle = @"Dahsyat - Multiguna Mobil";
+    submenu.englishTitle = @"Dahsyat - Multipurpose Car";
     submenu.sort = 2;
     submenu.menuType = kMenuTypeCreditSimulation;
     submenu.borderColor = @"1875D1";
@@ -702,6 +718,7 @@
     submenu.imageName = @"Property";
     submenu.primaryKey = kSubmenuCreditSimulationProperty;
     submenu.indonesiaTitle = @"Properti";
+    submenu.englishTitle = @"Property";
     submenu.sort = 2;
     submenu.menuType = kMenuTypeCreditSimulation;
     submenu.borderColor = @"33691E";
@@ -715,6 +732,8 @@
     submenu.imageName = @"ListPengajuanApplikasiSubmenuIcon";
     submenu.primaryKey = kSubmenuNewSubmissions;
     submenu.indonesiaTitle = submenu.primaryKey;
+#warning blm diisi
+    submenu.englishTitle = @"";
     submenu.sort = 2;
     submenu.menuType = kMenuTypeFormWorkOrder;
     submenu.borderColor = @"F26F21";
@@ -727,6 +746,7 @@
     submenu.imageName = @"pengajuanKembaliIcon";
     submenu.primaryKey = kSubmenuTopUp;
     submenu.indonesiaTitle = submenu.primaryKey;
+    submenu.englishTitle = submenu.primaryKey;
     submenu.sort = 2;
     submenu.menuType = kMenuTypeFormTopUp;
     submenu.borderColor = @"0091EA";
@@ -739,6 +759,8 @@
     submenu.imageName = @"ListPengajuanApplikasiSubmenuIcon";
     submenu.primaryKey = kSubmenuLegalizationBPKB;
     submenu.indonesiaTitle = submenu.primaryKey;
+#warning blm diisi
+    submenu.englishTitle = submenu.primaryKey;
     submenu.sort = 2;
     submenu.menuType = kMenuTypeFormLegalizationBPKB;
     submenu.borderColor = @"F26F21";
@@ -751,6 +773,8 @@
     submenu.imageName = @"HistorySubmenuIcon";
     submenu.primaryKey = kSubmenuHistoryBPKB;
     submenu.indonesiaTitle = submenu.primaryKey;
+#warning blm diisi
+    submenu.englishTitle = @"";
     submenu.sort = 2;
     submenu.menuType = kMenuTypeList;
     submenu.borderColor = @"33691E";
@@ -761,6 +785,8 @@
     menuList.imageName = @"";
     menuList.primaryKey = kSubmenuListLegalisirBPKB;
     menuList.indonesiaTitle = menuList.primaryKey;
+#warning blm diisi
+    submenu.englishTitle = @"";
     menuList.sort = 0;
     menuList.menuType = kMenuTypeSubmenu;
     
@@ -785,6 +811,8 @@
     submenu.imageName = @"ListPengajuanApplikasiSubmenuIcon";
     submenu.primaryKey = kSubmenuInsuranceClaimForm;
     submenu.indonesiaTitle = submenu.primaryKey;
+#warning blm diisi
+    submenu.englishTitle = @"";
     submenu.sort = 2;
     submenu.menuType = kMenuTypeFormInsuranceClaim;
     submenu.borderColor = @"F26F21";
@@ -797,6 +825,8 @@
     submenu.imageName = @"HistorySubmenuIcon";
     submenu.primaryKey = kSubmenuHistoryInsuranceClaim;
     submenu.indonesiaTitle = submenu.primaryKey;
+#warning blm diisi
+    submenu.englishTitle = @"";
     submenu.sort = 2;
     submenu.menuType = kMenuTypeList;
     submenu.borderColor = @"33691E";
@@ -807,6 +837,8 @@
     menuList.imageName = @"";
     menuList.primaryKey = kSubmenuListKlaimAsuransi;
     menuList.indonesiaTitle = menuList.primaryKey;
+#warning blm diisi
+    submenu.englishTitle = @"";
     menuList.sort = 0;
     menuList.menuType = kMenuTypeSubmenu;
     
@@ -830,6 +862,8 @@
     submenu.imageName = @"ListPengajuanApplikasiSubmenuIcon";
     submenu.primaryKey = kSubmenuPengambilanBPKB;
     submenu.indonesiaTitle = submenu.primaryKey;
+#warning blm diisi
+    submenu.englishTitle = @"";
     submenu.sort = 2;
     submenu.menuType = kMenuTypeFormPengambilanBPKB;
     submenu.borderColor = @"F26F21";
@@ -842,6 +876,8 @@
     submenu.imageName = @"HistorySubmenuIcon";
     submenu.primaryKey = kSubmenuHistoryPengambilanBPKB;
     submenu.indonesiaTitle = submenu.primaryKey;
+#warning blm diisi
+    submenu.englishTitle = @"";
     submenu.sort = 2;
     submenu.menuType = kMenuTypeList;
     submenu.borderColor = @"33691E";
@@ -852,6 +888,8 @@
     menuList.imageName = @"";
     menuList.primaryKey = kSubmenuListPengambilanBPKB;
     menuList.indonesiaTitle = menuList.primaryKey;
+#warning blm diisi
+    menuList.englishTitle = @"";
     menuList.sort = 0;
     menuList.menuType = kMenuTypeSubmenu;
     
@@ -875,6 +913,8 @@
     submenu.imageName = @"ListPengajuanApplikasiSubmenuIcon";
     submenu.primaryKey = kSubmenuSaranPengaduan;
     submenu.indonesiaTitle = submenu.primaryKey;
+#warning blm diisi
+    submenu.englishTitle = @"";
     submenu.sort = 2;
     submenu.menuType = kMenuTypeFormSaranPengaduan;
     submenu.borderColor = @"F26F21";
@@ -887,6 +927,8 @@
     submenu.imageName = @"HistorySubmenuIcon";
     submenu.primaryKey = kSubmenuHistorySaranPengaduan;
     submenu.indonesiaTitle = submenu.primaryKey;
+#warning blm diisi
+    submenu.englishTitle = @"";
     submenu.sort = 2;
     submenu.menuType = kMenuTypeList;
     submenu.borderColor = @"33691E";
@@ -897,6 +939,8 @@
     menuList.imageName = @"";
     menuList.primaryKey = kSubmenuListSaranPengaduan;
     menuList.indonesiaTitle = menuList.primaryKey;
+#warning blm diisi
+    menuList.englishTitle = @"";
     menuList.sort = 0;
     menuList.menuType = kMenuTypeSubmenu;
     
@@ -920,6 +964,8 @@
     submenu.imageName = @"ListPengajuanApplikasiSubmenuIcon";
     submenu.primaryKey = kSubmenuCustomerGetCustomer;
     submenu.indonesiaTitle = submenu.primaryKey;
+#warning blm diisi
+    submenu.englishTitle = @"";
     submenu.sort = 2;
     submenu.menuType = kMenuTypeFormCustomerGetCustomer;
     submenu.borderColor = @"F26F21";
@@ -932,6 +978,8 @@
     submenu.imageName = @"HistorySubmenuIcon";
     submenu.primaryKey = kSubmenuHistoryCustomerGetCustomer;
     submenu.indonesiaTitle = submenu.primaryKey;
+#warning blm diisi
+    submenu.englishTitle = @"";
     submenu.sort = 2;
     submenu.menuType = kMenuTypeList;
     submenu.borderColor = @"33691E";
@@ -942,6 +990,8 @@
     menuList.imageName = @"";
     menuList.primaryKey = kSubmenuListCustomerGetCustomer;
     menuList.indonesiaTitle = menuList.primaryKey;
+#warning blm diisi
+    menuList.englishTitle = @"";
     menuList.sort = 0;
     menuList.menuType = kMenuTypeSubmenu;
     
