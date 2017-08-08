@@ -125,13 +125,13 @@
 
 //new
 + (void)loadValueFrom:(NSDictionary *)dictionary on:(XLFormViewController *)formViewController partialUpdate:(NSArray *)fields{
-    for (XLFormSectionDescriptor *section in formViewController.form.formSections) {
+    [formViewController.form.formSections enumerateObjectsUsingBlock:^(XLFormSectionDescriptor *section, NSUInteger idx, BOOL *stop) {
         [self loadValueFrom:dictionary to:section on:formViewController partialUpdate:fields];
-    }
+    }];
 }
 
 + (void)loadValueFrom:(NSDictionary *)dictionary to:(XLFormSectionDescriptor *)section on:(XLFormViewController *)formViewController partialUpdate:(NSArray *)fields{
-    for (XLFormRowDescriptor *row in section.formRows) {
+    [section.formRows enumerateObjectsUsingBlock:^(XLFormRowDescriptor *row, NSUInteger idx, BOOL *stop) {
         id value;
         if ([dictionary objectForKey:row.tag] && (fields.count == 0 || [fields containsObject:row.tag])){
             value = [dictionary objectForKey:row.tag];
@@ -151,7 +151,7 @@
             
             [formViewController reloadFormRow:row];
         }
-    }
+    }];
 }
 
 
@@ -167,7 +167,7 @@
         // Section
         XLFormSectionDescriptor *section = [XLFormSectionDescriptor formSection];
         section.title = formSection.title;
-        section.hidden = @(formSection.hidden);
+        if (formSection.hidden.length > 0) section.hidden = formSection.hidden;
         [formDescriptor addFormSection:section];
         
         // Row

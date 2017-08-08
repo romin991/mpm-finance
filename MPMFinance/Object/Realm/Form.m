@@ -341,6 +341,7 @@
     //===
     section = [[FormSection alloc] init];
     section.title = @"Data Pekerjaan Sebelumnya";
+    section.hidden = [NSString stringWithFormat:@"$lamaBekerjaDalamBulan.integerValue > 3"];
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Pendapatan per bulan" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Perusahaan" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Status Pekerjaan Sebelumnya" :@"" :@"getStatusPekerjaan"]];
@@ -352,6 +353,7 @@
     //===
     section = [[FormSection alloc] init];
     section.title = @"Wiraswasta";
+    section.hidden = [NSString stringWithFormat:@"$jenisPekerjaan.value.valueData != 47"];
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Tahun1" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Bulan1" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Omzet1" :@"" :@""]];
@@ -376,6 +378,7 @@
     //===
     section = [[FormSection alloc] init];
     section.title = @"PNS / Karyawan Swasta";
+    section.hidden = [NSString stringWithFormat:@"$jenisPekerjaan.value.valueData != 48"];
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Gaji Pokok" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Tunjangan Tetap" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Intensif" :@"" :@""]];

@@ -136,6 +136,7 @@
     __block NSError *weakError;
     NSString *idCabang = [self.valueDictionary objectForKey:@"kodeCabang"] ?: @"";
     NSString *idProduct = [self.valueDictionary objectForKey:@"produk"] ?: @"";
+    NSString *sumberAplikasi = [self.valueDictionary objectForKey:@"sumberAplikasi"] ?: @"";
     
     if ([self.title isEqualToString:@"Data Keluarga"]) {
         NSInteger familyCount = ((NSArray *)[self.valueDictionary objectForKey:@"dataKeluarga"]).count;
@@ -144,7 +145,7 @@
         }
     }
     
-    for (XLFormSectionDescriptor *section in self.form.formSections) {
+    for (XLFormSectionDescriptor *section in self.form.formSections) {        
         for (XLFormRowDescriptor *row in section.formRows) {
             if ([row.tag isEqualToString:@"submit"]){
                 row.action.formSelector = @selector(saveButtonClicked:);
@@ -154,6 +155,14 @@
             }
             if ([row.tag isEqualToString:@"hapusDataKeluarga"]){
                 row.action.formSelector = @selector(deleteFamilyButtonClicked:);
+            }
+            
+            if ([row.tag isEqualToString:@"kodeCabang"]) {
+                if ([sumberAplikasi integerValue] == 2) {
+                    row.title = @"Nama KP";
+                } else if ([sumberAplikasi integerValue] == 1){
+                    row.title = @"Kode Cabang";
+                }
             }
             
             //Data Aplikasi
@@ -765,6 +774,23 @@
                 NSLog(@"%@", exception);
             }
         }];
+    }
+    
+    if ([formRow.tag isEqualToString:@"sumberAplikasi"]) {
+        NSInteger newValueInteger = [((XLFormOptionsObject *)newValue).formValue integerValue];
+        if (newValueInteger == 2) {
+            XLFormRowDescriptor *row = [self.form formRowWithTag:@"kodeCabang"];
+            row.title = @"Nama KP";
+            [self reloadFormRow:row];
+        } else if (newValueInteger == 1){
+            XLFormRowDescriptor *row = [self.form formRowWithTag:@"kodeCabang"];
+            row.title = @"Kode Cabang";
+            [self reloadFormRow:row];
+        }
+    }
+    
+    if ([formRow.tag isEqualToString:@"jenisPekerjaan"] || [formRow.tag isEqualToString:@"lamaBekerjaDalamBulan"]) {
+        [self.form forceEvaluate];
     }
 }
 
