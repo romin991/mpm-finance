@@ -21,10 +21,11 @@
     [manager POST:[NSString stringWithFormat:@"%@/datamap/detail",kApiUrl] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"statusCode"] isEqual:@200]) {
             NSDictionary *data = responseObject[@"data"];
-            NSDictionary *dictionary;
+            NSMutableDictionary *dictionary;
             @try {
                 
-                dictionary = @{@"id" : @([data[@"id"] integerValue]),
+                dictionary = [NSMutableDictionary dictionaryWithDictionary:@{
+                               @"id" : @([data[@"id"] integerValue]),
                                @"idPengajuan" : @([data[@"id_pengajuan"] integerValue]),
                                @"sumberAplikasi" : @([data[@"sumber_aplikasi"] integerValue]),
                                @"tujuanPembiayaan" : @([data[@"tujuan_pembiayaan"] integerValue]),
@@ -121,12 +122,6 @@
                                @"kecamatanKantorPasangan" : data[@"alamat_kantor_pasangan_kecamatan"],
                                @"kotaKantorPasangan" : data[@"alamat_kantor_pasangan_kota"],
                                
-                               //Data Keluarga
-//                               @"nama" : data[@""],
-//                               @"nomorIndukKependudukan" : data[@""],
-//                               @"tanggalLahir" : data[@""],
-//                               @"hubunganDenganPemohon" : @([data[@""] integerValue]),
-                               
                                @"caraPembiayaan" : data[@"cara_pembayaran"],
                                @"jumlahAset" : data[@"jml_asset"],
                                @"pokokHutang" : data[@"pokok_hutang"],
@@ -186,7 +181,18 @@
                                
                                @"namaKepalaCabang" : data[@"nama_branch_marketing"],
                                @"namaMarketing" : data[@"nama_marketing"],
-                               };
+                               }];
+                
+                NSMutableArray *families = [NSMutableArray array];
+                for (id familyData in data[@"data_keluarga"]) {
+                    [families addObject:@{@"nama" : familyData[@"nama"],
+                                          @"nomorIndukKependudukan" : familyData[@"no_kk"],
+                                          @"tanggalLahir" : familyData[@"tgl_lahir_keluarga"],
+                                          @"hubunganDenganPemohon" : familyData[@"hubungan"],
+                                          }];
+                }
+                
+                [dictionary setObject:families forKey:@"dataKeluarga"];
             } @catch (NSException *exception) {
                 NSLog(@"%@", exception);
             } @finally {
@@ -381,6 +387,17 @@
            @"nama_marketing" : [dictionary objectForKey:@"namaMarketing"] ?: @"",
            
            }];
+        
+        NSMutableArray *families = [NSMutableArray array];
+        for (id familyData in dictionary[@"dataKeluarga"]) {
+            [families addObject:@{@"nama" : familyData[@"nama"],
+                                  @"no_kk" : familyData[@"nomorIndukKependudukan"],
+                                  @"tgl_lahir_keluarga" : familyData[@"tanggalLahir"],
+                                  @"hubungan" : familyData[@"hubunganDenganPemohon"],
+                                  }];
+        }
+        
+        [dataDictionary setObject:families forKey:@"data_keluarga"];
         
         [param setObject:dataDictionary forKey:@"data"];
         

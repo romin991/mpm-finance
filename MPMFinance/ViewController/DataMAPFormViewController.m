@@ -40,7 +40,16 @@
             weakSelf.form = formDescriptor;
             [weakSelf postProcessFormDescriptorWithCompletion:^(NSError *error) {
                 [weakSelf checkError:error completion:^{
-                    [FormModel loadValueFrom:weakSelf.valueDictionary on:weakSelf partialUpdate:nil];
+                    if ([self.title isEqualToString:@"Data Keluarga"]) {
+                        NSInteger counter = 0;
+                        for (NSDictionary *data in [weakSelf.valueDictionary objectForKey:@"dataKeluarga"]) {
+                            XLFormSectionDescriptor *section = [self.form formSectionAtIndex:counter];
+                            counter += 1;
+                            [FormModel loadValueFrom:data to:section on:weakSelf partialUpdate:nil];
+                        }
+                    } else {
+                        [FormModel loadValueFrom:weakSelf.valueDictionary on:weakSelf partialUpdate:nil];
+                    }
                     [SVProgressHUD dismiss];
                 }];
             }];
@@ -73,18 +82,53 @@
     //else
     //popup error
     
-    [FormModel saveValueFrom:self.form to:self.valueDictionary];
+    if ([self.title isEqualToString:@"Data Keluarga"]) {
+        NSMutableArray *familyArray = [NSMutableArray array];
+        for (XLFormSectionDescriptor *section in self.form.formSections) {
+            if ([section.title isEqualToString:@"Data Keluarga"]) {
+                NSMutableDictionary *familyDictionary = [NSMutableDictionary dictionary];
+                [FormModel saveValueFromSection:section to:familyDictionary];
+                [familyArray addObject:familyDictionary];
+            }
+        }
+        [self.valueDictionary setObject:familyArray forKey:@"dataKeluarga"];
+        
+    } else {
+        [FormModel saveValueFrom:self.form to:self.valueDictionary];
+    }
+    
     [SVProgressHUD show];
     __block typeof(self) weakSelf = self;
     [DataMAPModel postDataMAPWithDictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
-        [weakSelf checkError:error completion:^{
+        if (error) {
+            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+            [SVProgressHUD dismissWithDelay:1.5 completion:nil];
+        } else {
             [SVProgressHUD dismiss];
-            if (self.delegate) [self.delegate saveDictionary:self.valueDictionary];
-            [self.navigationController popViewControllerAnimated:YES];
-        }];
+            if (weakSelf.delegate) [weakSelf.delegate saveDictionary:weakSelf.valueDictionary];
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+        };
     }];
 }
 
+- (void)addFamilyButtonClicked:(id)sender{
+    XLFormSectionDescriptor *section = [self.form formSectionAtIndex:0];
+    XLFormSectionDescriptor *newSection = [XLFormSectionDescriptor formSectionWithTitle:section.title];
+    for (XLFormRowDescriptor *row in section.formRows) {
+        XLFormRowDescriptor *newRow = [XLFormRowDescriptor formRowDescriptorWithTag:row.tag rowType:row.rowType title:row.title];
+        newRow.required = row.required;
+        newRow.disabled = row.disabled;
+        newRow.hidden = row.hidden;
+        newRow.selectorTitle = row.selectorTitle;
+        newRow.selectorOptions = row.selectorOptions;
+        [newSection addFormRow:newRow];
+    }
+    [self.form addFormSection:newSection atIndex:self.form.formSections.count -2];
+}
+
+- (void)deleteFamilyButtonClicked:(id)sender{
+    [self.form removeFormSectionAtIndex:self.form.formSections.count - 3];
+}
 
 - (void)postProcessFormDescriptorWithCompletion:(void(^)(NSError *error))block{
     __block dispatch_group_t group = dispatch_group_create();
@@ -93,10 +137,23 @@
     NSString *idCabang = [self.valueDictionary objectForKey:@"kodeCabang"] ?: @"";
     NSString *idProduct = [self.valueDictionary objectForKey:@"produk"] ?: @"";
     
+    if ([self.title isEqualToString:@"Data Keluarga"]) {
+        NSInteger familyCount = ((NSArray *)[self.valueDictionary objectForKey:@"dataKeluarga"]).count;
+        for (int i = 1; i < familyCount; i++){
+            [self addFamilyButtonClicked:nil];
+        }
+    }
+    
     for (XLFormSectionDescriptor *section in self.form.formSections) {
         for (XLFormRowDescriptor *row in section.formRows) {
             if ([row.tag isEqualToString:@"submit"]){
                 row.action.formSelector = @selector(saveButtonClicked:);
+            }
+            if ([row.tag isEqualToString:@"tambahDataKeluarga"]){
+                row.action.formSelector = @selector(addFamilyButtonClicked:);
+            }
+            if ([row.tag isEqualToString:@"hapusDataKeluarga"]){
+                row.action.formSelector = @selector(deleteFamilyButtonClicked:);
             }
             
             //Data Aplikasi

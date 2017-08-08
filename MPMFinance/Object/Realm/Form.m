@@ -408,7 +408,7 @@
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Kartu Kredit atau Kontrak 1" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Pinjaman Tempat Lain 2" :@"" :@"getPinjamantempatlain"]];
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Kartu Kredit atau Kontrak 2" :@"" :@""]];
-     
+    
     [form.sections addObject:section];
     
     //===
@@ -490,6 +490,14 @@
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Induk Kependudukan" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeDateInline:@"Tanggal Lahir" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Hubungan dengan Pemohon" :@"" :@"getHubunganKeluarga"]];
+    [form.sections addObject:section];
+    
+    //===
+    section = [[FormSection alloc] init];
+    section.title = @"";
+    [section.rows addObject:[FormRow new:realm :0 :NO :NO :XLFormRowDescriptorTypeButton :@"Tambah Data Keluarga" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :0 :NO :NO :XLFormRowDescriptorTypeButton :@"Hapus Data Keluarga" :@"" :@""]];
+    
     [form.sections addObject:section];
     
     //===
