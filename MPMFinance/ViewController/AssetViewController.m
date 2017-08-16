@@ -9,6 +9,7 @@
 #import "AssetViewController.h"
 #import "Asset.h"
 #import "DropdownModel.h"
+#import "FormViewController.h"
 
 @interface AssetViewController ()
 
@@ -30,14 +31,12 @@
     self.assets = [NSArray array];
     
     XLFormDescriptor *form = self.rowDescriptor.sectionDescriptor.formDescriptor;
+    FormViewController *formViewController = (FormViewController *)form.delegate;
+    NSDictionary *valueDictionary = formViewController.valueDictionary;
+    self.idCabang = [valueDictionary objectForKey:@"cabang"];
+    
     for (XLFormSectionDescriptor *section in form.formSections) {
         for (XLFormRowDescriptor *row in section.formRows) {
-            if ([row.tag isEqualToString:@"cabang"]){
-                if (row.value) {
-                    self.idCabang = ((XLFormOptionsObject *) row.value).formValue;
-                } 
-            }
-            
             if ([row.tag isEqualToString:@"tipeProduk"]){
                 if (row.value) {
                     self.idProduct = ((XLFormOptionsObject *) row.value).formValue;

@@ -33,7 +33,6 @@
     } else {
         [self setTitle:self.menu.title];
     }
-    [self setRightBarButton];
     
     if (self.list) {
         [self fetchData];
@@ -55,30 +54,6 @@
             [SVProgressHUD dismissWithDelay:1.5 completion:^{
                 [self.navigationController popViewControllerAnimated:YES];
             }];
-        }
-    }];
-}
-
-- (void)setRightBarButton{
-    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Submit"
-                                                                          style:UIBarButtonItemStylePlain
-                                                                         target:self
-                                                                         action:@selector(submitButtonClicked:)];
-    [self.navigationItem setRightBarButtonItem:barButtonItem];
-}
-
-- (void)submitButtonClicked:(id)sender{
-    //call API, then ...
-    [SVProgressHUD show];
-    [DataMAPModel postDataMAPWithList:self.list dictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
-        if (error == nil) {
-            if (dictionary) {
-                
-            }
-            [SVProgressHUD dismiss];
-        } else {
-            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
-            [SVProgressHUD dismissWithDelay:1.5];
         }
     }];
 }

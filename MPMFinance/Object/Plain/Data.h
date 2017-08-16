@@ -12,5 +12,6 @@
 
 @property NSInteger id;
 @property NSString *value;
+@property NSString *name;
 
 @end

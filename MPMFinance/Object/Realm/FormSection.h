@@ -13,6 +13,7 @@
 
 @property NSString *title;
 @property NSInteger sort;
+@property NSString *hidden;
 
 @property RLMArray<FormRow> *rows;
 
