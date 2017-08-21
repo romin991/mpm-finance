@@ -37,6 +37,7 @@
 		482652881EFBFA050002A606 /* NewCarFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 482652861EFBFA050002A606 /* NewCarFormViewController.m */; };
 		482652891EFBFA050002A606 /* NewCarFormViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 482652871EFBFA050002A606 /* NewCarFormViewController.xib */; };
 		4826528F1EFC02390002A606 /* MarketingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4826528E1EFC02390002A606 /* MarketingModel.m */; };
+		4828B5B21F4AE1B50071E5FA /* CustomerGetCustomerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4828B5B11F4AE1B50071E5FA /* CustomerGetCustomerModel.m */; };
 		4831CD1F1EDE97A6001EF223 /* SubmenuCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4831CD1D1EDE97A6001EF223 /* SubmenuCollectionViewController.m */; };
 		4831CD201EDE97A6001EF223 /* SubmenuCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4831CD1E1EDE97A6001EF223 /* SubmenuCollectionViewController.xib */; };
 		4831CD271EDE97D7001EF223 /* SubmenuCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4831CD251EDE97D7001EF223 /* SubmenuCollectionViewCell.m */; };
@@ -175,6 +176,8 @@
 		482652871EFBFA050002A606 /* NewCarFormViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NewCarFormViewController.xib; path = ViewController/NewCarFormViewController.xib; sourceTree = "<group>"; };
 		4826528D1EFC02390002A606 /* MarketingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MarketingModel.h; path = Model/MarketingModel.h; sourceTree = "<group>"; };
 		4826528E1EFC02390002A606 /* MarketingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MarketingModel.m; path = Model/MarketingModel.m; sourceTree = "<group>"; };
+		4828B5B01F4AE1B50071E5FA /* CustomerGetCustomerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomerGetCustomerModel.h; path = Model/CustomerGetCustomerModel.h; sourceTree = "<group>"; };
+		4828B5B11F4AE1B50071E5FA /* CustomerGetCustomerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomerGetCustomerModel.m; path = Model/CustomerGetCustomerModel.m; sourceTree = "<group>"; };
 		4831CD1C1EDE97A6001EF223 /* SubmenuCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SubmenuCollectionViewController.h; path = ViewController/SubmenuCollectionViewController.h; sourceTree = "<group>"; };
 		4831CD1D1EDE97A6001EF223 /* SubmenuCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SubmenuCollectionViewController.m; path = ViewController/SubmenuCollectionViewController.m; sourceTree = "<group>"; };
 		4831CD1E1EDE97A6001EF223 /* SubmenuCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SubmenuCollectionViewController.xib; path = ViewController/SubmenuCollectionViewController.xib; sourceTree = "<group>"; };
@@ -656,6 +659,8 @@
 				484ADB1F1F0CE3C10006BCB0 /* IntakeBPKBModel.m */,
 				484ADB211F0CEDCE0006BCB0 /* SuggestionComplaintModel.h */,
 				484ADB221F0CEDCE0006BCB0 /* SuggestionComplaintModel.m */,
+				4828B5B01F4AE1B50071E5FA /* CustomerGetCustomerModel.h */,
+				4828B5B11F4AE1B50071E5FA /* CustomerGetCustomerModel.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -1044,6 +1049,7 @@
 				484ADB201F0CE3C10006BCB0 /* IntakeBPKBModel.m in Sources */,
 				5C9DB2361EC3312200FC0CC9 /* MPMGlobal.m in Sources */,
 				4866A89A1ECD8B2200A89E98 /* FloatLabeledTextFieldCell.m in Sources */,
+				4828B5B21F4AE1B50071E5FA /* CustomerGetCustomerModel.m in Sources */,
 				481C42861F00EF29007D5C3C /* WorkOrderListTableViewCell.m in Sources */,
 				483F39251EC3085E00C03253 /* AppDelegate.m in Sources */,
 				481C42811F00EE23007D5C3C /* WorkOrderListViewController.m in Sources */,

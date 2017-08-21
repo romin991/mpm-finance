@@ -12,5 +12,6 @@
 
 //mpmapi/topup
 + (void)getTopUpDataWithAgreementNo:(NSString *)agreementNo completion:(void(^)(NSDictionary *dictionary, NSError *error))block;
++ (void)postTopUpWithDictionary:(NSDictionary *)dictionary completion:(void(^)(NSDictionary *dictionary, NSError *error))block;
 
 @end

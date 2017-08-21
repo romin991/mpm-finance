@@ -36,7 +36,7 @@ extern NSString *const kMenuListSurvey;
 extern NSString *const kMenuDashboard;
 extern NSString *const kMenuContactUs;
 extern NSString *const kMenuProduct;
-extern NSString *const kMenuPengajuanKembali;
+extern NSString *const kMenuTopUp;
 extern NSString *const kMenuHistoryTransaksi;
 extern NSString *const kMenuLegalisirFCBPKB;
 extern NSString *const kMenuKlaimAsuransi;
@@ -53,6 +53,7 @@ extern NSString *const kSubmenuListMAP;
 extern NSString *const kSubmenuListMarketing;
 extern NSString *const kSubmenuListSurvey;
 extern NSString *const kSubmenuListWorkOrderHistory;
+extern NSString *const kSubmenuListTopUp;
 extern NSString *const kSubmenuListLegalisirBPKB;
 extern NSString *const kSubmenuListKlaimAsuransi;
 extern NSString *const kSubmenuListPengambilanBPKB;
@@ -79,8 +80,8 @@ extern NSString *const kSubmenuCreditSimulationProperty;
 extern NSString *const kSubmenuCreditSimulationUsedCar;
 extern NSString *const kSubmenuCreditSimulationNewCar;
 
-extern NSString *const kSubmenuNewSubmissions;
 extern NSString *const kSubmenuTopUp;
+extern NSString *const kSubmenuHistoryTopUp;
 
 extern NSString *const kSubmenuLegalizationBPKB;
 extern NSString *const kSubmenuHistoryBPKB;

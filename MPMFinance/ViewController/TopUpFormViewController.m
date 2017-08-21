@@ -11,6 +11,7 @@
 #import "Form.h"
 #import "CustomerModel.h"
 #import "TopUpModel.h"
+#import "FloatLabeledTextFieldCell.h"
 
 @interface TopUpFormViewController ()
 
@@ -97,6 +98,12 @@
     row2.action.formSelector = @selector(submitNow:);
     [section3 addFormRow:row2];
     
+    //Set keyboard type to numberPad
+    XLFormRowDescriptor *hargaKisaran = [self.form formRowWithTag:@"hargaKisaran"];
+    if ([[hargaKisaran cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+        [(FloatLabeledTextFieldCell *)[hargaKisaran cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
+    }
+    
     self.form = formDescriptor;
 }
 
@@ -105,7 +112,33 @@
 - (void)submitNow:(XLFormRowDescriptor *)row{
     NSLog(@"submitNow called");
     [self deselectFormRow:row];
-    [FormModel saveValueFrom:self.form to:self.valueDictionary];
+    
+    NSArray *errors = [self formValidationErrors];
+    if (errors.count) {
+        [SVProgressHUD showErrorWithStatus:((NSError *)errors.firstObject).localizedDescription];
+        [SVProgressHUD dismissWithDelay:1.5];
+        
+    } else {
+        [SVProgressHUD show];
+        [FormModel saveValueFrom:self.form to:self.valueDictionary];
+        [TopUpModel postTopUpWithDictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
+            if (error) {
+                NSString *errorMessage = error.localizedDescription;
+                @try {
+                    NSDictionary *responseObject = [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:NSJSONReadingAllowFragments error:nil];
+                    errorMessage = [responseObject objectForKey:@"message"];
+                } @catch (NSException *exception) {
+                    NSLog(@"%@", exception);
+                } @finally {
+                    [SVProgressHUD showErrorWithStatus:errorMessage];
+                    [SVProgressHUD dismissWithDelay:1.5];
+                }
+            } else {
+                [SVProgressHUD dismiss];
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        }];
+    }
     
     //call api here
 }
@@ -128,6 +161,27 @@
                 [SVProgressHUD dismissWithDelay:1.5];
             }
         }];
+    }
+    
+    if (newValue != nil && ![newValue isKindOfClass:NSNull.class] && [formRow.tag isEqualToString:@"hargaKisaran"]){
+        XLFormRowDescriptor *outstanding = [self.form formRowWithTag:@"outstanding"];
+        XLFormRowDescriptor *row = [self.form formRowWithTag:@"jumlahYangDiterima"];
+        NSInteger value = 0;
+        @try {
+            value = [newValue integerValue] - [outstanding.value integerValue];
+            if (value < 0) {
+                [SVProgressHUD showErrorWithStatus:@"Harga kisaran harus lebih besar daripada outstanding"];
+                [SVProgressHUD dismissWithDelay:1.5];
+            }
+            
+        } @catch (NSException *exception) {
+            NSLog(@"%@", exception);
+            
+        } @finally {
+            row.value = @(value > 0 ? value : 0);
+            [self reloadFormRow:row];
+            
+        }
     }
 }
 

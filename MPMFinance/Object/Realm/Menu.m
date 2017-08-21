@@ -514,7 +514,7 @@
     menu.imageName = @"pengajuanKembaliIcon";
     menu.backgroundImageName = @"OnlineSubmissionBackground";
     menu.circleIconImageName = @"OnlineSubmissionCircleIcon";
-    menu.primaryKey = kMenuPengajuanKembali;
+    menu.primaryKey = kMenuTopUp;
     menu.indonesiaTitle = menu.primaryKey;
     menu.englishTitle = @"Online Submission";
     menu.sort = 20;
@@ -522,8 +522,8 @@
     menu.isRootMenu = YES;
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
-    [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuNewSubmissions]];
     [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuTopUp]];
+    [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuHistoryTopUp]];
     [realm addObject:menu];
     
 //=====================================================================================================
@@ -729,20 +729,6 @@
 
 //==SubmissionBack================================================================================
     submenu = [[Menu alloc] init];
-    submenu.imageName = @"ListPengajuanApplikasiSubmenuIcon";
-    submenu.primaryKey = kSubmenuNewSubmissions;
-    submenu.indonesiaTitle = submenu.primaryKey;
-#warning blm diisi
-    submenu.englishTitle = @"";
-    submenu.sort = 2;
-    submenu.menuType = kMenuTypeFormWorkOrder;
-    submenu.borderColor = @"F26F21";
-    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
-    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
-    [realm addObject:submenu];
-    
-    //===========
-    submenu = [[Menu alloc] init];
     submenu.imageName = @"pengajuanKembaliIcon";
     submenu.primaryKey = kSubmenuTopUp;
     submenu.indonesiaTitle = submenu.primaryKey;
@@ -752,6 +738,43 @@
     submenu.borderColor = @"0091EA";
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [realm addObject:submenu];
+    
+    //==========
+    submenu = [[Menu alloc] init];
+    submenu.imageName = @"HistorySubmenuIcon";
+    submenu.primaryKey = kSubmenuHistoryTopUp;
+    submenu.indonesiaTitle = submenu.primaryKey;
+#warning blm diisi
+    submenu.englishTitle = @"";
+    submenu.sort = 2;
+    submenu.menuType = kMenuTypeList;
+    submenu.borderColor = @"33691E";
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    
+    Menu *menuList = [[Menu alloc] init];
+    menuList.imageName = @"";
+    menuList.primaryKey = kSubmenuListTopUp;
+    menuList.indonesiaTitle = menuList.primaryKey;
+#warning blm diisi
+    menuList.englishTitle = @"";
+    menuList.sort = 0;
+    menuList.menuType = kMenuTypeSubmenu;
+    
+    Action *action = [[Action alloc] init];
+    action.name = @"Get List Top Up";
+    action.methodName = @""; //topup/getall
+    action.actionType = kActionTypeAPICall;
+    [action.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
+    [action.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    
+    [menuList.dataSources addObject:action];
+    
+    [menuList.roles addObjects:submenu.roles];
+    [menuList.submenus addObject:[Menu objectForPrimaryKey:kSubmenuTopUp]];
+    
+    [submenu.submenus addObject:menuList];
     [realm addObject:submenu];
     
 //==Legalisir BPKB===========================================================================================
@@ -781,7 +804,7 @@
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     
-    Menu *menuList = [[Menu alloc] init];
+    menuList = [[Menu alloc] init];
     menuList.imageName = @"";
     menuList.primaryKey = kSubmenuListLegalisirBPKB;
     menuList.indonesiaTitle = menuList.primaryKey;
@@ -790,7 +813,7 @@
     menuList.sort = 0;
     menuList.menuType = kMenuTypeSubmenu;
     
-    Action *action = [[Action alloc] init];
+    action = [[Action alloc] init];
     action.name = @"Get List Legalisir BPKB";
     action.methodName = @""; //bpkb/legalisir/getall
     action.actionType = kActionTypeAPICall;
