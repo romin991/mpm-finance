@@ -72,16 +72,16 @@
     NSMutableDictionary *dataDictionary = [NSMutableDictionary dictionary];
     @try {
         [dataDictionary addEntriesFromDictionary:
-         @{@"noKontrak" : [dictionary objectForKey:@"id"] ?: @"",
-           @"hotline" : [dictionary objectForKey:@"id"] ?: @"",
-           @"asuransi" : [dictionary objectForKey:@"id"] ?: @"",
-           @"tglKejadian" : [dictionary objectForKey:@"id"] ?: @"",
-           @"lokasi" : [dictionary objectForKey:@"id"] ?: @"",
-           @"kronologiKejadian" : [dictionary objectForKey:@"id"] ?: @"",
-           @"noPlat" : [dictionary objectForKey:@"id"] ?: @"",
-           @"nama" : [dictionary objectForKey:@"id"] ?: @"",
-           @"insco" : [dictionary objectForKey:@"id"] ?: @"",
-           @"jnsKlaim" : [dictionary objectForKey:@"id"] ?: @"",
+         @{@"noKontrak" : [dictionary objectForKey:@"noKontrak"] ?: @"",
+           @"hotline" : [dictionary objectForKey:@"hotline"] ?: @"",
+           @"asuransi" : [dictionary objectForKey:@"asuransi"] ?: @"-",
+           @"tglKejadian" : [dictionary objectForKey:@"tanggalKejadian"] ?: @"",
+           @"lokasi" : [dictionary objectForKey:@"lokasi"] ?: @"",
+           @"kronologiKejadian" : [dictionary objectForKey:@"kronologisKecelakaan"] ?: @"",
+           @"noPlat" : [dictionary objectForKey:@"nomorPlat"] ?: @"",
+           @"nama" : [dictionary objectForKey:@"nama"] ?: @"",
+           @"insco" : [dictionary objectForKey:@"insco"] ?: @"",
+           @"jnsKlaim" : [dictionary objectForKey:@"claim"] ?: @"",
            }];
         
         [param setObject:dataDictionary forKey:@"data"];

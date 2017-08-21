@@ -115,7 +115,33 @@
 - (void)submitNow:(XLFormRowDescriptor *)row{
     NSLog(@"submitNow called");
     [self deselectFormRow:row];
-    [FormModel saveValueFrom:self.form to:self.valueDictionary];
+    
+    NSArray *errors = [self formValidationErrors];
+    if (errors.count) {
+        [SVProgressHUD showErrorWithStatus:((NSError *)errors.firstObject).localizedDescription];
+        [SVProgressHUD dismissWithDelay:1.5];
+        
+    } else {
+        [SVProgressHUD show];
+        [FormModel saveValueFrom:self.form to:self.valueDictionary];
+        [InsuranceModel postInsuranceWithDictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
+            if (error) {
+                NSString *errorMessage = error.localizedDescription;
+                @try {
+                    NSDictionary *responseObject = [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:NSJSONReadingAllowFragments error:nil];
+                    errorMessage = [responseObject objectForKey:@"message"];
+                } @catch (NSException *exception) {
+                    NSLog(@"%@", exception);
+                } @finally {
+                    [SVProgressHUD showErrorWithStatus:errorMessage];
+                    [SVProgressHUD dismissWithDelay:1.5];
+                }
+            } else {
+                [SVProgressHUD dismiss];
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        }];
+    }
     
     //call api here
 }
