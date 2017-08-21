@@ -42,7 +42,7 @@
         if (error) {
             NSString *errorMessage = error.localizedDescription;
             @try {
-                NSDictionary *responseObject = [error userInfo][AFNetworkingOperationFailingURLResponseDataErrorKey];
+                NSDictionary *responseObject = [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:NSJSONReadingAllowFragments error:nil];
                 errorMessage = [responseObject objectForKey:@"message"];
             } @catch (NSException *exception) {
                 NSLog(@"%@", exception);
@@ -108,7 +108,7 @@
                 if (error) {
                     NSString *errorMessage = error.localizedDescription;
                     @try {
-                        NSDictionary *responseObject = [NSJSONSerialization JSONObjectWithData:[error userInfo][AFNetworkingOperationFailingURLResponseDataErrorKey] options:NSJSONReadingAllowFragments error:nil];
+                        NSDictionary *responseObject = [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:NSJSONReadingAllowFragments error:nil];
                         NSString *message = [responseObject objectForKey:@"message"];
                         errorMessage = [message componentsSeparatedByString:@" | "][1];
                     } @catch (NSException *exception) {

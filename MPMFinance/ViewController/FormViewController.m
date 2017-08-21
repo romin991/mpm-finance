@@ -155,8 +155,16 @@
         [FormModel saveValueFrom:self.form to:self.valueDictionary];
         [WorkOrderModel postDraftWorkOrder:self.list dictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
             if (error) {
-                [SVProgressHUD showErrorWithStatus:((NSError *)errors.firstObject).localizedDescription];
-                [SVProgressHUD dismissWithDelay:1.5];
+                NSString *errorMessage = error.localizedDescription;
+                @try {
+                    NSDictionary *responseObject = [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:NSJSONReadingAllowFragments error:nil];
+                    errorMessage = [responseObject objectForKey:@"message"];
+                } @catch (NSException *exception) {
+                    NSLog(@"%@", exception);
+                } @finally {
+                    [SVProgressHUD showErrorWithStatus:errorMessage];
+                    [SVProgressHUD dismissWithDelay:1.5];
+                }
             } else {
                 [SVProgressHUD dismiss];
                 FormViewController *nextFormViewController = [[FormViewController alloc] init];
