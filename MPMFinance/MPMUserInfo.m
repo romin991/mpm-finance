@@ -29,14 +29,21 @@
 +(NSDictionary *)getUserInfo{
     NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"userInfo"];
     NSDictionary *dictionary = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-    return dictionary[@"customerProfile"];
+    if (!dictionary) {
+        return nil;
+    }
+    else
+        return dictionary[@"customerProfile"];
 }
 
 + (NSString *)getToken{
     NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"userInfo"];
     NSDictionary *dictionary = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-    NSLog(@"%@",dictionary[@"token"]);
-    return dictionary[@"token"];
+    if (!dictionary) {
+        return @"";
+    }
+    else
+        return dictionary[@"token"];
     
 }
 

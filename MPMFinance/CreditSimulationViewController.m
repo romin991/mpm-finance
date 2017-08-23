@@ -8,7 +8,7 @@
 
 #import "CreditSimulationViewController.h"
 
-@interface CreditSimulationViewController ()
+@interface CreditSimulationViewController ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *txtHarga;
 @property (weak, nonatomic) IBOutlet UITextField *txtLamaPembiayaan;
 @property (weak, nonatomic) IBOutlet UITextField *txtUangMuka; // nilai pembiayaan di dahsyat2w dan 4w
@@ -18,6 +18,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lblTotalBayarAwal;
 @property (weak, nonatomic) IBOutlet UILabel *lblDP;
+@property NSNumber *harga;
 @property (weak, nonatomic) IBOutlet UILabel *lblAngsuran;
 @end
 
@@ -43,6 +44,34 @@
         self.txtTotalBayarAwal.enabled = NO;
         self.txtAngsuran.enabled = NO;
     }
+    
+    self.txtHarga.delegate = self;
+}
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    // Create the decimal style formatter
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    [formatter setMaximumFractionDigits:10];
+    
+    // Combine the new text with the old; then remove any
+    // commas from the textField before formatting
+    NSString *combinedText = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    NSString *numberWithoutCommas = [combinedText stringByReplacingOccurrencesOfString:@"," withString:@""];
+    NSNumber *number = [formatter numberFromString:numberWithoutCommas];
+    
+    NSString *formattedString = [formatter stringFromNumber:number];
+    
+    // If the last entry was a decimal or a zero after a decimal,
+    // re-add it here because the formatter will naturally remove
+    // it.
+    if ([string isEqualToString:@"."] &&
+        range.location == textField.text.length) {
+        formattedString = [formattedString stringByAppendingString:@"."];
+    }
+    
+    _harga = number;
+    textField.text = formattedString;
+    return NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,25 +85,25 @@
     if ([self.menuType isEqualToString:kSubmenuCreditSimulationNewBike]) {
         urlString = [NSString stringWithFormat:@"%@/simulation/newbike",kApiUrl];
         param = @{@"lamaPembiayaan" : self.txtLamaPembiayaan.text,
-                  @"hargaKendaraan" : self.txtHarga.text};
+                  @"hargaKendaraan" : _harga};
     }
     else if ([self.menuType isEqualToString:kSubmenuCreditSimulationNewCar] || [self.menuType isEqualToString:kSubmenuCreditSimulationUsedCar]) {
         urlString = [NSString stringWithFormat:@"%@/simulation/mycar",kApiUrl];
         param = @{@"jenisKendaraan" : self.menuType,
                   @"lamaPembiayaan" : self.txtLamaPembiayaan.text,
-                  @"hargaKendaraan" : self.txtHarga.text};
+                  @"hargaKendaraan" : _harga};
     }
     else if ([self.menuType isEqualToString:kSubmenuCreditSimulationDahsyat2W]) {
         urlString = [NSString stringWithFormat:@"%@/simulation/dahsyat2w",kApiUrl];
         param = @{@"nilaiPencairan" : self.txtUangMuka.text,
                   @"lamaPembiayaan" : self.txtLamaPembiayaan.text,
-                  @"hargaKendaraan" : self.txtHarga.text};
+                  @"hargaKendaraan" : _harga};
     }
     else if ([self.menuType isEqualToString:kSubmenuCreditSimulationDahsyat4W]) {
         urlString = [NSString stringWithFormat:@"%@/simulation/dahsyat4w",kApiUrl];
         param = @{@"nilaiPencairan" : self.txtUangMuka.text,
                   @"lamaPembiayaan" : self.txtLamaPembiayaan.text,
-                  @"hargaKendaraan" : self.txtHarga.text};
+                  @"hargaKendaraan" : _harga};
     }
     else if ([self.menuType isEqualToString:kSubmenuCreditSimulationProperty]) {
         urlString = [NSString stringWithFormat:@"%@/simulation/property",kApiUrl];

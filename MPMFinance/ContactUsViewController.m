@@ -120,17 +120,21 @@
 {
     AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
     NSDictionary* param = @{@"data" : @{@"kodeCabang" : cabangID},
-                            @"token" : [MPMUserInfo getToken],
-                            @"userid" : [MPMUserInfo getUserInfo][@"id"]};
+                            @"token" : [MPMUserInfo getToken]? [MPMUserInfo getToken] : @"",
+                            @"userid" : [MPMUserInfo getUserInfo]?  [MPMUserInfo getUserInfo][@"id"] : @"0"};
     [manager POST:[NSString stringWithFormat:@"%@/cabang/detail",kApiUrl] parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
         ;
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        self.lblEmail.text = responseObject[@"data"][@"email"];
-        self.lblNamaCabang.text = responseObject[@"data"][@"namaCabang"];
-        self.lblAlamat.text = responseObject[@"data"][@"address"];
-        self.lblKodePos.text = responseObject[@"data"][@"kodePos"];
-        self.lblNomorTelpon.text = responseObject[@"data"][@"telp"];
-        [self reloadMapsWithLat:responseObject[@"data"][@"lat"] andLon:responseObject[@"data"][@"lng"]];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.lblEmail.text = responseObject[@"data"][@"email"];
+            self.lblNamaCabang.text = responseObject[@"data"][@"namaCabang"];
+            self.lblAlamat.text = responseObject[@"data"][@"address"];
+            self.lblKodePos.text = responseObject[@"data"][@"kodePos"];
+            self.lblNomorTelpon.text = responseObject[@"data"][@"telp"];
+            [self reloadMapsWithLat:responseObject[@"data"][@"lat"] andLon:responseObject[@"data"][@"lng"]];
+            [self.view endEditing:YES];
+        });
+        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         ;
     }];
