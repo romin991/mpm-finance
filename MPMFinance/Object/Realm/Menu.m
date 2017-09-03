@@ -748,33 +748,10 @@
 #warning blm diisi
     submenu.englishTitle = @"";
     submenu.sort = 2;
-    submenu.menuType = kMenuTypeList;
+    submenu.menuType = kMenuTypeListTopUp;
     submenu.borderColor = @"33691E";
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
-    
-    Menu *menuList = [[Menu alloc] init];
-    menuList.imageName = @"";
-    menuList.primaryKey = kSubmenuListTopUp;
-    menuList.indonesiaTitle = menuList.primaryKey;
-#warning blm diisi
-    menuList.englishTitle = @"";
-    menuList.sort = 0;
-    menuList.menuType = kMenuTypeSubmenu;
-    
-    Action *action = [[Action alloc] init];
-    action.name = @"Get List Top Up";
-    action.methodName = @""; //topup/getall
-    action.actionType = kActionTypeAPICall;
-    [action.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
-    [action.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
-    
-    [menuList.dataSources addObject:action];
-    
-    [menuList.roles addObjects:submenu.roles];
-    [menuList.submenus addObject:[Menu objectForPrimaryKey:kSubmenuTopUp]];
-    
-    [submenu.submenus addObject:menuList];
     [realm addObject:submenu];
     
 //==Legalisir BPKB===========================================================================================
@@ -804,7 +781,7 @@
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     
-    menuList = [[Menu alloc] init];
+    Menu *menuList = [[Menu alloc] init];
     menuList.imageName = @"";
     menuList.primaryKey = kSubmenuListLegalisirBPKB;
     menuList.indonesiaTitle = menuList.primaryKey;
@@ -813,7 +790,7 @@
     menuList.sort = 0;
     menuList.menuType = kMenuTypeSubmenu;
     
-    action = [[Action alloc] init];
+    Action *action = [[Action alloc] init];
     action.name = @"Get List Legalisir BPKB";
     action.methodName = @""; //bpkb/legalisir/getall
     action.actionType = kActionTypeAPICall;

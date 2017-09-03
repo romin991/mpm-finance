@@ -107,6 +107,12 @@
     row3.action.formSelector = @selector(submitNow:);
     [section3 addFormRow:row3];
     
+    //set minimum date today
+    XLFormRowDescriptor *dateRow = [self.form formRowWithTag:@"tanggalKejadian"];
+    if ([[dateRow cellForFormController:self] isKindOfClass:XLFormDateCell.class]){
+        [(XLFormDateCell *)[dateRow cellForFormController:self] setMaximumDate:[NSDate date]];
+    }
+    
     self.form = formDescriptor;
 }
 

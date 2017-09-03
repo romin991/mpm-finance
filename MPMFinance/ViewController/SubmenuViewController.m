@@ -24,6 +24,8 @@
 #import "AssignMarketingListViewController.h"
 #import "CustomerGetCustomerFormViewController.h"
 
+#import "TopUpHistoryTableViewController.h"
+
 @interface SubmenuViewController ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *banner;
@@ -146,6 +148,11 @@
         CustomerGetCustomerFormViewController *customerGetCustomerFormViewController = [[CustomerGetCustomerFormViewController alloc] init];
         customerGetCustomerFormViewController.menu = submenu;
         [self.navigationController pushViewController:customerGetCustomerFormViewController animated:YES];
+        
+    } else if ([submenu.menuType isEqualToString:kMenuTypeListTopUp]){
+        TopUpHistoryTableViewController *viewController = [[TopUpHistoryTableViewController alloc] init];
+        viewController.menu = submenu;
+        [self.navigationController pushViewController:viewController animated:YES];
         
     }
 }

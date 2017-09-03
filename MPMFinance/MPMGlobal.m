@@ -110,6 +110,14 @@ NSString *const kMenuTypeFormPengambilanBPKB = @"PengambilanBPKB";
 NSString *const kMenuTypeFormSaranPengaduan = @"SaranPengaduan";
 NSString *const kMenuTypeFormCustomerGetCustomer = @"CustomerGetCustomer";
 NSString *const kMenuTypeCreditSimulation = @"Credit Simulation";
+
+NSString *const kMenuTypeListTopUp = @"List TopUp";
+NSString *const kMenuTypeListLegalizationBPKB = @"List LegalizationBPKB";
+NSString *const kMenuTypeListnsuranceClaim = @"List InsuranceClaim";
+NSString *const kMenuTypeListPengambilanBPKB = @"List PengambilanBPKB";
+NSString *const kMenuTypeListSaranPengaduan = @"List SaranPengaduan";
+NSString *const kMenuTypeListCustomerGetCustomer = @"List CustomerGetCustomer";
+
 NSString *const kMenuTypeContactUs = @"Contact Us";
 NSString *const kMenuTypeHistory = @"History";
 NSString *const kMenuTypeAcceleratedRepayment = @"AcceleratedRepayment";
