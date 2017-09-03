@@ -12,5 +12,6 @@
 
 //mpmapi/pengambilanbpkb
 + (void)getIntakeBPKBDataWithAgreementNo:(NSString *)agreementNo completion:(void(^)(NSDictionary *dictionary, NSError *error))block;
++ (void)getListIntakeBPKBCompletion:(void(^)(NSArray *responses, NSError *error))block;
 
 @end

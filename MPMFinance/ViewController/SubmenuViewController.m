@@ -25,6 +25,11 @@
 #import "CustomerGetCustomerFormViewController.h"
 
 #import "TopUpHistoryTableViewController.h"
+#import "LegalizationBPKBTableViewController.h"
+#import "InsuranceClaimTableViewController.h"
+#import "IntakeBPKBTableViewController.h"
+#import "SuggestionComplaintTableViewController.h"
+#import "CustomerGetCustomerTableViewController.h"
 
 @interface SubmenuViewController ()
 
@@ -151,6 +156,36 @@
         
     } else if ([submenu.menuType isEqualToString:kMenuTypeListTopUp]){
         TopUpHistoryTableViewController *viewController = [[TopUpHistoryTableViewController alloc] init];
+        viewController.menu = submenu;
+        [self.navigationController pushViewController:viewController animated:YES];
+        
+    } else if ([submenu.menuType isEqualToString:kMenuTypeListTopUp]){
+        TopUpHistoryTableViewController *viewController = [[TopUpHistoryTableViewController alloc] init];
+        viewController.menu = submenu;
+        [self.navigationController pushViewController:viewController animated:YES];
+        
+    } else if ([submenu.menuType isEqualToString:kMenuTypeListLegalizationBPKB]){
+        LegalizationBPKBTableViewController *viewController = [[LegalizationBPKBTableViewController alloc] init];
+        viewController.menu = submenu;
+        [self.navigationController pushViewController:viewController animated:YES];
+        
+    } else if ([submenu.menuType isEqualToString:kMenuTypeListInsuranceClaim]){
+        InsuranceClaimTableViewController *viewController = [[InsuranceClaimTableViewController alloc] init];
+        viewController.menu = submenu;
+        [self.navigationController pushViewController:viewController animated:YES];
+        
+    } else if ([submenu.menuType isEqualToString:kMenuTypeListPengambilanBPKB]){
+        IntakeBPKBTableViewController *viewController = [[IntakeBPKBTableViewController alloc] init];
+        viewController.menu = submenu;
+        [self.navigationController pushViewController:viewController animated:YES];
+        
+    } else if ([submenu.menuType isEqualToString:kMenuTypeListSaranPengaduan]){
+        SuggestionComplaintTableViewController *viewController = [[SuggestionComplaintTableViewController alloc] init];
+        viewController.menu = submenu;
+        [self.navigationController pushViewController:viewController animated:YES];
+        
+    } else if ([submenu.menuType isEqualToString:kMenuTypeListCustomerGetCustomer]){
+        CustomerGetCustomerTableViewController *viewController = [[CustomerGetCustomerTableViewController alloc] init];
         viewController.menu = submenu;
         [self.navigationController pushViewController:viewController animated:YES];
         

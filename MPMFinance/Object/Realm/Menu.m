@@ -776,34 +776,10 @@
 #warning blm diisi
     submenu.englishTitle = @"";
     submenu.sort = 2;
-    submenu.menuType = kMenuTypeList;
+    submenu.menuType = kMenuTypeListLegalizationBPKB;
     submenu.borderColor = @"33691E";
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
-    
-    Menu *menuList = [[Menu alloc] init];
-    menuList.imageName = @"";
-    menuList.primaryKey = kSubmenuListLegalisirBPKB;
-    menuList.indonesiaTitle = menuList.primaryKey;
-#warning blm diisi
-    submenu.englishTitle = @"";
-    menuList.sort = 0;
-    menuList.menuType = kMenuTypeSubmenu;
-    
-    Action *action = [[Action alloc] init];
-    action.name = @"Get List Legalisir BPKB";
-    action.methodName = @""; //bpkb/legalisir/getall
-    action.actionType = kActionTypeAPICall;
-    [action.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
-    [action.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
-    
-    [menuList.dataSources addObject:action];
-    
-    [menuList.roles addObjects:submenu.roles];
-    [menuList.submenus addObject:[Menu objectForPrimaryKey:kSubmenuLegalizationBPKB]];
-    
-    [submenu.submenus addObject:menuList];
-    
     [realm addObject:submenu];
     
 //==Insurance Claim===========================================================================================
@@ -828,33 +804,10 @@
 #warning blm diisi
     submenu.englishTitle = @"";
     submenu.sort = 2;
-    submenu.menuType = kMenuTypeList;
+    submenu.menuType = kMenuTypeListInsuranceClaim;
     submenu.borderColor = @"33691E";
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
-    
-    menuList = [[Menu alloc] init];
-    menuList.imageName = @"";
-    menuList.primaryKey = kSubmenuListKlaimAsuransi;
-    menuList.indonesiaTitle = menuList.primaryKey;
-#warning blm diisi
-    submenu.englishTitle = @"";
-    menuList.sort = 0;
-    menuList.menuType = kMenuTypeSubmenu;
-    
-    action = [[Action alloc] init];
-    action.name = @"Get List Insurance";
-    action.methodName = @""; //klaimasuransi/getall
-    action.actionType = kActionTypeAPICall;
-    [action.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
-    [action.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
-    
-    [menuList.dataSources addObject:action];
-    
-    [menuList.roles addObjects:submenu.roles];
-    [menuList.submenus addObject:[Menu objectForPrimaryKey:kSubmenuInsuranceClaimForm]];
-    
-    [submenu.submenus addObject:menuList];
     [realm addObject:submenu];
     
 //==Pengambilan BPKB=========================================================================================
@@ -879,33 +832,10 @@
 #warning blm diisi
     submenu.englishTitle = @"";
     submenu.sort = 2;
-    submenu.menuType = kMenuTypeList;
+    submenu.menuType = kMenuTypeListPengambilanBPKB;
     submenu.borderColor = @"33691E";
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
-    
-    menuList = [[Menu alloc] init];
-    menuList.imageName = @"";
-    menuList.primaryKey = kSubmenuListPengambilanBPKB;
-    menuList.indonesiaTitle = menuList.primaryKey;
-#warning blm diisi
-    menuList.englishTitle = @"";
-    menuList.sort = 0;
-    menuList.menuType = kMenuTypeSubmenu;
-    
-    action = [[Action alloc] init];
-    action.name = @"Get List Pengambilan BPKB";
-    action.methodName = @""; //bpkb/pengambilan/getall
-    action.actionType = kActionTypeAPICall;
-    [action.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
-    [action.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
-    
-    [menuList.dataSources addObject:action];
-    
-    [menuList.roles addObjects:submenu.roles];
-    [menuList.submenus addObject:[Menu objectForPrimaryKey:kSubmenuPengambilanBPKB]];
-    
-    [submenu.submenus addObject:menuList];
     [realm addObject:submenu];
     
 //==Saran dan Pengaduan ===================================================================================
@@ -930,33 +860,10 @@
 #warning blm diisi
     submenu.englishTitle = @"";
     submenu.sort = 2;
-    submenu.menuType = kMenuTypeList;
+    submenu.menuType = kMenuTypeListSaranPengaduan;
     submenu.borderColor = @"33691E";
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
-    
-    menuList = [[Menu alloc] init];
-    menuList.imageName = @"";
-    menuList.primaryKey = kSubmenuListSaranPengaduan;
-    menuList.indonesiaTitle = menuList.primaryKey;
-#warning blm diisi
-    menuList.englishTitle = @"";
-    menuList.sort = 0;
-    menuList.menuType = kMenuTypeSubmenu;
-    
-    action = [[Action alloc] init];
-    action.name = @"Get List Saran dan Pengaduan";
-    action.methodName = @""; //complain/saran/getall
-    action.actionType = kActionTypeAPICall;
-    [action.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
-    [action.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
-    
-    [menuList.dataSources addObject:action];
-    
-    [menuList.roles addObjects:submenu.roles];
-    [menuList.submenus addObject:[Menu objectForPrimaryKey:kSubmenuSaranPengaduan]];
-    
-    [submenu.submenus addObject:menuList];
     [realm addObject:submenu];
     
 //==Customer get customer ===============================================================================
@@ -981,33 +888,10 @@
 #warning blm diisi
     submenu.englishTitle = @"";
     submenu.sort = 2;
-    submenu.menuType = kMenuTypeList;
+    submenu.menuType = kMenuTypeListCustomerGetCustomer;
     submenu.borderColor = @"33691E";
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
-    
-    menuList = [[Menu alloc] init];
-    menuList.imageName = @"";
-    menuList.primaryKey = kSubmenuListCustomerGetCustomer;
-    menuList.indonesiaTitle = menuList.primaryKey;
-#warning blm diisi
-    menuList.englishTitle = @"";
-    menuList.sort = 0;
-    menuList.menuType = kMenuTypeSubmenu;
-    
-    action = [[Action alloc] init];
-    action.name = @"Get List Customer Get Customer";
-    action.methodName = @""; //customergetcustomer/getall
-    action.actionType = kActionTypeAPICall;
-    [action.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
-    [action.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
-    
-    [menuList.dataSources addObject:action];
-    
-    [menuList.roles addObjects:submenu.roles];
-    [menuList.submenus addObject:[Menu objectForPrimaryKey:kSubmenuCustomerGetCustomer]];
-    
-    [submenu.submenus addObject:menuList];
     [realm addObject:submenu];
 }
 

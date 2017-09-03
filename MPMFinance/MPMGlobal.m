@@ -113,7 +113,7 @@ NSString *const kMenuTypeCreditSimulation = @"Credit Simulation";
 
 NSString *const kMenuTypeListTopUp = @"List TopUp";
 NSString *const kMenuTypeListLegalizationBPKB = @"List LegalizationBPKB";
-NSString *const kMenuTypeListnsuranceClaim = @"List InsuranceClaim";
+NSString *const kMenuTypeListInsuranceClaim = @"List InsuranceClaim";
 NSString *const kMenuTypeListPengambilanBPKB = @"List PengambilanBPKB";
 NSString *const kMenuTypeListSaranPengaduan = @"List SaranPengaduan";
 NSString *const kMenuTypeListCustomerGetCustomer = @"List CustomerGetCustomer";

@@ -13,5 +13,6 @@
 //mpmapi/pengambilanbpkb
 + (void)getLegalizationBPKBDataWithAgreementNo:(NSString *)agreementNo completion:(void(^)(NSDictionary *dictionary, NSError *error))block;
 + (void)postLegalizationBPKBWithDictionary:(NSDictionary *)dictionary completion:(void(^)(NSDictionary *dictionary, NSError *error))block;
++ (void)getListLegalizationBPKBCompletion:(void(^)(NSArray *responses, NSError *error))block;
 
 @end

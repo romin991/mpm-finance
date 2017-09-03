@@ -13,5 +13,6 @@
 //mpmapi/isuranceinfo
 + (void)getInsuranceDataWithClaim:(NSString *)claim agreementNo:(NSString *)agreementNo completion:(void(^)(NSDictionary *dictionary, NSError *error))block;
 + (void)postInsuranceWithDictionary:(NSDictionary *)dictionary completion:(void(^)(NSDictionary *dictionary, NSError *error))block;
++ (void)getListInsuranceCompletion:(void(^)(NSArray *responses, NSError *error))block;
 
 @end

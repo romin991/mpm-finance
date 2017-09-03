@@ -11,5 +11,6 @@
 @interface CustomerGetCustomerModel : NSObject
 
 + (void)postCustomerGetCustomerWithDictionary:(NSDictionary *)dictionary completion:(void(^)(NSDictionary *dictionary, NSError *error))block;
++ (void)getListCustomerGetCustomerCompletion:(void(^)(NSArray *responses, NSError *error))block;
 
 @end

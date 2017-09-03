@@ -60,4 +60,36 @@
     }
 }
 
++ (void)getListIntakeBPKBCompletion:(void(^)(NSArray *responses, NSError *error))block{
+    AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
+    NSDictionary* param = @{@"userid" : [MPMUserInfo getUserInfo][@"userId"],
+                            @"token" : [MPMUserInfo getToken],
+                            };
+    
+    [manager POST:[NSString stringWithFormat:@"%@/bpkb/pengambilan/getall",kApiUrl] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        @try {
+            NSInteger code = [[responseObject objectForKey:@"statusCode"] integerValue];
+            NSString *message = [responseObject objectForKey:@"message"];
+            if (code == 200) {
+                NSArray *datas = responseObject[@"data"];
+                if (block) block(datas, nil);
+                
+            } else {
+                if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                          code:code
+                                                      userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(message, nil)}]);
+            }
+            
+        } @catch (NSException *exception) {
+            NSLog(@"%@", exception);
+            if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                      code:1
+                                                  userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(exception.reason, nil)}]);
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (block) block(nil, error);
+    }];
+}
+
 @end

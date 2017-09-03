@@ -34,6 +34,28 @@
 		4825BF931F5C338100D091AC /* TopUpHistoryTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4825BF911F5C338100D091AC /* TopUpHistoryTableViewController.xib */; };
 		4825BF9A1F5C34CE00D091AC /* TopUpTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4825BF981F5C34CE00D091AC /* TopUpTableViewCell.m */; };
 		4825BF9B1F5C34CE00D091AC /* TopUpTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4825BF991F5C34CE00D091AC /* TopUpTableViewCell.xib */; };
+		4825BF9F1F5C3EAF00D091AC /* LegalizationBPKBTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4825BF9D1F5C3EAF00D091AC /* LegalizationBPKBTableViewCell.m */; };
+		4825BFA01F5C3EAF00D091AC /* LegalizationBPKBTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4825BF9E1F5C3EAF00D091AC /* LegalizationBPKBTableViewCell.xib */; };
+		4825BFA41F5C3EC100D091AC /* InsuranceClaimTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4825BFA21F5C3EC100D091AC /* InsuranceClaimTableViewCell.m */; };
+		4825BFA51F5C3EC100D091AC /* InsuranceClaimTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4825BFA31F5C3EC100D091AC /* InsuranceClaimTableViewCell.xib */; };
+		4825BFAE1F5C3EED00D091AC /* IntakeBPKBTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4825BFAC1F5C3EED00D091AC /* IntakeBPKBTableViewCell.m */; };
+		4825BFAF1F5C3EED00D091AC /* IntakeBPKBTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4825BFAD1F5C3EED00D091AC /* IntakeBPKBTableViewCell.xib */; };
+		4825BFB81F5C3F4800D091AC /* CustomerGetCustomerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4825BFB61F5C3F4800D091AC /* CustomerGetCustomerTableViewCell.m */; };
+		4825BFB91F5C3F4800D091AC /* CustomerGetCustomerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4825BFB71F5C3F4800D091AC /* CustomerGetCustomerTableViewCell.xib */; };
+		4825BFBD1F5C3F6800D091AC /* LegalizationBPKBTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4825BFBB1F5C3F6800D091AC /* LegalizationBPKBTableViewController.m */; };
+		4825BFBE1F5C3F6800D091AC /* LegalizationBPKBTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4825BFBC1F5C3F6800D091AC /* LegalizationBPKBTableViewController.xib */; };
+		4825BFC21F5C3F7B00D091AC /* InsuranceClaimTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4825BFC01F5C3F7B00D091AC /* InsuranceClaimTableViewController.m */; };
+		4825BFC31F5C3F7B00D091AC /* InsuranceClaimTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4825BFC11F5C3F7B00D091AC /* InsuranceClaimTableViewController.xib */; };
+		4825BFC71F5C3F8F00D091AC /* IntakeBPKBTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4825BFC51F5C3F8F00D091AC /* IntakeBPKBTableViewController.m */; };
+		4825BFC81F5C3F8F00D091AC /* IntakeBPKBTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4825BFC61F5C3F8F00D091AC /* IntakeBPKBTableViewController.xib */; };
+		4825BFCC1F5C3FAB00D091AC /* SuggestionComplaintTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4825BFCA1F5C3FAB00D091AC /* SuggestionComplaintTableViewController.m */; };
+		4825BFCD1F5C3FAB00D091AC /* SuggestionComplaintTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4825BFCB1F5C3FAB00D091AC /* SuggestionComplaintTableViewController.xib */; };
+		4825BFD11F5C3FCE00D091AC /* CustomerGetCustomerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4825BFCF1F5C3FCE00D091AC /* CustomerGetCustomerTableViewController.m */; };
+		4825BFD21F5C3FCE00D091AC /* CustomerGetCustomerTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4825BFD01F5C3FCE00D091AC /* CustomerGetCustomerTableViewController.xib */; };
+		4825BFD61F5C44C800D091AC /* SuggestionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4825BFD41F5C44C800D091AC /* SuggestionTableViewCell.m */; };
+		4825BFD71F5C44C800D091AC /* SuggestionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4825BFD51F5C44C800D091AC /* SuggestionTableViewCell.xib */; };
+		4825BFDB1F5C44DE00D091AC /* ComplainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4825BFD91F5C44DE00D091AC /* ComplainTableViewCell.m */; };
+		4825BFDC1F5C44DE00D091AC /* ComplainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4825BFDA1F5C44DE00D091AC /* ComplainTableViewCell.xib */; };
 		482652761EFBB8BB0002A606 /* DahsyatFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 482652741EFBB8BA0002A606 /* DahsyatFormViewController.m */; };
 		482652771EFBB8BB0002A606 /* DahsyatFormViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 482652751EFBB8BA0002A606 /* DahsyatFormViewController.xib */; };
 		4826527A1EFBC7100002A606 /* FormSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 482652791EFBC7100002A606 /* FormSection.m */; };
@@ -176,6 +198,39 @@
 		4825BF971F5C34CE00D091AC /* TopUpTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TopUpTableViewCell.h; path = ViewController/TopUpTableViewCell.h; sourceTree = "<group>"; };
 		4825BF981F5C34CE00D091AC /* TopUpTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TopUpTableViewCell.m; path = ViewController/TopUpTableViewCell.m; sourceTree = "<group>"; };
 		4825BF991F5C34CE00D091AC /* TopUpTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TopUpTableViewCell.xib; path = ViewController/TopUpTableViewCell.xib; sourceTree = "<group>"; };
+		4825BF9C1F5C3EAF00D091AC /* LegalizationBPKBTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LegalizationBPKBTableViewCell.h; path = ViewController/LegalizationBPKBTableViewCell.h; sourceTree = "<group>"; };
+		4825BF9D1F5C3EAF00D091AC /* LegalizationBPKBTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LegalizationBPKBTableViewCell.m; path = ViewController/LegalizationBPKBTableViewCell.m; sourceTree = "<group>"; };
+		4825BF9E1F5C3EAF00D091AC /* LegalizationBPKBTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LegalizationBPKBTableViewCell.xib; path = ViewController/LegalizationBPKBTableViewCell.xib; sourceTree = "<group>"; };
+		4825BFA11F5C3EC100D091AC /* InsuranceClaimTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InsuranceClaimTableViewCell.h; path = ViewController/InsuranceClaimTableViewCell.h; sourceTree = "<group>"; };
+		4825BFA21F5C3EC100D091AC /* InsuranceClaimTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InsuranceClaimTableViewCell.m; path = ViewController/InsuranceClaimTableViewCell.m; sourceTree = "<group>"; };
+		4825BFA31F5C3EC100D091AC /* InsuranceClaimTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InsuranceClaimTableViewCell.xib; path = ViewController/InsuranceClaimTableViewCell.xib; sourceTree = "<group>"; };
+		4825BFAB1F5C3EED00D091AC /* IntakeBPKBTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IntakeBPKBTableViewCell.h; path = ViewController/IntakeBPKBTableViewCell.h; sourceTree = "<group>"; };
+		4825BFAC1F5C3EED00D091AC /* IntakeBPKBTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IntakeBPKBTableViewCell.m; path = ViewController/IntakeBPKBTableViewCell.m; sourceTree = "<group>"; };
+		4825BFAD1F5C3EED00D091AC /* IntakeBPKBTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IntakeBPKBTableViewCell.xib; path = ViewController/IntakeBPKBTableViewCell.xib; sourceTree = "<group>"; };
+		4825BFB51F5C3F4800D091AC /* CustomerGetCustomerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomerGetCustomerTableViewCell.h; path = ViewController/CustomerGetCustomerTableViewCell.h; sourceTree = "<group>"; };
+		4825BFB61F5C3F4800D091AC /* CustomerGetCustomerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomerGetCustomerTableViewCell.m; path = ViewController/CustomerGetCustomerTableViewCell.m; sourceTree = "<group>"; };
+		4825BFB71F5C3F4800D091AC /* CustomerGetCustomerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomerGetCustomerTableViewCell.xib; path = ViewController/CustomerGetCustomerTableViewCell.xib; sourceTree = "<group>"; };
+		4825BFBA1F5C3F6800D091AC /* LegalizationBPKBTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LegalizationBPKBTableViewController.h; path = ViewController/LegalizationBPKBTableViewController.h; sourceTree = "<group>"; };
+		4825BFBB1F5C3F6800D091AC /* LegalizationBPKBTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LegalizationBPKBTableViewController.m; path = ViewController/LegalizationBPKBTableViewController.m; sourceTree = "<group>"; };
+		4825BFBC1F5C3F6800D091AC /* LegalizationBPKBTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LegalizationBPKBTableViewController.xib; path = ViewController/LegalizationBPKBTableViewController.xib; sourceTree = "<group>"; };
+		4825BFBF1F5C3F7B00D091AC /* InsuranceClaimTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InsuranceClaimTableViewController.h; path = ViewController/InsuranceClaimTableViewController.h; sourceTree = "<group>"; };
+		4825BFC01F5C3F7B00D091AC /* InsuranceClaimTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InsuranceClaimTableViewController.m; path = ViewController/InsuranceClaimTableViewController.m; sourceTree = "<group>"; };
+		4825BFC11F5C3F7B00D091AC /* InsuranceClaimTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InsuranceClaimTableViewController.xib; path = ViewController/InsuranceClaimTableViewController.xib; sourceTree = "<group>"; };
+		4825BFC41F5C3F8F00D091AC /* IntakeBPKBTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IntakeBPKBTableViewController.h; path = ViewController/IntakeBPKBTableViewController.h; sourceTree = "<group>"; };
+		4825BFC51F5C3F8F00D091AC /* IntakeBPKBTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IntakeBPKBTableViewController.m; path = ViewController/IntakeBPKBTableViewController.m; sourceTree = "<group>"; };
+		4825BFC61F5C3F8F00D091AC /* IntakeBPKBTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IntakeBPKBTableViewController.xib; path = ViewController/IntakeBPKBTableViewController.xib; sourceTree = "<group>"; };
+		4825BFC91F5C3FAB00D091AC /* SuggestionComplaintTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SuggestionComplaintTableViewController.h; path = ViewController/SuggestionComplaintTableViewController.h; sourceTree = "<group>"; };
+		4825BFCA1F5C3FAB00D091AC /* SuggestionComplaintTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SuggestionComplaintTableViewController.m; path = ViewController/SuggestionComplaintTableViewController.m; sourceTree = "<group>"; };
+		4825BFCB1F5C3FAB00D091AC /* SuggestionComplaintTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SuggestionComplaintTableViewController.xib; path = ViewController/SuggestionComplaintTableViewController.xib; sourceTree = "<group>"; };
+		4825BFCE1F5C3FCE00D091AC /* CustomerGetCustomerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomerGetCustomerTableViewController.h; path = ViewController/CustomerGetCustomerTableViewController.h; sourceTree = "<group>"; };
+		4825BFCF1F5C3FCE00D091AC /* CustomerGetCustomerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomerGetCustomerTableViewController.m; path = ViewController/CustomerGetCustomerTableViewController.m; sourceTree = "<group>"; };
+		4825BFD01F5C3FCE00D091AC /* CustomerGetCustomerTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomerGetCustomerTableViewController.xib; path = ViewController/CustomerGetCustomerTableViewController.xib; sourceTree = "<group>"; };
+		4825BFD31F5C44C800D091AC /* SuggestionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SuggestionTableViewCell.h; path = ViewController/SuggestionTableViewCell.h; sourceTree = "<group>"; };
+		4825BFD41F5C44C800D091AC /* SuggestionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SuggestionTableViewCell.m; path = ViewController/SuggestionTableViewCell.m; sourceTree = "<group>"; };
+		4825BFD51F5C44C800D091AC /* SuggestionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SuggestionTableViewCell.xib; path = ViewController/SuggestionTableViewCell.xib; sourceTree = "<group>"; };
+		4825BFD81F5C44DE00D091AC /* ComplainTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComplainTableViewCell.h; path = ViewController/ComplainTableViewCell.h; sourceTree = "<group>"; };
+		4825BFD91F5C44DE00D091AC /* ComplainTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComplainTableViewCell.m; path = ViewController/ComplainTableViewCell.m; sourceTree = "<group>"; };
+		4825BFDA1F5C44DE00D091AC /* ComplainTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ComplainTableViewCell.xib; path = ViewController/ComplainTableViewCell.xib; sourceTree = "<group>"; };
 		482652731EFBB8BA0002A606 /* DahsyatFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DahsyatFormViewController.h; path = ViewController/DahsyatFormViewController.h; sourceTree = "<group>"; };
 		482652741EFBB8BA0002A606 /* DahsyatFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DahsyatFormViewController.m; path = ViewController/DahsyatFormViewController.m; sourceTree = "<group>"; };
 		482652751EFBB8BA0002A606 /* DahsyatFormViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DahsyatFormViewController.xib; path = ViewController/DahsyatFormViewController.xib; sourceTree = "<group>"; };
@@ -398,6 +453,12 @@
 				481C42B21F03BB3B007D5C3C /* CustomerGetCustomerFormViewController.h */,
 				481C42B31F03BB3B007D5C3C /* CustomerGetCustomerFormViewController.m */,
 				481C42B41F03BB3B007D5C3C /* CustomerGetCustomerFormViewController.xib */,
+				4825BFCE1F5C3FCE00D091AC /* CustomerGetCustomerTableViewController.h */,
+				4825BFCF1F5C3FCE00D091AC /* CustomerGetCustomerTableViewController.m */,
+				4825BFD01F5C3FCE00D091AC /* CustomerGetCustomerTableViewController.xib */,
+				4825BFB51F5C3F4800D091AC /* CustomerGetCustomerTableViewCell.h */,
+				4825BFB61F5C3F4800D091AC /* CustomerGetCustomerTableViewCell.m */,
+				4825BFB71F5C3F4800D091AC /* CustomerGetCustomerTableViewCell.xib */,
 			);
 			name = CustomerGetCustomerViewController;
 			sourceTree = "<group>";
@@ -408,6 +469,15 @@
 				481C42AD1F03BB22007D5C3C /* SuggestionComplainFormViewController.h */,
 				481C42AE1F03BB22007D5C3C /* SuggestionComplainFormViewController.m */,
 				481C42AF1F03BB22007D5C3C /* SuggestionComplainFormViewController.xib */,
+				4825BFC91F5C3FAB00D091AC /* SuggestionComplaintTableViewController.h */,
+				4825BFCA1F5C3FAB00D091AC /* SuggestionComplaintTableViewController.m */,
+				4825BFCB1F5C3FAB00D091AC /* SuggestionComplaintTableViewController.xib */,
+				4825BFD31F5C44C800D091AC /* SuggestionTableViewCell.h */,
+				4825BFD41F5C44C800D091AC /* SuggestionTableViewCell.m */,
+				4825BFD51F5C44C800D091AC /* SuggestionTableViewCell.xib */,
+				4825BFD81F5C44DE00D091AC /* ComplainTableViewCell.h */,
+				4825BFD91F5C44DE00D091AC /* ComplainTableViewCell.m */,
+				4825BFDA1F5C44DE00D091AC /* ComplainTableViewCell.xib */,
 			);
 			name = SuggestionComplaintViewController;
 			sourceTree = "<group>";
@@ -418,6 +488,12 @@
 				481C42A81F03BB01007D5C3C /* IntakeBPKBFormViewController.h */,
 				481C42A91F03BB01007D5C3C /* IntakeBPKBFormViewController.m */,
 				481C42AA1F03BB01007D5C3C /* IntakeBPKBFormViewController.xib */,
+				4825BFC41F5C3F8F00D091AC /* IntakeBPKBTableViewController.h */,
+				4825BFC51F5C3F8F00D091AC /* IntakeBPKBTableViewController.m */,
+				4825BFC61F5C3F8F00D091AC /* IntakeBPKBTableViewController.xib */,
+				4825BFAB1F5C3EED00D091AC /* IntakeBPKBTableViewCell.h */,
+				4825BFAC1F5C3EED00D091AC /* IntakeBPKBTableViewCell.m */,
+				4825BFAD1F5C3EED00D091AC /* IntakeBPKBTableViewCell.xib */,
 			);
 			name = IntakeBPKBViewController;
 			sourceTree = "<group>";
@@ -438,6 +514,12 @@
 				481C429E1F03BAD0007D5C3C /* InsuranceClaimFormViewController.h */,
 				481C429F1F03BAD0007D5C3C /* InsuranceClaimFormViewController.m */,
 				481C42A01F03BAD0007D5C3C /* InsuranceClaimFormViewController.xib */,
+				4825BFBF1F5C3F7B00D091AC /* InsuranceClaimTableViewController.h */,
+				4825BFC01F5C3F7B00D091AC /* InsuranceClaimTableViewController.m */,
+				4825BFC11F5C3F7B00D091AC /* InsuranceClaimTableViewController.xib */,
+				4825BFA11F5C3EC100D091AC /* InsuranceClaimTableViewCell.h */,
+				4825BFA21F5C3EC100D091AC /* InsuranceClaimTableViewCell.m */,
+				4825BFA31F5C3EC100D091AC /* InsuranceClaimTableViewCell.xib */,
 			);
 			name = InsuranceClaimViewController;
 			sourceTree = "<group>";
@@ -448,6 +530,12 @@
 				481C42991F03BABA007D5C3C /* LegalizationBPKBFormViewController.h */,
 				481C429A1F03BABA007D5C3C /* LegalizationBPKBFormViewController.m */,
 				481C429B1F03BABA007D5C3C /* LegalizationBPKBFormViewController.xib */,
+				4825BFBA1F5C3F6800D091AC /* LegalizationBPKBTableViewController.h */,
+				4825BFBB1F5C3F6800D091AC /* LegalizationBPKBTableViewController.m */,
+				4825BFBC1F5C3F6800D091AC /* LegalizationBPKBTableViewController.xib */,
+				4825BF9C1F5C3EAF00D091AC /* LegalizationBPKBTableViewCell.h */,
+				4825BF9D1F5C3EAF00D091AC /* LegalizationBPKBTableViewCell.m */,
+				4825BF9E1F5C3EAF00D091AC /* LegalizationBPKBTableViewCell.xib */,
 			);
 			name = LegalizationBPKBViewController;
 			sourceTree = "<group>";
@@ -949,40 +1037,51 @@
 			files = (
 				483F39301EC3085E00C03253 /* LaunchScreen.storyboard in Resources */,
 				4846E2301EE66A70000C08B7 /* DataMAPFormViewController.xib in Resources */,
+				4825BFD21F5C3FCE00D091AC /* CustomerGetCustomerTableViewController.xib in Resources */,
+				4825BFD71F5C44C800D091AC /* SuggestionTableViewCell.xib in Resources */,
 				483F392D1EC3085E00C03253 /* Assets.xcassets in Resources */,
 				481C42821F00EE23007D5C3C /* WorkOrderListViewController.xib in Resources */,
 				48CDD82D1EC9B1FB0038D626 /* SimpleListViewController.xib in Resources */,
 				48482E6F1EC999B30029ACBE /* ListViewController.xib in Resources */,
 				4825BF9B1F5C34CE00D091AC /* TopUpTableViewCell.xib in Resources */,
+				4825BFC31F5C3F7B00D091AC /* InsuranceClaimTableViewController.xib in Resources */,
 				481C42AC1F03BB01007D5C3C /* IntakeBPKBFormViewController.xib in Resources */,
 				483F392B1EC3085E00C03253 /* Main.storyboard in Resources */,
 				481C42B61F03BB3B007D5C3C /* CustomerGetCustomerFormViewController.xib in Resources */,
+				4825BFAF1F5C3EED00D091AC /* IntakeBPKBTableViewCell.xib in Resources */,
 				482652811EFBF9DA0002A606 /* UsedCarFormViewController.xib in Resources */,
 				4848B1A81F124BFB00C9DE21 /* PostalCodeViewController.xib in Resources */,
 				4849EEE21EC8815000415E4B /* FormViewController.xib in Resources */,
 				484627271F1AED000049A92A /* AssignMarketingTableViewCell.xib in Resources */,
+				4825BFA01F5C3EAF00D091AC /* LegalizationBPKBTableViewCell.xib in Resources */,
 				481C42871F00EF29007D5C3C /* WorkOrderListTableViewCell.xib in Resources */,
 				4848B1B31F1251E700C9DE21 /* PostalCodeTableViewCell.xib in Resources */,
 				5CDC30421EC3E274001D97DB /* GoogleService-Info.plist in Resources */,
 				48CDD8351EC9B3AD0038D626 /* SimpleListTableViewCell.xib in Resources */,
 				481C42B11F03BB22007D5C3C /* SuggestionComplainFormViewController.xib in Resources */,
 				48336A9C1F19111300536771 /* BarcodeViewController.xib in Resources */,
+				4825BFC81F5C3F8F00D091AC /* IntakeBPKBTableViewController.xib in Resources */,
 				4848B1C01F13842600C9DE21 /* AssetViewController.xib in Resources */,
 				48CDD83B1EC9B8A50038D626 /* SubmenuViewController.xib in Resources */,
 				48482E741EC99B230029ACBE /* ListTableViewCell.xib in Resources */,
 				481C429D1F03BABA007D5C3C /* LegalizationBPKBFormViewController.xib in Resources */,
+				4825BFA51F5C3EC100D091AC /* InsuranceClaimTableViewCell.xib in Resources */,
 				4831CD281EDE97D7001EF223 /* SubmenuCollectionViewCell.xib in Resources */,
 				4846271F1F1A0C3B0049A92A /* AssignMarketingListViewController.xib in Resources */,
 				481C42A71F03BAEB007D5C3C /* AcceleratedRepaymentFormViewController.xib in Resources */,
 				4831CD201EDE97A6001EF223 /* SubmenuCollectionViewController.xib in Resources */,
 				482652891EFBFA050002A606 /* NewCarFormViewController.xib in Resources */,
+				4825BFB91F5C3F4800D091AC /* CustomerGetCustomerTableViewCell.xib in Resources */,
 				481C42A21F03BAD0007D5C3C /* InsuranceClaimFormViewController.xib in Resources */,
 				4825BF931F5C338100D091AC /* TopUpHistoryTableViewController.xib in Resources */,
+				4825BFDC1F5C44DE00D091AC /* ComplainTableViewCell.xib in Resources */,
 				48D44D551EE7A42C005FC8DB /* SurveyFormViewController.xib in Resources */,
 				481C42981F03BAA0007D5C3C /* TopUpFormViewController.xib in Resources */,
 				48321E541F20806A007D38A0 /* MarketingWorkOrderListViewController.xib in Resources */,
+				4825BFCD1F5C3FAB00D091AC /* SuggestionComplaintTableViewController.xib in Resources */,
 				48CDD8431EC9BA1A0038D626 /* SubmenuTableViewCell.xib in Resources */,
 				482652771EFBB8BB0002A606 /* DahsyatFormViewController.xib in Resources */,
+				4825BFBE1F5C3F6800D091AC /* LegalizationBPKBTableViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1042,7 +1141,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				481C42BC1F04DF57007D5C3C /* Data.m in Sources */,
+				4825BFA41F5C3EC100D091AC /* InsuranceClaimTableViewCell.m in Sources */,
 				5C9B08F11EC9DB9300B5E9AC /* HistoryViewController.m in Sources */,
+				4825BFB81F5C3F4800D091AC /* CustomerGetCustomerTableViewCell.m in Sources */,
+				4825BFC71F5C3F8F00D091AC /* IntakeBPKBTableViewController.m in Sources */,
 				48D44D581EE83A2F005FC8DB /* SurveyModel.m in Sources */,
 				487F39F91ED678D400D6E580 /* Action.m in Sources */,
 				48D44D4C1EDF8F28005FC8DB /* NSString+MixedCasing.m in Sources */,
@@ -1060,10 +1162,12 @@
 				4842780A1ECABC3000183A60 /* List.m in Sources */,
 				482652801EFBF9DA0002A606 /* UsedCarFormViewController.m in Sources */,
 				484627261F1AED000049A92A /* AssignMarketingTableViewCell.m in Sources */,
+				4825BFCC1F5C3FAB00D091AC /* SuggestionComplaintTableViewController.m in Sources */,
 				48D44D5B1EE846B5005FC8DB /* WorkOrderModel.m in Sources */,
 				483F39281EC3085E00C03253 /* LoginViewController.m in Sources */,
 				4825BF8E1F5C2D3300D091AC /* AcceleratedRepaymentModel.m in Sources */,
 				48321E531F20806A007D38A0 /* MarketingWorkOrderListViewController.m in Sources */,
+				4825BFDB1F5C44DE00D091AC /* ComplainTableViewCell.m in Sources */,
 				5C0138751EE43C9300B9B40B /* ContactUsViewController.m in Sources */,
 				5CF6819C1EC747A60056ACD3 /* KASlideShow.m in Sources */,
 				481C428A1F013784007D5C3C /* DataSource.m in Sources */,
@@ -1075,6 +1179,7 @@
 				4866A89A1ECD8B2200A89E98 /* FloatLabeledTextFieldCell.m in Sources */,
 				4828B5B21F4AE1B50071E5FA /* CustomerGetCustomerModel.m in Sources */,
 				481C42861F00EF29007D5C3C /* WorkOrderListTableViewCell.m in Sources */,
+				4825BFAE1F5C3EED00D091AC /* IntakeBPKBTableViewCell.m in Sources */,
 				483F39251EC3085E00C03253 /* AppDelegate.m in Sources */,
 				481C42811F00EE23007D5C3C /* WorkOrderListViewController.m in Sources */,
 				4848B1BB1F13840700C9DE21 /* AssetValueTransformer.m in Sources */,
@@ -1093,11 +1198,13 @@
 				4848B1BF1F13842600C9DE21 /* AssetViewController.m in Sources */,
 				48F7F4061EC5C931008DB808 /* Role.m in Sources */,
 				5CBC4C771ECC8A67002ED03C /* MyProfileTableViewController.m in Sources */,
+				4825BFC21F5C3F7B00D091AC /* InsuranceClaimTableViewController.m in Sources */,
 				484ADB231F0CEDCE0006BCB0 /* SuggestionComplaintModel.m in Sources */,
 				5C46F5181EE81914009C6AD6 /* KATCircularProgress.m in Sources */,
 				4846271E1F1A0C3B0049A92A /* AssignMarketingListViewController.m in Sources */,
 				4831CD1F1EDE97A6001EF223 /* SubmenuCollectionViewController.m in Sources */,
 				4825BF9A1F5C34CE00D091AC /* TopUpTableViewCell.m in Sources */,
+				4825BFD61F5C44C800D091AC /* SuggestionTableViewCell.m in Sources */,
 				4846E2361EE6E92A000C08B7 /* DropdownModel.m in Sources */,
 				48CDD83A1EC9B8A50038D626 /* SubmenuViewController.m in Sources */,
 				48859A701ECC3FEC006EFDE6 /* FormRow.m in Sources */,
@@ -1113,6 +1220,8 @@
 				4846E22F1EE66A70000C08B7 /* DataMAPFormViewController.m in Sources */,
 				482652761EFBB8BB0002A606 /* DahsyatFormViewController.m in Sources */,
 				4826527A1EFBC7100002A606 /* FormSection.m in Sources */,
+				4825BFD11F5C3FCE00D091AC /* CustomerGetCustomerTableViewController.m in Sources */,
+				4825BF9F1F5C3EAF00D091AC /* LegalizationBPKBTableViewCell.m in Sources */,
 				481C42B51F03BB3B007D5C3C /* CustomerGetCustomerFormViewController.m in Sources */,
 				4886BB081EC4ABF8000F8DBE /* Menu.m in Sources */,
 				4849EEDA1EC8185E00415E4B /* Form.m in Sources */,
@@ -1125,6 +1234,7 @@
 				5C9DB2421EC3393000FC0CC9 /* MPMUserInfo.m in Sources */,
 				5C9B08F21EC9DB9300B5E9AC /* HomeViewController.m in Sources */,
 				481C42971F03BAA0007D5C3C /* TopUpFormViewController.m in Sources */,
+				4825BFBD1F5C3F6800D091AC /* LegalizationBPKBTableViewController.m in Sources */,
 				48D44D4F1EDFD2AF005FC8DB /* ISO8601DateFormatter.m in Sources */,
 				5CCD2A221EF9577D000336AF /* sendOTPViewController.m in Sources */,
 			);
