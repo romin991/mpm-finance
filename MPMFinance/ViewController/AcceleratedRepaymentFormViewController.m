@@ -10,6 +10,7 @@
 #import "FormModel.h"
 #import "Form.h"
 #import "CustomerModel.h"
+#import "AcceleratedRepaymentModel.h"
 
 @interface AcceleratedRepaymentFormViewController ()
 
@@ -97,13 +98,56 @@
 - (void)submitNow:(XLFormRowDescriptor *)row{
     NSLog(@"submitNow called");
     [self deselectFormRow:row];
-    [FormModel saveValueFrom:self.form to:self.valueDictionary];
+    
+    NSArray *errors = [self formValidationErrors];
+    if (errors.count) {
+        [SVProgressHUD showErrorWithStatus:((NSError *)errors.firstObject).localizedDescription];
+        [SVProgressHUD dismissWithDelay:1.5];
+        
+    } else {
+        [SVProgressHUD show];
+        [FormModel saveValueFrom:self.form to:self.valueDictionary];
+        [AcceleratedRepaymentModel postAcceleratedRepaymentWithDictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
+            if (error) {
+                NSString *errorMessage = error.localizedDescription;
+                @try {
+                    NSDictionary *responseObject = [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:NSJSONReadingAllowFragments error:nil];
+                    errorMessage = [responseObject objectForKey:@"message"];
+                } @catch (NSException *exception) {
+                    NSLog(@"%@", exception);
+                } @finally {
+                    [SVProgressHUD showErrorWithStatus:errorMessage];
+                    [SVProgressHUD dismissWithDelay:1.5];
+                }
+            } else {
+                [SVProgressHUD dismiss];
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        }];
+    }
     
     //call api here
 }
 
 - (void)formRowDescriptorValueHasChanged:(XLFormRowDescriptor *)formRow oldValue:(id)oldValue newValue:(id)newValue{    
-
+    if (newValue != nil && ![newValue isKindOfClass:NSNull.class] && [formRow.tag isEqualToString:@"noKontrak"]){
+        [SVProgressHUD show];
+        __block typeof (self) weakSelf = self;
+        NSString *agreementNo = ((XLFormOptionsObject *) newValue).formDisplayText;
+        [AcceleratedRepaymentModel getAcceleratedRepaymentDataWithAgreementNo:agreementNo completion:^(NSDictionary *dictionary, NSError *error) {
+            if (error == nil) {
+                if (dictionary) {
+                    weakSelf.valueDictionary = [NSMutableDictionary dictionaryWithDictionary:dictionary];
+                    [FormModel loadValueFrom:weakSelf.valueDictionary to:weakSelf.form on:weakSelf];
+                }
+                [SVProgressHUD dismiss];
+                
+            } else {
+                [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+                [SVProgressHUD dismissWithDelay:1.5];
+            }
+        }];
+    }
 }
 
 /*

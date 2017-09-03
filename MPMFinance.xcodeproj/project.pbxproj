@@ -29,6 +29,7 @@
 		481C42B91F03EE7D007D5C3C /* CustomerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 481C42B81F03EE7D007D5C3C /* CustomerModel.m */; };
 		481C42BC1F04DF57007D5C3C /* Data.m in Sources */ = {isa = PBXBuildFile; fileRef = 481C42BB1F04DF57007D5C3C /* Data.m */; };
 		481C42BF1F04FDB5007D5C3C /* TopUpModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 481C42BE1F04FDB5007D5C3C /* TopUpModel.m */; };
+		4825BF8E1F5C2D3300D091AC /* AcceleratedRepaymentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4825BF8D1F5C2D3300D091AC /* AcceleratedRepaymentModel.m */; };
 		482652761EFBB8BB0002A606 /* DahsyatFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 482652741EFBB8BA0002A606 /* DahsyatFormViewController.m */; };
 		482652771EFBB8BB0002A606 /* DahsyatFormViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 482652751EFBB8BA0002A606 /* DahsyatFormViewController.xib */; };
 		4826527A1EFBC7100002A606 /* FormSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 482652791EFBC7100002A606 /* FormSection.m */; };
@@ -163,6 +164,8 @@
 		481C42BB1F04DF57007D5C3C /* Data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Data.m; path = Object/Plain/Data.m; sourceTree = "<group>"; };
 		481C42BD1F04FDB5007D5C3C /* TopUpModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TopUpModel.h; path = Model/TopUpModel.h; sourceTree = "<group>"; };
 		481C42BE1F04FDB5007D5C3C /* TopUpModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TopUpModel.m; path = Model/TopUpModel.m; sourceTree = "<group>"; };
+		4825BF8C1F5C2D3300D091AC /* AcceleratedRepaymentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AcceleratedRepaymentModel.h; path = Model/AcceleratedRepaymentModel.h; sourceTree = "<group>"; };
+		4825BF8D1F5C2D3300D091AC /* AcceleratedRepaymentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AcceleratedRepaymentModel.m; path = Model/AcceleratedRepaymentModel.m; sourceTree = "<group>"; };
 		482652731EFBB8BA0002A606 /* DahsyatFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DahsyatFormViewController.h; path = ViewController/DahsyatFormViewController.h; sourceTree = "<group>"; };
 		482652741EFBB8BA0002A606 /* DahsyatFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DahsyatFormViewController.m; path = ViewController/DahsyatFormViewController.m; sourceTree = "<group>"; };
 		482652751EFBB8BA0002A606 /* DahsyatFormViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DahsyatFormViewController.xib; path = ViewController/DahsyatFormViewController.xib; sourceTree = "<group>"; };
@@ -655,6 +658,8 @@
 				483A9D8F1F0BA6060033F714 /* LegalizationBPKBModel.m */,
 				483A9D911F0BAB9F0033F714 /* InsuranceModel.h */,
 				483A9D921F0BAB9F0033F714 /* InsuranceModel.m */,
+				4825BF8C1F5C2D3300D091AC /* AcceleratedRepaymentModel.h */,
+				4825BF8D1F5C2D3300D091AC /* AcceleratedRepaymentModel.m */,
 				484ADB1E1F0CE3C10006BCB0 /* IntakeBPKBModel.h */,
 				484ADB1F1F0CE3C10006BCB0 /* IntakeBPKBModel.m */,
 				484ADB211F0CEDCE0006BCB0 /* SuggestionComplaintModel.h */,
@@ -1039,6 +1044,7 @@
 				484627261F1AED000049A92A /* AssignMarketingTableViewCell.m in Sources */,
 				48D44D5B1EE846B5005FC8DB /* WorkOrderModel.m in Sources */,
 				483F39281EC3085E00C03253 /* LoginViewController.m in Sources */,
+				4825BF8E1F5C2D3300D091AC /* AcceleratedRepaymentModel.m in Sources */,
 				48321E531F20806A007D38A0 /* MarketingWorkOrderListViewController.m in Sources */,
 				5C0138751EE43C9300B9B40B /* ContactUsViewController.m in Sources */,
 				5CF6819C1EC747A60056ACD3 /* KASlideShow.m in Sources */,

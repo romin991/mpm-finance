@@ -422,8 +422,8 @@
 }
 
 + (void)generatePelunasanDipercepatWithRealm:(RLMRealm *)realm{
-    [FormRow new:realm :27 :0 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama"];
-    [FormRow new:realm :27 :1 :YES :XLFormRowDescriptorTypeDatePicker :@"Tanggal Pelunasan"];
+    [[FormRow new:realm :27 :0 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama"] setDisabled:YES];
+    [FormRow new:realm :27 :1 :YES :XLFormRowDescriptorTypeDate :@"Tanggal Pelunasan"];
 }
 
 + (void)generateKlaimAsuransiWithRealm:(RLMRealm *)realm{
@@ -431,7 +431,7 @@
     [[FormRow new:realm :28 :1 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Plat"] setDisabled:YES];
     [[FormRow new:realm :28 :2 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Insco"] setDisabled:YES];
     [[FormRow new:realm :28 :3 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Hotline"] setDisabled:YES];
-    [FormRow new:realm :28 :4 :YES :XLFormRowDescriptorTypeDatePicker :@"Tanggal Kejadian"];
+    [FormRow new:realm :28 :4 :YES :XLFormRowDescriptorTypeDate :@"Tanggal Kejadian"];
     [FormRow new:realm :28 :5 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Lokasi"];
     [FormRow new:realm :28 :6 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kronologis Kecelakaan"];
 }
