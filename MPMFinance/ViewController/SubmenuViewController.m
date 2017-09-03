@@ -22,6 +22,7 @@
 #import "IntakeBPKBFormViewController.h"
 #import "SuggestionComplainFormViewController.h"
 #import "AssignMarketingListViewController.h"
+#import "CustomerGetCustomerFormViewController.h"
 
 @interface SubmenuViewController ()
 
@@ -140,6 +141,11 @@
         assignMarketingViewController.menu = submenu;
         assignMarketingViewController.list = self.list;
         [self.navigationController pushViewController:assignMarketingViewController animated:YES];
+        
+    } else if ([submenu.menuType isEqualToString:kMenuTypeFormCustomerGetCustomer]){
+        CustomerGetCustomerFormViewController *customerGetCustomerFormViewController = [[CustomerGetCustomerFormViewController alloc] init];
+        customerGetCustomerFormViewController.menu = submenu;
+        [self.navigationController pushViewController:customerGetCustomerFormViewController animated:YES];
         
     }
 }

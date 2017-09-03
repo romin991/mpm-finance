@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <XLForm/XLForm.h>
+#import "Menu.h"
 
-@interface CustomerGetCustomerFormViewController : UIViewController
+@interface CustomerGetCustomerFormViewController : XLFormViewController
+
+@property Menu *menu;
 
 @end

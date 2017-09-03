@@ -19,12 +19,12 @@
     NSMutableDictionary *dataDictionary = [NSMutableDictionary dictionary];
     @try {
         [dataDictionary addEntriesFromDictionary:
-         @{@"merk" : [dictionary objectForKey:@"id"] ?: @"",
-           @"noHp" : [dictionary objectForKey:@"id"] ?: @"",
-           @"nama" : [dictionary objectForKey:@"id"] ?: @"",
-           @"alamat" : [dictionary objectForKey:@"id"] ?: @"",
-           @"email" : [dictionary objectForKey:@"id"] ?: @"",
-           @"tahunKendaraan" : [dictionary objectForKey:@"id"] ?: @"",
+         @{@"merk" : [dictionary objectForKey:@"merk"] ?: @"",
+           @"noHp" : [dictionary objectForKey:@"nomorHandphone"] ?: @"",
+           @"nama" : [dictionary objectForKey:@"nama"] ?: @"",
+           @"alamat" : [dictionary objectForKey:@"alamat"] ?: @"",
+           @"email" : [dictionary objectForKey:@"email"] ?: @"",
+           @"tahunKendaraan" : [dictionary objectForKey:@"tahunKendaraan"] ?: @"",
            }];
         
         [param setObject:dataDictionary forKey:@"data"];
