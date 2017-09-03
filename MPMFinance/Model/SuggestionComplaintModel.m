@@ -72,12 +72,12 @@
     NSMutableDictionary *dataDictionary = [NSMutableDictionary dictionary];
     @try {
         [dataDictionary addEntriesFromDictionary:
-         @{@"noHp" : [dictionary objectForKey:@"id"] ?: @"",
-           @"nama" : [dictionary objectForKey:@"id"] ?: @"",
-           @"noKontrak" : [dictionary objectForKey:@"id"] ?: @"",
-           @"alamat" : [dictionary objectForKey:@"id"] ?: @"",
-           @"email" : [dictionary objectForKey:@"id"] ?: @"",
-           @"saran" : [dictionary objectForKey:@"id"] ?: @"",
+         @{@"noHp" : [dictionary objectForKey:@"nomorHandphone"] ?: @"",
+           @"nama" : [dictionary objectForKey:@"nama"] ?: @"",
+           @"noKontrak" : [dictionary objectForKey:@"noKontrak"] ?: @"",
+           @"alamat" : [dictionary objectForKey:@"alamat"] ?: @"",
+           @"email" : [dictionary objectForKey:@"email"] ?: @"",
+           @"saran" : [dictionary objectForKey:@"saran"] ?: @"",
            }];
         
         [param setObject:dataDictionary forKey:@"data"];
@@ -124,17 +124,17 @@
     NSMutableDictionary *dataDictionary = [NSMutableDictionary dictionary];
     @try {
         [dataDictionary addEntriesFromDictionary:
-         @{@"noKontrak" : [dictionary objectForKey:@"id"] ?: @"",
-           @"subJnsMasalah" : [dictionary objectForKey:@"id"] ?: @"",
-           @"email" : [dictionary objectForKey:@"id"] ?: @"",
-           @"noHpBaru" : [dictionary objectForKey:@"id"] ?: @"",
-           @"kronologiMasalah" : [dictionary objectForKey:@"id"] ?: @"",
-           @"noTlp" : [dictionary objectForKey:@"id"] ?: @"",
-           @"noHp" : [dictionary objectForKey:@"id"] ?: @"",
-           @"nama" : [dictionary objectForKey:@"id"] ?: @"",
-           @"alamat" : [dictionary objectForKey:@"id"] ?: @"",
-           @"noTlpBaru" : [dictionary objectForKey:@"id"] ?: @"",
-           @"penjelasanMasalah" : [dictionary objectForKey:@"id"] ?: @"",
+         @{@"noKontrak" : [dictionary objectForKey:@"noKontrak"] ?: @"",
+           @"subJnsMasalah" : [dictionary objectForKey:@"subJenisMasalah"] ?: @"",
+           @"email" : [dictionary objectForKey:@"email"] ?: @"",
+           @"noHpBaru" : [dictionary objectForKey:@"nomorHandphoneBaru"] ?: @"",
+           @"kronologiMasalah" : [dictionary objectForKey:@"kronologisMasalah"] ?: @"",
+           @"noTlp" : [dictionary objectForKey:@"nomorTelepon"] ?: @"",
+           @"noHp" : [dictionary objectForKey:@"nomorHandphone"] ?: @"",
+           @"nama" : [dictionary objectForKey:@"nama"] ?: @"",
+           @"alamat" : [dictionary objectForKey:@"alamat"] ?: @"",
+           @"noTlpBaru" : [dictionary objectForKey:@"nomorTeleponBaru"] ?: @"",
+           @"penjelasanMasalah" : [dictionary objectForKey:@"penjelasanMasalah"] ?: @"",
            }];
         
         [param setObject:dataDictionary forKey:@"data"];

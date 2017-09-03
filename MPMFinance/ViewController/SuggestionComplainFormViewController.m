@@ -10,11 +10,11 @@
 #import "FormModel.h"
 #import "Form.h"
 #import "CustomerModel.h"
+#import "SuggestionComplaintModel.h"
 
 @interface SuggestionComplainFormViewController ()
 
 @property NSMutableDictionary *valueDictionary;
-
 @property NSString *agreementNo;
 @property NSString *category;
 
@@ -64,8 +64,8 @@
     XLFormRowDescriptor *row = [XLFormRowDescriptor formRowDescriptorWithTag:@"kategori" rowType:XLFormRowDescriptorTypeSelectorPush title:@"Kategori"];
     row.selectorTitle = @"Kategori";
     NSMutableArray *optionObjects = [NSMutableArray array];
-    [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:@"Pengaduan" displayText:@"Pengaduan"]];
     [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:@"Saran" displayText:@"Saran"]];
+    [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:@"Pengaduan" displayText:@"Pengaduan"]];
     row.selectorOptions = optionObjects;
     row.value = optionObjects.firstObject;
     row.required = YES;
@@ -108,20 +108,80 @@
     row3.action.formSelector = @selector(submitNow:);
     [section3 addFormRow:row3];
     
+    XLFormSectionDescriptor *pengaduan = [formDescriptor.formSections objectAtIndex:3];
+    pengaduan.hidden = @"$kategori.value.formValue == 'Saran'";
+    
+    XLFormSectionDescriptor *saran = [formDescriptor.formSections objectAtIndex:2];
+    saran.hidden = @"$kategori.value.formValue == 'Pengaduan'";
+    
+    XLFormRowDescriptor *subJenisMasalah = [self.form formRowWithTag:@"subJenisMasalah"];
+    optionObjects = [NSMutableArray array];
+    [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:@"ASR" displayText:@"ASR"]];
+    subJenisMasalah.selectorOptions = optionObjects;
+
     self.form = formDescriptor;
 }
 
 - (void)submitNow:(XLFormRowDescriptor *)row{
     NSLog(@"submitNow called");
     [self deselectFormRow:row];
-    [FormModel saveValueFrom:self.form to:self.valueDictionary];
+    
+    NSArray *errors = [self formValidationErrors];
+    if (errors.count) {
+        [SVProgressHUD showErrorWithStatus:((NSError *)errors.firstObject).localizedDescription];
+        [SVProgressHUD dismissWithDelay:1.5];
+        
+    } else {
+        [SVProgressHUD show];
+        [FormModel saveValueFrom:self.form to:self.valueDictionary];
+        
+        XLFormRowDescriptor *kategoriRow = [self.form formRowWithTag:@"kategori"];
+        if ([((XLFormOptionsObject *) kategoriRow.value).formValue isEqualToString:@"Saran"]) {
+            [SuggestionComplaintModel postSuggestionWithDictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
+                if (error) {
+                    NSString *errorMessage = error.localizedDescription;
+                    @try {
+                        NSDictionary *responseObject = [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:NSJSONReadingAllowFragments error:nil];
+                        errorMessage = [responseObject objectForKey:@"message"];
+                    } @catch (NSException *exception) {
+                        NSLog(@"%@", exception);
+                    } @finally {
+                        [SVProgressHUD showErrorWithStatus:errorMessage];
+                        [SVProgressHUD dismissWithDelay:1.5];
+                    }
+                } else {
+                    [SVProgressHUD dismiss];
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
+            }];
+            
+        } else if ([((XLFormOptionsObject *) kategoriRow.value).formValue isEqualToString:@"Pengaduan"]) {
+            [SuggestionComplaintModel postComplainWithDictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
+                if (error) {
+                    NSString *errorMessage = error.localizedDescription;
+                    @try {
+                        NSDictionary *responseObject = [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:NSJSONReadingAllowFragments error:nil];
+                        errorMessage = [responseObject objectForKey:@"message"];
+                    } @catch (NSException *exception) {
+                        NSLog(@"%@", exception);
+                    } @finally {
+                        [SVProgressHUD showErrorWithStatus:errorMessage];
+                        [SVProgressHUD dismissWithDelay:1.5];
+                    }
+                } else {
+                    [SVProgressHUD dismiss];
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
+            }];
+        }
+    }
     
     //call api here
 }
 
 - (void)formRowDescriptorValueHasChanged:(XLFormRowDescriptor *)formRow oldValue:(id)oldValue newValue:(id)newValue{
     if ([formRow.tag isEqualToString:@"kategori"]){
-        self.category = newValue != nil && ![newValue isKindOfClass:NSNull.class] ? ((XLFormOptionsObject *) newValue).formValue : @"";
+        [self.form forceEvaluate];
         [self performSelector:@selector(fillRowData) withObject:nil afterDelay:0.1];
     }
     
@@ -132,46 +192,44 @@
 }
 
 - (void)fillRowData{
-    if (self.category.length == 0) {
-        [SVProgressHUD showErrorWithStatus:@"Pilih jenis claim"];
+    if (self.agreementNo.length == 0) {
+        [SVProgressHUD showErrorWithStatus:@"Pilih nomor kontrak"];
         [SVProgressHUD dismissWithDelay:1.5];
         [self resetForm];
         
+    } else {
+        [SVProgressHUD show];
+        __block typeof (self) weakSelf = self;
+        [SuggestionComplaintModel getProfileDataWithAgreementNo:self.agreementNo completion:^(NSDictionary *dictionary, NSError *error) {
+            if (error == nil) {
+                if (dictionary) {
+                    weakSelf.valueDictionary = [NSMutableDictionary dictionaryWithDictionary:dictionary];
+                    [FormModel loadValueFrom:weakSelf.valueDictionary to:weakSelf.form on:weakSelf];
+                }
+                [SVProgressHUD dismiss];
+                
+            } else {
+                [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+                [SVProgressHUD dismissWithDelay:1.5];
+            }
+        }];
     }
-    
-    
-    
-//    if (self.agreementNo.length == 0) {
-//        [SVProgressHUD showErrorWithStatus:@"Pilih nomor kontrak"];
-//        [SVProgressHUD dismissWithDelay:1.5];
-//        [self resetForm];
-//        
-//    } else {
-//        [SVProgressHUD show];
-//        __block typeof (self) weakSelf = self;
-//        [InsuranceModel getInsuranceDataWithClaim:self.claimType agreementNo:self.agreementNo completion:^(NSDictionary *dictionary, NSError *error) {
-//            if (error == nil) {
-//                if (dictionary) {
-//                    weakSelf.valueDictionary = [NSMutableDictionary dictionaryWithDictionary:dictionary];
-//                    [FormModel loadValueFrom:weakSelf.valueDictionary to:weakSelf.form on:weakSelf];
-//                }
-//                [SVProgressHUD dismiss];
-//                
-//            } else {
-//                [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
-//                [SVProgressHUD dismissWithDelay:1.5];
-//            }
-//        }];
-//    }
 }
 
 - (void)resetForm{
-//    NSDictionary *dictionary = @{@"nama" : @"",
-//                                 @"nomorPlat" : @"",
-//                                 @"insco" : @"",
-//                                 @"hotline" : @"",
-//                                 };
-//    [FormModel loadValueFrom:dictionary to:self.form on:self];
+    NSDictionary *dictionary = @{@"nama" : @"",
+                                 @"nomorTelepon" : @"",
+                                 @"nomorTeleponBaru" : @"",
+                                 @"nomorHandphone" : @"",
+                                 @"nomorHandphoneBaru" : @"",
+                                 @"alamat" : @"",
+                                 @"email" : @"",
+                                 @"kronologisMasalah" : @"",
+                                 @"penjelasanMasalah" : @"",
+                                 
+                                 @"saran" : @"",
+                                 };
+    [FormModel loadValueFrom:dictionary to:self.form on:self];
 }
 
 /*

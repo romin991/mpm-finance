@@ -794,30 +794,23 @@
     
 //=====================================================================================================
     form = [[Form alloc] init];
-    form.title = @"Saran";
+    form.title = @"Saran & Pengaduan";
     form.sort = 0;
     
     section = [[FormSection alloc] init];
     section.title = @"Saran";
+    [section.rows addObjects:[FormRow getRowsWithCategoryNumber:25]];
+    
+    [form.sections addObject:section];
+    
+    section = [[FormSection alloc] init];
+    section.title = @"Pengaduan";
     [section.rows addObjects:[FormRow getRowsWithCategoryNumber:24]];
     
     [form.sections addObject:section];
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuSaranPengaduan]];
     [realm addObject:form];
     
-//=====================================================================================================
-    form = [[Form alloc] init];
-    form.title = @"Pengaduan";
-    form.sort = 0;
-    
-    section = [[FormSection alloc] init];
-    section.title = @"Pengaduan";
-    [section.rows addObjects:[FormRow getRowsWithCategoryNumber:25]];
-    
-    [form.sections addObject:section];
-    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuSaranPengaduan]];
-    [realm addObject:form];
-
 //=====================================================================================================
     form = [[Form alloc] init];
     form.title = @"Pengambilan BPKB";

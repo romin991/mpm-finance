@@ -396,12 +396,12 @@
 
 + (void)generateComplaintFieldsWithRealm:(RLMRealm*)realm{
     [[FormRow new:realm :24 :0 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama"] setDisabled:YES];
-    [[FormRow new:realm :24 :1 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Telepon"] setDisabled:YES];
+    [FormRow new:realm :24 :1 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Telepon"];
     [FormRow new:realm :24 :2 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Telepon Baru"];
-    [[FormRow new:realm :24 :3 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Handphone"] setDisabled:YES];
+    [FormRow new:realm :24 :3 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Handphone"];
     [FormRow new:realm :24 :4 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Handphone Baru"];
-    [[FormRow new:realm :24 :5 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Alamat"] setDisabled:YES];
-    [[FormRow new:realm :24 :6 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Email"] setDisabled:YES];
+    [FormRow new:realm :24 :5 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Alamat"];
+    [FormRow new:realm :24 :6 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Email"];
     [FormRow new:realm :24 :7 :YES :XLFormRowDescriptorTypeSelectorPush :@"Sub Jenis Masalah"];// :46];
     [FormRow new:realm :24 :8 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kronologis Masalah"];
     [FormRow new:realm :24 :9 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Penjelasan Masalah"];
