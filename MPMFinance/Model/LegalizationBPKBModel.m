@@ -31,6 +31,7 @@
                     NSDictionary *data = [responseObject objectForKey:@"data"];
                     NSDictionary *dictionary = @{@"nama" : [data objectForKey:@"customerName"],
                                                  @"nomorPlat" : [data objectForKey:@"licensePlate"],
+                                                 @"statusKontrak" : [data objectForKey:@"contractStatus"],
                                                  };
                     
                     if (block) block(dictionary, nil);
@@ -57,6 +58,67 @@
         if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
                                                   code:1
                                               userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(exception.reason, nil)}]);
+    }
+}
+
++ (void)postLegalizationBPKBWithDictionary:(NSDictionary *)dictionary completion:(void(^)(NSDictionary *dictionary, NSError *error))block{
+    AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
+    NSMutableDictionary* param = [NSMutableDictionary dictionaryWithDictionary:
+                                  @{@"userid" :[MPMUserInfo getUserInfo][@"userId"],
+                                    @"token" : [MPMUserInfo getToken]}];
+    
+    NSMutableDictionary *dataDictionary = [NSMutableDictionary dictionary];
+    @try {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        
+        NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
+        [timeFormatter setDateFormat:@"hh:mm:ss"];
+        
+        NSDate *date = [MPMGlobal dateFromString:[dictionary objectForKey:@"tanggalPengambilanDokumen"]];
+        
+        [dataDictionary addEntriesFromDictionary:@{
+            @"noKontrak" : [dictionary objectForKey:@"noKontrak"] ?: @"",
+            @"nama" : [dictionary objectForKey:@"nama"] ?: @"",
+            @"noPlat" : [dictionary objectForKey:@"nomorPlat"] ?: @"",
+            @"statusKontrak" : [dictionary objectForKey:@"statusKontrak"] ?: @"",
+            @"status" : @1,
+            @"tglPengambilanDoc" : [dateFormatter stringFromDate:date] ?: @"",
+            @"jamPengambilan" : [timeFormatter stringFromDate:date] ?: @"",
+            }];
+        
+        [param setObject:dataDictionary forKey:@"data"];
+        
+        [manager POST:[NSString stringWithFormat:@"%@/bpkb/pengambilan", kApiUrl] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            @try {
+                NSInteger code = [[responseObject objectForKey:@"statusCode"] integerValue];
+                NSString *message = [responseObject objectForKey:@"message"];
+                if (code == 200) {
+                    if (block) block(responseObject, nil);
+                    
+                } else {
+                    if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                              code:code
+                                                          userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(message, nil)}]);
+                }
+                
+            } @catch (NSException *exception) {
+                NSLog(@"%@", exception);
+                if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                          code:1
+                                                      userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(exception.reason, nil)}]);
+            }
+            
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            if (block) block(nil, error);
+        }];
+        
+    } @catch (NSException *exception) {
+        NSLog(@"%@", exception);
+        if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                  code:1
+                                              userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(exception.reason, nil)}]);
+        
     }
 }
 

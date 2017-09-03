@@ -439,7 +439,7 @@
 + (void)generateLegalisirBPKBWithRealm:(RLMRealm *)realm{
     [[FormRow new:realm :29 :0 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama"] setDisabled:YES];
     [[FormRow new:realm :29 :1 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Plat"] setDisabled:YES];
-    [FormRow new:realm :29 :2 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Tanggal Pengambilan Dokumen"];
+    [FormRow new:realm :29 :2 :YES :XLFormRowDescriptorTypeDateTime :@"Tanggal Pengambilan Dokumen"];
 }
 
 + (void)generateTopUpWithRealm:(RLMRealm *)realm{
