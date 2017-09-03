@@ -72,7 +72,7 @@
     NSMutableDictionary *dataDictionary = [NSMutableDictionary dictionary];
     @try {
         [dataDictionary addEntriesFromDictionary:
-         @{@"noHp" : [dictionary objectForKey:@"nomorHandphone"] ?: @"",
+         @{@"noHp" : [dictionary objectForKey:@"noHP"] ?: @"",
            @"nama" : [dictionary objectForKey:@"nama"] ?: @"",
            @"noKontrak" : [dictionary objectForKey:@"noKontrak"] ?: @"",
            @"alamat" : [dictionary objectForKey:@"alamat"] ?: @"",

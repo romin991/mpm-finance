@@ -11,6 +11,7 @@
 #import "Form.h"
 #import "CustomerModel.h"
 #import "SuggestionComplaintModel.h"
+#import "FloatLabeledTextFieldCell.h"
 
 @interface SuggestionComplainFormViewController ()
 
@@ -118,6 +119,32 @@
     optionObjects = [NSMutableArray array];
     [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:@"ASR" displayText:@"ASR"]];
     subJenisMasalah.selectorOptions = optionObjects;
+    
+    //Set keyboard type to numberPad
+    XLFormRowDescriptor *numpadRow = [self.form formRowWithTag:@"nomorHandphone"];
+    if ([[numpadRow cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+        [(FloatLabeledTextFieldCell *)[numpadRow cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
+    }
+    
+    numpadRow = [self.form formRowWithTag:@"nomorHandphoneBaru"];
+    if ([[numpadRow cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+        [(FloatLabeledTextFieldCell *)[numpadRow cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
+    }
+    
+    numpadRow = [self.form formRowWithTag:@"nomorTelepon"];
+    if ([[numpadRow cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+        [(FloatLabeledTextFieldCell *)[numpadRow cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
+    }
+    
+    numpadRow = [self.form formRowWithTag:@"nomorTeleponBaru"];
+    if ([[numpadRow cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+        [(FloatLabeledTextFieldCell *)[numpadRow cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
+    }
+    
+    numpadRow = [self.form formRowWithTag:@"noHP"];
+    if ([[numpadRow cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+        [(FloatLabeledTextFieldCell *)[numpadRow cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
+    }
 
     self.form = formDescriptor;
 }

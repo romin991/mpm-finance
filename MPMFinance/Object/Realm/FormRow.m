@@ -409,7 +409,7 @@
 
 + (void)generateSuggestionFieldsWithRealm:(RLMRealm*)realm{
     [[FormRow new:realm :25 :0 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama"] setDisabled:YES];
-    [FormRow new:realm :25 :1 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Handphone"];
+    [[FormRow new:realm :25 :1 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Handphone"] setKey:@"noHP"];
     [FormRow new:realm :25 :2 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Alamat"];
     [FormRow new:realm :25 :3 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Email"];
     [FormRow new:realm :25 :4 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Saran"];
