@@ -8,7 +8,7 @@
 
 #import "CreditSimulationViewController.h"
 
-@interface CreditSimulationViewController ()<UITextFieldDelegate>
+@interface CreditSimulationViewController ()<UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
 @property (weak, nonatomic) IBOutlet UITextField *txtHarga;
 @property (weak, nonatomic) IBOutlet UITextField *txtLamaPembiayaan;
 @property (weak, nonatomic) IBOutlet UITextField *txtUangMuka; // nilai pembiayaan di dahsyat2w dan 4w
@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblDP;
 @property NSNumber *harga;
 @property (weak, nonatomic) IBOutlet UILabel *lblAngsuran;
+@property UIPickerView *tenorPickerView;
 @end
 
 @implementation CreditSimulationViewController
@@ -27,7 +28,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self refreshUI];
+    self.tenorPickerView = [[UIPickerView alloc] init];
+    self.tenorPickerView.delegate = self;
+    self.tenorPickerView.dataSource = self;
+    self.txtLamaPembiayaan.inputView = self.tenorPickerView;
     // Do any additional setup after loading the view.
+}
+#pragma mark UIPickerViewDelegate
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    
 }
 -(void)refreshUI
 {
