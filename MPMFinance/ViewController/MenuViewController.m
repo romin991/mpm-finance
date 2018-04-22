@@ -13,6 +13,8 @@
 @interface MenuViewController ()<UITabBarDelegate>
 @property (weak, nonatomic) IBOutlet UITabBar *tabBar;
 @property (weak, nonatomic) IBOutlet UIView *signInView;
+@property NSArray *guestMenu;
+@property NSArray *memberMenu;
 @property MenuNavigationViewController *containerView;
 @end
 
@@ -21,10 +23,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshUI) name:@"UserLoginNotification" object:nil];
+    self.memberMenu = [[self.tabBar items] mutableCopy];
+    NSMutableArray *guestMutableMenu = [[self.tabBar items] mutableCopy];
+    [guestMutableMenu removeObjectAtIndex:3];
+    [guestMutableMenu removeObjectAtIndex:1];
+    self.guestMenu = [[NSArray alloc] initWithArray:guestMutableMenu];
     // Do any additional setup after loading the view.
 }
 -(void)viewWillAppear:(BOOL)animated
 {
+    
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
     [self refreshUI];
     [ProfileModel checkTokenWithCompletion:^(BOOL isExpired) {
         if (isExpired) {
@@ -32,23 +41,25 @@
             [self refreshUI];
         };
     }];
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
+
+    
 }
 -(void)refreshUI
 {
     [self.tabBar setSelectedItem:[self.tabBar.items objectAtIndex:0]];
     if (![MPMUserInfo getUserInfo])
     {
-        [self.tabBar.items[1] setEnabled:NO];
-        [self.tabBar.items[3] setEnabled:NO];
+        [self.tabBar setItems:_guestMenu animated:true];
         [self.signInView setHidden:NO];
     }
     else
     {
+        [self.tabBar setItems:_memberMenu animated:true];
         [self.tabBar.items[1] setEnabled:YES];
         [self.tabBar.items[3] setEnabled:YES];
         [self.signInView setHidden:YES];
     }
+    
 }
 -(void)viewWillDisappear:(BOOL)animated
 {

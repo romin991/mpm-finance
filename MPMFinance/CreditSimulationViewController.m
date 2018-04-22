@@ -35,10 +35,10 @@
     // Do any additional setup after loading the view.
 }
 #pragma mark UIPickerViewDelegate
--(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    
-}
+//-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+//{
+//    
+//}
 -(void)refreshUI
 {
     if ([self.menuType isEqualToString:kSubmenuCreditSimulationNewBike] || [self.menuType isEqualToString:kSubmenuCreditSimulationNewCar] || [self.menuType isEqualToString:kSubmenuCreditSimulationUsedCar]) {

@@ -63,10 +63,19 @@
     self.groupLevelPicker.dataSource = self;
     self.groupLevelPicker.delegate = self;
     self.txtGroupLevel.inputView = self.groupLevelPicker;
-    
-    
+    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap)];
+    gesture.numberOfTapsRequired = 1;
+    gesture.numberOfTouchesRequired = 1;
+    [gesture setCancelsTouchesInView:NO];
+    [self.view addGestureRecognizer:gesture];
+
     [self.profilePictureImageView setBorderColor:[UIColor orangeColor]];
     // Do any additional setup after loading the view.
+}
+- (void)handleTap
+{
+    [self.view endEditing:YES];
+    // Handle the tap if you want to
 }
 -(void)onDatePickerValueChanged:(UIDatePicker*)datePicker
 {

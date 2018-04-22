@@ -11,7 +11,8 @@
 
 @implementation MPMGlobal
 
-NSString *const kApiUrl = @"http://202.152.10.90:8080/mpmfinance";
+//NSString *const kApiUrl = @"http://202.152.10.90:8080/mpmfinancev2"; //prod
+NSString *const kApiUrl = @"http://202.152.10.91:8080/mpmfinancev2"; //dev
 NSString *const kAPIKey = @"AIzaSyCx8uLneXfyNKCV8emCWt-AD4V1kPgrHJw";
 
 NSString *const kRoleCustomer = @"Customer";
@@ -32,7 +33,7 @@ NSString *const kMenuDashboard = @"Dashboard";
 NSString *const kMenuContactUs = @"Contact Us";
 NSString *const kMenuProduct = @"Product";
 NSString *const kMenuTopUp = @"Top Up";
-NSString *const kMenuHistoryTransaksi = @"Histori Transaksi";
+NSString *const kMenuHistoryTransaksi = @"Aktivitas Transaksi";
 NSString *const kMenuLegalisirFCBPKB = @"Legalisir FC BPKB";
 NSString *const kMenuKlaimAsuransi = @"Klaim Asuransi";
 NSString *const kMenuCreditSimulation = @"Credit Simulation";

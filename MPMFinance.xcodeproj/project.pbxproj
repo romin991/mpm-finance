@@ -151,6 +151,8 @@
 		5CDC30421EC3E274001D97DB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC30411EC3E274001D97DB /* GoogleService-Info.plist */; };
 		5CF497B81ED330FF0005327D /* registerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF497B71ED330FF0005327D /* registerViewController.m */; };
 		5CF6819C1EC747A60056ACD3 /* KASlideShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF6819B1EC747A60056ACD3 /* KASlideShow.m */; };
+		5CFD0271208C7876008CCF30 /* MyProfileNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFD0270208C7876008CCF30 /* MyProfileNavigationViewController.m */; };
+		5CFD0274208C7BFB008CCF30 /* MyProfileContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFD0273208C7BFB008CCF30 /* MyProfileContainerViewController.m */; };
 		D3738F410048C92A1AE2571B /* libPods-MPMFinance.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F2B2C34A7F4351773F253B9A /* libPods-MPMFinance.a */; };
 /* End PBXBuildFile section */
 
@@ -399,6 +401,10 @@
 		5CF497B71ED330FF0005327D /* registerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = registerViewController.m; sourceTree = "<group>"; };
 		5CF6819A1EC747A60056ACD3 /* KASlideShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KASlideShow.h; sourceTree = "<group>"; };
 		5CF6819B1EC747A60056ACD3 /* KASlideShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KASlideShow.m; sourceTree = "<group>"; };
+		5CFD026F208C7876008CCF30 /* MyProfileNavigationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyProfileNavigationViewController.h; sourceTree = "<group>"; };
+		5CFD0270208C7876008CCF30 /* MyProfileNavigationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyProfileNavigationViewController.m; sourceTree = "<group>"; };
+		5CFD0272208C7BFB008CCF30 /* MyProfileContainerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyProfileContainerViewController.h; sourceTree = "<group>"; };
+		5CFD0273208C7BFB008CCF30 /* MyProfileContainerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyProfileContainerViewController.m; sourceTree = "<group>"; };
 		B57DB931C16BC9C4B3252B1C /* Pods-MPMFinance.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MPMFinance.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MPMFinance/Pods-MPMFinance.debug.xcconfig"; sourceTree = "<group>"; };
 		F2B2C34A7F4351773F253B9A /* libPods-MPMFinance.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MPMFinance.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F475CB99739A3281EC48B7D3 /* Pods-MPMFinance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MPMFinance.release.xcconfig"; path = "Pods/Target Support Files/Pods-MPMFinance/Pods-MPMFinance.release.xcconfig"; sourceTree = "<group>"; };
@@ -900,6 +906,7 @@
 		5C9B08E91EC9DB7300B5E9AC /* TabMenuContainer */ = {
 			isa = PBXGroup;
 			children = (
+				5CFD026E208C7856008CCF30 /* Profile */,
 				5C9B08ED1EC9DB9300B5E9AC /* HistoryViewController.h */,
 				5C9B08EE1EC9DB9300B5E9AC /* HistoryViewController.m */,
 				5C9B08EF1EC9DB9300B5E9AC /* HomeViewController.h */,
@@ -942,6 +949,17 @@
 				5C4587641EE2A02D004AC7FE /* CreditSimulationViewController.m */,
 			);
 			name = CreditSimulationViewController;
+			sourceTree = "<group>";
+		};
+		5CFD026E208C7856008CCF30 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				5CFD026F208C7876008CCF30 /* MyProfileNavigationViewController.h */,
+				5CFD0270208C7876008CCF30 /* MyProfileNavigationViewController.m */,
+				5CFD0272208C7BFB008CCF30 /* MyProfileContainerViewController.h */,
+				5CFD0273208C7BFB008CCF30 /* MyProfileContainerViewController.m */,
+			);
+			name = Profile;
 			sourceTree = "<group>";
 		};
 		6C2E6E6C6CDAB2318F73C3D6 /* Pods */ = {
@@ -1109,9 +1127,15 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MPMFinance/Pods-MPMFinance-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Subspecs/Maps/Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
+				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
+				"${PODS_ROOT}/XLForm/XLForm/XLForm.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1124,13 +1148,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MPMFinance-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1166,6 +1193,7 @@
 				48D44D5B1EE846B5005FC8DB /* WorkOrderModel.m in Sources */,
 				483F39281EC3085E00C03253 /* LoginViewController.m in Sources */,
 				4825BF8E1F5C2D3300D091AC /* AcceleratedRepaymentModel.m in Sources */,
+				5CFD0271208C7876008CCF30 /* MyProfileNavigationViewController.m in Sources */,
 				48321E531F20806A007D38A0 /* MarketingWorkOrderListViewController.m in Sources */,
 				4825BFDB1F5C44DE00D091AC /* ComplainTableViewCell.m in Sources */,
 				5C0138751EE43C9300B9B40B /* ContactUsViewController.m in Sources */,
@@ -1206,6 +1234,7 @@
 				4825BF9A1F5C34CE00D091AC /* TopUpTableViewCell.m in Sources */,
 				4825BFD61F5C44C800D091AC /* SuggestionTableViewCell.m in Sources */,
 				4846E2361EE6E92A000C08B7 /* DropdownModel.m in Sources */,
+				5CFD0274208C7BFB008CCF30 /* MyProfileContainerViewController.m in Sources */,
 				48CDD83A1EC9B8A50038D626 /* SubmenuViewController.m in Sources */,
 				48859A701ECC3FEC006EFDE6 /* FormRow.m in Sources */,
 				48482E6E1EC999B30029ACBE /* ListViewController.m in Sources */,
