@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="ivT-6M-cP8" customClass="ProductCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BoE-7a-z4l">
+                        <rect key="frame" x="35.5" y="20" width="59.5" height="59.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="BoE-7a-z4l" secondAttribute="height" multiplier="1:1" id="Liw-Xd-Lby"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hm3-q4-3hv">
+                        <rect key="frame" x="5" y="80" width="120" height="50"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="BoE-7a-z4l" firstAttribute="centerX" secondItem="0yA-w6-WYi" secondAttribute="centerX" id="1MU-q5-iJM"/>
+                <constraint firstItem="hm3-q4-3hv" firstAttribute="leading" secondItem="0yA-w6-WYi" secondAttribute="leading" constant="5" id="3jw-zQ-Z3i"/>
+                <constraint firstItem="hm3-q4-3hv" firstAttribute="top" secondItem="BoE-7a-z4l" secondAttribute="bottom" constant="0.5" id="6Tk-p5-KwI"/>
+                <constraint firstItem="0yA-w6-WYi" firstAttribute="bottom" secondItem="hm3-q4-3hv" secondAttribute="bottom" id="Bcg-UC-HYt"/>
+                <constraint firstItem="BoE-7a-z4l" firstAttribute="top" secondItem="0yA-w6-WYi" secondAttribute="top" constant="20" id="FcF-2D-ZUP"/>
+                <constraint firstItem="hm3-q4-3hv" firstAttribute="top" secondItem="0yA-w6-WYi" secondAttribute="top" constant="80" id="Fh6-eg-bbS"/>
+                <constraint firstItem="0yA-w6-WYi" firstAttribute="trailing" secondItem="hm3-q4-3hv" secondAttribute="trailing" constant="5" id="MWj-16-TwA"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="0yA-w6-WYi"/>
+            <size key="customSize" width="80" height="81"/>
+            <connections>
+                <outlet property="image" destination="BoE-7a-z4l" id="K3i-82-D8J"/>
+                <outlet property="title" destination="hm3-q4-3hv" id="3wJ-Dj-Yq1"/>
+            </connections>
+            <point key="canvasLocation" x="350.5" y="145.5"/>
+        </collectionViewCell>
+    </objects>
+</document>

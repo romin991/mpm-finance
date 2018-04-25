@@ -8,8 +8,10 @@
 
 #import "MyProfileContainerViewController.h"
 #import "MyProfileTableViewController.h"
+#import "KontrakKerjaViewController.h"
 @interface MyProfileContainerViewController ()
 @property MyProfileTableViewController *myProfileVC;
+@property KontrakKerjaViewController *kontrakVC;
 @property (nonatomic) int selectedIndex;
 @end
 
@@ -19,6 +21,7 @@
     [super viewDidLoad];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     self.myProfileVC = [storyboard instantiateViewControllerWithIdentifier:@"MyProfileTableViewController"];
+    self.kontrakVC = [storyboard instantiateViewControllerWithIdentifier:@"KontrakKerjaViewController"];
     // Do any additional setup after loading the view.
 }
 
@@ -33,10 +36,13 @@
 - (void)setSelectedIndex:(int)selectedIndex{
     _selectedIndex = selectedIndex;
     if (selectedIndex == 1){
-        [self setViewControllers:[NSArray arrayWithObject:[[UIViewController alloc] init]] animated:NO];
+        [self setViewControllers:[NSArray arrayWithObject:self.kontrakVC] animated:NO];
          } else {
         [self setViewControllers:[NSArray arrayWithObject:self.myProfileVC] animated:NO];
     }
+}
+- (void)loadListContract {
+    [self.kontrakVC loadListContract];
 }
 /*
 #pragma mark - Navigation

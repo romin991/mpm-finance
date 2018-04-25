@@ -12,4 +12,5 @@
 @interface MyProfileContainerViewController : UINavigationController
 @property (weak, nonatomic) MyProfileNavigationViewController *parentMainRegister;
 - (void)setSelectedIndex:(int)selectedIndex;
+- (void)loadListContract;
 @end

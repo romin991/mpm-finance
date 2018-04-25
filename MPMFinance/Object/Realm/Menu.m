@@ -475,7 +475,6 @@
     [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuCreditSimulationUsedCar]];
     [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuCreditSimulationDahsyat2W]];
     [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuCreditSimulationDahsyat4W]];
-    [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuCreditSimulationProperty]];
     [realm addObject:menu];
 
 //=====================================================================================================
@@ -512,7 +511,7 @@
 
 //=====================================================================================================
     menu = [[Menu alloc] init];
-    menu.imageName = @"pengajuanKembaliIcon";
+    menu.imageName = @"topUpIcon";
     menu.backgroundImageName = @"OnlineSubmissionBackground";
     menu.circleIconImageName = @"OnlineSubmissionCircleIcon";
     menu.primaryKey = kMenuTopUp;

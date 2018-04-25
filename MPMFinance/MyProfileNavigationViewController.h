@@ -10,4 +10,5 @@
 
 @interface MyProfileNavigationViewController : UIViewController
 
+- (void)loadListContract;
 @end

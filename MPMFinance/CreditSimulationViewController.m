@@ -13,32 +13,76 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtLamaPembiayaan;
 @property (weak, nonatomic) IBOutlet UITextField *txtUangMuka; // nilai pembiayaan di dahsyat2w dan 4w
 @property (weak, nonatomic) IBOutlet UITextField *txtTotalBayarAwal;
-@property (weak, nonatomic) IBOutlet UITextField *txtAngsuran;
+@property (weak, nonatomic) IBOutlet UILabel *txtAngsuran;
 @property (weak, nonatomic) IBOutlet UIButton *btnPengajuan;
+@property (weak, nonatomic) IBOutlet UITextField *txtJenisPerhitungan;
 
 @property (weak, nonatomic) IBOutlet UILabel *lblTotalBayarAwal;
 @property (weak, nonatomic) IBOutlet UILabel *lblDP;
 @property NSNumber *harga;
 @property (weak, nonatomic) IBOutlet UILabel *lblAngsuran;
 @property UIPickerView *tenorPickerView;
+@property UIPickerView *jenisHitungPickerView;
+@property NSArray *tenors;
+@property NSArray *jenisHitungs;
 @end
 
 @implementation CreditSimulationViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tenors = @[@12,@18,@24,@30,@36];
+    self.jenisHitungs = @[@"Estimasi Harga", @"Estimasi Angsuran"];
     [self refreshUI];
     self.tenorPickerView = [[UIPickerView alloc] init];
     self.tenorPickerView.delegate = self;
     self.tenorPickerView.dataSource = self;
     self.txtLamaPembiayaan.inputView = self.tenorPickerView;
+    
+    self.jenisHitungPickerView = [[UIPickerView alloc] init];
+    self.jenisHitungPickerView.delegate = self;
+    self.jenisHitungPickerView.dataSource = self;
+    self.txtJenisPerhitungan.inputView = self.jenisHitungPickerView;
+    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap)];
+    gesture.numberOfTapsRequired = 1;
+    gesture.numberOfTouchesRequired = 1;
+    [gesture setCancelsTouchesInView:NO];
+    [self.view addGestureRecognizer:gesture];
     // Do any additional setup after loading the view.
 }
+- (void)handleTap
+{
+    [self.view endEditing:YES];
+    // Handle the tap if you want to
+}
 #pragma mark UIPickerViewDelegate
-//-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-//{
-//    
-//}
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    if (pickerView == _tenorPickerView) {
+        return self.tenors.count;
+    } else {
+        return self.jenisHitungs.count;
+    }
+}
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 1;
+}
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    if (pickerView == self.tenorPickerView) {
+        return [self.tenors[row] stringValue];
+    } else {
+        return self.jenisHitungs[row];
+    }
+}
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    if (pickerView == self.tenorPickerView) {
+        self.txtLamaPembiayaan.text =  [self.tenors[row] stringValue];
+    } else {
+        self.txtJenisPerhitungan.text = self.jenisHitungs[row];
+    }
+}
 -(void)refreshUI
 {
     if ([self.menuType isEqualToString:kSubmenuCreditSimulationNewBike] || [self.menuType isEqualToString:kSubmenuCreditSimulationNewCar] || [self.menuType isEqualToString:kSubmenuCreditSimulationUsedCar]) {
@@ -92,10 +136,12 @@
     AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
     NSString* urlString;
     NSDictionary* param;
-    if ([self.menuType isEqualToString:kSubmenuCreditSimulationNewBike]) {
+    if ([self.menuType isEqualToString:@"Pembiayaan Motor Baru"]) {
         urlString = [NSString stringWithFormat:@"%@/simulation/newbike",kApiUrl];
         param = @{@"lamaPembiayaan" : self.txtLamaPembiayaan.text,
-                  @"hargaKendaraan" : _harga};
+                  @"hargaKendaraan" : _harga,
+                  @"angsuran" : @""
+                  };
     }
     else if ([self.menuType isEqualToString:kSubmenuCreditSimulationNewCar] || [self.menuType isEqualToString:kSubmenuCreditSimulationUsedCar]) {
         urlString = [NSString stringWithFormat:@"%@/simulation/mycar",kApiUrl];

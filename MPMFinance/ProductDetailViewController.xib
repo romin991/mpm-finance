@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductDetailViewController">
+            <connections>
+                <outlet property="content" destination="HYy-O7-LOm" id="jpX-mJ-VEn"/>
+                <outlet property="view" destination="OFw-NK-0pR" id="77n-mB-Lgp"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="OFw-NK-0pR">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="DashboardBackground" translatesAutoresizingMaskIntoConstraints="NO" id="z2Q-XF-aaP">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="278"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="278" id="vNE-OJ-VNm"/>
+                    </constraints>
+                </imageView>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="Garis" translatesAutoresizingMaskIntoConstraints="NO" id="496-9A-Mlp">
+                    <rect key="frame" x="0.0" y="278" width="375" height="5"/>
+                </imageView>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HYy-O7-LOm">
+                    <rect key="frame" x="5" y="288" width="365" height="374"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="RZG-9g-nSN" firstAttribute="bottom" secondItem="HYy-O7-LOm" secondAttribute="bottom" constant="5" id="4gj-Y8-JsE"/>
+                <constraint firstItem="496-9A-Mlp" firstAttribute="top" secondItem="z2Q-XF-aaP" secondAttribute="bottom" id="5vE-JM-ap9"/>
+                <constraint firstItem="HYy-O7-LOm" firstAttribute="top" secondItem="496-9A-Mlp" secondAttribute="bottom" constant="5" id="6iX-Zz-Lvb"/>
+                <constraint firstItem="HYy-O7-LOm" firstAttribute="leading" secondItem="RZG-9g-nSN" secondAttribute="leading" constant="5" id="F4l-7R-j84"/>
+                <constraint firstItem="496-9A-Mlp" firstAttribute="leading" secondItem="OFw-NK-0pR" secondAttribute="leading" id="GOX-RW-g9v"/>
+                <constraint firstItem="z2Q-XF-aaP" firstAttribute="leading" secondItem="RZG-9g-nSN" secondAttribute="leading" id="M0z-LF-S2z"/>
+                <constraint firstItem="RZG-9g-nSN" firstAttribute="trailing" secondItem="HYy-O7-LOm" secondAttribute="trailing" constant="5" id="aId-Hz-EuC"/>
+                <constraint firstItem="RZG-9g-nSN" firstAttribute="bottom" secondItem="z2Q-XF-aaP" secondAttribute="bottom" constant="389" id="e8B-9S-Ivq"/>
+                <constraint firstItem="z2Q-XF-aaP" firstAttribute="trailing" secondItem="RZG-9g-nSN" secondAttribute="trailing" id="gu8-EG-geI"/>
+                <constraint firstAttribute="trailing" secondItem="496-9A-Mlp" secondAttribute="trailing" id="m2d-lB-awj"/>
+                <constraint firstItem="z2Q-XF-aaP" firstAttribute="top" secondItem="OFw-NK-0pR" secondAttribute="top" id="rue-8P-eSR"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="RZG-9g-nSN"/>
+            <point key="canvasLocation" x="-47" y="82"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="DashboardBackground" width="414" height="278"/>
+        <image name="Garis" width="414" height="5"/>
+    </resources>
+</document>

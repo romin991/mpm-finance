@@ -19,7 +19,7 @@
 #import "SubmenuCollectionViewController.h"
 #import "ContactUsViewController.h"
 #import "AcceleratedRepaymentFormViewController.h"
-
+#import "ProductViewController.h"
 @interface HomeViewController ()<KASlideShowDelegate,KASlideShowDataSource, UICollectionViewDelegateFlowLayout>
 
 @property RLMResults *menus;
@@ -149,6 +149,11 @@
         acceleratedRepaymentFormViewController.menu = menu;
         [self.navigationController.navigationController pushViewController:acceleratedRepaymentFormViewController animated:YES];
         
+    } else if ([menu.menuType isEqualToString:kMenuTypeSubmenu2]) {
+        if ([menu.primaryKey isEqualToString:kMenuProduct]) {
+            ProductViewController *productVC = [[ProductViewController alloc] init];
+            [self.navigationController.navigationController pushViewController:productVC animated:YES];
+        }
     }
 
 }

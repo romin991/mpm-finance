@@ -35,12 +35,12 @@
     
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     [self refreshUI];
-    [ProfileModel checkTokenWithCompletion:^(BOOL isExpired) {
-        if (isExpired) {
-            [MPMUserInfo deleteUserInfo];
-            [self refreshUI];
-        };
-    }];
+//    [ProfileModel checkTokenWithCompletion:^(BOOL isExpired) {
+//        if (isExpired) {
+//            [MPMUserInfo deleteUserInfo];
+//            [self refreshUI];
+//        };
+//    }];
 
     
 }
