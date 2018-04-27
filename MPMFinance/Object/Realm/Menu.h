@@ -32,7 +32,7 @@ RLM_ARRAY_TYPE(Menu)
 @property RLMArray<Menu> *submenus;
 @property RLMArray<Action> *actions; //for menuType list
 @property RLMArray<Action> *dataSources; //for menuType list
-
++ (Menu *)getMenuForPrimaryKey:(NSString *)primaryKey;
 + (RLMResults *)getMenuForRole:(NSString *)role;
 + (RLMResults *)getSubmenuForMenu:(NSString *)primaryKey role:(NSString *)role;
 + (RLMResults *)getDataSourcesForMenu:(NSString *)primaryKey role:(NSString *)role;

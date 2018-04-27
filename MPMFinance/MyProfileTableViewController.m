@@ -15,29 +15,53 @@
 @property NSString* fileSize;
 @property NSString* fileType;
 @property NSString* fileMimeType;
+@property BOOL isEdit;
 @property (weak, nonatomic) IBOutlet UITextField *txtPassword;
 @property NSData* imgData;
 @property (weak, nonatomic) IBOutlet UITextField *txtDateOfBirth;
 @property (weak, nonatomic) IBOutlet UITextField *txtPhoneNumber;
-@property (weak, nonatomic) IBOutlet UILabel *txtEmail;
-@property (weak, nonatomic) IBOutlet UILabel *txtFullName;
+@property (weak, nonatomic) IBOutlet UITextField *txtEmail;
+@property (weak, nonatomic) IBOutlet UITextField *txtFullName;
 @property (weak, nonatomic) IBOutlet UITextField *txtIdCardNumber;
+@property (weak, nonatomic) IBOutlet UITextField *txtUserID;
+@property (weak, nonatomic) IBOutlet UITextField *txtTempatLahir;
+@property (weak, nonatomic) IBOutlet UITextField *txtAddress;
+@property (weak, nonatomic) IBOutlet UITextField *txtAddressDealer;
+@property (weak, nonatomic) IBOutlet UITextField *txtGender;
+@property (weak, nonatomic) IBOutlet UITextField *txtNamaDealer;
 @end
 
 @implementation MyProfileTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UIDatePicker *datePicker = [[UIDatePicker alloc]init];
+    datePicker.datePickerMode = UIDatePickerModeDate;
+    [datePicker addTarget:self action:@selector(onDatePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
+    self.txtDateOfBirth.inputView = datePicker;
+    self.isEdit = NO;
     self.profilePictureImageView.borderColor = [UIColor orangeColor];
     self.profilePictureImageView.borderWidth = 1;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap)];
+    gesture.numberOfTapsRequired = 1;
+    gesture.numberOfTouchesRequired = 1;
+    [gesture setCancelsTouchesInView:NO];
+    [self.view addGestureRecognizer:gesture];
+    // Do any additional setup after loading the view.
+}
+- (void)handleTap
+{
+    [self.view endEditing:YES];
+    // Handle the tap if you want to
 }
 -(void)viewWillAppear:(BOOL)animated
 {
+    [self setTextFieldsEnable:NO];
     AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
     [manager GET:[MPMUserInfo getUserInfo][@"photo"] parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         ;
@@ -126,7 +150,73 @@
     [self.profilePictureImageView setImage:image];
 }
 
-
+- (IBAction)editSave:(id)sender {
+    if (!_isEdit) {
+        [self setTextFieldsEnable:YES];
+        [((UIButton * )sender) setTitle:@"SAVE" forState:UIControlStateNormal];
+        _isEdit = YES;
+        
+    } else {
+        _isEdit = NO;
+        [self setTextFieldsEnable:NO];
+        [((UIButton * )sender) setTitle:@"EDIT" forState:UIControlStateNormal];
+        NSDictionary *param = @{
+                                @"userid": [MPMUserInfo getUserInfo][@"userId"],
+                                @"token": [MPMUserInfo getToken],
+                                @"data": @{
+                                        @"ktp": self.txtIdCardNumber.text,
+                                        @"username": self.txtFullName.text,
+                                        @"email": self.txtEmail.text,
+                                        @"dob": self.txtDateOfBirth.text,
+                                        @"placeOfBirth": self.txtTempatLahir.text,
+                                        @"address": self.txtAddress.text,
+                                        @"gender": self.txtGender.text,
+                                        @"phone": self.txtPhoneNumber.text,
+                                        @"photo": [MPMGlobal encodeToBase64String:self.profilePictureImageView.image]
+                                        }
+                                };
+        AFHTTPSessionManager *manager = [MPMGlobal sessionManager];
+        [manager POST:[NSString stringWithFormat:@"%@/profile/update",kApiUrl] parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
+            ;
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            NSLog(@"%@",responseObject);
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            if (error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] != nil) {
+                NSDictionary *errorDict = [NSJSONSerialization JSONObjectWithData:error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:0 error:nil];
+                UIAlertController* alertVC = [UIAlertController alertControllerWithTitle:@"Error" message:errorDict[@"message"] preferredStyle:UIAlertControllerStyleAlert];
+                [alertVC addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil]];
+                [super presentViewController:alertVC animated:YES completion:nil];
+                return;
+            } else {
+                UIAlertController* alertVC = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+                [alertVC addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil]];
+                [super presentViewController:alertVC animated:YES completion:nil];
+                return;
+            }
+            
+        }];
+        
+    }
+}
+- (void)setTextFieldsEnable:(BOOL)enable{
+    [_txtDateOfBirth setEnabled:enable];
+    [_txtPhoneNumber setEnabled:enable];
+    [_txtEmail setEnabled:enable];
+    [_txtFullName setEnabled:enable];
+    [_txtIdCardNumber setEnabled:enable];
+    [_txtTempatLahir setEnabled:enable];
+    [_txtAddress setEnabled:enable];
+    [_txtAddressDealer setEnabled:enable];
+    [_txtGender setEnabled:enable];
+    [_txtNamaDealer setEnabled:enable];
+}
+-(void)onDatePickerValueChanged:(UIDatePicker*)datePicker
+{
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd-MM-YYYY"];
+    self.txtDateOfBirth.text = [dateFormatter stringFromDate:datePicker.date];
+    
+}
 
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -7,20 +7,22 @@
 //
 
 #import "CreditSimulationViewController.h"
-
+#import "Menu.h"
+#import "FormViewController.h"
 @interface CreditSimulationViewController ()<UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
+@property (weak, nonatomic) IBOutlet UILabel *lblPencairan;
 @property (weak, nonatomic) IBOutlet UITextField *txtHarga;
 @property (weak, nonatomic) IBOutlet UITextField *txtLamaPembiayaan;
 @property (weak, nonatomic) IBOutlet UITextField *txtUangMuka; // nilai pembiayaan di dahsyat2w dan 4w
-@property (weak, nonatomic) IBOutlet UITextField *txtTotalBayarAwal;
+@property (weak, nonatomic) IBOutlet UILabel *txtTotalBayarAwal;
 @property (weak, nonatomic) IBOutlet UILabel *txtAngsuran;
 @property (weak, nonatomic) IBOutlet UIButton *btnPengajuan;
 @property (weak, nonatomic) IBOutlet UITextField *txtJenisPerhitungan;
 
-@property (weak, nonatomic) IBOutlet UILabel *lblTotalBayarAwal;
 @property (weak, nonatomic) IBOutlet UILabel *lblDP;
 @property NSNumber *harga;
 @property (weak, nonatomic) IBOutlet UILabel *lblAngsuran;
+@property (weak, nonatomic) IBOutlet UILabel *lblJenisHitung;
 @property UIPickerView *tenorPickerView;
 @property UIPickerView *jenisHitungPickerView;
 @property NSArray *tenors;
@@ -31,6 +33,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSLog(@"%@",self.menuType);
     self.tenors = @[@12,@18,@24,@30,@36];
     self.jenisHitungs = @[@"Estimasi Harga", @"Estimasi Angsuran"];
     [self refreshUI];
@@ -39,10 +42,7 @@
     self.tenorPickerView.dataSource = self;
     self.txtLamaPembiayaan.inputView = self.tenorPickerView;
     
-    self.jenisHitungPickerView = [[UIPickerView alloc] init];
-    self.jenisHitungPickerView.delegate = self;
-    self.jenisHitungPickerView.dataSource = self;
-    self.txtJenisPerhitungan.inputView = self.jenisHitungPickerView;
+   
     UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap)];
     gesture.numberOfTapsRequired = 1;
     gesture.numberOfTouchesRequired = 1;
@@ -80,25 +80,38 @@
     if (pickerView == self.tenorPickerView) {
         self.txtLamaPembiayaan.text =  [self.tenors[row] stringValue];
     } else {
+        
         self.txtJenisPerhitungan.text = self.jenisHitungs[row];
+        if ([self.txtJenisPerhitungan.text isEqualToString:@"Estimasi Harga"]) {
+            self.lblAngsuran.text = @"Estimasi Angsuran";
+            self.lblJenisHitung.text = @"Estimasi Harga";
+        } else {
+            self.lblJenisHitung.text = @"Estimasi Angsuran";
+            self.lblAngsuran.text = @"Estimasi Harga";
+        }
     }
 }
 -(void)refreshUI
 {
-    if ([self.menuType isEqualToString:kSubmenuCreditSimulationNewBike] || [self.menuType isEqualToString:kSubmenuCreditSimulationNewCar] || [self.menuType isEqualToString:kSubmenuCreditSimulationUsedCar]) {
-        self.lblDP.hidden = YES;
-        self.txtUangMuka.hidden = YES;
-        self.txtTotalBayarAwal.enabled = NO;
-        self.txtAngsuran.enabled = NO;
-    }
-    else if ([self.menuType isEqualToString:kSubmenuCreditSimulationDahsyat2W] || [self.menuType isEqualToString:kSubmenuCreditSimulationDahsyat4W]) {
+    
+    if ([self.menuType isEqualToString:@"Dahsyat - Multiguna Motor"] || [self.menuType isEqualToString:@"Dahsyat - Multiguna Mobil"]) {
         self.lblDP.hidden = NO;
         self.lblDP.text = @"Nilai Pembiayaan";
         self.txtUangMuka.hidden = NO;
-        self.txtTotalBayarAwal.enabled = NO;
-        self.txtAngsuran.enabled = NO;
+        self.lblPencairan.text = @"Nilai Pencairan";
+        self.lblAngsuran.text = @"Pencairan Maksimal";
+        self.txtJenisPerhitungan.delegate = self;
     }
-    
+    else {
+        if ([self.menuType isEqualToString:@"Pembiayaan Motor Baru"]) {
+            [self.lblAngsuran setHidden:YES];
+            [self.txtTotalBayarAwal setHidden:YES];
+        }
+        self.jenisHitungPickerView = [[UIPickerView alloc] init];
+        self.jenisHitungPickerView.delegate = self;
+        self.jenisHitungPickerView.dataSource = self;
+        self.txtJenisPerhitungan.inputView = self.jenisHitungPickerView;
+    }
     self.txtHarga.delegate = self;
 }
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
@@ -127,6 +140,16 @@
     textField.text = formattedString;
     return NO;
 }
+- (NSString *)formatToRupiah:(NSNumber *)charge{
+    
+    NSNumberFormatter *nf = [[NSNumberFormatter alloc] init];
+    [nf setGroupingSeparator:@"."];
+    nf.usesGroupingSeparator = YES;
+    nf.numberStyle = NSNumberFormatterDecimalStyle;
+    [nf setMaximumFractionDigits:0];
+    nf.roundingMode = NSNumberFormatterRoundHalfUp;
+    return [nf stringFromNumber:charge];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -135,31 +158,43 @@
 - (IBAction)hitung:(id)sender {
     AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
     NSString* urlString;
-    NSDictionary* param;
+    BOOL isDahsyat = NO;
+    NSMutableDictionary* param = [NSMutableDictionary dictionary];
+    NSDictionary *biayaTenor;
+    if ([self.txtJenisPerhitungan.text isEqualToString:@"Estimasi Harga"]) {
+        biayaTenor = @{@"hargaKendaraan" : _harga,
+                       @"angsuran" : @"",
+                       @"lamaPembiayaan" : self.txtLamaPembiayaan.text
+                       };
+    } else if([self.txtJenisPerhitungan.text isEqualToString:@"Estimasi Angsuran"]) {
+        biayaTenor = @{@"angsuran" : _harga,
+                       @"hargaKendaraan" : @"",
+                       @"lamaPembiayaan" : self.txtLamaPembiayaan.text
+                       };
+    } else {
+        biayaTenor = @{@"nilaiPencairan" : _txtJenisPerhitungan.text,
+                       @"hargaKendaraan" : _harga,
+                       @"lamaPembiayaan" : self.txtLamaPembiayaan.text
+                       };
+    }
+    [param addEntriesFromDictionary:biayaTenor];
     if ([self.menuType isEqualToString:@"Pembiayaan Motor Baru"]) {
         urlString = [NSString stringWithFormat:@"%@/simulation/newbike",kApiUrl];
-        param = @{@"lamaPembiayaan" : self.txtLamaPembiayaan.text,
-                  @"hargaKendaraan" : _harga,
-                  @"angsuran" : @""
-                  };
+        param = [NSMutableDictionary dictionaryWithDictionary:biayaTenor];
     }
-    else if ([self.menuType isEqualToString:kSubmenuCreditSimulationNewCar] || [self.menuType isEqualToString:kSubmenuCreditSimulationUsedCar]) {
+    else if ([self.menuType isEqualToString:@"Pembiayaan Mobil Baru"] || [self.menuType isEqualToString:@"Pembiayaan Mobil Bekas"]) {
         urlString = [NSString stringWithFormat:@"%@/simulation/mycar",kApiUrl];
-        param = @{@"jenisKendaraan" : self.menuType,
-                  @"lamaPembiayaan" : self.txtLamaPembiayaan.text,
-                  @"hargaKendaraan" : _harga};
+        [param addEntriesFromDictionary:@{@"jenisKendaraan" : self.menuType
+                                          }];
     }
-    else if ([self.menuType isEqualToString:kSubmenuCreditSimulationDahsyat2W]) {
+    else if ([self.menuType isEqualToString:@"Dahsyat - Multiguna Motor"]) {
         urlString = [NSString stringWithFormat:@"%@/simulation/dahsyat2w",kApiUrl];
-        param = @{@"nilaiPencairan" : self.txtUangMuka.text,
-                  @"lamaPembiayaan" : self.txtLamaPembiayaan.text,
-                  @"hargaKendaraan" : _harga};
+        isDahsyat = YES;
     }
-    else if ([self.menuType isEqualToString:kSubmenuCreditSimulationDahsyat4W]) {
+    else if ([self.menuType isEqualToString:@"Dahsyat - Multiguna Mobil"]) {
         urlString = [NSString stringWithFormat:@"%@/simulation/dahsyat4w",kApiUrl];
-        param = @{@"nilaiPencairan" : self.txtUangMuka.text,
-                  @"lamaPembiayaan" : self.txtLamaPembiayaan.text,
-                  @"hargaKendaraan" : _harga};
+        isDahsyat = YES;
+    
     }
     else if ([self.menuType isEqualToString:kSubmenuCreditSimulationProperty]) {
         urlString = [NSString stringWithFormat:@"%@/simulation/property",kApiUrl];
@@ -172,7 +207,10 @@
         if ([responseObject[@"statusCode"] isEqual:@200]) {
             
             self.txtAngsuran.text = responseObject[@"data"][@"angsuran"];
-            self.txtTotalBayarAwal.text = responseObject[@"data"][@"nilaiPembiayaan"];
+            if (isDahsyat) {
+                self.txtTotalBayarAwal.text = [self formatToRupiah:responseObject[@"data"][@"pencairanMaks"]];
+            } else
+                self.txtTotalBayarAwal.text = [self formatToRupiah:responseObject[@"data"][@"totalBayarAwal"]];
             [self.btnPengajuan setHidden:NO];
             
         }
@@ -182,6 +220,12 @@
     
 }
 - (IBAction)pengajuan:(id)sender {
+    Menu *menu = [Menu getMenuForPrimaryKey:kSubmenuListOnlineSubmission];
+    
+    FormViewController *formViewController = [[FormViewController alloc] init];
+    formViewController.menu = menu;
+    formViewController.list = nil;
+    [self.navigationController pushViewController:formViewController animated:YES];
 }
 
 /*

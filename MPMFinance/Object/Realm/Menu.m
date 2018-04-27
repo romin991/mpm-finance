@@ -23,6 +23,10 @@
     return [Menu objectsWhere:@"ANY roles.name = %@ and isRootMenu = YES", role];
 }
 
++ (Menu *)getMenuForPrimaryKey:(NSString *)primaryKey{
+    return [Menu objectForPrimaryKey:primaryKey];
+}
+
 + (RLMResults *)getSubmenuForMenu:(NSString *)primaryKey role:(NSString *)role{
     return [[Menu objectForPrimaryKey:primaryKey].submenus objectsWhere:@"ANY roles.name = %@", role];
 }
