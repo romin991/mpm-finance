@@ -25,6 +25,7 @@
 #import "CustomerGetCustomerFormViewController.h"
 
 #import "TopUpHistoryTableViewController.h"
+#import "ActivityHistoryViewController.h"
 #import "LegalizationBPKBTableViewController.h"
 #import "InsuranceClaimTableViewController.h"
 #import "IntakeBPKBTableViewController.h"

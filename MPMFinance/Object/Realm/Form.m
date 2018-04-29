@@ -28,18 +28,19 @@
     
     //===
     FormSection *section = [[FormSection alloc] init];
-    section.title = @"Pilih Cabang";
-    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Cabang" :@"" :@"getAllCabang"]];
-    
-    [form.sections addObject:section];
+//    section.title = @"Pilih Cabang";
+//    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Cabang" :@"" :@"getAllCabang"]];
+//
+//    [form.sections addObject:section];
     
     //===
     section = [[FormSection alloc] init];
     section.title = @"Data Pemohon";
-    [section.rows addObject:[FormRow new:realm :1 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Lengkap" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :2 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"No KTP" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :1 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"No KTP" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :2 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Lengkap" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :3 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Tempat Lahir" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :4 :YES :YES :XLFormRowDescriptorTypeDateInline :@"Tanggal Lahir" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :5 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Jenis Kelamin" :@"" :@""]];
     
     [form.sections addObject:section];
     
@@ -825,6 +826,15 @@
     [realm addObject:form];
 
 //=====================================================================================================
+    //=====================================================================================================
+    form = [[Form alloc] init];
+    form.title = @"Aktivitas Transaksi";
+    form.sort = 0;
+    
+    [form.menus addObject:[Menu objectForPrimaryKey:kMenuHistoryTransaksi]];
+    [realm addObject:form];
+    
+    //=====================================================================================================
     form = [[Form alloc] init];
     form.title = @"Pelunasan Dipercepat";
     form.sort = 0;

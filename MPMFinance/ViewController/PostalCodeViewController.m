@@ -30,19 +30,19 @@
     self.postalCodes = [NSArray array];
     
     XLFormDescriptor *form = self.rowDescriptor.sectionDescriptor.formDescriptor;
-    for (XLFormSectionDescriptor *section in form.formSections) {
-        for (XLFormRowDescriptor *row in section.formRows) {
-            if ([row.tag isEqualToString:@"cabang"]){
-                if (row.value) {
-                    self.idCabang = ((XLFormOptionsObject *) row.value).formValue;
-                } else {
-                    [SVProgressHUD showWithStatus:@"Pilih cabang terlebih dahulu"];
-                    [SVProgressHUD dismissWithDelay:1.5];
-                    [self.navigationController popViewControllerAnimated:YES];
-                }
-            }
-        }
-    }
+//    for (XLFormSectionDescriptor *section in form.formSections) {
+//        for (XLFormRowDescriptor *row in section.formRows) {
+//            if ([row.tag isEqualToString:@"cabang"]){
+//                if (row.value) {
+//                    self.idCabang = ((XLFormOptionsObject *) row.value).formValue;
+//                } else {
+//                    [SVProgressHUD showWithStatus:@"Pilih cabang terlebih dahulu"];
+//                    [SVProgressHUD dismissWithDelay:1.5];
+//                    [self.navigationController popViewControllerAnimated:YES];
+//                }
+//            }
+//        }
+//    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -52,7 +52,7 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     __block typeof(self) weakSelf = self;
-    [DropdownModel getDropdownWSForPostalCodeWithKeyword:searchText idCabang:self.idCabang completion:^(NSArray *options, NSError *error) {
+    [DropdownModel getDropdownWSForPostalCodeWithKeyword:searchText idCabang:@"" completion:^(NSArray *options, NSError *error) {
         weakSelf.postalCodes = options;
         [weakSelf refresh];
     }];

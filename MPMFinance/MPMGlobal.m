@@ -266,5 +266,14 @@ NSString *const kActionTypeAPICall = @"APICall";
     
     return [UIImage imageWithCIImage:filter.outputImage];
 }
-
++ (NSString *)formatToMoney:(NSNumber *)charge{
+    
+    NSNumberFormatter *nf = [[NSNumberFormatter alloc] init];
+    [nf setGroupingSeparator:@"."];
+    nf.usesGroupingSeparator = YES;
+    nf.numberStyle = NSNumberFormatterDecimalStyle;
+    [nf setMaximumFractionDigits:0];
+    nf.roundingMode = NSNumberFormatterRoundHalfUp;
+    return [nf stringFromNumber:charge];
+}
 @end

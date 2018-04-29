@@ -188,7 +188,7 @@
                             @"token" : [MPMUserInfo getToken],
                             @"data" : @{@"tipe" : @"KodePos",
                                         @"keyword" : keyword,
-                                        @"idCabang" : idCabang}
+                                        @"idCabang" : @""}
                             };
     
     [manager POST:[NSString stringWithFormat:@"%@/dropdownws/kodepos", kApiUrl] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

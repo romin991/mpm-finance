@@ -15,6 +15,7 @@ PODS:
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
   - APAvatarImageView (1.1.0)
+  - ASJDropDownMenu (1.1)
   - Firebase/Core (4.8.2):
     - FirebaseAnalytics (= 4.0.9)
     - FirebaseCore (= 4.0.14)
@@ -24,10 +25,10 @@ PODS:
   - FirebaseAnalytics (4.0.9):
     - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
     - nanopb (~> 0.3)
   - FirebaseCore (4.0.14):
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
   - FirebaseInstanceID (2.0.8):
     - FirebaseCore (~> 4.0)
   - FirebaseMessaging (2.0.8):
@@ -44,7 +45,7 @@ PODS:
   - GoogleToolboxForMac/Defines (2.1.3)
   - GoogleToolboxForMac/Logger (2.1.3):
     - GoogleToolboxForMac/Defines (= 2.1.3)
-  - GoogleToolboxForMac/NSData+zlib (2.1.3):
+  - "GoogleToolboxForMac/NSData+zlib (2.1.3)":
     - GoogleToolboxForMac/Defines (= 2.1.3)
   - IQKeyboardManager (5.0.7)
   - JVFloatLabeledTextField (1.2.1)
@@ -67,6 +68,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
   - APAvatarImageView
+  - ASJDropDownMenu
   - Firebase/Core
   - Firebase/Messaging
   - GoogleMaps (= 2.1.0)
@@ -78,9 +80,32 @@ DEPENDENCIES:
   - SVPullToRefresh
   - XLForm (~> 3.0)
 
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - AFNetworking
+    - APAvatarImageView
+    - ASJDropDownMenu
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseCore
+    - FirebaseInstanceID
+    - FirebaseMessaging
+    - GoogleMaps
+    - GoogleToolboxForMac
+    - IQKeyboardManager
+    - JVFloatLabeledTextField
+    - nanopb
+    - Protobuf
+    - Realm
+    - SDWebImage
+    - SVProgressHUD
+    - SVPullToRefresh
+    - XLForm
+
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   APAvatarImageView: 428dbd0631a150fe876f90bfd7eaa275a19b9209
+  ASJDropDownMenu: 48790e5ecf7921124759ebb54e6b1024ab46bdd2
   Firebase: 7d3b8cd837ad9fcd391657734c0d56dab8e9a5a3
   FirebaseAnalytics: 388b630c15713f5dbf364071f5f3d6077fb52f4e
   FirebaseCore: 2e0b98fb2d64ca8140136beff15772bdd14d2dd7
@@ -98,6 +123,6 @@ SPEC CHECKSUMS:
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
   XLForm: d5c391dfc62865927b5bcab0a5a0dbfb3e02b0ec
 
-PODFILE CHECKSUM: 8e435c902796a2f1b50633ef2946944a3aab745b
+PODFILE CHECKSUM: 6542dd7fe4e01f3037e8a1f9778bc31ed17a3c0b
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.5.0

@@ -20,6 +20,7 @@
 #import "ContactUsViewController.h"
 #import "AcceleratedRepaymentFormViewController.h"
 #import "ProductViewController.h"
+#import "ActivityHistoryViewController.h"
 @interface HomeViewController ()<KASlideShowDelegate,KASlideShowDataSource, UICollectionViewDelegateFlowLayout>
 
 @property RLMResults *menus;
@@ -154,6 +155,11 @@
             ProductViewController *productVC = [[ProductViewController alloc] init];
             [self.navigationController.navigationController pushViewController:productVC animated:YES];
         }
+    } else if ([menu.menuType isEqualToString:kMenuTypeHistory]) {
+        ActivityHistoryViewController *legalizationBPKBViewController = [[ActivityHistoryViewController alloc] init];
+        legalizationBPKBViewController.menu = menu;
+        [self.navigationController.navigationController pushViewController:legalizationBPKBViewController animated:YES];
+    
     }
 
 }

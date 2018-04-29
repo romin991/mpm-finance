@@ -148,6 +148,11 @@
 		5C4D5FC0208F5F0C004CA73E /* ProductDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C4D5FBE208F5F0C004CA73E /* ProductDetailViewController.xib */; };
 		5C586E9A1ECB183200A5A626 /* HelpTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C586E991ECB183200A5A626 /* HelpTableViewController.m */; };
 		5C5C267A208E07B80025DCEB /* KontrakKerjaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C5C2679208E07B80025DCEB /* KontrakKerjaViewController.m */; };
+		5C8EB86420956FD4006A3170 /* ActivityHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8EB86220956FD4006A3170 /* ActivityHistoryViewController.m */; };
+		5C8EB86520956FD4006A3170 /* ActivityHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C8EB86320956FD4006A3170 /* ActivityHistoryViewController.xib */; };
+		5C8EB8692095D76B006A3170 /* XLFormActivityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8EB8672095D76B006A3170 /* XLFormActivityTableViewCell.m */; };
+		5C8EB86A2095D76B006A3170 /* XLFormActivityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C8EB8682095D76B006A3170 /* XLFormActivityTableViewCell.xib */; };
+		5C8EB86D2095E28A006A3170 /* AcitivityHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8EB86C2095E28A006A3170 /* AcitivityHistoryModel.m */; };
 		5C9B08EC1EC9DB8700B5E9AC /* MenuNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9B08EB1EC9DB8700B5E9AC /* MenuNavigationViewController.m */; };
 		5C9B08F11EC9DB9300B5E9AC /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9B08EE1EC9DB9300B5E9AC /* HistoryViewController.m */; };
 		5C9B08F21EC9DB9300B5E9AC /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9B08F01EC9DB9300B5E9AC /* HomeViewController.m */; };
@@ -398,6 +403,14 @@
 		5C586E991ECB183200A5A626 /* HelpTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpTableViewController.m; sourceTree = "<group>"; };
 		5C5C2678208E07B80025DCEB /* KontrakKerjaViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KontrakKerjaViewController.h; sourceTree = "<group>"; };
 		5C5C2679208E07B80025DCEB /* KontrakKerjaViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KontrakKerjaViewController.m; sourceTree = "<group>"; };
+		5C8EB86120956FD4006A3170 /* ActivityHistoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActivityHistoryViewController.h; sourceTree = "<group>"; };
+		5C8EB86220956FD4006A3170 /* ActivityHistoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActivityHistoryViewController.m; sourceTree = "<group>"; };
+		5C8EB86320956FD4006A3170 /* ActivityHistoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityHistoryViewController.xib; sourceTree = "<group>"; };
+		5C8EB8662095D76B006A3170 /* XLFormActivityTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XLFormActivityTableViewCell.h; sourceTree = "<group>"; };
+		5C8EB8672095D76B006A3170 /* XLFormActivityTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XLFormActivityTableViewCell.m; sourceTree = "<group>"; };
+		5C8EB8682095D76B006A3170 /* XLFormActivityTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = XLFormActivityTableViewCell.xib; sourceTree = "<group>"; };
+		5C8EB86B2095E28A006A3170 /* AcitivityHistoryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AcitivityHistoryModel.h; sourceTree = "<group>"; };
+		5C8EB86C2095E28A006A3170 /* AcitivityHistoryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AcitivityHistoryModel.m; sourceTree = "<group>"; };
 		5C9B08EA1EC9DB8700B5E9AC /* MenuNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuNavigationViewController.h; sourceTree = "<group>"; };
 		5C9B08EB1EC9DB8700B5E9AC /* MenuNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuNavigationViewController.m; sourceTree = "<group>"; };
 		5C9B08ED1EC9DB9300B5E9AC /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
@@ -443,6 +456,7 @@
 		481C428B1F03B8B9007D5C3C /* CustomerDealer */ = {
 			isa = PBXGroup;
 			children = (
+				5C8EB86020956F3B006A3170 /* ActivityHistory */,
 				5C4D5FAE208F540B004CA73E /* Product */,
 				481C42931F03BA53007D5C3C /* TopUpViewController */,
 				481C42921F03BA08007D5C3C /* LegalizationBPKBViewController */,
@@ -795,6 +809,8 @@
 				484ADB221F0CEDCE0006BCB0 /* SuggestionComplaintModel.m */,
 				4828B5B01F4AE1B50071E5FA /* CustomerGetCustomerModel.h */,
 				4828B5B11F4AE1B50071E5FA /* CustomerGetCustomerModel.m */,
+				5C8EB86B2095E28A006A3170 /* AcitivityHistoryModel.h */,
+				5C8EB86C2095E28A006A3170 /* AcitivityHistoryModel.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -938,6 +954,19 @@
 			name = Product;
 			sourceTree = "<group>";
 		};
+		5C8EB86020956F3B006A3170 /* ActivityHistory */ = {
+			isa = PBXGroup;
+			children = (
+				5C8EB86120956FD4006A3170 /* ActivityHistoryViewController.h */,
+				5C8EB86220956FD4006A3170 /* ActivityHistoryViewController.m */,
+				5C8EB86320956FD4006A3170 /* ActivityHistoryViewController.xib */,
+				5C8EB8662095D76B006A3170 /* XLFormActivityTableViewCell.h */,
+				5C8EB8672095D76B006A3170 /* XLFormActivityTableViewCell.m */,
+				5C8EB8682095D76B006A3170 /* XLFormActivityTableViewCell.xib */,
+			);
+			name = ActivityHistory;
+			sourceTree = "<group>";
+		};
 		5C9B08E91EC9DB7300B5E9AC /* TabMenuContainer */ = {
 			isa = PBXGroup;
 			children = (
@@ -1031,7 +1060,6 @@
 				483F39191EC3085E00C03253 /* Sources */,
 				483F391A1EC3085E00C03253 /* Frameworks */,
 				483F391B1EC3085E00C03253 /* Resources */,
-				BB4C22AC3757216ACFD533FD /* [CP] Embed Pods Frameworks */,
 				E83E428784874BFDD8C5832B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -1107,12 +1135,14 @@
 				481C42B61F03BB3B007D5C3C /* CustomerGetCustomerFormViewController.xib in Resources */,
 				4825BFAF1F5C3EED00D091AC /* IntakeBPKBTableViewCell.xib in Resources */,
 				482652811EFBF9DA0002A606 /* UsedCarFormViewController.xib in Resources */,
+				5C8EB86520956FD4006A3170 /* ActivityHistoryViewController.xib in Resources */,
 				4848B1A81F124BFB00C9DE21 /* PostalCodeViewController.xib in Resources */,
 				4849EEE21EC8815000415E4B /* FormViewController.xib in Resources */,
 				484627271F1AED000049A92A /* AssignMarketingTableViewCell.xib in Resources */,
 				4825BFA01F5C3EAF00D091AC /* LegalizationBPKBTableViewCell.xib in Resources */,
 				481C42871F00EF29007D5C3C /* WorkOrderListTableViewCell.xib in Resources */,
 				4848B1B31F1251E700C9DE21 /* PostalCodeTableViewCell.xib in Resources */,
+				5C8EB86A2095D76B006A3170 /* XLFormActivityTableViewCell.xib in Resources */,
 				5CDC30421EC3E274001D97DB /* GoogleService-Info.plist in Resources */,
 				48CDD8351EC9B3AD0038D626 /* SimpleListTableViewCell.xib in Resources */,
 				481C42B11F03BB22007D5C3C /* SuggestionComplainFormViewController.xib in Resources */,
@@ -1146,21 +1176,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		BB4C22AC3757216ACFD533FD /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MPMFinance/Pods-MPMFinance-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		E83E428784874BFDD8C5832B /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1175,7 +1190,10 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/XLForm.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1221,6 +1239,7 @@
 				4826528F1EFC02390002A606 /* MarketingModel.m in Sources */,
 				481C429C1F03BABA007D5C3C /* LegalizationBPKBFormViewController.m in Sources */,
 				483A9D901F0BA6060033F714 /* LegalizationBPKBModel.m in Sources */,
+				5C8EB8692095D76B006A3170 /* XLFormActivityTableViewCell.m in Sources */,
 				4846E2331EE6C650000C08B7 /* DataMAPModel.m in Sources */,
 				4831CD271EDE97D7001EF223 /* SubmenuCollectionViewCell.m in Sources */,
 				48482E731EC99B230029ACBE /* ListTableViewCell.m in Sources */,
@@ -1235,6 +1254,7 @@
 				483F39281EC3085E00C03253 /* LoginViewController.m in Sources */,
 				4825BF8E1F5C2D3300D091AC /* AcceleratedRepaymentModel.m in Sources */,
 				5CFD0271208C7876008CCF30 /* MyProfileNavigationViewController.m in Sources */,
+				5C8EB86D2095E28A006A3170 /* AcitivityHistoryModel.m in Sources */,
 				48321E531F20806A007D38A0 /* MarketingWorkOrderListViewController.m in Sources */,
 				4825BFDB1F5C44DE00D091AC /* ComplainTableViewCell.m in Sources */,
 				5C0138751EE43C9300B9B40B /* ContactUsViewController.m in Sources */,
@@ -1263,6 +1283,7 @@
 				48336A9B1F19111300536771 /* BarcodeViewController.m in Sources */,
 				4848B1B21F1251E700C9DE21 /* PostalCodeTableViewCell.m in Sources */,
 				4848B1B61F12547700C9DE21 /* PostalCodeValueTransformer.m in Sources */,
+				5C8EB86420956FD4006A3170 /* ActivityHistoryViewController.m in Sources */,
 				481C42BF1F04FDB5007D5C3C /* TopUpModel.m in Sources */,
 				481C42B01F03BB22007D5C3C /* SuggestionComplainFormViewController.m in Sources */,
 				4848B1BF1F13842600C9DE21 /* AssetViewController.m in Sources */,

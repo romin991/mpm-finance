@@ -43,6 +43,7 @@
                                              @"noKTP" : [data objectForKey:@"ktp"],
                                              @"tempatLahir" : [data objectForKey:@"placeOfBirth"],
                                              @"tanggalLahir" : [data objectForKey:@"dob"],
+                                             @"jenisKelamin" : [data objectForKey:@"gender"]
                                              };
                 
                 if (block) block(dictionary, nil);
