@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MenuViewController.h"
 
-@interface sendOTPViewController : UIViewController
+@interface SendOTPViewController : UIViewController
+
 @property NSString *userId;
+@property (weak, nonatomic) id<MenuViewDelegate> menuViewDelegate;
+
 @end

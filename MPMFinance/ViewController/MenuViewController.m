@@ -9,8 +9,10 @@
 #import "MenuViewController.h"
 #import "MenuNavigationViewController.h"
 #import "ProfileModel.h"
+#import "LoginViewController.h"
+#import "RegisterViewController.h"
 
-@interface MenuViewController ()<UITabBarDelegate>
+@interface MenuViewController ()<UITabBarDelegate, MenuViewDelegate>
 @property (weak, nonatomic) IBOutlet UITabBar *tabBar;
 @property (weak, nonatomic) IBOutlet UIView *signInView;
 @property NSArray *guestMenu;
@@ -86,6 +88,17 @@
     }
 }
 
+- (void)dismissAll{
+    [self dismissViewControllerAnimated:true completion:nil];
+}
+
+- (IBAction)goToLoginPage:(id)sender {
+    [self performSegueWithIdentifier:@"signInSegue" sender:nil];
+}
+
+- (IBAction)goToRegisterPage:(id)sender {
+    [self performSegueWithIdentifier:@"signUpSegue" sender:nil];
+}
 
 #pragma mark - Navigation
 
@@ -94,6 +107,14 @@
     if ([segue.identifier isEqualToString:@"embedContainerSegue"]){
         _containerView = (MenuNavigationViewController *)segue.destinationViewController;
         _containerView.parentMainRegister = self;
+        
+    } else if ([segue.identifier isEqualToString:@"signInSegue"]){
+        LoginViewController *vc = (LoginViewController *)segue.destinationViewController;
+        vc.menuViewDelegate = self;
+        
+    } else if ([segue.identifier isEqualToString:@"signUpSegue"]){
+        RegisterViewController *vc = (RegisterViewController *)segue.destinationViewController;
+        vc.menuViewDelegate = self;
         
     }
 }

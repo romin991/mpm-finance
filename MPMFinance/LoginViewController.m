@@ -9,7 +9,10 @@
 #import "LoginViewController.h"
 #import <AFNetworking.h>
 #import "MPMUserInfo.h"
+#import "RegisterViewController.h"
+
 @interface LoginViewController ()
+
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UIButton *signInButton;
@@ -79,6 +82,18 @@
 }
 
 - (IBAction)forgotPasswordButtonClicked:(id)sender {
+}
+
+- (IBAction)registerButtonClicked:(id)sender {
+    [self performSegueWithIdentifier:@"signUpSegue" sender:nil];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"signUpSegue"]){
+        RegisterViewController *vc = (RegisterViewController *)segue.destinationViewController;
+        vc.menuViewDelegate = self.menuViewDelegate;
+        
+    }
 }
 
 @end

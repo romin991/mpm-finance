@@ -6,11 +6,14 @@
 //  Copyright © 2017 MPMFinance. All rights reserved.
 //
 
-#import "registerViewController.h"
+#import "RegisterViewController.h"
 #import <APAvatarImageView.h>
-#import "sendOTPViewController.h"
+#import "SendOTPViewController.h"
 #import <AFHTTPSessionManager.h>
-@interface registerViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
+
+@interface RegisterViewController ()
+<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
+
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet APAvatarImageView *profilePictureImageView;
 @property (weak, nonatomic) IBOutlet UITextField *txtFirstName;
@@ -37,9 +40,10 @@
 
 @property NSArray *genderArray;
 @property NSArray *groupLevelArray;
+
 @end
 
-@implementation registerViewController
+@implementation RegisterViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -141,50 +145,6 @@
     
 }
 
--(BOOL)validate
-{
-    if (self.txtFirstName.text.length < 1) {
-        return NO;
-    }
-    else if (self.txtLastName.text.length < 1) {
-        return NO;
-    }
-    else if (self.txtEmail.text.length < 1) {
-        return NO;
-    }
-    else if (self.txtAddress.text.length < 1) {
-        return NO;
-    }
-    else if (self.txtNoTelpon.text.length < 1) {
-        return NO;
-    }
-    else if (self.txtDateOfBirth.text.length < 1) {
-        return NO;
-    }
-    else if (self.txtIDCardNumber.text.length < 1) {
-        return NO;
-    }
-    else if (self.txtPassword.text.length < 1) {
-        return NO;
-    }
-    else if (self.txtConfirmPassword.text.length < 1) {
-        return NO;
-    }
-    else if (self.txtJenisKelamin.text.length < 1) {
-        return NO;
-    }
-    else if (![self.txtPassword.text isEqualToString:self.txtConfirmPassword.text]) {
-        return NO;
-    }
-    else if(self.imgDataString.length < 1)
-    {
-        return 0;
-    }
-    else
-        return YES;
-    
-}
-
 #pragma mark - UIPickerDataSource
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
@@ -230,17 +190,9 @@
 
 - (IBAction)signUp:(id)sender {
     [SVProgressHUD show];
-    if (![self validate]) {
-        [SVProgressHUD dismiss];
-        UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"Success" message:@"Register Success" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction* okButton = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            [self dismissViewControllerAnimated:YES completion:nil];;
-        }];
-        [alertController addAction:okButton];
-        [self presentViewController:alertController animated:YES completion:nil];
-        return;
-    }
-    NSDictionary* param = @{@"userid" : @"",
+    NSDictionary* param;
+    @try {
+        param = @{@"userid" : @"",
                             @"token" : @"",
                             @"data" : @{@"username" : [NSString stringWithFormat:@"%@ %@",self.txtFirstName.text,self.txtLastName.text],
                                         @"ktp" : self.txtIDCardNumber.text,
@@ -250,9 +202,11 @@
                                         @"address" : self.txtAddress.text,
                                         @"gender" : self.txtJenisKelamin.text,
                                         @"phone" : self.txtNoTelpon.text,
-                                        @"groupLevel" : self.selectedGroupLevel,
-                                        @"photo" : self.imgDataString,
+                                        @"groupLevel" : self.selectedGroupLevel ? self.selectedGroupLevel : @"",
                                         @"email" : self.txtEmail.text}};
+    } @catch(NSException *exception) {
+        NSLog(@"%@", exception);
+    }
     NSLog(@"%@",param);
     
     AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
@@ -261,20 +215,32 @@
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"%@",responseObject);
         [SVProgressHUD dismiss];
-        if ([responseObject[@"statusCode"] isEqualToString:@"200"]) {
-            UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"Success" message:@"Register Success" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction* okButton = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-                [self performSegueWithIdentifier:@"sendOTPViewController" sender:self];
-            }];
-            [alertController addAction:okButton];
-            [self presentViewController:alertController animated:YES completion:nil];
+        @try {
+            if ([responseObject[@"statusCode"] integerValue] == 200) {
+                UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"Success" message:@"Register Success" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction* okButton = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                    [self performSegueWithIdentifier:@"sendOTPViewController" sender:self];
+                }];
+                [alertController addAction:okButton];
+                [self presentViewController:alertController animated:YES completion:nil];
+            }
+        
+        } @catch(NSException *exception) {
+            NSLog(@"%@", exception);
         }
         
-        ;
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"%@",error);
         [SVProgressHUD dismiss];
-        ;
+        @try {
+            NSError *errorParser;
+            NSDictionary *responseObject = [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:NSJSONReadingAllowFragments error:&errorParser];
+            NSString *errorMessage = [responseObject objectForKey:@"message"];
+            [SVProgressHUD showErrorWithStatus:errorMessage];
+            [SVProgressHUD dismissWithDelay:1.5];
+            
+        } @catch(NSException *exception) {
+            NSLog(@"%@", exception);
+        }
     }];
 }
 
@@ -285,8 +251,9 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:@"sendOTPViewController"]) {
-        sendOTPViewController *vc = [segue destinationViewController];
+        SendOTPViewController *vc = [segue destinationViewController];
         vc.userId = self.txtEmail.text;
+        vc.menuViewDelegate = self.menuViewDelegate;
     }
 }
 

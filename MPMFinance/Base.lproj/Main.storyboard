@@ -135,8 +135,8 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
+                                            <action selector="registerButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XLa-Oj-z5s"/>
                                             <action selector="signInButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Y6c-yy-KZl"/>
-                                            <segue destination="Afh-kt-GVi" kind="show" id="RP9-Oh-Kxj"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4QA-9R-iFV">
@@ -191,11 +191,12 @@
                         <outlet property="passwordField" destination="Ejm-Y0-Opx" id="HYt-Z9-O6V"/>
                         <outlet property="signInButton" destination="mSK-N8-edD" id="mut-dD-Z3H"/>
                         <outlet property="usernameField" destination="FXB-Yg-kXh" id="GMd-pV-uaJ"/>
+                        <segue destination="Afh-kt-GVi" kind="show" identifier="signUpSegue" id="9Ie-Iz-vSB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="72" y="206"/>
+            <point key="canvasLocation" x="917" y="922"/>
         </scene>
         <!--Forgot Password View Controller-->
         <scene sceneID="4u2-bd-V5p">
@@ -326,7 +327,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ini-Db-SPM" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="917" y="138"/>
+            <point key="canvasLocation" x="-1839" y="770"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="oqN-Lg-9sg">
@@ -399,7 +400,7 @@
                                             <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="BYZ-38-t0r" kind="presentation" id="EUZ-71-h8d"/>
+                                            <action selector="goToLoginPage:" destination="hvL-vJ-2kv" eventType="touchUpInside" id="dMh-is-mgY"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KB3-FA-DEv">
@@ -409,7 +410,7 @@
                                             <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="Afh-kt-GVi" kind="presentation" id="QUn-XE-biQ"/>
+                                            <action selector="goToRegisterPage:" destination="hvL-vJ-2kv" eventType="touchUpInside" id="Jqh-k9-Ymo"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -456,6 +457,8 @@
                     <connections>
                         <outlet property="signInView" destination="mVK-JA-tQJ" id="ven-p1-qtq"/>
                         <outlet property="tabBar" destination="Fjs-9I-j9k" id="nYr-ED-Ggd"/>
+                        <segue destination="Afh-kt-GVi" kind="presentation" identifier="signUpSegue" id="raJ-8g-lbX"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="signInSegue" id="o5f-Be-vGf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="faR-Yh-RIA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2103,12 +2106,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="leG-ta-PZf" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="72" y="206"/>
+            <point key="canvasLocation" x="-1839" y="42"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="VTd-uN-Cpr">
             <objects>
-                <viewController id="Afh-kt-GVi" customClass="registerViewController" sceneMemberID="viewController">
+                <viewController id="Afh-kt-GVi" customClass="RegisterViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3gC-BV-XKv"/>
                         <viewControllerLayoutGuide type="bottom" id="UJ1-cU-90r"/>
@@ -2486,12 +2489,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kxz-mt-VkI" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-659.4202898550725" y="516.84782608695662"/>
+            <point key="canvasLocation" x="917" y="1787"/>
         </scene>
         <!--SendOTP View Controller-->
         <scene sceneID="cem-Ba-bNh">
             <objects>
-                <viewController storyboardIdentifier="sendOTPViewController" id="sUU-AU-rwb" customClass="sendOTPViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SendOTPViewController" id="sUU-AU-rwb" customClass="SendOTPViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NvK-m5-P0J"/>
                         <viewControllerLayoutGuide type="bottom" id="6of-Rh-8Xq"/>
@@ -2532,7 +2535,6 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="resetPasswordButtonClicked:" destination="sUU-AU-rwb" eventType="touchUpInside" id="Vpu-tE-c8t"/>
                                             <action selector="submit:" destination="sUU-AU-rwb" eventType="touchUpInside" id="fCT-r6-dXb"/>
                                         </connections>
                                     </button>
@@ -2547,7 +2549,6 @@
                                         </state>
                                         <connections>
                                             <action selector="resend:" destination="sUU-AU-rwb" eventType="touchUpInside" id="aM2-Vu-jXj"/>
-                                            <action selector="resetNavigateButtonClicked:" destination="sUU-AU-rwb" eventType="touchUpInside" id="xxk-t1-BJg"/>
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AYB-Fl-zIb">
@@ -2612,15 +2613,12 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="resetNavigateButton" destination="zPg-xi-hid" id="dwn-0e-AdL"/>
-                        <outlet property="resetPasswordButton" destination="uSG-IL-11p" id="cKo-5z-kuC"/>
                         <outlet property="txtCode" destination="rzQ-L8-3or" id="amf-Hq-EqJ"/>
-                        <outlet property="usernameField" destination="rzQ-L8-3or" id="V2T-AC-L8B"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gfu-8t-IF6" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="917" y="833"/>
+            <point key="canvasLocation" x="917" y="2554"/>
         </scene>
         <!--Kontrak Kerja View Controller-->
         <scene sceneID="qC1-LC-Gci">
@@ -2721,6 +2719,6 @@
         <image name="uk-flag" width="14" height="14"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="QUn-XE-biQ"/>
+        <segue reference="raJ-8g-lbX"/>
     </inferredMetricsTieBreakers>
 </document>

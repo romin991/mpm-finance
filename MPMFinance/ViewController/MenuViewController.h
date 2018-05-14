@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol MenuViewDelegate<NSObject>
+
+- (void)dismissAll;
+
+@end
+
 @interface MenuViewController : UIViewController
 
 @end

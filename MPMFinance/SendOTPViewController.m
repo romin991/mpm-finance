@@ -6,14 +6,14 @@
 //  Copyright © 2017 MPMFinance. All rights reserved.
 //
 
-#import "sendOTPViewController.h"
+#import "SendOTPViewController.h"
 
-@interface sendOTPViewController ()
+@interface SendOTPViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *txtCode;
 
 @end
 
-@implementation sendOTPViewController
+@implementation SendOTPViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,9 +29,7 @@
     [manager POST:[NSString stringWithFormat:@"%@/register/inputotp",kApiUrl] parameters:@{@"userid" : self.userId,@"token" : @"",@"data" : @{@"otp" : self.txtCode.text, @"deviceId" : @"fcmid here",@"loginFrom" : @"mobile"}} progress:^(NSProgress * _Nonnull uploadProgress) {
         ;
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [self dismissViewControllerAnimated:YES completion:^{
-            ;
-        }];
+        if (self.menuViewDelegate) [self.menuViewDelegate dismissAll];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         ;
     }];
