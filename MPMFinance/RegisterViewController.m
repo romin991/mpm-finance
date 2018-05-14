@@ -253,6 +253,7 @@
     if ([segue.identifier isEqualToString:@"sendOTPViewController"]) {
         SendOTPViewController *vc = [segue destinationViewController];
         vc.userId = self.txtEmail.text;
+        vc.password = self.txtPassword.text;
         vc.menuViewDelegate = self.menuViewDelegate;
     }
 }

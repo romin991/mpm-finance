@@ -10,6 +10,7 @@
 #import <AFNetworking.h>
 #import "MPMUserInfo.h"
 #import "RegisterViewController.h"
+#import "ProfileModel.h"
 
 @interface LoginViewController ()
 
@@ -50,34 +51,18 @@
     if (self.passwordField.text.length < 1) {
         return;
     }
-    NSDictionary* param = @{@"userid" : self.usernameField.text,
-                            @"token" : @"",
-                            @"data" : @{
-                                    @"password" : [MPMGlobal MD5fromString:self.passwordField.text],
-                                    @"deviceId" : @"fcmid here",
-                                    @"loginFrom" : @"mobile"
-                                    }
-                            };
-    NSLog(@"%@",param);
     
     [SVProgressHUD show];
-    AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
-    [manager POST:[NSString stringWithFormat:@"%@/login",kApiUrl] parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
-        ;
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        if ([[responseObject objectForKey:@"status"] isEqualToString:@"success"]) {
-            [MPMUserInfo save:responseObject[@"data"]];
+    [ProfileModel login:self.usernameField.text password:self.passwordField.text completion:^(NSDictionary *dictionary, NSError *error) {
+        if (!error) {
             [SVProgressHUD showSuccessWithStatus:@"Login Success"];
             [SVProgressHUD dismissWithDelay:1.5 completion:^{
                 [self dismissViewControllerAnimated:YES completion:nil];
             }];
-        
+        } else {
+            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+            [SVProgressHUD dismissWithDelay:1.5];
         }
-        NSLog(@"%@",responseObject);
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"%@",error);
-        [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
-        [SVProgressHUD dismissWithDelay:1.5];
     }];
 }
 

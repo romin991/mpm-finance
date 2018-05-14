@@ -66,4 +66,46 @@
     }];
 }
 
++ (void)login:(NSString *)username password:(NSString *)password completion:(void(^)(NSDictionary *dictionary, NSError *error))block{
+    NSDictionary* param = @{@"userid" : username,
+                            @"token" : @"",
+                            @"data" : @{
+                                    @"password" : [MPMGlobal MD5fromString:password],
+                                    @"deviceId" : @"fcmid here",
+                                    @"loginFrom" : @"mobile"
+                                    }
+                            };
+    NSLog(@"%@",param);
+    
+    [SVProgressHUD show];
+    AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
+    [manager POST:[NSString stringWithFormat:@"%@/login",kApiUrl] parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
+        ;
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        @try {
+            NSInteger code = [[responseObject objectForKey:@"statusCode"] integerValue];
+            NSString *message = [responseObject objectForKey:@"message"];
+            if (code == 200) {
+                NSDictionary *data = [responseObject objectForKey:@"data"];
+                [MPMUserInfo save:data];
+                
+                if (block) block(data, nil);
+                
+            } else {
+                if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                          code:code
+                                                      userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(message, nil)}]);
+            }
+            
+        } @catch (NSException *exception) {
+            NSLog(@"%@", exception);
+            if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                      code:1
+                                                  userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(exception.reason, nil)}]);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (block) block(nil, error);
+    }];
+}
+
 @end

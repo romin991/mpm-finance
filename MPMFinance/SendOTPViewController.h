@@ -12,6 +12,7 @@
 @interface SendOTPViewController : UIViewController
 
 @property NSString *userId;
+@property NSString *password;
 @property (weak, nonatomic) id<MenuViewDelegate> menuViewDelegate;
 
 @end
