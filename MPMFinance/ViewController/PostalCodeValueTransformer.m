@@ -24,6 +24,9 @@
 - (id)transformedValue:(id)value
 {
     if (!value) return nil;
+    if (![value isKindOfClass:[PostalCode class]]) {
+        return nil;
+    }
     PostalCode *postalCode = (PostalCode *)value;
     return [NSString stringWithFormat:@"%@", postalCode.postalCode];
 }

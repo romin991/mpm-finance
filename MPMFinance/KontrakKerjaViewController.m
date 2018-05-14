@@ -7,7 +7,7 @@
 //
 
 #import "KontrakKerjaViewController.h"
-
+#import "KontrakKerjaDetailViewController.h"
 @interface KontrakKerjaViewController () <UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property NSArray *data;
@@ -19,6 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Initialize the refresh control.
+    self.view.backgroundColor = [UIColor whiteColor];
     self.refreshControl = [[UIRefreshControl alloc] init];
     self.refreshControl.backgroundColor = [UIColor lightGrayColor];
     self.refreshControl.tintColor = [UIColor whiteColor];
@@ -69,7 +70,7 @@
 {
     // Return the number of sections.
     if (self.data.count > 0) {
-        
+        self.tableView.backgroundView = nil;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         return 1;
         
@@ -91,6 +92,34 @@
     }
     
     return 0;
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    UILabel *noReg = [cell viewWithTag:1];
+    noReg.text = self.data[indexPath.row][@"noRegistrasi"];
+    return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    [SVProgressHUD show];
+    NSDictionary * parameter = @{ @"data" : @{@"agreementNo" : self.data[indexPath.row][@"noRegistrasi"]
+                                              },
+                                  @"userid" : [MPMUserInfo getUserInfo][@"userId"],
+                                  @"token" : [MPMUserInfo getToken]};
+    AFHTTPSessionManager *manager = [MPMGlobal sessionManager];
+    [manager POST:[NSString stringWithFormat:@"%@/pengajuan2/detailkontrak",kApiUrl] parameters:parameter progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+            KontrakKerjaDetailViewController *vc = [[KontrakKerjaDetailViewController alloc] init];
+            vc.data = responseObject[@"data"];
+            [self.navigationController.navigationController.navigationController pushViewController:vc animated:YES];
+            [SVProgressHUD dismiss];
+        });
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [SVProgressHUD dismiss];
+    }];
+    
 }
 /*
 #pragma mark - Navigation

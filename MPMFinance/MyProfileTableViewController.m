@@ -73,9 +73,12 @@
     }];
     self.txtEmail.text = [MPMUserInfo getUserInfo][@"email"];
     self.txtFullName.text = [MPMUserInfo getUserInfo][@"username"];
-    
+    self.txtUserID.text = [MPMUserInfo getUserInfo][@"userId"];
+    self.txtPhoneNumber.text = [MPMUserInfo getUserInfo][@"phone"];
+    self.txtAddress.text = [MPMUserInfo getUserInfo][@"address"];
     self.txtDateOfBirth.text = [MPMUserInfo getUserInfo][@"dob"];
     self.txtIdCardNumber.text = [MPMUserInfo getUserInfo][@"ktp"];
+    self.txtTempatLahir.text = [MPMUserInfo getUserInfo][@"placeOfBirth"];
     
 }
 - (IBAction)logOut:(id)sender {
@@ -190,6 +193,11 @@
             } else {
                 UIAlertController* alertVC = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
                 [alertVC addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil]];
+//                __block UITextField *oldPasswordField;
+//                [alertVC addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+//                    oldPasswordField = textField;
+//                }];
+//
                 [super presentViewController:alertVC animated:YES completion:nil];
                 return;
             }

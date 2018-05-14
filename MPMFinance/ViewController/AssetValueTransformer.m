@@ -25,7 +25,11 @@
 {
     if (!value) return nil;
     Asset *asset = (Asset *)value;
-    return [NSString stringWithFormat:@"%@", asset.value];
+    if (asset.value.length < 1) {
+        return @"";
+    } else{
+        return [NSString stringWithFormat:@"%@", asset.value];
+    }
 }
 
 @end

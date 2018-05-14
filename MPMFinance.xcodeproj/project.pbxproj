@@ -160,6 +160,11 @@
 		5C9DB2421EC3393000FC0CC9 /* MPMUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9DB2411EC3393000FC0CC9 /* MPMUserInfo.m */; };
 		5CBC4C771ECC8A67002ED03C /* MyProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CBC4C761ECC8A67002ED03C /* MyProfileTableViewController.m */; };
 		5CCD2A221EF9577D000336AF /* sendOTPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCD2A211EF9577D000336AF /* sendOTPViewController.m */; };
+		5CCD2D45209EF52000EBC76F /* KontrakKerjaDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCD2D43209EF52000EBC76F /* KontrakKerjaDetailViewController.m */; };
+		5CCD2D46209EF52000EBC76F /* KontrakKerjaDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CCD2D44209EF52000EBC76F /* KontrakKerjaDetailViewController.xib */; };
+		5CCD2D4E209EF57600EBC76F /* CIColor+QRCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCD2D49209EF57600EBC76F /* CIColor+QRCode.m */; };
+		5CCD2D4F209EF57600EBC76F /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCD2D4B209EF57600EBC76F /* NSString+Utils.m */; };
+		5CCD2D50209EF57600EBC76F /* QRCodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCD2D4D209EF57600EBC76F /* QRCodeGenerator.m */; };
 		5CDC30421EC3E274001D97DB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC30411EC3E274001D97DB /* GoogleService-Info.plist */; };
 		5CF497B81ED330FF0005327D /* registerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF497B71ED330FF0005327D /* registerViewController.m */; };
 		5CF6819C1EC747A60056ACD3 /* KASlideShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF6819B1EC747A60056ACD3 /* KASlideShow.m */; };
@@ -426,6 +431,15 @@
 		5CBC4C761ECC8A67002ED03C /* MyProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProfileTableViewController.m; sourceTree = "<group>"; };
 		5CCD2A201EF9577D000336AF /* sendOTPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sendOTPViewController.h; sourceTree = "<group>"; };
 		5CCD2A211EF9577D000336AF /* sendOTPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = sendOTPViewController.m; sourceTree = "<group>"; };
+		5CCD2D42209EF52000EBC76F /* KontrakKerjaDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KontrakKerjaDetailViewController.h; sourceTree = "<group>"; };
+		5CCD2D43209EF52000EBC76F /* KontrakKerjaDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KontrakKerjaDetailViewController.m; sourceTree = "<group>"; };
+		5CCD2D44209EF52000EBC76F /* KontrakKerjaDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KontrakKerjaDetailViewController.xib; sourceTree = "<group>"; };
+		5CCD2D48209EF57600EBC76F /* CIColor+QRCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CIColor+QRCode.h"; sourceTree = "<group>"; };
+		5CCD2D49209EF57600EBC76F /* CIColor+QRCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CIColor+QRCode.m"; sourceTree = "<group>"; };
+		5CCD2D4A209EF57600EBC76F /* NSString+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Utils.h"; sourceTree = "<group>"; };
+		5CCD2D4B209EF57600EBC76F /* NSString+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Utils.m"; sourceTree = "<group>"; };
+		5CCD2D4C209EF57600EBC76F /* QRCodeGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeGenerator.h; sourceTree = "<group>"; };
+		5CCD2D4D209EF57600EBC76F /* QRCodeGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeGenerator.m; sourceTree = "<group>"; };
 		5CD07BD91EC342B0007C8C08 /* MPMFinance.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MPMFinance.entitlements; sourceTree = "<group>"; };
 		5CDC30411EC3E274001D97DB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5CF497B61ED330FF0005327D /* registerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = registerViewController.h; sourceTree = "<group>"; };
@@ -678,6 +692,7 @@
 		483F39201EC3085E00C03253 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5CCD2D47209EF57600EBC76F /* QRCodeGenerator */,
 				5CDC30411EC3E274001D97DB /* GoogleService-Info.plist */,
 				483F39211EC3085E00C03253 /* main.m */,
 				5C9DB2371EC3314200FC0CC9 /* PrefixHeader.pch */,
@@ -1015,6 +1030,19 @@
 			name = CreditSimulationViewController;
 			sourceTree = "<group>";
 		};
+		5CCD2D47209EF57600EBC76F /* QRCodeGenerator */ = {
+			isa = PBXGroup;
+			children = (
+				5CCD2D48209EF57600EBC76F /* CIColor+QRCode.h */,
+				5CCD2D49209EF57600EBC76F /* CIColor+QRCode.m */,
+				5CCD2D4A209EF57600EBC76F /* NSString+Utils.h */,
+				5CCD2D4B209EF57600EBC76F /* NSString+Utils.m */,
+				5CCD2D4C209EF57600EBC76F /* QRCodeGenerator.h */,
+				5CCD2D4D209EF57600EBC76F /* QRCodeGenerator.m */,
+			);
+			path = QRCodeGenerator;
+			sourceTree = "<group>";
+		};
 		5CFD026E208C7856008CCF30 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -1024,6 +1052,9 @@
 				5CFD0273208C7BFB008CCF30 /* MyProfileContainerViewController.m */,
 				5C5C2678208E07B80025DCEB /* KontrakKerjaViewController.h */,
 				5C5C2679208E07B80025DCEB /* KontrakKerjaViewController.m */,
+				5CCD2D42209EF52000EBC76F /* KontrakKerjaDetailViewController.h */,
+				5CCD2D43209EF52000EBC76F /* KontrakKerjaDetailViewController.m */,
+				5CCD2D44209EF52000EBC76F /* KontrakKerjaDetailViewController.xib */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -1142,6 +1173,7 @@
 				4825BFA01F5C3EAF00D091AC /* LegalizationBPKBTableViewCell.xib in Resources */,
 				481C42871F00EF29007D5C3C /* WorkOrderListTableViewCell.xib in Resources */,
 				4848B1B31F1251E700C9DE21 /* PostalCodeTableViewCell.xib in Resources */,
+				5CCD2D46209EF52000EBC76F /* KontrakKerjaDetailViewController.xib in Resources */,
 				5C8EB86A2095D76B006A3170 /* XLFormActivityTableViewCell.xib in Resources */,
 				5CDC30421EC3E274001D97DB /* GoogleService-Info.plist in Resources */,
 				48CDD8351EC9B3AD0038D626 /* SimpleListTableViewCell.xib in Resources */,
@@ -1240,6 +1272,7 @@
 				481C429C1F03BABA007D5C3C /* LegalizationBPKBFormViewController.m in Sources */,
 				483A9D901F0BA6060033F714 /* LegalizationBPKBModel.m in Sources */,
 				5C8EB8692095D76B006A3170 /* XLFormActivityTableViewCell.m in Sources */,
+				5CCD2D4E209EF57600EBC76F /* CIColor+QRCode.m in Sources */,
 				4846E2331EE6C650000C08B7 /* DataMAPModel.m in Sources */,
 				4831CD271EDE97D7001EF223 /* SubmenuCollectionViewCell.m in Sources */,
 				48482E731EC99B230029ACBE /* ListTableViewCell.m in Sources */,
@@ -1248,6 +1281,7 @@
 				48D44D541EE7A42C005FC8DB /* SurveyFormViewController.m in Sources */,
 				4842780A1ECABC3000183A60 /* List.m in Sources */,
 				482652801EFBF9DA0002A606 /* UsedCarFormViewController.m in Sources */,
+				5CCD2D4F209EF57600EBC76F /* NSString+Utils.m in Sources */,
 				484627261F1AED000049A92A /* AssignMarketingTableViewCell.m in Sources */,
 				4825BFCC1F5C3FAB00D091AC /* SuggestionComplaintTableViewController.m in Sources */,
 				48D44D5B1EE846B5005FC8DB /* WorkOrderModel.m in Sources */,
@@ -1298,6 +1332,7 @@
 				4825BF9A1F5C34CE00D091AC /* TopUpTableViewCell.m in Sources */,
 				4825BFD61F5C44C800D091AC /* SuggestionTableViewCell.m in Sources */,
 				4846E2361EE6E92A000C08B7 /* DropdownModel.m in Sources */,
+				5CCD2D50209EF57600EBC76F /* QRCodeGenerator.m in Sources */,
 				5CFD0274208C7BFB008CCF30 /* MyProfileContainerViewController.m in Sources */,
 				48CDD83A1EC9B8A50038D626 /* SubmenuViewController.m in Sources */,
 				48859A701ECC3FEC006EFDE6 /* FormRow.m in Sources */,
@@ -1329,6 +1364,7 @@
 				481C42971F03BAA0007D5C3C /* TopUpFormViewController.m in Sources */,
 				4825BFBD1F5C3F6800D091AC /* LegalizationBPKBTableViewController.m in Sources */,
 				48D44D4F1EDFD2AF005FC8DB /* ISO8601DateFormatter.m in Sources */,
+				5CCD2D45209EF52000EBC76F /* KontrakKerjaDetailViewController.m in Sources */,
 				5CCD2A221EF9577D000336AF /* sendOTPViewController.m in Sources */,
 				5C4D5FBF208F5F0C004CA73E /* ProductDetailViewController.m in Sources */,
 			);

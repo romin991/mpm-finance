@@ -10,7 +10,9 @@
 #import <UIImageView+AFNetworking.h>
 #import <UIScrollView+SVInfiniteScrolling.h>
 #import <UIScrollView+SVPullToRefresh.h>
-#define kHistoryPerPage 5
+#import "WorkOrderModel.h"
+#import "FormViewController.h"
+#define kHistoryPerPage 10
 @interface HistoryViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property NSMutableArray* data;
@@ -48,10 +50,10 @@
     __weak HistoryViewController *weakSelf = self;
     AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
     int offset = page * kHistoryPerPage;
-    NSString* url = [NSString stringWithFormat:@"%@/pengajuan/getallbyspv",kApiUrl];
+    NSString* url = [NSString stringWithFormat:@"%@/pengajuan/getallbyuser",kApiUrl];
     NSDictionary* param = @{@"data" : @{@"limit" : [NSString stringWithFormat:@"%i",kHistoryPerPage],
                                         @"offset" : [NSString stringWithFormat:@"%i",offset],
-                                        @"status" : @"history"},
+                                        @"status" : @"monitoring"},
                             @"userid" : [MPMUserInfo getUserInfo][@"userId"],
                             @"token" : [MPMUserInfo getToken]};
     
@@ -60,8 +62,6 @@
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (page == 0) {
             weakSelf.data = [NSMutableArray arrayWithArray:responseObject[@"data"]];
-            NSLog(@"%@",responseObject);
-            
             dispatch_async(dispatch_get_main_queue(), ^{
                 _currentPage = 1;
                 [weakSelf.tableView reloadData];
@@ -79,8 +79,6 @@
             });
             
         }
-
-        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [weakSelf.tableView.pullToRefreshView stopAnimating];
     }];
@@ -108,7 +106,15 @@
     [MPMGlobal giveBorderTo:[cell viewWithTag:4] withBorderColor:self.data[indexPath.row][@"color"] withCornerRadius:10.0f];
     return cell;
 }
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [WorkOrderModel getListWorkOrderDetailWithID:[self.data[indexPath.row][@"id"] integerValue] completion:^(NSDictionary *response, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            FormViewController *vc = [[FormViewController alloc] init];
+            vc.menu = [Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi];
+            //vc.list =
+        });
+    }];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

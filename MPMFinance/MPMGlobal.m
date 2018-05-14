@@ -224,25 +224,30 @@ NSString *const kActionTypeAPICall = @"APICall";
 }
 
 + (NSString *)removeTimeFromString:(NSString *)object{
-    ISO8601DateFormatter *formatter = [self getISO8601DateFormatter];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"dd-MM-yyyy";
     if (object == nil || [object isKindOfClass:[NSNull class]]) return object;
     NSDate *date = [formatter dateFromString:object];
-    [formatter setIncludeTime:NO];
     return [formatter stringFromDate:date];
 }
 
 + (NSString *)stringFromDate:(NSDate *)object{
-    ISO8601DateFormatter *formatter = [self getISO8601DateFormatter];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"dd-MM-yyyy";
     NSDate *date = object;
     if (date == nil || [date isKindOfClass:[NSNull class]]) return [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:0]];
     else return [formatter stringFromDate:date];
 }
 
 + (NSDate *)dateFromString:(NSString *)object{
-    ISO8601DateFormatter *formatter = [self getISO8601DateFormatter];
+   // ISO8601DateFormatter *formatter = [self getISO8601DateFormatter];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"dd-MM-yyyy";
     NSString *string = object;
-    if (string == nil || [string isKindOfClass:[NSNull class]]) return [NSDate dateWithTimeIntervalSince1970:0];
-    else return [formatter dateFromString:string];
+    if (string == nil || [string isKindOfClass:[NSNull class]])
+        return [NSDate dateWithTimeIntervalSince1970:0];
+    else
+        return [formatter dateFromString:string];
 }
 
 + (NSString *)MD5fromString:(NSString *)input {

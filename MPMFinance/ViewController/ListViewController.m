@@ -294,6 +294,7 @@
         FormViewController *formViewController = [[FormViewController alloc] init];
         formViewController.menu = submenu;
         formViewController.list = list;
+        
         [self.navigationController pushViewController:formViewController animated:YES];
         
     } else if ([submenu.menuType isEqualToString:kMenuTypeFormSurvey]) {

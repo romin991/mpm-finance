@@ -133,6 +133,7 @@
 + (void)loadValueFrom:(NSDictionary *)dictionary to:(XLFormSectionDescriptor *)section on:(XLFormViewController *)formViewController partialUpdate:(NSArray *)fields{
     [section.formRows enumerateObjectsUsingBlock:^(XLFormRowDescriptor *row, NSUInteger idx, BOOL *stop) {
         id value;
+        NSLog(@"%@",row.tag);
         if ([dictionary objectForKey:row.tag] && (fields.count == 0 || [fields containsObject:row.tag])){
             value = [dictionary objectForKey:row.tag];
         }
@@ -140,7 +141,8 @@
             if ([row.rowType isEqualToString:XLFormRowDescriptorTypeDateInline]){
                 row.value = [MPMGlobal dateFromString:value];
             } else if ([row.rowType isEqualToString:XLFormRowDescriptorTypeSelectorPush]){
-                row.value = [XLFormOptionsObject formOptionsOptionForValue:value fromOptions:row.selectorOptions];
+                //row.value = [XLFormOptionsObject formOptionsOptionForValue:value fromOptions:row.selectorOptions];
+                row.value = value;
             } else if ([row.rowType isEqualToString:XLFormRowDescriptorTypeImage]){
                 row.value = [UIImage imageWithData:value];
             } else if ([row.rowType isEqualToString:XLFormRowDescriptorTypeButton]){
@@ -148,8 +150,11 @@
             } else {
                 row.value = value;
             }
-            
-            [formViewController reloadFormRow:row];
+            if ([value isKindOfClass:[NSString class]] && [value isEqualToString:@""]) {
+                ;
+            } else {
+                [formViewController reloadFormRow:row];
+            }
         }
     }];
 }
