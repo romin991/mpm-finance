@@ -208,7 +208,7 @@
                 row.action.formSelector = @selector(nextButtonClicked:);
             }
             
-            if ([row.tag isEqualToString:@"kodeposSesuaiKTP"] || [row.tag isEqualToString:@"kodeposDomisili"]){
+            if ([row.tag isEqualToString:@"kodeposSesuaiKTP"] || [row.tag isEqualToString:@"kodeposDomisili"] || [row.tag isEqualToString:@"kodePosPasangan"]){
                 row.action.viewControllerNibName = @"PostalCodeViewController";
                 row.valueTransformer = [PostalCodeValueTransformer class];
             }
@@ -286,6 +286,21 @@
             NSLog(@"%@", exception);
         }
     }
+    if ([formRow.tag isEqualToString:@"kodePosPasangan"] && newValue != nil && [newValue isKindOfClass:PostalCode.class]) {
+        @try {
+            PostalCode *postalCode = (PostalCode *)newValue;
+            //set value
+            [self.valueDictionary addEntriesFromDictionary:@{@"kecamatanPasangan" : postalCode.subDistrict,
+                                                             @"kelurahanPasangan" : postalCode.disctrict,
+                                                             @"kotaPasangan" : postalCode.city,}];
+            
+            [FormModel loadValueFrom:self.valueDictionary on:self partialUpdate:
+             [NSArray arrayWithObjects:@"kecamatanPasangan", @"kelurahanPasangan", @"kotaPasangan", nil]];
+        } @catch (NSException *exception) {
+            NSLog(@"%@", exception);
+        }
+    }
+    
     
     if ([formRow.tag isEqualToString:@"samaDenganAlamatLegal"]){
         if ([newValue boolValue]){

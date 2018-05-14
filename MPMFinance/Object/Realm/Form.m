@@ -114,11 +114,11 @@
     [section.rows addObject:[FormRow new:realm :7 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Alamat Pasangan" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :7 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"RT Pasangan" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :7 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"RW Pasangan" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :7 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Kode Pos Pasangan" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :7 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kelurahan Pasangan" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :7 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kecamatan Pasangan" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :7 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kota Pasangan" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :7 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kode Pos Pasangan" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :7 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Masa Berlaku KTP Pasangan" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :7 :NO :NO :XLFormRowDescriptorTypeDateInline :@"Masa Berlaku KTP Pasangan" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :7 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kewarganegaraan Pasangan" :@"" :@""]];
     //===
     section = [[FormSection alloc] init];

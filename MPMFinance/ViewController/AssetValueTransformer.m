@@ -24,6 +24,9 @@
 - (id)transformedValue:(id)value
 {
     if (!value) return nil;
+    if (![value isKindOfClass:[Asset class]]) {
+        return nil;
+    }
     Asset *asset = (Asset *)value;
     if (asset.value.length < 1) {
         return @"";
