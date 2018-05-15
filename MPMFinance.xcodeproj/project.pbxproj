@@ -74,6 +74,7 @@
 		48336A9B1F19111300536771 /* BarcodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48336A991F19111300536771 /* BarcodeViewController.m */; };
 		48336A9C1F19111300536771 /* BarcodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48336A9A1F19111300536771 /* BarcodeViewController.xib */; };
 		483514841EFAC32500207458 /* FormModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 483514831EFAC32500207458 /* FormModel.m */; };
+		4835AD5220AA72AB005F4E43 /* ChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4835AD5120AA72AB005F4E43 /* ChangePasswordViewController.m */; };
 		483A9D901F0BA6060033F714 /* LegalizationBPKBModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 483A9D8F1F0BA6060033F714 /* LegalizationBPKBModel.m */; };
 		483A9D931F0BAB9F0033F714 /* InsuranceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 483A9D921F0BAB9F0033F714 /* InsuranceModel.m */; };
 		483F1E981EF2874F005D3945 /* ProfileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 483F1E971EF2874F005D3945 /* ProfileModel.m */; };
@@ -159,14 +160,14 @@
 		5C9DB2361EC3312200FC0CC9 /* MPMGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9DB2351EC3312200FC0CC9 /* MPMGlobal.m */; };
 		5C9DB2421EC3393000FC0CC9 /* MPMUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9DB2411EC3393000FC0CC9 /* MPMUserInfo.m */; };
 		5CBC4C771ECC8A67002ED03C /* MyProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CBC4C761ECC8A67002ED03C /* MyProfileTableViewController.m */; };
-		5CCD2A221EF9577D000336AF /* sendOTPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCD2A211EF9577D000336AF /* sendOTPViewController.m */; };
+		5CCD2A221EF9577D000336AF /* SendOTPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCD2A211EF9577D000336AF /* SendOTPViewController.m */; };
 		5CCD2D45209EF52000EBC76F /* KontrakKerjaDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCD2D43209EF52000EBC76F /* KontrakKerjaDetailViewController.m */; };
 		5CCD2D46209EF52000EBC76F /* KontrakKerjaDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CCD2D44209EF52000EBC76F /* KontrakKerjaDetailViewController.xib */; };
 		5CCD2D4E209EF57600EBC76F /* CIColor+QRCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCD2D49209EF57600EBC76F /* CIColor+QRCode.m */; };
 		5CCD2D4F209EF57600EBC76F /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCD2D4B209EF57600EBC76F /* NSString+Utils.m */; };
 		5CCD2D50209EF57600EBC76F /* QRCodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCD2D4D209EF57600EBC76F /* QRCodeGenerator.m */; };
 		5CDC30421EC3E274001D97DB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC30411EC3E274001D97DB /* GoogleService-Info.plist */; };
-		5CF497B81ED330FF0005327D /* registerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF497B71ED330FF0005327D /* registerViewController.m */; };
+		5CF497B81ED330FF0005327D /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF497B71ED330FF0005327D /* RegisterViewController.m */; };
 		5CF6819C1EC747A60056ACD3 /* KASlideShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF6819B1EC747A60056ACD3 /* KASlideShow.m */; };
 		5CFD0271208C7876008CCF30 /* MyProfileNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFD0270208C7876008CCF30 /* MyProfileNavigationViewController.m */; };
 		5CFD0274208C7BFB008CCF30 /* MyProfileContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFD0273208C7BFB008CCF30 /* MyProfileContainerViewController.m */; };
@@ -279,6 +280,8 @@
 		48336A9A1F19111300536771 /* BarcodeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BarcodeViewController.xib; path = ViewController/BarcodeViewController.xib; sourceTree = "<group>"; };
 		483514821EFAC32500207458 /* FormModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FormModel.h; path = Model/FormModel.h; sourceTree = "<group>"; };
 		483514831EFAC32500207458 /* FormModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormModel.m; path = Model/FormModel.m; sourceTree = "<group>"; };
+		4835AD5020AA72AB005F4E43 /* ChangePasswordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ChangePasswordViewController.h; path = ViewController/ChangePasswordViewController.h; sourceTree = "<group>"; };
+		4835AD5120AA72AB005F4E43 /* ChangePasswordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ChangePasswordViewController.m; path = ViewController/ChangePasswordViewController.m; sourceTree = "<group>"; };
 		483A9D8E1F0BA6060033F714 /* LegalizationBPKBModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LegalizationBPKBModel.h; path = Model/LegalizationBPKBModel.h; sourceTree = "<group>"; };
 		483A9D8F1F0BA6060033F714 /* LegalizationBPKBModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LegalizationBPKBModel.m; path = Model/LegalizationBPKBModel.m; sourceTree = "<group>"; };
 		483A9D911F0BAB9F0033F714 /* InsuranceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InsuranceModel.h; path = Model/InsuranceModel.h; sourceTree = "<group>"; };
@@ -429,8 +432,8 @@
 		5C9DB2411EC3393000FC0CC9 /* MPMUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMUserInfo.m; sourceTree = "<group>"; };
 		5CBC4C751ECC8A67002ED03C /* MyProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProfileTableViewController.h; sourceTree = "<group>"; };
 		5CBC4C761ECC8A67002ED03C /* MyProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProfileTableViewController.m; sourceTree = "<group>"; };
-		5CCD2A201EF9577D000336AF /* sendOTPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sendOTPViewController.h; sourceTree = "<group>"; };
-		5CCD2A211EF9577D000336AF /* sendOTPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = sendOTPViewController.m; sourceTree = "<group>"; };
+		5CCD2A201EF9577D000336AF /* SendOTPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendOTPViewController.h; sourceTree = "<group>"; };
+		5CCD2A211EF9577D000336AF /* SendOTPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendOTPViewController.m; sourceTree = "<group>"; };
 		5CCD2D42209EF52000EBC76F /* KontrakKerjaDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KontrakKerjaDetailViewController.h; sourceTree = "<group>"; };
 		5CCD2D43209EF52000EBC76F /* KontrakKerjaDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KontrakKerjaDetailViewController.m; sourceTree = "<group>"; };
 		5CCD2D44209EF52000EBC76F /* KontrakKerjaDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KontrakKerjaDetailViewController.xib; sourceTree = "<group>"; };
@@ -442,8 +445,8 @@
 		5CCD2D4D209EF57600EBC76F /* QRCodeGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeGenerator.m; sourceTree = "<group>"; };
 		5CD07BD91EC342B0007C8C08 /* MPMFinance.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MPMFinance.entitlements; sourceTree = "<group>"; };
 		5CDC30411EC3E274001D97DB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		5CF497B61ED330FF0005327D /* registerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = registerViewController.h; sourceTree = "<group>"; };
-		5CF497B71ED330FF0005327D /* registerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = registerViewController.m; sourceTree = "<group>"; };
+		5CF497B61ED330FF0005327D /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		5CF497B71ED330FF0005327D /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		5CF6819A1EC747A60056ACD3 /* KASlideShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KASlideShow.h; sourceTree = "<group>"; };
 		5CF6819B1EC747A60056ACD3 /* KASlideShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KASlideShow.m; sourceTree = "<group>"; };
 		5CFD026F208C7876008CCF30 /* MyProfileNavigationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyProfileNavigationViewController.h; sourceTree = "<group>"; };
@@ -721,10 +724,10 @@
 				483F39391EC3518500C03253 /* ForgotPasswordViewController.m */,
 				4886BAFB1EC42EDD000F8DBE /* MenuViewController.h */,
 				4886BAFC1EC42EDD000F8DBE /* MenuViewController.m */,
-				5CF497B61ED330FF0005327D /* registerViewController.h */,
-				5CF497B71ED330FF0005327D /* registerViewController.m */,
-				5CCD2A201EF9577D000336AF /* sendOTPViewController.h */,
-				5CCD2A211EF9577D000336AF /* sendOTPViewController.m */,
+				5CF497B61ED330FF0005327D /* RegisterViewController.h */,
+				5CF497B71ED330FF0005327D /* RegisterViewController.m */,
+				5CCD2A201EF9577D000336AF /* SendOTPViewController.h */,
+				5CCD2A211EF9577D000336AF /* SendOTPViewController.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -1055,6 +1058,8 @@
 				5CCD2D42209EF52000EBC76F /* KontrakKerjaDetailViewController.h */,
 				5CCD2D43209EF52000EBC76F /* KontrakKerjaDetailViewController.m */,
 				5CCD2D44209EF52000EBC76F /* KontrakKerjaDetailViewController.xib */,
+				4835AD5020AA72AB005F4E43 /* ChangePasswordViewController.h */,
+				4835AD5120AA72AB005F4E43 /* ChangePasswordViewController.m */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -1356,7 +1361,7 @@
 				4848B1A71F124BFB00C9DE21 /* PostalCodeViewController.m in Sources */,
 				4886BB051EC4ABD1000F8DBE /* PopulateRealmDatabase.m in Sources */,
 				5C586E9A1ECB183200A5A626 /* HelpTableViewController.m in Sources */,
-				5CF497B81ED330FF0005327D /* registerViewController.m in Sources */,
+				5CF497B81ED330FF0005327D /* RegisterViewController.m in Sources */,
 				483514841EFAC32500207458 /* FormModel.m in Sources */,
 				4848B1CB1F1384EA00C9DE21 /* Asset.m in Sources */,
 				5C9DB2421EC3393000FC0CC9 /* MPMUserInfo.m in Sources */,
@@ -1365,7 +1370,8 @@
 				4825BFBD1F5C3F6800D091AC /* LegalizationBPKBTableViewController.m in Sources */,
 				48D44D4F1EDFD2AF005FC8DB /* ISO8601DateFormatter.m in Sources */,
 				5CCD2D45209EF52000EBC76F /* KontrakKerjaDetailViewController.m in Sources */,
-				5CCD2A221EF9577D000336AF /* sendOTPViewController.m in Sources */,
+				5CCD2A221EF9577D000336AF /* SendOTPViewController.m in Sources */,
+				4835AD5220AA72AB005F4E43 /* ChangePasswordViewController.m in Sources */,
 				5C4D5FBF208F5F0C004CA73E /* ProductDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

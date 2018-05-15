@@ -10,14 +10,8 @@
 #import <APAvatarImageView.h>
 #import <UIImageView+AFNetworking.h>
 @interface MyProfileTableViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+
 @property (weak, nonatomic) IBOutlet APAvatarImageView *profilePictureImageView;
-@property NSString* fileName;
-@property NSString* fileSize;
-@property NSString* fileType;
-@property NSString* fileMimeType;
-@property BOOL isEdit;
-@property (weak, nonatomic) IBOutlet UITextField *txtPassword;
-@property NSData* imgData;
 @property (weak, nonatomic) IBOutlet UITextField *txtDateOfBirth;
 @property (weak, nonatomic) IBOutlet UITextField *txtPhoneNumber;
 @property (weak, nonatomic) IBOutlet UITextField *txtEmail;
@@ -29,6 +23,15 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtAddressDealer;
 @property (weak, nonatomic) IBOutlet UITextField *txtGender;
 @property (weak, nonatomic) IBOutlet UITextField *txtNamaDealer;
+@property (weak, nonatomic) IBOutlet UIButton *changePasswordButton;
+
+@property NSString* fileName;
+@property NSString* fileSize;
+@property NSString* fileType;
+@property NSString* fileMimeType;
+@property BOOL isEdit;
+@property NSData* imgData;
+
 @end
 
 @implementation MyProfileTableViewController
@@ -54,11 +57,13 @@
     [self.view addGestureRecognizer:gesture];
     // Do any additional setup after loading the view.
 }
+
 - (void)handleTap
 {
     [self.view endEditing:YES];
     // Handle the tap if you want to
 }
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [self setTextFieldsEnable:NO];
@@ -81,6 +86,11 @@
     self.txtTempatLahir.text = [MPMUserInfo getUserInfo][@"placeOfBirth"];
     
 }
+
+- (IBAction)goToChangePasswordPage:(id)sender {
+    [self performSegueWithIdentifier:@"changePasswordSegue" sender:nil];
+}
+
 - (IBAction)logOut:(id)sender {
     NSLog(@"logout");
     [MPMUserInfo deleteUserInfo];
@@ -101,6 +111,7 @@
 {
     // the tableview can't be selected 
 }
+
 - (IBAction)changeProfilePicture:(id)sender {
     UIAlertController * alert = [UIAlertController
                                  alertControllerWithTitle:@"Pilih Dokumen"
@@ -218,6 +229,7 @@
     [_txtGender setEnabled:enable];
     [_txtNamaDealer setEnabled:enable];
 }
+
 -(void)onDatePickerValueChanged:(UIDatePicker*)datePicker
 {
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];

@@ -54,6 +54,7 @@
     
     [SVProgressHUD show];
     [ProfileModel login:self.usernameField.text password:self.passwordField.text completion:^(NSDictionary *dictionary, NSError *error) {
+        [SVProgressHUD dismiss];
         if (!error) {
             [SVProgressHUD showSuccessWithStatus:@"Login Success"];
             [SVProgressHUD dismissWithDelay:1.5 completion:^{

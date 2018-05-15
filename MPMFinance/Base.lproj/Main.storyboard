@@ -1424,6 +1424,114 @@
             </objects>
             <point key="canvasLocation" x="5836" y="2043.778110944528"/>
         </scene>
+        <!--Change Password View Controller-->
+        <scene sceneID="Lsz-L1-hXP">
+            <objects>
+                <viewController modalPresentationStyle="formSheet" id="a8d-Sk-ipf" customClass="ChangePasswordViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nE4-ja-uCR"/>
+                        <viewControllerLayoutGuide type="bottom" id="DLA-DS-PU9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fEr-bb-MNH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="499"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Old Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IxK-Sn-iEU" customClass="JVFloatLabeledTextField">
+                                <rect key="frame" x="16" y="50" width="288" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="cty-Pj-kpr"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lms-Uo-TX6" customClass="JVFloatLabeledTextField">
+                                <rect key="frame" x="16" y="102" width="288" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="vSD-Ii-E0f"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XtI-I0-V3I" customClass="JVFloatLabeledTextField">
+                                <rect key="frame" x="16" y="154" width="288" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="GLB-hd-qsS"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DmF-jz-oD2">
+                                <rect key="frame" x="244" y="206" width="60" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="FcN-36-PoC"/>
+                                    <constraint firstAttribute="width" constant="60" id="K7E-rh-csY"/>
+                                </constraints>
+                                <state key="normal" title="SAVE">
+                                    <color key="titleColor" red="0.95821231600000001" green="0.43499121070000002" blue="0.0089894523840000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="save:" destination="a8d-Sk-ipf" eventType="touchUpInside" id="TzI-bP-sj7"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yof-wV-fx6">
+                                <rect key="frame" x="16" y="20" width="288" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="Bdw-mJ-NDh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JSd-w8-UH0">
+                                <rect key="frame" x="176" y="206" width="60" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="Eq8-Zx-kUc"/>
+                                    <constraint firstAttribute="height" constant="30" id="lAC-qg-P4M"/>
+                                </constraints>
+                                <state key="normal" title="CANCEL">
+                                    <color key="titleColor" red="0.95821231600000001" green="0.43499121070000002" blue="0.0089894523840000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancel:" destination="a8d-Sk-ipf" eventType="touchUpInside" id="JkC-pg-rpn"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="DmF-jz-oD2" firstAttribute="top" secondItem="XtI-I0-V3I" secondAttribute="bottom" constant="8" id="1Wq-Tc-Crf"/>
+                            <constraint firstItem="lms-Uo-TX6" firstAttribute="leading" secondItem="fEr-bb-MNH" secondAttribute="leadingMargin" id="1YK-nm-C1y"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="DmF-jz-oD2" secondAttribute="trailing" id="9Dh-y9-LO4"/>
+                            <constraint firstItem="XtI-I0-V3I" firstAttribute="trailing" secondItem="fEr-bb-MNH" secondAttribute="trailingMargin" id="BCs-H7-daZ"/>
+                            <constraint firstItem="Yof-wV-fx6" firstAttribute="top" secondItem="nE4-ja-uCR" secondAttribute="bottom" id="L1v-Xs-2f1"/>
+                            <constraint firstItem="lms-Uo-TX6" firstAttribute="top" secondItem="IxK-Sn-iEU" secondAttribute="bottom" constant="8" id="LcW-6u-eCo"/>
+                            <constraint firstItem="Yof-wV-fx6" firstAttribute="trailing" secondItem="fEr-bb-MNH" secondAttribute="trailingMargin" id="Ltf-UE-VCC"/>
+                            <constraint firstItem="IxK-Sn-iEU" firstAttribute="leading" secondItem="fEr-bb-MNH" secondAttribute="leadingMargin" id="N46-ip-ADW"/>
+                            <constraint firstItem="IxK-Sn-iEU" firstAttribute="top" secondItem="Yof-wV-fx6" secondAttribute="bottom" constant="8" id="WtG-J1-NoQ"/>
+                            <constraint firstItem="Yof-wV-fx6" firstAttribute="leading" secondItem="fEr-bb-MNH" secondAttribute="leadingMargin" id="YpI-PN-Rhh"/>
+                            <constraint firstItem="IxK-Sn-iEU" firstAttribute="trailing" secondItem="fEr-bb-MNH" secondAttribute="trailingMargin" id="b5Y-lC-JE0"/>
+                            <constraint firstItem="JSd-w8-UH0" firstAttribute="top" secondItem="XtI-I0-V3I" secondAttribute="bottom" constant="8" id="eBt-CQ-0X0"/>
+                            <constraint firstItem="DmF-jz-oD2" firstAttribute="leading" secondItem="JSd-w8-UH0" secondAttribute="trailing" constant="8" id="fE5-Qc-3jy"/>
+                            <constraint firstItem="lms-Uo-TX6" firstAttribute="trailing" secondItem="fEr-bb-MNH" secondAttribute="trailingMargin" id="lSB-4c-r4i"/>
+                            <constraint firstItem="XtI-I0-V3I" firstAttribute="leading" secondItem="fEr-bb-MNH" secondAttribute="leadingMargin" id="stl-Tm-tQZ"/>
+                            <constraint firstItem="XtI-I0-V3I" firstAttribute="top" secondItem="lms-Uo-TX6" secondAttribute="bottom" constant="8" id="tGS-dC-62K"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cancelButton" destination="JSd-w8-UH0" id="QXp-an-XRK"/>
+                        <outlet property="confirmPasswordField" destination="XtI-I0-V3I" id="Kgi-PZ-4aq"/>
+                        <outlet property="oldPasswordField" destination="IxK-Sn-iEU" id="uaz-LJ-qPj"/>
+                        <outlet property="passwordField" destination="lms-Uo-TX6" id="YH1-1T-17B"/>
+                        <outlet property="saveButton" destination="DmF-jz-oD2" id="GO6-dy-eQa"/>
+                        <outlet property="titleLabel" destination="Yof-wV-fx6" id="4wA-GZ-53c"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Kl-NA-gU6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6575.625" y="1483.6267605633802"/>
+        </scene>
         <!--My Profile Table View Controller-->
         <scene sceneID="FBP-y9-6Hx">
             <objects>
@@ -1455,6 +1563,9 @@
                                                         <constraint firstAttribute="width" constant="164" id="zFx-m2-LoY"/>
                                                     </constraints>
                                                     <state key="normal" title="Ubah Kata Sandi"/>
+                                                    <connections>
+                                                        <action selector="goToChangePasswordPage:" destination="G2X-Nb-pTl" eventType="touchUpInside" id="pfC-45-v8r"/>
+                                                    </connections>
                                                 </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profilePictureIcon" translatesAutoresizingMaskIntoConstraints="NO" id="h19-4z-3Bd" customClass="APAvatarImageView">
                                                     <rect key="frame" x="124" y="26" width="72" height="72"/>
@@ -1925,6 +2036,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="kpA-Bx-Wqh"/>
                     <connections>
+                        <outlet property="changePasswordButton" destination="J08-gv-g3M" id="jzO-Xn-9pJ"/>
                         <outlet property="profilePictureImageView" destination="h19-4z-3Bd" id="rDj-ny-QWH"/>
                         <outlet property="txtAddress" destination="hNE-oc-FCC" id="cIa-nA-2Gu"/>
                         <outlet property="txtAddressDealer" destination="bII-Ys-HJJ" id="Cs7-Ps-FTf"/>
@@ -1937,6 +2049,7 @@
                         <outlet property="txtPhoneNumber" destination="0R4-xb-Nrn" id="lOa-jF-Ovd"/>
                         <outlet property="txtTempatLahir" destination="z3O-h8-bXw" id="XgZ-eU-IMT"/>
                         <outlet property="txtUserID" destination="jtN-sR-jfQ" id="tkM-yI-sgI"/>
+                        <segue destination="a8d-Sk-ipf" kind="presentation" identifier="changePasswordSegue" id="rvt-rr-NUH"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fMF-18-uv0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2706,19 +2819,19 @@
         <image name="HistoryIcon" width="23" height="19"/>
         <image name="HomeIcon" width="27" height="23"/>
         <image name="LogoSmall" width="84" height="37"/>
-        <image name="OnlineSubmissionIcon" width="29" height="33"/>
+        <image name="OnlineSubmissionIcon" width="21" height="22"/>
         <image name="PasswordIcon" width="18" height="24"/>
         <image name="ProfileIcon" width="22" height="23"/>
         <image name="SignInLogo" width="143" height="64"/>
-        <image name="cartIcon" width="35" height="33"/>
-        <image name="contactUsIcon" width="37" height="34"/>
-        <image name="creditIcon" width="37" height="37"/>
+        <image name="cartIcon" width="22" height="22"/>
+        <image name="contactUsIcon" width="22" height="22"/>
+        <image name="creditIcon" width="24" height="22"/>
         <image name="logoutIcon" width="29" height="29"/>
         <image name="profilePictureIcon" width="72" height="72"/>
         <image name="signInBackground" width="414" height="296"/>
         <image name="uk-flag" width="14" height="14"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="raJ-8g-lbX"/>
+        <segue reference="9Ie-Iz-vSB"/>
     </inferredMetricsTieBreakers>
 </document>
