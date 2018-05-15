@@ -14,6 +14,7 @@ target 'MPMFinance' do
     pod 'SVProgressHUD'
     pod 'SVPullToRefresh'
     pod 'IQKeyboardManager'
+    pod 'TPKeyboardAvoiding', '~> 1.2.11'
     pod 'XLForm', '~> 3.0'
     pod 'APAvatarImageView'
     pod 'JVFloatLabeledTextField'
