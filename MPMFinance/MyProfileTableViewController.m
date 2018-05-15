@@ -9,6 +9,7 @@
 #import "MyProfileTableViewController.h"
 #import <APAvatarImageView.h>
 #import <UIImageView+AFNetworking.h>
+#import "ChangePasswordViewController.h"
 @interface MyProfileTableViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet APAvatarImageView *profilePictureImageView;
@@ -88,7 +89,9 @@
 }
 
 - (IBAction)goToChangePasswordPage:(id)sender {
-    [self performSegueWithIdentifier:@"changePasswordSegue" sender:nil];
+    ChangePasswordViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ChangePasswordViewController"];
+    [self.navigationController.navigationController.navigationController pushViewController:vc animated:YES];
+//    [self performSegueWithIdentifier:@"changePasswordSegue" sender:nil];
 }
 
 - (IBAction)logOut:(id)sender {

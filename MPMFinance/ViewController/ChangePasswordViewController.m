@@ -24,7 +24,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:NO];
     self.strictValidator = [NJOPasswordValidator validatorWithRules:@[[NJOLengthRule ruleWithRange:NSMakeRange(6, 64)], [NJORequiredCharacterRule lowercaseCharacterRequiredRule], [NJORequiredCharacterRule uppercaseCharacterRequiredRule], [NJORequiredCharacterRule symbolCharacterRequiredRule]]];
     // Do any additional setup after loading the view.
 }
@@ -35,8 +34,7 @@
 }
 
 - (IBAction)cancel:(id)sender {
-    [self.navigationController setNavigationBarHidden:YES];
-    [self dismissViewControllerAnimated:true completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 -(BOOL)isValidPassword:(NSString *)checkString{
     
