@@ -171,6 +171,7 @@
 		5CF6819C1EC747A60056ACD3 /* KASlideShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF6819B1EC747A60056ACD3 /* KASlideShow.m */; };
 		5CFD0271208C7876008CCF30 /* MyProfileNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFD0270208C7876008CCF30 /* MyProfileNavigationViewController.m */; };
 		5CFD0274208C7BFB008CCF30 /* MyProfileContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFD0273208C7BFB008CCF30 /* MyProfileContainerViewController.m */; };
+		5CFF0A7520AADAE200198E60 /* NJOPasswordStrengthEvaluator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFF0A7420AADAE100198E60 /* NJOPasswordStrengthEvaluator.m */; };
 		D3738F410048C92A1AE2571B /* libPods-MPMFinance.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F2B2C34A7F4351773F253B9A /* libPods-MPMFinance.a */; };
 /* End PBXBuildFile section */
 
@@ -453,6 +454,8 @@
 		5CFD0270208C7876008CCF30 /* MyProfileNavigationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyProfileNavigationViewController.m; sourceTree = "<group>"; };
 		5CFD0272208C7BFB008CCF30 /* MyProfileContainerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyProfileContainerViewController.h; sourceTree = "<group>"; };
 		5CFD0273208C7BFB008CCF30 /* MyProfileContainerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyProfileContainerViewController.m; sourceTree = "<group>"; };
+		5CFF0A7320AADAE100198E60 /* NJOPasswordStrengthEvaluator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NJOPasswordStrengthEvaluator.h; sourceTree = "<group>"; };
+		5CFF0A7420AADAE100198E60 /* NJOPasswordStrengthEvaluator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJOPasswordStrengthEvaluator.m; sourceTree = "<group>"; };
 		B57DB931C16BC9C4B3252B1C /* Pods-MPMFinance.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MPMFinance.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MPMFinance/Pods-MPMFinance.debug.xcconfig"; sourceTree = "<group>"; };
 		F2B2C34A7F4351773F253B9A /* libPods-MPMFinance.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MPMFinance.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F475CB99739A3281EC48B7D3 /* Pods-MPMFinance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MPMFinance.release.xcconfig"; path = "Pods/Target Support Files/Pods-MPMFinance/Pods-MPMFinance.release.xcconfig"; sourceTree = "<group>"; };
@@ -695,6 +698,8 @@
 		483F39201EC3085E00C03253 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5CFF0A7320AADAE100198E60 /* NJOPasswordStrengthEvaluator.h */,
+				5CFF0A7420AADAE100198E60 /* NJOPasswordStrengthEvaluator.m */,
 				5CCD2D47209EF57600EBC76F /* QRCodeGenerator */,
 				5CDC30411EC3E274001D97DB /* GoogleService-Info.plist */,
 				483F39211EC3085E00C03253 /* main.m */,
@@ -1331,6 +1336,7 @@
 				5CBC4C771ECC8A67002ED03C /* MyProfileTableViewController.m in Sources */,
 				4825BFC21F5C3F7B00D091AC /* InsuranceClaimTableViewController.m in Sources */,
 				484ADB231F0CEDCE0006BCB0 /* SuggestionComplaintModel.m in Sources */,
+				5CFF0A7520AADAE200198E60 /* NJOPasswordStrengthEvaluator.m in Sources */,
 				5C46F5181EE81914009C6AD6 /* KATCircularProgress.m in Sources */,
 				4846271E1F1A0C3B0049A92A /* AssignMarketingListViewController.m in Sources */,
 				4831CD1F1EDE97A6001EF223 /* SubmenuCollectionViewController.m in Sources */,
