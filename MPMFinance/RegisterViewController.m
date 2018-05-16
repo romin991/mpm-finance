@@ -10,7 +10,7 @@
 #import <APAvatarImageView.h>
 #import "SendOTPViewController.h"
 #import <AFHTTPSessionManager.h>
-
+#import "NJOPasswordStrengthEvaluator.h"
 @interface RegisterViewController ()
 <UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
 

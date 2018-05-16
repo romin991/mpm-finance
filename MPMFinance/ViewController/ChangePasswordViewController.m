@@ -9,22 +9,22 @@
 #import "ChangePasswordViewController.h"
 #import <JVFloatLabeledTextField/JVFloatLabeledTextField.h>
 #import "ProfileModel.h"
-
+#import "NJOPasswordStrengthEvaluator.h"
 @interface ChangePasswordViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet JVFloatLabeledTextField *oldPasswordField;
 @property (weak, nonatomic) IBOutlet JVFloatLabeledTextField *passwordField;
-@property (weak, nonatomic) IBOutlet JVFloatLabeledTextField *confirmPasswordField;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
-
+@property (readwrite, nonatomic, strong) NJOPasswordValidator *strictValidator;
 @end
 
 @implementation ChangePasswordViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.strictValidator = [NJOPasswordValidator validatorWithRules:@[[NJOLengthRule ruleWithRange:NSMakeRange(6, 64)], [NJORequiredCharacterRule lowercaseCharacterRequiredRule], [NJORequiredCharacterRule uppercaseCharacterRequiredRule], [NJORequiredCharacterRule symbolCharacterRequiredRule]]];
     // Do any additional setup after loading the view.
 }
 
@@ -34,13 +34,27 @@
 }
 
 - (IBAction)cancel:(id)sender {
-    [self dismissViewControllerAnimated:true completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
-
+-(BOOL)isValidPassword:(NSString *)checkString{
+    
+    NSArray *failingRules = nil;
+    if([self.strictValidator validatePassword:checkString failingRules:&failingRules]){
+        return YES;
+    } else {
+        for (id <NJOPasswordRule> rule in failingRules) {
+            [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"• %@\n", [rule localizedErrorDescription]]];
+            [SVProgressHUD dismissWithDelay:1.5];
+            break;
+        }
+        
+        return NO;
+    }
+    
+}
 - (IBAction)save:(id)sender {
-    if (![self.passwordField.text isEqualToString:self.confirmPasswordField.text]) {
-        [SVProgressHUD showErrorWithStatus:@"Confirm password does not match"];
-        [SVProgressHUD dismissWithDelay:1.5];
+    if (![self isValidPassword:self.passwordField.text]) {
+        
         
     } else {
         [SVProgressHUD show];

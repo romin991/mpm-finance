@@ -7,23 +7,37 @@
 //
 
 #import "HelpTableViewController.h"
-
+#import "ProductDetailViewController.h"
 @interface HelpTableViewController ()
-
+@property NSArray *data;
 @end
 
 @implementation HelpTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self reloadFromServer];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
-
+- (void)reloadFromServer{
+    AFHTTPSessionManager *manager = [MPMGlobal sessionManager];
+    [manager POST:[NSString stringWithFormat:@"%@/help",kApiUrl] parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
+        ;
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if ([responseObject objectForKey:@"data"]) {
+                self.data = responseObject[@"data"];
+                [self.tableView reloadData];
+            }
+        });
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        ;
+    }];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -32,30 +46,28 @@
 #pragma mark - Table view delegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) { // menu Product
-        NSLog(@"product");
-    }
-    else if (indexPath.section == 1) { // menu Product
-        NSLog(@"Credit Simulation");
-    }
-    else if (indexPath.section == 2) { // menu Product
-        NSLog(@"Contact US");
-    }
-    else if (indexPath.section == 3) { // menu Product
-        NSLog(@"Online Submission");
-    }
+    ProductDetailViewController *detailVC = [[ProductDetailViewController alloc] init];
+    detailVC.contentString = self.data[indexPath.row][@"deskripsi"];
+    [self.navigationController.navigationController pushViewController:detailVC animated:YES];
 }
 
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    UILabel *title = [cell viewWithTag:2];
+    //UIImageView *icon = [cell viewWithTag:1];
+    title.text = self.data[indexPath.row][@"jenis"];
     
     return cell;
 }
-*/
+
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.data.count;
+    
+}
 
 /*
 // Override to support conditional editing of the table view.

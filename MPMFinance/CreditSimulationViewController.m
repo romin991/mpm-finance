@@ -156,22 +156,34 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)hitung:(id)sender {
+    if (self.txtJenisPerhitungan.text.length < 1) {
+        return;
+    }
     AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
     NSString* urlString;
     BOOL isDahsyat = NO;
     NSMutableDictionary* param = [NSMutableDictionary dictionary];
     NSDictionary *biayaTenor;
     if ([self.txtJenisPerhitungan.text isEqualToString:@"Estimasi Harga"]) {
+        if (!_harga || self.txtLamaPembiayaan.text.length < 1) {
+            return;
+        }
         biayaTenor = @{@"hargaKendaraan" : _harga,
                        @"angsuran" : @"",
                        @"lamaPembiayaan" : self.txtLamaPembiayaan.text
                        };
     } else if([self.txtJenisPerhitungan.text isEqualToString:@"Estimasi Angsuran"]) {
+        if (!_harga || self.txtLamaPembiayaan.text.length < 1) {
+            return;
+        }
         biayaTenor = @{@"angsuran" : _harga,
                        @"hargaKendaraan" : @"",
                        @"lamaPembiayaan" : self.txtLamaPembiayaan.text
                        };
     } else {
+        if (!_harga || self.txtLamaPembiayaan.text.length < 1) {
+            return;
+        }
         biayaTenor = @{@"nilaiPencairan" : _txtJenisPerhitungan.text,
                        @"hargaKendaraan" : _harga,
                        @"lamaPembiayaan" : self.txtLamaPembiayaan.text
