@@ -24,11 +24,11 @@
 - (id)transformedValue:(id)value
 {
     if (!value) return nil;
-    if (![value isKindOfClass:[PostalCode class]]) {
-        return nil;
+    if ([value isKindOfClass:PostalCode.class]) {
+        PostalCode *postalCode = (PostalCode *)value;
+        return [NSString stringWithFormat:@"%@", postalCode.postalCode];
     }
-    PostalCode *postalCode = (PostalCode *)value;
-    return [NSString stringWithFormat:@"%@", postalCode.postalCode];
+    return value;
 }
 
 @end

@@ -141,8 +141,7 @@
             if ([row.rowType isEqualToString:XLFormRowDescriptorTypeDateInline]){
                 row.value = [MPMGlobal dateFromString:value];
             } else if ([row.rowType isEqualToString:XLFormRowDescriptorTypeSelectorPush]){
-                //row.value = [XLFormOptionsObject formOptionsOptionForValue:value fromOptions:row.selectorOptions];
-                row.value = value;
+                row.value = row.selectorOptions.count ? [XLFormOptionsObject formOptionsOptionForValue:value fromOptions:row.selectorOptions] : [NSString stringWithFormat:@"%@", value];
             } else if ([row.rowType isEqualToString:XLFormRowDescriptorTypeImage]){
                 row.value = [UIImage imageWithData:value];
             } else if ([row.rowType isEqualToString:XLFormRowDescriptorTypeButton]){
@@ -150,11 +149,8 @@
             } else {
                 row.value = value;
             }
-            if ([value isKindOfClass:[NSString class]] && [value isEqualToString:@""]) {
-                ;
-            } else {
-                [formViewController reloadFormRow:row];
-            }
+  
+            [formViewController reloadFormRow:row];
         }
     }];
 }

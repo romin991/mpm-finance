@@ -66,7 +66,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="szo-Y6-gC1">
                                         <rect key="frame" x="0.0" y="72" width="288" height="86"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="customer.mpm@gmail.com" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FXB-Yg-kXh">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="virgiantari_putri@yahoo.com" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FXB-Yg-kXh">
                                                 <rect key="frame" x="62" y="0.0" width="206" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="Lhf-el-bSI"/>

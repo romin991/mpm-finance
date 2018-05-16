@@ -33,7 +33,7 @@
     XLFormDescriptor *form = self.rowDescriptor.sectionDescriptor.formDescriptor;
     FormViewController *formViewController = (FormViewController *)form.delegate;
     NSDictionary *valueDictionary = formViewController.valueDictionary;
-    self.idCabang = [valueDictionary objectForKey:@"cabang"];
+    self.idCabang = [valueDictionary objectForKey:@"kodeCabang"];
     
     for (XLFormSectionDescriptor *section in form.formSections) {
         for (XLFormRowDescriptor *row in section.formRows) {

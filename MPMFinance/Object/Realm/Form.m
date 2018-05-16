@@ -107,7 +107,7 @@
     [section.rows addObject:[FormRow new:realm :0 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"No KTP Pasangan" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :1 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Lengkap Sesuai KTP" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :2 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Handphone" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :4 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Tempat Lahir" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :4 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Tempat Lahir Pasangan" :@"" :@""]];
     [form.sections addObject:section];
     [section.rows addObject:[FormRow new:realm :5 :YES :NO :XLFormRowDescriptorTypeDateInline:@"Tanggal Lahir Pasangan" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :6 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Jenis Kelamin Pasangan" :@"" :@"getJenisKelamin"]];

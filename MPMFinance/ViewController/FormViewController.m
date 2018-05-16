@@ -61,7 +61,9 @@
                 weakSelf.form = formDescriptor;
                 [weakSelf postProcessFormDescriptorWithCompletion:^(NSError *error) {
                     [weakSelf checkError:error completion:^{
-                        [FormModel loadValueFrom:weakSelf.valueDictionary on:weakSelf partialUpdate:nil];
+                        [weakSelf preLoadValueWithCompletion:^{
+                            [FormModel loadValueFrom:weakSelf.valueDictionary on:weakSelf partialUpdate:nil];
+                        }];
                     }];
                 }];
                 
@@ -75,7 +77,9 @@
                             [weakSelf checkError:error completion:^{
                                 if (response) {
                                     [weakSelf.valueDictionary addEntriesFromDictionary:response];
-                                    [FormModel loadValueFrom:weakSelf.valueDictionary on:weakSelf partialUpdate:nil];
+                                    [weakSelf preLoadValueWithCompletion:^{
+                                        [FormModel loadValueFrom:weakSelf.valueDictionary on:weakSelf partialUpdate:nil];
+                                    }];
                                 }
                             }];
                         }];
@@ -87,12 +91,44 @@
                 weakSelf.form = formDescriptor;
                 [weakSelf postProcessFormDescriptorWithCompletion:^(NSError *error) {
                     [weakSelf checkError:error completion:^{
-                        [FormModel loadValueFrom:weakSelf.valueDictionary on:weakSelf partialUpdate:nil];
+                        [weakSelf preLoadValueWithCompletion:^{
+                            [FormModel loadValueFrom:weakSelf.valueDictionary on:weakSelf partialUpdate:nil];
+                        }];
                     }];
                 }];
             }
         }];
     }];
+}
+
+- (void)preLoadValueWithCompletion:(void(^)())block{
+    BOOL alreadyCalled = false;
+    for (XLFormSectionDescriptor *section in self.form.formSections) {
+        for (XLFormRowDescriptor *row in section.formRows) {
+            if ([row.tag isEqualToString:@"tipeKendaraan"]){
+                __block XLFormRowDescriptor *weakRow = row;
+                
+                NSString *idCabang = [self.valueDictionary objectForKey:@"kodeCabang"];
+                NSString *idProduct = [self.valueDictionary objectForKey:@"tipeProduk"];
+                NSString *tipeKendaraan = [self.valueDictionary objectForKey:@"tipeKendaraan"];
+                [DropdownModel getDropdownWSForAssetWithKeyword:tipeKendaraan idProduct:idProduct idCabang:idCabang completion:^(NSArray *options, NSError *error) {
+                    
+                    NSMutableArray *optionObjects = [NSMutableArray array];
+                    for (Asset *option in options) {
+                        [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:option.value displayText:option.name]];
+                    }
+                    weakRow.selectorOptions = optionObjects;
+                    
+                    if (block) block();
+                }];
+                
+                alreadyCalled = true;
+            }
+        }
+    }
+    if (alreadyCalled == false) {
+        if (block) block();
+    }
 }
 
 - (void)checkError:(NSError *)error completion:(void(^)())block{
@@ -245,6 +281,7 @@
     __block typeof (self) weakSelf = self;
     [ProfileModel getProfileDataWithCompletion:^(NSDictionary *dictionary, NSError *error) {
         [weakSelf.valueDictionary addEntriesFromDictionary:dictionary];
+        NSLog(@"%@", dictionary);
         block(error);
     }];
 }

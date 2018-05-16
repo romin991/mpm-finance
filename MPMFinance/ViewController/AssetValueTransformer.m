@@ -24,15 +24,11 @@
 - (id)transformedValue:(id)value
 {
     if (!value) return nil;
-    if (![value isKindOfClass:[Asset class]]) {
-        return nil;
+    if ([value isKindOfClass:Asset.class]) {
+        Asset *asset = (Asset *)value;
+        return [NSString stringWithFormat:@"%@", asset.name];
     }
-    Asset *asset = (Asset *)value;
-    if (asset.value.length < 1) {
-        return @"";
-    } else{
-        return [NSString stringWithFormat:@"%@", asset.value];
-    }
+    return value;
 }
 
 @end

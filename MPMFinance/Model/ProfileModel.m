@@ -39,7 +39,8 @@
             NSString *message = [responseObject objectForKey:@"message"];
             if (code == 200) {
                 NSDictionary *data = [responseObject objectForKey:@"data"];
-                NSDictionary *dictionary = @{@"namaLengkap" : [data objectForKey:@"username"],
+                NSDictionary *dictionary = @{@"kodeCabang" : [data objectForKey:@"kodeCabang"],
+                                             @"namaLengkap" : [data objectForKey:@"username"],
                                              @"noKTP" : [data objectForKey:@"ktp"],
                                              @"tempatLahir" : [data objectForKey:@"placeOfBirth"],
                                              @"tanggalLahir" : [data objectForKey:@"dob"],

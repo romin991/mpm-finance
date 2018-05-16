@@ -243,8 +243,7 @@
             NSString *message = [responseObject objectForKey:@"message"];
             if (code == 200) {
                 NSDictionary *data = responseObject[@"data"];
-                NSDictionary *dictionary = @{@"kodeCabang" : data[@"kodeCabang"],
-                                             @"namaCalonDebitur" : data[@"namaCalon"],
+                NSDictionary *dictionary = @{@"namaCalonDebitur" : data[@"namaCalon"],
                                              @"noKTP" : data[@"noKtp"],
                                              @"tempatLahir" : data[@"tmpLahir"],
                                              @"tanggalLahir" : data[@"tglLahir"],
