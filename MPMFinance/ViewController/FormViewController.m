@@ -260,7 +260,6 @@
                 [row.tag isEqualToString:@"nomorTelepon"] ||
                 [row.tag isEqualToString:@"nomorHandphone"] ||
                 [row.tag isEqualToString:@"noHandphonePasangan"] ||
-                [row.tag isEqualToString:@"tahunKendaraan"] ||
                 [row.tag isEqualToString:@"hargaPerolehan"] ||
                 [row.tag isEqualToString:@"uangMuka"] ||
                 [row.tag isEqualToString:@"jangkaWaktuPembayaran"] ||
@@ -273,6 +272,24 @@
                 //Set keyboard type to numberPad
                 if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
                     [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
+                }
+            }
+            
+            if ([row.tag isEqualToString:@"tahunKendaraan"]){
+                @try {
+                    NSDate *date = [NSDate date];
+                    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                    [dateFormatter setDateFormat:@"yyyy"];
+                    NSString *yearString = [dateFormatter stringFromDate:date];
+                    NSInteger year = yearString.integerValue;
+                    
+                    NSMutableArray *optionObjects = [NSMutableArray array];
+                    for (int i = 0; i < 16; i++) {
+                        [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:@(year - i) displayText:[NSString stringWithFormat:@"%li", (long) year - i]]];
+                    }
+                    row.selectorOptions = optionObjects;
+                } @catch (NSException *exception) {
+                    NSLog(@"%@", exception);
                 }
             }
         }

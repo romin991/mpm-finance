@@ -144,7 +144,7 @@
     
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Tipe Produk" :@"" :@"getProduct"]];
     [section.rows addObject:[FormRow new:realm :1 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Tipe Kendaraan" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :2 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Tahun Kendaraan" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :2 :NO :NO :XLFormRowDescriptorTypeSelectorPush :@"Tahun Kendaraan" :@"" :@""]];
     
     [form.sections addObject:section];
     
