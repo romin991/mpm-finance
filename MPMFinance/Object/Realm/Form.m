@@ -235,7 +235,7 @@
     //===
     section = [[FormSection alloc] init];
     section.title = @"Submit";
-    [section.rows addObject:[FormRow new:realm :2 :NO :NO :XLFormRowDescriptorTypeButton :@"Submit" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :2 :NO :NO :XLFormRowDescriptorTypeButton :@"Next" :@"" :@""]];
     
     [form.sections addObject:section];
     
