@@ -17,7 +17,6 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet APAvatarImageView *profilePictureImageView;
 @property (weak, nonatomic) IBOutlet UITextField *txtFirstName;
-@property (weak, nonatomic) IBOutlet UITextField *txtLastName;
 @property (weak, nonatomic) IBOutlet UITextField *txtIDCardNumber;
 @property (weak, nonatomic) IBOutlet UITextField *txtEmail;
 @property (weak, nonatomic) IBOutlet UITextField *txtDateOfBirth;
@@ -194,7 +193,7 @@
     @try {
         param = @{@"userid" : @"",
                             @"token" : @"",
-                            @"data" : @{@"username" : [NSString stringWithFormat:@"%@ %@",self.txtFirstName.text,self.txtLastName.text],
+                            @"data" : @{@"username" : self.txtFirstName.text,
                                         @"ktp" : self.txtIDCardNumber.text,
                                         @"password" : self.txtPassword.text,
                                         @"dob" : self.txtDateOfBirth.text,
