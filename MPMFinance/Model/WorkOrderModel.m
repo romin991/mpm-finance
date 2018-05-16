@@ -243,37 +243,43 @@
             NSString *message = [responseObject objectForKey:@"message"];
             if (code == 200) {
                 NSDictionary *data = responseObject[@"data"];
-                NSDictionary *dictionary = @{@"namaCalonDebitur" : data[@"namaCalon"],
-                                             @"noKTP" : data[@"noKtp"],
+                NSDictionary *dictionary = @{@"noKTP" : data[@"noKtp"],
+                                             @"namaLengkap" : data[@"namaCalon"],
                                              @"tempatLahir" : data[@"tmpLahir"],
                                              @"tanggalLahir" : data[@"tglLahir"],
+                                             @"jenisKelamin" : @([data[@"jnsKelamin"] integerValue]),
+                                             
                                              @"alamatRumahSesuaiKTP" : data[@"alamatLegal"],
-                                             @"nomorHandphone" : data[@"handphone"],
-                                             @"nomorTelepon" : data[@"noTlp"],
                                              @"rTSesuaiKTP" : data[@"alamatLegalRt"],
                                              @"rWSesuaiKTP" : data[@"alamatLegalRw"],
+                                             @"kodeposSesuaiKTP" : data[@"kodePosAlamatCalon"],
                                              @"kecamatanSesuaiKTP" : data[@"alamatLegalKecamatan"],
                                              @"kelurahanSesuaiKTP" : data[@"alamatLegalKelurahan"],
-                                             @"kodeposDomisili" : data[@"alamatDomisiliKodePos"],
-                                             @"kodeposSesuaiKTP" : data[@"kodePosAlamatCalon"],
                                              @"kotaSesuaiKTP" : data[@"alamatLegalKota"],
                                              @"masaBerlakuKTP" : data[@"ktpBerlaku"],
-                                             @"samaDenganAlamatLegal" : data[@"cekAlamatSama"],
-                                             @"kodeArea" : data[@"kodeArea"],
+                                             @"kewarganegaraan" : data[@"kewarganegaraan"],
                                              
+                                             @"nomorHandphone" : data[@"handphone"],
+                                             @"kodeArea" : data[@"kodeArea"],
+                                             @"nomorTelepon" : data[@"noTlp"],
+                                             
+                                             @"samaDenganAlamatLegal" : data[@"cekAlamatSama"],
+                                             
+                                             @"alamatDomisili" : data[@"alamatDomisili"],
                                              @"rTDomisili" : data[@"alamatDomisiliRt"],
                                              @"rWDomisili" : data[@"alamatDomisiliRw"],
                                              @"kelurahanDomisili" : data[@"alamatDomisiliKelurahan"],
                                              @"kecamatanDomisili" : data[@"alamatDomisiliKecamatan"],
                                              @"kotaDomisili" : data[@"alamatDomisiliKota"],
-                                             @"alamatDomisili" : data[@"alamatDomisili"],
-                                             @"kodePosAlamatDomisili" : data[@"kodePosAlamatCalon"],
+                                             @"kodeposDomisili" : data[@"alamatDomisiliKodePos"],
                                              @"namaGadisIbuKandung" : data[@"namaIbuKandung"],
                                              
-                                             @"namaLengkapSesuaiKTP" : data[@"namaPasangan"],
+                                             @"namaLengkapPasangan" : data[@"namaPasangan"],
                                              @"noKTPPasangan" : data[@"ktpPasangan"],
+                                             @"nomorHandphonePasangan" : data[@"noTlpPasangan"],
                                              @"tempatLahirPasangan" : data[@"tmpLahirPasangan"],
                                              @"tanggalLahirPasangan" : data[@"tglLahirPasangan"],
+                                             @"jenisKelaminPasangan" : @([data[@"jnsKelaminPasangan"] integerValue]),
                                              @"alamatPasangan" : data[@"alamatLegalPasangan"],
                                              @"rTPasangan" : data[@"alamatLegalPasanganRt"],
                                              @"rWPasangan" : data[@"alamatLegalPasanganRw"],
@@ -283,23 +289,32 @@
                                              @"kodePosPasangan" : data[@"alamatLegalPasanganKodePos"],
                                              @"masaBerlakuKTPPasangan" : data[@"berlakuHingga"],
                                              @"kewarganegaraanPasangan" : data[@"kewarganegaraanPasangan"],
-                                             @"nomorTeleponPasangan" : data[@"noTlpPasangan"],
                                              @"namaGadisIbuKandungPasangan" : data[@"namaIbuKandungPasangan"],
-                                             @"jenisKelaminPasangan" : data[@"jnsKelaminPasangan"],
+                                             
                                              @"tipeProduk" : data[@"tipeProduk"],
                                              @"tipeKendaraan" : data[@"tipeKendaraan"],
                                              @"tahunKendaraan" : data[@"tahunKendaraan"],
                                              
-                                             @"hargaPerolehan" : data[@"hargaPerolehan"],
-                                             @"uangMuka" : data[@"uangMuka"],
-                                             @"jangkaWaktuPembiayaan" : data[@"tenor"],
-                                             @"angsuran" : data[@"angsuran"],
+//                                             @"hargaPerolehan" : data[@"hargaPerolehan"],
+//                                             @"uangMuka" : data[@"uangMuka"],
+//                                             @"jangkaWaktuPembiayaan" : data[@"tenor"],
+//                                             @"angsuran" : data[@"angsuran"],
                                              
                                              @"namaTempatKerja" : data[@"namaTmpKerja"],
+                                             @"kodeAreaTeleponTempatKerja" : data[@"kodeAreaTelpTmpKerja"],
                                              @"nomorTeleponTempatKerja" : data[@"tlpTmpKerja"],
                                              
                                              @"namaE-con" : data[@"namaEcon"],
                                              @"nomorTeleponE-con" : data[@"noTlpEcon"],
+                                             
+                                             @"pinjamanTempatLain1" : data[@"pinjamanLain"],
+                                             @"pinjamanTempatLain2" : data[@"pinjamanLain2"],
+                                             @"nomorKartuKreditAtauKontrak1" : data[@"noCc1"],
+                                             @"nomorKartuKreditAtauKontrak2" : data[@"noCc2"],
+                                             
+                                             @"" : data[@"noteTv"],
+                                             @"" : data[@"noteSs"],
+                                             @"" : data[@"ttd"],
                                              };
                 
                 if (block) block(dictionary, nil);
@@ -345,14 +360,11 @@
         }
         
         [dataDictionary addEntriesFromDictionary:
-         @{@"kodeCabang" : [dictionary objectForKey:@"cabang"] ? [dictionary objectForKey:@"cabang"] : @"",
+         @{@"noKtp" : [dictionary objectForKey:@"noKTP"] ? [dictionary objectForKey:@"noKTP"] : @"",
            @"namaCalon" : [dictionary objectForKey:@"namaLengkap"] ? [dictionary objectForKey:@"namaLengkap"] : @"",
-           @"noKtp" : [dictionary objectForKey:@"noKTP"] ? [dictionary objectForKey:@"noKTP"] : @"",
            @"tmpLahir" : [dictionary objectForKey:@"tempatLahir"] ? [dictionary objectForKey:@"tempatLahir"] : @"",
            @"tglLahir" : [dictionary objectForKey:@"tanggalLahir"] ? [MPMGlobal removeTimeFromString:[dictionary objectForKey:@"tanggalLahir"]] : @"",
            @"jnsKelamin" : [MPMUserInfo getUserInfo][@"gender"],
-           @"kewarganegaraan" : [dictionary objectForKey:@"kewarganegaraan"] ? [dictionary objectForKey:@"kewarganegaraan"] : @"",
-           @"ktpBerlaku" : [dictionary objectForKey:@"masaBerlakuKTP"] ? [MPMGlobal removeTimeFromString:[dictionary objectForKey:@"masaBerlakuKTP"]] : @"",
            
            @"alamatLegal" : [dictionary objectForKey:@"alamatRumahSesuaiKTP"] ? [dictionary objectForKey:@"alamatRumahSesuaiKTP"] : @"",
            @"alamatLegalRt" : [dictionary objectForKey:@"rTSesuaiKTP"] ? [dictionary objectForKey:@"rTSesuaiKTP"] : @"",
@@ -361,6 +373,9 @@
            @"alamatLegalKecamatan" : [dictionary objectForKey:@"kecamatanSesuaiKTP"] ? [dictionary objectForKey:@"kecamatanSesuaiKTP"] : @"",
            @"alamatLegalKelurahan" : [dictionary objectForKey:@"kelurahanSesuaiKTP"] ? [dictionary objectForKey:@"kelurahanSesuaiKTP"] : @"",
            @"alamatLegalKota" : [dictionary objectForKey:@"kotaSesuaiKTP"] ? [dictionary objectForKey:@"kotaSesuaiKTP"] : @"",
+           
+           @"ktpBerlaku" : [dictionary objectForKey:@"masaBerlakuKTP"] ? [MPMGlobal removeTimeFromString:[dictionary objectForKey:@"masaBerlakuKTP"]] : @"",
+           @"kewarganegaraan" : [dictionary objectForKey:@"kewarganegaraan"] ? [dictionary objectForKey:@"kewarganegaraan"] : @"",
            
            @"handphone" : [dictionary objectForKey:@"nomorHandphone"] ? [dictionary objectForKey:@"nomorHandphone"] : @"",
            @"kodeArea" : [dictionary objectForKey:@"kodeArea"] ? [dictionary objectForKey:@"kodeArea"] : @"",
@@ -377,41 +392,44 @@
            
            @"namaIbuKandung" : [dictionary objectForKey:@"namaGadisIbuKandung"] ? [dictionary objectForKey:@"namaGadisIbuKandung"] : @"",
            
-           @"namaPasangan" : [dictionary objectForKey:@"namaLengkapSesuaiKTP"] ? [dictionary objectForKey:@"namaLengkapSesuaiKTP"] : @"",
-           @"noTlpPasangan" : [dictionary objectForKey:@"noHandphonePasangan"] ? [dictionary objectForKey:@"noHandphonePasangan"] : @"",
            @"ktpPasangan" : [dictionary objectForKey:@"noKTPPasangan"] ? [dictionary objectForKey:@"noKTPPasangan"] : @"",
+           @"namaPasangan" : [dictionary objectForKey:@"namaLengkapPasangan"] ? [dictionary objectForKey:@"namaLengkapPasangan"] : @"",
+           @"noTlpPasangan" : [dictionary objectForKey:@"nomorHandphonePasangan"] ? [dictionary objectForKey:@"nomorHandphonePasangan"] : @"",
            @"tmpLahirPasangan" : [dictionary objectForKey:@"tempatLahirPasangan"] ? [dictionary objectForKey:@"tempatLahirPasangan"] : @"",
            @"tglLahirPasangan" : [dictionary objectForKey:@"tanggalLahirPasangan"] ? [dictionary objectForKey:@"tanggalLahirPasangan"] : @"",
+           @"jnsKelaminPasangan" : [dictionary objectForKey:@"jenisKelaminPasangan"] ? [dictionary objectForKey:@"jenisKelaminPasangan"] : @"",
            @"alamatLegalPasangan" : [dictionary objectForKey:@"alamatPasangan"] ? [dictionary objectForKey:@"alamatPasangan"] : @"",
            @"alamatLegalPasanganRt": [dictionary objectForKey:@"rTPasangan"] ? [dictionary objectForKey:@"rTPasangan"] : @"",
            @"alamatLegalPasanganRw": [dictionary objectForKey:@"rWPasangan"] ? [dictionary objectForKey:@"rWPasangan"] : @"",
+           @"alamatLegalPasanganKodePos": [dictionary objectForKey:@"kodePosPasangan"] ? [dictionary objectForKey:@"kodePosPasangan"] : @"",
            @"alamatLegalPasanganKelurahan": [dictionary objectForKey:@"kelurahanPasangan"] ? [dictionary objectForKey:@"kelurahanPasangan"] : @"",
            @"alamatLegalPasanganKecamatan": [dictionary objectForKey:@"kecamatanPasangan"] ? [dictionary objectForKey:@"kecamatanPasangan"] : @"",
            @"alamatLegalPasanganKota": [dictionary objectForKey:@"kotaPasangan"] ? [dictionary objectForKey:@"kotaPasangan"] : @"",
-           @"alamatLegalPasanganKodePos": [dictionary objectForKey:@"kodePosPasangan"] ? [dictionary objectForKey:@"kodePosPasangan"] : @"",
-           @"namaIbuKandungPasangan": [dictionary objectForKey:@"namaGadisIbuKandungPasangan"] ? [dictionary objectForKey:@"namaGadisIbuKandungPasangan"] : @"",
-           @"jnsKelaminPasangan": [dictionary objectForKey:@"jenisKelaminPasangan"] ? [dictionary objectForKey:@"jenisKelaminPasangan"] : @"",
            @"berlakuHingga": [dictionary objectForKey:@"masaBerlakuKTPPasangan"] ? [dictionary objectForKey:@"masaBerlakuKTPPasangan"] : @"",
            @"kewarganegaraanPasangan": [dictionary objectForKey:@"kewarganegaraanPasangan"] ? [dictionary objectForKey:@"kewarganegaraanPasangan"] : @"",
+           @"namaIbuKandungPasangan": [dictionary objectForKey:@"namaGadisIbuKandungPasangan"] ? [dictionary objectForKey:@"namaGadisIbuKandungPasangan"] : @"",
+           
            @"tipeProduk" : [dictionary objectForKey:@"tipeProduk"] ? [dictionary objectForKey:@"tipeProduk"] : @"",
            @"tipeKendaraan" : [dictionary objectForKey:@"tipeKendaraan"] ? [dictionary objectForKey:@"tipeKendaraan"] : @"",
            @"tahunKendaraan" : [dictionary objectForKey:@"tahunKendaraan"] ? [dictionary objectForKey:@"tahunKendaraan"] : @"",
            
-           @"hargaPerolehan" : [dictionary objectForKey:@"hargaPerolehan"] ? [dictionary objectForKey:@"hargaPerolehan"] : @"",
-           @"uangMuka" : [dictionary objectForKey:@"uangMuka"] ? [dictionary objectForKey:@"uangMuka"] : @"",
-           @"tenor" : [dictionary objectForKey:@"jangkaWaktuPembiayaan"] ? [dictionary objectForKey:@"jangkaWaktuPembiayaan"] : @"",
-           @"angsuran" : [dictionary objectForKey:@"angsuran"] ? [dictionary objectForKey:@"angsuran"] : @"",
+//           @"hargaPerolehan" : [dictionary objectForKey:@"hargaPerolehan"] ? [dictionary objectForKey:@"hargaPerolehan"] : @"",
+//           @"uangMuka" : [dictionary objectForKey:@"uangMuka"] ? [dictionary objectForKey:@"uangMuka"] : @"",
+//           @"tenor" : [dictionary objectForKey:@"jangkaWaktuPembiayaan"] ? [dictionary objectForKey:@"jangkaWaktuPembiayaan"] : @"",
+//           @"angsuran" : [dictionary objectForKey:@"angsuran"] ? [dictionary objectForKey:@"angsuran"] : @"",
            
            @"namaTmpKerja" : [dictionary objectForKey:@"namaTempatKerja"] ? [dictionary objectForKey:@"namaTempatKerja"] : @"",
+           @"kodeAreaTelpTmpKerja" : [dictionary objectForKey:@"kodeAreaTeleponTempatKerja"] ? [dictionary objectForKey:@"kodeAreaTeleponTempatKerja"] : @"",
            @"tlpTmpKerja" : [dictionary objectForKey:@"nomorTeleponTempatKerja"] ? [dictionary objectForKey:@"nomorTeleponTempatKerja"] : @"",
            
-           @"namaEcon" : [dictionary objectForKey:@"namaE-con"] ? [dictionary objectForKey:@"namaE-con"] : @"",
-           @"noTlpEcon" : [dictionary objectForKey:@"nomorTeleponE-con"] ? [dictionary objectForKey:@"nomorTeleponE-con"] : @"",
-           @"kodeAreaTelpTmpKerja" : [dictionary objectForKey:@"kodeAreaTeleponTempatKerja"] ? [dictionary objectForKey:@"kodeAreaTeleponTempatKerja"] : @"",
-           @"pinjamanLain": @"",
-           @"pinjamanLain2": @"",
-           @"noCc1": @0,
-           @"noCc2": @0,
+           @"namaEcon" : [dictionary objectForKey:@"namaEcon"] ? [dictionary objectForKey:@"namaEcon"] : @"",
+           @"noTlpEcon" : [dictionary objectForKey:@"nomorTeleponEcon"] ? [dictionary objectForKey:@"nomorTeleponEcon"] : @"",
+           
+           @"pinjamanLain": [dictionary objectForKey:@"pinjamanTempatLain1"] ? [dictionary objectForKey:@"pinjamanTempatLain1"] : @"",
+           @"pinjamanLain2": [dictionary objectForKey:@"pinjamanTempatLain2"] ? [dictionary objectForKey:@"pinjamanTempatLain2"] : @"",
+           @"noCc1": [dictionary objectForKey:@"nomorKartuKreditAtauKontrak1"] ? [dictionary objectForKey:@"nomorKartuKreditAtauKontrak1"] : @"",
+           @"noCc2": [dictionary objectForKey:@"nomorKartuKreditAtauKontrak2"] ? [dictionary objectForKey:@"nomorKartuKreditAtauKontrak2"] : @"",
+           
            @"noteTv": @"",
            @"noteSs": @"",
            @"ttd": @"",
@@ -469,11 +487,11 @@
         }
         
         [dataDictionary addEntriesFromDictionary:
-         @{@"kodeCabang" : [dictionary objectForKey:@"cabang"] ? [dictionary objectForKey:@"cabang"] : @"",
+         @{@"noKtp" : [dictionary objectForKey:@"noKTP"] ? [dictionary objectForKey:@"noKTP"] : @"",
            @"namaCalon" : [dictionary objectForKey:@"namaLengkap"] ? [dictionary objectForKey:@"namaLengkap"] : @"",
-           @"noKtp" : [dictionary objectForKey:@"noKTP"] ? [dictionary objectForKey:@"noKTP"] : @"",
            @"tmpLahir" : [dictionary objectForKey:@"tempatLahir"] ? [dictionary objectForKey:@"tempatLahir"] : @"",
            @"tglLahir" : [dictionary objectForKey:@"tanggalLahir"] ? [MPMGlobal removeTimeFromString:[dictionary objectForKey:@"tanggalLahir"]] : @"",
+           @"jnsKelamin" : [MPMUserInfo getUserInfo][@"gender"],
            
            @"alamatLegal" : [dictionary objectForKey:@"alamatRumahSesuaiKTP"] ? [dictionary objectForKey:@"alamatRumahSesuaiKTP"] : @"",
            @"alamatLegalRt" : [dictionary objectForKey:@"rTSesuaiKTP"] ? [dictionary objectForKey:@"rTSesuaiKTP"] : @"",
@@ -483,6 +501,9 @@
            @"alamatLegalKelurahan" : [dictionary objectForKey:@"kelurahanSesuaiKTP"] ? [dictionary objectForKey:@"kelurahanSesuaiKTP"] : @"",
            @"alamatLegalKota" : [dictionary objectForKey:@"kotaSesuaiKTP"] ? [dictionary objectForKey:@"kotaSesuaiKTP"] : @"",
            
+           @"ktpBerlaku" : [dictionary objectForKey:@"masaBerlakuKTP"] ? [MPMGlobal removeTimeFromString:[dictionary objectForKey:@"masaBerlakuKTP"]] : @"",
+           @"kewarganegaraan" : [dictionary objectForKey:@"kewarganegaraan"] ? [dictionary objectForKey:@"kewarganegaraan"] : @"",
+           
            @"handphone" : [dictionary objectForKey:@"nomorHandphone"] ? [dictionary objectForKey:@"nomorHandphone"] : @"",
            @"kodeArea" : [dictionary objectForKey:@"kodeArea"] ? [dictionary objectForKey:@"kodeArea"] : @"",
            @"noTlp" : [dictionary objectForKey:@"nomorTelepon"] ? [dictionary objectForKey:@"nomorTelepon"] : @"",
@@ -491,32 +512,54 @@
            @"alamatDomisili" : [dictionary objectForKey:@"alamatDomisili"] ? [dictionary objectForKey:@"alamatDomisili"] : @"",
            @"alamatDomisiliRt" : [dictionary objectForKey:@"rTDomisili"] ? [dictionary objectForKey:@"rTDomisili"] : @"",
            @"alamatDomisiliRw" : [dictionary objectForKey:@"rWDomisili"] ? [dictionary objectForKey:@"rWDomisili"] : @"",
-           @"alamatDomisiliKecamatan" : [dictionary objectForKey:@"kodeposDomisili"] ? [dictionary objectForKey:@"kodeposDomisili"] : @"",
-           @"alamatDomisiliKelurahan" : [dictionary objectForKey:@"kecamatanDomisili"] ? [dictionary objectForKey:@"kecamatanDomisili"] : @"",
-           @"alamatDomisiliKota" : [dictionary objectForKey:@"kelurahanDomisili"] ? [dictionary objectForKey:@"kelurahanDomisili"] : @"",
+           @"alamatDomisiliKecamatan" : [dictionary objectForKey:@"kecamatanDomisili"] ? [dictionary objectForKey:@"kecamatanDomisili"] : @"",
+           @"alamatDomisiliKelurahan" : [dictionary objectForKey:@"kelurahanDomisili"] ? [dictionary objectForKey:@"kelurahanDomisili"] : @"",
+           @"alamatDomisiliKodePos" : [dictionary objectForKey:@"kodeposDomisili"] ? [dictionary objectForKey:@"kodeposDomisili"] : @"",
            @"alamatDomisiliKota" : [dictionary objectForKey:@"kotaDomisili"] ? [dictionary objectForKey:@"kotaDomisili"] : @"",
            
            @"namaIbuKandung" : [dictionary objectForKey:@"namaGadisIbuKandung"] ? [dictionary objectForKey:@"namaGadisIbuKandung"] : @"",
            
-           @"namaPasangan" : [dictionary objectForKey:@"namaLengkapSesuaiKTP"] ? [dictionary objectForKey:@"namaLengkapSesuaiKTP"] : @"",
-           @"noTlpPasangan" : [dictionary objectForKey:@"noHandphonePasangan"] ? [dictionary objectForKey:@"noHandphonePasangan"] : @"",
+           @"ktpPasangan" : [dictionary objectForKey:@"noKTPPasangan"] ? [dictionary objectForKey:@"noKTPPasangan"] : @"",
+           @"namaPasangan" : [dictionary objectForKey:@"namaLengkapPasangan"] ? [dictionary objectForKey:@"namaLengkapPasangan"] : @"",
+           @"noTlpPasangan" : [dictionary objectForKey:@"nomorHandphonePasangan"] ? [dictionary objectForKey:@"nomorHandphonePasangan"] : @"",
+           @"tmpLahirPasangan" : [dictionary objectForKey:@"tempatLahirPasangan"] ? [dictionary objectForKey:@"tempatLahirPasangan"] : @"",
+           @"tglLahirPasangan" : [dictionary objectForKey:@"tanggalLahirPasangan"] ? [dictionary objectForKey:@"tanggalLahirPasangan"] : @"",
+           @"jnsKelaminPasangan" : [dictionary objectForKey:@"jenisKelaminPasangan"] ? [dictionary objectForKey:@"jenisKelaminPasangan"] : @"",
+           @"alamatLegalPasangan" : [dictionary objectForKey:@"alamatPasangan"] ? [dictionary objectForKey:@"alamatPasangan"] : @"",
+           @"alamatLegalPasanganRt": [dictionary objectForKey:@"rTPasangan"] ? [dictionary objectForKey:@"rTPasangan"] : @"",
+           @"alamatLegalPasanganRw": [dictionary objectForKey:@"rWPasangan"] ? [dictionary objectForKey:@"rWPasangan"] : @"",
+           @"alamatLegalPasanganKodePos": [dictionary objectForKey:@"kodePosPasangan"] ? [dictionary objectForKey:@"kodePosPasangan"] : @"",
+           @"alamatLegalPasanganKelurahan": [dictionary objectForKey:@"kelurahanPasangan"] ? [dictionary objectForKey:@"kelurahanPasangan"] : @"",
+           @"alamatLegalPasanganKecamatan": [dictionary objectForKey:@"kecamatanPasangan"] ? [dictionary objectForKey:@"kecamatanPasangan"] : @"",
+           @"alamatLegalPasanganKota": [dictionary objectForKey:@"kotaPasangan"] ? [dictionary objectForKey:@"kotaPasangan"] : @"",
+           @"berlakuHingga": [dictionary objectForKey:@"masaBerlakuKTPPasangan"] ? [dictionary objectForKey:@"masaBerlakuKTPPasangan"] : @"",
+           @"kewarganegaraanPasangan": [dictionary objectForKey:@"kewarganegaraanPasangan"] ? [dictionary objectForKey:@"kewarganegaraanPasangan"] : @"",
+           @"namaIbuKandungPasangan": [dictionary objectForKey:@"namaGadisIbuKandungPasangan"] ? [dictionary objectForKey:@"namaGadisIbuKandungPasangan"] : @"",
            
            @"tipeProduk" : [dictionary objectForKey:@"tipeProduk"] ? [dictionary objectForKey:@"tipeProduk"] : @"",
            @"tipeKendaraan" : [dictionary objectForKey:@"tipeKendaraan"] ? [dictionary objectForKey:@"tipeKendaraan"] : @"",
            @"tahunKendaraan" : [dictionary objectForKey:@"tahunKendaraan"] ? [dictionary objectForKey:@"tahunKendaraan"] : @"",
            
-           @"hargaPerolehan" : [dictionary objectForKey:@"hargaPerolehan"] ? [dictionary objectForKey:@"hargaPerolehan"] : @"",
-           @"uangMuka" : [dictionary objectForKey:@"uangMuka"] ? [dictionary objectForKey:@"uangMuka"] : @"",
-           @"tenor" : [dictionary objectForKey:@"jangkaWaktuPembiayaan"] ? [dictionary objectForKey:@"jangkaWaktuPembiayaan"] : @"",
-           @"angsuran" : [dictionary objectForKey:@"angsuran"] ? [dictionary objectForKey:@"angsuran"] : @"",
+           //           @"hargaPerolehan" : [dictionary objectForKey:@"hargaPerolehan"] ? [dictionary objectForKey:@"hargaPerolehan"] : @"",
+           //           @"uangMuka" : [dictionary objectForKey:@"uangMuka"] ? [dictionary objectForKey:@"uangMuka"] : @"",
+           //           @"tenor" : [dictionary objectForKey:@"jangkaWaktuPembiayaan"] ? [dictionary objectForKey:@"jangkaWaktuPembiayaan"] : @"",
+           //           @"angsuran" : [dictionary objectForKey:@"angsuran"] ? [dictionary objectForKey:@"angsuran"] : @"",
            
            @"namaTmpKerja" : [dictionary objectForKey:@"namaTempatKerja"] ? [dictionary objectForKey:@"namaTempatKerja"] : @"",
+           @"kodeAreaTelpTmpKerja" : [dictionary objectForKey:@"kodeAreaTeleponTempatKerja"] ? [dictionary objectForKey:@"kodeAreaTeleponTempatKerja"] : @"",
            @"tlpTmpKerja" : [dictionary objectForKey:@"nomorTeleponTempatKerja"] ? [dictionary objectForKey:@"nomorTeleponTempatKerja"] : @"",
            
-           @"namaEcon" : [dictionary objectForKey:@"namaE-con"] ? [dictionary objectForKey:@"namaE-con"] : @"",
-           @"noTlpEcon" : [dictionary objectForKey:@"nomorTeleponE-con"] ? [dictionary objectForKey:@"nomorTeleponE-con"] : @"",
-           @"kodeAreaTelpTmpKerja" : [dictionary objectForKey:@"kodeAreaTeleponTempatKerja"] ? [dictionary objectForKey:@"kodeAreaTeleponTempatKerja"] : @"",
+           @"namaEcon" : [dictionary objectForKey:@"namaEcon"] ? [dictionary objectForKey:@"namaEcon"] : @"",
+           @"noTlpEcon" : [dictionary objectForKey:@"nomorTeleponEcon"] ? [dictionary objectForKey:@"nomorTeleponEcon"] : @"",
            
+           @"pinjamanLain": [dictionary objectForKey:@"pinjamanTempatLain1"] ? [dictionary objectForKey:@"pinjamanTempatLain1"] : @"",
+           @"pinjamanLain2": [dictionary objectForKey:@"pinjamanTempatLain2"] ? [dictionary objectForKey:@"pinjamanTempatLain2"] : @"",
+           @"noCc1": [dictionary objectForKey:@"nomorKartuKreditAtauKontrak1"] ? [dictionary objectForKey:@"nomorKartuKreditAtauKontrak1"] : @"",
+           @"noCc2": [dictionary objectForKey:@"nomorKartuKreditAtauKontrak2"] ? [dictionary objectForKey:@"nomorKartuKreditAtauKontrak2"] : @"",
+           
+           @"noteTv": @"",
+           @"noteSs": @"",
+           @"ttd": @"",
            @"pernyataanPemohon" : @TRUE,
            }];
         
