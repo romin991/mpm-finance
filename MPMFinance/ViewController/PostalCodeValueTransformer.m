@@ -8,6 +8,7 @@
 
 #import "PostalCodeValueTransformer.h"
 #import "PostalCode.h"
+#import <XLForm.h>
 
 @implementation PostalCodeValueTransformer
 
@@ -27,6 +28,10 @@
     if ([value isKindOfClass:PostalCode.class]) {
         PostalCode *postalCode = (PostalCode *)value;
         return [NSString stringWithFormat:@"%@", postalCode.postalCode];
+    }
+    if ([value isKindOfClass:XLFormOptionsObject.class]) {
+        XLFormOptionsObject *object = (XLFormOptionsObject *)value;
+        return [NSString stringWithFormat:@"%@", object.displayText];
     }
     return value;
 }

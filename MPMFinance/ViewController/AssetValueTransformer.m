@@ -8,6 +8,7 @@
 
 #import "AssetValueTransformer.h"
 #import "Asset.h"
+#import <XLForm.h>
 
 @implementation AssetValueTransformer
 
@@ -27,6 +28,10 @@
     if ([value isKindOfClass:Asset.class]) {
         Asset *asset = (Asset *)value;
         return [NSString stringWithFormat:@"%@", asset.name];
+    }
+    if ([value isKindOfClass:XLFormOptionsObject.class]) {
+        XLFormOptionsObject *object = (XLFormOptionsObject *)value;
+        return [NSString stringWithFormat:@"%@", object.displayText];
     }
     return value;
 }
