@@ -14,15 +14,15 @@
 @implementation APIModel
 
 + (void)getAllListWorkOrderPage:(NSInteger)page completion:(void(^)(NSArray *lists, NSError *error))block{
-    [WorkOrderModel getListWorkOrderWithStatus:@"all" page:page completion:block];
+    [WorkOrderModel getListWorkOrderWithStatus:@"clear" page:page completion:block];
 }
 
 + (void)getNeedApprovalListWorkOrderPage:(NSInteger)page completion:(void(^)(NSArray *lists, NSError *error))block{
-    [WorkOrderModel getListWorkOrderWithStatus:@"needApproval" page:page completion:block];
+    [WorkOrderModel getListWorkOrderWithStatus:@"approval" page:page completion:block];
 }
 
 + (void)getBadUsersListWorkOrderPage:(NSInteger)page completion:(void(^)(NSArray *lists, NSError *error))block{
-    [WorkOrderModel getListWorkOrderWithStatus:@"badUsers" page:page completion:block];
+    [WorkOrderModel getListWorkOrderWithStatus:@"negative" page:page completion:block];
 }
 
 + (void)getMapDraftListWorkOrderPage:(NSInteger)page completion:(void(^)(NSArray *lists, NSError *error))block{

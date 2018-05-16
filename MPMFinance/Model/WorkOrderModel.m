@@ -130,7 +130,7 @@
                                         @"limit" : @([MPMGlobal limitPerPage]),
                                         @"offset" : @(offset)}};
     NSLog(@"%@",param);
-    [manager POST:[NSString stringWithFormat:@"%@/datamap/getworkorder",kApiUrl] parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
+    [manager POST:[NSString stringWithFormat:@"%@/pengajuan/getworkorderbymarketing",kApiUrl] parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
         ;
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         @try {
