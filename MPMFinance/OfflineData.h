@@ -11,6 +11,7 @@
 @interface OfflineData : RLMObject
 @property NSString *primaryKey; //noRegistrasi
 @property NSData *data;
+@property NSDate *saveDate;
 + (void)save:(NSDictionary *)dict;
 - (List *)convertToList;
 @end

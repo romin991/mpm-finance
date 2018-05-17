@@ -38,6 +38,9 @@
     List *list = [[List alloc] init];
     list.imageURL = @"";
     list.title = content[@"namaLengkap"];
+    list.status = @"Offline";
+    list.statusColor = @"blue";
+    
     return list;
 }
 @end
