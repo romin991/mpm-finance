@@ -77,6 +77,8 @@
 		4835AD5220AA72AB005F4E43 /* ChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4835AD5120AA72AB005F4E43 /* ChangePasswordViewController.m */; };
 		483A9D901F0BA6060033F714 /* LegalizationBPKBModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 483A9D8F1F0BA6060033F714 /* LegalizationBPKBModel.m */; };
 		483A9D931F0BAB9F0033F714 /* InsuranceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 483A9D921F0BAB9F0033F714 /* InsuranceModel.m */; };
+		483CC5B920AC957C0084BC6B /* DisclaimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 483CC5B720AC957C0084BC6B /* DisclaimerViewController.m */; };
+		483CC5BA20AC957C0084BC6B /* DisclaimerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 483CC5B820AC957C0084BC6B /* DisclaimerViewController.xib */; };
 		483F1E981EF2874F005D3945 /* ProfileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 483F1E971EF2874F005D3945 /* ProfileModel.m */; };
 		483F39221EC3085E00C03253 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 483F39211EC3085E00C03253 /* main.m */; };
 		483F39251EC3085E00C03253 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 483F39241EC3085E00C03253 /* AppDelegate.m */; };
@@ -289,6 +291,9 @@
 		483A9D8F1F0BA6060033F714 /* LegalizationBPKBModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LegalizationBPKBModel.m; path = Model/LegalizationBPKBModel.m; sourceTree = "<group>"; };
 		483A9D911F0BAB9F0033F714 /* InsuranceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InsuranceModel.h; path = Model/InsuranceModel.h; sourceTree = "<group>"; };
 		483A9D921F0BAB9F0033F714 /* InsuranceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InsuranceModel.m; path = Model/InsuranceModel.m; sourceTree = "<group>"; };
+		483CC5B620AC957C0084BC6B /* DisclaimerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DisclaimerViewController.h; path = ViewController/DisclaimerViewController.h; sourceTree = "<group>"; };
+		483CC5B720AC957C0084BC6B /* DisclaimerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = DisclaimerViewController.m; path = ViewController/DisclaimerViewController.m; sourceTree = "<group>"; };
+		483CC5B820AC957C0084BC6B /* DisclaimerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DisclaimerViewController.xib; path = ViewController/DisclaimerViewController.xib; sourceTree = "<group>"; };
 		483F1E961EF2874F005D3945 /* ProfileModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileModel.h; path = Model/ProfileModel.h; sourceTree = "<group>"; };
 		483F1E971EF2874F005D3945 /* ProfileModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileModel.m; path = Model/ProfileModel.m; sourceTree = "<group>"; };
 		483F391D1EC3085E00C03253 /* MPMFinance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MPMFinance.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -904,6 +909,9 @@
 				4849EEDE1EC8815000415E4B /* FormViewController.h */,
 				4849EEDF1EC8815000415E4B /* FormViewController.m */,
 				4849EEE01EC8815000415E4B /* FormViewController.xib */,
+				483CC5B620AC957C0084BC6B /* DisclaimerViewController.h */,
+				483CC5B720AC957C0084BC6B /* DisclaimerViewController.m */,
+				483CC5B820AC957C0084BC6B /* DisclaimerViewController.xib */,
 				48336A981F19111300536771 /* BarcodeViewController.h */,
 				48336A991F19111300536771 /* BarcodeViewController.m */,
 				48336A9A1F19111300536771 /* BarcodeViewController.xib */,
@@ -1202,6 +1210,7 @@
 				481C42871F00EF29007D5C3C /* WorkOrderListTableViewCell.xib in Resources */,
 				4848B1B31F1251E700C9DE21 /* PostalCodeTableViewCell.xib in Resources */,
 				5CCD2D46209EF52000EBC76F /* KontrakKerjaDetailViewController.xib in Resources */,
+				483CC5BA20AC957C0084BC6B /* DisclaimerViewController.xib in Resources */,
 				5C8EB86A2095D76B006A3170 /* XLFormActivityTableViewCell.xib in Resources */,
 				5CDC30421EC3E274001D97DB /* GoogleService-Info.plist in Resources */,
 				48CDD8351EC9B3AD0038D626 /* SimpleListTableViewCell.xib in Resources */,
@@ -1356,6 +1365,7 @@
 				484ADB231F0CEDCE0006BCB0 /* SuggestionComplaintModel.m in Sources */,
 				5CFF0A7520AADAE200198E60 /* NJOPasswordStrengthEvaluator.m in Sources */,
 				5C46F5181EE81914009C6AD6 /* KATCircularProgress.m in Sources */,
+				483CC5B920AC957C0084BC6B /* DisclaimerViewController.m in Sources */,
 				4846271E1F1A0C3B0049A92A /* AssignMarketingListViewController.m in Sources */,
 				4831CD1F1EDE97A6001EF223 /* SubmenuCollectionViewController.m in Sources */,
 				4825BF9A1F5C34CE00D091AC /* TopUpTableViewCell.m in Sources */,

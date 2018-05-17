@@ -23,6 +23,8 @@
 #import "FloatLabeledTextFieldCell.h"
 #import "SubmenuViewController.h"
 #import "OfflineData.h"
+#import "DisclaimerViewController.h"
+
 @interface FormViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *firstLabel;
@@ -182,31 +184,35 @@
 - (void)saveButtonClicked:(id)sender{
     //save to object, call delegate, then pop navigation
     [FormModel saveValueFrom:self.form to:self.valueDictionary];
-    [SVProgressHUD show];
-    [WorkOrderModel postListWorkOrder:self.list dictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
-        if (error == nil) {
-            if (dictionary) {
-                @try {
-                    
-                    NSString *noRegistrasi = [[dictionary objectForKey:@"data"] objectForKey:@"noRegistrasi"];
-                    
-                    BarcodeViewController *barcodeVC = [[BarcodeViewController alloc] init];
-                    barcodeVC.barcodeString = noRegistrasi;
-                    barcodeVC.modalPresentationStyle = UIModalPresentationFullScreen;
-                    barcodeVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-                    barcodeVC.delegate = self;
-                    
-                    [self presentViewController:barcodeVC animated:YES completion:nil];
-                } @catch (NSException *exception) {
-                    NSLog(@"%@", exception);
-                }
-            }
-            [SVProgressHUD dismiss];
-        } else {
-            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
-            [SVProgressHUD dismissWithDelay:1.5];
-        }
-    }];
+    DisclaimerViewController *disclaimerVC = [[DisclaimerViewController alloc] init];
+    disclaimerVC.valueDictionary = self.valueDictionary;
+    disclaimerVC.list = self.list;
+    [self.navigationController pushViewController:disclaimerVC animated:true];
+    
+//    [SVProgressHUD show];
+//    [WorkOrderModel postListWorkOrder:self.list dictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
+//        if (error == nil) {
+//            if (dictionary) {
+//                @try {
+//                    NSString *noRegistrasi = [[dictionary objectForKey:@"data"] objectForKey:@"noRegistrasi"];
+//
+//                    BarcodeViewController *barcodeVC = [[BarcodeViewController alloc] init];
+//                    barcodeVC.barcodeString = noRegistrasi;
+//                    barcodeVC.modalPresentationStyle = UIModalPresentationFullScreen;
+//                    barcodeVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+//                    barcodeVC.delegate = self;
+//
+//                    [self presentViewController:barcodeVC animated:YES completion:nil];
+//                } @catch (NSException *exception) {
+//                    NSLog(@"%@", exception);
+//                }
+//            }
+//            [SVProgressHUD dismiss];
+//        } else {
+//            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+//            [SVProgressHUD dismissWithDelay:1.5];
+//        }
+//    }];
 }
 
 - (void)finish{
