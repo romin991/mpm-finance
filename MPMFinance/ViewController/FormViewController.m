@@ -50,121 +50,182 @@
     
     // Do any additional setup after loading the view from its nib.
     self.forms = [Form getFormForMenu:self.menu.primaryKey];
-    Form *currentForm = [self.forms objectAtIndex:self.index];
-
     [self setTitle:self.menu.title];
     [self setHorizontalLabel];
     
     [SVProgressHUD show];
     __block FormViewController *weakSelf = self;
-    [FormModel generate:self.form form:currentForm completion:^(XLFormDescriptor *formDescriptor, NSError *error) {
-        [weakSelf checkError:error completion:^{
-            if (weakSelf.valueDictionary.count > 0){
-                weakSelf.form = formDescriptor;
-                [weakSelf postProcessFormDescriptorWithCompletion:^(NSError *error) {
-                    [weakSelf checkError:error completion:^{
-                        [weakSelf preLoadValueWithCompletion:^{
-                            [FormModel loadValueFrom:weakSelf.valueDictionary on:weakSelf partialUpdate:nil];
-                        }];
-                    }];
-                }];
-                
-                
-            } else if (weakSelf.list) {
-                weakSelf.valueDictionary = [NSMutableDictionary dictionary];
-                weakSelf.form = formDescriptor;
-                [weakSelf postProcessFormDescriptorWithCompletion:^(NSError *error) {
-                    [weakSelf checkError:error completion:^{
-                        [WorkOrderModel getListWorkOrderDetailWithID:weakSelf.list.primaryKey completion:^(NSDictionary *response, NSError *error) {
-                            [weakSelf checkError:error completion:^{
-                                if (response) {
-                                    [weakSelf.valueDictionary addEntriesFromDictionary:response];
-                                    [weakSelf preLoadValueWithCompletion:^{
-                                        [FormModel loadValueFrom:weakSelf.valueDictionary on:weakSelf partialUpdate:nil];
-                                    }];
-                                }
-                            }];
-                        }];
-                    }];
-                }];
-                
-            } else {
-                weakSelf.valueDictionary = [NSMutableDictionary dictionary];
-                weakSelf.form = formDescriptor;
-                [weakSelf postProcessFormDescriptorWithCompletion:^(NSError *error) {
-                    [weakSelf checkError:error completion:^{
-                        [weakSelf preLoadValueWithCompletion:^{
-                            [FormModel loadValueFrom:weakSelf.valueDictionary on:weakSelf partialUpdate:nil];
-                        }];
-                    }];
-                }];
-            }
+    
+    if (self.valueDictionary.count == 0) self.valueDictionary = [NSMutableDictionary dictionary];
+    
+    [self preparingValueWithCompletion:^{
+        [self preparingFormDescriptorWithCompletion:^{
+            [FormModel loadValueFrom:weakSelf.valueDictionary on:weakSelf partialUpdate:nil];
         }];
     }];
 }
 
-- (void)preLoadValueWithCompletion:(void(^)())block{
+- (void)preparingValueWithCompletion:(void(^)())block{
     dispatch_group_t group = dispatch_group_create();
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
     
+    __block FormViewController *weakSelf = self;
+    __block NSError *_error = nil;
     
-    for (XLFormSectionDescriptor *section in self.form.formSections) {
-        for (XLFormRowDescriptor *row in section.formRows) {
-            if ([row.tag isEqualToString:@"tipeKendaraan"]){
-                __block XLFormRowDescriptor *weakRow = row;
+    if (self.list) {
+        dispatch_group_enter(group);
+        [WorkOrderModel getListWorkOrderDetailWithID:self.list.primaryKey completion:^(NSDictionary *response, NSError *error) {
+            if (error) _error = error;
+            if (response) [weakSelf.valueDictionary addEntriesFromDictionary:response];
+            
+            dispatch_group_leave(group);
+        }];
+    }
+    
+    dispatch_group_notify(group, queue, ^{
+        [weakSelf.valueDictionary addEntriesFromDictionary:@{@"kewarganegaraan" : @"WNI",
+                                                             @"kewarganegaraanPasangan" : @"WNI",
+                                                             }];
+        
+        dispatch_group_enter(group);
+        [ProfileModel getProfileDataWithCompletion:^(NSDictionary *dictionary, NSError *error) {
+            if (error) _error = error;
+            if (dictionary) [weakSelf.valueDictionary addEntriesFromDictionary:dictionary];
+            
+            dispatch_group_leave(group);
+        }];
+    
+        dispatch_group_notify(group, queue, ^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf checkError:_error completion:^{
+                    if (block) block();
+                }];
+            });
+        });
+    });
+}
+
+- (void)preparingFormDescriptorWithCompletion:(void(^)())block{
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+    
+    __block FormViewController *weakSelf = self;
+    __block NSError *_error = nil;
+    __block XLFormDescriptor *_formDescriptor;
+    
+    dispatch_group_enter(group);
+    Form *currentForm = [self.forms objectAtIndex:self.index];
+    [FormModel generate:self.form form:currentForm completion:^(XLFormDescriptor *formDescriptor, NSError *error) {
+        if (error) _error = error;
+        if (formDescriptor) _formDescriptor = formDescriptor;
+        dispatch_group_leave(group);
+    }];
+    
+    dispatch_group_notify(group, queue, ^{
+        for (XLFormSectionDescriptor *section in _formDescriptor.formSections) {
+            for (XLFormRowDescriptor *row in section.formRows) {
+                if ([row.tag isEqualToString:@"submit"]){
+                    row.action.formSelector = @selector(saveButtonClicked:);
+                }
                 
-                NSString *idCabang = [self.valueDictionary objectForKey:@"kodeCabang"];
-                NSString *idProduct = [self.valueDictionary objectForKey:@"tipeProduk"];
-                NSString *tipeKendaraan = [self.valueDictionary objectForKey:@"tipeKendaraan"];
+                if ([row.tag isEqualToString:@"next"]){
+                    row.action.formSelector = @selector(nextButtonClicked:);
+                }
                 
-                if (idProduct && idCabang && tipeKendaraan) {
-                    dispatch_group_enter(group);
-                    [DropdownModel getDropdownWSForAssetWithKeyword:tipeKendaraan idProduct:idProduct idCabang:idCabang completion:^(NSArray *options, NSError *error) {
+                if ([row.tag isEqualToString:@"kodeposSesuaiKTP"] || [row.tag isEqualToString:@"kodeposDomisili"] || [row.tag isEqualToString:@"kodePosPasangan"]){
+                    row.action.viewControllerNibName = @"PostalCodeViewController";
+                    row.valueTransformer = [PostalCodeValueTransformer class];
+                }
+                
+                if ([row.tag isEqualToString:@"tipeKendaraan"]){
+                    row.action.viewControllerNibName = @"AssetViewController";
+                    row.valueTransformer = [AssetValueTransformer class];
+                    
+                    __block XLFormRowDescriptor *weakRow = row;
+                    
+                    NSString *idCabang = [self.valueDictionary objectForKey:@"kodeCabang"];
+                    NSString *idProduct = [self.valueDictionary objectForKey:@"tipeProduk"];
+                    NSString *tipeKendaraan = [self.valueDictionary objectForKey:@"tipeKendaraan"];
+                    
+                    if (idProduct && idCabang && tipeKendaraan) {
+                        dispatch_group_enter(group);
+                        [DropdownModel getDropdownWSForAssetWithKeyword:tipeKendaraan idProduct:idProduct idCabang:idCabang completion:^(NSArray *options, NSError *error) {
+                            if (error) _error = error;
+                            
+                            NSMutableArray *optionObjects = [NSMutableArray array];
+                            for (Asset *option in options) {
+                                [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:option.value displayText:option.name]];
+                            }
+                            weakRow.selectorOptions = optionObjects;
+                            
+                            dispatch_group_leave(group);
+                        }];
+                    }
+                }
+                
+                if ([row.tag isEqualToString:@"tahunKendaraan"]){
+                    @try {
+                        NSDate *date = [NSDate date];
+                        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                        [dateFormatter setDateFormat:@"yyyy"];
+                        NSString *yearString = [dateFormatter stringFromDate:date];
+                        NSInteger year = yearString.integerValue;
                         
                         NSMutableArray *optionObjects = [NSMutableArray array];
-                        for (Asset *option in options) {
-                            [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:option.value displayText:option.name]];
+                        for (int i = 0; i < 16; i++) {
+                            [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:@(year - i) displayText:[NSString stringWithFormat:@"%li", (long) year - i]]];
                         }
-                        weakRow.selectorOptions = optionObjects;
-                        
-                        dispatch_group_leave(group);
-                    }];
-                }
-            }
-            
-            if ([row.tag isEqualToString:@"tahunKendaraan"]){
-                @try {
-                    NSDate *date = [NSDate date];
-                    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-                    [dateFormatter setDateFormat:@"yyyy"];
-                    NSString *yearString = [dateFormatter stringFromDate:date];
-                    NSInteger year = yearString.integerValue;
-                    
-                    NSMutableArray *optionObjects = [NSMutableArray array];
-                    for (int i = 0; i < 16; i++) {
-                        [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:@(year - i) displayText:[NSString stringWithFormat:@"%li", (long) year - i]]];
+                        row.selectorOptions = optionObjects;
+                    } @catch (NSException *exception) {
+                        NSLog(@"%@", exception);
                     }
-                    row.selectorOptions = optionObjects;
-                } @catch (NSException *exception) {
-                    NSLog(@"%@", exception);
                 }
-            }
-            
-            if ([row.tag isEqualToString:@"kewarganegaraan"] || [row.tag isEqualToString:@"kewarganegaraanPasangan"]){
-                @try {
-                    NSMutableArray *optionObjects = [NSMutableArray array];
-                    [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:@"WNI" displayText:@"WNI"]];
-                    [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:@"WNA" displayText:@"WNA"]];
-                    row.selectorOptions = optionObjects;
-                } @catch (NSException *exception) {
-                    NSLog(@"%@", exception);
+                
+                if ([row.tag isEqualToString:@"kewarganegaraan"] || [row.tag isEqualToString:@"kewarganegaraanPasangan"]){
+                    @try {
+                        NSMutableArray *optionObjects = [NSMutableArray array];
+                        [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:@"WNI" displayText:@"WNI"]];
+                        [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:@"WNA" displayText:@"WNA"]];
+                        row.selectorOptions = optionObjects;
+                    } @catch (NSException *exception) {
+                        NSLog(@"%@", exception);
+                    }
+                }
+                
+                if ([row.tag isEqualToString:@"rTSesuaiKTP"] ||
+                    [row.tag isEqualToString:@"rWSesuaiKTP"] ||
+                    [row.tag isEqualToString:@"kodeArea"] ||
+                    [row.tag isEqualToString:@"nomorTelepon"] ||
+                    [row.tag isEqualToString:@"nomorHandphone"] ||
+                    
+                    [row.tag isEqualToString:@"rtDomisili"] ||
+                    [row.tag isEqualToString:@"rwDomisili"] ||
+                    
+                    [row.tag isEqualToString:@"noHandphonePasangan"] ||
+                    [row.tag isEqualToString:@"hargaPerolehan"] ||
+                    [row.tag isEqualToString:@"uangMuka"] ||
+                    [row.tag isEqualToString:@"jangkaWaktuPembayaran"] ||
+                    [row.tag isEqualToString:@"angsuran"] ||
+                    [row.tag isEqualToString:@"kodeAreaTeleponTempatKerja"] ||
+                    [row.tag isEqualToString:@"nomorTeleponTempatKerja"] ||
+                    [row.tag isEqualToString:@"nomorTeleponEcon"]
+                    ){
+                    
+                    //Set keyboard type to numberPad
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
+                    }
                 }
             }
         }
-    }
-    dispatch_group_notify(group, queue, ^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (block) block();
+        
+        dispatch_group_notify(group, queue, ^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf checkError:_error completion:^{
+                    if (_formDescriptor) weakSelf.form = _formDescriptor;
+                    if (block) block();
+                }];
+            });
         });
     });
 }
@@ -188,31 +249,6 @@
     disclaimerVC.valueDictionary = self.valueDictionary;
     disclaimerVC.list = self.list;
     [self.navigationController pushViewController:disclaimerVC animated:true];
-    
-//    [SVProgressHUD show];
-//    [WorkOrderModel postListWorkOrder:self.list dictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
-//        if (error == nil) {
-//            if (dictionary) {
-//                @try {
-//                    NSString *noRegistrasi = [[dictionary objectForKey:@"data"] objectForKey:@"noRegistrasi"];
-//
-//                    BarcodeViewController *barcodeVC = [[BarcodeViewController alloc] init];
-//                    barcodeVC.barcodeString = noRegistrasi;
-//                    barcodeVC.modalPresentationStyle = UIModalPresentationFullScreen;
-//                    barcodeVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-//                    barcodeVC.delegate = self;
-//
-//                    [self presentViewController:barcodeVC animated:YES completion:nil];
-//                } @catch (NSException *exception) {
-//                    NSLog(@"%@", exception);
-//                }
-//            }
-//            [SVProgressHUD dismiss];
-//        } else {
-//            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
-//            [SVProgressHUD dismissWithDelay:1.5];
-//        }
-//    }];
 }
 
 - (void)finish{
@@ -275,60 +311,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)postProcessFormDescriptorWithCompletion:(void(^)(NSError *error))block{
-    for (XLFormSectionDescriptor *section in self.form.formSections) {
-        for (XLFormRowDescriptor *row in section.formRows) {
-            if ([row.tag isEqualToString:@"submit"]){
-                row.action.formSelector = @selector(saveButtonClicked:);
-            }
-            
-            if ([row.tag isEqualToString:@"next"]){
-                row.action.formSelector = @selector(nextButtonClicked:);
-            }
-            
-            if ([row.tag isEqualToString:@"kodeposSesuaiKTP"] || [row.tag isEqualToString:@"kodeposDomisili"] || [row.tag isEqualToString:@"kodePosPasangan"]){
-                row.action.viewControllerNibName = @"PostalCodeViewController";
-                row.valueTransformer = [PostalCodeValueTransformer class];
-            }
-            
-            if ([row.tag isEqualToString:@"tipeKendaraan"]){
-                row.action.viewControllerNibName = @"AssetViewController";
-                row.valueTransformer = [AssetValueTransformer class];
-            }
-            
-            if ([row.tag isEqualToString:@"rTSesuaiKTP"] ||
-                [row.tag isEqualToString:@"rWSesuaiKTP"] ||
-                [row.tag isEqualToString:@"kodeArea"] ||
-                [row.tag isEqualToString:@"nomorTelepon"] ||
-                [row.tag isEqualToString:@"nomorHandphone"] ||
-                [row.tag isEqualToString:@"noHandphonePasangan"] ||
-                [row.tag isEqualToString:@"hargaPerolehan"] ||
-                [row.tag isEqualToString:@"uangMuka"] ||
-                [row.tag isEqualToString:@"jangkaWaktuPembayaran"] ||
-                [row.tag isEqualToString:@"angsuran"] ||
-                [row.tag isEqualToString:@"kodeAreaTeleponTempatKerja"] ||
-                [row.tag isEqualToString:@"nomorTeleponTempatKerja"] ||
-                [row.tag isEqualToString:@"nomorTeleponEcon"]
-                ){
-                
-                //Set keyboard type to numberPad
-                if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
-                    [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
-                }
-            }
-        }
-    }
-    
-    __block typeof (self) weakSelf = self;
-    [ProfileModel getProfileDataWithCompletion:^(NSDictionary *dictionary, NSError *error) {
-        [weakSelf.valueDictionary addEntriesFromDictionary:dictionary];
-        [weakSelf.valueDictionary addEntriesFromDictionary:@{@"kewarganegaraan" : @"WNI",
-                                                             @"kewarganegaraanPasangan" : @"WNI",
-                                                             }];
-        block(error);
-    }];
 }
 
 - (void)formRowDescriptorValueHasChanged:(XLFormRowDescriptor *)formRow oldValue:(id)oldValue newValue:(id)newValue{
