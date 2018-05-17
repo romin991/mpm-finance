@@ -7,7 +7,7 @@
 //
 
 #import "WorkOrderModel.h"
-
+#import "OfflineData.h"
 @implementation WorkOrderModel
 
 + (void)getListWorkOrderBySupervisorWithStatus:(NSString *)status page:(NSInteger)page completion:(void(^)(NSArray *lists, NSError *error))block{
@@ -446,6 +446,7 @@
                     if (block) block(responseObject, nil);
                     
                 } else {
+                    
                     if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
                                                               code:code
                                                           userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(message, nil)}]);
@@ -453,12 +454,14 @@
                 
             } @catch (NSException *exception) {
                 NSLog(@"%@", exception);
+                
                 if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
                                                           code:1
                                                       userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(exception.reason, nil)}]);
             }
             
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            [OfflineData save:dictionary];
             if (block) block(nil, error);
         }];
         

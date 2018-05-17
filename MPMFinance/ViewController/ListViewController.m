@@ -18,7 +18,7 @@
 #import "SurveyFormViewController.h"
 #import <UIScrollView+SVPullToRefresh.h>
 #import <UIScrollView+SVInfiniteScrolling.h>
-
+#import "OfflineDataManager.h"
 @interface ListViewController ()<UIActionSheetDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -123,13 +123,17 @@
 
 - (void)loadDataForSelectedIndex:(NSInteger)index andPage:(NSInteger)page{
     __block NSString *methodName;
-    
+    Action *dataSource;
     if (self.dataSources.count > index) {
-        Action *dataSource = [self.dataSources objectAtIndex:index];
+        dataSource = [self.dataSources objectAtIndex:index];
         if (dataSource.methodName) methodName = dataSource.methodName;
     }
-    
-    if ([APIModel respondsToSelector:NSSelectorFromString(methodName)]) {
+    if ([dataSource.actionType isEqualToString:kActionQueryDB]) {
+        NSArray *offlineData = [OfflineDataManager loadAllOfflineSubmission];
+        self.lists = [NSMutableArray arrayWithArray:offlineData];
+        [self.tableView reloadData];
+    }
+    else if ([APIModel respondsToSelector:NSSelectorFromString(methodName)]) {
         __block ListViewController *weakSelf = self;
         __block NSInteger weakPage = page;
         __block void (^handler)(NSArray *lists, NSError *error) = ^void(NSArray *lists, NSError *error){
@@ -258,8 +262,9 @@
                     }
                     //get data from local db
                     if ([action.actionType isEqualToString:kActionQueryDB]){
-                        //FIXME
-                        //need to get query for the method name
+                        NSArray *offlineData = [OfflineDataManager loadAllOfflineSubmission];
+                        self.lists = [NSMutableArray arrayWithArray:offlineData];
+                        [self.tableView reloadData];
                     }
                     
                 }]];
@@ -322,7 +327,11 @@
     
     List *list;
     @try {
-        list = [self.lists objectAtIndex:indexPath.row];
+        if ([self.lists[indexPath.row] isKindOfClass:[OfflineData class]]) {
+            list = ((OfflineData *)[self.lists objectAtIndex:indexPath.row]).convertToList;
+        } else {
+            list = [self.lists objectAtIndex:indexPath.row];
+        }
     } @catch (NSException * e) {
         NSLog(@"Exception : %@", e);
     }

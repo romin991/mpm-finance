@@ -7,10 +7,10 @@
 //
 
 #import <Realm.h>
-
+#import "List.h"
 @interface OfflineData : RLMObject
 @property NSString *primaryKey; //noRegistrasi
 @property NSData *data;
-
-
++ (void)save:(NSDictionary *)dict;
+- (List *)convertToList;
 @end

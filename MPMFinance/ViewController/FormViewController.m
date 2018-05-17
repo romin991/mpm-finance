@@ -22,7 +22,7 @@
 #import "BarcodeViewController.h"
 #import "FloatLabeledTextFieldCell.h"
 #import "SubmenuViewController.h"
-
+#import "OfflineData.h"
 @interface FormViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *firstLabel;
@@ -187,6 +187,7 @@
         if (error == nil) {
             if (dictionary) {
                 @try {
+                    
                     NSString *noRegistrasi = [[dictionary objectForKey:@"data"] objectForKey:@"noRegistrasi"];
                     
                     BarcodeViewController *barcodeVC = [[BarcodeViewController alloc] init];
@@ -227,6 +228,7 @@
         [FormModel saveValueFrom:self.form to:self.valueDictionary];
         [WorkOrderModel postDraftWorkOrder:self.list dictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
             if (error) {
+                
                 NSString *errorMessage = error.localizedDescription;
                 @try {
                     NSDictionary *responseObject = [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:NSJSONReadingAllowFragments error:nil];
