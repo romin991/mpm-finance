@@ -132,7 +132,7 @@ NSString *const kMenuTypeMap = @"Map";
 
 NSString *const kActionTypeForward = @"Forward";
 NSString *const kActionTypeAPICall = @"APICall";
-
+NSString *const kActionQueryDB = @"QueryDB";
 + (NSInteger)limitPerPage{
     return 50;
 }

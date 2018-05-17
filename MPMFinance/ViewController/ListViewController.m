@@ -256,6 +256,12 @@
                     if ([action.actionType isEqualToString:kActionTypeForward]){
                         [self selectedList:list withSubmenu:self.submenu];
                     }
+                    //get data from local db
+                    if ([action.actionType isEqualToString:kActionQueryDB]){
+                        //FIXME
+                        //need to get query for the method name
+                    }
+                    
                 }]];
             }
             

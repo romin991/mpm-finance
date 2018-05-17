@@ -148,6 +148,7 @@
 		5C4D5FBF208F5F0C004CA73E /* ProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4D5FBD208F5F0C004CA73E /* ProductDetailViewController.m */; };
 		5C4D5FC0208F5F0C004CA73E /* ProductDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C4D5FBE208F5F0C004CA73E /* ProductDetailViewController.xib */; };
 		5C586E9A1ECB183200A5A626 /* HelpTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C586E991ECB183200A5A626 /* HelpTableViewController.m */; };
+		5C59A1BF20AC6D9400693868 /* OfflineData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C59A1BE20AC6D9400693868 /* OfflineData.m */; };
 		5C5C267A208E07B80025DCEB /* KontrakKerjaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C5C2679208E07B80025DCEB /* KontrakKerjaViewController.m */; };
 		5C8EB86420956FD4006A3170 /* ActivityHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8EB86220956FD4006A3170 /* ActivityHistoryViewController.m */; };
 		5C8EB86520956FD4006A3170 /* ActivityHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C8EB86320956FD4006A3170 /* ActivityHistoryViewController.xib */; };
@@ -410,6 +411,8 @@
 		5C4D5FBE208F5F0C004CA73E /* ProductDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductDetailViewController.xib; sourceTree = "<group>"; };
 		5C586E981ECB183200A5A626 /* HelpTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpTableViewController.h; sourceTree = "<group>"; };
 		5C586E991ECB183200A5A626 /* HelpTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpTableViewController.m; sourceTree = "<group>"; };
+		5C59A1BD20AC6D9400693868 /* OfflineData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OfflineData.h; sourceTree = "<group>"; };
+		5C59A1BE20AC6D9400693868 /* OfflineData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OfflineData.m; sourceTree = "<group>"; };
 		5C5C2678208E07B80025DCEB /* KontrakKerjaViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KontrakKerjaViewController.h; sourceTree = "<group>"; };
 		5C5C2679208E07B80025DCEB /* KontrakKerjaViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KontrakKerjaViewController.m; sourceTree = "<group>"; };
 		5C8EB86120956FD4006A3170 /* ActivityHistoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActivityHistoryViewController.h; sourceTree = "<group>"; };
@@ -866,6 +869,8 @@
 				487F39F81ED678D400D6E580 /* Action.m */,
 				482652781EFBC7100002A606 /* FormSection.h */,
 				482652791EFBC7100002A606 /* FormSection.m */,
+				5C59A1BD20AC6D9400693868 /* OfflineData.h */,
+				5C59A1BE20AC6D9400693868 /* OfflineData.m */,
 			);
 			name = Realm;
 			sourceTree = "<group>";
@@ -1364,6 +1369,7 @@
 				481C42B51F03BB3B007D5C3C /* CustomerGetCustomerFormViewController.m in Sources */,
 				4886BB081EC4ABF8000F8DBE /* Menu.m in Sources */,
 				4849EEDA1EC8185E00415E4B /* Form.m in Sources */,
+				5C59A1BF20AC6D9400693868 /* OfflineData.m in Sources */,
 				4848B1A71F124BFB00C9DE21 /* PostalCodeViewController.m in Sources */,
 				4886BB051EC4ABD1000F8DBE /* PopulateRealmDatabase.m in Sources */,
 				5C586E9A1ECB183200A5A626 /* HelpTableViewController.m in Sources */,

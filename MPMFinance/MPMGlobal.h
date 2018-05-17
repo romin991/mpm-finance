@@ -136,6 +136,7 @@ extern NSString *const kMenuTypeCreditSimulation;
 extern NSString *const kApiUrl;
 
 extern NSString *const kActionTypeForward;
+extern NSString *const kActionQueryDB;
 extern NSString *const kActionTypeAPICall;
 
 + (NSInteger)limitPerPage;

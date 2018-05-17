@@ -121,9 +121,16 @@
     menuList.menuType = kMenuTypeSubmenu;
     
     Action *action = [[Action alloc] init];
-    action.name = @"Get List Work Order";
+    action.name = @"DRAFT";
     action.methodName = @"getNewByUserListWorkOrderPage:completion:"; //pengajuan/getallbyuser with status new
     action.actionType = kActionTypeAPICall;
+    [action.roles addObjects:submenu.roles];
+    [menuList.dataSources addObject:action];
+    
+    action = [[Action alloc] init];
+    action.name = @"OFFLINE";
+    action.methodName = @"";
+    action.actionType = kActionQueryDB;
     [action.roles addObjects:submenu.roles];
     [menuList.dataSources addObject:action];
     
