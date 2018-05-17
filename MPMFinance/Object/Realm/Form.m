@@ -41,7 +41,7 @@
     [section.rows addObject:[FormRow new:realm :3 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Tempat Lahir" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :4 :YES :YES :XLFormRowDescriptorTypeDateInline :@"Tanggal Lahir" :@"" :@""]];
     
-    [section.rows addObject:[FormRow new:realm :5 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Jenis Kelamin" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :5 :YES :YES :XLFormRowDescriptorTypeSelectorPush :@"Jenis Kelamin" :@"" :@"getJenisKelamin"]];
     
     [form.sections addObject:section];
     
@@ -55,10 +55,11 @@
     [section.rows addObject:[FormRow new:realm :9 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kecamatan Sesuai KTP" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :10 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kelurahan Sesuai KTP" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :11 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kota Sesuai KTP" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :11 :YES :NO :XLFormRowDescriptorTypeDateInline :@"Masa Berlaku KTP" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :12 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kode Area" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :13 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Telepon" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :14 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Handphone" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :12 :YES :NO :XLFormRowDescriptorTypeDateInline :@"Masa Berlaku KTP" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :13 :YES :YES :XLFormRowDescriptorTypeSelectorPush :@"Kewarganegaraan" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :14 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kode Area" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :15 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Telepon" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :16 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Handphone" :@"" :@""]];
     
     [form.sections addObject:section];
     
@@ -105,10 +106,9 @@
     section = [[FormSection alloc] init];
     section.title = @"Data Pasangan";
     [section.rows addObject:[FormRow new:realm :0 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"No KTP Pasangan" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :1 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Lengkap Sesuai KTP" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :2 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Handphone" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :1 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Lengkap Pasangan" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :2 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Handphone Pasangan" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :4 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Tempat Lahir Pasangan" :@"" :@""]];
-    [form.sections addObject:section];
     [section.rows addObject:[FormRow new:realm :5 :YES :NO :XLFormRowDescriptorTypeDateInline:@"Tanggal Lahir Pasangan" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :6 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Jenis Kelamin Pasangan" :@"" :@"getJenisKelamin"]];
     [section.rows addObject:[FormRow new:realm :7 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Alamat Pasangan" :@"" :@""]];
@@ -119,7 +119,10 @@
     [section.rows addObject:[FormRow new:realm :7 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kecamatan Pasangan" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :7 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kota Pasangan" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :7 :NO :NO :XLFormRowDescriptorTypeDateInline :@"Masa Berlaku KTP Pasangan" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :7 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kewarganegaraan Pasangan" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :7 :NO :NO :XLFormRowDescriptorTypeSelectorPush :@"Kewarganegaraan Pasangan" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :23 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Gadis Ibu Kandung Pasangan" :@"" :@""]];
+    
+    [form.sections addObject:section];
     //===
     section = [[FormSection alloc] init];
     section.title = @"Submit";
@@ -144,7 +147,7 @@
     
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Tipe Produk" :@"" :@"getProduct"]];
     [section.rows addObject:[FormRow new:realm :1 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Tipe Kendaraan" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :2 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Tahun Kendaraan" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :2 :NO :NO :XLFormRowDescriptorTypeSelectorPush :@"Tahun Kendaraan" :@"" :@""]];
     
     [form.sections addObject:section];
     
@@ -162,32 +165,32 @@
     [realm addObject:form];
     
 //=====================================================================================================
-    form = [[Form alloc] init];
-    form.title = @"Struktur Pembiayaan";
-    form.sort = 30;
-    
-    //===
-    section = [[FormSection alloc] init];
-    section.title = @"Struktur Pembiayaan";
-    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Harga Perolehan" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :1 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Uang Muka" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :2 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Jangka Waktu Pembiayaan" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :3 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Angsuran" :@"" :@""]];
-    
-    [form.sections addObject:section];
-    
-    //===
-    section = [[FormSection alloc] init];
-    section.title = @"Submit";
-    [section.rows addObject:[FormRow new:realm :4 :NO :NO :XLFormRowDescriptorTypeButton :@"Next" :@"" :@""]];
-    
-    [form.sections addObject:section];
-    
-    //===
-    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
-    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListOnlineSubmission]];
-    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
-    [realm addObject:form];
+//    form = [[Form alloc] init];
+//    form.title = @"Struktur Pembiayaan";
+//    form.sort = 30;
+//
+//    //===
+//    section = [[FormSection alloc] init];
+//    section.title = @"Struktur Pembiayaan";
+//    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Harga Perolehan" :@"" :@""]];
+//    [section.rows addObject:[FormRow new:realm :1 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Uang Muka" :@"" :@""]];
+//    [section.rows addObject:[FormRow new:realm :2 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Jangka Waktu Pembiayaan" :@"" :@""]];
+//    [section.rows addObject:[FormRow new:realm :3 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Angsuran" :@"" :@""]];
+//
+//    [form.sections addObject:section];
+//
+//    //===
+//    section = [[FormSection alloc] init];
+//    section.title = @"Submit";
+//    [section.rows addObject:[FormRow new:realm :4 :NO :NO :XLFormRowDescriptorTypeButton :@"Next" :@"" :@""]];
+//
+//    [form.sections addObject:section];
+//
+//    //===
+//    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
+//    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListOnlineSubmission]];
+//    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
+//    [realm addObject:form];
     
 //=====================================================================================================
     form = [[Form alloc] init];
@@ -232,7 +235,7 @@
     //===
     section = [[FormSection alloc] init];
     section.title = @"Submit";
-    [section.rows addObject:[FormRow new:realm :2 :NO :NO :XLFormRowDescriptorTypeButton :@"Submit" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :2 :NO :NO :XLFormRowDescriptorTypeButton :@"Next" :@"" :@""]];
     
     [form.sections addObject:section];
     
@@ -242,7 +245,34 @@
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
     [realm addObject:form];
     
+
+//=====================================================================================================
+    form = [[Form alloc] init];
+    form.title = @"Kartu Kredit / Pinjaman Lain";
+    form.sort = 60;
     
+    //===
+    section = [[FormSection alloc] init];
+    section.title = @"Kartu Kredit / Pinjaman Lain";
+    [section.rows addObject:[FormRow new:realm :0 :NO :NO :XLFormRowDescriptorTypeSelectorPush :@"Pinjaman Tempat Lain 1" :@"" :@"getPinjamantempatlain"]];
+    [section.rows addObject:[FormRow new:realm :1 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Kartu Kredit atau Kontrak 1" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :2 :NO :NO :XLFormRowDescriptorTypeSelectorPush :@"Pinjaman Tempat Lain 2" :@"" :@"getPinjamantempatlain"]];
+    [section.rows addObject:[FormRow new:realm :3 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Kartu Kredit atau Kontrak 2" :@"" :@""]];
+    
+    [form.sections addObject:section];
+    
+    //===
+    section = [[FormSection alloc] init];
+    section.title = @"Submit";
+    [section.rows addObject:[FormRow new:realm :2 :NO :NO :XLFormRowDescriptorTypeButton :@"Submit" :@"" :@""]];
+    
+    [form.sections addObject:section];
+    
+    //===
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListOnlineSubmission]];
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
+    [realm addObject:form];
     
     
     

@@ -102,7 +102,10 @@
 }
 
 - (void)preLoadValueWithCompletion:(void(^)())block{
-    BOOL alreadyCalled = false;
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+    
+    
     for (XLFormSectionDescriptor *section in self.form.formSections) {
         for (XLFormRowDescriptor *row in section.formRows) {
             if ([row.tag isEqualToString:@"tipeKendaraan"]){
@@ -111,24 +114,57 @@
                 NSString *idCabang = [self.valueDictionary objectForKey:@"kodeCabang"];
                 NSString *idProduct = [self.valueDictionary objectForKey:@"tipeProduk"];
                 NSString *tipeKendaraan = [self.valueDictionary objectForKey:@"tipeKendaraan"];
-                [DropdownModel getDropdownWSForAssetWithKeyword:tipeKendaraan idProduct:idProduct idCabang:idCabang completion:^(NSArray *options, NSError *error) {
+                
+                if (idProduct && idCabang && tipeKendaraan) {
+                    dispatch_group_enter(group);
+                    [DropdownModel getDropdownWSForAssetWithKeyword:tipeKendaraan idProduct:idProduct idCabang:idCabang completion:^(NSArray *options, NSError *error) {
+                        
+                        NSMutableArray *optionObjects = [NSMutableArray array];
+                        for (Asset *option in options) {
+                            [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:option.value displayText:option.name]];
+                        }
+                        weakRow.selectorOptions = optionObjects;
+                        
+                        dispatch_group_leave(group);
+                    }];
+                }
+            }
+            
+            if ([row.tag isEqualToString:@"tahunKendaraan"]){
+                @try {
+                    NSDate *date = [NSDate date];
+                    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                    [dateFormatter setDateFormat:@"yyyy"];
+                    NSString *yearString = [dateFormatter stringFromDate:date];
+                    NSInteger year = yearString.integerValue;
                     
                     NSMutableArray *optionObjects = [NSMutableArray array];
-                    for (Asset *option in options) {
-                        [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:option.value displayText:option.name]];
+                    for (int i = 0; i < 16; i++) {
+                        [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:@(year - i) displayText:[NSString stringWithFormat:@"%li", (long) year - i]]];
                     }
-                    weakRow.selectorOptions = optionObjects;
-                    
-                    if (block) block();
-                }];
-                
-                alreadyCalled = true;
+                    row.selectorOptions = optionObjects;
+                } @catch (NSException *exception) {
+                    NSLog(@"%@", exception);
+                }
+            }
+            
+            if ([row.tag isEqualToString:@"kewarganegaraan"] || [row.tag isEqualToString:@"kewarganegaraanPasangan"]){
+                @try {
+                    NSMutableArray *optionObjects = [NSMutableArray array];
+                    [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:@"WNI" displayText:@"WNI"]];
+                    [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:@"WNA" displayText:@"WNA"]];
+                    row.selectorOptions = optionObjects;
+                } @catch (NSException *exception) {
+                    NSLog(@"%@", exception);
+                }
             }
         }
     }
-    if (alreadyCalled == false) {
-        if (block) block();
-    }
+    dispatch_group_notify(group, queue, ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (block) block();
+        });
+    });
 }
 
 - (void)checkError:(NSError *)error completion:(void(^)())block{
@@ -260,7 +296,6 @@
                 [row.tag isEqualToString:@"nomorTelepon"] ||
                 [row.tag isEqualToString:@"nomorHandphone"] ||
                 [row.tag isEqualToString:@"noHandphonePasangan"] ||
-                [row.tag isEqualToString:@"tahunKendaraan"] ||
                 [row.tag isEqualToString:@"hargaPerolehan"] ||
                 [row.tag isEqualToString:@"uangMuka"] ||
                 [row.tag isEqualToString:@"jangkaWaktuPembayaran"] ||
@@ -281,7 +316,9 @@
     __block typeof (self) weakSelf = self;
     [ProfileModel getProfileDataWithCompletion:^(NSDictionary *dictionary, NSError *error) {
         [weakSelf.valueDictionary addEntriesFromDictionary:dictionary];
-        NSLog(@"%@", dictionary);
+        [weakSelf.valueDictionary addEntriesFromDictionary:@{@"kewarganegaraan" : @"WNI",
+                                                             @"kewarganegaraanPasangan" : @"WNI",
+                                                             }];
         block(error);
     }];
 }
