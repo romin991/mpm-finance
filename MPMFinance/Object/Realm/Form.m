@@ -120,7 +120,7 @@
     [section.rows addObject:[FormRow new:realm :7 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kota Pasangan" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :7 :NO :NO :XLFormRowDescriptorTypeDateInline :@"Masa Berlaku KTP Pasangan" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :7 :NO :NO :XLFormRowDescriptorTypeSelectorPush :@"Kewarganegaraan Pasangan" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :23 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Gadis Ibu Kandung Pasangan" :@"" :@""]];
+//    [section.rows addObject:[FormRow new:realm :23 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Gadis Ibu Kandung Pasangan" :@"" :@""]];
     
     [form.sections addObject:section];
     //===
@@ -227,8 +227,8 @@
     //===
     section = [[FormSection alloc] init];
     section.title = @"Data E-con";
-    [section.rows addObject:[FormRow new:realm :0 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama E-con" :@"namaEcon" :@""]];
-    [section.rows addObject:[FormRow new:realm :1 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Telepon E-con" :@"nomorTeleponEcon" :@""]];
+    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama E-con" :@"namaEcon" :@""]];
+    [section.rows addObject:[FormRow new:realm :1 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Telepon E-con" :@"nomorTeleponEcon" :@""]];
     
     [form.sections addObject:section];
     
@@ -264,7 +264,7 @@
     //===
     section = [[FormSection alloc] init];
     section.title = @"Submit";
-    [section.rows addObject:[FormRow new:realm :2 :NO :NO :XLFormRowDescriptorTypeButton :@"Submit" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :2 :NO :NO :XLFormRowDescriptorTypeButton :@"Next" :@"submit" :@""]];
     
     [form.sections addObject:section];
     
@@ -274,7 +274,16 @@
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
     [realm addObject:form];
     
+//=====================================================================================================
+    form = [[Form alloc] init];
+    form.title = @"Disclaimer";
+    form.sort = 70;
     
+    //===
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListOnlineSubmission]];
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
+    [realm addObject:form];
     
     
     

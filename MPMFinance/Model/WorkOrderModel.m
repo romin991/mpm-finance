@@ -304,8 +304,8 @@
                                              @"kodeAreaTeleponTempatKerja" : data[@"kodeAreaTelpTmpKerja"],
                                              @"nomorTeleponTempatKerja" : data[@"tlpTmpKerja"],
                                              
-                                             @"namaE-con" : data[@"namaEcon"],
-                                             @"nomorTeleponE-con" : data[@"noTlpEcon"],
+                                             @"namaEcon" : data[@"namaEcon"],
+                                             @"nomorTeleponEcon" : data[@"noTlpEcon"],
                                              
                                              @"pinjamanTempatLain1" : data[@"pinjamanLain"],
                                              @"pinjamanTempatLain2" : data[@"pinjamanLain2"],
@@ -433,7 +433,7 @@
            @"noteTv": @"",
            @"noteSs": @"",
            @"ttd": @"",
-           @"pernyataanPemohon" : @TRUE,
+//           @"pernyataanPemohon" : @TRUE,
            }];
         
         [param setObject:dataDictionary forKey:@"data"];
@@ -486,7 +486,7 @@
     @try {
         if (list){
             [dataDictionary setObject:@(list.primaryKey) forKey:@"id"];
-            url = [[MPMUserInfo getRole] isEqualToString:kRoleCustomer] ? @"customer/update" : @"supervisor/update";
+//            url = [[MPMUserInfo getRole] isEqualToString:kRoleCustomer] ? @"customer/update" : @"supervisor/update";
         }
         
         [dataDictionary addEntriesFromDictionary:
@@ -527,7 +527,7 @@
            @"noTlpPasangan" : [dictionary objectForKey:@"nomorHandphonePasangan"] ? [dictionary objectForKey:@"nomorHandphonePasangan"] : @"",
            @"tmpLahirPasangan" : [dictionary objectForKey:@"tempatLahirPasangan"] ? [dictionary objectForKey:@"tempatLahirPasangan"] : @"",
            @"tglLahirPasangan" : [dictionary objectForKey:@"tanggalLahirPasangan"] ? [dictionary objectForKey:@"tanggalLahirPasangan"] : @"",
-           @"jnsKelaminPasangan" : [dictionary objectForKey:@"jenisKelaminPasangan"] ? [dictionary objectForKey:@"jenisKelaminPasangan"] : @"",
+           @"jnsKelaminPasangan" : [dictionary objectForKey:@"jenisKelaminPasangan"] ? [NSString stringWithFormat:@"%li", [[dictionary objectForKey:@"jenisKelaminPasangan"] integerValue]] : @"",
            @"alamatLegalPasangan" : [dictionary objectForKey:@"alamatPasangan"] ? [dictionary objectForKey:@"alamatPasangan"] : @"",
            @"alamatLegalPasanganRt": [dictionary objectForKey:@"rTPasangan"] ? [dictionary objectForKey:@"rTPasangan"] : @"",
            @"alamatLegalPasanganRw": [dictionary objectForKey:@"rWPasangan"] ? [dictionary objectForKey:@"rWPasangan"] : @"",
@@ -543,11 +543,13 @@
            @"tipeKendaraan" : [dictionary objectForKey:@"tipeKendaraan"] ? [dictionary objectForKey:@"tipeKendaraan"] : @"",
            @"tahunKendaraan" : [dictionary objectForKey:@"tahunKendaraan"] ? [dictionary objectForKey:@"tahunKendaraan"] : @"",
            
-           //           @"hargaPerolehan" : [dictionary objectForKey:@"hargaPerolehan"] ? [dictionary objectForKey:@"hargaPerolehan"] : @"",
-           //           @"uangMuka" : [dictionary objectForKey:@"uangMuka"] ? [dictionary objectForKey:@"uangMuka"] : @"",
-           //           @"tenor" : [dictionary objectForKey:@"jangkaWaktuPembiayaan"] ? [dictionary objectForKey:@"jangkaWaktuPembiayaan"] : @"",
-           //           @"angsuran" : [dictionary objectForKey:@"angsuran"] ? [dictionary objectForKey:@"angsuran"] : @"",
-           
+           //not used anymore, but still required by api
+           @"hargaPerolehan" : [dictionary objectForKey:@"hargaPerolehan"] ? [dictionary objectForKey:@"hargaPerolehan"] : @"",
+           @"uangMuka" : [dictionary objectForKey:@"uangMuka"] ? [dictionary objectForKey:@"uangMuka"] : @"",
+           @"tenor" : [dictionary objectForKey:@"jangkaWaktuPembiayaan"] ? [dictionary objectForKey:@"jangkaWaktuPembiayaan"] : @"",
+           @"angsuran" : [dictionary objectForKey:@"angsuran"] ? [dictionary objectForKey:@"angsuran"] : @"",
+           //====end
+
            @"namaTmpKerja" : [dictionary objectForKey:@"namaTempatKerja"] ? [dictionary objectForKey:@"namaTempatKerja"] : @"",
            @"kodeAreaTelpTmpKerja" : [dictionary objectForKey:@"kodeAreaTeleponTempatKerja"] ? [dictionary objectForKey:@"kodeAreaTeleponTempatKerja"] : @"",
            @"tlpTmpKerja" : [dictionary objectForKey:@"nomorTeleponTempatKerja"] ? [dictionary objectForKey:@"nomorTeleponTempatKerja"] : @"",
@@ -562,8 +564,8 @@
            
            @"noteTv": @"",
            @"noteSs": @"",
-           @"ttd": @"",
-           @"pernyataanPemohon" : @TRUE,
+           @"ttd": [dictionary objectForKey:@"ttd"] ? [dictionary objectForKey:@"ttd"] : @"",
+           @"pernyataanPemohon" : [dictionary objectForKey:@"pernyataanPemohon"] && [[dictionary objectForKey:@"pernyataanPemohon"] boolValue] == true ? @"1" : @"0",
            }];
         
         [param setObject:dataDictionary forKey:@"data"];
