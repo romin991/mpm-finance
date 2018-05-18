@@ -312,8 +312,8 @@
                                              @"nomorKartuKreditAtauKontrak1" : data[@"noCc1"],
                                              @"nomorKartuKreditAtauKontrak2" : data[@"noCc2"],
                                              
-                                             @"" : data[@"noteTv"],
-                                             @"" : data[@"noteSs"],
+                                             @"catatanTV" : data[@"noteTv"],
+                                             @"catatanSS" : data[@"noteSs"],
                                              @"" : data[@"ttd"],
                                              };
                 
@@ -445,8 +445,8 @@
            @"noCc1": [dictionary objectForKey:@"nomorKartuKreditAtauKontrak1"] ? [dictionary objectForKey:@"nomorKartuKreditAtauKontrak1"] : @"",
            @"noCc2": [dictionary objectForKey:@"nomorKartuKreditAtauKontrak2"] ? [dictionary objectForKey:@"nomorKartuKreditAtauKontrak2"] : @"",
            
-           @"noteTv": @"",
-           @"noteSs": @"",
+           @"noteTv": [dictionary objectForKey:@"catatanTV"] ? [dictionary objectForKey:@"catatanTV"] : @"",
+           @"noteSs": [dictionary objectForKey:@"catatanSS"] ? [dictionary objectForKey:@"catatanSS"] : @"",
            @"ttd": @"",
 //           @"pernyataanPemohon" : @TRUE,
            }];
@@ -577,8 +577,8 @@
            @"noCc1": [dictionary objectForKey:@"nomorKartuKreditAtauKontrak1"] ? [dictionary objectForKey:@"nomorKartuKreditAtauKontrak1"] : @"",
            @"noCc2": [dictionary objectForKey:@"nomorKartuKreditAtauKontrak2"] ? [dictionary objectForKey:@"nomorKartuKreditAtauKontrak2"] : @"",
            
-           @"noteTv": @"",
-           @"noteSs": @"",
+           @"noteTv": [dictionary objectForKey:@"catatanTV"] ? [dictionary objectForKey:@"catatanTV"] : @"",
+           @"noteSs": [dictionary objectForKey:@"catatanSS"] ? [dictionary objectForKey:@"catatanSS"] : @"",
            @"ttd": [dictionary objectForKey:@"ttd"] ? [dictionary objectForKey:@"ttd"] : @"",
            @"pernyataanPemohon" : [dictionary objectForKey:@"pernyataanPemohon"] && [[dictionary objectForKey:@"pernyataanPemohon"] boolValue] == true ? @"1" : @"0",
            }];

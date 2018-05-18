@@ -16,6 +16,10 @@
     return [[Form objectsWhere:@"ANY menus.primaryKey = %@", primaryKey] sortedResultsUsingKeyPath:@"sort" ascending:YES];
 }
 
++ (RLMResults *)getFormForMenu:(NSString *)primaryKey role:(NSString *)role{
+    return [[Form objectsWhere:@"ANY menus.primaryKey = %@ AND ANY roles.name = %@ ", primaryKey, role] sortedResultsUsingKeyPath:@"sort" ascending:YES];
+}
+
 #pragma mark - Populate Data
 + (void)generateForms{
     RLMRealm *realm = [RLMRealm defaultRealm];
@@ -95,6 +99,12 @@
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListOnlineSubmission]];
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
+    
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
+    
     [realm addObject:form];
     
 //=====================================================================================================
@@ -134,6 +144,12 @@
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListOnlineSubmission]];
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
+    
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
+    
     [realm addObject:form];
 
 //=====================================================================================================
@@ -162,6 +178,12 @@
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListOnlineSubmission]];
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
+    
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
+    
     [realm addObject:form];
     
 //=====================================================================================================
@@ -190,6 +212,12 @@
 //    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
 //    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListOnlineSubmission]];
 //    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
+//
+//    [form.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
+//    [form.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+//    [form.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
+//    [form.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
+//
 //    [realm addObject:form];
     
 //=====================================================================================================
@@ -217,6 +245,12 @@
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListOnlineSubmission]];
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
+    
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
+    
     [realm addObject:form];
     
 //=====================================================================================================
@@ -243,6 +277,12 @@
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListOnlineSubmission]];
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
+    
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
+    
     [realm addObject:form];
     
 
@@ -264,7 +304,7 @@
     //===
     section = [[FormSection alloc] init];
     section.title = @"Submit";
-    [section.rows addObject:[FormRow new:realm :2 :NO :NO :XLFormRowDescriptorTypeButton :@"Next" :@"submit" :@""]];
+    [section.rows addObject:[FormRow new:realm :2 :NO :NO :XLFormRowDescriptorTypeButton :@"Next" :@"" :@""]];
     
     [form.sections addObject:section];
     
@@ -272,17 +312,58 @@
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListOnlineSubmission]];
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
+    
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
+    
     [realm addObject:form];
     
 //=====================================================================================================
     form = [[Form alloc] init];
-    form.title = @"Disclaimer";
+    form.title = @"Data Vendor";
     form.sort = 70;
+    
+    //===
+    section = [[FormSection alloc] init];
+    section.title = @"Data Vendor";
+    [section.rows addObject:[FormRow new:realm :0 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Catatan TV" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :1 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Catatan SS" :@"" :@""]];
+   
+    [form.sections addObject:section];
+    
+    //===
+    section = [[FormSection alloc] init];
+    section.title = @"Submit";
+    [section.rows addObject:[FormRow new:realm :2 :NO :NO :XLFormRowDescriptorTypeButton :@"Next" :@"" :@""]];
+    
+    [form.sections addObject:section];
     
     //===
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListOnlineSubmission]];
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
+    
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
+    
+    [realm addObject:form];
+    
+//=====================================================================================================
+    form = [[Form alloc] init];
+    form.title = @"Disclaimer";
+    form.sort = 80;
+    
+    //===
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]];
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListOnlineSubmission]];
+    [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
+    
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
+    
     [realm addObject:form];
     
     

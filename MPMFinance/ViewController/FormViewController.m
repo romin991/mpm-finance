@@ -49,7 +49,7 @@
     self.tableView.frame = frame;
     
     // Do any additional setup after loading the view from its nib.
-    self.forms = [Form getFormForMenu:self.menu.primaryKey];
+    self.forms = [Form getFormForMenu:self.menu.primaryKey role:[MPMUserInfo getRole]];
     [self setTitle:self.menu.title];
     [self setHorizontalLabel];
     
@@ -124,10 +124,6 @@
     dispatch_group_notify(group, queue, ^{
         for (XLFormSectionDescriptor *section in _formDescriptor.formSections) {
             for (XLFormRowDescriptor *row in section.formRows) {
-                if ([row.tag isEqualToString:@"submit"]){
-                    row.action.formSelector = @selector(saveButtonClicked:);
-                }
-                
                 if ([row.tag isEqualToString:@"next"]){
                     row.action.formSelector = @selector(nextButtonClicked:);
                 }
@@ -256,15 +252,6 @@
     }
 }
 
-- (void)saveButtonClicked:(id)sender{
-    //save to object, call delegate, then pop navigation
-    [FormModel saveValueFrom:self.form to:self.valueDictionary];
-    DisclaimerViewController *disclaimerVC = [[DisclaimerViewController alloc] init];
-    disclaimerVC.valueDictionary = self.valueDictionary;
-    disclaimerVC.list = self.list;
-    [self.navigationController pushViewController:disclaimerVC animated:true];
-}
-
 - (void)finish{
     for (UIViewController *vc in self.navigationController.viewControllers) {
         if ([vc isKindOfClass:[SubmenuViewController class]]) {
@@ -274,37 +261,48 @@
 }
 
 - (void)nextButtonClicked:(id)sender{
-    NSArray *errors = [self formValidationErrors];
-    if (errors.count) {
-        [SVProgressHUD showErrorWithStatus:((NSError *)errors.firstObject).localizedDescription];
-        [SVProgressHUD dismissWithDelay:1.5];
+    Form *nextForm = [self.forms objectAtIndex:self.index + 1];
+    if ([nextForm.title isEqualToString:@"Disclaimer"]) {
+        //save to object, call delegate, then pop navigation
+        [FormModel saveValueFrom:self.form to:self.valueDictionary];
+        DisclaimerViewController *disclaimerVC = [[DisclaimerViewController alloc] init];
+        disclaimerVC.valueDictionary = self.valueDictionary;
+        disclaimerVC.list = self.list;
+        [self.navigationController pushViewController:disclaimerVC animated:true];
         
     } else {
-        [SVProgressHUD show];
-        [FormModel saveValueFrom:self.form to:self.valueDictionary];
-        [WorkOrderModel postDraftWorkOrder:self.list dictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
-            if (error) {
-                
-                NSString *errorMessage = error.localizedDescription;
-                @try {
-                    NSDictionary *responseObject = [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:NSJSONReadingAllowFragments error:nil];
-                    errorMessage = [responseObject objectForKey:@"message"];
-                } @catch (NSException *exception) {
-                    NSLog(@"%@", exception);
-                } @finally {
-                    [SVProgressHUD showErrorWithStatus:errorMessage];
-                    [SVProgressHUD dismissWithDelay:1.5];
+        NSArray *errors = [self formValidationErrors];
+        if (errors.count) {
+            [SVProgressHUD showErrorWithStatus:((NSError *)errors.firstObject).localizedDescription];
+            [SVProgressHUD dismissWithDelay:1.5];
+            
+        } else {
+            [SVProgressHUD show];
+            [FormModel saveValueFrom:self.form to:self.valueDictionary];
+            [WorkOrderModel postDraftWorkOrder:self.list dictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
+                if (error) {
+                    
+                    NSString *errorMessage = error.localizedDescription;
+                    @try {
+                        NSDictionary *responseObject = [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:NSJSONReadingAllowFragments error:nil];
+                        errorMessage = [responseObject objectForKey:@"message"];
+                    } @catch (NSException *exception) {
+                        NSLog(@"%@", exception);
+                    } @finally {
+                        [SVProgressHUD showErrorWithStatus:errorMessage];
+                        [SVProgressHUD dismissWithDelay:1.5];
+                    }
+                } else {
+                    [SVProgressHUD dismiss];
+                    FormViewController *nextFormViewController = [[FormViewController alloc] init];
+                    nextFormViewController.menu = self.menu;
+                    nextFormViewController.index = self.index + 1;
+                    nextFormViewController.valueDictionary = self.valueDictionary;
+                    nextFormViewController.list = self.list;
+                    [self.navigationController pushViewController:nextFormViewController animated:YES];
                 }
-            } else {
-                [SVProgressHUD dismiss];
-                FormViewController *nextFormViewController = [[FormViewController alloc] init];
-                nextFormViewController.menu = self.menu;
-                nextFormViewController.index = self.index + 1;
-                nextFormViewController.valueDictionary = self.valueDictionary;
-                nextFormViewController.list = self.list;
-                [self.navigationController pushViewController:nextFormViewController animated:YES];
-            }
-        }];
+            }];
+        }
     }
 }
 

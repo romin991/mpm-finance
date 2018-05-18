@@ -19,8 +19,10 @@
 @property RLMArray<FormRow> *rows;
 @property RLMArray<FormSection> *sections;
 @property RLMArray<Menu> *menus;
+@property RLMArray<Role> *roles;
 
 + (RLMResults *)getFormForMenu:(NSString *)primaryKey;
++ (RLMResults *)getFormForMenu:(NSString *)primaryKey role:(NSString *)role;
 + (void)generateForms;
 
 @end
