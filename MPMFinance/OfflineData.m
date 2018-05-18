@@ -43,4 +43,8 @@
     
     return list;
 }
+- (NSDictionary *)getDataDictionary {
+    NSDictionary *content = [NSJSONSerialization JSONObjectWithData:self.data options:NSJSONWritingPrettyPrinted error:nil];
+    return content;
+}
 @end

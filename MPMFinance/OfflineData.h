@@ -12,6 +12,7 @@
 @property NSString *primaryKey; //noRegistrasi
 @property NSData *data;
 @property NSDate *saveDate;
+- (NSDictionary *)getDataDictionary;
 + (void)save:(NSDictionary *)dict;
 - (List *)convertToList;
 @end

@@ -31,7 +31,7 @@
 @property NSInteger page;
 @property NSInteger selectedIndex;
 @property RLMResults *dataSources;
-
+@property OfflineData *selectedOfflineData;
 @end
 
 @implementation ListViewController
@@ -221,7 +221,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     List *list;
     @try {
-        list = [self.lists objectAtIndex:indexPath.row];
+        if ([self.lists[indexPath.row] isKindOfClass:[OfflineData class]]) {
+            list = ((OfflineData *)[self.lists objectAtIndex:indexPath.row]).convertToList;
+        } else {
+            list = [self.lists objectAtIndex:indexPath.row];
+        }
     } @catch (NSException * e) {
         NSLog(@"Exception : %@", e);
     }
@@ -261,10 +265,9 @@
                         [self selectedList:list withSubmenu:self.submenu];
                     }
                     //get data from local db
-                    if ([action.actionType isEqualToString:kActionQueryDB]){
-                        NSArray *offlineData = [OfflineDataManager loadAllOfflineSubmission];
-                        self.lists = [NSMutableArray arrayWithArray:offlineData];
-                        [self.tableView reloadData];
+                    else if ([action.actionType isEqualToString:kActionQueryDB]){
+                        self.selectedOfflineData = self.dataSources[indexPath.row];
+                        [self selectedList:nil withSubmenu:self.submenu];
                     }
                     
                 }]];
@@ -305,7 +308,7 @@
         FormViewController *formViewController = [[FormViewController alloc] init];
         formViewController.menu = submenu;
         formViewController.list = list;
-        
+        formViewController.valueDictionary = [NSMutableDictionary dictionaryWithDictionary:[self.selectedOfflineData getDataDictionary]];
         [self.navigationController pushViewController:formViewController animated:YES];
         
     } else if ([submenu.menuType isEqualToString:kMenuTypeFormSurvey]) {
