@@ -10,7 +10,9 @@
 #import "MyProfileNavigationViewController.h"
 
 @interface MyProfileContainerViewController : UINavigationController
-@property (weak, nonatomic) MyProfileNavigationViewController *parentMainRegister;
+
+@property (weak, nonatomic) id<MenuViewDelegate> menuViewDelegate;
 - (void)setSelectedIndex:(int)selectedIndex;
 - (void)loadListContract;
+
 @end

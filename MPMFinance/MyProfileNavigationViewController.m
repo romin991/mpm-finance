@@ -26,8 +26,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
-{
+
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
     if (item.tag == 1) {
         [_containerView setSelectedIndex:0];
     } else {
@@ -45,7 +45,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"embedProfileContainerSegue"]){
         _containerView = (MyProfileContainerViewController *)segue.destinationViewController;
-        _containerView.parentMainRegister = self;
+        _containerView.menuViewDelegate = self.menuViewDelegate;
         
     }
 }

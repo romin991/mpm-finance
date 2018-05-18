@@ -10,6 +10,8 @@
 #import <APAvatarImageView.h>
 #import <UIImageView+AFNetworking.h>
 #import "ChangePasswordViewController.h"
+#import "MenuNavigationViewController.h"
+
 @interface MyProfileTableViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet APAvatarImageView *profilePictureImageView;
@@ -65,8 +67,8 @@
     // Handle the tap if you want to
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self setTextFieldsEnable:NO];
     AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
     [manager GET:[MPMUserInfo getUserInfo][@"photo"] parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
@@ -102,6 +104,7 @@
     self.txtDateOfBirth.text = @"";
     self.txtIdCardNumber.text = @"";
     
+    if (self.menuViewDelegate) [self.menuViewDelegate selectMenuAtIndex:kHome];
 }
 
 - (void)didReceiveMemoryWarning {

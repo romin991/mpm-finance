@@ -30,9 +30,15 @@
     self.myProfileVC = [storyboard instantiateViewControllerWithIdentifier:@"MyProfileNavigationViewController"];
     // Do any additional setup after loading the view.
 }
--(void)viewWillAppear:(BOOL)animated
-{
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     [self setNavigationBarHidden:YES animated:NO];
+}
+
+- (void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    self.myProfileVC.menuViewDelegate = self.menuViewDelegate;
 }
 
 - (void)didReceiveMemoryWarning {
