@@ -19,7 +19,8 @@
 #import <UIScrollView+SVPullToRefresh.h>
 #import <UIScrollView+SVInfiniteScrolling.h>
 #import "OfflineDataManager.h"
-@interface ListViewController ()<UIActionSheetDelegate>
+#import "WorkOrderModel.h"
+@interface ListViewController ()<UIActionSheetDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *segmentedView;
@@ -326,7 +327,6 @@
         
     }
 }
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (!cell){
@@ -386,7 +386,18 @@
     
     return cell;
 }
-
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        List *list = self.lists[indexPath.row];
+        [WorkOrderModel deleteCustomerDraft:@(list.primaryKey)];
+        [SVProgressHUD show];
+        [self.lists removeObjectAtIndex:indexPath.row];
+        [self.tableView reloadData];
+    }
+}
 /*
 #pragma mark - Navigation
 

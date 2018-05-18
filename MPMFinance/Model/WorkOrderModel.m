@@ -340,7 +340,22 @@
 
 
 
++ (void)deleteCustomerDraft:(NSNumber *)draftID{
+    AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
+    NSMutableDictionary* param = [NSMutableDictionary dictionaryWithDictionary:
+                                  @{@"userid" :[MPMUserInfo getUserInfo][@"userId"],
+                                    @"token" : [MPMUserInfo getToken],
+                                    @"data" : @{@"id" : draftID}
+                                    }];
+    [manager POST:[NSString stringWithFormat:@"%@/pengajuandraft/customer/delete", kApiUrl] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [SVProgressHUD showErrorWithStatus:responseObject[@"message"]];
+        [SVProgressHUD dismissWithDelay:1.5];;
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [SVProgressHUD showErrorWithStatus:@"Error Delete Draft"];
+        [SVProgressHUD dismissWithDelay:1.5];
+    }];
 
+}
 
 
 
