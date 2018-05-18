@@ -15,4 +15,5 @@
 - (NSDictionary *)getDataDictionary;
 + (void)save:(NSDictionary *)dict;
 - (List *)convertToList;
++ (void)deleteOfflineData:(OfflineData *)data;
 @end

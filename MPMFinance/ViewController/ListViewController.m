@@ -391,12 +391,14 @@
 }
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        List *list = self.lists[indexPath.row];
-        if (!list) {
-            return;
+        if ([self.lists[indexPath.row] isKindOfClass:[OfflineData class]]) {
+            [OfflineData deleteOfflineData:self.lists[indexPath.row]];
+        } else{
+            List *list = self.lists[indexPath.row];
+            [WorkOrderModel deleteCustomerDraft:@(list.primaryKey)];
+            [SVProgressHUD show];
         }
-        [WorkOrderModel deleteCustomerDraft:@(list.primaryKey)];
-        [SVProgressHUD show];
+        
         [self.lists removeObjectAtIndex:indexPath.row];
         [self.tableView reloadData];
     }

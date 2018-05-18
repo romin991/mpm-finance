@@ -25,6 +25,13 @@
     [realm addObject:offline];
     [realm commitWriteTransaction];
 }
+
++ (void)deleteOfflineData:(OfflineData *)data {
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    [realm beginWriteTransaction];
+    [realm deleteObject:data];
+    [realm commitWriteTransaction];
+}
 - (List *)convertToList {
 //    @property NSInteger primaryKey;
 //    @property NSString *imageURL;
