@@ -392,6 +392,9 @@
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         List *list = self.lists[indexPath.row];
+        if (!list) {
+            return;
+        }
         [WorkOrderModel deleteCustomerDraft:@(list.primaryKey)];
         [SVProgressHUD show];
         [self.lists removeObjectAtIndex:indexPath.row];
