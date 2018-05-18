@@ -87,13 +87,15 @@
                                                              @"kewarganegaraanPasangan" : @"WNI",
                                                              }];
         
-        dispatch_group_enter(group);
-        [ProfileModel getProfileDataWithCompletion:^(NSDictionary *dictionary, NSError *error) {
-            if (error) _error = error;
-            if (dictionary) [weakSelf.valueDictionary addEntriesFromDictionary:dictionary];
-            
-            dispatch_group_leave(group);
-        }];
+        if (![[MPMUserInfo getRole] isEqualToString:kRoleDedicated]) {
+            dispatch_group_enter(group);
+            [ProfileModel getProfileDataWithCompletion:^(NSDictionary *dictionary, NSError *error) {
+                if (error) _error = error;
+                if (dictionary) [weakSelf.valueDictionary addEntriesFromDictionary:dictionary];
+                
+                dispatch_group_leave(group);
+            }];
+        }
     
         dispatch_group_notify(group, queue, ^{
             [weakSelf checkError:_error completion:^{
@@ -218,6 +220,16 @@
                     //Set keyboard type to numberPad
                     if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
                         [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
+                    }
+                }
+                
+                if ([[MPMUserInfo getRole] isEqualToString:kRoleDedicated]){
+                    if ([row.tag isEqualToString:@"noKTP"] ||
+                        [row.tag isEqualToString:@"namaLengkap"] ||
+                        [row.tag isEqualToString:@"tempatLahir"] ||
+                        [row.tag isEqualToString:@"tanggalLahir"] ||
+                        [row.tag isEqualToString:@"jenisKelamin"]) {
+                        row.disabled = @NO;
                     }
                 }
             }
