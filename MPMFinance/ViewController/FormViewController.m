@@ -67,7 +67,7 @@
 
 - (void)preparingValueWithCompletion:(void(^)())block{
     dispatch_group_t group = dispatch_group_create();
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+    dispatch_queue_t queue = dispatch_get_main_queue();
     
     __block FormViewController *weakSelf = self;
     __block NSError *_error = nil;
@@ -96,18 +96,16 @@
         }];
     
         dispatch_group_notify(group, queue, ^{
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [weakSelf checkError:_error completion:^{
-                    if (block) block();
-                }];
-            });
+            [weakSelf checkError:_error completion:^{
+                if (block) block();
+            }];
         });
     });
 }
 
 - (void)preparingFormDescriptorWithCompletion:(void(^)())block{
     dispatch_group_t group = dispatch_group_create();
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+    dispatch_queue_t queue = dispatch_get_main_queue();
     
     __block FormViewController *weakSelf = self;
     __block NSError *_error = nil;
@@ -226,12 +224,10 @@
         }
         
         dispatch_group_notify(group, queue, ^{
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [weakSelf checkError:_error completion:^{
-                    if (_formDescriptor) weakSelf.form = _formDescriptor;
-                    if (block) block();
-                }];
-            });
+            [weakSelf checkError:_error completion:^{
+                if (_formDescriptor) weakSelf.form = _formDescriptor;
+                if (block) block();
+            }];
         });
     });
 }
