@@ -19,7 +19,8 @@
 #import <UIScrollView+SVPullToRefresh.h>
 #import <UIScrollView+SVInfiniteScrolling.h>
 #import "OfflineDataManager.h"
-@interface ListViewController ()<UIActionSheetDelegate>
+#import "WorkOrderModel.h"
+@interface ListViewController ()<UIActionSheetDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *segmentedView;
@@ -264,11 +265,7 @@
                     if ([action.actionType isEqualToString:kActionTypeForward]){
                         [self selectedList:list withSubmenu:self.submenu];
                     }
-                    //get data from local db
-                    else if ([action.actionType isEqualToString:kActionQueryDB]){
-                        self.selectedOfflineData = self.dataSources[indexPath.row];
-                        [self selectedList:nil withSubmenu:self.submenu];
-                    }
+                   
                     
                 }]];
             }
@@ -276,6 +273,12 @@
             // Present action sheet.
             [self presentViewController:actionSheet animated:YES completion:nil];
         } else {
+            
+            if ([self.lists[indexPath.row] isKindOfClass:[OfflineData class]]) {
+                self.selectedOfflineData = self.lists[indexPath.row];
+            }
+            
+            
             [self selectedList:list withSubmenu:self.submenu];
         }
     }
@@ -307,8 +310,13 @@
     } else if ([submenu.menuType isEqualToString:kMenuTypeFormWorkOrder]){
         FormViewController *formViewController = [[FormViewController alloc] init];
         formViewController.menu = submenu;
-        formViewController.list = list;
-        formViewController.valueDictionary = [NSMutableDictionary dictionaryWithDictionary:[self.selectedOfflineData getDataDictionary]];
+        if (!self.selectedOfflineData) {
+            formViewController.list = list;
+        }
+        else {
+            formViewController.list = nil;
+            formViewController.valueDictionary = [NSMutableDictionary dictionaryWithDictionary:[self.selectedOfflineData getDataDictionary]];
+        }
         [self.navigationController pushViewController:formViewController animated:YES];
         
     } else if ([submenu.menuType isEqualToString:kMenuTypeFormSurvey]) {
@@ -319,7 +327,6 @@
         
     }
 }
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (!cell){
@@ -379,7 +386,18 @@
     
     return cell;
 }
-
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        List *list = self.lists[indexPath.row];
+        [WorkOrderModel deleteCustomerDraft:@(list.primaryKey)];
+        [SVProgressHUD show];
+        [self.lists removeObjectAtIndex:indexPath.row];
+        [self.tableView reloadData];
+    }
+}
 /*
 #pragma mark - Navigation
 
