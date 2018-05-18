@@ -201,11 +201,17 @@
                     [row.tag isEqualToString:@"rtDomisili"] ||
                     [row.tag isEqualToString:@"rwDomisili"] ||
                     
-                    [row.tag isEqualToString:@"noHandphonePasangan"] ||
+                    [row.tag isEqualToString:@"noKTPPasangan"] ||
+                    [row.tag isEqualToString:@"nomorHandphonePasangan"] ||
+                    
+                    [row.tag isEqualToString:@"rtPasangan"] ||
+                    [row.tag isEqualToString:@"rwPasangan"] ||
+                    
                     [row.tag isEqualToString:@"hargaPerolehan"] ||
                     [row.tag isEqualToString:@"uangMuka"] ||
                     [row.tag isEqualToString:@"jangkaWaktuPembayaran"] ||
                     [row.tag isEqualToString:@"angsuran"] ||
+                    
                     [row.tag isEqualToString:@"kodeAreaTeleponTempatKerja"] ||
                     [row.tag isEqualToString:@"nomorTeleponTempatKerja"] ||
                     [row.tag isEqualToString:@"nomorTeleponEcon"]
