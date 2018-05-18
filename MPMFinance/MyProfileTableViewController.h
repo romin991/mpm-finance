@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MenuViewController.h"
 
 @interface MyProfileTableViewController : UITableViewController
+
+@property (weak, nonatomic) id<MenuViewDelegate> menuViewDelegate;
 
 @end

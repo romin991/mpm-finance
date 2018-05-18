@@ -12,7 +12,7 @@
 #import "LoginViewController.h"
 #import "RegisterViewController.h"
 
-@interface MenuViewController ()<UITabBarDelegate, MenuViewDelegate>
+@interface MenuViewController ()<UITabBarDelegate>
 @property (weak, nonatomic) IBOutlet UITabBar *tabBar;
 @property (weak, nonatomic) IBOutlet UIView *signInView;
 @property NSArray *guestMenu;
@@ -88,6 +88,10 @@
     }
 }
 
+- (void)selectMenuAtIndex:(ContainerView)index{
+    [_containerView setSelectedIndex:index];
+}
+
 - (void)dismissAll{
     [self dismissViewControllerAnimated:true completion:nil];
 }
@@ -106,7 +110,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"embedContainerSegue"]){
         _containerView = (MenuNavigationViewController *)segue.destinationViewController;
-        _containerView.parentMainRegister = self;
+        _containerView.menuViewDelegate = self;
         
     } else if ([segue.identifier isEqualToString:@"signInSegue"]){
         LoginViewController *vc = (LoginViewController *)segue.destinationViewController;

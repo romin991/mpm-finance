@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MenuViewController.h"
 
 @interface MyProfileNavigationViewController : UIViewController
 
+@property (weak, nonatomic) id<MenuViewDelegate> menuViewDelegate;
 - (void)loadListContract;
+
 @end

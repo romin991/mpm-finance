@@ -8,12 +8,22 @@
 
 #import <UIKit/UIKit.h>
 
+@class MenuNavigationViewController;
+
+typedef enum{
+    kHome,
+    kHistory,
+    kHelp,
+    kProfile
+} ContainerView;
+
 @protocol MenuViewDelegate<NSObject>
 
+- (void)selectMenuAtIndex:(ContainerView)index;
 - (void)dismissAll;
 
 @end
 
-@interface MenuViewController : UIViewController
+@interface MenuViewController : UIViewController<MenuViewDelegate>
 
 @end
