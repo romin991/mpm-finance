@@ -158,7 +158,6 @@
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
-    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     
     menuList = [[Menu alloc] init];
     menuList.primaryKey = kSubmenuListMonitoring;
@@ -425,22 +424,23 @@
     [realm addObject:menu];
     
 //=====================================================================================================
-    menu = [[Menu alloc] init];
-    menu.imageName = @"DashboardIcon";
-    menu.backgroundImageName = @"DashboardBackground";
-    menu.circleIconImageName = @"DashboardCircleIcon";
-    menu.primaryKey = kMenuDashboard;
-    menu.indonesiaTitle = menu.primaryKey;
-    menu.sort = 50;
-    menu.menuType = kMenuTypeDashboard;
-    menu.isRootMenu = YES;
-    [menu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
-    [menu.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
-    [menu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
-    [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuYearToDate]];
-    [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuMonthToDate]];
-    [realm addObject:menu];
-    
+//    menu = [[Menu alloc] init];
+//    menu.imageName = @"DashboardIcon";
+//    menu.backgroundImageName = @"DashboardBackground";
+//    menu.circleIconImageName = @"DashboardCircleIcon";
+//    menu.primaryKey = kMenuDashboard;
+//    menu.indonesiaTitle = menu.primaryKey;
+//    menu.sort = 50;
+//    menu.menuType = kMenuTypeDashboard;
+//    menu.isRootMenu = YES;
+//    [menu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
+//    [menu.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
+//    [menu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
+//    [menu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
+//    [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuYearToDate]];
+//    [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuMonthToDate]];
+//    [realm addObject:menu];
+//    
     
     [self generateSubmenusForCustomerDealerWithRealm:realm];
     [self generateMenusForCustomerDealerWithRealm:realm];
@@ -520,6 +520,22 @@
     [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuMonitoring]];
     [realm addObject:menu];
 
+    menu = [[Menu alloc] init];
+    menu.imageName = @"DashboardIcon";
+    menu.backgroundImageName = @"DashboardBackground";
+    menu.circleIconImageName = @"DashboardCircleIcon";
+    menu.primaryKey = kMenuDashboard;
+    menu.indonesiaTitle = menu.primaryKey;
+    menu.sort = 50;
+    menu.menuType = kMenuTypeDashboard;
+    menu.isRootMenu = YES;
+    [menu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
+    [menu.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
+    [menu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
+    [menu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
+    [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuYearToDate]];
+    [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuMonthToDate]];
+    [realm addObject:menu];
 //=====================================================================================================
     menu = [[Menu alloc] init];
     menu.imageName = @"topUpIcon";
@@ -531,7 +547,6 @@
     menu.sort = 20;
     menu.menuType = kMenuTypeSubmenu;
     menu.isRootMenu = YES;
-    [menu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuTopUp]];
     [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuHistoryTopUp]];
@@ -546,7 +561,6 @@
     menu.sort = 20;
     menu.menuType = kMenuTypeHistory;
     menu.isRootMenu = YES;
-    [menu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [realm addObject:menu];
     
@@ -561,7 +575,6 @@
     menu.sort = 20;
     menu.menuType = kMenuTypeSubmenu;
     menu.isRootMenu = YES;
-    [menu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuLegalizationBPKB]];
     [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuHistoryBPKB]];
@@ -578,7 +591,6 @@
     menu.sort = 20;
     menu.menuType = kMenuTypeSubmenu;
     menu.isRootMenu = YES;
-    [menu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuInsuranceClaimForm]];
     [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuHistoryInsuranceClaim]];
@@ -593,7 +605,6 @@
     menu.sort = 20;
     menu.menuType = kMenuTypeAcceleratedRepayment;
     menu.isRootMenu = YES;
-    [menu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [realm addObject:menu];
     
@@ -608,7 +619,6 @@
     menu.sort = 20;
     menu.menuType = kMenuTypeSubmenu;
     menu.isRootMenu = YES;
-    [menu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuPengambilanBPKB]];
     [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuHistoryPengambilanBPKB]];
@@ -625,7 +635,6 @@
     menu.sort = 20;
     menu.menuType = kMenuTypeSubmenu;
     menu.isRootMenu = YES;
-    [menu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuSaranPengaduan]];
     [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuHistorySaranPengaduan]];
@@ -642,7 +651,6 @@
     menu.sort = 20;
     menu.menuType = kMenuTypeSubmenu;
     menu.isRootMenu = YES;
-    [menu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuCustomerGetCustomer]];
     [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuHistoryCustomerGetCustomer]];
