@@ -463,6 +463,7 @@
     menu.isRootMenu = YES;
     [menu.roles addObject:[Role objectForPrimaryKey:kNoRole]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
+    [menu.roles addObject:[Role objectForPrimaryKey:kRoleAgent]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [realm addObject:menu];
     
@@ -479,6 +480,7 @@
     menu.isRootMenu = YES;
     [menu.roles addObject:[Role objectForPrimaryKey:kNoRole]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
+    [menu.roles addObject:[Role objectForPrimaryKey:kRoleAgent]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     
     [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuCreditSimulationNewBike]];
@@ -500,6 +502,7 @@
     [menu.roles addObject:[Role objectForPrimaryKey:kNoRole]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [menu.roles addObject:[Role objectForPrimaryKey:kRoleAgent]];
     [realm addObject:menu];
     
     //=====================================================================================================
@@ -517,6 +520,7 @@
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuListPengajuanApplikasi]];
+    [menu.roles addObject:[Role objectForPrimaryKey:kRoleAgent]];
     [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuMonitoring]];
     [realm addObject:menu];
 
@@ -531,6 +535,7 @@
     menu.isRootMenu = YES;
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
+    [menu.roles addObject:[Role objectForPrimaryKey:kRoleAgent]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuYearToDate]];
