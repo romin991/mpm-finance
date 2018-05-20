@@ -11,6 +11,7 @@
 
 @interface DataMAPModel : NSObject
 
++ (void)checkMAPSubmittedWithID:(NSInteger)pengajuanId completion:(void(^)(NSDictionary *response, NSError *error))block;
 + (void)getDataMAPWithID:(NSInteger)pengajuanId completion:(void(^)(NSDictionary *response, NSError *error))block;
 + (void)postDataMAPWithDictionary:(NSDictionary *)dictionary completion:(void(^)(NSDictionary *dictionary, NSError *error))block;
 

@@ -31,6 +31,7 @@
 #import "IntakeBPKBTableViewController.h"
 #import "SuggestionComplaintTableViewController.h"
 #import "CustomerGetCustomerTableViewController.h"
+#import "DataMAPModel.h"
 
 @interface SubmenuViewController ()
 
@@ -51,6 +52,34 @@
     self.banner.image = [UIImage imageNamed:self.menu.backgroundImageName];
     self.icon.image = [UIImage imageNamed:self.menu.circleIconImageName];
     self.submenus = [Menu getSubmenuForMenu:self.menu.primaryKey role:[MPMUserInfo getRole]];
+    
+    [self additionalRule];
+}
+
+- (void)additionalRule{
+    if (self.list && [self.menu.primaryKey isEqualToString:kSubmenuListWorkOrder]) {
+        [SVProgressHUD show];
+        [DataMAPModel checkMAPSubmittedWithID:self.list.primaryKey completion:^(NSDictionary *response, NSError *error) {
+            
+            if (error) {
+                [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+                [SVProgressHUD dismissWithDelay:1.5];
+            } else {
+                @try {
+                    if ([[response objectForKey:@"pengajuan"] integerValue] == 0) {
+                        self.submenus = [[self.submenus objectsWhere:@"primaryKey != %@", kSubmenuDataMAP] objectsWhere:@"primaryKey != %@", kSubmenuSurvey];
+                    } else {
+                        
+                    }
+                } @catch (NSException *exception) {
+                    NSLog(@"%@", exception);
+                }
+                [self.tableView reloadData];
+                [self.tableView layoutIfNeeded];
+                [SVProgressHUD dismiss];
+            }
+        }];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
