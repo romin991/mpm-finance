@@ -12,6 +12,7 @@
 #import "SurveyModel.h"
 #import "DropdownModel.h"
 #import "FormModel.h"
+#import "UploadPhotoTableViewCell.h"
 
 @interface SurveyFormViewController ()
 
@@ -24,6 +25,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.navigationBar.translucent = NO;
+    
+    [[XLFormViewController cellClassesForRowDescriptorTypes] setObject:@"UploadPhotoTableViewCell" forKey:XLFormRowDescriptorTypeTakePhoto];
+    
     // Do any additional setup after loading the view from its nib.
     
     self.forms = [Form getFormForMenu:self.menu.primaryKey];

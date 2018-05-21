@@ -11,6 +11,7 @@
 #import "FloatLabeledTextFieldCell.h"
 #import "Option.h"
 #import "NSString+MixedCasing.h"
+#import "UploadPhotoTableViewCell.h"
 
 //XLFormRowDescriptorTypeFloatLabeledTextField
 //extern NSString *const XLFormRowDescriptorTypeAccount;
@@ -300,6 +301,7 @@
     [FormRow new:realm :19 :16 :YES :XLFormRowDescriptorTypeSelectorPush :@"Kepemilikan Garasi"];// : 27];
     [FormRow new:realm :19 :17 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Harga"];
     [FormRow new:realm :19 :18 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Keterangan Lain"];
+    [FormRow new:realm :19 :19 :YES :XLFormRowDescriptorTypeTakePhoto :@"Take Photo"];
     
 }
 
