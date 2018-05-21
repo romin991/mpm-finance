@@ -113,6 +113,7 @@
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleAgent]];
     
     Menu *menuList = [[Menu alloc] init];
     menuList.primaryKey = kSubmenuListOnlineSubmission;
@@ -158,6 +159,7 @@
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleAgent]];
     
     menuList = [[Menu alloc] init];
     menuList.primaryKey = kSubmenuListMonitoring;
