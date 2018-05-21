@@ -24,7 +24,7 @@
             if (code == 200) {
                 NSDictionary *data = [responseObject objectForKey:@"data"];
                 NSDictionary *informanSurvey = [data objectForKey:@"informanSurvey"][0];
-                NSDictionary *dictionary = @{@"namaCalonDebitur" : [data objectForKey:@"namaCablon"],
+                NSDictionary *dictionary = @{@"namaCalonDebitur" : [data objectForKey:@"namaCalon"],
                                              @"tanggalSurvey" : [data objectForKey:@"tglSurvey"],
                                              @"namaSurveyor" : [data objectForKey:@"namaSurveyor"],
                                              @"penjelasan" : [data objectForKey:@"ketSurvey"],
@@ -38,8 +38,8 @@
                                              @"jumlahOrang" : [informanSurvey objectForKey:@"jmlOrgTglDirmh"],
                                              @"tambahan" : [informanSurvey objectForKey:@"ketDomisili"],
                                              
-                                             @"jumlahLantaiRumah" : [data objectForKey:@"jmlLantaiRmh"],
-                                             @"fasilitasRumah" : [data objectForKey:@"fasilitasRumah"],
+                                             @"jumlahLantaiRumah" : @([[data objectForKey:@"jmlLantaiRmh"] integerValue]),
+//                                             @"fasilitasRumah" : [data objectForKey:@"fasilitasRumah"],
                                              @"aksesJalanMasuk" : [data objectForKey:@"aksesJlnMsk"],
                                              @"kepemilikanGarasi" : [data objectForKey:@"adaGarasi"],
                                              @"keteranganLain" : [data objectForKey:@"ketLain"],

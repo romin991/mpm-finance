@@ -48,36 +48,60 @@
             
         } else if (weakSelf.valueDictionary.count > 0){
             weakSelf.formDescriptor = formDescriptor;
-            [FormModel loadValueFrom:weakSelf.valueDictionary to:weakSelf.formDescriptor on:weakSelf.formViewController];
-            [SVProgressHUD dismiss];
-            [weakSelf viewDidLayoutSubviews];
-            
-        } else if (weakSelf.list) {
-            weakSelf.formDescriptor = formDescriptor;
-            [SurveyModel getSurveyWithID:weakSelf.list.primaryKey completion:^(NSDictionary *dictionary, NSError *error) {
-                if (error == nil) {
-                    if (dictionary) {
-                        weakSelf.valueDictionary = [NSMutableDictionary dictionaryWithDictionary:dictionary];
-                        [FormModel loadValueFrom:weakSelf.valueDictionary to:weakSelf.formDescriptor on:weakSelf.formViewController];
-                    }
+            [weakSelf postProcessFormDescriptorWithCompletion:^(NSError *error) {
+                [weakSelf checkError:error completion:^{
+                    [FormModel loadValueFrom:weakSelf.valueDictionary to:weakSelf.formDescriptor on:weakSelf.formViewController];
                     [SVProgressHUD dismiss];
                     [weakSelf viewDidLayoutSubviews];
                     
-                } else {
-                    [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
-                    [SVProgressHUD dismissWithDelay:1.5 completion:^{
-                        [weakSelf.navigationController popViewControllerAnimated:YES];
+                }];
+            }];
+            
+        } else if (weakSelf.list) {
+            weakSelf.formDescriptor = formDescriptor;
+            [weakSelf postProcessFormDescriptorWithCompletion:^(NSError *error) {
+                [weakSelf checkError:error completion:^{
+                    [SurveyModel getSurveyWithID:weakSelf.list.primaryKey completion:^(NSDictionary *dictionary, NSError *error) {
+                        if (error == nil) {
+                            if (dictionary) {
+                                weakSelf.valueDictionary = [NSMutableDictionary dictionaryWithDictionary:dictionary];
+                                [FormModel loadValueFrom:weakSelf.valueDictionary to:weakSelf.formDescriptor on:weakSelf.formViewController];
+                            }
+                            [SVProgressHUD dismiss];
+                            [weakSelf viewDidLayoutSubviews];
+                            
+                        } else {
+                            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+                            [SVProgressHUD dismissWithDelay:1.5 completion:^{
+                                [weakSelf.navigationController popViewControllerAnimated:YES];
+                            }];
+                        }
                     }];
-                }
+                }];
             }];
             
         } else {
             //something wrong i think
             weakSelf.formDescriptor = formDescriptor;
-            [SVProgressHUD dismiss];
-            [weakSelf viewDidLayoutSubviews];
+            [weakSelf postProcessFormDescriptorWithCompletion:^(NSError *error) {
+                [weakSelf checkError:error completion:^{
+                    [SVProgressHUD dismiss];
+                    [weakSelf viewDidLayoutSubviews];
+                }];
+            }];
         }
     }];
+}
+
+- (void)checkError:(NSError *)error completion:(void(^)())block{
+    if (error) {
+        [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+        [SVProgressHUD dismissWithDelay:1.5 completion:^{
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
+    } else {
+        block();
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -116,6 +140,18 @@
     formViewController.view.frame = self.containerView.frame;
     [self.view addSubview:formViewController.view];
     [formViewController didMoveToParentViewController:self];
+}
+
+- (void)postProcessFormDescriptorWithCompletion:(void(^)(NSError *error))block{
+    for (XLFormSectionDescriptor *section in self.form.formSections) {
+        for (XLFormRowDescriptor *row in section.formRows) {
+            if (self.isReadOnly) {
+                row.disabled = @YES;
+            }
+        }
+    }
+    
+    if (block) block(nil);
 }
 
 /*

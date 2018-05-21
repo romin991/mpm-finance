@@ -40,6 +40,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property RLMResults *submenus;
+@property NSMutableDictionary *additionalSetting;
 
 @end
 
@@ -53,23 +54,24 @@
     self.icon.image = [UIImage imageNamed:self.menu.circleIconImageName];
     self.submenus = [Menu getSubmenuForMenu:self.menu.primaryKey role:[MPMUserInfo getRole]];
     
+    self.additionalSetting = [NSMutableDictionary dictionary];
     [self additionalRule];
 }
 
 - (void)additionalRule{
     if (self.list && [self.menu.primaryKey isEqualToString:kSubmenuListWorkOrder]) {
+        __weak typeof(self) weakSelf = self;
         [SVProgressHUD show];
         [DataMAPModel checkMAPSubmittedWithID:self.list.primaryKey completion:^(NSDictionary *response, NSError *error) {
-            
             if (error) {
                 [SVProgressHUD showErrorWithStatus:error.localizedDescription];
                 [SVProgressHUD dismissWithDelay:1.5];
             } else {
                 @try {
                     if ([[response objectForKey:@"pengajuan"] integerValue] == 0) {
-                        self.submenus = [[self.submenus objectsWhere:@"primaryKey != %@", kSubmenuDataMAP] objectsWhere:@"primaryKey != %@", kSubmenuSurvey];
+                        weakSelf.submenus = [[weakSelf.submenus objectsWhere:@"primaryKey != %@", kSubmenuDataMAP] objectsWhere:@"primaryKey != %@", kSubmenuSurvey];
                     } else {
-                        
+                        [weakSelf.additionalSetting addEntriesFromDictionary:response];
                     }
                 } @catch (NSException *exception) {
                     NSLog(@"%@", exception);
@@ -112,16 +114,68 @@
         [self.navigationController pushViewController:formViewController animated:YES];
         
     } else if ([submenu.menuType isEqualToString:kMenuTypeFormDataMAP]) {
-        SimpleListViewController *simpleListViewController = [[SimpleListViewController alloc] init];
-        simpleListViewController.menu = submenu;
-        simpleListViewController.list = self.list;
-        [self.navigationController pushViewController:simpleListViewController animated:YES];
+        if ([self.additionalSetting objectForKey:@"map"] && [[self.additionalSetting objectForKey:@"map"] integerValue] == 0) {
+            __weak typeof(self) weakSelf = self;
+            UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:self.list.title message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+            
+            [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }]];
+            
+            [actionSheet addAction:[UIAlertAction actionWithTitle:@"Edit" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+                SimpleListViewController *simpleListViewController = [[SimpleListViewController alloc] init];
+                simpleListViewController.menu = submenu;
+                simpleListViewController.list = weakSelf.list;
+                simpleListViewController.isReadOnly = NO;
+                [weakSelf.navigationController pushViewController:simpleListViewController animated:YES];
+                [weakSelf dismissViewControllerAnimated:YES completion:nil];
+            }]];
+            
+            [actionSheet addAction:[UIAlertAction actionWithTitle:@"Submit" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                [weakSelf dismissViewControllerAnimated:YES completion:nil];
+            }]];
+            
+            [self presentViewController:actionSheet animated:YES completion:nil];
+            
+        } else {
+            SimpleListViewController *simpleListViewController = [[SimpleListViewController alloc] init];
+            simpleListViewController.menu = submenu;
+            simpleListViewController.list = self.list;
+            simpleListViewController.isReadOnly = YES;
+            [self.navigationController pushViewController:simpleListViewController animated:YES];
+        }
         
     } else if ([submenu.menuType isEqualToString:kMenuTypeFormSurvey]) {
-        SurveyFormViewController *surveyViewController = [[SurveyFormViewController alloc] init];
-        surveyViewController.menu = submenu;
-        surveyViewController.list = self.list;
-        [self.navigationController pushViewController:surveyViewController animated:YES];
+        if ([self.additionalSetting objectForKey:@"map"] && [[self.additionalSetting objectForKey:@"map"] integerValue] == 0) {
+            __weak typeof(self) weakSelf = self;
+            UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:self.list.title message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+            
+            [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+                [weakSelf dismissViewControllerAnimated:YES completion:nil];
+            }]];
+            
+            [actionSheet addAction:[UIAlertAction actionWithTitle:@"Edit" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+                SurveyFormViewController *surveyViewController = [[SurveyFormViewController alloc] init];
+                surveyViewController.menu = submenu;
+                surveyViewController.list = weakSelf.list;
+                surveyViewController.isReadOnly = NO;
+                [weakSelf.navigationController pushViewController:surveyViewController animated:YES];
+                [weakSelf dismissViewControllerAnimated:YES completion:nil];
+            }]];
+            
+            [actionSheet addAction:[UIAlertAction actionWithTitle:@"Submit" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                [weakSelf dismissViewControllerAnimated:YES completion:nil];
+            }]];
+            
+            [self presentViewController:actionSheet animated:YES completion:nil];
+            
+        } else {
+            SurveyFormViewController *surveyViewController = [[SurveyFormViewController alloc] init];
+            surveyViewController.menu = submenu;
+            surveyViewController.list = self.list;
+            surveyViewController.isReadOnly = YES;
+            [self.navigationController pushViewController:surveyViewController animated:YES];
+        }
         
     } else if ([submenu.menuType isEqualToString:kMenuTypeFormDahsyat]) {
         DahsyatFormViewController *dahsyatViewController = [[DahsyatFormViewController alloc] init];

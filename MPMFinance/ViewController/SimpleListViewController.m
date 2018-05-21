@@ -76,6 +76,7 @@
     formViewController.menu = self.menu;
     formViewController.index = indexPath.row;
     formViewController.valueDictionary = self.valueDictionary;
+    formViewController.isReadOnly = self.isReadOnly;
     [self.navigationController pushViewController:formViewController animated:YES];
 }
 

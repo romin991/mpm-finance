@@ -147,6 +147,10 @@
     
     for (XLFormSectionDescriptor *section in self.form.formSections) {        
         for (XLFormRowDescriptor *row in section.formRows) {
+            if (self.isReadOnly) {
+                row.disabled = @YES;
+            }
+            
             if ([row.tag isEqualToString:@"submit"]){
                 row.action.formSelector = @selector(saveButtonClicked:);
             }

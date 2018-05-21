@@ -16,7 +16,7 @@
 @property Menu *menu;
 @property NSInteger index;
 @property NSMutableDictionary *valueDictionary;
-
+@property BOOL isReadOnly;
 @property (weak, nonatomic) id<DataMAPViewControllerDelegate> delegate;
 
 @end
