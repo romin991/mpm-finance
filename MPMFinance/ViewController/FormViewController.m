@@ -261,8 +261,11 @@
 }
 
 - (void)nextButtonClicked:(id)sender{
-    if (![self validateForm])
+    NSArray *inputErrors = [self validateForm];
+    if (inputErrors.count > 0)
     {
+        [SVProgressHUD showErrorWithStatus:((NSError *)inputErrors.firstObject).localizedDescription];
+        [SVProgressHUD dismissWithDelay:1.5];
         return;
     }
     Form *nextForm = [self.forms objectAtIndex:self.index + 1];
@@ -496,7 +499,7 @@
 }
 #pragma mark - actions
 
--(BOOL)validateForm
+-(NSArray *)validateForm
 {
     NSArray * array = [self formValidationErrors];
     [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -505,7 +508,7 @@
         [self animateCell:cell];
     
     }];
-    return array.count;
+    return array;
 }
 
 

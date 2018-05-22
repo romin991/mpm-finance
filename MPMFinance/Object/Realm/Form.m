@@ -118,7 +118,7 @@
     section = [[FormSection alloc] init];
     section.title = @"Data Pasangan";
     [section.rows addObject:[FormRow new:realm :0 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"No KTP Pasangan" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :1 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Lengkap Pasangan" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :1 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Lengkap Pasangan" :@"" :@"" regex:MPMRegexValidationAlphabetPunctuationOnly message:@"Nama Lengkap Pasangan can only contains alphabets and punctuations"]];
     [section.rows addObject:[FormRow new:realm :2 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Handphone Pasangan" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :4 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Tempat Lahir Pasangan" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :5 :NO :NO :XLFormRowDescriptorTypeDateInline:@"Tanggal Lahir Pasangan" :@"" :@""]];
