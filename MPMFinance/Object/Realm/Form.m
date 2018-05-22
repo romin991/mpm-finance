@@ -100,6 +100,7 @@
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListOnlineSubmission]];
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
     
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleAgent]];
     [form.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [form.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [form.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
@@ -146,6 +147,7 @@
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
     
     [form.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleAgent]];
     [form.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [form.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [form.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
@@ -181,6 +183,7 @@
     
     [form.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [form.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleAgent]];
     [form.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [form.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     
@@ -247,6 +250,7 @@
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
     
     [form.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleAgent]];
     [form.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [form.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [form.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
@@ -280,6 +284,7 @@
     
     [form.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [form.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleAgent]];
     [form.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [form.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     
@@ -315,6 +320,7 @@
     
     [form.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [form.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleAgent]];
     [form.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [form.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     
@@ -360,6 +366,7 @@
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
     
     [form.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleAgent]];
     [form.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [form.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [form.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
