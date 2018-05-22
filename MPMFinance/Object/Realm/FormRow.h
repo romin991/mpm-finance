@@ -10,6 +10,10 @@
 #import "Menu.h"
 #import "Option.h"
 extern NSString *const MPMRegexValidationMax3Number;
+extern NSString *const MPMRegexValidationNumberOnly;
+extern NSString *const MPMRegexValidationAlphabetOnly;
+extern NSString *const MPMRegexValidationAlphaNumeric;
+extern NSString *const MPMRegexValidationAlphabetMin3Char;
 @interface FormRow : RLMObject
 
 @property NSString *title;
