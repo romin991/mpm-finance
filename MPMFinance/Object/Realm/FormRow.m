@@ -13,6 +13,11 @@
 #import "NSString+MixedCasing.h"
 #import "UploadPhotoTableViewCell.h"
 
+NSString *const MPMRegexValidationMax3Number = @"^(?=.*\\d)(?=.*[0-9]).{1,3}$";
+NSString *const MPMRegexValidationNumberOnly = @"^([0-9]*|[0-9]*[.][0-9]*)$";
+NSString *const MPMRegexValidationAlphaNumeric = @"^[a-zA-Z0-9']+$";
+NSString *const MPMRegexValidationAlphabetOnly = @"^[a-zA-Z']+$";
+NSString *const MPMRegexValidationAlphabetMin3Char = @"^[a-zA-Z']{3,}$";
 //XLFormRowDescriptorTypeFloatLabeledTextField
 //extern NSString *const XLFormRowDescriptorTypeAccount;
 //extern NSString *const XLFormRowDescriptorTypeBooleanCheck;
@@ -457,14 +462,17 @@
 }
 
 + (FormRow *)new:(RLMRealm *)realm :(NSInteger)category :(NSInteger)sort :(BOOL)required :(NSString *)type :(NSString *)title{
-    return [FormRow new:realm :category :sort :required :NO :type :title :nil :-1];
+    return [FormRow new:realm :category :sort :required :NO :type :title :nil :-1 validationRegex:nil validationMessage:nil];
+}
++ (FormRow *)new:(RLMRealm *)realm :(NSInteger)category :(NSInteger)sort :(BOOL)required :(NSString *)type :(NSString *)title validationRegex:(NSString *)validator validationMessage:(NSString *)validationMessage{
+    return [FormRow new:realm :category :sort :required :NO :type :title :nil :-1 validationRegex:validator validationMessage:validationMessage];
 }
 
 //+ (FormRow *)new:(RLMRealm *)realm :(NSInteger)category :(NSInteger)sort :(BOOL)required :(NSString *)type :(NSString *)title :(NSInteger)optionCategory{
 //    return [FormRow new:realm :category :sort :required :NO :type :title :nil :optionCategory];
 //}
 
-+ (FormRow *)new:(RLMRealm *)realm :(NSInteger)category :(NSInteger)sort :(BOOL)required :(BOOL)disabled :(NSString *)type :(NSString *)title :(NSString *)key :(NSInteger)optionCategory{
++ (FormRow *)new:(RLMRealm *)realm :(NSInteger)category :(NSInteger)sort :(BOOL)required :(BOOL)disabled :(NSString *)type :(NSString *)title :(NSString *)key :(NSInteger)optionCategory validationRegex:(NSString *)regex validationMessage:(NSString *)message{
     FormRow *row = [[FormRow alloc] init];
     row.title = title;
     row.type = type;
@@ -477,13 +485,14 @@
         RLMResults *options = [Option getOptionWithCategoryNumber:optionCategory];
         [row.options addObjects:options];
     }
-    
+    row.validationMessage = message;
+    row.validationRegex = regex;
     [realm addObject:row];
     
     return row;
 }
 
-+ (FormRow *)new:(RLMRealm *)realm :(NSInteger)sort :(BOOL)required :(BOOL)disabled :(NSString *)type :(NSString *)title :(NSString *)key :(NSString *)optionType{
++ (FormRow *)new:(RLMRealm *)realm :(NSInteger)sort :(BOOL)required :(BOOL)disabled :(NSString *)type :(NSString *)title :(NSString *)key :(NSString *)optionType regex:(NSString *)regex message:(NSString*)message{
     FormRow *row = [[FormRow alloc] init];
     row.title = title;
     row.type = type;
@@ -492,10 +501,14 @@
     row.disabled = disabled;
     row.key = (key.length == 0) ? [title camelCased] : [key camelCased];
     row.optionType = optionType;
-
+    row.validationMessage = message;
+    row.validationRegex = regex;
     [realm addObject:row];
     
     return row;
+}
++ (FormRow *)new:(RLMRealm *)realm :(NSInteger)sort :(BOOL)required :(BOOL)disabled :(NSString *)type :(NSString *)title :(NSString *)key :(NSString *)optionType{
+    return [FormRow new:realm :sort :required :disabled :type :title :key :optionType regex:nil message:nil];
 }
 
 @end

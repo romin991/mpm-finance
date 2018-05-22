@@ -41,9 +41,9 @@
     //===
     section = [[FormSection alloc] init];
     section.title = @"Data Pemohon";
-    [section.rows addObject:[FormRow new:realm :1 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"No KTP" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :1 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"No KTP" :@"" :@"" regex:MPMRegexValidationNumberOnly message:@"No KTP must be number"]];
     [section.rows addObject:[FormRow new:realm :2 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Lengkap" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :3 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Tempat Lahir" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :3 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Tempat Lahir" :@"" :@"" regex:MPMRegexValidationAlphabetMin3Char message:@"Tempat Lahir minimum 3 characters"]];
     [section.rows addObject:[FormRow new:realm :4 :YES :YES :XLFormRowDescriptorTypeDateInline :@"Tanggal Lahir" :@"" :@""]];
     
     [section.rows addObject:[FormRow new:realm :5 :YES :YES :XLFormRowDescriptorTypeSelectorPush :@"Jenis Kelamin" :@"" :@"getJenisKelamin"]];
@@ -54,8 +54,8 @@
     section = [[FormSection alloc] init];
     section.title = @"Alamat KTP";
     [section.rows addObject:[FormRow new:realm :5 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Alamat Rumah Sesuai KTP" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :6 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"RT Sesuai KTP" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :7 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"RW Sesuai KTP" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :6 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"RT Sesuai KTP" :@"" :@"" regex:MPMRegexValidationNumberOnly message:@"RT requires only number"]];
+    [section.rows addObject:[FormRow new:realm :7 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"RW Sesuai KTP" :@"" :@"" regex:MPMRegexValidationNumberOnly message:@"RW requires only number"]];
     [section.rows addObject:[FormRow new:realm :8 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Kodepos Sesuai KTP" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :9 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kecamatan Sesuai KTP" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :10 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kelurahan Sesuai KTP" :@"" :@""]];
@@ -73,8 +73,9 @@
     section.title = @"Alamat Domisili";
     [section.rows addObject:[FormRow new:realm :15 :NO :NO :XLFormRowDescriptorTypeBooleanCheck :@"Sama dengan alamat legal" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :16 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Alamat Domisili" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :17 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"RT Domisili" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :18 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"RW Domisili" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :17 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"RT Domisili" :@"" :@"" regex:MPMRegexValidationNumberOnly message:@"RT Domisili requires only number"]];
+    [section.rows addObject:[FormRow new:realm :18 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"RW Domisili" :@"" :@""
+                             regex:MPMRegexValidationNumberOnly message:@"RW Domisili requires only number"]];
     [section.rows addObject:[FormRow new:realm :19 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Kodepos Domisili" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :20 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kecamatan Domisili" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :21 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kelurahan Domisili" :@"" :@""]];
@@ -101,6 +102,7 @@
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuListOnlineSubmission]];
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
     
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleAgent]];
     [form.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [form.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [form.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
@@ -123,8 +125,8 @@
     [section.rows addObject:[FormRow new:realm :5 :NO :NO :XLFormRowDescriptorTypeDateInline:@"Tanggal Lahir Pasangan" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :6 :NO :NO :XLFormRowDescriptorTypeSelectorPush :@"Jenis Kelamin Pasangan" :@"" :@"getJenisKelamin"]];
     [section.rows addObject:[FormRow new:realm :7 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Alamat Pasangan" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :7 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"RT Pasangan" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :7 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"RW Pasangan" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :7 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"RT Pasangan" :@"" :@"" regex:MPMRegexValidationNumberOnly message:@"RT Pasangan requires only number"]];
+    [section.rows addObject:[FormRow new:realm :7 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"RW Pasangan" :@"" :@"" regex:MPMRegexValidationNumberOnly message:@"RW Pasangan requires only number"]];
     [section.rows addObject:[FormRow new:realm :7 :NO :NO :XLFormRowDescriptorTypeSelectorPush :@"Kode Pos Pasangan" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :7 :NO :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kelurahan Pasangan" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :7 :NO :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kecamatan Pasangan" :@"" :@""]];
@@ -147,6 +149,7 @@
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
     
     [form.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleAgent]];
     [form.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [form.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [form.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
@@ -182,6 +185,7 @@
     
     [form.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [form.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleAgent]];
     [form.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [form.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     
@@ -214,6 +218,7 @@
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
     
     [form.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleAgent]];
     [form.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [form.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [form.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
@@ -247,6 +252,7 @@
     
     [form.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [form.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleAgent]];
     [form.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [form.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     
@@ -282,6 +288,7 @@
     
     [form.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [form.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleAgent]];
     [form.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [form.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     
@@ -327,6 +334,7 @@
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuMelengkapiData]];
     
     [form.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
+    [form.roles addObject:[Role objectForPrimaryKey:kRoleAgent]];
     [form.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [form.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [form.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];

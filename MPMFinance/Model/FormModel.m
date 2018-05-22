@@ -88,6 +88,10 @@
         row.disabled = @(formRow.disabled);
         row.hidden = @(formRow.hidden);
         row.selectorTitle = formRow.title;
+        if (formRow.validationRegex.length > 0) {
+            [row addValidator:[[XLFormRegexValidator alloc] initWithMsg:formRow.validationMessage andRegexString:formRow.validationRegex]];
+        }
+        
         [section addFormRow:row];
         
         if (formRow.optionType.length) {
@@ -178,6 +182,9 @@
             row.disabled = @(formRow.disabled);
             row.hidden = @(formRow.hidden);
             row.selectorTitle = formRow.title;
+            if (formRow.validationRegex.length > 0) {
+                [row addValidator:[[XLFormRegexValidator alloc] initWithMsg:formRow.validationMessage andRegexString:formRow.validationRegex]];
+            }
             [section addFormRow:row];
             
             if (formRow.optionType.length) {
