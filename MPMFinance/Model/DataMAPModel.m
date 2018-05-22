@@ -483,18 +483,17 @@
             url = [NSString stringWithFormat:@"%@/datamap/update/aplikasi", kApiUrl];
             
             [dataDictionary addEntriesFromDictionary:
-             @{@"id" : [dictionary objectForKey:@"id"] ?: @"",
-               @"id_pengajuan" : [dictionary objectForKey:@"idPengajuan"] ?: @"",
-               @"sumber_aplikasi" : [dictionary objectForKey:@"sumberAplikasi"] ?: @"",
-               @"tujuan_pembiayaan" : [dictionary objectForKey:@"tujuanPembiayaan"] ?: @"",
+             @{@"id_pengajuan" : [dictionary objectForKey:@"idPengajuan"] ? [NSString stringWithFormat:@"%@", [dictionary objectForKey:@"idPengajuan"]] : @"",
+               @"sumber_aplikasi" : [dictionary objectForKey:@"sumberAplikasi"] ? [NSString stringWithFormat:@"%@", [dictionary objectForKey:@"sumberAplikasi"]] : @"",
+               @"tujuan_pembiayaan" : [dictionary objectForKey:@"tujuanPembiayaan"] ? [NSString stringWithFormat:@"%@", [dictionary objectForKey:@"tujuanPembiayaan"]] : @"",
                @"kode_aplikasi" : [dictionary objectForKey:@"jenisAplikasi"] ?: @"",
                @"kode_cabang" : [dictionary objectForKey:@"kodeCabang"] ?: @"",
                @"tgl_perjanjian" : [dictionary objectForKey:@"tanggalPerjanjian"] ? [MPMGlobal removeTimeFromString:[dictionary objectForKey:@"tanggalPerjanjian"]] : @"",
-               @"product" : [dictionary objectForKey:@"produk"] ?: @"",
+               @"product" : [dictionary objectForKey:@"produk"] ? [NSString stringWithFormat:@"%@", [dictionary objectForKey:@"produk"]] : @"",
                @"src_of_app" : [dictionary objectForKey:@"sourceOfApplication"] ?: @"",
                @"product_offering" : [dictionary objectForKey:@"productOffering"] ?: @"",
                @"jarak_tempuh" : [dictionary objectForKey:@"jarakTempuh"] ?: @"",
-               @"daerah" : [dictionary objectForKey:@"lokasiPemakaianAset"] ?: @"",
+               @"daerah" : [dictionary objectForKey:@"lokasiPemakaianAset"] ? [NSString stringWithFormat:@"%@", [dictionary objectForKey:@"lokasiPemakaianAset"]] : @"",
                @"app_priority" : [dictionary objectForKey:@"applicationPriority"] ?: @"",
                @"no_ticketsales" : [dictionary objectForKey:@"nomorTiketTelesales"] ?: @"",
                @"nama_kp" : [dictionary objectForKey:@"namaKP"] ?: @"",
