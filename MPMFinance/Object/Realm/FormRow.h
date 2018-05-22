@@ -14,6 +14,7 @@ extern NSString *const MPMRegexValidationNumberOnly;
 extern NSString *const MPMRegexValidationAlphabetOnly;
 extern NSString *const MPMRegexValidationAlphaNumeric;
 extern NSString *const MPMRegexValidationAlphabetMin3Char;
+extern NSString *const MPMRegexValidationAlphabetPunctuationOnly;
 @interface FormRow : RLMObject
 
 @property NSString *title;
