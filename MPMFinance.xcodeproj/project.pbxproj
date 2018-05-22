@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		480A7D1620B3312B0005CEB9 /* UploadPhotoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 480A7D1420B3312B0005CEB9 /* UploadPhotoTableViewCell.m */; };
+		480A7D1720B3312B0005CEB9 /* UploadPhotoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 480A7D1520B3312B0005CEB9 /* UploadPhotoTableViewCell.xib */; };
 		481C42811F00EE23007D5C3C /* WorkOrderListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 481C427F1F00EE23007D5C3C /* WorkOrderListViewController.m */; };
 		481C42821F00EE23007D5C3C /* WorkOrderListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 481C42801F00EE23007D5C3C /* WorkOrderListViewController.xib */; };
 		481C42861F00EF29007D5C3C /* WorkOrderListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 481C42841F00EF29007D5C3C /* WorkOrderListTableViewCell.m */; };
@@ -180,6 +182,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		480A7D1320B3312B0005CEB9 /* UploadPhotoTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UploadPhotoTableViewCell.h; path = ViewController/UploadPhotoTableViewCell.h; sourceTree = "<group>"; };
+		480A7D1420B3312B0005CEB9 /* UploadPhotoTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = UploadPhotoTableViewCell.m; path = ViewController/UploadPhotoTableViewCell.m; sourceTree = "<group>"; };
+		480A7D1520B3312B0005CEB9 /* UploadPhotoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = UploadPhotoTableViewCell.xib; path = ViewController/UploadPhotoTableViewCell.xib; sourceTree = "<group>"; };
 		481C427E1F00EE23007D5C3C /* WorkOrderListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WorkOrderListViewController.h; path = ViewController/WorkOrderListViewController.h; sourceTree = "<group>"; };
 		481C427F1F00EE23007D5C3C /* WorkOrderListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WorkOrderListViewController.m; path = ViewController/WorkOrderListViewController.m; sourceTree = "<group>"; };
 		481C42801F00EE23007D5C3C /* WorkOrderListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WorkOrderListViewController.xib; path = ViewController/WorkOrderListViewController.xib; sourceTree = "<group>"; };
@@ -484,6 +489,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		480A7D0F20B32FAA0005CEB9 /* CustomCell */ = {
+			isa = PBXGroup;
+			children = (
+				480A7D1320B3312B0005CEB9 /* UploadPhotoTableViewCell.h */,
+				480A7D1420B3312B0005CEB9 /* UploadPhotoTableViewCell.m */,
+				480A7D1520B3312B0005CEB9 /* UploadPhotoTableViewCell.xib */,
+			);
+			name = CustomCell;
+			sourceTree = "<group>";
+		};
 		481C428B1F03B8B9007D5C3C /* CustomerDealer */ = {
 			isa = PBXGroup;
 			children = (
@@ -728,6 +743,7 @@
 		483F39371EC3513800C03253 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				480A7D0F20B32FAA0005CEB9 /* CustomCell */,
 				481C428C1F03B8CA007D5C3C /* MarketingOfficerDedicated */,
 				481C428B1F03B8B9007D5C3C /* CustomerDealer */,
 				5C9B08E91EC9DB7300B5E9AC /* TabMenuContainer */,
@@ -1208,6 +1224,7 @@
 				484627271F1AED000049A92A /* AssignMarketingTableViewCell.xib in Resources */,
 				4825BFA01F5C3EAF00D091AC /* LegalizationBPKBTableViewCell.xib in Resources */,
 				481C42871F00EF29007D5C3C /* WorkOrderListTableViewCell.xib in Resources */,
+				480A7D1720B3312B0005CEB9 /* UploadPhotoTableViewCell.xib in Resources */,
 				4848B1B31F1251E700C9DE21 /* PostalCodeTableViewCell.xib in Resources */,
 				5CCD2D46209EF52000EBC76F /* KontrakKerjaDetailViewController.xib in Resources */,
 				483CC5BA20AC957C0084BC6B /* DisclaimerViewController.xib in Resources */,
@@ -1369,6 +1386,7 @@
 				4846271E1F1A0C3B0049A92A /* AssignMarketingListViewController.m in Sources */,
 				4831CD1F1EDE97A6001EF223 /* SubmenuCollectionViewController.m in Sources */,
 				4825BF9A1F5C34CE00D091AC /* TopUpTableViewCell.m in Sources */,
+				480A7D1620B3312B0005CEB9 /* UploadPhotoTableViewCell.m in Sources */,
 				4825BFD61F5C44C800D091AC /* SuggestionTableViewCell.m in Sources */,
 				4846E2361EE6E92A000C08B7 /* DropdownModel.m in Sources */,
 				5CCD2D50209EF57600EBC76F /* QRCodeGenerator.m in Sources */,
