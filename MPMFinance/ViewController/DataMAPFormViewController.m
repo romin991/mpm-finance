@@ -99,7 +99,7 @@
     
     [SVProgressHUD show];
     __block typeof(self) weakSelf = self;
-    [DataMAPModel postDataMAPWithDictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
+    [self submitWithCompletionBlock:^(NSError *error) {
         if (error) {
             [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
             [SVProgressHUD dismissWithDelay:1.5 completion:nil];
@@ -109,6 +109,65 @@
             [weakSelf.navigationController popViewControllerAnimated:YES];
         };
     }];
+}
+
+- (void)submitWithCompletionBlock:(void(^)(NSError *error))block{
+    Form *currentForm = [self.forms objectAtIndex:self.index];
+    if ([currentForm.title isEqualToString:@"MAP Data Aplikasi"]) {
+        [DataMAPModel postDataMAPWithType:DataMAPPostTypeAplikasi dictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
+            if (block) block(error);
+        }];
+    } else if ([currentForm.title isEqualToString:@"Data Pribadi"]) {
+        [DataMAPModel postDataMAPWithType:DataMAPPostTypePribadi dictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
+            if (block) block(error);
+        }];
+    } else if ([currentForm.title isEqualToString:@"Data Pekerjaan"]) {
+        [DataMAPModel postDataMAPWithType:DataMAPPostTypePekerjaan dictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
+            if (block) block(error);
+        }];
+    } else if ([currentForm.title isEqualToString:@"Data Pasangan"]) {
+        [DataMAPModel postDataMAPWithType:DataMAPPostTypePasangan dictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
+            if (block) block(error);
+        }];
+    } else if ([currentForm.title isEqualToString:@"Data Pekerjaan Pasangan"]) {
+        [DataMAPModel postDataMAPWithType:DataMAPPostTypePekerjaanPasangan dictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
+            if (block) block(error);
+        }];
+    } else if ([currentForm.title isEqualToString:@"Data Keluarga"]) {
+        [DataMAPModel postDataMAPWithType:DataMAPPostTypeKeluarga dictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
+            if (block) block(error);
+        }];
+    } else if ([currentForm.title isEqualToString:@"Struktur Pembayaran"]) {
+        [DataMAPModel postDataMAPWithType:DataMAPPostTypeStrukturPembiayaan dictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
+            if (block) block(error);
+        }];
+    } else if ([currentForm.title isEqualToString:@"Asuransi"]) {
+        [DataMAPModel postDataMAPWithType:DataMAPPostTypeAsuransi dictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
+            if (block) block(error);
+        }];
+    } else if ([currentForm.title isEqualToString:@"Data Aset"]) {
+        [DataMAPModel postDataMAPWithType:DataMAPPostTypeAset dictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
+            if (block) block(error);
+        }];
+    } else if ([currentForm.title isEqualToString:@"Data E-con"]) {
+        [DataMAPModel postDataMAPWithType:DataMAPPostTypeEmergencyContact dictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
+            if (block) block(error);
+        }];
+    } else if ([currentForm.title isEqualToString:@"Data Penjamin"]) {
+        [DataMAPModel postDataMAPWithType:DataMAPPostTypePenjamin dictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
+            if (block) block(error);
+        }];
+    } else if ([currentForm.title isEqualToString:@"Data Marketing"]) {
+        [DataMAPModel postDataMAPWithType:DataMAPPostTypeMarketing dictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
+            if (block) block(error);
+        }];
+    } else if ([currentForm.title isEqualToString:@"Data RCA"]) {
+        [DataMAPModel postDataMAPWithType:DataMAPPostTypeRCA dictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
+            if (block) block(error);
+        }];
+    } else {
+        if (block) block(nil);
+    }
 }
 
 - (void)addFamilyButtonClicked:(id)sender{

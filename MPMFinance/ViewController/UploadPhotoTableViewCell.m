@@ -49,6 +49,7 @@ NSString * const XLFormRowDescriptorTypeTakePhoto = @"XLFormRowDescriptorTypeTak
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     [picker dismissViewControllerAnimated:YES completion:^(void){
         self.pictureImageView.image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+        self.rowDescriptor.value = [MPMGlobal encodeToBase64String:self.pictureImageView.image];
     }];
 }
 

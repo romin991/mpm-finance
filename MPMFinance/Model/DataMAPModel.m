@@ -69,7 +69,8 @@
                                @"sumberAplikasi" : @([data[@"sumber_aplikasi"] integerValue]),
                                @"tujuanPembiayaan" : @([data[@"tujuan_pembiayaan"] integerValue]),
                                @"jenisAplikasi" : data[@"kode_aplikasi"],
-                               @"kodeCabang" : data[@"kode_cabang_temp"],
+                               @"kodeCabang" : data[@"kode_cabang"],
+                               @"namaKP" : data[@"nama_kp"],
                                @"tanggalPerjanjian" : data[@"tgl_perjanjian"],
                                @"produk" : @([data[@"product"] integerValue]),
                                @"sourceOfApplication" : data[@"src_of_app"],
@@ -80,9 +81,7 @@
                                @"nomorTiketTelesales" : data[@"no_ticketsales"],
                                
                                @"namaLengkapSesuaiKTP" : data[@"nama_lengkap"],
-                               @"masaBerlakuKTP" : data[@"ktp_berlaku"],
-                               @"kewarganegaraan" : data[@"kewarganegaraan"],
-                               @"jenisKelamin" : @([data[@"jns_kelamin"] integerValue]),
+                               @"namaPanggilan" : data[@"nama_alias"],
                                @"agama" : data[@"agama"],
                                @"statusPernikahan" : data[@"status_pernikahan"],
                                @"statusKepemilikanRumah" : data[@"status_rmh"],
@@ -110,7 +109,7 @@
                                @"kota" : data[@"alamat_kantor_kota"],
                                @"lamaBekerjaDalamBulan" : data[@"lama_bekerja"],
                                
-                               @"pendapatanPerBulan" : data[@"pendapatan_per_tahun"],
+                               @"pendapatanPerBulan" : data[@"pendapatan_per_bulan"],
                                @"namaPerusahaan" : data[@"nama_perusahaan"],
                                @"statusPekerjaanSebelumnya" : @([data[@"status_pekerjaan_sebelumnya"] integerValue]),
                                @"lamaBekerja" : data[@"lama_bekerja_sebelumnya"],
@@ -142,15 +141,7 @@
                                @"bonus" : data[@"bonus"],
                                @"total" : data[@"total"],
                                
-                               @"pinjamanTempatLain1" : @([data[@"pinjaman_lain"] integerValue]),
-                               @"nomorKartuKreditAtauKontrak1" : data[@"no_cc_1"],
-                               @"pinjamanTempatLain2" : @([data[@"pinjaman_lain_2"] integerValue]),
-                               @"nomorKartuKreditAtauKontrak2" : data[@"no_cc_2"],
-                               
                                @"namaLengkapSesuaiKTPPasangan" : data[@"nama_pasangan_sesuai_ktp"],
-                               @"nomorKTPPasangan" : data[@"no_ktp_pasangan"],
-                               @"masaBerlakuKTPPasangan" : data[@"ktp_berlaku"],//dupe sama data pribadi
-                               @"kewarganegaraanPasangan" : data[@"kewarganegaraaan_pasangan"],
                                
                                @"namaPerusahaanPasangan" : data[@"nama_perusahaan_pasangan"],
                                @"alamatKantorPasangan" : data[@"alamat_kantor_pasangan"],
@@ -199,6 +190,10 @@
                                @"premiAsuransiJiwaKredit" : data[@"premi_asuransi_jiwa_kredit"],
                                @"perusahaanAsuransiJiwa" : data[@"perusahaan_asuransi_jiwa"],
                                @"tipeAsuransi" : data[@"tipe_asuransi"],
+                               @"asuransiKendaraanKapitalisasi" : data[@"asuransi_kendaraan_kapitalisasi"],
+                               @"asuransiKendaraanDibayarDimuka" : data[@"asuransi_kendaraan_dp"],
+                               @"asuransiJiwaDibayarDimuka" : data[@"asuransi_jiwa_dp"],
+                               @"periodeAsuransiJiwa" : data[@"periode_asuransi_jiwa"],
                                
                                @"namaSupplier" : data[@"nama_suplier"],
                                @"assetFinance" : data[@"asset_financed"],
@@ -220,6 +215,7 @@
                                
                                @"namaKepalaCabang" : data[@"nama_branch_marketing"],
                                @"namaMarketing" : data[@"nama_marketing"],
+                               @"rca" : data[@"rca"],
                                }];
                 
                 NSMutableArray *families = [NSMutableArray array];
@@ -441,6 +437,343 @@
         [param setObject:dataDictionary forKey:@"data"];
         
         [manager POST:[NSString stringWithFormat:@"%@/datamap/update", kApiUrl] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            @try {
+                NSInteger code = [[responseObject objectForKey:@"statusCode"] integerValue];
+                NSString *message = [responseObject objectForKey:@"message"];
+                if (code == 200) {
+                    if (block) block(responseObject, nil);
+                    
+                } else {
+                    if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                              code:code
+                                                          userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(message, nil)}]);
+                }
+                
+            } @catch (NSException *exception) {
+                NSLog(@"%@", exception);
+                if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                          code:1
+                                                      userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(exception.reason, nil)}]);
+            }
+            
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            if (block) block(nil, error);
+        }];
+        
+    } @catch (NSException *exception) {
+        NSLog(@"%@", exception);
+        if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                  code:1
+                                              userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(exception.reason, nil)}]);
+        
+    }
+}
+
++ (void)postDataMAPWithType:(PostType)postType dictionary:(NSDictionary *)dictionary completion:(void(^)(NSDictionary *dictionary, NSError *error))block{
+    AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
+    NSMutableDictionary* param = [NSMutableDictionary dictionaryWithDictionary:
+                                  @{@"userid" :[MPMUserInfo getUserInfo][@"userId"],
+                                    @"token" : [MPMUserInfo getToken]}];
+    
+    NSMutableDictionary *dataDictionary = [NSMutableDictionary dictionary];
+    @try {
+        NSString *url;
+        
+        if (postType == DataMAPPostTypeAplikasi) {
+            url = [NSString stringWithFormat:@"%@/datamap/update/aplikasi", kApiUrl];
+            
+            [dataDictionary addEntriesFromDictionary:
+             @{@"id" : [dictionary objectForKey:@"id"] ?: @"",
+               @"id_pengajuan" : [dictionary objectForKey:@"idPengajuan"] ?: @"",
+               @"sumber_aplikasi" : [dictionary objectForKey:@"sumberAplikasi"] ?: @"",
+               @"tujuan_pembiayaan" : [dictionary objectForKey:@"tujuanPembiayaan"] ?: @"",
+               @"kode_aplikasi" : [dictionary objectForKey:@"jenisAplikasi"] ?: @"",
+               @"kode_cabang" : [dictionary objectForKey:@"kodeCabang"] ?: @"",
+               @"tgl_perjanjian" : [dictionary objectForKey:@"tanggalPerjanjian"] ? [MPMGlobal removeTimeFromString:[dictionary objectForKey:@"tanggalPerjanjian"]] : @"",
+               @"product" : [dictionary objectForKey:@"produk"] ?: @"",
+               @"src_of_app" : [dictionary objectForKey:@"sourceOfApplication"] ?: @"",
+               @"product_offering" : [dictionary objectForKey:@"productOffering"] ?: @"",
+               @"jarak_tempuh" : [dictionary objectForKey:@"jarakTempuh"] ?: @"",
+               @"daerah" : [dictionary objectForKey:@"lokasiPemakaianAset"] ?: @"",
+               @"app_priority" : [dictionary objectForKey:@"applicationPriority"] ?: @"",
+               @"no_ticketsales" : [dictionary objectForKey:@"nomorTiketTelesales"] ?: @"",
+               @"nama_kp" : [dictionary objectForKey:@"namaKP"] ?: @"",
+               
+               }];
+            
+        } else if (postType == DataMAPPostTypePribadi) {
+            url = [NSString stringWithFormat:@"%@/datamap/update/pribadi", kApiUrl];
+            
+            [dataDictionary addEntriesFromDictionary:
+             @{@"id_pengajuan" : [dictionary objectForKey:@"idPengajuan"] ?: @"",
+               @"nama_lengkap" : [dictionary objectForKey:@"namaLengkapSesuaiKTP"] ?: @"",
+               @"nama_alias" : [dictionary objectForKey:@"namaPanggilan"] ?: @"",
+               @"agama" : [dictionary objectForKey:@"agama"] ?: @"",
+               @"status_pernikahan" : [dictionary objectForKey:@"statusPernikahan"] ?: @"",
+               @"status_rmh" : [dictionary objectForKey:@"statusKepemilikanRumah"] ?: @"",
+               @"tgl_selesai_kontrak_rmh" : [dictionary objectForKey:@"tanggalSelesaiKontrak"] ?: @"",
+               @"lokasi_rumah" : [dictionary objectForKey:@"lokasiRumah"] ?: @"",
+               @"tahun_menempati" : [dictionary objectForKey:@"tahunMenempati"] ?: @"",
+               @"no_npwp" : [dictionary objectForKey:@"nomorNPWP"] ?: @"",
+               @"no_kk" : [dictionary objectForKey:@"nomorKartuKeluarga"] ?: @"",
+               @"jml_tanggungan" : [dictionary objectForKey:@"jumlahTanggungan"] ?: @"",
+               @"pendidikan_terakhir" : [dictionary objectForKey:@"pendidikanTerakhir"] ?: @"",
+               @"alamat_pengiriman_surat" : [dictionary objectForKey:@"alamatPengirimanSurat"] ?: @"",
+               @"email" : [dictionary objectForKey:@"alamatEmail"] ?: @"",
+               }];
+            
+        } else if (postType == DataMAPPostTypePekerjaan) {
+            url = [NSString stringWithFormat:@"%@/datamap/update/pekerjaan", kApiUrl];
+            
+            [dataDictionary addEntriesFromDictionary:
+             @{@"id_pengajuan" : [dictionary objectForKey:@"idPengajuan"] ?: @"",
+               @"jns_pekerjaan" : [dictionary objectForKey:@"jenisPekerjaan"] ?: @"",
+               @"pekerjaan" : [dictionary objectForKey:@"pekerjaan"] ?: @"",
+               @"status_pekerjaan" : [dictionary objectForKey:@"statusPekerjaan"] ?: @"",
+               @"bidang_usaha" : [dictionary objectForKey:@"bidangUsaha"] ?: @"",
+               @"posisi_jabatan" : [dictionary objectForKey:@"posisiJabatan"] ?: @"",
+               @"alamat_kantor" : [dictionary objectForKey:@"alamatKantor"] ?: @"",
+               @"alamat_kantor_rt" : [dictionary objectForKey:@"rT"] ?: @"",
+               @"alamat_kantor_rw" : [dictionary objectForKey:@"rW"] ?: @"",
+               @"alamat_kantor_kode_pos" : [dictionary objectForKey:@"kodePos"] ?: @"",
+               @"alamat_kantor_kelurahan" : [dictionary objectForKey:@"kelurahan"] ?: @"",
+               @"alamat_kantor_kecamatan" : [dictionary objectForKey:@"kecamatan"] ?: @"",
+               @"alamat_kantor_kota" : [dictionary objectForKey:@"kota"] ?: @"",
+               @"lama_bekerja" : [dictionary objectForKey:@"lamaBekerjaDalamBulan"] ?: @"",
+               
+               @"pendapatan_per_tahun" : [dictionary objectForKey:@"pendapatanPerBulan"] ?: @"",
+               @"nama_perusahaan" : [dictionary objectForKey:@"namaPerusahaan"] ?: @"",
+               @"status_pekerjaan_sebelumnya" : [dictionary objectForKey:@"statusPekerjaanSebelumnya"] ?: @"",
+               @"lama_bekerja_sebelumnya" : [dictionary objectForKey:@"lamaBekerja"] ?: @"",
+               @"pendapatan_lain_per_bulan" : [dictionary objectForKey:@"pendapatanLainnyaPerBulan"] ?: @"",
+               
+               @"omset_per_bulan_thn" : [dictionary objectForKey:@"tahun1"] ?: @"",
+               @"omset_per_bulan_bln" : [dictionary objectForKey:@"bulan1"] ?: @"",
+               @"omset_per_bulan" : [dictionary objectForKey:@"omzet1"] ?: @"",
+               @"omset_per_bulan_thn_2" : [dictionary objectForKey:@"tahun2"] ?: @"",
+               @"omset_per_bulan_bln_2" : [dictionary objectForKey:@"bulan2"] ?: @"",
+               @"omset_per_bulan_2" : [dictionary objectForKey:@"omzet2"] ?: @"",
+               @"omset_per_bulan_thn_3" : [dictionary objectForKey:@"tahun3"] ?: @"",
+               @"omset_per_bulan_bln_3" : [dictionary objectForKey:@"bulan3"] ?: @"",
+               @"omset_per_bulan_3" : [dictionary objectForKey:@"omzet3"] ?: @"",
+               @"omset_per_bulan_thn_4" : [dictionary objectForKey:@"tahun4"] ?: @"",
+               @"omset_per_bulan_bln_4" : [dictionary objectForKey:@"bulan4"] ?: @"",
+               @"omset_per_bulan_4" : [dictionary objectForKey:@"omzet4"] ?: @"",
+               @"omset_per_bulan_thn_5" : [dictionary objectForKey:@"tahun5"] ?: @"",
+               @"omset_per_bulan_bln_5" : [dictionary objectForKey:@"bulan5"] ?: @"",
+               @"omset_per_bulan_5" : [dictionary objectForKey:@"omzet5"] ?: @"",
+               @"omset_per_bulan_thn_6" : [dictionary objectForKey:@"tahun6"] ?: @"",
+               @"omset_per_bulan_bln_6" : [dictionary objectForKey:@"bulan6"] ?: @"",
+               @"omset_per_bulan_6" : [dictionary objectForKey:@"omzet6"] ?: @"",
+               
+               @"gaji_pokok" : [dictionary objectForKey:@"gajiPokok"] ?: @"",
+               @"tunjangan_tetap" : [dictionary objectForKey:@"tunjanganPokok"] ?: @"",
+               @"insentif" : [dictionary objectForKey:@"intensif"] ?: @"",
+               @"lembur" : [dictionary objectForKey:@"lembur"] ?: @"",
+               @"bonus" : [dictionary objectForKey:@"bonus"] ?: @"",
+               @"total" : [dictionary objectForKey:@"total"] ?: @"",
+               }];
+            
+        } else if (postType == DataMAPPostTypePasangan) {
+            url = [NSString stringWithFormat:@"%@/datamap/update/pasangan", kApiUrl];
+            
+            [dataDictionary addEntriesFromDictionary:
+             @{@"id_pengajuan" : [dictionary objectForKey:@"idPengajuan"] ?: @"",
+               @"nama_pasangan_sesuai_ktp" : [dictionary objectForKey:@"namaLengkapSesuaiKTPPasangan"] ?: @"",
+               }];
+            
+        } else if (postType == DataMAPPostTypePekerjaanPasangan) {
+            url = [NSString stringWithFormat:@"%@/datamap/update/pasangan/pekerjaan", kApiUrl];
+            
+            [dataDictionary addEntriesFromDictionary:
+             @{@"id_pengajuan" : [dictionary objectForKey:@"idPengajuan"] ?: @"",
+               @"nama_perusahaan_pasangan" : [dictionary objectForKey:@"namaPerusahaanPasangan"] ?: @"",
+               @"alamat_kantor_pasangan" : [dictionary objectForKey:@"alamatKantorPasangan"] ?: @"",
+               @"alamat_kantor_pasangan_rt" : [dictionary objectForKey:@"rTKantorPasangan"] ?: @"",
+               @"alamat_kantor_pasangan_rw" : [dictionary objectForKey:@"rWKantorPasangan"] ?: @"",
+               @"alamat_kantor_pasangan_kode_pos" : [dictionary objectForKey:@"kodePosKantorPasangan"] ?: @"",
+               @"alamat_kantor_pasangan_kelurahan" : [dictionary objectForKey:@"kelurahanKantorPasangan"] ?: @"",
+               @"alamat_kantor_pasangan_kecamatan" : [dictionary objectForKey:@"kecamatanKantorPasangan"] ?: @"",
+               @"alamat_kantor_pasangan_kota" : [dictionary objectForKey:@"kotaKantorPasangan"] ?: @"",
+               }];
+            
+        } else if (postType == DataMAPPostTypeKeluarga) {
+            url = [NSString stringWithFormat:@"%@/datamap/update/datakeluarga", kApiUrl];
+            
+            [dataDictionary addEntriesFromDictionary:
+             @{@"id_pengajuan" : [dictionary objectForKey:@"idPengajuan"] ?: @"",
+               }];
+            
+            NSMutableArray *families = [NSMutableArray array];
+            for (id familyData in dictionary[@"dataKeluarga"]) {
+                [families addObject:@{@"nama" : familyData[@"nama"],
+                                      @"no_kk" : familyData[@"nomorIndukKependudukan"],
+                                      @"tgl_lahir_keluarga" : familyData[@"tanggalLahir"],
+                                      @"hubungan" : familyData[@"hubunganDenganPemohon"],
+                                      }];
+            }
+            
+            [dataDictionary setObject:families forKey:@"data_keluarga"];
+            
+        } else if (postType == DataMAPPostTypeStrukturPembiayaan) {
+            url = [NSString stringWithFormat:@"%@/datamap/update/strukturpembiayaan", kApiUrl];
+            
+            [dataDictionary addEntriesFromDictionary:
+             @{@"id_pengajuan" : [dictionary objectForKey:@"idPengajuan"] ?: @"",
+               @"cara_pembayaran" : [dictionary objectForKey:@"caraPembiayaan"] ?: @"",
+               @"jml_asset" : [dictionary objectForKey:@"jumlahAset"] ?: @"",
+               @"pokok_hutang" : [dictionary objectForKey:@"pokokHutang"] ?: @"",
+               @"subsidi_dp" : [dictionary objectForKey:@"subsidiUangMuka"] ?: @"",
+               @"total_uang_diterima_mpmf" : [dictionary objectForKey:@"totalUangDiterimaMPMF"] ?: @"",
+               @"biaya_admin" : [dictionary objectForKey:@"biayaAdmin"] ?: @"",
+               @"biaya_admin_lain" : [dictionary objectForKey:@"biayaAdminLainnya"] ?: @"",
+               @"biaya_fidusia" : [dictionary objectForKey:@"biayaFidusia"] ?: @"",
+               @"biaya_lain" : [dictionary objectForKey:@"biayaLain"] ?: @"",
+               @"biaya_survey" : [dictionary objectForKey:@"biayaSurvey"] ?: @"",
+               @"persentase_biaya_provisi" : [dictionary objectForKey:@"persentaseBiayaProvisi"] ?: @"",
+               @"biaya_notaris_prosentasi" : [dictionary objectForKey:@"biaya_notaris_prosentasi"] ?: @"",
+               @"biaya_provisi" : [dictionary objectForKey:@"biayaProvisi"] ?: @"",
+               @"asuransi_kapitalisasi" : [dictionary objectForKey:@"asuransiKapitalisasi"] ?: @"",
+               @"interest_type" : [dictionary objectForKey:@"interestType"] ?: @"",
+               @"effective_rate" : [dictionary objectForKey:@"effectiveRate"] ?: @"",
+               @"skema_angsuran" : [dictionary objectForKey:@"skemaAngsuran"] ?: @"",
+               @"tipe_angsuran" : [dictionary objectForKey:@"tipeAngsuran"] ?: @"",
+               @"sumber_dana" : [dictionary objectForKey:@"sumberDana"] ?: @"",
+               @"jangka_waktu_pembiayaan" : [dictionary objectForKey:@"jangkaWaktuPembiayaan"] ?: @"",
+               @"angsuran" : [dictionary objectForKey:@"angsuran"] ?: @"",
+               @"uang_muka" : [dictionary objectForKey:@"totalBayarAwal"] ?: @"",
+               @"harga_kendaraan" : [dictionary objectForKey:@"hargaKendaraan"] ?: @"",
+               }];
+            
+        } else if (postType == DataMAPPostTypeAsuransi) {
+            url = [NSString stringWithFormat:@"%@/datamap/update/asuransi", kApiUrl];
+            
+            [dataDictionary addEntriesFromDictionary:
+             @{@"id_pengajuan" : [dictionary objectForKey:@"idPengajuan"] ?: @"",
+               @"nama_asuransi" : [dictionary objectForKey:@"namaAsuransi"] ?: @"",
+               @"asuransi_dibayar" : [dictionary objectForKey:@"asuransiDibayar"] ?: @"",
+               @"jangka_waktu_asuransi" : [dictionary objectForKey:@"jangkaWaktuAsuransi"] ?: @"",
+               @"periode_asuransi" : [dictionary objectForKey:@"periodeAsuransi"] ?: @"",
+               @"nilai_pertanggungan" : [dictionary objectForKey:@"nilaiPertanggungan"] ?: @"",
+               @"jenis_pertanggungan" : [dictionary objectForKey:@"jenisPertanggunganAllRisk"] ?: @"",
+               @"jenis_pertanggungan_tlo" : [dictionary objectForKey:@"jenisPertanggunganTLO"] ?: @"",
+               @"srcc" : [dictionary objectForKey:@"sRCC"] ?: @"",
+               @"banjir" : [dictionary objectForKey:@"banjir"] ?: @"",
+               @"gempa_bumi" : [dictionary objectForKey:@"gempaBumi"] ?: @"",
+               @"tpl" : [dictionary objectForKey:@"tPL"] ?: @"",
+               @"pa" : [dictionary objectForKey:@"pA"] ?: @"",
+               @"asuransi_jiwa_kredit" : [dictionary objectForKey:@"asuransiJiwaKredit"] ?: @"",
+               @"asuransi_jiwa_kapitalisasi" : [dictionary objectForKey:@"asuransiJiwaKreditKapitalisasi"] ?: @"",
+               @"nilai_pertanggungan_asuransi" : [dictionary objectForKey:@"nilaiPertanggunganAsuransiJiwa"] ?: @"",
+               @"premi_asuransi_kerugian_kendaraan" : [dictionary objectForKey:@"premiAsuransiKerugianKendaraan"] ?: @"",
+               @"premi_asuransi_jiwa_kredit" : [dictionary objectForKey:@"premiAsuransiJiwaKredit"] ?: @"",
+               @"perusahaan_asuransi_jiwa" : [dictionary objectForKey:@"perusahaanAsuransiJiwa"] ?: @"",
+               @"tipe_asuransi" : [dictionary objectForKey:@"tipeAsuransi"] ?: @"",
+               @"asuransi_kendaraan_kapitalisasi" : [dictionary objectForKey:@"asuransiKendaraanKapitalisasi"] ?: @"",
+               @"asuransi_kendaraan_dp" : [dictionary objectForKey:@"asuransiKendaraanDibayarDimuka"] ?: @"",
+               @"asuransi_jiwa_dp" : [dictionary objectForKey:@"asuransiJiwaDibayarDimuka"] ?: @"",
+               @"jangka_waktu_asuransi" : [dictionary objectForKey:@"periodeAsuransiJiwa"] ?: @"",
+               }];
+            
+        } else if (postType == DataMAPPostTypeAset) {
+            url = [NSString stringWithFormat:@"%@/datamap/update/aset", kApiUrl];
+            
+            [dataDictionary addEntriesFromDictionary:
+             @{@"id_pengajuan" : [dictionary objectForKey:@"idPengajuan"] ?: @"",
+               @"nama_suplier" : [dictionary objectForKey:@"namaSupplier"] ?: @"",
+               @"asset_financed" : [dictionary objectForKey:@"assetFinance"] ?: @"",
+               @"new_used" : [dictionary objectForKey:@"newUsed"] ?: @"",
+               @"no_rangka" : [dictionary objectForKey:@"noRangka"] ?: @"",
+               @"no_mesin" : [dictionary objectForKey:@"noMesin"] ?: @"",
+               @"pemakaian_unit" : [dictionary objectForKey:@"pemakaianUnit"] ?: @"",
+               @"silinder" : [dictionary objectForKey:@"silinder"] ?: @"",
+               @"warna" : [dictionary objectForKey:@"warna"] ?: @"",
+               @"no_polisi" : [dictionary objectForKey:@"nomorPolisi"] ?: @"",
+               @"nama_bpkb" : [dictionary objectForKey:@"namaBPKB"] ?: @"",
+               @"area_kendaraan" : [dictionary objectForKey:@"areaKendaraan"] ?: @"",
+               }];
+            
+        } else if (postType == DataMAPPostTypeEmergencyContact) {
+            url = [NSString stringWithFormat:@"%@/datamap/update/emergency", kApiUrl];
+            
+            [dataDictionary addEntriesFromDictionary:
+             @{@"id_pengajuan" : [dictionary objectForKey:@"idPengajuan"] ?: @"",
+               @"hubungan_dgn_pemohon" : [dictionary objectForKey:@"hubunganEconDenganPemohon"] ?: @"",
+               }];
+            
+        } else if (postType == DataMAPPostTypePenjamin) {
+            url = [NSString stringWithFormat:@"%@/datamap/update/penjamin", kApiUrl];
+            
+            [dataDictionary addEntriesFromDictionary:
+             @{@"id_pengajuan" : [dictionary objectForKey:@"idPengajuan"] ?: @"",
+               @"nama_penjamin" : [dictionary objectForKey:@"namaPenjamin"] ?: @"",
+               @"hubungan_dgn_debitur" : [dictionary objectForKey:@"hubunganPenjaminDenganPemohon"] ?: @"",
+               @"nama_pasangan_penjamin" : [dictionary objectForKey:@"namaPasanganPenjamin"] ?: @"",
+               }];
+            
+        } else if (postType == DataMAPPostTypeMarketing) {
+            url = [NSString stringWithFormat:@"%@/datamap/update/marketing", kApiUrl];
+            
+            [dataDictionary addEntriesFromDictionary:
+             @{@"id_pengajuan" : [dictionary objectForKey:@"idPengajuan"] ?: @"",
+               @"nama_branch_marketing" : [dictionary objectForKey:@"namaKepalaCabang"] ?: @"",
+               @"nama_marketing" : [dictionary objectForKey:@"namaMarketing"] ?: @"",
+               }];
+            
+        } else if (postType == DataMAPPostTypeRCA) {
+            url = [NSString stringWithFormat:@"%@/datamap/update/rca", kApiUrl];
+            
+            [dataDictionary addEntriesFromDictionary:
+             @{@"id_pengajuan" : [dictionary objectForKey:@"idPengajuan"] ?: @"",
+               @"rca" : [dictionary objectForKey:@"rca"] ?: @"",
+               }];
+            
+        }
+        
+        [param setObject:dataDictionary forKey:@"data"];
+        
+        [manager POST:url parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            @try {
+                NSInteger code = [[responseObject objectForKey:@"statusCode"] integerValue];
+                NSString *message = [responseObject objectForKey:@"message"];
+                if (code == 200) {
+                    if (block) block(responseObject, nil);
+                    
+                } else {
+                    if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                              code:code
+                                                          userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(message, nil)}]);
+                }
+                
+            } @catch (NSException *exception) {
+                NSLog(@"%@", exception);
+                if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                          code:1
+                                                      userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(exception.reason, nil)}]);
+            }
+            
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            if (block) block(nil, error);
+        }];
+        
+    } @catch (NSException *exception) {
+        NSLog(@"%@", exception);
+        if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                  code:1
+                                              userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(exception.reason, nil)}]);
+        
+    }
+}
+
++ (void)postDataMAPWithID:(NSInteger)pengajuanId completion:(void(^)(NSDictionary *dictionary, NSError *error))block{
+    AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
+    NSMutableDictionary* param = [NSMutableDictionary dictionaryWithDictionary:
+                                  @{@"userid" :[MPMUserInfo getUserInfo][@"userId"],
+                                    @"token" : [MPMUserInfo getToken],
+                                    @"data" : @{@"id_pengajuan" : @(pengajuanId)}
+                                    }];
+    @try {
+        [manager POST:[NSString stringWithFormat:@"%@/datamap/submitmap", kApiUrl] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             @try {
                 NSInteger code = [[responseObject objectForKey:@"statusCode"] integerValue];
                 NSString *message = [responseObject objectForKey:@"message"];

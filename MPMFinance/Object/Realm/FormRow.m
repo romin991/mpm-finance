@@ -282,26 +282,25 @@
 }
 
 + (void)generateListSurveyWithRealm:(RLMRealm *)realm{
-    [FormRow new:realm :19 :0 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Calon Debitur"];
-    [FormRow new:realm :19 :1 :YES :XLFormRowDescriptorTypeDateInline :@"Tanggal Survey"];
-    [FormRow new:realm :19 :2 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Surveyor"];
-    [FormRow new:realm :19 :3 :YES :XLFormRowDescriptorTypeSelectorPush :@"Alamat Survey Ditemukan"];// :27];
-    [FormRow new:realm :19 :4 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Penjelasan"];
-    [FormRow new:realm :19 :5 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama"];
-    [FormRow new:realm :19 :6 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Hubungan"];
-    [FormRow new:realm :19 :7 :YES :XLFormRowDescriptorTypeSelectorPush :@"Kebenaran Domisili"];// :27];
-    [FormRow new:realm :19 :8 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Keterangan Domisili"];
-    [FormRow new:realm :19 :9 :YES :XLFormRowDescriptorTypeSelectorPush :@"Status Kepemilikan Rumah"];// :13];
-    [FormRow new:realm :19 :10 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Lama Tinggal"];
-    [[FormRow new:realm :19 :11 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Jumlah orang yang tinggal serumah"] setKey:@"jumlahOrang"];
-    [FormRow new:realm :19 :12 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Tambahan"];
-    [FormRow new:realm :19 :13 :YES :XLFormRowDescriptorTypeSelectorPush :@"Jumlah Lantai Rumah"];// :34];
-    [FormRow new:realm :19 :14 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Fasilitas Rumah"];
-    [FormRow new:realm :19 :15 :YES :XLFormRowDescriptorTypeSelectorPush :@"Akses Jalan Masuk"];// :14];
-    [FormRow new:realm :19 :16 :YES :XLFormRowDescriptorTypeSelectorPush :@"Kepemilikan Garasi"];// : 27];
-    [FormRow new:realm :19 :17 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Harga"];
-    [FormRow new:realm :19 :18 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Keterangan Lain"];
-    [FormRow new:realm :19 :19 :YES :XLFormRowDescriptorTypeTakePhoto :@"Take Photo"];
+//    [FormRow new:realm :19 :0 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Calon Debitur"];
+//    [FormRow new:realm :19 :1 :YES :XLFormRowDescriptorTypeDateInline :@"Tanggal Survey"];
+//    [FormRow new:realm :19 :2 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Surveyor"];
+//    [FormRow new:realm :19 :3 :YES :XLFormRowDescriptorTypeSelectorPush :@"Alamat Survey Ditemukan"];// :27];
+//    [FormRow new:realm :19 :4 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Penjelasan"];
+//    [FormRow new:realm :19 :5 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama"];
+//    [FormRow new:realm :19 :6 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Hubungan"];
+//    [FormRow new:realm :19 :7 :YES :XLFormRowDescriptorTypeSelectorPush :@"Kebenaran Domisili"];// :27];
+//    [FormRow new:realm :19 :8 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Keterangan Domisili"];
+//    [FormRow new:realm :19 :9 :YES :XLFormRowDescriptorTypeSelectorPush :@"Status Kepemilikan Rumah"];// :13];
+//    [FormRow new:realm :19 :10 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Lama Tinggal"];
+//    [[FormRow new:realm :19 :11 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Jumlah orang yang tinggal serumah"] setKey:@"jumlahOrang"];
+//    [FormRow new:realm :19 :12 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Tambahan"];
+//    [FormRow new:realm :19 :13 :YES :XLFormRowDescriptorTypeSelectorPush :@"Jumlah Lantai Rumah"];// :34];
+//    [FormRow new:realm :19 :14 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Fasilitas Rumah"];
+//    [FormRow new:realm :19 :15 :YES :XLFormRowDescriptorTypeSelectorPush :@"Akses Jalan Masuk"];// :14];
+//    [FormRow new:realm :19 :16 :YES :XLFormRowDescriptorTypeSelectorPush :@"Kepemilikan Garasi"];// : 27];
+//    [FormRow new:realm :19 :17 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Harga"];
+//    [FormRow new:realm :19 :18 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Keterangan Lain"];
     
 }
 
