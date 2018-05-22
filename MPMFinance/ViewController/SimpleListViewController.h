@@ -22,4 +22,6 @@
 @property NSString *navigationTitle;
 @property List *list;
 
+@property BOOL isReadOnly;
+
 @end

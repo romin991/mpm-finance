@@ -856,7 +856,11 @@
     form = [[Form alloc] init];
     form.title = @"Survey";
     form.sort = 130;
-    [form.rows addObjects:[FormRow getRowsWithCategoryNumber:19]];
+    
+    section = [[FormSection alloc] init];
+    section.title = @"Data Pemohon";
+    [section.rows addObjects:[FormRow getRowsWithCategoryNumber:19]];
+    [form.sections addObject:section];
     
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuSurvey]];
     [realm addObject:form];

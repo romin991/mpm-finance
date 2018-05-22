@@ -15,12 +15,7 @@
 
 @interface SurveyFormViewController ()
 
-@property (weak, nonatomic) IBOutlet UIView *containerView;
-
 @property RLMResults *forms;
-@property RLMArray *formRows;
-@property XLFormDescriptor *formDescriptor;
-@property XLFormViewController *formViewController;
 
 @end
 
@@ -28,56 +23,71 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.navigationBar.translucent = NO;
     // Do any additional setup after loading the view from its nib.
     
     self.forms = [Form getFormForMenu:self.menu.primaryKey];
     Form *currentForm = [self.forms objectAtIndex:self.index];
-    if (self.forms.count > self.index) self.formRows = currentForm.rows;
     
     [self setTitle:self.menu.title];
     [self setRightBarButton];
     
     [SVProgressHUD show];
     __block SurveyFormViewController *weakSelf = self;
-    [FormModel generate:self.formDescriptor dataSource:self.formRows completion:^(XLFormDescriptor *formDescriptor, NSError *error) {
-        if (error){
-            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
-            [SVProgressHUD dismissWithDelay:1.5 completion:^{
-                [self.navigationController popViewControllerAnimated:YES];
-            }];
-            
-        } else if (weakSelf.valueDictionary.count > 0){
-            weakSelf.formDescriptor = formDescriptor;
-            [FormModel loadValueFrom:weakSelf.valueDictionary to:weakSelf.formDescriptor on:weakSelf.formViewController];
-            [SVProgressHUD dismiss];
-            [weakSelf viewDidLayoutSubviews];
-            
-        } else if (weakSelf.list) {
-            weakSelf.formDescriptor = formDescriptor;
-            [SurveyModel getSurveyWithID:weakSelf.list.primaryKey completion:^(NSDictionary *dictionary, NSError *error) {
-                if (error == nil) {
-                    if (dictionary) {
-                        weakSelf.valueDictionary = [NSMutableDictionary dictionaryWithDictionary:dictionary];
-                        [FormModel loadValueFrom:weakSelf.valueDictionary to:weakSelf.formDescriptor on:weakSelf.formViewController];
-                    }
-                    [SVProgressHUD dismiss];
-                    [weakSelf viewDidLayoutSubviews];
-                    
-                } else {
-                    [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
-                    [SVProgressHUD dismissWithDelay:1.5 completion:^{
-                        [weakSelf.navigationController popViewControllerAnimated:YES];
+    [FormModel generate:self.form form:currentForm completion:^(XLFormDescriptor *formDescriptor, NSError *error) {
+        [weakSelf checkError:error completion:^{
+            if (weakSelf.valueDictionary.count > 0){
+                weakSelf.form = formDescriptor;
+                [weakSelf postProcessFormDescriptorWithCompletion:^(NSError *error) {
+                    [weakSelf checkError:error completion:^{
+                        [FormModel loadValueFrom:weakSelf.valueDictionary on:weakSelf partialUpdate:nil];
+                        [SVProgressHUD dismiss];
+                        
                     }];
-                }
-            }];
-            
-        } else {
-            //something wrong i think
-            weakSelf.formDescriptor = formDescriptor;
-            [SVProgressHUD dismiss];
-            [weakSelf viewDidLayoutSubviews];
-        }
+                }];
+                
+            } else if (weakSelf.list) {
+                weakSelf.form = formDescriptor;
+                [weakSelf postProcessFormDescriptorWithCompletion:^(NSError *error) {
+                    [weakSelf checkError:error completion:^{
+                        [SurveyModel getSurveyWithID:weakSelf.list.primaryKey completion:^(NSDictionary *dictionary, NSError *error) {
+                            if (error == nil) {
+                                if (dictionary) {
+                                    weakSelf.valueDictionary = [NSMutableDictionary dictionaryWithDictionary:dictionary];
+                                    [FormModel loadValueFrom:weakSelf.valueDictionary on:weakSelf partialUpdate:nil];
+                                }
+                                [SVProgressHUD dismiss];
+                                
+                            } else {
+                                [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+                                [SVProgressHUD dismissWithDelay:1.5 completion:^{
+                                    [weakSelf.navigationController popViewControllerAnimated:YES];
+                                }];
+                            }
+                        }];
+                    }];
+                }];
+                
+            } else {
+                //something wrong i think
+                [SVProgressHUD showErrorWithStatus:@"Data Not Found"];
+                [SVProgressHUD dismissWithDelay:1.5 completion:^{
+                    [self.navigationController popViewControllerAnimated:YES];
+                }];
+            }
+        }];
     }];
+}
+
+- (void)checkError:(NSError *)error completion:(void(^)())block{
+    if (error) {
+        [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+        [SVProgressHUD dismissWithDelay:1.5 completion:^{
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
+    } else {
+        block();
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -86,7 +96,7 @@
 }
 
 - (void)saveButtonClicked:(id)sender{
-    [FormModel saveValueFrom:self.formDescriptor to:self.valueDictionary];
+    [FormModel saveValueFrom:self.form to:self.valueDictionary];
     [SVProgressHUD show];
     [SurveyModel postSurveyWithList:self.list dictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
         if (error == nil) {
@@ -100,22 +110,26 @@
 }
 
 - (void)setRightBarButton{
-    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save"
-                                                                      style:UIBarButtonItemStylePlain
-                                                                     target:self
-                                                                     action:@selector(saveButtonClicked:)];
-    [self.navigationItem setRightBarButtonItem:barButtonItem];
+    if (!self.isReadOnly) {
+        UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save"
+                                                                          style:UIBarButtonItemStylePlain
+                                                                         target:self
+                                                                         action:@selector(saveButtonClicked:)];
+        [self.navigationItem setRightBarButtonItem:barButtonItem];
+    }
 }
 
-- (void)viewDidLayoutSubviews{
-    XLFormViewController *formViewController = [[XLFormViewController alloc] init];
-    formViewController.form = self.formDescriptor;
-    self.formViewController = formViewController;
+- (void)postProcessFormDescriptorWithCompletion:(void(^)(NSError *error))block{
+    for (XLFormSectionDescriptor *section in self.form.formSections) {
+        for (XLFormRowDescriptor *row in section.formRows) {
+            if (self.isReadOnly) {
+                row.disabled = @YES;
+                [self reloadFormRow:row];
+            }
+        }
+    }
     
-    [self addChildViewController:formViewController];
-    formViewController.view.frame = self.containerView.frame;
-    [self.view addSubview:formViewController.view];
-    [formViewController didMoveToParentViewController:self];
+    if (block) block(nil);
 }
 
 /*
