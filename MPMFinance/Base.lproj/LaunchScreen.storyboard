@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -23,17 +24,12 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="v2t-f0-DEm">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="If3-EU-h3Z">
-                                <rect key="frame" x="105" y="323" width="204" height="90"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="If3-EU-h3Z" firstAttribute="centerY" secondItem="v2t-f0-DEm" secondAttribute="centerY" id="7zP-jy-W1c"/>
                             <constraint firstAttribute="trailing" secondItem="v2t-f0-DEm" secondAttribute="trailing" id="S64-et-zg1"/>
                             <constraint firstItem="v2t-f0-DEm" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="SXM-hI-QQ7"/>
                             <constraint firstItem="v2t-f0-DEm" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="Thk-s5-ZfL"/>
-                            <constraint firstItem="If3-EU-h3Z" firstAttribute="centerX" secondItem="v2t-f0-DEm" secondAttribute="centerX" id="asl-Ys-aSl"/>
                             <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="v2t-f0-DEm" secondAttribute="bottom" id="lEN-kn-S0q"/>
                         </constraints>
                     </view>
@@ -44,7 +40,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="LaunchScreen" width="414" height="735"/>
-        <image name="Logo" width="204" height="90"/>
+        <image name="LaunchScreen" width="750" height="1333"/>
     </resources>
 </document>
