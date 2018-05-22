@@ -53,8 +53,8 @@
     section = [[FormSection alloc] init];
     section.title = @"Alamat KTP";
     [section.rows addObject:[FormRow new:realm :5 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Alamat Rumah Sesuai KTP" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :6 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"RT Sesuai KTP" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :7 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"RW Sesuai KTP" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :6 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"RT Sesuai KTP" :@"" :@"" regex:MPMRegexValidationMax3Number message:@"RT Maximum 3 Characters"]];
+    [section.rows addObject:[FormRow new:realm :7 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"RW Sesuai KTP" :@"" :@"" regex:MPMRegexValidationMax3Number message:@"RW Maximum 3 Characters"]];
     [section.rows addObject:[FormRow new:realm :8 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Kodepos Sesuai KTP" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :9 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kecamatan Sesuai KTP" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :10 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kelurahan Sesuai KTP" :@"" :@""]];
@@ -72,7 +72,7 @@
     section.title = @"Alamat Domisili";
     [section.rows addObject:[FormRow new:realm :15 :NO :NO :XLFormRowDescriptorTypeBooleanCheck :@"Sama dengan alamat legal" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :16 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Alamat Domisili" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :17 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"RT Domisili" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :17 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"RT Domisili" :@"" :@"" regex:MPMRegexValidationMax3Number message:@"Maximum 3 Characters"]];
     [section.rows addObject:[FormRow new:realm :18 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"RW Domisili" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :19 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Kodepos Domisili" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :20 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kecamatan Domisili" :@"" :@""]];

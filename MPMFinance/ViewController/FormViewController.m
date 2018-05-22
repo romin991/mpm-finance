@@ -87,7 +87,7 @@
                                                              @"kewarganegaraanPasangan" : @"WNI",
                                                              }];
         
-        if (![[MPMUserInfo getRole] isEqualToString:kRoleDedicated]) {
+        if ([[MPMUserInfo getRole] isEqualToString:kRoleCustomer]) {
             dispatch_group_enter(group);
             [ProfileModel getProfileDataWithCompletion:^(NSDictionary *dictionary, NSError *error) {
                 if (error) _error = error;
@@ -136,7 +136,7 @@
                 if ([row.tag isEqualToString:@"tipeKendaraan"]){
                     row.action.viewControllerNibName = @"AssetViewController";
                     row.valueTransformer = [AssetValueTransformer class];
-                    
+    
                     __block XLFormRowDescriptor *weakRow = row;
                     
                     NSString *idCabang = [self.valueDictionary objectForKey:@"kodeCabang"];
@@ -261,6 +261,10 @@
 }
 
 - (void)nextButtonClicked:(id)sender{
+    if (![self validateForm])
+    {
+        return;
+    }
     Form *nextForm = [self.forms objectAtIndex:self.index + 1];
     if ([nextForm.title isEqualToString:@"Disclaimer"]) {
         //save to object, call delegate, then pop navigation
@@ -490,7 +494,35 @@
         
     }
 }
+#pragma mark - actions
 
+-(BOOL)validateForm
+{
+    NSArray * array = [self formValidationErrors];
+    [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        XLFormValidationStatus * validationStatus = [[obj userInfo] objectForKey:XLValidationStatusErrorKey];
+        UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:[self.form indexPathOfFormRow:validationStatus.rowDescriptor]];
+        [self animateCell:cell];
+    
+    }];
+    return array.count;
+}
+
+
+#pragma mark - Helper
+
+-(void)animateCell:(UITableViewCell *)cell
+{
+    CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
+    animation.keyPath = @"position.x";
+    animation.values =  @[ @0, @20, @-20, @10, @0];
+    animation.keyTimes = @[@0, @(1 / 6.0), @(3 / 6.0), @(5 / 6.0), @1];
+    animation.duration = 0.3;
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+    animation.additive = YES;
+    
+    [cell.layer addAnimation:animation forKey:@"shake"];
+}
 /*
 #pragma mark - Navigation
 
