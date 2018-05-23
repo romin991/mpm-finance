@@ -13,6 +13,37 @@
 
 @implementation APIModel
 
++ (void) getJumlahNotifikasiWithCompletion:(void(^)(NSInteger jumlahNotifikasi, NSError *error))block {
+    AFHTTPSessionManager *manager = [MPMGlobal sessionManager];
+    NSDictionary *param = @{ @"userid" : [MPMUserInfo getUserInfo][@"userId"],
+                             @"token" : [MPMUserInfo getToken]
+                             };
+    [manager POST:[NSString stringWithFormat:@"%@/pengajuan/jumlahnotifikasi",kApiUrl] parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
+        ;
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject objectForKey:@"data"]) {
+            block([responseObject[@"data"] integerValue],nil);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        block(0,error);
+    }];
+}
++ (void) readNotifikasiWithID:(NSString *)idNotifikasi andKeterangan:(NSString *)keterangan {
+    AFHTTPSessionManager *manager = [MPMGlobal sessionManager];
+    NSDictionary *param = @{ @"userid" : [MPMUserInfo getUserInfo][@"userId"],
+                             @"token" : [MPMUserInfo getToken],
+                             @"data" : @{@"id" : idNotifikasi,
+                                         @"ket" : keterangan
+                                         }
+                             };
+    [manager POST:[NSString stringWithFormat:@"%@/pengajuan/notifikasiread",kApiUrl] parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
+        ;
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+       
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+       
+    }];
+}
 + (void)getAllListWorkOrderPage:(NSInteger)page completion:(void(^)(NSArray *lists, NSError *error))block{
     [WorkOrderModel getListWorkOrderWithStatus:@"clear" page:page completion:block];
 }

@@ -12,6 +12,9 @@
 #import <UIScrollView+SVPullToRefresh.h>
 #import "WorkOrderModel.h"
 #import "FormViewController.h"
+#import "APIModel.h"
+#import "MessageTableViewCell.h"
+#import "MessageDetailViewController.h"
 #define kHistoryPerPage 10
 @interface HistoryViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -48,7 +51,6 @@
 -(void)loadDataForPage:(int)page
 {
     __weak HistoryViewController *weakSelf = self;
-    AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
     int offset = page * kHistoryPerPage;
     NSString* url = [NSString stringWithFormat:@"%@/pengajuan/getallbyuser",kApiUrl];
     NSDictionary* param = @{@"data" : @{@"limit" : [NSString stringWithFormat:@"%i",kHistoryPerPage],
@@ -56,6 +58,18 @@
                                         @"status" : @"monitoring"},
                             @"userid" : [MPMUserInfo getUserInfo][@"userId"],
                             @"token" : [MPMUserInfo getToken]};
+    
+    if ([[MPMUserInfo getRole] isEqualToString:kRoleSupervisor]) {
+        url = [NSString stringWithFormat:@"%@/pengajuan/listnotifikasi",kApiUrl];
+        param = @{@"data" : @{@"limit" : [NSString stringWithFormat:@"%i",kHistoryPerPage],
+                              @"offset" : [NSString stringWithFormat:@"%i",offset]
+                              },
+                  @"userid" : [MPMUserInfo getUserInfo][@"userId"],
+                  @"token" : [MPMUserInfo getToken]};
+    }
+    AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
+    
+    
     
     [manager POST:url parameters:param progress:^(NSProgress * _Nonnull downloadProgress) {
         ;
@@ -70,7 +84,6 @@
         }
         else
         {
-            
             [weakSelf.data addObjectsFromArray:responseObject[@"data"]];
             dispatch_async(dispatch_get_main_queue(), ^{
                 _currentPage = page;
@@ -96,17 +109,31 @@
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    [((UIImageView*)[cell viewWithTag:1]) setImageWithURL:[NSURL URLWithString:self.data[indexPath.row][@"imageIconIos"]]];
-    ((UILabel*)[cell viewWithTag:2]).text = self.data[indexPath.row][@"noRegistrasi"];
-    ((UILabel*)[cell viewWithTag:3]).text = self.data[indexPath.row][@"namaPengaju"];
-    ((UILabel*)[cell viewWithTag:4]).text = self.data[indexPath.row][@"status"];
-    ((UILabel*)[cell viewWithTag:5]).text = self.data[indexPath.row][@"tanggal"];
-    [((UILabel*)[cell viewWithTag:4]) setBackgroundColor:[MPMGlobal colorFromHexString:self.data[indexPath.row][@"color"]]];
-    [MPMGlobal giveBorderTo:[cell viewWithTag:4] withBorderColor:self.data[indexPath.row][@"color"] withCornerRadius:10.0f];
-    return cell;
+    if ([[MPMUserInfo getRole] isEqualToString:kRoleSupervisor]) {
+        MessageTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"MessageTableViewCell"];
+        [cell setupWith:self.data[indexPath.row]];
+        return cell;
+    } else {
+        UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell"];
+        [((UIImageView*)[cell viewWithTag:1]) setImageWithURL:[NSURL URLWithString:self.data[indexPath.row][@"imageIconIos"]]];
+        ((UILabel*)[cell viewWithTag:2]).text = self.data[indexPath.row][@"noRegistrasi"];
+        ((UILabel*)[cell viewWithTag:3]).text = self.data[indexPath.row][@"namaPengaju"];
+        ((UILabel*)[cell viewWithTag:4]).text = self.data[indexPath.row][@"status"];
+        ((UILabel*)[cell viewWithTag:5]).text = self.data[indexPath.row][@"tanggal"];
+        [((UILabel*)[cell viewWithTag:4]) setBackgroundColor:[MPMGlobal colorFromHexString:self.data[indexPath.row][@"color"]]];
+        [MPMGlobal giveBorderTo:[cell viewWithTag:4] withBorderColor:self.data[indexPath.row][@"color"] withCornerRadius:10.0f];
+        return cell;
+    }
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if ([[MPMUserInfo getRole] isEqualToString:kRoleSupervisor]) {
+        [APIModel readNotifikasiWithID:[self.data[indexPath.row][@"id"] stringValue] andKeterangan:self.data[indexPath.row][@"title"]];
+        MessageDetailViewController *vc = [[MessageDetailViewController alloc] init];
+        vc.data = self.data[indexPath.row];
+        vc.title = @"Pesan";
+        [self.navigationController.navigationController pushViewController:vc animated:YES];
+        return;
+    }
     [WorkOrderModel getListWorkOrderDetailWithID:[self.data[indexPath.row][@"id"] integerValue] completion:^(NSDictionary *response, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             FormViewController *vc = [[FormViewController alloc] init];

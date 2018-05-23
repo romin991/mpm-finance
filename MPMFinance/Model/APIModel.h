@@ -48,8 +48,10 @@
 + (void)getAllMarketingBySupervisor:(NSInteger)dataPengajuanId completion:(void(^)(NSArray *lists, NSError *error))block;
 
 
-
-
+//pengajuan/jumlahnotifikasi
++ (void) getJumlahNotifikasiWithCompletion:(void(^)(NSInteger jumlahNotifikasi, NSError *error))block;
+//pengajuan/readnotifikasi
++ (void) readNotifikasiWithID:(NSString *)idNotifikasi andKeterangan:(NSString *)keterangan;
 
 
 + (void)getListPengembalianBPKB:(void(^)(NSArray *lists, NSError *error))block;

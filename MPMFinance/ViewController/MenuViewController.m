@@ -11,10 +11,12 @@
 #import "ProfileModel.h"
 #import "LoginViewController.h"
 #import "RegisterViewController.h"
-
+#import "APIModel.h"
 @interface MenuViewController ()<UITabBarDelegate>
 @property (weak, nonatomic) IBOutlet UITabBar *tabBar;
 @property (weak, nonatomic) IBOutlet UIView *signInView;
+@property (weak, nonatomic) IBOutlet UITabBarItem *tabHistoryNotif;
+
 @property NSArray *guestMenu;
 @property NSArray *memberMenu;
 @property MenuNavigationViewController *containerView;
@@ -30,8 +32,19 @@
     [guestMutableMenu removeObjectAtIndex:3];
     [guestMutableMenu removeObjectAtIndex:1];
     self.guestMenu = [[NSArray alloc] initWithArray:guestMutableMenu];
+    NSLog(@"%@",[MPMUserInfo getRole]);
+    if ([[MPMUserInfo getRole] isEqualToString:kRoleSupervisor]) {
+        self.tabHistoryNotif.title = @"Message";
+        [APIModel getJumlahNotifikasiWithCompletion:^(NSInteger jumlahNotifikasi, NSError *error) {
+            if (!error) {
+                self.tabHistoryNotif.badgeValue = [NSString stringWithFormat:@"%li",(long)jumlahNotifikasi];
+            }
+        }];
+    }
     // Do any additional setup after loading the view.
 }
+
+
 -(void)viewWillAppear:(BOOL)animated
 {
     
