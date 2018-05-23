@@ -32,6 +32,4 @@ typedef enum {
 + (void)postDataMAPWithType:(PostType)postType dictionary:(NSDictionary *)dictionary completion:(void(^)(NSDictionary *dictionary, NSError *error))block;
 + (void)postDataMAPWithID:(NSInteger)pengajuanId completion:(void(^)(NSDictionary *dictionary, NSError *error))block;
 
-//+ (void)postDataMAPWithDictionary:(NSDictionary *)dictionary completion:(void(^)(NSDictionary *dictionary, NSError *error))block;
-
 @end

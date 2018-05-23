@@ -140,6 +140,10 @@
 		48D44D551EE7A42C005FC8DB /* SurveyFormViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48D44D531EE7A42C005FC8DB /* SurveyFormViewController.xib */; };
 		48D44D581EE83A2F005FC8DB /* SurveyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48D44D571EE83A2F005FC8DB /* SurveyModel.m */; };
 		48D44D5B1EE846B5005FC8DB /* WorkOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48D44D5A1EE846B5005FC8DB /* WorkOrderModel.m */; };
+		48E3E92720B5C41700E8D170 /* DropdownWSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E3E92520B5C41700E8D170 /* DropdownWSViewController.m */; };
+		48E3E92820B5C41700E8D170 /* DropdownWSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48E3E92620B5C41700E8D170 /* DropdownWSViewController.xib */; };
+		48E3E92B20B5C45100E8D170 /* DropdownValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E3E92A20B5C45100E8D170 /* DropdownValueTransformer.m */; };
+		48E3E92E20B5C93F00E8D170 /* XLFormBaseDropdownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E3E92D20B5C93F00E8D170 /* XLFormBaseDropdownViewController.m */; };
 		48F7F4061EC5C931008DB808 /* Role.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F7F4051EC5C931008DB808 /* Role.m */; };
 		5C0138751EE43C9300B9B40B /* ContactUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0138741EE43C9300B9B40B /* ContactUsViewController.m */; };
 		5C2553BD20ADAFD100CB543F /* OfflineDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2553BC20ADAFD100CB543F /* OfflineDataManager.m */; };
@@ -405,6 +409,13 @@
 		48D44D571EE83A2F005FC8DB /* SurveyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SurveyModel.m; path = Model/SurveyModel.m; sourceTree = "<group>"; };
 		48D44D591EE846B5005FC8DB /* WorkOrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WorkOrderModel.h; path = Model/WorkOrderModel.h; sourceTree = "<group>"; };
 		48D44D5A1EE846B5005FC8DB /* WorkOrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WorkOrderModel.m; path = Model/WorkOrderModel.m; sourceTree = "<group>"; };
+		48E3E92420B5C41700E8D170 /* DropdownWSViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DropdownWSViewController.h; path = ViewController/DropdownWSViewController.h; sourceTree = "<group>"; };
+		48E3E92520B5C41700E8D170 /* DropdownWSViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = DropdownWSViewController.m; path = ViewController/DropdownWSViewController.m; sourceTree = "<group>"; };
+		48E3E92620B5C41700E8D170 /* DropdownWSViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DropdownWSViewController.xib; path = ViewController/DropdownWSViewController.xib; sourceTree = "<group>"; };
+		48E3E92920B5C45100E8D170 /* DropdownValueTransformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DropdownValueTransformer.h; path = ViewController/DropdownValueTransformer.h; sourceTree = "<group>"; };
+		48E3E92A20B5C45100E8D170 /* DropdownValueTransformer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = DropdownValueTransformer.m; path = ViewController/DropdownValueTransformer.m; sourceTree = "<group>"; };
+		48E3E92C20B5C93F00E8D170 /* XLFormBaseDropdownViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = XLFormBaseDropdownViewController.h; path = ViewController/XLFormBaseDropdownViewController.h; sourceTree = "<group>"; };
+		48E3E92D20B5C93F00E8D170 /* XLFormBaseDropdownViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = XLFormBaseDropdownViewController.m; path = ViewController/XLFormBaseDropdownViewController.m; sourceTree = "<group>"; };
 		48F7F4041EC5C931008DB808 /* Role.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Role.h; path = Object/Realm/Role.h; sourceTree = "<group>"; };
 		48F7F4051EC5C931008DB808 /* Role.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Role.m; path = Object/Realm/Role.m; sourceTree = "<group>"; };
 		5C0138731EE43C9300B9B40B /* ContactUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactUsViewController.h; sourceTree = "<group>"; };
@@ -756,6 +767,7 @@
 			children = (
 				5C37215520B560DF00D7F037 /* spv */,
 				480A7D0F20B32FAA0005CEB9 /* CustomCell */,
+				48E3E92320B5C3AA00E8D170 /* DropdownWS */,
 				481C428C1F03B8CA007D5C3C /* MarketingOfficerDedicated */,
 				481C428B1F03B8B9007D5C3C /* CustomerDealer */,
 				5C9B08E91EC9DB7300B5E9AC /* TabMenuContainer */,
@@ -986,6 +998,20 @@
 				48D44D531EE7A42C005FC8DB /* SurveyFormViewController.xib */,
 			);
 			name = SurveyFormViewController;
+			sourceTree = "<group>";
+		};
+		48E3E92320B5C3AA00E8D170 /* DropdownWS */ = {
+			isa = PBXGroup;
+			children = (
+				48E3E92420B5C41700E8D170 /* DropdownWSViewController.h */,
+				48E3E92520B5C41700E8D170 /* DropdownWSViewController.m */,
+				48E3E92620B5C41700E8D170 /* DropdownWSViewController.xib */,
+				48E3E92920B5C45100E8D170 /* DropdownValueTransformer.h */,
+				48E3E92A20B5C45100E8D170 /* DropdownValueTransformer.m */,
+				48E3E92C20B5C93F00E8D170 /* XLFormBaseDropdownViewController.h */,
+				48E3E92D20B5C93F00E8D170 /* XLFormBaseDropdownViewController.m */,
+			);
+			name = DropdownWS;
 			sourceTree = "<group>";
 		};
 		5C0138721EE43C7C00B9B40B /* ContactUsViewController */ = {
@@ -1273,6 +1299,7 @@
 				4831CD201EDE97A6001EF223 /* SubmenuCollectionViewController.xib in Resources */,
 				482652891EFBFA050002A606 /* NewCarFormViewController.xib in Resources */,
 				4825BFB91F5C3F4800D091AC /* CustomerGetCustomerTableViewCell.xib in Resources */,
+				48E3E92820B5C41700E8D170 /* DropdownWSViewController.xib in Resources */,
 				481C42A21F03BAD0007D5C3C /* InsuranceClaimFormViewController.xib in Resources */,
 				4825BF931F5C338100D091AC /* TopUpHistoryTableViewController.xib in Resources */,
 				4825BFDC1F5C44DE00D091AC /* ComplainTableViewCell.xib in Resources */,
@@ -1397,6 +1424,8 @@
 				48CDD8421EC9BA1A0038D626 /* SubmenuTableViewCell.m in Sources */,
 				48336A9B1F19111300536771 /* BarcodeViewController.m in Sources */,
 				5CA4FA0220B5A4E70053CDA1 /* MPMCustomUI.m in Sources */,
+				48E3E92B20B5C45100E8D170 /* DropdownValueTransformer.m in Sources */,
+				48E3E92720B5C41700E8D170 /* DropdownWSViewController.m in Sources */,
 				4848B1B21F1251E700C9DE21 /* PostalCodeTableViewCell.m in Sources */,
 				4848B1B61F12547700C9DE21 /* PostalCodeValueTransformer.m in Sources */,
 				5C8EB86420956FD4006A3170 /* ActivityHistoryViewController.m in Sources */,
@@ -1406,6 +1435,7 @@
 				5C5C267A208E07B80025DCEB /* KontrakKerjaViewController.m in Sources */,
 				48F7F4061EC5C931008DB808 /* Role.m in Sources */,
 				5CBC4C771ECC8A67002ED03C /* MyProfileTableViewController.m in Sources */,
+				48E3E92E20B5C93F00E8D170 /* XLFormBaseDropdownViewController.m in Sources */,
 				4825BFC21F5C3F7B00D091AC /* InsuranceClaimTableViewController.m in Sources */,
 				484ADB231F0CEDCE0006BCB0 /* SuggestionComplaintModel.m in Sources */,
 				5CFF0A7520AADAE200198E60 /* NJOPasswordStrengthEvaluator.m in Sources */,

@@ -449,8 +449,6 @@
     section.title = @"Data Pekerjaan Sebelumnya";
     section.hidden = [NSString stringWithFormat:@"$lamaBekerjaDalamBulan.integerValue > 3"];
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Pendapatan per bulan" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Perusahaan" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Status Pekerjaan Sebelumnya" :@"" :@"getStatusPekerjaan"]];
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Lama Bekerja" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Pendapatan Lainnya per bulan" :@"" :@""]];
     
@@ -539,7 +537,7 @@
     //===
     section = [[FormSection alloc] init];
     section.title = @"Data Pasangan";
-    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Lengkap Sesuai KTP Pasangan" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :0 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Lengkap Sesuai KTP Pasangan" :@"" :@""]];
     
     [form.sections addObject:section];
     
@@ -566,10 +564,10 @@
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Alamat Kantor Pasangan" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"RT Kantor Pasangan" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"RW Kantor Pasangan" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kode Pos Kantor Pasangan" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kelurahan Kantor Pasangan" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kecamatan Kantor Pasangan" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kota Kantor Pasangan" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Kode Pos Kantor Pasangan" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :0 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kelurahan Kantor Pasangan" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :0 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kecamatan Kantor Pasangan" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :0 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kota Kantor Pasangan" :@"" :@""]];
     
     [form.sections addObject:section];
     
@@ -640,7 +638,7 @@
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Biaya Lain" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Biaya Survey" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Persentase Biaya Provisi" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Biaya Provisi" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :0 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Biaya Provisi" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Interest Type" :@"" :@""]]; //ws
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Effective Rate" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Skema Angsuran" :@"" :@""]]; //ws
@@ -667,7 +665,7 @@
     //===
     section = [[FormSection alloc] init];
     section.title = @"Asuransi";
-    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Asuransi" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Nama Asuransi" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Asuransi Dibayar" :@"" :@""]]; //ws
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Jangka Waktu Asuransi" :@"" :@""]]; //ws
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Periode Asuransi" :@"" :@""]];
@@ -684,10 +682,10 @@
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Asuransi Jiwa Kredit" :@"" :@"getAsuransiJiwaKredit"]];
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Asuransi Jiwa Kredit Kapitalisasi" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Asuransi Jiwa Dibayar Dimuka" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nilai Pertanggunan Asuransi Jiwa" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nilai Pertanggungan Asuransi Jiwa" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Premi Asuransi Kerugian Kendaraan" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Premi Asuransi Jiwa Kredit" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Perusahaan Asuransi Jiwa" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Perusahaan Asuransi Jiwa" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Tipe Asuransi" :@"" :@""]]; //ws
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Periode Asuransi Jiwa" :@"" :@""]];
     [form.sections addObject:section];
@@ -711,8 +709,8 @@
     //===
     section = [[FormSection alloc] init];
     section.title = @"Data Aset";
-    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Supplier" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Asset Financed" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Nama Supplier" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Asset Financed" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"New / Used" :@"newUsed" :@"getNewUsed"]];
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"No Rangka" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"No Mesin" :@"" :@""]];
@@ -789,8 +787,8 @@
     //===
     section = [[FormSection alloc] init];
     section.title = @"Data Marketing";
-    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Kepala Cabang" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Marketing" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :0 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Kepala Cabang" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :0 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Marketing" :@"" :@""]];
     [form.sections addObject:section];
     
     //===
