@@ -52,8 +52,7 @@
 + (void) getJumlahNotifikasiWithCompletion:(void(^)(NSInteger jumlahNotifikasi, NSError *error))block;
 //pengajuan/readnotifikasi
 + (void) readNotifikasiWithID:(NSString *)idNotifikasi andKeterangan:(NSString *)keterangan;
-
-
-+ (void)getListPengembalianBPKB:(void(^)(NSArray *lists, NSError *error))block;
+//pengajuan2/getlistmarketingalternate
++ (void) getListMarketingAlternateWithCompletion:(void(^)(NSArray *data, NSError *error))block;
 
 @end

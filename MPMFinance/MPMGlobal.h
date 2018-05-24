@@ -114,7 +114,7 @@ extern NSString *const kMenuTypeFormInsuranceClaim;
 extern NSString *const kMenuTypeFormPengambilanBPKB;
 extern NSString *const kMenuTypeFormSaranPengaduan;
 extern NSString *const kMenuTypeFormCustomerGetCustomer;
-
+extern NSString *const kMenuSetAlternate;
 extern NSString *const kMenuTypeListTopUp;
 extern NSString *const kMenuTypeListLegalizationBPKB;
 extern NSString *const kMenuTypeListInsuranceClaim;

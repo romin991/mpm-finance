@@ -41,7 +41,7 @@ NSString *const kMenuPelunasanDipercepat = @"Pelunasan Dipercepat";
 NSString *const kMenuPengembalianBPKB = @"Pengembalian BPKB";
 NSString *const kMenuSaranPengaduan = @"Saran & Pengaduan";
 NSString *const kMenuCustomerGetCustomer = @"Customer Get Customer";
-
+NSString *const kMenuSetAlternate = @"Set Alternate";
 NSString *const kSubmenuListMonitoring = @"List Monitoring API";
 NSString *const kSubmenuListOnlineSubmission = @"List Online Submission API";
 NSString *const kSubmenuListWorkOrder = @"List Work Order API";
@@ -57,6 +57,7 @@ NSString *const kSubmenuListSaranPengaduan = @"List Saran & Pengaduan API";
 NSString *const kSubmenuListCustomerGetCustomer = @"List Customer Get Customer API";
 
 NSString *const kSubmenuFormPengajuanApplikasi = @"Form Pengajuan Applikasi";
+
 NSString *const kSubmenuDataMAP = @"Data MAP";
 NSString *const kSubmenuSurvey = @"Survey";
 NSString *const kSubmenuMelengkapiData = @"Melengkapi Data";
@@ -129,6 +130,7 @@ NSString *const kMenuTypeListAssignMarketing = @"List Assign Marketing";
 NSString *const kMenuTypeSubmenu = @"Submenu";
 NSString *const kMenuTypeSubmenu2 = @"Submenu2";
 NSString *const kMenuTypeMap = @"Map";
+NSString *const kMenuTypeSetAlternate = @"Set Alternate";
 
 NSString *const kActionTypeForward = @"Forward";
 NSString *const kActionTypeAPICall = @"APICall";

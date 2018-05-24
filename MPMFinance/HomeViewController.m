@@ -21,6 +21,7 @@
 #import "AcceleratedRepaymentFormViewController.h"
 #import "ProductViewController.h"
 #import "ActivityHistoryViewController.h"
+#import "SetAlternateViewController.h"
 @interface HomeViewController ()<KASlideShowDelegate,KASlideShowDataSource, UICollectionViewDelegateFlowLayout>
 
 @property RLMResults *menus;
@@ -160,7 +161,12 @@
         legalizationBPKBViewController.menu = menu;
         [self.navigationController.navigationController pushViewController:legalizationBPKBViewController animated:YES];
     
+    } else if ([menu.menuType isEqualToString:kMenuSetAlternate]) {
+        SetAlternateViewController *vc = [[SetAlternateViewController alloc] init];
+        [self.navigationController.navigationController pushViewController:vc animated:YES];
+        
     }
+
 
 }
 
