@@ -33,14 +33,7 @@
     [guestMutableMenu removeObjectAtIndex:1];
     self.guestMenu = [[NSArray alloc] initWithArray:guestMutableMenu];
     NSLog(@"%@",[MPMUserInfo getRole]);
-    if ([[MPMUserInfo getRole] isEqualToString:kRoleSupervisor]) {
-        self.tabHistoryNotif.title = @"Message";
-        [APIModel getJumlahNotifikasiWithCompletion:^(NSInteger jumlahNotifikasi, NSError *error) {
-            if (!error) {
-                self.tabHistoryNotif.badgeValue = [NSString stringWithFormat:@"%li",(long)jumlahNotifikasi];
-            }
-        }];
-    }
+    
     // Do any additional setup after loading the view.
 }
 
@@ -50,6 +43,17 @@
     
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     [self refreshUI];
+    if ([[MPMUserInfo getRole] isEqualToString:kRoleSupervisor]) {
+        self.tabHistoryNotif.title = @"Message";
+        [APIModel getJumlahNotifikasiWithCompletion:^(NSInteger jumlahNotifikasi, NSError *error) {
+            if (!error) {
+                if (jumlahNotifikasi > 0) {
+                    self.tabHistoryNotif.badgeValue = [NSString stringWithFormat:@"%li",(long)jumlahNotifikasi];
+                }
+                
+            }
+        }];
+    }
 //    [ProfileModel checkTokenWithCompletion:^(BOOL isExpired) {
 //        if (isExpired) {
 //            [MPMUserInfo deleteUserInfo];

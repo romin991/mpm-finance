@@ -24,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     __weak SetAlternateViewController *weakSelf = self;
-    [self loadFirstPage];
+    
     
     [self.tableView addPullToRefreshWithActionHandler:^{
         [weakSelf loadFirstPage];
@@ -41,6 +41,16 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self.tableView registerNib:[UINib nibWithNibName:@"SetAlternateTableViewCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
     self.title = @"Set Alternate";
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [self loadFirstPage];
+}
+-(void)tambah:(id)sender {
+    SetAlternateDetailViewController *detailViewController = [[SetAlternateDetailViewController alloc] initWithNibName:@"SetAlternateDetailViewController" bundle:nil];
+    // Pass the selected object to the new view controller.
+    
+    // Push the view controller.
+    [self.navigationController pushViewController:detailViewController animated:YES];
 }
 -(void)loadFirstPage
 {
@@ -94,9 +104,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
--(void)tambah:(id)sender {
-    
 }
 
 #pragma mark - Table view data source

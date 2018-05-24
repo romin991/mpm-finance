@@ -15,6 +15,7 @@
 @interface DropdownModel : NSObject
 
 + (void)getDropdownForType:(NSString *)type completion:(void(^)(NSArray *options, NSError *error))block;
++ (void)getDropdownMarketingForTypeWithcompletion:(void(^)(NSArray *options, NSError *error))block;
 + (void)getDropdownWSType:(NSString *)type keyword:(NSString *)keyword idCabang:(NSString *)idCabang additionalURL:(NSString *)additionalURL completion:(void(^)(NSArray *datas, NSError *error))block;
 + (void)getDropdownWSType:(NSString *)type keyword:(NSString *)keyword idProduct:(NSString *)idProduct idCabang:(NSString *)idCabang additionalURL:(NSString *)additionalURL completion:(void(^)(NSArray *datas, NSError *error))block;
 + (void)getDropdownWSType:(NSString *)type keyword:(NSString *)keyword idProductOffering:(NSString *)idProductOffering idCabang:(NSString *)idCabang additionalURL:(NSString *)additionalURL completion:(void(^)(NSArray *datas, NSError *error))block;

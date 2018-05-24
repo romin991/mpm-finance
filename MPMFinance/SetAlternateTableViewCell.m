@@ -25,12 +25,18 @@
     self.title.text = data[@"namaLengkapMkt"];
     self.dateTime.text = data[@"date"];
     
-    if (data[@"isCancel"]) {
+    if ([data[@"isCancel"] isEqual:@1]) {
         self.labelStatus.text = @"Batal";
         self.labelBackground.backgroundColor = [UIColor redColor];
-    } else if (data[@"isExpired"]) {
+    } else if ([data[@"isExpired"] isEqual:@1]) {
         self.labelStatus.text = @"Kadaluarsa";
         self.labelBackground.backgroundColor = UIColorFromRGB(0x8DA016);
+    }  else if ([data[@"isActive"] isEqual:@1]) {
+        self.labelStatus.text = @"Active";
+        self.labelBackground.backgroundColor = UIColorFromRGB(0x8DA016);
+    } else  {
+        self.labelStatus.text = @"Tidak Aktif";
+        self.labelBackground.backgroundColor = [UIColor lightGrayColor];
     }
     [MPMCustomUI giveBorderTo:self.labelBackground withBorderColor:self.labelBackground.backgroundColor];
     

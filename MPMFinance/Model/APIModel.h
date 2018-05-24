@@ -53,8 +53,15 @@
 //pengajuan/readnotifikasi
 + (void) readNotifikasiWithID:(NSString *)idNotifikasi andKeterangan:(NSString *)keterangan;
 //pengajuan2/getlistmarketingalternate
-+ (void) getListMarketingAlternateWithCompletion:(void(^)(NSArray *data, NSError *error))block;
++ (void) getListMarketingAlternateWithWithUserId:(NSString *)userId Completion:(void(^)(NSArray *data, NSError *error))block;
 
 //pengajuan2/detailalternate
 + (void) getDetailAlternate:(NSString *)detailID WithCompletion:(void(^)(NSDictionary *data, NSError *error))block;
+//pengajuan2/setalternate
++ (void) setAlternateWithWithDateBegin:(NSString *)dateBegin
+                                            dateEnd:(NSString *)dateEnd
+                                          marketing:(NSString *)marketing
+                                 marketingAlternate:(NSString *)marketingAlternate
+                                           alasanId:(NSString *)alasanId
+                            Completion:(void(^)(NSString *data, NSError *error))block;
 @end

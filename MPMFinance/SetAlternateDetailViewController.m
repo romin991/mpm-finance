@@ -8,10 +8,13 @@
 
 #import "SetAlternateDetailViewController.h"
 #import "XLForm.h"
+#import "APIModel.h"
 #import "DropdownModel.h"
 #import "FloatLabeledTextFieldCell.h"
 @interface SetAlternateDetailViewController ()
 @property NSArray *dropdownReasons;
+@property NSArray *dropdownListMarketing;
+@property NSArray *dropdownListMarketing2;
 @end
 
 @implementation SetAlternateDetailViewController
@@ -24,9 +27,28 @@ NSString * const kValidationReason = @"kReason";
     [super viewDidLoad];
     [self preloadDropdown];
     
-    
+    UIBarButtonItem *rightBar = [[UIBarButtonItem alloc] initWithTitle:@"Submit" style:UIBarButtonItemStylePlain target:self action:@selector(submit:)];
+    self.navigationItem.rightBarButtonItem = rightBar;
     self.title = @"Set Alternate";
     // Do any additional setup after loading the view from its nib.
+}
+- (void) submit:(id)sender{
+    XLFormRowDescriptor *dateBeginRow = [self.form formRowWithTag:kValidationBeginDate];
+    NSString *dateBegin = [MPMGlobal stringFromDateTime:dateBeginRow.value];
+    XLFormRowDescriptor *dateEndRow = [self.form formRowWithTag:kValidationEndDate];
+    NSString *dateEnd = [MPMGlobal stringFromDateTime:dateEndRow.value];
+    XLFormRowDescriptor *nameRow = [self.form formRowWithTag:kValidationName];
+    NSString *name = ((XLFormOptionsObject *)nameRow.value).valueData;
+    XLFormRowDescriptor *replacementNameRow = [self.form formRowWithTag:kValidationReplacementName];
+    NSString *replacementName = ((XLFormOptionsObject *)replacementNameRow.value).valueData;
+    XLFormRowDescriptor *reasonRow = [self.form formRowWithTag:kValidationReason];
+    NSString *reason = [((XLFormOptionsObject *)reasonRow.value).valueData stringValue];
+    
+    [APIModel setAlternateWithWithDateBegin:dateBegin dateEnd:dateEnd marketing:name marketingAlternate:replacementName alasanId:reason Completion:^(NSString *data, NSError *error) {
+        if (!error) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,24 +60,45 @@ NSString * const kValidationReason = @"kReason";
     [DropdownModel getDropdownForType:@"getReasonAlternate" completion:^(NSArray *datas, NSError *error) {
         @try {
             if (error) {
-                
-                
             } else {
-                //NSMutableArray *optionObjects = [NSMutableArray array];
                 self.dropdownReasons = datas;
                 [self initializeForm];
-//                for (Data *data in datas) {
-//                    [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:data.value displayText:data.name]];
-//                }
-                
             }
-            
         } @catch (NSException *exception) {
-            NSLog(@"%@", exception);
         } @finally {
-            NSLog(@"leave");
         }
     }];
+    [DropdownModel getDropdownMarketingForTypeWithcompletion:^(NSArray *datas, NSError *error) {
+        @try {
+            if (error) {
+            } else {
+                self.dropdownListMarketing = datas;
+                XLFormRowDescriptor *row = [self.form formRowWithTag:kValidationName];
+                NSMutableArray *optionObjects = [NSMutableArray array];
+                for (NSDictionary *data in self.dropdownListMarketing) {
+                    [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:data[@"userid"] displayText:data[@"nama"]]];
+                }
+                row.selectorOptions = optionObjects;
+            }
+        } @catch (NSException *exception) {
+        } @finally {
+        }
+    }];
+}
+
+-(void)formRowDescriptorValueHasChanged:(XLFormRowDescriptor *)formRow oldValue:(id)oldValue newValue:(id)newValue
+{
+    if ([formRow.tag isEqualToString:kValidationName]) {
+        [APIModel getListMarketingAlternateWithWithUserId:((XLFormOptionsObject *) newValue).formValue Completion:^(NSArray *data, NSError *error) {
+            self.dropdownListMarketing2 = data;
+            XLFormRowDescriptor *row = [self.form formRowWithTag:kValidationReplacementName];
+            NSMutableArray *optionObjects = [NSMutableArray array];
+            for (NSDictionary *data in self.dropdownListMarketing2) {
+                [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:data[@"userid"] displayText:data[@"nama"]]];
+            }
+            row.selectorOptions = optionObjects;
+        }];
+    }
 }
 -(void)initializeForm
 {
@@ -68,7 +111,7 @@ NSString * const kValidationReason = @"kReason";
     [formDescriptor addFormSection:section];
     
     // Name
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:kValidationName rowType:XLFormRowDescriptorTypeFloatLabeledTextField title:@"Nama Marketing"];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:kValidationName rowType:XLFormRowDescriptorTypeSelectorPush title:@"Nama Marketing"];
     row.required = YES;
     if (self.data) {
         [row setDisabled:@YES];
@@ -78,7 +121,7 @@ NSString * const kValidationReason = @"kReason";
     [section addFormRow:row];
     
     // Email
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:kValidationReplacementName rowType:XLFormRowDescriptorTypeFloatLabeledTextField title:@"Nama Marketing yang Menggantikan"];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:kValidationReplacementName rowType:XLFormRowDescriptorTypeSelectorPush title:@"Nama Marketing yang Menggantikan"];
    
     row.required = NO;
     if (self.data) {
@@ -111,7 +154,7 @@ NSString * const kValidationReason = @"kReason";
     
     
     // reason
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:kValidationReason rowType:XLFormRowDescriptorTypeFloatLabeledTextField title:@"Alasan"];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:kValidationReason rowType:XLFormRowDescriptorTypeSelectorPush title:@"Alasan"];
     row.required = YES;
     //[row addValidator:[XLFormRegexValidator formRegexValidatorWithMsg:@"greater than 50 and less than 100" regex:@"^([5-9][0-9]|100)$"]];
     if (self.data) {
@@ -123,6 +166,12 @@ NSString * const kValidationReason = @"kReason";
             row.value = firstResult.name;
         }
         
+    } else {
+        NSMutableArray *optionObjects = [NSMutableArray array];
+        for (Option *data in self.dropdownReasons) {
+            [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:@(data.primaryKey) displayText:data.name]];
+        }
+        row.selectorOptions = optionObjects;
     }
     [section addFormRow:row];
     

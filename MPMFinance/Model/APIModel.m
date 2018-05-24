@@ -64,12 +64,12 @@
         block(nil,error);
     }];
 }
-+ (void) getListMarketingAlternateWithCompletion:(void(^)(NSArray *data, NSError *error))block {
++ (void) getListMarketingAlternateWithWithUserId:(NSString *)userId Completion:(void(^)(NSArray *data, NSError *error))block {
     AFHTTPSessionManager *manager = [MPMGlobal sessionManager];
     NSDictionary *param = @{ @"userid" : [MPMUserInfo getUserInfo][@"userId"],
                              @"token" : [MPMUserInfo getToken],
                              @"data": @{
-                                     @"mkt": @"officer2@gmail.com"
+                                     @"mkt": userId
                                      }
                              };
     [manager POST:[NSString stringWithFormat:@"%@/pengajuan2/getlistmarketingalternate",kApiUrl] parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
@@ -80,6 +80,33 @@
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         block(@[],error);
+    }];
+}
++ (void) setAlternateWithWithDateBegin:(NSString *)dateBegin
+                                            dateEnd:(NSString *)dateEnd
+                                          marketing:(NSString *)marketing
+                                 marketingAlternate:(NSString *)marketingAlternate
+                                           alasanId:(NSString *)alasanId
+                                         Completion:(void(^)(NSString *data, NSError *error))block {
+    AFHTTPSessionManager *manager = [MPMGlobal sessionManager];
+    NSDictionary *param = @{ @"userid" : [MPMUserInfo getUserInfo][@"userId"],
+                             @"token" : [MPMUserInfo getToken],
+                             @"data": @{
+                                     @"dateBegin" : dateBegin,
+                                     @"dateEnd" : dateEnd,
+                                     @"marketing" : marketing,
+                                     @"marketingAlternate" : marketingAlternate,
+                                     @"alasan" : alasanId
+                                     }
+                             };
+    [manager POST:[NSString stringWithFormat:@"%@/pengajuan2/setalternate",kApiUrl] parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
+        ;
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject objectForKey:@"data"]) {
+            block(responseObject[@"data"],nil);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        block(nil,error);
     }];
 }
 + (void) readNotifikasiWithID:(NSString *)idNotifikasi andKeterangan:(NSString *)keterangan {
