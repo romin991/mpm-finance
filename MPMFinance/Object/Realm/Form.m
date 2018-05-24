@@ -787,7 +787,7 @@
     //===
     section = [[FormSection alloc] init];
     section.title = @"Data Marketing";
-    [section.rows addObject:[FormRow new:realm :0 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Kepala Cabang" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :0 :YES :YES :XLFormRowDescriptorTypeSelectorPush :@"Nama Kepala Cabang" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :0 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Marketing" :@"" :@""]];
     [form.sections addObject:section];
     

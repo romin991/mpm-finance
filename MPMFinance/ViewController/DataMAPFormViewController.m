@@ -783,24 +783,40 @@
                 }
                 
                 //Data Marketing
-                
+                if ([row.tag isEqualToString:@"namaKepalaCabang"]){
+                    dispatch_group_enter(group);
+                    [DropdownModel getDropdownWSType:@"BM" keyword:@"" idCabang:idCabang additionalURL:@"" completion:^(NSArray *datas, NSError *error) {
+                        @try {
+                            if (error) {
+                                _error = error;
+                                
+                            } else {
+                                NSMutableArray *optionObjects = [NSMutableArray array];
+                                for (Data *data in datas) {
+                                    [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:data.value displayText:data.name]];
+                                }
+                                row.selectorOptions = optionObjects;
+                            }
+                            
+                        } @catch (NSException *exception) {
+                            NSLog(@"%@", exception);
+                        } @finally {
+                            dispatch_group_leave(group);
+                            NSLog(@"leave");
+                        }
+                    }];
+                }
                 
                 //other setting
-                NSArray *tagForKeyboardNumberPad = [NSArray arrayWithObjects:@"hargaKendaraan",
-                                                    @"totalBayarAwal",
-                                                    @"jangkaWaktuPembiayaan",
-                                                    @"angsuran",
-                                                    @"jumlahAset",
-                                                    @"pokokHutang",
-                                                    @"subsidiUangMuka",
-                                                    @"totalUangMukaDiterimaMPMF",
-                                                    @"biayaAdmin",
-                                                    @"biayaAdminLainnya",
-                                                    @"biayaFidusia",
-                                                    @"biayaLain",
-                                                    @"biayaSurvey",
-                                                    @"persentaseBiayaProvisi",
-                                                    @"effectiveRate",
+                NSArray *tagForKeyboardNumberPad = [NSArray arrayWithObjects:
+                                                    @"tahunMenempati", @"nomorNPWP", @"nomorKartuKeluarga", @"jumlahTanggungan",
+                                                    @"rT", @"rW",
+                                                    @"pendapatanPerBulan", @"lamaBekerja", @"pendapatanLainnyaPerBulan",
+                                                    @"rTKantorPasangan", @"rWKantorPasangan",
+                                                    @"nomorIndukKependudukan",
+                                                    @"hargaKendaraan", @"totalBayarAwal", @"jangkaWaktuPembiayaan", @"angsuran", @"jumlahAset", @"pokokHutang", @"subsidiUangMuka", @"totalUangMukaDiterimaMPMF", @"biayaAdmin", @"biayaAdminLainnya", @"biayaFidusia", @"biayaLain", @"biayaSurvey", @"persentaseBiayaProvisi", @"effectiveRate",
+                                                    @"periodeAsuransi", @"nilaiPertanggungan", @"jenisPertanggunganAllRisk", @"jenisPertanggunganTLO", @"asuransiJiwaKreditKapitalisasi", @"asuransiJiwaDibayarDimuka", @"nilaiPertanggunganAsuransiJiwa", @"premiAsuransiKerugianKendaraan", @"premiAsuransiJiwaKredit", @"periodeAsuransiJiwa",
+                                                    @"silinder",
                                                     nil];
                 if ([tagForKeyboardNumberPad containsObject:row.tag]){
                     //Set keyboard type to numberPad
@@ -958,6 +974,14 @@
         newRow.hidden = row.hidden;
         newRow.selectorTitle = row.selectorTitle;
         newRow.selectorOptions = row.selectorOptions;
+        
+        if ([newRow.tag isEqualToString:@"nomorIndukKependudukan"]){
+            //Set keyboard type to numberPad
+            if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
+            }
+        }
+        
         [newSection addFormRow:newRow];
     }
     [self.form addFormSection:newSection atIndex:self.form.formSections.count -2];
