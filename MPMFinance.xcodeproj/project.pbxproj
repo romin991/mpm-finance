@@ -173,6 +173,10 @@
 		5CA4F9FE20B5A2100053CDA1 /* MessageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA4F9FC20B5A2100053CDA1 /* MessageDetailViewController.m */; };
 		5CA4F9FF20B5A2100053CDA1 /* MessageDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CA4F9FD20B5A2100053CDA1 /* MessageDetailViewController.xib */; };
 		5CA4FA0220B5A4E70053CDA1 /* MPMCustomUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA4FA0120B5A4E70053CDA1 /* MPMCustomUI.m */; };
+		5CA4FA0620B5ADE90053CDA1 /* SetAlternateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA4FA0420B5ADE90053CDA1 /* SetAlternateViewController.m */; };
+		5CA4FA0B20B5B19C0053CDA1 /* SetAlternateTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA4FA0920B5B19C0053CDA1 /* SetAlternateTableViewCell.m */; };
+		5CA4FA0C20B5B19C0053CDA1 /* SetAlternateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CA4FA0A20B5B19C0053CDA1 /* SetAlternateTableViewCell.xib */; };
+		5CA4FA0E20B5CEB10053CDA1 /* SetAlternateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CA4FA0D20B5CEB10053CDA1 /* SetAlternateViewController.xib */; };
 		5CBC4C771ECC8A67002ED03C /* MyProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CBC4C761ECC8A67002ED03C /* MyProfileTableViewController.m */; };
 		5CCD2A221EF9577D000336AF /* SendOTPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCD2A211EF9577D000336AF /* SendOTPViewController.m */; };
 		5CCD2D45209EF52000EBC76F /* KontrakKerjaDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCD2D43209EF52000EBC76F /* KontrakKerjaDetailViewController.m */; };
@@ -469,6 +473,12 @@
 		5CA4F9FD20B5A2100053CDA1 /* MessageDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageDetailViewController.xib; sourceTree = "<group>"; };
 		5CA4FA0020B5A4E70053CDA1 /* MPMCustomUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPMCustomUI.h; sourceTree = "<group>"; };
 		5CA4FA0120B5A4E70053CDA1 /* MPMCustomUI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPMCustomUI.m; sourceTree = "<group>"; };
+		5CA4FA0320B5ADE90053CDA1 /* SetAlternateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetAlternateViewController.h; sourceTree = "<group>"; };
+		5CA4FA0420B5ADE90053CDA1 /* SetAlternateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetAlternateViewController.m; sourceTree = "<group>"; };
+		5CA4FA0820B5B19C0053CDA1 /* SetAlternateTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetAlternateTableViewCell.h; sourceTree = "<group>"; };
+		5CA4FA0920B5B19C0053CDA1 /* SetAlternateTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetAlternateTableViewCell.m; sourceTree = "<group>"; };
+		5CA4FA0A20B5B19C0053CDA1 /* SetAlternateTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetAlternateTableViewCell.xib; sourceTree = "<group>"; };
+		5CA4FA0D20B5CEB10053CDA1 /* SetAlternateViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetAlternateViewController.xib; sourceTree = "<group>"; };
 		5CBC4C751ECC8A67002ED03C /* MyProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProfileTableViewController.h; sourceTree = "<group>"; };
 		5CBC4C761ECC8A67002ED03C /* MyProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProfileTableViewController.m; sourceTree = "<group>"; };
 		5CCD2A201EF9577D000336AF /* SendOTPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendOTPViewController.h; sourceTree = "<group>"; };
@@ -1040,6 +1050,12 @@
 				5CA4F9FB20B5A2100053CDA1 /* MessageDetailViewController.h */,
 				5CA4F9FC20B5A2100053CDA1 /* MessageDetailViewController.m */,
 				5CA4F9FD20B5A2100053CDA1 /* MessageDetailViewController.xib */,
+				5CA4FA0320B5ADE90053CDA1 /* SetAlternateViewController.h */,
+				5CA4FA0420B5ADE90053CDA1 /* SetAlternateViewController.m */,
+				5CA4FA0D20B5CEB10053CDA1 /* SetAlternateViewController.xib */,
+				5CA4FA0820B5B19C0053CDA1 /* SetAlternateTableViewCell.h */,
+				5CA4FA0920B5B19C0053CDA1 /* SetAlternateTableViewCell.m */,
+				5CA4FA0A20B5B19C0053CDA1 /* SetAlternateTableViewCell.xib */,
 			);
 			name = spv;
 			sourceTree = "<group>";
@@ -1268,6 +1284,7 @@
 				481C42AC1F03BB01007D5C3C /* IntakeBPKBFormViewController.xib in Resources */,
 				483F392B1EC3085E00C03253 /* Main.storyboard in Resources */,
 				481C42B61F03BB3B007D5C3C /* CustomerGetCustomerFormViewController.xib in Resources */,
+				5CA4FA0E20B5CEB10053CDA1 /* SetAlternateViewController.xib in Resources */,
 				5CA4F9FF20B5A2100053CDA1 /* MessageDetailViewController.xib in Resources */,
 				4825BFAF1F5C3EED00D091AC /* IntakeBPKBTableViewCell.xib in Resources */,
 				482652811EFBF9DA0002A606 /* UsedCarFormViewController.xib in Resources */,
@@ -1275,6 +1292,7 @@
 				4848B1A81F124BFB00C9DE21 /* PostalCodeViewController.xib in Resources */,
 				4849EEE21EC8815000415E4B /* FormViewController.xib in Resources */,
 				484627271F1AED000049A92A /* AssignMarketingTableViewCell.xib in Resources */,
+				5CA4FA0C20B5B19C0053CDA1 /* SetAlternateTableViewCell.xib in Resources */,
 				4825BFA01F5C3EAF00D091AC /* LegalizationBPKBTableViewCell.xib in Resources */,
 				481C42871F00EF29007D5C3C /* WorkOrderListTableViewCell.xib in Resources */,
 				480A7D1720B3312B0005CEB9 /* UploadPhotoTableViewCell.xib in Resources */,
@@ -1445,6 +1463,7 @@
 				4831CD1F1EDE97A6001EF223 /* SubmenuCollectionViewController.m in Sources */,
 				4825BF9A1F5C34CE00D091AC /* TopUpTableViewCell.m in Sources */,
 				480A7D1620B3312B0005CEB9 /* UploadPhotoTableViewCell.m in Sources */,
+				5CA4FA0620B5ADE90053CDA1 /* SetAlternateViewController.m in Sources */,
 				4825BFD61F5C44C800D091AC /* SuggestionTableViewCell.m in Sources */,
 				4846E2361EE6E92A000C08B7 /* DropdownModel.m in Sources */,
 				5CCD2D50209EF57600EBC76F /* QRCodeGenerator.m in Sources */,
@@ -1462,6 +1481,7 @@
 				483F39221EC3085E00C03253 /* main.m in Sources */,
 				4846E22F1EE66A70000C08B7 /* DataMAPFormViewController.m in Sources */,
 				482652761EFBB8BB0002A606 /* DahsyatFormViewController.m in Sources */,
+				5CA4FA0B20B5B19C0053CDA1 /* SetAlternateTableViewCell.m in Sources */,
 				4826527A1EFBC7100002A606 /* FormSection.m in Sources */,
 				4825BFD11F5C3FCE00D091AC /* CustomerGetCustomerTableViewController.m in Sources */,
 				4825BF9F1F5C3EAF00D091AC /* LegalizationBPKBTableViewCell.m in Sources */,

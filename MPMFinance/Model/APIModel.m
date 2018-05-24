@@ -28,6 +28,42 @@
         block(0,error);
     }];
 }
++ (void) getListHistoryAlternateWithCompletion:(void(^)(NSArray *data, NSError *error))block {
+    AFHTTPSessionManager *manager = [MPMGlobal sessionManager];
+    NSDictionary *param = @{ @"userid" : [MPMUserInfo getUserInfo][@"userId"],
+                             @"token" : [MPMUserInfo getToken],
+                             @"data": @{
+                                 @"mkt": @"officer2@gmail.com"
+                             }
+                             };
+    [manager POST:[NSString stringWithFormat:@"%@/pengajuan2/getlistmarketingalternate",kApiUrl] parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
+        ;
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject objectForKey:@"data"]) {
+            block(responseObject[@"data"],nil);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        block(@[],error);
+    }];
+}
++ (void) getListMarketingAlternateWithCompletion:(void(^)(NSArray *data, NSError *error))block {
+    AFHTTPSessionManager *manager = [MPMGlobal sessionManager];
+    NSDictionary *param = @{ @"userid" : [MPMUserInfo getUserInfo][@"userId"],
+                             @"token" : [MPMUserInfo getToken],
+                             @"data": @{
+                                     @"mkt": @"officer2@gmail.com"
+                                     }
+                             };
+    [manager POST:[NSString stringWithFormat:@"%@/pengajuan2/getlistmarketingalternate",kApiUrl] parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
+        ;
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject objectForKey:@"data"]) {
+            block(responseObject[@"data"],nil);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        block(@[],error);
+    }];
+}
 + (void) readNotifikasiWithID:(NSString *)idNotifikasi andKeterangan:(NSString *)keterangan {
     AFHTTPSessionManager *manager = [MPMGlobal sessionManager];
     NSDictionary *param = @{ @"userid" : [MPMUserInfo getUserInfo][@"userId"],

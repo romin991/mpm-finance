@@ -291,6 +291,16 @@
     menu.isRootMenu = YES;
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
     [realm addObject:menu];
+//=====================================================================================================
+    menu = [[Menu alloc] init];
+    menu.imageName = @"TrackingMarketingIcon";
+    menu.primaryKey = kMenuSetAlternate;
+    menu.indonesiaTitle = menu.primaryKey;
+    menu.sort = 11;
+    menu.menuType = kMenuSetAlternate;
+    menu.isRootMenu = YES;
+    [menu.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
+    [realm addObject:menu];
     
 //=====================================================================================================
     menu = [[Menu alloc] init];
