@@ -218,6 +218,8 @@
                                @"namaKepalaCabang" : data[@"nama_branch_marketing"],
                                @"namaMarketing" : data[@"nama_marketing"],
                                @"rca" : data[@"rca"],
+                               
+                               @"statusGrouping" : data[@"status_grouping"],
                                }];
                 
                 NSMutableArray *families = [NSMutableArray array];

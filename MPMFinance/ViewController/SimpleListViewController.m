@@ -18,6 +18,7 @@
 
 @property RLMResults *forms;
 @property NSMutableDictionary *valueDictionary;
+@property NSArray *statusGrouping;
 
 @end
 
@@ -26,6 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.statusGrouping = [NSArray array];
     
     self.forms = [Form getFormForMenu:self.menu.primaryKey];
     if (self.navigationTitle.length != 0) {
@@ -47,6 +49,12 @@
         if (error == nil) {
             if (response) {
                 weakSelf.valueDictionary = [NSMutableDictionary dictionaryWithDictionary:response];
+                
+                if ([weakSelf.valueDictionary objectForKey:@"statusGrouping"] && [[weakSelf.valueDictionary objectForKey:@"statusGrouping"] isKindOfClass:NSArray.class]) {
+                    weakSelf.statusGrouping = [weakSelf.valueDictionary objectForKey:@"statusGrouping"];
+                    [weakSelf.tableView reloadData];
+                    [weakSelf.tableView layoutIfNeeded];
+                }
             }
             [SVProgressHUD dismiss];
         } else {
@@ -96,8 +104,14 @@
     
     if (form){
         cell.title.text = form.title;
+        if ([self.statusGrouping containsObject:@(indexPath.row+1)]) {
+            cell.checkmark.hidden = false;
+        } else {
+            cell.checkmark.hidden = true;
+        }
     } else {
         cell.title.text = @"";
+        cell.checkmark.hidden = true;
     }
     
     return cell;
