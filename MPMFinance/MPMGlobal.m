@@ -251,6 +251,16 @@ NSString *const kActionQueryDB = @"QueryDB";
     else
         return [formatter dateFromString:string];
 }
++ (NSDate *)dateTimeFromString:(NSString *)object{
+    // ISO8601DateFormatter *formatter = [self getISO8601DateFormatter];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"dd-MM-yyyy HH:mm:ss";
+    NSString *string = object;
+    if (string == nil || [string isKindOfClass:[NSNull class]])
+        return [NSDate dateWithTimeIntervalSince1970:0];
+    else
+        return [formatter dateFromString:string];
+}
 
 + (NSString *)MD5fromString:(NSString *)input {
     

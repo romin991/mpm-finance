@@ -55,4 +55,6 @@
 //pengajuan2/getlistmarketingalternate
 + (void) getListMarketingAlternateWithCompletion:(void(^)(NSArray *data, NSError *error))block;
 
+//pengajuan2/detailalternate
++ (void) getDetailAlternate:(NSString *)detailID WithCompletion:(void(^)(NSDictionary *data, NSError *error))block;
 @end

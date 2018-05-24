@@ -46,6 +46,24 @@
         block(@[],error);
     }];
 }
++ (void) getDetailAlternate:(NSString *)detailID WithCompletion:(void(^)(NSDictionary *data, NSError *error))block {
+    AFHTTPSessionManager *manager = [MPMGlobal sessionManager];
+    NSDictionary *param = @{ @"userid" : [MPMUserInfo getUserInfo][@"userId"],
+                             @"token" : [MPMUserInfo getToken],
+                             @"data": @{
+                                     @"id" : detailID
+                                     }
+                             };
+    [manager POST:[NSString stringWithFormat:@"%@/pengajuan2/detailalternate",kApiUrl] parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
+        ;
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject objectForKey:@"data"]) {
+            block(responseObject[@"data"],nil);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        block(nil,error);
+    }];
+}
 + (void) getListMarketingAlternateWithCompletion:(void(^)(NSArray *data, NSError *error))block {
     AFHTTPSessionManager *manager = [MPMGlobal sessionManager];
     NSDictionary *param = @{ @"userid" : [MPMUserInfo getUserInfo][@"userId"],

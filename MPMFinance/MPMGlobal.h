@@ -150,4 +150,5 @@ extern NSString *const kActionTypeAPICall;
 + (NSString *)MD5fromString:(NSString *)input;
 + (UIImage *)barcodeFromString:(NSString *)string;
 + (NSString *)formatToMoney:(NSNumber *)charge;
++ (NSDate *)dateTimeFromString:(NSString *)object;
 @end
