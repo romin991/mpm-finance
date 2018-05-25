@@ -38,6 +38,8 @@
     
     if ([self.rowDescriptor.tag isEqualToString:@"pekerjaan"]) {
         self.type = @"Pekerjaan";
+    } else if ([self.rowDescriptor.tag isEqualToString:@"bidangUsaha"]){
+        self.type = @"BidangUsaha";
     } else {
         [SVProgressHUD showErrorWithStatus:@"Data not found"];
         [SVProgressHUD dismissWithDelay:1.5];

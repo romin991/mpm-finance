@@ -362,6 +362,9 @@
                 }
                 
                 if ([row.tag isEqualToString:@"bidangUsaha"]){
+                    row.action.viewControllerNibName = @"DropdownWSViewController";
+                    row.valueTransformer = [DropdownValueTransformer class];
+                    
                     dispatch_group_enter(group);
                     [DropdownModel getDropdownWSType:@"BidangUsaha" keyword:@"" idCabang:idCabang additionalURL:@"" completion:^(NSArray *datas, NSError *error) {
                         @try {
