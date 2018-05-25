@@ -10,12 +10,12 @@
 #import "Menu.h"
 #import "SimpleListViewController.h"
 #import <XLForm.h>
+#import "XLFormBaseDropdownViewController.h"
 
-@interface DataMAPFormViewController : XLFormViewController
+@interface DataMAPFormViewController : XLFormBaseDropdownViewController
 
 @property Menu *menu;
 @property NSInteger index;
-@property NSMutableDictionary *valueDictionary;
 @property BOOL isReadOnly;
 @property (weak, nonatomic) id<DataMAPViewControllerDelegate> delegate;
 

@@ -36,6 +36,13 @@
     NSDictionary *valueDictionary = formViewController.valueDictionary;
     self.idCabang = [valueDictionary objectForKey:@"kodeCabang"];
     
+    if ([self.rowDescriptor.tag isEqualToString:@"pekerjaan"]) {
+        self.type = @"Pekerjaan";
+    } else {
+        [SVProgressHUD showErrorWithStatus:@"Data not found"];
+        [SVProgressHUD dismissWithDelay:1.5];
+        [self.navigationController popViewControllerAnimated:true];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

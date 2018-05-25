@@ -15,6 +15,7 @@
 #import "ProfileModel.h"
 #import "DataMAPModel.h"
 #import "PostalCodeValueTransformer.h"
+#import "DropdownValueTransformer.h"
 
 @interface DataMAPFormViewController ()
 
@@ -334,6 +335,9 @@
                 
                 //Data Pekerjaan
                 if ([row.tag isEqualToString:@"pekerjaan"]){
+                    row.action.viewControllerNibName = @"DropdownWSViewController";
+                    row.valueTransformer = [DropdownValueTransformer class];
+                    
                     dispatch_group_enter(group);
                     [DropdownModel getDropdownWSType:@"Pekerjaan" keyword:@"" idCabang:idCabang additionalURL:@"" completion:^(NSArray *datas, NSError *error) {
                         @try {
