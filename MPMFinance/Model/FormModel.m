@@ -10,6 +10,7 @@
 #import "DropdownModel.h"
 #import "PostalCode.h"
 #import "Asset.h"
+#import "Data.h"
 
 @implementation FormModel
 
@@ -58,8 +59,19 @@
             object = ((PostalCode *) row.value).postalCode;
         } else if ([row.value isKindOfClass:Asset.class]){
             object = ((Asset *) row.value).value;
+        } else if ([row.value isKindOfClass:Data.class]){
+            object = ((Data *) row.value).value;
         } else if ([row.value isKindOfClass:UIImage.class]){
             object = UIImageJPEGRepresentation(row.value, 0.0f);
+        } else if ([row.value isKindOfClass:NSArray.class]) {
+            NSMutableArray *arrayOfValue = [NSMutableArray array];
+            for (id value in row.value) {
+                if ([value isKindOfClass:XLFormOptionsObject.class]) {
+                    NSDictionary *dictionary = @{row.tag : ((XLFormOptionsObject*)value).valueData};
+                    [arrayOfValue addObject:dictionary];
+                }
+            }
+            object = arrayOfValue;
         } else if (row.value != nil && ![row.value isKindOfClass:NSNull.class]){
             object = row.value;
         }

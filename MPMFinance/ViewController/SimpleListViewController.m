@@ -35,7 +35,10 @@
     } else {
         [self setTitle:self.menu.title];
     }
-    
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     if (self.list) {
         [self fetchData];
     }

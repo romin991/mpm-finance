@@ -66,47 +66,85 @@
 }
 
 + (void)postSurveyWithList:(List *)list dictionary:(NSDictionary *)dictionary completion:(void(^)(NSDictionary *dictionary, NSError *error))block{
-    AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
-    NSMutableDictionary* param = [NSMutableDictionary dictionaryWithDictionary:
-                                  @{@"userid" :[MPMUserInfo getUserInfo][@"userId"],
-                                    @"token" : [MPMUserInfo getToken]}];
-    
-    NSMutableDictionary *dataDictionary = [NSMutableDictionary dictionary];
-    
+    AFHTTPSessionManager *manager = [MPMGlobal sessionManager];
+    NSMutableDictionary *param;
     @try {
-        [dataDictionary setObject:[dictionary objectForKey:@"localIpad"] forKey:@"server"];
+        param = [NSMutableDictionary dictionaryWithDictionary:
+                                      @{@"userid" :[MPMUserInfo getUserInfo][@"userId"],
+                                        @"token" : [MPMUserInfo getToken],
+                                        }];
         
-        [param setObject:dataDictionary forKey:@"data"];
-    } @catch (NSException *exception) {
+        NSMutableDictionary *observasiTempatTinggal = [NSMutableDictionary dictionaryWithDictionary:
+                                                       @{@"lingkungan" : [dictionary objectForKey:@"lingkungan"],
+                                                         @"fasilitasRumah" : [dictionary objectForKey:@"fasilitasTempatTinggalYangDimiliki"],
+                                                         @"aksesJlnMasuk" : [dictionary objectForKey:@"aksesJalanMasuk"],
+                                                         @"patokanDktRmh" : [dictionary objectForKey:@"patokanDepanRumah"],
+                                                         @"penampakanDpnRmh" : [dictionary objectForKey:@"penampakanDepanRumah"],
+                                                         @"kondisiRumah" : [dictionary objectForKey:@"kondisiTempatTinggal"],
+                                                         }];
+        
+        NSMutableArray *informanArray = [NSMutableArray array];
+        for (NSDictionary *informanDictionary in [dictionary objectForKey:@"informanSurvey"]) {
+            NSMutableDictionary *informanAPIDictionary = [NSMutableDictionary dictionaryWithDictionary:
+                                                          @{@"frekDebtCollector": [informanDictionary objectForKey:@"frekuensiDidatangiPenagihUtang"],
+                                                            @"namaInforman": [informanDictionary objectForKey:@"nama"],
+                                                            @"informasiLain": [informanDictionary objectForKey:@"informasiLain"],
+                                                            @"statusRmh": [informanDictionary objectForKey:@"statusKepemilikanRumah"],
+                                                            @"hubungan": [informanDictionary objectForKey:@"hubungan"],
+                                                            @"ketDomisili": [informanDictionary objectForKey:@"penjelasan"],
+                                                            @"lamaTinggal": [informanDictionary objectForKey:@"lamaTinggal"],
+                                                            @"debiturOrganisasi": [informanDictionary objectForKey:@"debiturOrganisasi"],
+                                                            @"jmlOrgTglDirmh": [informanDictionary objectForKey:@"jumlahOrang"],
+                                                            @"kebenaranDomisili": [informanDictionary objectForKey:@"kebenaranDomisili"],
+                                                            @"lastDebitur": [informanDictionary objectForKey:@"terakhirBerinteraksiDenganDebitur"]
+                                                            }];
+            [informanArray addObject:informanAPIDictionary];
+        }
+        
+        NSMutableDictionary *dataSurvey = [NSMutableDictionary dictionaryWithDictionary:
+                                           @{@"informanSurvey" : informanArray,
+                                             @"idPengajuan" : @(list.primaryKey),
+                                             @"lng" : @"",
+                                             @"lat" : @"",
+                                             
+                                             }];
+        
+        NSMutableDictionary *data = [NSMutableDictionary dictionaryWithDictionary:
+                                     @{@"ketSurvey" : [dictionary objectForKey:@"penjelasan"],
+                                       @"alamatDitemukan" : @([[dictionary objectForKey:@"alamatSurveyDitemukan"] integerValue]),
+                                       @"tanggalSurvey" : [dictionary objectForKey:@"tanggalSurvey"],
+                                       @"observasiTempatTinggal" : observasiTempatTinggal,
+                                       @"dataSurvey" : dataSurvey,
+                                       }];
+        
+        [param setObject:data forKey:@"data"];
+    } @catch(NSException *exception) {
         NSLog(@"%@", exception);
-        if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
-                                                  code:1
-                                              userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(exception.reason, nil)}]);
-    } @finally {
-        [manager POST:[NSString stringWithFormat:@"%@/survey/insert", kApiUrl] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            @try {
-                NSInteger code = [[responseObject objectForKey:@"statusCode"] integerValue];
-                NSString *message = [responseObject objectForKey:@"message"];
-                if (code == 200) {
-                    if (block) block(responseObject, nil);
-                    
-                } else {
-                    if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
-                                                              code:code
-                                                          userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(message, nil)}]);
-                }
+    }
+    
+    [manager POST:[NSString stringWithFormat:@"%@/survey/insert", kApiUrl] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        @try {
+            NSInteger code = [[responseObject objectForKey:@"statusCode"] integerValue];
+            NSString *message = [responseObject objectForKey:@"message"];
+            if (code == 200) {
+                if (block) block(responseObject, nil);
                 
-            } @catch (NSException *exception) {
-                NSLog(@"%@", exception);
+            } else {
                 if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
-                                                          code:1
-                                                      userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(exception.reason, nil)}]);
+                                                          code:code
+                                                      userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(message, nil)}]);
             }
             
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            if (block) block(nil, error);
-        }];
-    }
+        } @catch (NSException *exception) {
+            NSLog(@"%@", exception);
+            if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                      code:1
+                                                  userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(exception.reason, nil)}]);
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (block) block(nil, error);
+    }];
 }
 
 @end

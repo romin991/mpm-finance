@@ -328,7 +328,7 @@
                @"alamat_kantor_kelurahan" : [dictionary objectForKey:@"kelurahan"] ?: @"",
                @"alamat_kantor_kecamatan" : [dictionary objectForKey:@"kecamatan"] ?: @"",
                @"alamat_kantor_kota" : [dictionary objectForKey:@"kota"] ?: @"",
-               @"lama_bekerja" : [dictionary objectForKey:@"lamaBekerjaDalamBulan"] ?: @"",
+               @"lama_bekerja" : [dictionary objectForKey:@"lamaBekerja"] ?: @"",
                
                @"pendapatan_per_tahun" : [dictionary objectForKey:@"pendapatanPerBulan"] ?: @"",
                @"lama_bekerja" : [dictionary objectForKey:@"lamaBekerja"] ?: @"",
