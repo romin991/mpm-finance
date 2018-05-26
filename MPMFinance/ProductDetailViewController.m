@@ -23,11 +23,13 @@
 {
     NSAttributedString *attributedString = [[NSAttributedString alloc]
                                             initWithData: [self.contentString dataUsingEncoding:NSUnicodeStringEncoding]
-                                            options: @{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType }
+                                            options: @{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSFontAttributeName : [UIFont systemFontOfSize:14.0f] }
                                             documentAttributes: nil
                                             error: nil
                                             ];
+
     self.content.attributedText = attributedString;
+    self.content.font = [UIFont systemFontOfSize:15.0f];
     
 }
 - (void)didReceiveMemoryWarning {

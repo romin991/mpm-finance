@@ -19,6 +19,7 @@ NSString *const kRoleCustomer = @"Customer";
 NSString *const kRoleAgent = @"Agent";
 NSString *const kRoleDealer = @"Dealer";
 NSString *const kRoleSupervisor = @"Supervisor";
+NSString *const kRoleBM = @"BM";
 NSString *const kRoleOfficer = @"Officer";
 NSString *const kRoleDedicated = @"Dedicated";
 NSString *const kNoRole = @"NotLogin";
@@ -26,6 +27,7 @@ NSString *const kNoRole = @"NotLogin";
 NSString *const kMenuListWorkOrder = @"List Work Order";
 NSString *const kMenuOnlineSubmission = @"Online Submission";
 NSString *const kMenuTrackingMarketing = @"Tracking Marketing";
+NSString *const kMenuMonitoring = @"Monitoring";
 NSString *const kMenuCalculatorMarketing = @"Calculator Marketing";
 NSString *const kMenuListMap = @"List Map";
 NSString *const kMenuListSurvey = @"List Survey";
@@ -64,7 +66,7 @@ NSString *const kSubmenuMelengkapiData = @"Melengkapi Data";
 NSString *const kSubmenuAssignMarketing = @"Assign Marketing";
 
 NSString *const kSubmenuListPengajuanApplikasi = @"List Pengajuan Aplikasi";
-NSString *const kSubmenuMonitoring = @"Monitoring";
+NSString *const kSubmenuMonitoring = @"Monitoring ";
 
 NSString *const kSubmenuDahsyat = @"Dahsyat";
 NSString *const kSubmenuUsedCar = @"Used Car";

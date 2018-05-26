@@ -64,4 +64,7 @@
                                  marketingAlternate:(NSString *)marketingAlternate
                                            alasanId:(NSString *)alasanId
                             Completion:(void(^)(NSString *data, NSError *error))block;
+//tracking/getallmarketing
++ (void) getAllMarketingWithCompletion:(void(^)(NSArray *data, NSError *error))block;
++ (void) getAllMarketingTrackingDetail:(NSString *)marketingUserId WithCompletion:(void(^)(NSArray *data, NSError *error))block;
 @end

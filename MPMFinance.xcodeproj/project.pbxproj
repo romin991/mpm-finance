@@ -146,6 +146,15 @@
 		48E3E92E20B5C93F00E8D170 /* XLFormBaseDropdownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E3E92D20B5C93F00E8D170 /* XLFormBaseDropdownViewController.m */; };
 		48F7F4061EC5C931008DB808 /* Role.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F7F4051EC5C931008DB808 /* Role.m */; };
 		5C0138751EE43C9300B9B40B /* ContactUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0138741EE43C9300B9B40B /* ContactUsViewController.m */; };
+		5C0314A620B7F51E0046F420 /* MonitoringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0314A420B7F51E0046F420 /* MonitoringViewController.m */; };
+		5C0314A720B7F51E0046F420 /* MonitoringViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C0314A520B7F51E0046F420 /* MonitoringViewController.xib */; };
+		5C0314AB20B7F5780046F420 /* MonitoringTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0314A920B7F5780046F420 /* MonitoringTableViewCell.m */; };
+		5C0314AC20B7F5780046F420 /* MonitoringTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C0314AA20B7F5780046F420 /* MonitoringTableViewCell.xib */; };
+		5C0314B020B829A80046F420 /* TrackingOfficerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0314AE20B829A80046F420 /* TrackingOfficerViewController.m */; };
+		5C0314B120B829A80046F420 /* TrackingOfficerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C0314AF20B829A80046F420 /* TrackingOfficerViewController.xib */; };
+		5C0314B520B842900046F420 /* TrackingAnnotationCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0314B320B842900046F420 /* TrackingAnnotationCalloutView.m */; };
+		5C0314B620B842900046F420 /* TrackingAnnotationCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C0314B420B842900046F420 /* TrackingAnnotationCalloutView.xib */; };
+		5C0314BA20B851900046F420 /* DetailTrackingAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0314B920B851900046F420 /* DetailTrackingAnnotation.m */; };
 		5C2553BD20ADAFD100CB543F /* OfflineDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2553BC20ADAFD100CB543F /* OfflineDataManager.m */; };
 		5C2DED8C20B696D10058FA14 /* SetAlternateDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2DED8A20B696D10058FA14 /* SetAlternateDetailViewController.m */; };
 		5C2DED8D20B696D10058FA14 /* SetAlternateDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C2DED8B20B696D10058FA14 /* SetAlternateDetailViewController.xib */; };
@@ -186,6 +195,8 @@
 		5CCD2D4E209EF57600EBC76F /* CIColor+QRCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCD2D49209EF57600EBC76F /* CIColor+QRCode.m */; };
 		5CCD2D4F209EF57600EBC76F /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCD2D4B209EF57600EBC76F /* NSString+Utils.m */; };
 		5CCD2D50209EF57600EBC76F /* QRCodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCD2D4D209EF57600EBC76F /* QRCodeGenerator.m */; };
+		5CCF978020B9A814001CF433 /* WorkOderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCF977E20B9A814001CF433 /* WorkOderTableViewCell.m */; };
+		5CCF978120B9A814001CF433 /* WorkOderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CCF977F20B9A814001CF433 /* WorkOderTableViewCell.xib */; };
 		5CDC30421EC3E274001D97DB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC30411EC3E274001D97DB /* GoogleService-Info.plist */; };
 		5CF497B81ED330FF0005327D /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF497B71ED330FF0005327D /* RegisterViewController.m */; };
 		5CF6819C1EC747A60056ACD3 /* KASlideShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF6819B1EC747A60056ACD3 /* KASlideShow.m */; };
@@ -426,6 +437,20 @@
 		48F7F4051EC5C931008DB808 /* Role.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Role.m; path = Object/Realm/Role.m; sourceTree = "<group>"; };
 		5C0138731EE43C9300B9B40B /* ContactUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactUsViewController.h; sourceTree = "<group>"; };
 		5C0138741EE43C9300B9B40B /* ContactUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactUsViewController.m; sourceTree = "<group>"; };
+		5C0314A320B7F51E0046F420 /* MonitoringViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MonitoringViewController.h; sourceTree = "<group>"; };
+		5C0314A420B7F51E0046F420 /* MonitoringViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MonitoringViewController.m; sourceTree = "<group>"; };
+		5C0314A520B7F51E0046F420 /* MonitoringViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MonitoringViewController.xib; sourceTree = "<group>"; };
+		5C0314A820B7F5780046F420 /* MonitoringTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MonitoringTableViewCell.h; sourceTree = "<group>"; };
+		5C0314A920B7F5780046F420 /* MonitoringTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MonitoringTableViewCell.m; sourceTree = "<group>"; };
+		5C0314AA20B7F5780046F420 /* MonitoringTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MonitoringTableViewCell.xib; sourceTree = "<group>"; };
+		5C0314AD20B829A80046F420 /* TrackingOfficerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrackingOfficerViewController.h; sourceTree = "<group>"; };
+		5C0314AE20B829A80046F420 /* TrackingOfficerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrackingOfficerViewController.m; sourceTree = "<group>"; };
+		5C0314AF20B829A80046F420 /* TrackingOfficerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackingOfficerViewController.xib; sourceTree = "<group>"; };
+		5C0314B220B842900046F420 /* TrackingAnnotationCalloutView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrackingAnnotationCalloutView.h; sourceTree = "<group>"; };
+		5C0314B320B842900046F420 /* TrackingAnnotationCalloutView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrackingAnnotationCalloutView.m; sourceTree = "<group>"; };
+		5C0314B420B842900046F420 /* TrackingAnnotationCalloutView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackingAnnotationCalloutView.xib; sourceTree = "<group>"; };
+		5C0314B820B851900046F420 /* DetailTrackingAnnotation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailTrackingAnnotation.h; sourceTree = "<group>"; };
+		5C0314B920B851900046F420 /* DetailTrackingAnnotation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailTrackingAnnotation.m; sourceTree = "<group>"; };
 		5C2553BB20ADAFD100CB543F /* OfflineDataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OfflineDataManager.h; sourceTree = "<group>"; };
 		5C2553BC20ADAFD100CB543F /* OfflineDataManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OfflineDataManager.m; sourceTree = "<group>"; };
 		5C2DED8920B696D10058FA14 /* SetAlternateDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetAlternateDetailViewController.h; sourceTree = "<group>"; };
@@ -497,6 +522,9 @@
 		5CCD2D4B209EF57600EBC76F /* NSString+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Utils.m"; sourceTree = "<group>"; };
 		5CCD2D4C209EF57600EBC76F /* QRCodeGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeGenerator.h; sourceTree = "<group>"; };
 		5CCD2D4D209EF57600EBC76F /* QRCodeGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeGenerator.m; sourceTree = "<group>"; };
+		5CCF977D20B9A814001CF433 /* WorkOderTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorkOderTableViewCell.h; sourceTree = "<group>"; };
+		5CCF977E20B9A814001CF433 /* WorkOderTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WorkOderTableViewCell.m; sourceTree = "<group>"; };
+		5CCF977F20B9A814001CF433 /* WorkOderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkOderTableViewCell.xib; sourceTree = "<group>"; };
 		5CD07BD91EC342B0007C8C08 /* MPMFinance.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MPMFinance.entitlements; sourceTree = "<group>"; };
 		5CDC30411EC3E274001D97DB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5CF497B61ED330FF0005327D /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
@@ -1038,6 +1066,21 @@
 			name = ContactUsViewController;
 			sourceTree = "<group>";
 		};
+		5C0314B720B851650046F420 /* tracking */ = {
+			isa = PBXGroup;
+			children = (
+				5C0314AD20B829A80046F420 /* TrackingOfficerViewController.h */,
+				5C0314AE20B829A80046F420 /* TrackingOfficerViewController.m */,
+				5C0314AF20B829A80046F420 /* TrackingOfficerViewController.xib */,
+				5C0314B220B842900046F420 /* TrackingAnnotationCalloutView.h */,
+				5C0314B320B842900046F420 /* TrackingAnnotationCalloutView.m */,
+				5C0314B420B842900046F420 /* TrackingAnnotationCalloutView.xib */,
+				5C0314B820B851900046F420 /* DetailTrackingAnnotation.h */,
+				5C0314B920B851900046F420 /* DetailTrackingAnnotation.m */,
+			);
+			name = tracking;
+			sourceTree = "<group>";
+		};
 		5C2553BA20ADAFBD00CB543F /* Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -1050,6 +1093,7 @@
 		5C37215520B560DF00D7F037 /* spv */ = {
 			isa = PBXGroup;
 			children = (
+				5C0314B720B851650046F420 /* tracking */,
 				5C37215920B5784200D7F037 /* MessageTableViewCell.h */,
 				5C37215A20B5784200D7F037 /* MessageTableViewCell.m */,
 				5CA4F9FB20B5A2100053CDA1 /* MessageDetailViewController.h */,
@@ -1064,6 +1108,15 @@
 				5C2DED8920B696D10058FA14 /* SetAlternateDetailViewController.h */,
 				5C2DED8A20B696D10058FA14 /* SetAlternateDetailViewController.m */,
 				5C2DED8B20B696D10058FA14 /* SetAlternateDetailViewController.xib */,
+				5C0314A320B7F51E0046F420 /* MonitoringViewController.h */,
+				5C0314A420B7F51E0046F420 /* MonitoringViewController.m */,
+				5C0314A520B7F51E0046F420 /* MonitoringViewController.xib */,
+				5C0314A820B7F5780046F420 /* MonitoringTableViewCell.h */,
+				5C0314A920B7F5780046F420 /* MonitoringTableViewCell.m */,
+				5C0314AA20B7F5780046F420 /* MonitoringTableViewCell.xib */,
+				5CCF977D20B9A814001CF433 /* WorkOderTableViewCell.h */,
+				5CCF977E20B9A814001CF433 /* WorkOderTableViewCell.m */,
+				5CCF977F20B9A814001CF433 /* WorkOderTableViewCell.xib */,
 			);
 			name = spv;
 			sourceTree = "<group>";
@@ -1304,7 +1357,9 @@
 				5CA4FA0C20B5B19C0053CDA1 /* SetAlternateTableViewCell.xib in Resources */,
 				4825BFA01F5C3EAF00D091AC /* LegalizationBPKBTableViewCell.xib in Resources */,
 				481C42871F00EF29007D5C3C /* WorkOrderListTableViewCell.xib in Resources */,
+				5C0314AC20B7F5780046F420 /* MonitoringTableViewCell.xib in Resources */,
 				480A7D1720B3312B0005CEB9 /* UploadPhotoTableViewCell.xib in Resources */,
+				5C0314B120B829A80046F420 /* TrackingOfficerViewController.xib in Resources */,
 				4848B1B31F1251E700C9DE21 /* PostalCodeTableViewCell.xib in Resources */,
 				5CCD2D46209EF52000EBC76F /* KontrakKerjaDetailViewController.xib in Resources */,
 				483CC5BA20AC957C0084BC6B /* DisclaimerViewController.xib in Resources */,
@@ -1319,6 +1374,9 @@
 				48482E741EC99B230029ACBE /* ListTableViewCell.xib in Resources */,
 				481C429D1F03BABA007D5C3C /* LegalizationBPKBFormViewController.xib in Resources */,
 				5C4D5FBB208F5C18004CA73E /* ProductCollectionViewCell.xib in Resources */,
+				5C0314A720B7F51E0046F420 /* MonitoringViewController.xib in Resources */,
+				5C0314B620B842900046F420 /* TrackingAnnotationCalloutView.xib in Resources */,
+				5CCF978120B9A814001CF433 /* WorkOderTableViewCell.xib in Resources */,
 				4825BFA51F5C3EC100D091AC /* InsuranceClaimTableViewCell.xib in Resources */,
 				4831CD281EDE97D7001EF223 /* SubmenuCollectionViewCell.xib in Resources */,
 				4846271F1F1A0C3B0049A92A /* AssignMarketingListViewController.xib in Resources */,
@@ -1398,6 +1456,7 @@
 				4825BFB81F5C3F4800D091AC /* CustomerGetCustomerTableViewCell.m in Sources */,
 				5C4D5FBA208F5C18004CA73E /* ProductCollectionViewCell.m in Sources */,
 				4825BFC71F5C3F8F00D091AC /* IntakeBPKBTableViewController.m in Sources */,
+				5C0314B520B842900046F420 /* TrackingAnnotationCalloutView.m in Sources */,
 				48D44D581EE83A2F005FC8DB /* SurveyModel.m in Sources */,
 				487F39F91ED678D400D6E580 /* Action.m in Sources */,
 				48D44D4C1EDF8F28005FC8DB /* NSString+MixedCasing.m in Sources */,
@@ -1432,6 +1491,7 @@
 				5CF6819C1EC747A60056ACD3 /* KASlideShow.m in Sources */,
 				481C428A1F013784007D5C3C /* DataSource.m in Sources */,
 				481C42AB1F03BB01007D5C3C /* IntakeBPKBFormViewController.m in Sources */,
+				5C0314AB20B7F5780046F420 /* MonitoringTableViewCell.m in Sources */,
 				4849EEE11EC8815000415E4B /* FormViewController.m in Sources */,
 				483A9D931F0BAB9F0033F714 /* InsuranceModel.m in Sources */,
 				484ADB201F0CE3C10006BCB0 /* IntakeBPKBModel.m in Sources */,
@@ -1484,6 +1544,7 @@
 				4825BF921F5C338100D091AC /* TopUpHistoryTableViewController.m in Sources */,
 				48CDD8341EC9B3AD0038D626 /* SimpleListTableViewCell.m in Sources */,
 				487F39F61ED64F9400D6E580 /* APIModel.m in Sources */,
+				5C0314A620B7F51E0046F420 /* MonitoringViewController.m in Sources */,
 				482652881EFBFA050002A606 /* NewCarFormViewController.m in Sources */,
 				481C42B91F03EE7D007D5C3C /* CustomerModel.m in Sources */,
 				5C46F51C1EE81966009C6AD6 /* DashboardViewController.m in Sources */,
@@ -1496,6 +1557,7 @@
 				4825BFD11F5C3FCE00D091AC /* CustomerGetCustomerTableViewController.m in Sources */,
 				4825BF9F1F5C3EAF00D091AC /* LegalizationBPKBTableViewCell.m in Sources */,
 				481C42B51F03BB3B007D5C3C /* CustomerGetCustomerFormViewController.m in Sources */,
+				5C0314B020B829A80046F420 /* TrackingOfficerViewController.m in Sources */,
 				4886BB081EC4ABF8000F8DBE /* Menu.m in Sources */,
 				4849EEDA1EC8185E00415E4B /* Form.m in Sources */,
 				5C2553BD20ADAFD100CB543F /* OfflineDataManager.m in Sources */,
@@ -1512,10 +1574,12 @@
 				481C42971F03BAA0007D5C3C /* TopUpFormViewController.m in Sources */,
 				5C37215B20B5784200D7F037 /* MessageTableViewCell.m in Sources */,
 				4825BFBD1F5C3F6800D091AC /* LegalizationBPKBTableViewController.m in Sources */,
+				5C0314BA20B851900046F420 /* DetailTrackingAnnotation.m in Sources */,
 				48D44D4F1EDFD2AF005FC8DB /* ISO8601DateFormatter.m in Sources */,
 				5CCD2D45209EF52000EBC76F /* KontrakKerjaDetailViewController.m in Sources */,
 				5CCD2A221EF9577D000336AF /* SendOTPViewController.m in Sources */,
 				4835AD5220AA72AB005F4E43 /* ChangePasswordViewController.m in Sources */,
+				5CCF978020B9A814001CF433 /* WorkOderTableViewCell.m in Sources */,
 				5C4D5FBF208F5F0C004CA73E /* ProductDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
