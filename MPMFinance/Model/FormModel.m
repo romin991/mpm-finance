@@ -67,7 +67,7 @@
             NSMutableArray *arrayOfValue = [NSMutableArray array];
             for (id value in row.value) {
                 if ([value isKindOfClass:XLFormOptionsObject.class]) {
-                    NSDictionary *dictionary = @{row.tag : ((XLFormOptionsObject*)value).valueData};
+                    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:@{row.tag : ((XLFormOptionsObject*)value).valueData}];
                     [arrayOfValue addObject:dictionary];
                 }
             }

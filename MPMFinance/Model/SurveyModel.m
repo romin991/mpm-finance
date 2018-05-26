@@ -74,29 +74,37 @@
                                         @"token" : [MPMUserInfo getToken],
                                         }];
         
+        for (NSMutableDictionary *objectDictionary in [dictionary objectForKey:@"fasilitasRumah"]) {
+            [objectDictionary setObject:[NSString stringWithFormat:@"%@", [objectDictionary objectForKey:@"fasilitasRumah"]] forKey:@"fasilitasRumah"];
+        }
+        
+        for (NSMutableDictionary *objectDictionary in [dictionary objectForKey:@"patokanDktRmh"]) {
+            [objectDictionary setObject:[NSString stringWithFormat:@"%@", [objectDictionary objectForKey:@"patokanDktRmh"]] forKey:@"patokanDktRmh"];
+        }
+        
         NSMutableDictionary *observasiTempatTinggal = [NSMutableDictionary dictionaryWithDictionary:
-                                                       @{@"lingkungan" : [dictionary objectForKey:@"lingkungan"],
-                                                         @"fasilitasRumah" : [dictionary objectForKey:@"fasilitasTempatTinggalYangDimiliki"],
-                                                         @"aksesJlnMasuk" : [dictionary objectForKey:@"aksesJalanMasuk"],
-                                                         @"patokanDktRmh" : [dictionary objectForKey:@"patokanDepanRumah"],
-                                                         @"penampakanDpnRmh" : [dictionary objectForKey:@"penampakanDepanRumah"],
-                                                         @"kondisiRumah" : [dictionary objectForKey:@"kondisiTempatTinggal"],
+                                                       @{@"lingkungan" : [NSString stringWithFormat:@"%@", [dictionary objectForKey:@"lingkungan"]],
+                                                         @"fasilitasRumah" : [dictionary objectForKey:@"fasilitasRumah"],
+                                                         @"aksesJlnMasuk" : [NSString stringWithFormat:@"%@", [dictionary objectForKey:@"aksesJalanMasuk"]],
+                                                         @"patokanDktRmh" : [dictionary objectForKey:@"patokanDktRmh"],
+                                                         @"penampakanDpnRmh" : [NSString stringWithFormat:@"%@", [dictionary objectForKey:@"penampakanDepanRumah"]],
+                                                         @"kondisiRumah" : [NSString stringWithFormat:@"%@", [dictionary objectForKey:@"kondisiTempatTinggal"]],
                                                          }];
         
         NSMutableArray *informanArray = [NSMutableArray array];
         for (NSDictionary *informanDictionary in [dictionary objectForKey:@"informanSurvey"]) {
             NSMutableDictionary *informanAPIDictionary = [NSMutableDictionary dictionaryWithDictionary:
-                                                          @{@"frekDebtCollector": [informanDictionary objectForKey:@"frekuensiDidatangiPenagihUtang"],
-                                                            @"namaInforman": [informanDictionary objectForKey:@"nama"],
-                                                            @"informasiLain": [informanDictionary objectForKey:@"informasiLain"],
-                                                            @"statusRmh": [informanDictionary objectForKey:@"statusKepemilikanRumah"],
-                                                            @"hubungan": [informanDictionary objectForKey:@"hubungan"],
+                                                          @{@"frekDebtCollector": [NSString stringWithFormat:@"%@", [informanDictionary objectForKey:@"frekuensiDidatangiPenagihUtang"]],
+                                                            @"namaInforman": [NSString stringWithFormat:@"%@", [informanDictionary objectForKey:@"nama"]],
+                                                            @"informasiLain": [NSString stringWithFormat:@"%@", [informanDictionary objectForKey:@"informasiLain"]],
+                                                            @"statusRmh": [NSString stringWithFormat:@"%@", [informanDictionary objectForKey:@"statusKepemilikanRumah"]],
+                                                            @"hubungan": [NSString stringWithFormat:@"%@", [informanDictionary objectForKey:@"hubungan"]],
                                                             @"ketDomisili": [informanDictionary objectForKey:@"penjelasan"],
                                                             @"lamaTinggal": [informanDictionary objectForKey:@"lamaTinggal"],
-                                                            @"debiturOrganisasi": [informanDictionary objectForKey:@"debiturOrganisasi"],
+                                                            @"debiturOrganisasi": [NSString stringWithFormat:@"%@", [informanDictionary objectForKey:@"debiturOrganisasi"]],
                                                             @"jmlOrgTglDirmh": [informanDictionary objectForKey:@"jumlahOrang"],
-                                                            @"kebenaranDomisili": [informanDictionary objectForKey:@"kebenaranDomisili"],
-                                                            @"lastDebitur": [informanDictionary objectForKey:@"terakhirBerinteraksiDenganDebitur"]
+                                                            @"kebenaranDomisili": [NSString stringWithFormat:@"%@", [informanDictionary objectForKey:@"kebenaranDomisili"]],
+                                                            @"lastDebitur": [NSString stringWithFormat:@"%@", [informanDictionary objectForKey:@"terakhirBerinteraksiDenganDebitur"]]
                                                             }];
             [informanArray addObject:informanAPIDictionary];
         }
@@ -104,8 +112,8 @@
         NSMutableDictionary *dataSurvey = [NSMutableDictionary dictionaryWithDictionary:
                                            @{@"informanSurvey" : informanArray,
                                              @"idPengajuan" : @(list.primaryKey),
-                                             @"lng" : @"",
-                                             @"lat" : @"",
+                                             @"lng" : @0,
+                                             @"lat" : @0,
                                              
                                              }];
         
