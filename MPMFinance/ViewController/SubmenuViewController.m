@@ -75,10 +75,11 @@
                     }
                 } @catch (NSException *exception) {
                     NSLog(@"%@", exception);
+                } @finally {
+                    [self.tableView reloadData];
+                    [self.tableView layoutIfNeeded];
+                    [SVProgressHUD dismiss];
                 }
-                [self.tableView reloadData];
-                [self.tableView layoutIfNeeded];
-                [SVProgressHUD dismiss];
             }
         }];
     }

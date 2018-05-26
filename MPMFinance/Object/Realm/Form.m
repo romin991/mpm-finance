@@ -865,15 +865,15 @@
     [section.rows addObject:[FormRow new:realm :7 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Kondisi Tempat Tinggal" :@"" :@"getKondisiTmptTggl"]];
     [section.rows addObject:[FormRow new:realm :7 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Lingkungan" :@"" :@"getLingkungan"]];
     [section.rows addObject:[FormRow new:realm :7 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Akses Jalan Masuk" :@"" :@"getAksesjalanmasuk"]];
-    [section.rows addObject:[FormRow new:realm :7 :YES :NO :XLFormRowDescriptorTypeMultipleSelector :@"Fasilitas Tempat Tinggal Yang Dimiliki" :@"" :@"getFasilitasRumah"]];
+    [section.rows addObject:[FormRow new:realm :7 :YES :NO :XLFormRowDescriptorTypeMultipleSelector :@"Fasilitas Tempat Tinggal Yang Dimiliki" :@"fasilitasRumah" :@"getFasilitasRumah"]];
     [section.rows addObject:[FormRow new:realm :7 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Penampakan Depan Rumah" :@"" :@"getPenampakanDpnRmh"]];
-    [section.rows addObject:[FormRow new:realm :7 :YES :NO :XLFormRowDescriptorTypeMultipleSelector :@"Patokan Depan Rumah" :@"" :@"getPatokanDpnRmh"]];
+    [section.rows addObject:[FormRow new:realm :7 :YES :NO :XLFormRowDescriptorTypeMultipleSelector :@"Patokan Depan Rumah" :@"patokanDktRmh" :@"getPatokanDpnRmh"]];
     [form.sections addObject:section];
     
     section = [[FormSection alloc] init];
     section.title = @"Informasi Survey Lingkungan";
     [section.rows addObject:[FormRow new:realm :5 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :6 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Hubungan" :@"" :@"getHubungan_checklist"]];
+    [section.rows addObject:[FormRow new:realm :6 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Hubungan" :@"" :@"getHubungan_checklist"]];
     [section.rows addObject:[FormRow new:realm :7 :YES :NO :XLFormRowDescriptorTypeBooleanCheck :@"Kebenaran Domisili" :@"" :@""]];// :27];
     [section.rows addObject:[FormRow new:realm :8 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Penjelasan" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :9 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Status Kepemilikan Rumah" :@"" :@"getStatuskepemilikanrumahSurvey"]];// :13];
@@ -881,11 +881,20 @@
     [section.rows addObject:[FormRow new:realm :11 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Jumlah orang yang tinggal serumah" :@"jumlahOrang" :@""]];
     [section.rows addObject:[FormRow new:realm :9 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Terakhir berinteraksi dengan debitur" :@"" :@"getLastInteraksiDebitur"]];
     [section.rows addObject:[FormRow new:realm :9 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Frekuensi didatangi penagih utang" :@"" :@"getFrekuensiDebtCollector"]];
-    [section.rows addObject:[FormRow new:realm :7 :YES :NO :XLFormRowDescriptorTypeBooleanCheck :@"Debitur anggota paguyuban / partai / LSM" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :7 :YES :NO :XLFormRowDescriptorTypeBooleanCheck :@"Debitur anggota paguyuban / partai / LSM" :@"debiturOrganisasi" :@""]];
     [section.rows addObject:[FormRow new:realm :12 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Organisasi" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :12 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Informasi Lain" :@"" :@""]];
     [form.sections addObject:section];
     
+    //====
+    section = [[FormSection alloc] init];
+    section.title = @"";
+    [section.rows addObject:[FormRow new:realm :0 :NO :NO :XLFormRowDescriptorTypeButton :@"Tambah Informasi Survey Lingkungan" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :0 :NO :NO :XLFormRowDescriptorTypeButton :@"Hapus Informasi Survey Lingkungan" :@"" :@""]];
+    
+    [form.sections addObject:section];
+    
+    //====
     section = [[FormSection alloc] init];
     section.title = @"Hasil Pengamatan";
     [section.rows addObject:[FormRow new:realm :19 :YES :NO :XLFormRowDescriptorTypeTakePhoto :@"Foto Rumah Tampak Depan" :@"" :@""]];
