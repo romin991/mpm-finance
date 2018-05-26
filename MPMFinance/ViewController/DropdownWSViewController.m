@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+@property NSMutableArray *allDatas;
 @property NSArray *datas;
 @property NSString *idCabang;
 @property NSString *idProduct;
@@ -29,22 +30,30 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.datas = [NSArray array];
+    self.allDatas = [NSMutableArray array];
     
     XLFormDescriptor *form = self.rowDescriptor.sectionDescriptor.formDescriptor;
     XLFormBaseDropdownViewController *formViewController = (XLFormBaseDropdownViewController *)form.delegate;
     NSDictionary *valueDictionary = formViewController.valueDictionary;
     self.idCabang = [valueDictionary objectForKey:@"kodeCabang"];
     
-    if ([self.rowDescriptor.tag isEqualToString:@"pekerjaan"]) {
-        self.type = @"Pekerjaan";
-    } else if ([self.rowDescriptor.tag isEqualToString:@"bidangUsaha"]){
-        self.type = @"BidangUsaha";
-    } else {
-        [SVProgressHUD showErrorWithStatus:@"Data not found"];
-        [SVProgressHUD dismissWithDelay:1.5];
-        [self.navigationController popViewControllerAnimated:true];
+    for (XLFormOptionsObject *optionObject in self.rowDescriptor.selectorOptions) {
+        Data *data = [[Data alloc] init];
+        data.name = optionObject.displayText;
+        data.value = optionObject.valueData;
+        [self.allDatas addObject:data];
     }
+    self.datas = [NSArray arrayWithArray:self.allDatas];
+    
+//    if ([self.rowDescriptor.tag isEqualToString:@"pekerjaan"]) {
+//        self.type = @"Pekerjaan";
+//    } else if ([self.rowDescriptor.tag isEqualToString:@"bidangUsaha"]){
+//        self.type = @"BidangUsaha";
+//    } else {
+//        [SVProgressHUD showErrorWithStatus:@"Data not found"];
+//        [SVProgressHUD dismissWithDelay:1.5];
+//        [self.navigationController popViewControllerAnimated:true];
+//    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -53,11 +62,15 @@
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
-    __block typeof(self) weakSelf = self;
-    [DropdownModel getDropdownWSType:self.type keyword:searchText idCabang:self.idCabang additionalURL:@"" completion:^(NSArray *datas, NSError *error) {
-        weakSelf.datas = datas;
-        [weakSelf refresh];
-    }];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self.name CONTAINS[cd] %@", searchText];
+    self.datas = [self.allDatas filteredArrayUsingPredicate:predicate];
+    [self refresh];
+    
+//    __block typeof(self) weakSelf = self;
+//    [DropdownModel getDropdownWSType:self.type keyword:searchText idCabang:self.idCabang additionalURL:@"" completion:^(NSArray *datas, NSError *error) {
+//        weakSelf.datas = datas;
+//        [weakSelf refresh];
+//    }];
 }
 
 - (void)refresh{
