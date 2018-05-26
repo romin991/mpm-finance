@@ -25,8 +25,10 @@ extern NSString *const kRoleDealer;
 extern NSString *const kRoleSupervisor;
 extern NSString *const kRoleOfficer;
 extern NSString *const kRoleDedicated;
+extern NSString *const kRoleBM;
 extern NSString *const kNoRole;
 
+extern NSString *const kMenuMonitoring;
 extern NSString *const kMenuListWorkOrder;
 extern NSString *const kMenuOnlineSubmission;
 extern NSString *const kMenuTrackingMarketing;

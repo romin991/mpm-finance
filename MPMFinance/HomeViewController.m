@@ -20,8 +20,10 @@
 #import "ContactUsViewController.h"
 #import "AcceleratedRepaymentFormViewController.h"
 #import "ProductViewController.h"
+#import "MonitoringViewController.h"
 #import "ActivityHistoryViewController.h"
 #import "SetAlternateViewController.h"
+#import "TrackingOfficerViewController.h"
 @interface HomeViewController ()<KASlideShowDelegate,KASlideShowDataSource, UICollectionViewDelegateFlowLayout>
 
 @property RLMResults *menus;
@@ -163,6 +165,14 @@
     
     } else if ([menu.menuType isEqualToString:kMenuSetAlternate]) {
         SetAlternateViewController *vc = [[SetAlternateViewController alloc] init];
+        [self.navigationController.navigationController pushViewController:vc animated:YES];
+        
+    } else if ([menu.menuType isEqualToString:kMenuMonitoring]) {
+        MonitoringViewController *vc = [[MonitoringViewController alloc] init];
+        [self.navigationController.navigationController pushViewController:vc animated:YES];
+        
+    } else if ([menu.menuType isEqualToString:kMenuTrackingMarketing]) {
+        TrackingOfficerViewController *vc = [[TrackingOfficerViewController alloc] init];
         [self.navigationController.navigationController pushViewController:vc animated:YES];
         
     }

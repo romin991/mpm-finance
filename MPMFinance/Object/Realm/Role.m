@@ -25,6 +25,7 @@
     [realm addObject:[self createRoleWithName:kRoleSupervisor]];
     [realm addObject:[self createRoleWithName:kRoleOfficer]];
     [realm addObject:[self createRoleWithName:kRoleDedicated]];
+    [realm addObject:[self createRoleWithName:kRoleBM]];
     [realm commitWriteTransaction];
 }
 

@@ -15,6 +15,7 @@
 #define kGroupLevelMarketingOfficer 5
 #define kGroupLevelMarketingDedicated 6
 #define kGroupLevelMarketingSpv 7
+#define kGroupLevelBM 8
 
 @implementation MPMUserInfo
 
@@ -99,6 +100,9 @@
     }
     else if(roleCode == kGroupLevelMarketingSpv) {
         roleName = kRoleSupervisor;
+    }
+    else if(roleCode == kGroupLevelBM) {
+        roleName = kRoleBM;
     }
     else if(roleCode == kGroupLevelNil){
         roleName = kNoRole;
