@@ -12,6 +12,7 @@
 #import <UIScrollView+SVPullToRefresh.h>
 #import "MonitoringTableViewCell.h"
 #import "WorkOderTableViewCell.h"
+#import "SubmenuViewController.h"
 #define kHistoryPerPage 10
 @interface MonitoringViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property NSMutableArray *data;
@@ -59,7 +60,19 @@
                             @"token" : [MPMUserInfo getToken]};
     
     if ([[MPMUserInfo getRole] isEqualToString:kRoleSupervisor]) {
-        url = [NSString stringWithFormat:@"%@/pengajuan2/getlistmarketingbyspv",kApiUrl];
+        
+        if(self.userId) {
+            url = [NSString stringWithFormat:@"%@/pengajuan/getworkorderbymarketingandproduct",kApiUrl];
+            param = @{@"data" : @{@"limit" : @10,
+                                  @"offset" : @(offset),
+                                  @"tipeProduk" : @"1",
+                                  @"status" : @"all"
+                                  },
+                      @"userid" : self.userId,
+                      @"token" : [MPMUserInfo getToken]};
+        } else {
+            url = [NSString stringWithFormat:@"%@/pengajuan2/getlistmarketingbyspv",kApiUrl];
+        }
     } else {
         if (!self.idProduk) {
             url = [NSString stringWithFormat:@"%@/pengajuan/getprodukbybranchmanager",kApiUrl];
@@ -154,7 +167,29 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([[MPMUserInfo getRole] isEqualToString:kRoleSupervisor]) {
-        
+        if (!self.userId) {
+            MonitoringViewController *vc = [[MonitoringViewController alloc] init];
+            vc.idProduk = self.idProduk;
+            vc.userId = self.data[indexPath.row][@"userid"];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        else {
+            Menu *submenu = [Menu getMenuForPrimaryKey:kSubmenuListWorkOrder];
+            List *list = [[List alloc] init];
+            list.primaryKey = [self.data[indexPath.row][@"id"] integerValue];
+            list.imageURL = self.data[indexPath.row][@"imageIconIos"];
+            list.title = self.data[indexPath.row][@"noRegistrasi"];
+            list.date = self.data[indexPath.row][@"tanggal"];
+            list.assignee = self.data[indexPath.row][@"namaPengaju"];
+            list.status = self.data[indexPath.row][@"status"];
+            list.statusColor = self.data[indexPath.row][@"color"];
+            list.type = self.data[indexPath.row][@"idStatus"];
+            SubmenuViewController *submenuViewController = [[SubmenuViewController alloc] init];
+            submenuViewController.menu = submenu;
+            submenuViewController.list = list;
+            [self.navigationController pushViewController:submenuViewController animated:YES];
+
+        }
     }
     else {
         if (!self.idProduk) {

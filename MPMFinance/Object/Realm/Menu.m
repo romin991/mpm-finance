@@ -50,7 +50,7 @@
     submenu.sort = 0;
     submenu.borderColor = @"F26F21";
     submenu.menuType = kMenuTypeFormWorkOrder;
-    
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [realm addObject:submenu];
     
@@ -64,6 +64,7 @@
     submenu.menuType = kMenuTypeFormDataMAP;
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
     [realm addObject:submenu];
 
 //======
@@ -76,6 +77,7 @@
     submenu.menuType = kMenuTypeFormSurvey;
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
     [realm addObject:submenu];
     
 //======
@@ -86,7 +88,7 @@
     submenu.sort = 0;
     submenu.menuType = kMenuTypeFormWorkOrder;
     submenu.borderColor = @"F26F21";
-    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
+    //[submenu.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
     [realm addObject:submenu];
     
 //======
@@ -97,7 +99,7 @@
     submenu.sort = 1;
     submenu.borderColor = @"FF8A65";
     submenu.menuType = kMenuTypeListAssignMarketing;
-    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
+   // [submenu.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
 
     [realm addObject:submenu];
     

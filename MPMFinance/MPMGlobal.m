@@ -26,7 +26,7 @@ NSString *const kNoRole = @"NotLogin";
 
 NSString *const kMenuListWorkOrder = @"List Work Order";
 NSString *const kMenuOnlineSubmission = @"Online Submission";
-NSString *const kMenuTrackingMarketing = @"Tracking Marketing";
+NSString *const kMenuTrackingMarketing = @"Tracking Officer";
 NSString *const kMenuMonitoring = @"Monitoring";
 NSString *const kMenuCalculatorMarketing = @"Calculator Marketing";
 NSString *const kMenuListMap = @"List Map";
