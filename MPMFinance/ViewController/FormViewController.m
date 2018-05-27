@@ -61,6 +61,7 @@
     [self preparingValueWithCompletion:^{
         [self preparingFormDescriptorWithCompletion:^{
             [FormModel loadValueFrom:weakSelf.valueDictionary on:weakSelf partialUpdate:nil];
+            [SVProgressHUD dismiss];
         }];
     }];
 }
@@ -247,7 +248,6 @@
             [self.navigationController popViewControllerAnimated:YES];
         }];
     } else {
-        [SVProgressHUD dismiss];
         block();
     }
 }

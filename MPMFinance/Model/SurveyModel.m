@@ -23,27 +23,44 @@
             NSString *message = [responseObject objectForKey:@"message"];
             if (code == 200) {
                 NSDictionary *data = [responseObject objectForKey:@"data"];
-                NSDictionary *informanSurvey = [data objectForKey:@"informanSurvey"][0];
-                NSDictionary *dictionary = @{@"namaCalonDebitur" : [data objectForKey:@"namaCalon"],
-                                             @"tanggalSurvey" : [data objectForKey:@"tglSurvey"],
-                                             @"namaSurveyor" : [data objectForKey:@"namaSurveyor"],
-                                             @"penjelasan" : [data objectForKey:@"ketSurvey"],
-                                             
-//                                             @"nama" : [informanSurvey objectForKey:@"namaInforman"],
-                                             @"hubungan" : [informanSurvey objectForKey:@"hubungan"],
-                                             @"kebenaranDomisili" : [informanSurvey objectForKey:@"kebenaranDomisili"],
-                                             @"keteranganDomisili" : [informanSurvey objectForKey:@"ketDomisili"],
-                                             @"statusKepemilikanRumah" : [informanSurvey objectForKey:@"statusRmh"],
-                                             @"lamaTinggal" : [informanSurvey objectForKey:@"lamaTinggal"],
-                                             @"jumlahOrang" : [informanSurvey objectForKey:@"jmlOrgTglDirmh"],
-                                             @"tambahan" : [informanSurvey objectForKey:@"ketDomisili"],
-                                             
-                                             @"jumlahLantaiRumah" : @([[data objectForKey:@"jmlLantaiRmh"] integerValue]),
-//                                             @"fasilitasRumah" : [data objectForKey:@"fasilitasRumah"],
-                                             @"aksesJalanMasuk" : [data objectForKey:@"aksesJlnMsk"],
-                                             @"kepemilikanGarasi" : [data objectForKey:@"adaGarasi"],
-                                             @"keteranganLain" : [data objectForKey:@"ketLain"],
-                                             };
+                NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:
+                                                  @{@"id" : [data objectForKey:@"id"],
+                                                    @"idPengajuan" : [data objectForKey:@"idPengajuan"],
+                                                    @"tanggalSurvey" : [data objectForKey:@"tglSurvey"],
+                                                    @"namaSurveyor" : [data objectForKey:@"namaSurveyor"],
+                                                    @"alamatSurveyDitemukan" : [data objectForKey:@"alamatSurveyDitemukan"],
+                                                    @"penjelasan" : [data objectForKey:@"ketSurvey"],
+                                                    @"namaCalonDebitur" : [data objectForKey:@"namaCalon"],
+                                                    @"fotoRmhDpn" : [data objectForKey:@"fotoRmhDpn"],
+                                                    @"fotoJlnRmh" : [data objectForKey:@"fotoJlnRmh"],
+                                                    @"fotoKtpDebitur" : [data objectForKey:@"fotoKtpDebitur"],
+                                                    @"fotoKtpPasangan" : [data objectForKey:@"fotoKtpPasangan"],
+                                                    @"fotoKk1" : [data objectForKey:@"fotoKk1"],
+                                                    @"fotoKk2" : [data objectForKey:@"fotoKk2"],
+                                                    @"fotoBuktiKepemilikanRmh" : [data objectForKey:@"fotoBuktiKepemilikanRmh"],
+                                                    @"fotoUsaha1" : [data objectForKey:@"fotoUsaha1"],
+                                                    @"fotoUsaha2" : [data objectForKey:@"fotoUsaha2"],
+                                             }];
+                
+                NSDictionary *observasiTempatTinggalDictionary = [data objectForKey:@"observasiTempatTinggal"];
+                NSMutableArray *fasilitasRumah = [NSMutableArray array];
+                for (NSDictionary *tempDictionary in [observasiTempatTinggalDictionary objectForKey:@"fasilitasRumah"]) {
+                    [fasilitasRumah addObject:@([[tempDictionary objectForKey:@"fasilitasRumah"] integerValue])];
+                }
+                
+                NSMutableArray *patokanDktRmh = [NSMutableArray array];
+                for (NSDictionary *tempDictionary in [observasiTempatTinggalDictionary objectForKey:@"patokanDktRmh"]) {
+                    [patokanDktRmh addObject:@([[tempDictionary objectForKey:@"patokanDktRmh"] integerValue])];
+                }
+                
+                [dictionary addEntriesFromDictionary:@{@"lingkungan" : @([[observasiTempatTinggalDictionary objectForKey:@"lingkungan"] integerValue]),
+                                                      @"fasilitasRumah" : fasilitasRumah,
+                                                      @"aksesJalanMasuk" : @([[observasiTempatTinggalDictionary objectForKey:@"aksesJlnMasuk"] integerValue]),
+                                                      @"patokanDktRmh" : patokanDktRmh,
+                                                      @"penampakanDepanRumah" : @([[observasiTempatTinggalDictionary objectForKey:@"penampakanDpnRmh"] integerValue]),
+                                                      @"kondisiTempatTinggal" : @([[observasiTempatTinggalDictionary objectForKey:@"kondisiRumah"] integerValue]),
+                                                      }];
+                
                 
                 if (block) block(dictionary, nil);
                 

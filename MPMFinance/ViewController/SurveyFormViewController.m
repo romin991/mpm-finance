@@ -42,6 +42,7 @@
     [self preparingValueWithCompletion:^{
         [self preparingFormDescriptorWithCompletion:^{
             [FormModel loadValueFrom:weakSelf.valueDictionary on:weakSelf partialUpdate:nil];
+            [SVProgressHUD dismiss];
         }];
     }];
 }
@@ -64,9 +65,13 @@
     }
     
     dispatch_group_notify(group, queue, ^{
-        [weakSelf checkError:_error completion:^{
-            if (block) block();
-        }];
+        
+        
+        dispatch_group_notify(group, queue, ^{
+            [weakSelf checkError:_error completion:^{
+                if (block) block();
+            }];
+        });
     });
 }
 
@@ -126,7 +131,6 @@
             [self.navigationController popViewControllerAnimated:YES];
         }];
     } else {
-        [SVProgressHUD dismiss];
         block();
     }
 }
