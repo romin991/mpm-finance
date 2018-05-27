@@ -49,7 +49,7 @@
     self.tableView.frame = frame;
     
     // Do any additional setup after loading the view from its nib.
-    if ([[MPMUserInfo getRole] isEqualToString:kRoleSupervisor]) {
+    if ([[MPMUserInfo getRole] isEqualToString:kRoleSupervisor] || [[MPMUserInfo getRole] isEqualToString:kRoleBM]) {
         self.forms = [Form getFormForMenu:self.menu.primaryKey];
     } else {
         self.forms = [Form getFormForMenu:self.menu.primaryKey role:[MPMUserInfo getRole]];

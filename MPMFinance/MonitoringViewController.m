@@ -196,7 +196,7 @@
             MonitoringViewController *vc = [[MonitoringViewController alloc] init];
             vc.idProduk = [self.data[indexPath.row][@"id"] stringValue];
             [self.navigationController pushViewController:vc animated:YES];
-        } else if(self.idProduk && !self.tipeProduk) {
+        } else if(self.idProduk && !self.tipeProduk && !self.userId) {
             MonitoringViewController *vc = [[MonitoringViewController alloc] init];
             vc.idProduk = self.idProduk;
             vc.spv = self.data[indexPath.row][@"userid"];
@@ -207,6 +207,21 @@
             vc.idProduk = self.idProduk;
             vc.userId = self.data[indexPath.row][@"userid"];
             [self.navigationController pushViewController:vc animated:YES];
+        } else if(self.userId) {
+            Menu *submenu = [Menu getMenuForPrimaryKey:kSubmenuListWorkOrder];
+            List *list = [[List alloc] init];
+            list.primaryKey = [self.data[indexPath.row][@"id"] integerValue];
+            list.imageURL = self.data[indexPath.row][@"imageIconIos"];
+            list.title = self.data[indexPath.row][@"noRegistrasi"];
+            list.date = self.data[indexPath.row][@"tanggal"];
+            list.assignee = self.data[indexPath.row][@"namaPengaju"];
+            list.status = self.data[indexPath.row][@"status"];
+            list.statusColor = self.data[indexPath.row][@"color"];
+            list.type = self.data[indexPath.row][@"idStatus"];
+            SubmenuViewController *submenuViewController = [[SubmenuViewController alloc] init];
+            submenuViewController.menu = submenu;
+            submenuViewController.list = list;
+            [self.navigationController pushViewController:submenuViewController animated:YES];
         }
     }
 }
