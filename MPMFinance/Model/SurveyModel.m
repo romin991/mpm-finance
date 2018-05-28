@@ -61,6 +61,25 @@
                                                       @"kondisiTempatTinggal" : @([[observasiTempatTinggalDictionary objectForKey:@"kondisiRumah"] integerValue]),
                                                       }];
                 
+                NSDictionary *dataSurvey = [data objectForKey:@"dataSurvey"];
+                NSArray *informanSurvey = [dataSurvey objectForKey:@"informanSurvey"];
+                NSMutableArray *informanSurveyArray = [NSMutableArray array];
+                for (NSDictionary *tempDictionary in informanSurvey) {
+                    NSDictionary *informanDictionary = @{@"frekuensiDidatangiPenagihUtang" : @([[tempDictionary objectForKey:@"frekDebtCollector"] integerValue]),
+                                                         @"nama" : [tempDictionary objectForKey:@"namaInforman"],
+                                                         @"informasiLain" : [tempDictionary objectForKey:@"informasiLain"],
+                                                         @"statusKepemilikanRumah" : @([[tempDictionary objectForKey:@"statusRmh"] integerValue]),
+                                                         @"hubungan" : @([[tempDictionary objectForKey:@"hubungan"] integerValue]),
+                                                         @"penjelasan" : [tempDictionary objectForKey:@"ketDomisili"],
+                                                         @"lamaTinggal" : @([[tempDictionary objectForKey:@"lamaTinggal"] integerValue]),
+                                                         @"debiturOrganisasi" : @([[tempDictionary objectForKey:@"debiturOrganisasi"] integerValue]),
+                                                         @"jumlahOrang" : @([[tempDictionary objectForKey:@"jmlOrgTglDirmh"] integerValue]),
+                                                         @"kebenaranDomisili" : @([[tempDictionary objectForKey:@"kebenaranDomisili"] integerValue]),
+                                                         @"terakhirBerinteraksiDenganDebitur" : @([[tempDictionary objectForKey:@"lastDebitur"] integerValue]),
+                                                         };
+                    [informanSurveyArray addObject:informanDictionary];
+                }
+                [dictionary setObject:informanSurveyArray forKey:@"informanSurvey"];
                 
                 if (block) block(dictionary, nil);
                 
@@ -136,7 +155,7 @@
         
         NSMutableDictionary *data = [NSMutableDictionary dictionaryWithDictionary:
                                      @{@"ketSurvey" : [dictionary objectForKey:@"penjelasan"],
-                                       @"alamatDitemukan" : @([[dictionary objectForKey:@"alamatSurveyDitemukan"] integerValue]),
+                                       @"alamatDitemukan" : [NSString stringWithFormat:@"%@", [dictionary objectForKey:@"alamatSurveyDitemukan"]],
                                        @"tanggalSurvey" : [dictionary objectForKey:@"tanggalSurvey"],
                                        @"observasiTempatTinggal" : observasiTempatTinggal,
                                        @"dataSurvey" : dataSurvey,
