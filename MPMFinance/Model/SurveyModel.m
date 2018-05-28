@@ -64,6 +64,8 @@
                 NSArray *informanSurvey = [data objectForKey:@"informanSurvey"];
                 NSMutableArray *informanSurveyArray = [NSMutableArray array];
                 for (NSDictionary *tempDictionary in informanSurvey) {
+                    NSArray *debiturOrganisasi = [[tempDictionary objectForKey:@"debiturOrganisasi"] componentsSeparatedByString:@","];
+                    
                     NSDictionary *informanDictionary = @{@"frekuensiDidatangiPenagihUtang" : @([[tempDictionary objectForKey:@"frekDebtCollector"] integerValue]),
                                                          @"nama" : [tempDictionary objectForKey:@"namaInforman"],
                                                          @"informasiLain" : [tempDictionary objectForKey:@"informasiLain"],
@@ -71,7 +73,8 @@
                                                          @"hubungan" : @([[tempDictionary objectForKey:@"hubungan"] integerValue]),
                                                          @"ketDomisili" : [tempDictionary objectForKey:@"ketDomisili"],
                                                          @"lamaTinggal" : @([[tempDictionary objectForKey:@"lamaTinggal"] integerValue]),
-                                                         @"debiturOrganisasi" : @([[tempDictionary objectForKey:@"debiturOrganisasi"] integerValue]),
+                                                         @"debiturOrganisasi" : @([debiturOrganisasi.firstObject integerValue]),
+                                                         @"namaOrganisasi" : debiturOrganisasi.lastObject != debiturOrganisasi.firstObject ? debiturOrganisasi.lastObject : @"",
                                                          @"jumlahOrang" : @([[tempDictionary objectForKey:@"jmlOrgTglDirmh"] integerValue]),
                                                          @"kebenaranDomisili" : @([[tempDictionary objectForKey:@"kebenaranDomisili"] integerValue]),
                                                          @"terakhirBerinteraksiDenganDebitur" : @([[tempDictionary objectForKey:@"lastDebitur"] integerValue]),
@@ -128,6 +131,11 @@
         
         NSMutableArray *informanArray = [NSMutableArray array];
         for (NSDictionary *informanDictionary in [dictionary objectForKey:@"informanSurvey"]) {
+            NSMutableString *debiturOrganisasi = [NSMutableString stringWithFormat:@"%@", [informanDictionary objectForKey:@"debiturOrganisasi"]];
+            if ([informanDictionary objectForKey:@"namaOrganisasi"] && [[informanDictionary objectForKey:@"namaOrganisasi"] length] > 0) {
+                [debiturOrganisasi appendString:@","];
+                [debiturOrganisasi appendString:[informanDictionary objectForKey:@"namaOrganisasi"]];
+            }
             NSMutableDictionary *informanAPIDictionary = [NSMutableDictionary dictionaryWithDictionary:
                                                           @{@"frekDebtCollector": [NSString stringWithFormat:@"%@", [informanDictionary objectForKey:@"frekuensiDidatangiPenagihUtang"]],
                                                             @"namaInforman": [NSString stringWithFormat:@"%@", [informanDictionary objectForKey:@"nama"]],
@@ -136,7 +144,7 @@
                                                             @"hubungan": [NSString stringWithFormat:@"%@", [informanDictionary objectForKey:@"hubungan"]],
                                                             @"ketDomisili": [informanDictionary objectForKey:@"ketDomisili"],
                                                             @"lamaTinggal": [informanDictionary objectForKey:@"lamaTinggal"],
-                                                            @"debiturOrganisasi": [NSString stringWithFormat:@"%@", [informanDictionary objectForKey:@"debiturOrganisasi"]],
+                                                            @"debiturOrganisasi": debiturOrganisasi,
                                                             @"jmlOrgTglDirmh": [informanDictionary objectForKey:@"jumlahOrang"],
                                                             @"kebenaranDomisili": [NSString stringWithFormat:@"%@", [informanDictionary objectForKey:@"kebenaranDomisili"]],
                                                             @"lastDebitur": [NSString stringWithFormat:@"%@", [informanDictionary objectForKey:@"terakhirBerinteraksiDenganDebitur"]]
