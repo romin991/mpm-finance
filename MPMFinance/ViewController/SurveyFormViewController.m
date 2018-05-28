@@ -13,6 +13,7 @@
 #import "DropdownModel.h"
 #import "FormModel.h"
 #import "UploadPhotoTableViewCell.h"
+#import "FloatLabeledTextFieldCell.h"
 
 @interface SurveyFormViewController ()
 
@@ -42,12 +43,19 @@
     [self preparingValueWithCompletion:^{
         [self preparingFormDescriptorWithCompletion:^{
             [FormModel loadValueFrom:weakSelf.valueDictionary on:weakSelf partialUpdate:nil];
-            NSInteger counter = 0;
+            
+            NSInteger count = ((NSArray *)[self.valueDictionary objectForKey:@"informanSurvey"]).count;
+            for (int i = 1; i < count; i++){
+                [self addDataButtonClicked:nil];
+            }
+            
+            NSInteger counter = 2;
             for (NSDictionary *data in [weakSelf.valueDictionary objectForKey:@"informanSurvey"]) {
                 XLFormSectionDescriptor *section = [self.form formSectionAtIndex:counter];
                 counter += 1;
                 [FormModel loadValueFrom:data to:section on:weakSelf partialUpdate:nil];
             }
+            
             [SVProgressHUD dismiss];
         }];
     }];
@@ -94,11 +102,6 @@
     }];
     
     dispatch_group_notify(group, queue, ^{
-        NSInteger count = ((NSArray *)[self.valueDictionary objectForKey:@"informanSurvey"]).count;
-        for (int i = 1; i < count; i++){
-            [self addDataButtonClicked:nil];
-        }
-        
         for (XLFormSectionDescriptor *section in _formDescriptor.formSections) {
             for (XLFormRowDescriptor *row in section.formRows) {
                 if ([row.tag isEqualToString:@"tambahInformasiSurveyLingkungan"]){
@@ -112,6 +115,8 @@
                     row.disabled = @YES;
                     [self reloadFormRow:row];
                 }
+                
+                [self otherAdditionalSettingFor:row];
             }
         }
         
@@ -122,6 +127,18 @@
             }];
         });
     });
+}
+
+- (void)otherAdditionalSettingFor:(XLFormRowDescriptor *)row{
+    NSArray *tagForKeyboardNumberPad = [NSArray arrayWithObjects:
+                                        @"jumlahOrang", @"lamaTinggal",
+                                        nil];
+    if ([tagForKeyboardNumberPad containsObject:row.tag]){
+        //Set keyboard type to numberPad
+        if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+            [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
+        }
+    }
 }
 
 - (void)checkError:(NSError *)error completion:(void(^)())block{
@@ -175,13 +192,7 @@
         newRow.hidden = row.hidden;
         newRow.selectorTitle = row.selectorTitle;
         newRow.selectorOptions = row.selectorOptions;
-        
-//        if ([newRow.tag isEqualToString:@"nomorIndukKependudukan"]){
-//            //Set keyboard type to numberPad
-//            if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
-//                [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
-//            }
-//        }
+        [self otherAdditionalSettingFor:newRow];
         
         [newSection addFormRow:newRow];
     }
