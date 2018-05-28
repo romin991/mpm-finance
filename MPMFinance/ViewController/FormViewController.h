@@ -14,6 +14,7 @@
 
 @interface FormViewController : XLFormViewController <BarcodeDelegate>
 
+@property Menu *parentMenu;
 @property Menu *menu;
 @property NSInteger index;
 @property NSMutableDictionary *valueDictionary;

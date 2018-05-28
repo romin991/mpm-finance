@@ -42,6 +42,12 @@
     [self preparingValueWithCompletion:^{
         [self preparingFormDescriptorWithCompletion:^{
             [FormModel loadValueFrom:weakSelf.valueDictionary on:weakSelf partialUpdate:nil];
+            NSInteger counter = 0;
+            for (NSDictionary *data in [weakSelf.valueDictionary objectForKey:@"informanSurvey"]) {
+                XLFormSectionDescriptor *section = [self.form formSectionAtIndex:counter];
+                counter += 1;
+                [FormModel loadValueFrom:data to:section on:weakSelf partialUpdate:nil];
+            }
             [SVProgressHUD dismiss];
         }];
     }];
@@ -65,13 +71,9 @@
     }
     
     dispatch_group_notify(group, queue, ^{
-        
-        
-        dispatch_group_notify(group, queue, ^{
-            [weakSelf checkError:_error completion:^{
-                if (block) block();
-            }];
-        });
+        [weakSelf checkError:_error completion:^{
+            if (block) block();
+        }];
     });
 }
 
@@ -92,11 +94,9 @@
     }];
     
     dispatch_group_notify(group, queue, ^{
-        if ([self.title isEqualToString:@"Data Keluarga"]) {
-            NSInteger familyCount = ((NSArray *)[self.valueDictionary objectForKey:@"dataKeluarga"]).count;
-            for (int i = 1; i < familyCount; i++){
-                [self addDataButtonClicked:nil];
-            }
+        NSInteger count = ((NSArray *)[self.valueDictionary objectForKey:@"informanSurvey"]).count;
+        for (int i = 1; i < count; i++){
+            [self addDataButtonClicked:nil];
         }
         
         for (XLFormSectionDescriptor *section in _formDescriptor.formSections) {

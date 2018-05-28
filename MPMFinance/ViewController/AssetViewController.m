@@ -44,6 +44,12 @@
             }
         }
     }
+    
+    if (self.idProduct == nil || self.idCabang == nil) {
+        [SVProgressHUD showErrorWithStatus:@"ID product not found"];
+        [SVProgressHUD dismissWithDelay:1.5];
+        [self.navigationController popViewControllerAnimated:true];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
