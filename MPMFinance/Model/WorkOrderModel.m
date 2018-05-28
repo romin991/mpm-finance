@@ -337,6 +337,113 @@
     }];
 }
 
++ (void)getListWorkOrderDetailCompleteDataWithID:(NSInteger)pengajuanId completion:(void(^)(NSDictionary *response, NSError *error))block{
+    AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
+    NSDictionary* param = @{@"userid" : [MPMUserInfo getUserInfo][@"userId"],
+                            @"token" : [MPMUserInfo getToken],
+                            @"data" : @{@"id" : @(pengajuanId)}
+                            };
+    
+    [manager POST:[NSString stringWithFormat:@"%@/pengajuan/detail",kApiUrl] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        @try {
+            NSInteger code = [[responseObject objectForKey:@"statusCode"] integerValue];
+            NSString *message = [responseObject objectForKey:@"message"];
+            if (code == 200) {
+                NSDictionary *data = responseObject[@"data"];
+                NSDictionary *dictionary = @{@"noKTP" : data[@"noKtp"],
+                                             @"namaLengkap" : data[@"namaCalon"],
+                                             @"tempatLahir" : data[@"tmpLahir"],
+                                             @"tanggalLahir" : data[@"tglLahir"],
+                                             @"jenisKelamin" : @([data[@"jnsKelamin"] integerValue]),
+                                             
+                                             @"alamatRumahSesuaiKTP" : data[@"alamatLegal"],
+                                             @"rTSesuaiKTP" : data[@"alamatLegalRt"],
+                                             @"rWSesuaiKTP" : data[@"alamatLegalRw"],
+                                             @"kodeposSesuaiKTP" : data[@"kodePosAlamatCalon"],
+                                             @"kecamatanSesuaiKTP" : data[@"alamatLegalKecamatan"],
+                                             @"kelurahanSesuaiKTP" : data[@"alamatLegalKelurahan"],
+                                             @"kotaSesuaiKTP" : data[@"alamatLegalKota"],
+                                             @"masaBerlakuKTP" : data[@"ktpBerlaku"],
+                                             @"kewarganegaraan" : data[@"kewarganegaraan"],
+                                             
+                                             @"nomorHandphone" : data[@"handphone"],
+                                             @"kodeArea" : data[@"kodeArea"],
+                                             @"nomorTelepon" : data[@"noTlp"],
+                                             
+                                             @"samaDenganAlamatLegal" : data[@"cekAlamatSama"],
+                                             
+                                             @"alamatDomisili" : data[@"alamatDomisili"],
+                                             @"rTDomisili" : data[@"alamatDomisiliRt"],
+                                             @"rWDomisili" : data[@"alamatDomisiliRw"],
+                                             @"kelurahanDomisili" : data[@"alamatDomisiliKelurahan"],
+                                             @"kecamatanDomisili" : data[@"alamatDomisiliKecamatan"],
+                                             @"kotaDomisili" : data[@"alamatDomisiliKota"],
+                                             @"kodeposDomisili" : data[@"alamatDomisiliKodePos"],
+                                             @"namaGadisIbuKandung" : data[@"namaIbuKandung"],
+                                             
+                                             @"namaLengkapPasangan" : data[@"namaPasangan"],
+                                             @"noKTPPasangan" : data[@"ktpPasangan"],
+                                             @"nomorHandphonePasangan" : data[@"noTlpPasangan"],
+                                             @"tempatLahirPasangan" : data[@"tmpLahirPasangan"],
+                                             @"tanggalLahirPasangan" : data[@"tglLahirPasangan"],
+                                             @"jenisKelaminPasangan" : @([data[@"jnsKelaminPasangan"] integerValue]),
+                                             @"alamatPasangan" : data[@"alamatLegalPasangan"],
+                                             @"rTPasangan" : data[@"alamatLegalPasanganRt"],
+                                             @"rWPasangan" : data[@"alamatLegalPasanganRw"],
+                                             @"kelurahanPasangan" : data[@"alamatLegalPasanganKelurahan"],
+                                             @"kecamatanPasangan" : data[@"alamatLegalPasanganKecamatan"],
+                                             @"kotaPasangan" : data[@"alamatLegalPasanganKota"],
+                                             @"kodePosPasangan" : data[@"alamatLegalPasanganKodePos"],
+                                             @"masaBerlakuKTPPasangan" : data[@"berlakuHingga"],
+                                             @"kewarganegaraanPasangan" : data[@"kewarganegaraanPasangan"],
+                                             @"namaGadisIbuKandungPasangan" : data[@"namaIbuKandungPasangan"],
+                                             
+                                             @"tipeProduk" : data[@"tipeProduk"],
+                                             @"tipeKendaraan" : data[@"tipeKendaraan"],
+                                             @"tahunKendaraan" : data[@"tahunKendaraan"],
+                                             
+                                             //                                             @"hargaPerolehan" : data[@"hargaPerolehan"],
+                                             //                                             @"uangMuka" : data[@"uangMuka"],
+                                             //                                             @"jangkaWaktuPembiayaan" : data[@"tenor"],
+                                             //                                             @"angsuran" : data[@"angsuran"],
+                                             
+                                             @"namaTempatKerja" : data[@"namaTmpKerja"],
+                                             @"kodeAreaTeleponTempatKerja" : data[@"kodeAreaTelpTmpKerja"],
+                                             @"nomorTeleponTempatKerja" : data[@"tlpTmpKerja"],
+                                             
+                                             @"namaEcon" : data[@"namaEcon"],
+                                             @"nomorTeleponEcon" : data[@"noTlpEcon"],
+                                             
+                                             @"pinjamanTempatLain1" : data[@"pinjamanLain"],
+                                             @"pinjamanTempatLain2" : data[@"pinjamanLain2"],
+                                             @"nomorKartuKreditAtauKontrak1" : data[@"noCc1"],
+                                             @"nomorKartuKreditAtauKontrak2" : data[@"noCc2"],
+                                             
+                                             @"catatanTV" : data[@"noteTv"],
+                                             @"catatanSS" : data[@"noteSs"],
+                                             @"" : data[@"ttd"],
+                                             };
+                
+                if (block) block(dictionary, nil);
+                
+            } else {
+                if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                          code:code
+                                                      userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(message, nil)}]);
+            }
+            
+        } @catch (NSException *exception) {
+            NSLog(@"%@", exception);
+            if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                      code:1
+                                                  userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(exception.reason, nil)}]);
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (block) block(nil, error);
+    }];
+}
+
 
 
 

@@ -79,13 +79,24 @@
     __block NSError *_error = nil;
     
     if (self.list) {
-        dispatch_group_enter(group);
-        [WorkOrderModel getListWorkOrderDetailWithID:self.list.primaryKey completion:^(NSDictionary *response, NSError *error) {
-            if (error) _error = error;
-            if (response) [weakSelf.valueDictionary addEntriesFromDictionary:response];
+        if ([self.parentMenu.primaryKey isEqualToString:kSubmenuListWorkOrder]) {
+            dispatch_group_enter(group);
+            [WorkOrderModel getListWorkOrderDetailCompleteDataWithID:self.list.primaryKey completion:^(NSDictionary *response, NSError *error) {
+                if (error) _error = error;
+                if (response) [weakSelf.valueDictionary addEntriesFromDictionary:response];
+                
+                dispatch_group_leave(group);
+            }];
             
-            dispatch_group_leave(group);
-        }];
+        } else {
+            dispatch_group_enter(group);
+            [WorkOrderModel getListWorkOrderDetailWithID:self.list.primaryKey completion:^(NSDictionary *response, NSError *error) {
+                if (error) _error = error;
+                if (response) [weakSelf.valueDictionary addEntriesFromDictionary:response];
+                
+                dispatch_group_leave(group);
+            }];
+        }
     }
     
     dispatch_group_notify(group, queue, ^{

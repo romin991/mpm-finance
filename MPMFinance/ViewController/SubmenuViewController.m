@@ -110,6 +110,7 @@
     
     if ([submenu.menuType isEqualToString:kMenuTypeFormWorkOrder]) {
         FormViewController *formViewController = [[FormViewController alloc] init];
+        formViewController.parentMenu = self.menu;
         formViewController.menu = submenu;
         formViewController.list = self.list;
         [self.navigationController pushViewController:formViewController animated:YES];
