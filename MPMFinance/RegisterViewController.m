@@ -185,11 +185,24 @@
         _selectedGroupLevel = self.groupLevelArray[row][@"code"];
     }
 }
+- (IBAction)showHidePassword:(id)sender {
+    [((UIButton *)sender) setTitle:self.txtPassword.isSecureTextEntry?@"Hide" : @"Show" forState:UIControlStateNormal];
+    self.txtPassword.secureTextEntry = !self.txtPassword.isSecureTextEntry;
+    self.txtConfirmPassword.secureTextEntry = !self.txtConfirmPassword.isSecureTextEntry;
+}
 
 
 - (IBAction)signUp:(id)sender {
     [SVProgressHUD show];
     NSDictionary* param;
+    if (![self.txtPassword.text isEqualToString:self.txtConfirmPassword.text]) {
+        UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"Error" message:@"Password and Confirm Password must be the same" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* okButton = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        }];
+        [alertController addAction:okButton];
+        [self presentViewController:alertController animated:YES completion:nil];
+        return;
+    }
     @try {
         param = @{@"userid" : @"",
                             @"token" : @"",

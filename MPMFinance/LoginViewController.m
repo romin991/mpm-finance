@@ -66,6 +66,10 @@
         }
     }];
 }
+- (IBAction)showHidePassword:(id)sender {
+    [((UIButton *)sender) setTitle:self.passwordField.isSecureTextEntry?@"Hide" : @"Show" forState:UIControlStateNormal];
+    self.passwordField.secureTextEntry = !self.passwordField.isSecureTextEntry;
+}
 
 - (IBAction)forgotPasswordButtonClicked:(id)sender {
 }
