@@ -657,11 +657,10 @@
     NSMutableDictionary* param = [NSMutableDictionary dictionaryWithDictionary:
                                   @{@"userid" :[MPMUserInfo getUserInfo][@"userId"],
                                     @"token" : [MPMUserInfo getToken],
-                                    @"data" : @{@"idPengajuan" : @(pengajuanId),
-                                                @"response" : @"accept"}
+                                    @"data" : @{@"id" : @(pengajuanId),}
                                     }];
     
-    [manager POST:[NSString stringWithFormat:@"%@/pengajuan/officer/response", kApiUrl] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [manager POST:[NSString stringWithFormat:@"%@/pengajuan/marketing/approve", kApiUrl] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         @try {
             NSInteger code = [[responseObject objectForKey:@"statusCode"] integerValue];
             NSString *message = [responseObject objectForKey:@"message"];
