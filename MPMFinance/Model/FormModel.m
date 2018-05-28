@@ -66,10 +66,13 @@
         } else if ([row.value isKindOfClass:NSArray.class]) {
             NSMutableArray *arrayOfValue = [NSMutableArray array];
             for (id value in row.value) {
+                id tempValue = value;
                 if ([value isKindOfClass:XLFormOptionsObject.class]) {
-                    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:@{row.tag : ((XLFormOptionsObject*)value).valueData}];
-                    [arrayOfValue addObject:dictionary];
+                    tempValue = ((XLFormOptionsObject*)value).valueData;
                 }
+                    
+                NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:@{row.tag : tempValue}];
+                [arrayOfValue addObject:dictionary];
             }
             object = arrayOfValue;
         } else if (row.value != nil && ![row.value isKindOfClass:NSNull.class]){

@@ -875,7 +875,7 @@
     [section.rows addObject:[FormRow new:realm :5 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :6 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Hubungan" :@"" :@"getHubungan_checklist"]];
     [section.rows addObject:[FormRow new:realm :7 :YES :NO :XLFormRowDescriptorTypeBooleanCheck :@"Kebenaran Domisili" :@"" :@""]];// :27];
-    [section.rows addObject:[FormRow new:realm :8 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Penjelasan" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :8 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Penjelasan" :@"ketDomisili" :@""]];
     [section.rows addObject:[FormRow new:realm :9 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Status Kepemilikan Rumah" :@"" :@"getStatuskepemilikanrumahSurvey"]];// :13];
     [section.rows addObject:[FormRow new:realm :10 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Lama Tinggal (dalam tahun)" :@"lamaTinggal" :@""]];
     [section.rows addObject:[FormRow new:realm :11 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Jumlah orang yang tinggal serumah" :@"jumlahOrang" :@""]];

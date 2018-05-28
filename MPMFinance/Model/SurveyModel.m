@@ -61,8 +61,7 @@
                                                       @"kondisiTempatTinggal" : @([[observasiTempatTinggalDictionary objectForKey:@"kondisiRumah"] integerValue]),
                                                       }];
                 
-                NSDictionary *dataSurvey = [data objectForKey:@"dataSurvey"];
-                NSArray *informanSurvey = [dataSurvey objectForKey:@"informanSurvey"];
+                NSArray *informanSurvey = [data objectForKey:@"informanSurvey"];
                 NSMutableArray *informanSurveyArray = [NSMutableArray array];
                 for (NSDictionary *tempDictionary in informanSurvey) {
                     NSDictionary *informanDictionary = @{@"frekuensiDidatangiPenagihUtang" : @([[tempDictionary objectForKey:@"frekDebtCollector"] integerValue]),
@@ -70,7 +69,7 @@
                                                          @"informasiLain" : [tempDictionary objectForKey:@"informasiLain"],
                                                          @"statusKepemilikanRumah" : @([[tempDictionary objectForKey:@"statusRmh"] integerValue]),
                                                          @"hubungan" : @([[tempDictionary objectForKey:@"hubungan"] integerValue]),
-                                                         @"penjelasan" : [tempDictionary objectForKey:@"ketDomisili"],
+                                                         @"ketDomisili" : [tempDictionary objectForKey:@"ketDomisili"],
                                                          @"lamaTinggal" : @([[tempDictionary objectForKey:@"lamaTinggal"] integerValue]),
                                                          @"debiturOrganisasi" : @([[tempDictionary objectForKey:@"debiturOrganisasi"] integerValue]),
                                                          @"jumlahOrang" : @([[tempDictionary objectForKey:@"jmlOrgTglDirmh"] integerValue]),
@@ -135,7 +134,7 @@
                                                             @"informasiLain": [NSString stringWithFormat:@"%@", [informanDictionary objectForKey:@"informasiLain"]],
                                                             @"statusRmh": [NSString stringWithFormat:@"%@", [informanDictionary objectForKey:@"statusKepemilikanRumah"]],
                                                             @"hubungan": [NSString stringWithFormat:@"%@", [informanDictionary objectForKey:@"hubungan"]],
-                                                            @"ketDomisili": [informanDictionary objectForKey:@"penjelasan"],
+                                                            @"ketDomisili": [informanDictionary objectForKey:@"ketDomisili"],
                                                             @"lamaTinggal": [informanDictionary objectForKey:@"lamaTinggal"],
                                                             @"debiturOrganisasi": [NSString stringWithFormat:@"%@", [informanDictionary objectForKey:@"debiturOrganisasi"]],
                                                             @"jmlOrgTglDirmh": [informanDictionary objectForKey:@"jumlahOrang"],
