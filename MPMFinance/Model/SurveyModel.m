@@ -157,7 +157,15 @@
                                              @"idPengajuan" : @(list.primaryKey),
                                              @"lng" : @0,
                                              @"lat" : @0,
-                                             
+                                             @"fotoRmhDpn" : [dictionary objectForKey:@"fotoRmhDpn"],
+                                             @"fotoJlnRmh" : [dictionary objectForKey:@"fotoJlnRmh"],
+                                             @"fotoKtpDebitur" : [dictionary objectForKey:@"fotoKtpDebitur"],
+                                             @"fotoKtpPasangan" : [dictionary objectForKey:@"fotoKtpPasangan"],
+                                             @"fotoKk1" : [dictionary objectForKey:@"fotoKk1"],
+                                             @"fotoKk2" : [dictionary objectForKey:@"fotoKk2"],
+                                             @"fotoBuktiKepemilikanRmh" : [dictionary objectForKey:@"fotoBuktiKepemilikanRmh"],
+                                             @"fotoUsaha1" : [dictionary objectForKey:@"fotoUsaha1"],
+                                             @"fotoUsaha2" : [dictionary objectForKey:@"fotoUsaha2"],
                                              }];
         
         NSMutableDictionary *data = [NSMutableDictionary dictionaryWithDictionary:

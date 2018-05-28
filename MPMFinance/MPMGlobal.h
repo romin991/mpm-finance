@@ -144,6 +144,8 @@ extern NSString *const kActionTypeAPICall;
 + (NSInteger)limitPerPage;
 + (AFHTTPSessionManager*)sessionManager;
 + (NSString *)encodeToBase64String:(UIImage *)image;
++ (UIImage *)decodeFromBase64String:(NSString *)string;
++ (BOOL)isStringAnURL:(NSString *)string;
 + (UIView *)giveBorderTo:(UIView *)view withBorderColor:(NSString *)hexColorString withCornerRadius:(CGFloat)cornerRadius;
 + (UIColor *)colorFromHexString:(NSString *)hexString;
 + (NSString *)removeTimeFromString:(NSString *)object;

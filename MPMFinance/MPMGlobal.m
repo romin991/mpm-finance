@@ -156,6 +156,14 @@ NSString *const kActionQueryDB = @"QueryDB";
     return [UIImageJPEGRepresentation(image, 0.5) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
 }
 
++ (UIImage *)decodeFromBase64String:(NSString *)string{
+    return [[UIImage alloc] initWithData:[[NSData alloc] initWithBase64EncodedString:string options:NSDataBase64DecodingIgnoreUnknownCharacters]];
+}
+
++ (BOOL)isStringAnURL:(NSString *)string{
+    return ([string hasPrefix:@"http://"] || [string hasPrefix:@"https://"]);
+}
+
 + (UIView *)giveBorderTo:(UIView *)view withBorderColor:(NSString *)hexColorString withCornerRadius:(CGFloat)cornerRadius{
     UIColor* borderColor = [MPMGlobal colorFromHexString:hexColorString];
     return [self giveBorderTo:view withBorderColor:borderColor withCornerRadius:cornerRadius withRoundingCorners:UIRectCornerAllCorners withBorderWidth:1.0];

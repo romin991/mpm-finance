@@ -897,15 +897,15 @@
     //====
     section = [[FormSection alloc] init];
     section.title = @"Hasil Pengamatan";
-    [section.rows addObject:[FormRow new:realm :19 :YES :NO :XLFormRowDescriptorTypeTakePhoto :@"Foto Rumah Tampak Depan" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :19 :YES :NO :XLFormRowDescriptorTypeTakePhoto :@"Foto Tampak Jalan Menuju Rumah" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :19 :YES :NO :XLFormRowDescriptorTypeTakePhoto :@"Foto KTP Debitur" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :19 :YES :NO :XLFormRowDescriptorTypeTakePhoto :@"Foto KTP Pasangan" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :19 :YES :NO :XLFormRowDescriptorTypeTakePhoto :@"Foto Kartu Keluarga 1" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :19 :YES :NO :XLFormRowDescriptorTypeTakePhoto :@"Foto Kartu Keluarga 2" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :19 :YES :NO :XLFormRowDescriptorTypeTakePhoto :@"Foto Bukti Kepemilikan Rumah" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :19 :YES :NO :XLFormRowDescriptorTypeTakePhoto :@"Foto Bukti Usaha 1" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :19 :YES :NO :XLFormRowDescriptorTypeTakePhoto :@"Foto Bukti Usaha 2" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :19 :YES :NO :XLFormRowDescriptorTypeTakePhoto :@"Foto Rumah Tampak Depan" :@"fotoRmhDpn" :@""]];
+    [section.rows addObject:[FormRow new:realm :19 :YES :NO :XLFormRowDescriptorTypeTakePhoto :@"Foto Tampak Jalan Menuju Rumah" :@"fotoJlnRmh" :@""]];
+    [section.rows addObject:[FormRow new:realm :19 :YES :NO :XLFormRowDescriptorTypeTakePhoto :@"Foto KTP Debitur" :@"fotoKtpDebitur" :@""]];
+    [section.rows addObject:[FormRow new:realm :19 :YES :NO :XLFormRowDescriptorTypeTakePhoto :@"Foto KTP Pasangan" :@"fotoKtpPasangan" :@""]];
+    [section.rows addObject:[FormRow new:realm :19 :YES :NO :XLFormRowDescriptorTypeTakePhoto :@"Foto Kartu Keluarga 1" :@"fotoKk1" :@""]];
+    [section.rows addObject:[FormRow new:realm :19 :YES :NO :XLFormRowDescriptorTypeTakePhoto :@"Foto Kartu Keluarga 2" :@"fotoKk2" :@""]];
+    [section.rows addObject:[FormRow new:realm :19 :YES :NO :XLFormRowDescriptorTypeTakePhoto :@"Foto Bukti Kepemilikan Rumah" :@"fotoBuktiKepemilikanRmh" :@""]];
+    [section.rows addObject:[FormRow new:realm :19 :YES :NO :XLFormRowDescriptorTypeTakePhoto :@"Foto Bukti Usaha 1" :@"fotoUsaha1" :@""]];
+    [section.rows addObject:[FormRow new:realm :19 :YES :NO :XLFormRowDescriptorTypeTakePhoto :@"Foto Bukti Usaha 2" :@"fotoUsaha2" :@""]];
     [form.sections addObject:section];
     
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuSurvey]];

@@ -7,6 +7,7 @@
 //
 
 #import "UploadPhotoTableViewCell.h"
+#import "AFImageDownloader.h"
 
 NSString * const XLFormRowDescriptorTypeTakePhoto = @"XLFormRowDescriptorTypeTakePhoto";
 
@@ -34,6 +35,22 @@ NSString * const XLFormRowDescriptorTypeTakePhoto = @"XLFormRowDescriptorTypeTak
 - (void)layoutSubviews{
     [super layoutSubviews];
     self.titleLabel.text = self.rowDescriptor.title;
+    if ([self.rowDescriptor.value isKindOfClass:NSString.class]) {
+        if ([MPMGlobal isStringAnURL:self.rowDescriptor.value]) {
+            NSURLRequest *imageRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:self.rowDescriptor.value]
+                                                          cachePolicy:NSURLRequestReloadRevalidatingCacheData
+                                                      timeoutInterval:60];
+            
+            __weak typeof(self) weakSelf = self;
+            [[AFImageDownloader defaultInstance] downloadImageForURLRequest:imageRequest success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull responseObject) {
+                weakSelf.pictureImageView.image = responseObject;
+            } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
+                
+            }];
+        } else {
+            self.pictureImageView.image = [MPMGlobal decodeFromBase64String:self.rowDescriptor.value];
+        }
+    }
 }
 
 - (IBAction)takePicture:(id)sender {
