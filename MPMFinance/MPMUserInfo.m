@@ -110,6 +110,10 @@
     return roleName;
 }
 
++ (NSString *)getIdCabang{
+    return [MPMUserInfo getUserInfo][@"kodeCabang"];
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////                     CONTENT OF USER INFO                                /////////////////
 

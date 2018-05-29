@@ -102,6 +102,7 @@
     dispatch_group_notify(group, queue, ^{
         [weakSelf.valueDictionary addEntriesFromDictionary:@{@"kewarganegaraan" : @"WNI",
                                                              @"kewarganegaraanPasangan" : @"WNI",
+                                                             @"kodeCabang" : [MPMUserInfo getIdCabang],
                                                              }];
         
         if ([[MPMUserInfo getRole] isEqualToString:kRoleCustomer]) {

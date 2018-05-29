@@ -16,5 +16,6 @@
 + (void)save:(NSDictionary *)dictionary;
 + (NSString *)getToken;
 + (NSString *)getRole;
++ (NSString *)getIdCabang;
 
 @end
