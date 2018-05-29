@@ -12,7 +12,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TrackingOfficerViewController">
             <connections>
-                <outlet property="mapView" destination="ZfD-Ix-cVS" id="JlW-vF-0MQ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,21 +19,7 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ZfD-Ix-cVS">
-                    <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                    <connections>
-                        <outlet property="delegate" destination="-1" id="9D7-d3-zwa"/>
-                    </connections>
-                </mapView>
-            </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-            <constraints>
-                <constraint firstItem="ZfD-Ix-cVS" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="1nI-GF-fMn"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="ZfD-Ix-cVS" secondAttribute="trailing" id="Mh4-5N-Ngx"/>
-                <constraint firstItem="ZfD-Ix-cVS" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="Rdw-a1-r8B"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="ZfD-Ix-cVS" secondAttribute="bottom" id="UON-FJ-Yb1"/>
-            </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
         </view>
     </objects>

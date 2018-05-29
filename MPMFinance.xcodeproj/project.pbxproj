@@ -155,6 +155,7 @@
 		5C0314B520B842900046F420 /* TrackingAnnotationCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0314B320B842900046F420 /* TrackingAnnotationCalloutView.m */; };
 		5C0314B620B842900046F420 /* TrackingAnnotationCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C0314B420B842900046F420 /* TrackingAnnotationCalloutView.xib */; };
 		5C0314BA20B851900046F420 /* DetailTrackingAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0314B920B851900046F420 /* DetailTrackingAnnotation.m */; };
+		5C06B74C20BCD0B400D91035 /* SMCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C06B74B20BCD0B300D91035 /* SMCalloutView.m */; };
 		5C2553BD20ADAFD100CB543F /* OfflineDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2553BC20ADAFD100CB543F /* OfflineDataManager.m */; };
 		5C2DED8C20B696D10058FA14 /* SetAlternateDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2DED8A20B696D10058FA14 /* SetAlternateDetailViewController.m */; };
 		5C2DED8D20B696D10058FA14 /* SetAlternateDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C2DED8B20B696D10058FA14 /* SetAlternateDetailViewController.xib */; };
@@ -451,6 +452,8 @@
 		5C0314B420B842900046F420 /* TrackingAnnotationCalloutView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackingAnnotationCalloutView.xib; sourceTree = "<group>"; };
 		5C0314B820B851900046F420 /* DetailTrackingAnnotation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailTrackingAnnotation.h; sourceTree = "<group>"; };
 		5C0314B920B851900046F420 /* DetailTrackingAnnotation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailTrackingAnnotation.m; sourceTree = "<group>"; };
+		5C06B74A20BCD0B300D91035 /* SMCalloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMCalloutView.h; sourceTree = "<group>"; };
+		5C06B74B20BCD0B300D91035 /* SMCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMCalloutView.m; sourceTree = "<group>"; };
 		5C2553BB20ADAFD100CB543F /* OfflineDataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OfflineDataManager.h; sourceTree = "<group>"; };
 		5C2553BC20ADAFD100CB543F /* OfflineDataManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OfflineDataManager.m; sourceTree = "<group>"; };
 		5C2DED8920B696D10058FA14 /* SetAlternateDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetAlternateDetailViewController.h; sourceTree = "<group>"; };
@@ -1069,6 +1072,8 @@
 		5C0314B720B851650046F420 /* tracking */ = {
 			isa = PBXGroup;
 			children = (
+				5C06B74A20BCD0B300D91035 /* SMCalloutView.h */,
+				5C06B74B20BCD0B300D91035 /* SMCalloutView.m */,
 				5C0314AD20B829A80046F420 /* TrackingOfficerViewController.h */,
 				5C0314AE20B829A80046F420 /* TrackingOfficerViewController.m */,
 				5C0314AF20B829A80046F420 /* TrackingOfficerViewController.xib */,
@@ -1511,6 +1516,7 @@
 				481C42A11F03BAD0007D5C3C /* InsuranceClaimFormViewController.m in Sources */,
 				48CDD8421EC9BA1A0038D626 /* SubmenuTableViewCell.m in Sources */,
 				48336A9B1F19111300536771 /* BarcodeViewController.m in Sources */,
+				5C06B74C20BCD0B400D91035 /* SMCalloutView.m in Sources */,
 				5CA4FA0220B5A4E70053CDA1 /* MPMCustomUI.m in Sources */,
 				48E3E92B20B5C45100E8D170 /* DropdownValueTransformer.m in Sources */,
 				48E3E92720B5C41700E8D170 /* DropdownWSViewController.m in Sources */,
