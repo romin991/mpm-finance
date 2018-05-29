@@ -64,6 +64,10 @@ const static CGFloat kFloatingLabelFontSize = 11.0f;
 - (void)setKeyboardType:(UIKeyboardType)keyboardType{
     self.floatLabeledTextField.keyboardType = keyboardType;
 }
+- (void)setKeyboardType:(UIKeyboardType)keyboardType andMaximumLength:(NSInteger) maxLength{
+    self.floatLabeledTextField.keyboardType = keyboardType;
+    self.maximumaLength = maxLength;
+}
 
 -(void)configure
 {
@@ -123,6 +127,12 @@ const static CGFloat kFloatingLabelFontSize = 11.0f;
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    int newLength = textField.text.length + string.length - range.length;
+    if (self.maximumaLength > 0 && newLength > self.maximumaLength) {
+        
+        
+        return NO;
+    }
     return [self.formViewController textField:textField shouldChangeCharactersInRange:range replacementString:string];
 }
 
