@@ -999,7 +999,7 @@
 }
 
 - (void)formRowDescriptorValueHasChanged:(XLFormRowDescriptor *)formRow oldValue:(id)oldValue newValue:(id)newValue{
-    if ([formRow.tag isEqualToString:@"productOffering"]) {
+    if ([formRow.tag isEqualToString:@"productOffering"] && newValue && ![newValue isKindOfClass:NSNull.class]) {
         __block typeof(self) weakSelf = self;
         NSString *idCabang = [self.valueDictionary objectForKey:@"kodeCabang"] ?: @"";
         NSString *idProductOffering = ((XLFormOptionsObject *)newValue).formValue ?: @"";
@@ -1024,7 +1024,7 @@
         }];
     }
     
-    if ([formRow.tag isEqualToString:@"sumberAplikasi"]) {
+    if ([formRow.tag isEqualToString:@"sumberAplikasi"] && newValue && ![newValue isKindOfClass:NSNull.class]) {
         NSInteger newValueInteger = [((XLFormOptionsObject *)newValue).formValue integerValue];
         if (newValueInteger == 2) {
             XLFormRowDescriptor *row = [self.form formRowWithTag:@"kodeCabang"];

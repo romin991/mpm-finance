@@ -32,6 +32,7 @@
 #import "SuggestionComplaintTableViewController.h"
 #import "CustomerGetCustomerTableViewController.h"
 #import "DataMAPModel.h"
+#import "SurveyModel.h"
 
 @interface SubmenuViewController ()
 
@@ -135,7 +136,7 @@
             if (isMarketing) {
                 [actionSheet addAction:[UIAlertAction actionWithTitle:@"Submit" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                     [SVProgressHUD show];
-                    [DataMAPModel getDataMAPWithID:self.list.primaryKey completion:^(NSDictionary *response, NSError *error) {
+                    [DataMAPModel postDataMAPWithID:self.list.primaryKey completion:^(NSDictionary *response, NSError *error) {
                         if (error) {
                             [SVProgressHUD showErrorWithStatus:error.localizedDescription];
                             [SVProgressHUD dismissWithDelay:1.5];
@@ -178,6 +179,16 @@
             }]];
             
             [actionSheet addAction:[UIAlertAction actionWithTitle:@"Submit" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                [SVProgressHUD show];
+                [SurveyModel postSurveyWithID:self.list.primaryKey completion:^(NSDictionary *response, NSError *error) {
+                    if (error) {
+                        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+                        [SVProgressHUD dismissWithDelay:1.5];
+                    } else {
+                        [SVProgressHUD showSuccessWithStatus:@"Success"];
+                        [SVProgressHUD dismissWithDelay:1.5];
+                    }
+                }];
                 [weakSelf dismissViewControllerAnimated:YES completion:nil];
             }]];
             
