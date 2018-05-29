@@ -948,42 +948,47 @@
     
     section = [[FormSection alloc] init];
     section.title = @"New Car";
-    [section.rows addObject:[FormRow new:realm :22 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"OTR Kendaraan" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :22 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"DP (%)" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :22 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"DP (Rupiah)" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :22 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Rate" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :22 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Tenor" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :22 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Tipe Pembayaran" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :22 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Biaya Provisi" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :22 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Opsi Asuransi Jiwa" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :22 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Opsi Asuransi Jiwa Kapitalisasi" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :22 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Opsi Biaya Administrasi" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :22 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Opsi Biaya Fidusia" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :22 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Opsi Biaya Fidusia Kapitalisasi" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :22 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Wilayah Asuransi Kendaraan" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :22 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Opsi Premi" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :22 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Pertanggungan (Insurance by MPM/Sompo)" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :22 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Penggunaan" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :22 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Opsi Asuransi Kendaraan" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"OTR Kendaraan" :@"otrKendaraan" :@""]];
+    [section.rows addObject:[FormRow new:realm :1 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"DP (%)" :@"dpPercentage" :@""]];
+    [section.rows addObject:[FormRow new:realm :2 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"DP (Rupiah)" :@"dpRupiah" :@""]];
+    [section.rows addObject:[FormRow new:realm :3 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Rate" :@"rate" :@""]];
+    [section.rows addObject:[FormRow new:realm :4 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Tenor" :@"tenor" :@""]];
+    [section.rows addObject:[FormRow new:realm :5 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Tipe Pembayaran" :@"tipePembayaran" :@""]];
+    [section.rows addObject:[FormRow new:realm :6 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Biaya Provisi" :@"biayaProvisi" :@""]];
+    [section.rows addObject:[FormRow new:realm :7 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Opsi Asuransi Jiwa" :@"opsiAsuransiJiwa" :@""]];
+    [section.rows addObject:[FormRow new:realm :8 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Opsi Asuransi Jiwa Kapitalisasi" :@"opsiAsuransiJiwaKapitalisasi" :@""]];
+    [section.rows addObject:[FormRow new:realm :9 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Opsi Biaya Administrasi" :@"opsiBiayaAdministrasi" :@""]];
+    [section.rows addObject:[FormRow new:realm :10 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Opsi Biaya Fidusia" :@"opsiBiayaFidusia" :@""]];
+    [section.rows addObject:[FormRow new:realm :11 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Opsi Biaya Fidusia Kapitalisasi" :@"opsiBiayaFidusiaKapitalisasi" :@""]];
+    [section.rows addObject:[FormRow new:realm :12 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Wilayah Asuransi Kendaraan" :@"wilayahAsuransiKendaraan" :@""]];
+    [section.rows addObject:[FormRow new:realm :13 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Opsi Premi" :@"opsiPremi" :@""]];
+    [section.rows addObject:[FormRow new:realm :14 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Pertanggungan (Insurance by MPM/Sompo)" :@"pertanggungan" :@""]];
+    [section.rows addObject:[FormRow new:realm :15 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Penggunaan" :@"penggunaan" :@""]];
+    [section.rows addObject:[FormRow new:realm :16 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Opsi Asuransi Kendaraan" :@"opsiAsuransiKendaraan" :@""]];
     [form.sections addObject:section];
     
     section = [[FormSection alloc] init];
     section.title = @"Asuransi";
-    [section.rows addObject:[FormRow new:realm :22 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nilai Tunai Sebagian" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :17 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nilai Tunai Sebagian" :@"nilaiTunaiSebagian" :@""]];
     [form.sections addObject:section];
     
     section = [[FormSection alloc] init];
     section.title = @"Setting Rate";
-    [section.rows addObject:[FormRow new:realm :22 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"% Supplier Rate" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :22 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"% Refund Bunga" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :22 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"% Refund Asuransi" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :22 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"% Upping Provisi" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :18 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"% Supplier Rate" :@"supplierRate" :@""]];
+    [section.rows addObject:[FormRow new:realm :19 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"% Refund Bunga" :@"refundBunga" :@""]];
+    [section.rows addObject:[FormRow new:realm :20 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"% Refund Asuransi" :@"refundAsuransi" :@""]];
+    [section.rows addObject:[FormRow new:realm :21 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"% Upping Provisi" :@"uppingProvisi" :@""]];
     [form.sections addObject:section];
     
     section = [[FormSection alloc] init];
     section.title = @"Opsi Komponen Biaya Tunai";
-    [section.rows addObject:[FormRow new:realm :22 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Biaya Survey (Jika ada)" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :22 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Biaya Cek / Blokir BPKB (Jika ada)" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :22 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Biaya Survey (Jika ada)" :@"biayaSurvey" :@""]];
+    [section.rows addObject:[FormRow new:realm :23 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Biaya Cek / Blokir BPKB (Jika ada)" :@"biayaCekBlokirBPKB" :@""]];
+    [form.sections addObject:section];
+    
+    section = [[FormSection alloc] init];
+    section.title = @"";
+    [section.rows addObject:[FormRow new:realm :24 :NO :NO :XLFormRowDescriptorTypeButton :@"Calculate" :@"calculate" :@""]];
     [form.sections addObject:section];
     
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuNewCar]];

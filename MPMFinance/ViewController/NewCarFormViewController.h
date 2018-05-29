@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Menu.h"
+#import <XLForm.h>
 
-@interface NewCarFormViewController : UIViewController
+@interface NewCarFormViewController : XLFormViewController
 
 @property Menu *menu;
 
