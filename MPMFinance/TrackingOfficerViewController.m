@@ -116,7 +116,32 @@
             self.calloutView.constrainedInsets = UIEdgeInsetsMake(self.topLayoutGuide.length, 0, self.bottomLayoutGuide.length, 0);
         
         // This does all the magic.
-        [self.calloutView presentCalloutFromRect:annotationView.bounds inView:annotationView constrainedToView:self.view animated:YES];
+        
+        
+        
+        
+        CLGeocoder *ceo = [[CLGeocoder alloc]init];
+        CLLocation *loc = [[CLLocation alloc]initWithLatitude:annotationView.annotation.coordinate.latitude longitude:annotationView.annotation.coordinate.longitude]; //insert your coordinates
+        [ceo reverseGeocodeLocation:loc
+                  completionHandler:^(NSArray *placemarks, NSError *error) {
+                      CLPlacemark *placemark = [placemarks objectAtIndex:0];
+                      if (placemark) {
+                          dispatch_async(dispatch_get_main_queue(), ^{
+                              NSString *locatedAt = [[placemark.addressDictionary valueForKey:@"FormattedAddressLines"] componentsJoinedByString:@", "];
+                              UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 150)];
+                              UITextView *textView = [[UITextView alloc] initWithFrame:view.frame];
+                              textView.text = locatedAt;
+                              [view addSubview:textView];
+                              self.calloutView.subtitleView = view;
+                              [self.calloutView presentCalloutFromRect:annotationView.bounds inView:annotationView constrainedToView:self.view animated:YES];
+                              
+                          });
+                      }
+                      else {
+                          NSLog(@"Could not locate");
+                      }
+                  }
+         ];
     }
 }
 
@@ -165,31 +190,14 @@
     self.marketings = nil;
     [APIModel getAllMarketingTrackingDetail:tap.data WithCompletion:^(NSArray *data, NSError *error) {
         int i = 1;
+        
         for (NSDictionary *dict in data) {
-            CLGeocoder *ceo = [[CLGeocoder alloc]init];
-            double lat = [dict[@"lat"] doubleValue];
-            double lng = [dict[@"lng"] doubleValue];
-            CLLocation *loc = [[CLLocation alloc]initWithLatitude:lat longitude:lng]; //insert your coordinates
-            [ceo reverseGeocodeLocation:loc
-                      completionHandler:^(NSArray *placemarks, NSError *error) {
-                          CLPlacemark *placemark = [placemarks objectAtIndex:0];
-                          if (placemark) {
-                              dispatch_async(dispatch_get_main_queue(), ^{
-                                NSString *locatedAt = [[placemark.addressDictionary valueForKey:@"FormattedAddressLines"] componentsJoinedByString:@", "];
-                                  MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
-                                  annotation.title = [NSString stringWithFormat:@"%i",i];
-                                  annotation.subtitle = @"";
-                                  annotation.coordinate = CLLocationCoordinate2DMake([dict[@"lat"] doubleValue], [dict[@"lng"] doubleValue]);
-                                  [self.mapKitWithSMCalloutView addAnnotation:annotation];
-                              });
-                          }
-                          else {
-                              NSLog(@"Could not locate");
-                          }
-                      }
-             ];
-            DetailTrackingAnnotation *annotation = [[DetailTrackingAnnotation alloc] initWithCoordinate:CLLocationCoordinate2DMake([dict[@"lat"] doubleValue], [dict[@"lng"] doubleValue])];
-            annotation.number = @(i);
+            MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+            annotation.title = [NSString stringWithFormat:@"%i",i];
+            annotation.subtitle = @"";
+            annotation.coordinate = CLLocationCoordinate2DMake([dict[@"lat"] doubleValue], [dict[@"lng"] doubleValue]);
+            [self.mapKitWithSMCalloutView addAnnotation:annotation];
+            
             //annotation.address =
             i++;
         }

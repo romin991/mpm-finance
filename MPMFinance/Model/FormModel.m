@@ -153,6 +153,7 @@
     [section.formRows enumerateObjectsUsingBlock:^(XLFormRowDescriptor *row, NSUInteger idx, BOOL *stop) {
         id value;
         NSLog(@"%@",row.tag);
+        
         if ([dictionary objectForKey:row.tag] && (fields.count == 0 || [fields containsObject:row.tag])){
             value = [dictionary objectForKey:row.tag];
         }
@@ -197,6 +198,7 @@
             row.disabled = @(formRow.disabled);
             row.hidden = @(formRow.hidden);
             row.selectorTitle = formRow.title;
+            
             if (formRow.validationRegex.length > 0) {
                 [row addValidator:[[XLFormRegexValidator alloc] initWithMsg:formRow.validationMessage andRegexString:formRow.validationRegex]];
             }

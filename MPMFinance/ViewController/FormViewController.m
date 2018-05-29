@@ -71,6 +71,12 @@
     }];
 }
 
+-(BOOL)textField:(XLFormRowDescriptor *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    NSLog(@"DAFUK");
+    
+    return YES;
+}
+
 - (void)preparingValueWithCompletion:(void(^)())block{
     dispatch_group_t group = dispatch_group_create();
     dispatch_queue_t queue = dispatch_get_main_queue();
@@ -209,6 +215,7 @@
                 if ([row.tag isEqualToString:@"rTSesuaiKTP"] ||
                     [row.tag isEqualToString:@"rWSesuaiKTP"] ||
                     [row.tag isEqualToString:@"kodeArea"] ||
+                    [row.tag isEqualToString:@"noKTP"] ||
                     [row.tag isEqualToString:@"nomorTelepon"] ||
                     [row.tag isEqualToString:@"nomorHandphone"] ||
                     
@@ -234,6 +241,15 @@
                     //Set keyboard type to numberPad
                     if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
                         [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
+                        if ([row.tag isEqualToString:@"rTSesuaiKTP"] || [row.tag isEqualToString:@"rWSesuaiKTP"]) {
+                            ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumaLength = 3;
+                        } else if ([row.tag isEqualToString:@"nomorTelepon"]){
+                            ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumaLength = 15;
+                        } else if ([row.tag isEqualToString:@"nomorHandphone"]){
+                            ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumaLength = 15;
+                        } else if ([row.tag isEqualToString:@"noKTP"]){
+                            ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumaLength = 16;
+                        }
                     }
                 }
                 
