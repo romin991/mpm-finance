@@ -211,7 +211,33 @@
                         NSLog(@"%@", exception);
                     }
                 }
-                
+                if ([row.tag isEqualToString:@"noKTPPasangan"]) {
+                    ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 16;
+                }
+                else if ([row.tag isEqualToString:@"nomorHandphonePasangan"]) {
+                    ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 15;
+                }
+                else if ([row.tag isEqualToString:@"rTPasangan"]) {
+                    ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 3;
+                }
+                else if ([row.tag isEqualToString:@"rWPasangan"]) {
+                    ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 3;
+                }
+                else if ([row.tag isEqualToString:@"rWPasangan"]) {
+                    ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 3;
+                }
+                else if ([row.tag isEqualToString:@"rWPasangan"]) {
+                    ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 3;
+                }
+                else if ([row.tag isEqualToString:@"kodeAreaTeleponTempatKerja"]) {
+                    ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 4;
+                }
+                else if ([row.tag isEqualToString:@"nomorTeleponTempatKerja"]) {
+                    ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 15;
+                }
+                else if ([row.tag isEqualToString:@"nomorTeleponEcon"]) {
+                    ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 15;
+                }
                 if ([row.tag isEqualToString:@"rTSesuaiKTP"] ||
                     [row.tag isEqualToString:@"rWSesuaiKTP"] ||
                     [row.tag isEqualToString:@"kodeArea"] ||
@@ -242,16 +268,18 @@
                     if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
                         [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
                         if ([row.tag isEqualToString:@"rTSesuaiKTP"] || [row.tag isEqualToString:@"rWSesuaiKTP"]) {
-                            ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumaLength = 3;
+                            ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 3;
                         } else if ([row.tag isEqualToString:@"nomorTelepon"]){
-                            ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumaLength = 15;
+                            ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 15;
                         } else if ([row.tag isEqualToString:@"nomorHandphone"]){
-                            ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumaLength = 15;
+                            ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 15;
                         } else if ([row.tag isEqualToString:@"noKTP"]){
-                            ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumaLength = 16;
+                            ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 16;
                         }
                     }
                 }
+                
+                
                 
                 if ([[MPMUserInfo getRole] isEqualToString:kRoleDedicated]){
                     if ([row.tag isEqualToString:@"noKTP"] ||
