@@ -604,11 +604,10 @@
                                     @"token" : [MPMUserInfo getToken]}];
     
     NSMutableDictionary *dataDictionary = [NSMutableDictionary dictionary];
-    NSString *url = [[MPMUserInfo getRole] isEqualToString:kRoleCustomer] ? @"customer/input" : @"supervisor/input";
+    NSString *url = [[MPMUserInfo getRole] isEqualToString:kRoleCustomer] ? @"customer/input" : @"marketing/input";
     @try {
         if (list){
             [dataDictionary setObject:@(list.primaryKey) forKey:@"id"];
-//            url = [[MPMUserInfo getRole] isEqualToString:kRoleCustomer] ? @"customer/update" : @"supervisor/update";
         }
         
         [dataDictionary addEntriesFromDictionary:
