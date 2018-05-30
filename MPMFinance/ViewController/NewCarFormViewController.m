@@ -12,6 +12,7 @@
 #import "Form.h"
 #import "FloatLabeledTextFieldCell.h"
 #import "CalculatorMarketingModel.h"
+#import "ResultCalculatorViewController.h"
 
 @interface NewCarFormViewController ()
 
@@ -256,14 +257,24 @@
     [FormModel saveValueFrom:self.form to:self.valueDictionary];
     
     //calculate base on valueDictionary here
+    __weak typeof(self) weakSelf = self;
     [SVProgressHUD show];
     [CalculatorMarketingModel postCalculateNewCarWithDictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
         if (error) {
             [SVProgressHUD showErrorWithStatus:error.localizedDescription];
             [SVProgressHUD dismissWithDelay:1.5];
         } else {
-            [SVProgressHUD showSuccessWithStatus:[NewCarFormViewController serializeDictionary:dictionary]];
-            [SVProgressHUD dismissWithDelay:5];
+            [SVProgressHUD dismiss];
+            
+            if ([dictionary objectForKey:@"data"]) {
+                ResultCalculatorViewController *resultVC = [[ResultCalculatorViewController alloc] init];
+                resultVC.requestDictionary = weakSelf.valueDictionary;
+                resultVC.responseDictionary = [dictionary objectForKey:@"data"];
+                [weakSelf.navigationController pushViewController:resultVC animated:true];
+            } else {
+                [SVProgressHUD showErrorWithStatus:@"Dictionary not found"];
+                [SVProgressHUD dismissWithDelay:1.5];
+            }
         }
     }];
 }

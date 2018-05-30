@@ -127,6 +127,11 @@
 		4886BB051EC4ABD1000F8DBE /* PopulateRealmDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4886BB041EC4ABD1000F8DBE /* PopulateRealmDatabase.m */; };
 		4886BB081EC4ABF8000F8DBE /* Menu.m in Sources */ = {isa = PBXBuildFile; fileRef = 4886BB071EC4ABF8000F8DBE /* Menu.m */; };
 		48A807F320BDAC7A005631F6 /* CalculatorMarketingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A807F220BDAC7A005631F6 /* CalculatorMarketingModel.m */; };
+		48A807F820BEC83F005631F6 /* ResultCalculatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A807F620BEC83F005631F6 /* ResultCalculatorViewController.m */; };
+		48A807F920BEC83F005631F6 /* ResultCalculatorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48A807F720BEC83F005631F6 /* ResultCalculatorViewController.xib */; };
+		48A807FD20BECAA8005631F6 /* ResultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A807FB20BECAA8005631F6 /* ResultTableViewCell.m */; };
+		48A807FE20BECAA8005631F6 /* ResultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48A807FC20BECAA8005631F6 /* ResultTableViewCell.xib */; };
+		48A8080120BEECCA005631F6 /* ResultTableData.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A8080020BEECCA005631F6 /* ResultTableData.m */; };
 		48CDD82C1EC9B1FB0038D626 /* SimpleListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CDD82A1EC9B1FB0038D626 /* SimpleListViewController.m */; };
 		48CDD82D1EC9B1FB0038D626 /* SimpleListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48CDD82B1EC9B1FB0038D626 /* SimpleListViewController.xib */; };
 		48CDD8341EC9B3AD0038D626 /* SimpleListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CDD8321EC9B3AD0038D626 /* SimpleListTableViewCell.m */; };
@@ -407,6 +412,14 @@
 		4886BB071EC4ABF8000F8DBE /* Menu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Menu.m; path = Object/Realm/Menu.m; sourceTree = "<group>"; };
 		48A807F120BDAC7A005631F6 /* CalculatorMarketingModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CalculatorMarketingModel.h; path = Model/CalculatorMarketingModel.h; sourceTree = "<group>"; };
 		48A807F220BDAC7A005631F6 /* CalculatorMarketingModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CalculatorMarketingModel.m; path = Model/CalculatorMarketingModel.m; sourceTree = "<group>"; };
+		48A807F520BEC83F005631F6 /* ResultCalculatorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ResultCalculatorViewController.h; path = ViewController/ResultCalculatorViewController.h; sourceTree = "<group>"; };
+		48A807F620BEC83F005631F6 /* ResultCalculatorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ResultCalculatorViewController.m; path = ViewController/ResultCalculatorViewController.m; sourceTree = "<group>"; };
+		48A807F720BEC83F005631F6 /* ResultCalculatorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ResultCalculatorViewController.xib; path = ViewController/ResultCalculatorViewController.xib; sourceTree = "<group>"; };
+		48A807FA20BECAA8005631F6 /* ResultTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ResultTableViewCell.h; path = ViewController/ResultTableViewCell.h; sourceTree = "<group>"; };
+		48A807FB20BECAA8005631F6 /* ResultTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ResultTableViewCell.m; path = ViewController/ResultTableViewCell.m; sourceTree = "<group>"; };
+		48A807FC20BECAA8005631F6 /* ResultTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ResultTableViewCell.xib; path = ViewController/ResultTableViewCell.xib; sourceTree = "<group>"; };
+		48A807FF20BEECCA005631F6 /* ResultTableData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ResultTableData.h; path = ViewController/ResultTableData.h; sourceTree = "<group>"; };
+		48A8080020BEECCA005631F6 /* ResultTableData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ResultTableData.m; path = ViewController/ResultTableData.m; sourceTree = "<group>"; };
 		48CDD8291EC9B1FB0038D626 /* SimpleListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SimpleListViewController.h; path = ViewController/SimpleListViewController.h; sourceTree = "<group>"; };
 		48CDD82A1EC9B1FB0038D626 /* SimpleListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SimpleListViewController.m; path = ViewController/SimpleListViewController.m; sourceTree = "<group>"; };
 		48CDD82B1EC9B1FB0038D626 /* SimpleListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SimpleListViewController.xib; path = ViewController/SimpleListViewController.xib; sourceTree = "<group>"; };
@@ -599,6 +612,7 @@
 				482652721EFBB8710002A606 /* DahsyatFormViewController */,
 				4826527B1EFBF9940002A606 /* UsedCarFormViewController */,
 				4826527C1EFBF9B00002A606 /* NewCarFormViewController */,
+				48A807F420BEC806005631F6 /* ResultCalculatorViewController */,
 			);
 			name = MarketingOfficerDedicated;
 			sourceTree = "<group>";
@@ -975,6 +989,21 @@
 			name = Realm;
 			sourceTree = "<group>";
 		};
+		48A807F420BEC806005631F6 /* ResultCalculatorViewController */ = {
+			isa = PBXGroup;
+			children = (
+				48A807F520BEC83F005631F6 /* ResultCalculatorViewController.h */,
+				48A807F620BEC83F005631F6 /* ResultCalculatorViewController.m */,
+				48A807F720BEC83F005631F6 /* ResultCalculatorViewController.xib */,
+				48A807FA20BECAA8005631F6 /* ResultTableViewCell.h */,
+				48A807FB20BECAA8005631F6 /* ResultTableViewCell.m */,
+				48A807FC20BECAA8005631F6 /* ResultTableViewCell.xib */,
+				48A807FF20BEECCA005631F6 /* ResultTableData.h */,
+				48A8080020BEECCA005631F6 /* ResultTableData.m */,
+			);
+			name = ResultCalculatorViewController;
+			sourceTree = "<group>";
+		};
 		48CDD8261EC9B1A30038D626 /* ListViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1342,6 +1371,7 @@
 			files = (
 				483F39301EC3085E00C03253 /* LaunchScreen.storyboard in Resources */,
 				4846E2301EE66A70000C08B7 /* DataMAPFormViewController.xib in Resources */,
+				48A807FE20BECAA8005631F6 /* ResultTableViewCell.xib in Resources */,
 				4825BFD21F5C3FCE00D091AC /* CustomerGetCustomerTableViewController.xib in Resources */,
 				5C4D5FC0208F5F0C004CA73E /* ProductDetailViewController.xib in Resources */,
 				4825BFD71F5C44C800D091AC /* SuggestionTableViewCell.xib in Resources */,
@@ -1371,6 +1401,7 @@
 				480A7D1720B3312B0005CEB9 /* UploadPhotoTableViewCell.xib in Resources */,
 				5C0314B120B829A80046F420 /* TrackingOfficerViewController.xib in Resources */,
 				4848B1B31F1251E700C9DE21 /* PostalCodeTableViewCell.xib in Resources */,
+				48A807F920BEC83F005631F6 /* ResultCalculatorViewController.xib in Resources */,
 				5CCD2D46209EF52000EBC76F /* KontrakKerjaDetailViewController.xib in Resources */,
 				483CC5BA20AC957C0084BC6B /* DisclaimerViewController.xib in Resources */,
 				5C8EB86A2095D76B006A3170 /* XLFormActivityTableViewCell.xib in Resources */,
@@ -1489,6 +1520,7 @@
 				5CCD2D4F209EF57600EBC76F /* NSString+Utils.m in Sources */,
 				484627261F1AED000049A92A /* AssignMarketingTableViewCell.m in Sources */,
 				4825BFCC1F5C3FAB00D091AC /* SuggestionComplaintTableViewController.m in Sources */,
+				48A8080120BEECCA005631F6 /* ResultTableData.m in Sources */,
 				48D44D5B1EE846B5005FC8DB /* WorkOrderModel.m in Sources */,
 				483F39281EC3085E00C03253 /* LoginViewController.m in Sources */,
 				4825BF8E1F5C2D3300D091AC /* AcceleratedRepaymentModel.m in Sources */,
@@ -1514,6 +1546,7 @@
 				481C42811F00EE23007D5C3C /* WorkOrderListViewController.m in Sources */,
 				4848B1BB1F13840700C9DE21 /* AssetValueTransformer.m in Sources */,
 				4846272A1F1AFA9A0049A92A /* Marketing.m in Sources */,
+				48A807FD20BECAA8005631F6 /* ResultTableViewCell.m in Sources */,
 				4886BAFD1EC42EDD000F8DBE /* MenuViewController.m in Sources */,
 				483F1E981EF2874F005D3945 /* ProfileModel.m in Sources */,
 				5C4587651EE2A02D004AC7FE /* CreditSimulationViewController.m in Sources */,
@@ -1556,6 +1589,7 @@
 				48CDD8341EC9B3AD0038D626 /* SimpleListTableViewCell.m in Sources */,
 				487F39F61ED64F9400D6E580 /* APIModel.m in Sources */,
 				5C0314A620B7F51E0046F420 /* MonitoringViewController.m in Sources */,
+				48A807F820BEC83F005631F6 /* ResultCalculatorViewController.m in Sources */,
 				482652881EFBFA050002A606 /* NewCarFormViewController.m in Sources */,
 				481C42B91F03EE7D007D5C3C /* CustomerModel.m in Sources */,
 				5C46F51C1EE81966009C6AD6 /* DashboardViewController.m in Sources */,

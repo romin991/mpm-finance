@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="20" id="KGk-i7-Jjw" customClass="ResultTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="19.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XR4-hz-Dud">
+                        <rect key="frame" x="16" y="0.0" width="117" height="19.5"/>
+                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Oj-gS-sy1">
+                        <rect key="frame" x="174" y="0.0" width="130" height="19.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="130" id="yAj-Vd-2x7"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cqr-uo-tov">
+                        <rect key="frame" x="133" y="0.0" width="36" height="19.5"/>
+                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="Cqr-uo-tov" secondAttribute="bottom" id="10K-QG-r15"/>
+                    <constraint firstAttribute="bottom" secondItem="XR4-hz-Dud" secondAttribute="bottom" id="2hz-ru-Dv1"/>
+                    <constraint firstItem="Cqr-uo-tov" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="7YG-IT-BYi"/>
+                    <constraint firstItem="9Oj-gS-sy1" firstAttribute="leading" secondItem="Cqr-uo-tov" secondAttribute="trailing" constant="5" id="7xx-AJ-pTC"/>
+                    <constraint firstItem="XR4-hz-Dud" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="GTA-jb-GVX"/>
+                    <constraint firstItem="XR4-hz-Dud" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="HRi-tK-fRQ"/>
+                    <constraint firstItem="Cqr-uo-tov" firstAttribute="leading" secondItem="XR4-hz-Dud" secondAttribute="trailing" id="UDi-eG-69d"/>
+                    <constraint firstAttribute="bottom" secondItem="9Oj-gS-sy1" secondAttribute="bottom" id="UEj-qN-90S"/>
+                    <constraint firstAttribute="trailing" secondItem="9Oj-gS-sy1" secondAttribute="trailing" constant="16" id="bsP-MR-Sir"/>
+                    <constraint firstItem="9Oj-gS-sy1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="gSp-0N-67D"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="leftLabel" destination="XR4-hz-Dud" id="ZqR-8M-wD2"/>
+                <outlet property="middleLabel" destination="Cqr-uo-tov" id="q2c-HP-YhE"/>
+                <outlet property="rightLabel" destination="9Oj-gS-sy1" id="LVG-cH-tFv"/>
+            </connections>
+            <point key="canvasLocation" x="34" y="66"/>
+        </tableViewCell>
+    </objects>
+</document>
