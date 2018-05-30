@@ -347,6 +347,7 @@
         } else {
             [SVProgressHUD show];
             [FormModel saveValueFrom:self.form to:self.valueDictionary];
+            __weak typeof(self) weakSelf = self;
             [WorkOrderModel postDraftWorkOrder:self.list dictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
                 if (error) {
                     
@@ -361,13 +362,25 @@
                         [SVProgressHUD dismissWithDelay:1.5];
                     }
                 } else {
+                    if (weakSelf.list == nil) {
+                        @try {
+                            List *list = [[List alloc] init];
+                            list.primaryKey = [[[dictionary objectForKey:@"data"] objectForKey:@"id"] integerValue];
+                            if (list.primaryKey) {
+                                weakSelf.list = list;
+                            }
+                        } @catch (NSException *exception){
+                            NSLog(@"%@", exception);
+                        }
+                    }
+                    
                     [SVProgressHUD dismiss];
                     FormViewController *nextFormViewController = [[FormViewController alloc] init];
-                    nextFormViewController.menu = self.menu;
-                    nextFormViewController.index = self.index + 1;
-                    nextFormViewController.valueDictionary = self.valueDictionary;
-                    nextFormViewController.list = self.list;
-                    [self.navigationController pushViewController:nextFormViewController animated:YES];
+                    nextFormViewController.menu = weakSelf.menu;
+                    nextFormViewController.index = weakSelf.index + 1;
+                    nextFormViewController.valueDictionary = weakSelf.valueDictionary;
+                    nextFormViewController.list = weakSelf.list;
+                    [weakSelf.navigationController pushViewController:nextFormViewController animated:YES];
                 }
             }];
         }
