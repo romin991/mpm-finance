@@ -44,6 +44,8 @@
 }
 
 - (void)setupDataSources{
+    [self addDataWithLeft:@"" middle:@"" right:@"" type:ResultTableDataTypeNormal];
+    
     //Setting Rate
     [self addDataWithLeft:@"Setting Rate" middle:@"" right:@"" type:ResultTableDataTypeHeader];
     [self addDataWithLeft:@"Rate" middle:[self.requestDictionary objectForKey:@"rate"] right:@"" type:ResultTableDataTypeNormal];
@@ -74,8 +76,8 @@
     //Struktur Pembiayaan
     [self addDataWithLeft:@"Struktur Pembiayaan" middle:@"" right:@"" type:ResultTableDataTypeHeader];
     [self addDataWithLeft:@"Harga OTR Kendaraan" middle:@"" right:[self.requestDictionary objectForKey:@"otrKendaraan"] type:ResultTableDataTypeNormal];
-    [self addDataWithLeft:@"Uang Muka" middle:[self.requestDictionary objectForKey:@"dpPercentage"] right:[self.requestDictionary objectForKey:@"dpRupiah"] type:ResultTableDataTypeNormal];
-    [self addDataWithLeft:@"Pokok Hutang" middle:@"" right:[self.requestDictionary objectForKey:@"pokokHutang"] type:ResultTableDataTypeNormal];
+    [self addDataWithLeft:@"Uang Muka" middle:[NSString stringWithFormat:@"%@%%", [self.requestDictionary objectForKey:@"dpPercentage"]] right:[self.responseDictionary objectForKey:@"struktur_pembiayaan_uang_muka"] type:ResultTableDataTypeNormal];
+    [self addDataWithLeft:@"Pokok Hutang" middle:@"" right:[self.responseDictionary objectForKey:@"struktur_pembiayaan_pokok_utang"] type:ResultTableDataTypeNormal];
     
     [self addDataWithLeft:@"Biaya Kapitalisasi" middle:@"" right:@"" type:ResultTableDataTypeBold];
     [self addDataWithLeft:@"1. Biaya Administrasi" middle:@"" right:[self.responseDictionary objectForKey:@"biaya_kapitalisasi_biaya_administrasi"] type:ResultTableDataTypeNormal];
@@ -106,8 +108,8 @@
     
     //Refund Bunga
     [self addDataWithLeft:@"Refund Bunga" middle:@"" right:@"" type:ResultTableDataTypeHeader];
-    [self addDataWithLeft:@"% Refund" middle:[NSString stringWithFormat:@"%@%%", [self.responseDictionary objectForKey:@"presentase_refund_bunga"]] right:@"flat per tahun" type:ResultTableDataTypeNormal];
-    [self addDataWithLeft:@"Running Rate" middle:[NSString stringWithFormat:@"%@%%", [self.responseDictionary objectForKey:@"running_rate_refund_bunga"]] right:@"flat per tahun" type:ResultTableDataTypeNormal];
+    [self addDataWithLeft:@"% Refund" middle:[NSString stringWithFormat:@"%@%%", [self.responseDictionary objectForKey:@"presentase_refund_bunga"]] right:@"flat per tahun" type:ResultTableDataTypeRightTextAlignmentLeft];
+    [self addDataWithLeft:@"Running Rate" middle:[NSString stringWithFormat:@"%@%%", [self.responseDictionary objectForKey:@"running_rate_refund_bunga"]] right:@"flat per tahun" type:ResultTableDataTypeRightTextAlignmentLeft];
     [self addDataWithLeft:@"Gross Refund" middle:[self.responseDictionary objectForKey:@"gross_refund_refund_bunga"] right:@"" type:ResultTableDataTypeNormal];
     [self addDataWithLeft:@"" middle:@"" right:@"" type:ResultTableDataTypeNormal];
     
@@ -124,6 +126,7 @@
     [self addDataWithLeft:@"" middle:@"" right:@"" type:ResultTableDataTypeNormal];
     
     [self addDataWithLeft:@"Maks. Refund" middle:@"" right:[self.responseDictionary objectForKey:@"maks_refund"] type:ResultTableDataTypeSummary];
+    [self addDataWithLeft:@"" middle:@"" right:@"" type:ResultTableDataTypeNormal];
 }
 
 - (void)addDataWithLeft:(NSString *)left middle:(NSString *)middle right:(NSString *)right type:(ResultTableDataType)type{
