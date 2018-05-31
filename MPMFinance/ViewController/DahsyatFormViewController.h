@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Menu.h"
+#import <XLForm.h>
 
-@interface DahsyatFormViewController : UIViewController
+@interface DahsyatFormViewController : XLFormViewController
 
 @property Menu *menu;
 

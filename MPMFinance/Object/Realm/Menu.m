@@ -332,9 +332,9 @@
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleBM]];
     [menu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
-    [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuDahsyat]];
-    [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuUsedCar]];
     [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuNewCar]];
+    [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuUsedCar]];
+    [menu.submenus addObject:[Menu objectForPrimaryKey:kSubmenuDahsyat]];
     [realm addObject:menu];
     
 //=====================================================================================================

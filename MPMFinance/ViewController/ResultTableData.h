@@ -23,4 +23,6 @@ typedef enum{
 @property NSString *rightString;
 @property ResultTableDataType type;
 
++ (ResultTableData *)addDataWithLeft:(NSString *)left middle:(NSString *)middle right:(NSString *)right type:(ResultTableDataType)type;
+
 @end

@@ -11,5 +11,7 @@
 @interface CalculatorMarketingModel : NSObject
 
 + (void)postCalculateNewCarWithDictionary:(NSDictionary *)dictionary completion:(void(^)(NSDictionary *dictionary, NSError *error))block;
++ (void)postCalculateUsedCarWithDictionary:(NSDictionary *)dictionary completion:(void(^)(NSDictionary *dictionary, NSError *error))block;
++ (void)postCalculateDahsyatWithDictionary:(NSDictionary *)dictionary completion:(void(^)(NSDictionary *dictionary, NSError *error))block;
 
 @end

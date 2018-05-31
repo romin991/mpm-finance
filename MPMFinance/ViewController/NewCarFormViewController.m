@@ -13,10 +13,9 @@
 #import "FloatLabeledTextFieldCell.h"
 #import "CalculatorMarketingModel.h"
 #import "ResultCalculatorViewController.h"
+#import "ResultTableData.h"
 
 @interface NewCarFormViewController ()
-
-@property (weak, nonatomic) IBOutlet UIView *containerView;
 
 @property NSMutableDictionary *valueDictionary;
 @property Form *currentForm;
@@ -268,20 +267,15 @@
             
             if ([dictionary objectForKey:@"data"]) {
                 ResultCalculatorViewController *resultVC = [[ResultCalculatorViewController alloc] init];
-                resultVC.requestDictionary = weakSelf.valueDictionary;
-                resultVC.responseDictionary = [dictionary objectForKey:@"data"];
+                resultVC.dataSources = [self setupDataSourcesRequest:self.valueDictionary response:[dictionary objectForKey:@"data"]];
                 [weakSelf.navigationController pushViewController:resultVC animated:true];
+                
             } else {
                 [SVProgressHUD showErrorWithStatus:@"Dictionary not found"];
                 [SVProgressHUD dismissWithDelay:1.5];
             }
         }
     }];
-}
-
-+ (NSString *)serializeDictionary:(NSDictionary *)dictionary{
-    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:dictionary options:NSJSONWritingPrettyPrinted error:nil];
-    return [[NSString alloc] initWithBytes:[jsonData bytes] length:[jsonData length] encoding:NSUTF8StringEncoding];
 }
 
 - (void)formRowDescriptorValueHasChanged:(XLFormRowDescriptor *)formRow oldValue:(id)oldValue newValue:(id)newValue{
@@ -304,6 +298,98 @@
         NSLog(@"%@", exception);
     }
 }
+
+- (NSMutableArray *)setupDataSourcesRequest:(NSDictionary *)requestDictionary response:(NSDictionary *)responseDictionary{
+    NSMutableArray *dataSources = [NSMutableArray array];
+    
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"" middle:@"" right:@"" type:ResultTableDataTypeNormal]];
+    
+    //Setting Rate
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Setting Rate" middle:@"" right:@"" type:ResultTableDataTypeHeader]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Rate" middle:[requestDictionary objectForKey:@"rate"] right:@"" type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Tenor" middle:[requestDictionary objectForKey:@"tenor"] right:@"Bulan" type:ResultTableDataTypeRightTextAlignmentLeft]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Supplier Rate" middle:[NSString stringWithFormat:@"%@%%",[requestDictionary objectForKey:@"supplierRate"]] right:@"Efektif" type:ResultTableDataTypeRightTextAlignmentLeft]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Tipe Pembayaran" middle:[requestDictionary objectForKey:@"tipePembayaran"] right:@"" type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Supplier Rate" middle:[NSString stringWithFormat:@"%@%%",[responseDictionary objectForKey:@"supplier_Rate"]] right:@"flat per tahun" type:ResultTableDataTypeRightTextAlignmentLeft]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Refund Bunga" middle:[NSString stringWithFormat:@"%@%%",[requestDictionary objectForKey:@"refundBunga"]] right:@"" type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Refund Asuransi" middle:[NSString stringWithFormat:@"%@%%",[requestDictionary objectForKey:@"refundAsuransi"]] right:@"" type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Running Rate" middle:[NSString stringWithFormat:@"%@%%",[responseDictionary objectForKey:@"running_Rate"]] right:@"flat per tahun" type:ResultTableDataTypeRightTextAlignmentLeft]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Biaya Provisi" middle:[NSString stringWithFormat:@"%@%%",[requestDictionary objectForKey:@"uppingProvisi"]] right:[requestDictionary objectForKey:@"biayaProvisi"] type:ResultTableDataTypeRightTextAlignmentLeft]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Upping Provisi" middle:[NSString stringWithFormat:@"%@%%",[requestDictionary objectForKey:@"uppingProvisi"]] right:@"" type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Opsi Asuransi Jiwa" middle:[requestDictionary objectForKey:@"opsiAsuransiJiwa"] right:[requestDictionary objectForKey:@"opsiAsuransiJiwaKapitalisasi"] type:ResultTableDataTypeRightTextAlignmentLeft]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Opsi Biaya Admin" middle:[requestDictionary objectForKey:@"opsiBiayaAdministrasi"] right:@"" type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Opsi Biaya Fidusia" middle:[requestDictionary objectForKey:@"opsiBiayaFidusia"] right:[requestDictionary objectForKey:@"opsiBiayaFidusiaKapitalisasi"] type:ResultTableDataTypeRightTextAlignmentLeft]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"" middle:@"" right:@"" type:ResultTableDataTypeNormal]];
+    
+    //Asuransi Kendaraan
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Asuransi Kendaraan" middle:@"" right:@"" type:ResultTableDataTypeHeader]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Wilayah" middle:@"" right:[requestDictionary objectForKey:@"wilayahAsuransiKendaraan"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Opsi Premi" middle:@"" right:[requestDictionary objectForKey:@"opsiPremi"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Pertanggungan" middle:@"" right:[requestDictionary objectForKey:@"pertanggungan"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Opsi Asuransi" middle:@"" right:[requestDictionary objectForKey:@"opsiAsuransiKendaraan"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Penggunaan" middle:@"" right:[requestDictionary objectForKey:@"penggunaan"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Nilai Tunai Sebagian" middle:@"" right:[requestDictionary objectForKey:@"nilaiTunaiSebagian"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"" middle:@"" right:@"" type:ResultTableDataTypeNormal]];
+    
+    //Struktur Pembiayaan
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Struktur Pembiayaan" middle:@"" right:@"" type:ResultTableDataTypeHeader]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Harga OTR Kendaraan" middle:@"" right:[requestDictionary objectForKey:@"otrKendaraan"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Uang Muka" middle:[NSString stringWithFormat:@"%@%%", [requestDictionary objectForKey:@"dpPercentage"]] right:[responseDictionary objectForKey:@"struktur_pembiayaan_uang_muka"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Pokok Hutang" middle:@"" right:[responseDictionary objectForKey:@"struktur_pembiayaan_pokok_utang"] type:ResultTableDataTypeNormal]];
+    
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Biaya Kapitalisasi" middle:@"" right:@"" type:ResultTableDataTypeBold]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"1. Biaya Administrasi" middle:@"" right:[responseDictionary objectForKey:@"biaya_kapitalisasi_biaya_administrasi"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"2. Asuransi Kendaraan" middle:@"" right:[responseDictionary objectForKey:@"biaya_kapitalisasi_asuransi_kendaraan"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"3. Polis Asuransi Kendaraan" middle:@"" right:[responseDictionary objectForKey:@"biaya_kapitalisasi_polis_asuransi_kendaraan"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"4. Biaya Provisi" middle:@"" right:[responseDictionary objectForKey:@"biaya_kapitalisasi_biaya_provisi"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"5. Asuransi Jiwa" middle:@"" right:[responseDictionary objectForKey:@"biaya_kapitalisasi_asuransi_jiwa"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"6. Polis Asuransi Jiwa" middle:@"" right:[responseDictionary objectForKey:@"biaya_kapitalisasi_polis_asuransi_jiwa"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"7. Biaya Fidusia" middle:@"" right:[responseDictionary objectForKey:@"biaya_kapitalisasi_biaya_fidusia"] type:ResultTableDataTypeNormal]];
+    
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Biaya Tunai" middle:@"" right:@"" type:ResultTableDataTypeBold]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"1. Biaya Administrasi" middle:@"" right:[responseDictionary objectForKey:@"biaya_administrasi_biaya_tunai"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"2. Asuransi Kendaraan" middle:@"" right:[responseDictionary objectForKey:@"asuransi_kendaraan_biaya_tunai"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"3. Polis Asuransi Kendaraan" middle:@"" right:[responseDictionary objectForKey:@"biaya_polis_ass_kendaraan_biaya_tunai"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"4. Biaya Provisi" middle:@"" right:[responseDictionary objectForKey:@"biaya_provisi_biaya_tunai"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"5. Biaya Fidusia" middle:@"" right:[responseDictionary objectForKey:@"biaya_fidusia_biaya_tunai"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"6. Biaya Survey (Jika ada)" middle:@"" right:[responseDictionary objectForKey:@"biaya_survey_biaya_tunai"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"7. Biaya Cek/Blokir BPKB" middle:@"" right:[responseDictionary objectForKey:@"biaya_cek_blokir_bpkp_biaya_tunai"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"8. Asuransi Jiwa" middle:@"" right:[responseDictionary objectForKey:@"asuransi_jiwa_biaya_tunai"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"9. Polis Asuransi Jiwa" middle:@"" right:[responseDictionary objectForKey:@"polis_asuransi_jiwa_biaya_tunai"] type:ResultTableDataTypeNormal]];
+    
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Total Uang Muka (TDP)" middle:@"" right:[responseDictionary objectForKey:@"total_uang_muka_biaya_tunai"] type:ResultTableDataTypeBold]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Pembayaran (Disburse)" middle:@"" right:[responseDictionary objectForKey:@"pembayaran_disbure"] type:ResultTableDataTypeBold]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Nil Pertanggungan Ass Jiwa" middle:@"" right:[responseDictionary objectForKey:@"nilai_pertanggunggan_asuransi_jiwa"] type:ResultTableDataTypeBold]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"NTF Kapitalisasi" middle:@"" right:[responseDictionary objectForKey:@"ntf_kapitalisasi"] type:ResultTableDataTypeBold]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Angsuran Per Bulan" middle:[NSString stringWithFormat:@"(%lix)", (long) [[responseDictionary objectForKey:@"angsuran_perbulan_2"] integerValue]] right:[responseDictionary objectForKey:@"angsuran_perbulan"] type:ResultTableDataTypeBold]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"" middle:@"" right:@"" type:ResultTableDataTypeNormal]];
+     
+    //Refund Bunga
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Refund Bunga" middle:@"" right:@"" type:ResultTableDataTypeHeader]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"% Refund" middle:[NSString stringWithFormat:@"%@%%", [responseDictionary objectForKey:@"presentase_refund_bunga"]] right:@"flat per tahun" type:ResultTableDataTypeRightTextAlignmentLeft]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Running Rate" middle:[NSString stringWithFormat:@"%@%%", [responseDictionary objectForKey:@"running_rate_refund_bunga"]] right:@"flat per tahun" type:ResultTableDataTypeRightTextAlignmentLeft]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Gross Refund" middle:[responseDictionary objectForKey:@"gross_refund_refund_bunga"] right:@"" type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"" middle:@"" right:@"" type:ResultTableDataTypeNormal]];
+     
+    //Refund Provisi
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Refund Provisi" middle:@"" right:@"" type:ResultTableDataTypeHeader]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"% Refund" middle:[NSString stringWithFormat:@"%@%%", [responseDictionary objectForKey:@"refund_provisi"]] right:@"" type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Gross Refund" middle:[responseDictionary objectForKey:@"gross_refund_refund_provisi"] right:@"" type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"" middle:@"" right:@"" type:ResultTableDataTypeNormal]];
+     
+    //Refund Asuransi
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Refund Asuransi" middle:@"" right:@"" type:ResultTableDataTypeHeader]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"% Refund" middle:[NSString stringWithFormat:@"%@%%", [responseDictionary objectForKey:@"refund_asuransi"]] right:@"" type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Gross Refund" middle:[responseDictionary objectForKey:@"gross_refund_refund_asuransi"] right:@"" type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"" middle:@"" right:@"" type:ResultTableDataTypeNormal]];
+     
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Maks. Refund" middle:@"" right:[responseDictionary objectForKey:@"maks_refund"] type:ResultTableDataTypeSummary]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"" middle:@"" right:@"" type:ResultTableDataTypeNormal]];
+     
+    return dataSources;
+}
+
+
 
 /*
 #pragma mark - Navigation
