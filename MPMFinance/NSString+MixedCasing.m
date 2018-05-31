@@ -12,7 +12,10 @@
 
 - (NSString *)camelCased  {
     NSMutableString *result = [NSMutableString new];
-    NSArray *words = [self componentsSeparatedByString: @" "];
+    NSCharacterSet *notAllowedChars = [[NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"] invertedSet];
+    NSString *resultString = [[self componentsSeparatedByCharactersInSet:notAllowedChars] componentsJoinedByString:@""];
+
+    NSArray *words = [resultString componentsSeparatedByString: @" "];
     for (uint i = 0; i < words.count; i++) {
         if (i==0) {
             [result appendString:((NSString *) words[i]).withLowercasedFirstChar];
