@@ -251,8 +251,8 @@
                     [row.tag isEqualToString:@"noKTPPasangan"] ||
                     [row.tag isEqualToString:@"nomorHandphonePasangan"] ||
                     
-                    [row.tag isEqualToString:@"rtPasangan"] ||
-                    [row.tag isEqualToString:@"rwPasangan"] ||
+                    [row.tag isEqualToString:@"rTPasangan"] ||
+                    [row.tag isEqualToString:@"rWPasangan"] ||
                     
                     [row.tag isEqualToString:@"hargaPerolehan"] ||
                     [row.tag isEqualToString:@"uangMuka"] ||

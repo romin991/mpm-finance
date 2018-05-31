@@ -486,7 +486,7 @@
            @"namaCalon" : [dictionary objectForKey:@"namaLengkap"] ? [dictionary objectForKey:@"namaLengkap"] : @"",
            @"tmpLahir" : [dictionary objectForKey:@"tempatLahir"] ? [dictionary objectForKey:@"tempatLahir"] : @"",
            @"tglLahir" : [dictionary objectForKey:@"tanggalLahir"] ? [MPMGlobal removeTimeFromString:[dictionary objectForKey:@"tanggalLahir"]] : @"",
-           @"jnsKelamin" : [MPMUserInfo getUserInfo][@"gender"],
+           @"jnsKelamin" : [dictionary objectForKey:@"jenisKelamin"] ? [NSString stringWithFormat:@"%li", [[dictionary objectForKey:@"jenisKelamin"] integerValue]] : @"",
            
            @"alamatLegal" : [dictionary objectForKey:@"alamatRumahSesuaiKTP"] ? [dictionary objectForKey:@"alamatRumahSesuaiKTP"] : @"",
            @"alamatLegalRt" : [dictionary objectForKey:@"rTSesuaiKTP"] ? [dictionary objectForKey:@"rTSesuaiKTP"] : @"",
@@ -615,7 +615,7 @@
            @"namaCalon" : [dictionary objectForKey:@"namaLengkap"] ? [dictionary objectForKey:@"namaLengkap"] : @"",
            @"tmpLahir" : [dictionary objectForKey:@"tempatLahir"] ? [dictionary objectForKey:@"tempatLahir"] : @"",
            @"tglLahir" : [dictionary objectForKey:@"tanggalLahir"] ? [MPMGlobal removeTimeFromString:[dictionary objectForKey:@"tanggalLahir"]] : @"",
-           @"jnsKelamin" : [MPMUserInfo getUserInfo][@"gender"],
+           @"jnsKelamin" : [dictionary objectForKey:@"jenisKelamin"] ? [NSString stringWithFormat:@"%li", [[dictionary objectForKey:@"jenisKelamin"] integerValue]] : @"",
            
            @"alamatLegal" : [dictionary objectForKey:@"alamatRumahSesuaiKTP"] ? [dictionary objectForKey:@"alamatRumahSesuaiKTP"] : @"",
            @"alamatLegalRt" : [dictionary objectForKey:@"rTSesuaiKTP"] ? [dictionary objectForKey:@"rTSesuaiKTP"] : @"",
