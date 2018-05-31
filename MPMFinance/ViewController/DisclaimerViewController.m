@@ -28,9 +28,20 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.isAgree = false;
-    [self refreshSelected];
+    //[self refreshSelected];
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+    NSString *contentString = @"Pernyataan Pemohon<br/>1. Dengan ini saya menyatakan, bahwa<br/>a. MPM Finance berhak menyimpan, menggunakan, dan/atau memberikan data-data pribadi saya kepada group,afiliasi, dan konsultan (“Pihak yang Diizinkan”), baik untuk tujuan komersil yang berkaitan dengan produk dan/atau layanan dari MPM Group dan afiliasinya dan/atau tujuan lain sepanjang tidak bertentangan dengan peraturan yang berlaku. Atas persetujuan dan penggunaan data pribadi saya kepada “Pihak yang Diizinkan”, dengan ini saya menyatakan bahwa saya memahami segala konsekuensi yang terjadi di kemudian hari.<br/>b. Menerima penawaran promosi produk dan/atau layanan dari MPM Group dan afiliasinya melalui sarana komunikasi pribadi, antara lain SMS, email, voice mail, telepon dan/atau menggunakan sarana komunikasi lainnya.<br/>2. Saya menyatakan telah menerima, memahami dan mengerti semua informasi yang tertera dan mengakui bahwa data yang tertulis adalah benar.<br/>3. Saya memberikan kuasa kepada MPM Finance untuk memeriksa informasi tersebut dengan cara yang layak menurut MPM Finance.<br/>4. Bahwa data yang saya berikan adalah data yang benar, valid, dan dapat dipertanggung jawabkan secara hukum.<br/>5. Dengan melengkapi informasi dan data-data sebagaimana tersebut diatas, saya menyatakan setuju dan tunduk pada ketentuan yang berlaku pada MPM Finance.<br/><br/><b>www.mpm-finance.com</b><br/><b>Terdaftar dan Diawasi oleh Otoritas Jasa Keuangan (OJK)</b>";
+    NSAttributedString *attributedString = [[NSAttributedString alloc]
+                                            initWithData: [contentString dataUsingEncoding:NSUnicodeStringEncoding]
+                                            options: @{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSFontAttributeName : [UIFont systemFontOfSize:14.0f] }
+                                            documentAttributes: nil
+                                            error: nil
+                                            ];
+    
+    self.textView.attributedText = attributedString;
+    self.textView.font = [UIFont systemFontOfSize:15.0f];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

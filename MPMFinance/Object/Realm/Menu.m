@@ -308,7 +308,7 @@
     [realm addObject:menu];
 //=====================================================================================================
     menu = [[Menu alloc] init];
-    menu.imageName = @"TrackingMarketingIcon";
+    menu.imageName = @"ico-set-alternate";
     menu.primaryKey = kMenuSetAlternate;
     menu.indonesiaTitle = menu.primaryKey;
     menu.sort = 11;
