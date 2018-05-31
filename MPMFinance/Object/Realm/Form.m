@@ -41,10 +41,10 @@
     //===
     section = [[FormSection alloc] init];
     section.title = @"Data Pemohon";
-    [section.rows addObject:[FormRow new:realm :1 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"No KTP" :@"" :@"" regex:MPMRegexValidationNumberOnly message:@"No KTP must be number"]];
-    [section.rows addObject:[FormRow new:realm :2 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Lengkap" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :3 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Tempat Lahir" :@"" :@"" regex:MPMRegexValidationAlphabetMin3Char message:@"Tempat Lahir minimum 3 characters"]];
-    [section.rows addObject:[FormRow new:realm :4 :YES :YES :XLFormRowDescriptorTypeDateInline :@"Tanggal Lahir" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :1 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"No KTP*" :@"" :@"" regex:MPMRegexValidationNumberOnly message:@"No KTP must be number"]];
+    [section.rows addObject:[FormRow new:realm :2 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Lengkap*" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :3 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Tempat Lahir*" :@"" :@"" regex:MPMRegexValidationAlphabetMin3Char message:@"Tempat Lahir minimum 3 characters"]];
+    [section.rows addObject:[FormRow new:realm :4 :YES :YES :XLFormRowDescriptorTypeDateInline :@"Tanggal Lahir*" :@"" :@""]];
     
     [section.rows addObject:[FormRow new:realm :5 :YES :YES :XLFormRowDescriptorTypeSelectorPush :@"Jenis Kelamin" :@"" :@"getJenisKelamin"]];
     
@@ -53,13 +53,13 @@
     //===
     section = [[FormSection alloc] init];
     section.title = @"Alamat KTP";
-    [section.rows addObject:[FormRow new:realm :5 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Alamat Rumah Sesuai KTP" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :6 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"RT Sesuai KTP" :@"" :@"" regex:MPMRegexValidationNumberOnly message:@"RT requires only number"]];
-    [section.rows addObject:[FormRow new:realm :7 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"RW Sesuai KTP" :@"" :@"" regex:MPMRegexValidationNumberOnly message:@"RW requires only number"]];
-    [section.rows addObject:[FormRow new:realm :8 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Kodepos Sesuai KTP" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :9 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kecamatan Sesuai KTP" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :10 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kelurahan Sesuai KTP" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :11 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kota Sesuai KTP" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :5 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Alamat Rumah Sesuai KTP*" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :6 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"RT Sesuai KTP*" :@"" :@"" regex:MPMRegexValidationNumberOnly message:@"RT requires only number"]];
+    [section.rows addObject:[FormRow new:realm :7 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"RW Sesuai KTP*" :@"" :@"" regex:MPMRegexValidationNumberOnly message:@"RW requires only number"]];
+    [section.rows addObject:[FormRow new:realm :8 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Kodepos Sesuai KTP*" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :9 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kecamatan Sesuai KTP*" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :10 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kelurahan Sesuai KTP*" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :11 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kota Sesuai KTP*" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :12 :YES :NO :XLFormRowDescriptorTypeDateInline :@"Masa Berlaku KTP" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :13 :YES :YES :XLFormRowDescriptorTypeSelectorPush :@"Kewarganegaraan" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :14 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kode Area" :@"" :@""]];
