@@ -309,7 +309,7 @@
     //calculate base on valueDictionary here
     __weak typeof(self) weakSelf = self;
     [SVProgressHUD show];
-    [CalculatorMarketingModel postCalculateNewCarWithDictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
+    [CalculatorMarketingModel postCalculateUsedCarWithDictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
         if (error) {
             [SVProgressHUD showErrorWithStatus:error.localizedDescription];
             [SVProgressHUD dismissWithDelay:1.5];

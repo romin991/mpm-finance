@@ -96,12 +96,12 @@
                                @"asuransiKendaraan" : [dictionary objectForKey:@"opsiAsuransiKendaraan"],
                                @"insurancebyMPM" : [dictionary objectForKey:@"pertanggungan"],
                                
-                               @"asuransiKombinasiTh1" : [dictionary objectForKey:@"pilihanAsuransiKombinasiTahunPertama"],
-                               @"asuransiKombinasiTh2" : [dictionary objectForKey:@"pilihanAsuransiKombinasiTahunKedua"],
-                               @"asuransiKombinasiTh3" : [dictionary objectForKey:@"pilihanAsuransiKombinasiTahunKetiga"],
-                               @"asuransiKombinasiTh4" : [dictionary objectForKey:@"pilihanAsuransiKombinasiTahunKeempat"],
-                               @"asuransiKombinasiTh5" : [dictionary objectForKey:@"pilihanAsuransiKombinasiTahunKelima"],
-                               @"asuransiKombinasiTh6" : [dictionary objectForKey:@"pilihanAsuransiKombinasiTahunKeenam"],
+//                               @"asuransiKombinasiTh1" : @"", // [dictionary objectForKey:@"pilihanAsuransiKombinasiTahunPertama"],
+                               @"asuransiKombinasiTh2" : @"", // [dictionary objectForKey:@"pilihanAsuransiKombinasiTahunKedua"],
+                               @"asuransiKombinasiTh3" : @"", // [dictionary objectForKey:@"pilihanAsuransiKombinasiTahunKetiga"],
+                               @"asuransiKombinasiTh4" : @"", // [dictionary objectForKey:@"pilihanAsuransiKombinasiTahunKeempat"],
+                               @"asuransiKombinasiTh5" : @"", // [dictionary objectForKey:@"pilihanAsuransiKombinasiTahunKelima"],
+                               @"asuransiKombinasiTh6" : @"", // [dictionary objectForKey:@"pilihanAsuransiKombinasiTahunKeenam"],
                                
                                @"asuransiNilaiTunaiSebagian" : [dictionary objectForKey:@"nilaiTunaiSebagian"],
                                @"supplierRate" : [dictionary objectForKey:@"supplierRate"],
@@ -117,7 +117,7 @@
         NSLog(@"%@", exception);
     }
     
-    [manager POST:[NSString stringWithFormat:@"%@/calculator/newcar", kApiUrl] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [manager POST:[NSString stringWithFormat:@"%@/calculator/usedcar", kApiUrl] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         @try {
             NSInteger code = [[responseObject objectForKey:@"statusCode"] integerValue];
             NSString *message = [responseObject objectForKey:@"message"];
@@ -169,7 +169,7 @@
                                @"ltv" : [dictionary objectForKey:@"loanOfValue"],
                                @"runningRate" : [dictionary objectForKey:@"runningRate"],
                                @"feeAgent" : [dictionary objectForKey:@"feeAgent"],
-                               @"other" : [dictionary objectForKey:@"other"],
+                               @"other" : [dictionary objectForKey:@"others"],
                                @"bulanPencairan" : [dictionary objectForKey:@"bulanPencairan"],
                                },
                    }];
@@ -178,7 +178,7 @@
         NSLog(@"%@", exception);
     }
     
-    [manager POST:[NSString stringWithFormat:@"%@/calculator/newcar", kApiUrl] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [manager POST:[NSString stringWithFormat:@"%@/calculator/dahsyat", kApiUrl] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         @try {
             NSInteger code = [[responseObject objectForKey:@"statusCode"] integerValue];
             NSString *message = [responseObject objectForKey:@"message"];

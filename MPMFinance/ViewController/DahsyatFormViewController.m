@@ -258,7 +258,7 @@
                 }
                 
                 NSArray *tagForKeyboardDecimalPad = [NSArray arrayWithObjects:
-                                                     @"loanToValue", @"runningRate", @"feeAgent", @"others",
+                                                     @"loanOfValue", @"runningRate", @"feeAgent", @"others",
                                                      nil];
                 if ([tagForKeyboardDecimalPad containsObject:row.tag]){
                     //Set keyboard type to numberPad
@@ -311,7 +311,7 @@
     //calculate base on valueDictionary here
     __weak typeof(self) weakSelf = self;
     [SVProgressHUD show];
-    [CalculatorMarketingModel postCalculateNewCarWithDictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
+    [CalculatorMarketingModel postCalculateDahsyatWithDictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
         if (error) {
             [SVProgressHUD showErrorWithStatus:error.localizedDescription];
             [SVProgressHUD dismissWithDelay:1.5];
@@ -334,41 +334,41 @@
     NSMutableArray *dataSources = [NSMutableArray array];
     
     [dataSources addObject:[ResultTableData addDataWithLeft:@"" middle:@"" right:@"" type:ResultTableDataTypeNormal]];
-    
+        
     //Perincian
     [dataSources addObject:[ResultTableData addDataWithLeft:@"Perincian" middle:@"" right:@"" type:ResultTableDataTypeHeader]];
-    [dataSources addObject:[ResultTableData addDataWithLeft:@"OTR (for system)" middle:@"" right:@"" type:ResultTableDataTypeNormal]];
-    [dataSources addObject:[ResultTableData addDataWithLeft:@"Price List" middle:@"" right:@"" type:ResultTableDataTypeNormal]];
-    [dataSources addObject:[ResultTableData addDataWithLeft:@"Down Payment" middle:@"" right:@"" type:ResultTableDataTypeNormal]];
-    [dataSources addObject:[ResultTableData addDataWithLeft:@"NTF" middle:@"" right:@"" type:ResultTableDataTypeNormal]];
-    [dataSources addObject:[ResultTableData addDataWithLeft:@"NTF Capitalization" middle:@"" right:@"" type:ResultTableDataTypeNormal]];
-    [dataSources addObject:[ResultTableData addDataWithLeft:@"Rate Flat" middle:@"" right:@"" type:ResultTableDataTypeNormal]];
-    [dataSources addObject:[ResultTableData addDataWithLeft:@"Premi & Polis Vehicle Ins" middle:@"" right:@"" type:ResultTableDataTypeNormal]];
-    [dataSources addObject:[ResultTableData addDataWithLeft:@"Premi & Polis Life Ins" middle:@"" right:@"" type:ResultTableDataTypeNormal]];
-    [dataSources addObject:[ResultTableData addDataWithLeft:@"Administration Fee" middle:@"" right:@"" type:ResultTableDataTypeNormal]];
-    [dataSources addObject:[ResultTableData addDataWithLeft:@"Adm Amortization Fee" middle:@"" right:@"" type:ResultTableDataTypeNormal]];
-    [dataSources addObject:[ResultTableData addDataWithLeft:@"Provisi Fee" middle:@"" right:@"" type:ResultTableDataTypeNormal]];
-    [dataSources addObject:[ResultTableData addDataWithLeft:@"Survey & Cek BPKB" middle:@"" right:@"" type:ResultTableDataTypeNormal]];
-    [dataSources addObject:[ResultTableData addDataWithLeft:@"Fidusia Fee" middle:@"" right:@"" type:ResultTableDataTypeNormal]];
-    [dataSources addObject:[ResultTableData addDataWithLeft:@"Agent Fee" middle:@"" right:@"" type:ResultTableDataTypeNormal]];
-    [dataSources addObject:[ResultTableData addDataWithLeft:@"Installment" middle:@"" right:@"" type:ResultTableDataTypeNormal]];
-    [dataSources addObject:[ResultTableData addDataWithLeft:@"Disburse" middle:@"" right:@"" type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"OTR (for system)" middle:[responseDictionary objectForKey:@"persenOTR"] right:[responseDictionary objectForKey:@"otr"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Price List" middle:@"" right:[responseDictionary objectForKey:@"otr"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Down Payment" middle:[responseDictionary objectForKey:@"persenDP"] right:[responseDictionary objectForKey:@"nilaiDP"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"NTF" middle:[responseDictionary objectForKey:@"persenNtf"] right:[responseDictionary objectForKey:@"ntf"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"NTF Capitalization" middle:@"" right:[responseDictionary objectForKey:@"ntfKapitalisasi"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Rate Flat" middle:@"" right:[responseDictionary objectForKey:@"rateFlat"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Premi & Polis Vehicle Ins" middle:@"" right:[responseDictionary objectForKey:@"premiPolisVehicleIns"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Premi & Polis Life Ins" middle:@"" right:[responseDictionary objectForKey:@"premiPolisLifeIns"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Administration Fee" middle:@"" right:[requestDictionary objectForKey:@"biayaAdmin"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Adm Amortization Fee" middle:@"" right:[responseDictionary objectForKey:@"admAdmotizationFee"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Provisi Fee" middle:[responseDictionary objectForKey:@"persenProvisiFee"] right:[responseDictionary objectForKey:@"provisiFee"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Survey & Cek BPKB" middle:@"" right:[requestDictionary objectForKey:@"others"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Fidusia Fee" middle:@"" right:[responseDictionary objectForKey:@"fidusiaFee"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Agent Fee" middle:@"" right:[responseDictionary objectForKey:@"agentFee"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Installment" middle:@"" right:[responseDictionary objectForKey:@"installment"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Disburse" middle:@"" right:[responseDictionary objectForKey:@"disburse"] type:ResultTableDataTypeNormal]];
     [dataSources addObject:[ResultTableData addDataWithLeft:@"" middle:@"" right:@"" type:ResultTableDataTypeNormal]];
     
-    [dataSources addObject:[ResultTableData addDataWithLeft:@"Agreement Card" middle:@"" right:@"" type:ResultTableDataTypeHeader]];
-    [dataSources addObject:[ResultTableData addDataWithLeft:@"Bulan Pencairan" middle:@"" right:@"" type:ResultTableDataTypeBold]];
-    [dataSources addObject:[ResultTableData addDataWithLeft:@"Pokok Hutang" middle:@"" right:@"" type:ResultTableDataTypeBold]];
-    [dataSources addObject:[ResultTableData addDataWithLeft:@"Nilai Pencairan" middle:@"" right:@"" type:ResultTableDataTypeBold]];
-    
-    [dataSources addObject:[ResultTableData addDataWithLeft:@"Angsuran Ke-" middle:@"Tanggal Jatuh Tempo" right:@"Nilai Angsuran" type:ResultTableDataTypeBold]];
-    [dataSources addObject:[ResultTableData addDataWithLeft:@"1" middle:@"" right:@"" type:ResultTableDataTypeNormal]];
-    [dataSources addObject:[ResultTableData addDataWithLeft:@"2" middle:@"" right:@"" type:ResultTableDataTypeNormal]];
-    [dataSources addObject:[ResultTableData addDataWithLeft:@"3" middle:@"" right:@"" type:ResultTableDataTypeNormal]];
-    [dataSources addObject:[ResultTableData addDataWithLeft:@"4" middle:@"" right:@"" type:ResultTableDataTypeNormal]];
-    [dataSources addObject:[ResultTableData addDataWithLeft:@"5" middle:@"" right:@"" type:ResultTableDataTypeNormal]];
-    [dataSources addObject:[ResultTableData addDataWithLeft:@"6" middle:@"" right:@"" type:ResultTableDataTypeNormal]];
-    
-    [dataSources addObject:[ResultTableData addDataWithLeft:@"" middle:@"Total" right:@"" type:ResultTableDataTypeNormal]];
+//    [dataSources addObject:[ResultTableData addDataWithLeft:@"Agreement Card" middle:@"" right:@"" type:ResultTableDataTypeHeader]];
+//    [dataSources addObject:[ResultTableData addDataWithLeft:@"Bulan Pencairan" middle:@"" right:@"" type:ResultTableDataTypeBold]];
+//    [dataSources addObject:[ResultTableData addDataWithLeft:@"Pokok Hutang" middle:@"" right:@"" type:ResultTableDataTypeBold]];
+//    [dataSources addObject:[ResultTableData addDataWithLeft:@"Nilai Pencairan" middle:@"" right:@"" type:ResultTableDataTypeBold]];
+//    
+//    [dataSources addObject:[ResultTableData addDataWithLeft:@"Angsuran Ke-" middle:@"Tanggal Jatuh Tempo" right:@"Nilai Angsuran" type:ResultTableDataTypeBold]];
+//    [dataSources addObject:[ResultTableData addDataWithLeft:@"1" middle:@"" right:@"" type:ResultTableDataTypeNormal]];
+//    [dataSources addObject:[ResultTableData addDataWithLeft:@"2" middle:@"" right:@"" type:ResultTableDataTypeNormal]];
+//    [dataSources addObject:[ResultTableData addDataWithLeft:@"3" middle:@"" right:@"" type:ResultTableDataTypeNormal]];
+//    [dataSources addObject:[ResultTableData addDataWithLeft:@"4" middle:@"" right:@"" type:ResultTableDataTypeNormal]];
+//    [dataSources addObject:[ResultTableData addDataWithLeft:@"5" middle:@"" right:@"" type:ResultTableDataTypeNormal]];
+//    [dataSources addObject:[ResultTableData addDataWithLeft:@"6" middle:@"" right:@"" type:ResultTableDataTypeNormal]];
+//    
+//    [dataSources addObject:[ResultTableData addDataWithLeft:@"" middle:@"Total" right:@"" type:ResultTableDataTypeNormal]];
     
     return dataSources;
 }

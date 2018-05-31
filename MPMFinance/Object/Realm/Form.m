@@ -975,13 +975,16 @@
     [section.rows addObject:[FormRow new:realm :11 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Opsi Biaya Fidusia" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :12 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Opsi Biaya Fidusia Kapitalisasi" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :13 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Wilayah Asuransi Kendaraan" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :14 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Pertanggungan (Insurance by MPM / Sompo)" :@"pertanggungan" :@""]];
-    [section.rows addObject:[FormRow new:realm :15 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Pilihan Asuransi Kombinasi Tahun Pertama" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :16 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Pilihan Asuransi Kombinasi Tahun Kedua" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :17 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Pilihan Asuransi Kombinasi Tahun Ketiga" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :18 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Pilihan Asuransi Kombinasi Tahun Keempat" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :19 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Pilihan Asuransi Kombinasi Tahun Kelima" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :20 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Pilihan Asuransi Kombinasi Tahun Keenam" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :14 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Penggunaan" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :15 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Opsi Asuransi Kendaraan" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :16 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Pertanggungan (Insurance by MPM / Sompo)" :@"pertanggungan" :@""]];
+    [section.rows addObject:[FormRow new:realm :17 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Pilihan Asuransi Kombinasi Tahun Pertama" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :18 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Pilihan Asuransi Kombinasi Tahun Kedua" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :19 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Pilihan Asuransi Kombinasi Tahun Ketiga" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :20 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Pilihan Asuransi Kombinasi Tahun Keempat" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :21 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Pilihan Asuransi Kombinasi Tahun Kelima" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :22 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Pilihan Asuransi Kombinasi Tahun Keenam" :@"" :@""]];
+    
     [form.sections addObject:section];
     
     section = [[FormSection alloc] init];
@@ -995,6 +998,10 @@
     [section.rows addObject:[FormRow new:realm :23 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"% Refund Bunga" :@"refundBunga" :@""]];
     [section.rows addObject:[FormRow new:realm :24 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"% Refund Asuransi" :@"refundAsuransi" :@""]];
     [section.rows addObject:[FormRow new:realm :25 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"% Upping Provisi" :@"uppingProvisi" :@""]];
+    [form.sections addObject:section];
+    
+    section = [[FormSection alloc] init];
+    section.title = @"Opsi Komponen Biaya Tunai";
     [section.rows addObject:[FormRow new:realm :26 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Biaya Survey (Jika Ada)" :@"biayaSurvey" :@""]];
     [section.rows addObject:[FormRow new:realm :27 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Biaya Cek / Blokir BPKB (Jika Ada)" :@"biayaCekBlokirBPKB" :@""]];
     [form.sections addObject:section];
