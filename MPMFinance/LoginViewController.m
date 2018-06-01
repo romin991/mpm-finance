@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UIButton *signInButton;
 @property (weak, nonatomic) IBOutlet UIButton *forgotPasswordButton;
+@property (weak, nonatomic) IBOutlet UILabel *backButton;
 
 @end
 
@@ -43,6 +44,9 @@
  vika@gmail.com / password
  hadi / password
  */
+- (IBAction)back:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 - (IBAction)signInButtonClicked:(id)sender {
     if (self.usernameField.text.length < 1) {
