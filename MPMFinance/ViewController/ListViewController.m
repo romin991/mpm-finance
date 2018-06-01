@@ -39,6 +39,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.navigationBar.translucent = NO;
     // Do any additional setup after loading the view from its nib.
     [self setDummyHere];
     
@@ -165,6 +166,8 @@
                 if (error) {
                     [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
                     [SVProgressHUD dismissWithDelay:1.5];
+                } else {
+                    [SVProgressHUD dismiss];
                 }
             });
         };
@@ -176,6 +179,8 @@
         [myInvocation setArgument:&weakPage atIndex:2];
         [myInvocation setArgument:&handler atIndex:3];
         [myInvocation retainArguments];
+        
+        [SVProgressHUD show];
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             [myInvocation invoke];
         });
@@ -395,8 +400,8 @@
             [OfflineData deleteOfflineData:self.lists[indexPath.row]];
         } else{
             List *list = self.lists[indexPath.row];
-            [WorkOrderModel deleteCustomerDraft:@(list.primaryKey)];
             [SVProgressHUD show];
+            [WorkOrderModel deleteCustomerDraft:@(list.primaryKey)];
         }
         
         [self.lists removeObjectAtIndex:indexPath.row];
