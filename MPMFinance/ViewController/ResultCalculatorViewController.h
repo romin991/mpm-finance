@@ -10,7 +10,6 @@
 
 @interface ResultCalculatorViewController : UIViewController
 
-@property NSDictionary *requestDictionary;
-@property NSDictionary *responseDictionary;
+@property NSMutableArray *dataSources;
 
 @end
