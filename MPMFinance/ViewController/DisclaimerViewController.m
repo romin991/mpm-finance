@@ -32,12 +32,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [self setTitle:self.menu.title];
     
     if ([self.parentMenu.primaryKey isEqualToString:kSubmenuListWorkOrder]) {
         self.submitButton.hidden = true;
         self.viewBarcodeButton.hidden = false;
         self.takePhotoButton.hidden = true;
         self.isAgree = true;
+        [self setRightBarButton];
         
         if ([MPMGlobal isStringAnURL:[self.valueDictionary objectForKey:@"ttd"]]) {
             NSURLRequest *imageRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[self.valueDictionary objectForKey:@"ttd"]]
@@ -77,6 +79,14 @@
     
     self.textView.attributedText = attributedString;
     self.textView.font = [UIFont systemFontOfSize:15.0f];
+}
+
+- (void)setRightBarButton{
+    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Close"
+                                                                      style:UIBarButtonItemStylePlain
+                                                                     target:self
+                                                                     action:@selector(close)];
+    [self.navigationItem setRightBarButtonItem:barButtonItem];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -182,14 +192,18 @@
     [self presentViewController:barcodeVC animated:YES completion:nil];
 }
 
+- (void)close{
+    for (UIViewController *vc in self.navigationController.viewControllers) {
+        if ([vc isKindOfClass:[SubmenuViewController class]]) {
+            [self.navigationController popToViewController:vc animated:NO];
+        }
+    }
+}
+
 #pragma mark - Barcode Delegate
 - (void)finish{
     if (![self.parentMenu.primaryKey isEqualToString:kSubmenuListWorkOrder]) {
-        for (UIViewController *vc in self.navigationController.viewControllers) {
-            if ([vc isKindOfClass:[SubmenuViewController class]]) {
-                [self.navigationController popToViewController:vc animated:NO];
-            }
-        }
+        [self close];
     }
 }
 

@@ -13,6 +13,7 @@
 @interface DisclaimerViewController : UIViewController
 
 @property Menu *parentMenu;
+@property Menu *menu;
 @property NSMutableDictionary *valueDictionary;
 @property List *list;
 

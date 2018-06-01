@@ -341,6 +341,7 @@
         disclaimerVC.valueDictionary = self.valueDictionary;
         disclaimerVC.list = self.list;
         disclaimerVC.parentMenu = self.parentMenu;
+        disclaimerVC.menu = self.menu;
         [self.navigationController pushViewController:disclaimerVC animated:true];
         
     } else {
