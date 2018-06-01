@@ -58,8 +58,18 @@
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"%@",error);
-        if (block) block(nil, error);
+        NSString *errorMessage = error.localizedDescription;
+        @try{
+            NSDictionary *errorResponse = [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey]
+                                                                          options:NSJSONReadingAllowFragments
+                                                                            error:nil];
+            errorMessage = [errorResponse objectForKey:@"message"];
+        } @catch(NSException *exception) {
+            NSLog(@"%@", exception);
+        }
+        if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                  code:1
+                                              userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(errorMessage, nil)}]);
         
     }];
     
@@ -113,8 +123,18 @@
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"%@",error);
-        if (block) block(nil, error);
+        NSString *errorMessage = error.localizedDescription;
+        @try{
+            NSDictionary *errorResponse = [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey]
+                                                                          options:NSJSONReadingAllowFragments
+                                                                            error:nil];
+            errorMessage = [errorResponse objectForKey:@"message"];
+        } @catch(NSException *exception) {
+            NSLog(@"%@", exception);
+        }
+        if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                  code:1
+                                              userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(errorMessage, nil)}]);
         
     }];
     
@@ -168,8 +188,18 @@
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"%@",error);
-        if (block) block(nil, error);
+        NSString *errorMessage = error.localizedDescription;
+        @try{
+            NSDictionary *errorResponse = [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey]
+                                                                          options:NSJSONReadingAllowFragments
+                                                                            error:nil];
+            errorMessage = [errorResponse objectForKey:@"message"];
+        } @catch(NSException *exception) {
+            NSLog(@"%@", exception);
+        }
+        if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                  code:1
+                                              userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(errorMessage, nil)}]);
         
     }];
     
@@ -223,8 +253,18 @@
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"%@",error);
-        if (block) block(nil, error);
+        NSString *errorMessage = error.localizedDescription;
+        @try{
+            NSDictionary *errorResponse = [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey]
+                                                                          options:NSJSONReadingAllowFragments
+                                                                            error:nil];
+            errorMessage = [errorResponse objectForKey:@"message"];
+        } @catch(NSException *exception) {
+            NSLog(@"%@", exception);
+        }
+        if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                  code:1
+                                              userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(errorMessage, nil)}]);
         
     }];
     
@@ -333,7 +373,18 @@
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        if (block) block(nil, error);
+        NSString *errorMessage = error.localizedDescription;
+        @try{
+            NSDictionary *errorResponse = [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey]
+                                                                          options:NSJSONReadingAllowFragments
+                                                                            error:nil];
+            errorMessage = [errorResponse objectForKey:@"message"];
+        } @catch(NSException *exception) {
+            NSLog(@"%@", exception);
+        }
+        if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                  code:1
+                                              userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(errorMessage, nil)}]);
     }];
 }
 
@@ -440,7 +491,18 @@
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        if (block) block(nil, error);
+        NSString *errorMessage = error.localizedDescription;
+        @try{
+            NSDictionary *errorResponse = [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey]
+                                                                          options:NSJSONReadingAllowFragments
+                                                                            error:nil];
+            errorMessage = [errorResponse objectForKey:@"message"];
+        } @catch(NSException *exception) {
+            NSLog(@"%@", exception);
+        }
+        if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                  code:1
+                                              userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(errorMessage, nil)}]);
     }];
 }
 
@@ -712,7 +774,18 @@
             }
             
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            if (block) block(nil, error);
+            NSString *errorMessage = error.localizedDescription;
+            @try{
+                NSDictionary *errorResponse = [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey]
+                                                                              options:NSJSONReadingAllowFragments
+                                                                                error:nil];
+                errorMessage = [errorResponse objectForKey:@"message"];
+            } @catch(NSException *exception) {
+                NSLog(@"%@", exception);
+            }
+            if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                      code:1
+                                                  userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(errorMessage, nil)}]);
         }];
         
     } @catch (NSException *exception) {
@@ -754,7 +827,18 @@
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        if (block) block(nil, error);
+        NSString *errorMessage = error.localizedDescription;
+        @try{
+            NSDictionary *errorResponse = [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey]
+                                                                          options:NSJSONReadingAllowFragments
+                                                                            error:nil];
+            errorMessage = [errorResponse objectForKey:@"message"];
+        } @catch(NSException *exception) {
+            NSLog(@"%@", exception);
+        }
+        if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                  code:1
+                                              userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(errorMessage, nil)}]);
     }];
 }
 
@@ -787,7 +871,65 @@
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        if (block) block(nil, error);
+        NSString *errorMessage = error.localizedDescription;
+        @try{
+            NSDictionary *errorResponse = [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey]
+                                                                          options:NSJSONReadingAllowFragments
+                                                                            error:nil];
+            errorMessage = [errorResponse objectForKey:@"message"];
+        } @catch(NSException *exception) {
+            NSLog(@"%@", exception);
+        }
+        if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                  code:1
+                                              userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(errorMessage, nil)}]);
+    }];
+}
+
++ (void)setStopProccessWithID:(NSInteger)pengajuanId reason:(NSInteger)reason completion:(void(^)(NSDictionary *dictionary, NSError *error))block{
+    AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
+    NSMutableDictionary* param = [NSMutableDictionary dictionaryWithDictionary:
+                                  @{@"userid" :[MPMUserInfo getUserInfo][@"userId"],
+                                    @"token" : [MPMUserInfo getToken],
+                                    @"data" : @{@"id" : [NSString stringWithFormat:@"%li", (long)pengajuanId],
+                                                @"tipe" : @"stopProccess",
+                                                @"reason" : [NSString stringWithFormat:@"%li", (long)reason],
+                                                }
+                                    }];
+    
+    [manager POST:[NSString stringWithFormat:@"%@/pengajuan/stopnext", kApiUrl] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        @try {
+            NSInteger code = [[responseObject objectForKey:@"statusCode"] integerValue];
+            NSString *message = [responseObject objectForKey:@"message"];
+            if (code == 200) {
+                if (block) block(responseObject, nil);
+                
+            } else {
+                if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                          code:code
+                                                      userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(message, nil)}]);
+            }
+            
+        } @catch (NSException *exception) {
+            NSLog(@"%@", exception);
+            if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                      code:1
+                                                  userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(exception.reason, nil)}]);
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSString *errorMessage = error.localizedDescription;
+        @try{
+            NSDictionary *errorResponse = [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey]
+                                                                          options:NSJSONReadingAllowFragments
+                                                                            error:nil];
+            errorMessage = [errorResponse objectForKey:@"message"];
+        } @catch(NSException *exception) {
+            NSLog(@"%@", exception);
+        }
+        if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                  code:1
+                                              userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(errorMessage, nil)}]);
     }];
 }
 
