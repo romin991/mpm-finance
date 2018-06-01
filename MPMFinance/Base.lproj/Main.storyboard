@@ -161,10 +161,19 @@
                                             <action selector="forgotPasswordButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ztI-MN-LFy"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F2w-Tb-M5g">
+                                        <rect key="frame" x="20" y="8" width="34" height="30"/>
+                                        <state key="normal" title="Back"/>
+                                        <connections>
+                                            <action selector="back:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fF5-lw-BBV"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="GsO-Wk-okS" firstAttribute="leading" secondItem="F2w-Tb-M5g" secondAttribute="trailing" constant="-54" id="0Sj-zJ-fVh"/>
                                     <constraint firstItem="reI-MY-vmV" firstAttribute="leading" secondItem="2I7-wT-bJP" secondAttribute="leading" constant="40" id="1RU-dc-8Zc"/>
+                                    <constraint firstItem="F2w-Tb-M5g" firstAttribute="top" secondItem="2I7-wT-bJP" secondAttribute="top" constant="8" id="2Ud-5E-62o"/>
                                     <constraint firstItem="szo-Y6-gC1" firstAttribute="leading" secondItem="2I7-wT-bJP" secondAttribute="leading" id="84i-Eo-Rx0"/>
                                     <constraint firstItem="szo-Y6-gC1" firstAttribute="top" secondItem="GsO-Wk-okS" secondAttribute="bottom" constant="33" id="BaW-T1-a80"/>
                                     <constraint firstAttribute="trailing" secondItem="szo-Y6-gC1" secondAttribute="trailing" id="Be8-NX-WgD"/>
@@ -196,6 +205,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backButton" destination="GsO-Wk-okS" id="wxt-6a-Mk2"/>
                         <outlet property="forgotPasswordButton" destination="4QA-9R-iFV" id="b7D-ZI-8yH"/>
                         <outlet property="passwordField" destination="Ejm-Y0-Opx" id="HYt-Z9-O6V"/>
                         <outlet property="signInButton" destination="mSK-N8-edD" id="mut-dD-Z3H"/>
@@ -403,8 +413,8 @@
                                 <rect key="frame" x="0.0" y="604" width="375" height="63"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F5E-Yo-2JV">
-                                        <rect key="frame" x="0.0" y="0.0" width="186.5" height="63"/>
-                                        <state key="normal" title="Sign In">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="63"/>
+                                        <state key="normal" title="LOGIN">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -412,28 +422,14 @@
                                             <action selector="goToLoginPage:" destination="hvL-vJ-2kv" eventType="touchUpInside" id="dMh-is-mgY"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KB3-FA-DEv">
-                                        <rect key="frame" x="188.5" y="0.0" width="186.5" height="63"/>
-                                        <state key="normal" title="Register">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="goToRegisterPage:" destination="hvL-vJ-2kv" eventType="touchUpInside" id="Jqh-k9-Ymo"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.95821231600000001" green="0.43499121070000002" blue="0.0089894523840000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="F5E-Yo-2JV" secondAttribute="bottom" id="3Ss-Jc-ciO"/>
-                                    <constraint firstItem="KB3-FA-DEv" firstAttribute="top" secondItem="mVK-JA-tQJ" secondAttribute="top" id="5l5-3c-xTU"/>
-                                    <constraint firstItem="KB3-FA-DEv" firstAttribute="width" secondItem="F5E-Yo-2JV" secondAttribute="width" id="HbZ-CI-riX"/>
                                     <constraint firstItem="F5E-Yo-2JV" firstAttribute="top" secondItem="mVK-JA-tQJ" secondAttribute="top" id="Ywd-mE-MAH"/>
                                     <constraint firstItem="F5E-Yo-2JV" firstAttribute="leading" secondItem="mVK-JA-tQJ" secondAttribute="leading" id="aFH-Ql-0jR"/>
-                                    <constraint firstItem="KB3-FA-DEv" firstAttribute="leading" secondItem="F5E-Yo-2JV" secondAttribute="trailing" constant="2" id="hGE-74-hmt"/>
                                     <constraint firstAttribute="height" constant="63" id="isD-TA-dsp"/>
-                                    <constraint firstAttribute="trailing" secondItem="KB3-FA-DEv" secondAttribute="trailing" id="nf1-HM-EK5"/>
-                                    <constraint firstAttribute="bottom" secondItem="KB3-FA-DEv" secondAttribute="bottom" id="rZ2-b5-Qgh"/>
+                                    <constraint firstAttribute="trailing" secondItem="F5E-Yo-2JV" secondAttribute="trailing" id="sg2-MX-Lew"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -473,7 +469,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="faR-Yh-RIA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2860.8695652173915" y="135.32608695652175"/>
+            <point key="canvasLocation" x="2860" y="134.48275862068968"/>
         </scene>
         <!--My Profile Navigation View Controller-->
         <scene sceneID="WEt-Iv-kgW">
@@ -2758,12 +2754,12 @@
     <resources>
         <image name="EmailIcon" width="28" height="20"/>
         <image name="Garis" width="414" height="5"/>
-        <image name="HelpIcon" width="22" height="24"/>
-        <image name="HistoryIcon" width="23" height="19"/>
-        <image name="HomeIcon" width="27" height="23"/>
+        <image name="HelpIcon" width="18" height="20"/>
+        <image name="HistoryIcon" width="20" height="18"/>
+        <image name="HomeIcon" width="18" height="16"/>
         <image name="LogoSmall" width="84" height="37"/>
         <image name="PasswordIcon" width="18" height="24"/>
-        <image name="ProfileIcon" width="22" height="23"/>
+        <image name="ProfileIcon" width="16" height="16"/>
         <image name="SignInLogo" width="143" height="64"/>
         <image name="logoutIcon" width="29" height="29"/>
         <image name="mpm_icon_2" width="40" height="40"/>
