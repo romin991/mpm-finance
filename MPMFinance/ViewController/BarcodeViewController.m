@@ -10,6 +10,7 @@
 
 @interface BarcodeViewController ()
 
+@property (weak, nonatomic) IBOutlet UIImageView *qrCoreImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *barcodeImageView;
 @property (weak, nonatomic) IBOutlet UILabel *barcodeLabel;
 
@@ -20,6 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.qrCoreImageView.image = [MPMGlobal qrCodeFromString:self.barcodeString];
     self.barcodeImageView.image = [MPMGlobal barcodeFromString:self.barcodeString];
     self.barcodeLabel.text = self.barcodeString;
 }

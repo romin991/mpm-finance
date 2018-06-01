@@ -300,6 +300,16 @@ NSString *const kActionQueryDB = @"QueryDB";
     
     return [UIImage imageWithCIImage:filter.outputImage];
 }
+
++ (UIImage *)qrCodeFromString:(NSString *)string{
+    NSData *data = [string dataUsingEncoding:NSISOLatin1StringEncoding]; // recommended encoding
+    CIFilter *filter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
+    [filter setValue:data forKey:@"inputMessage"];
+    [filter setValue:@"M" forKey:@"inputCorrectionLevel"];
+    
+    return [UIImage imageWithCIImage:filter.outputImage];
+}
+
 + (NSString *)formatToMoney:(NSNumber *)charge{
     
     NSNumberFormatter *nf = [[NSNumberFormatter alloc] init];
