@@ -376,12 +376,12 @@
     [dataSources addObject:[ResultTableData addDataWithLeft:@"Wilayah" middle:@"" right:[requestDictionary objectForKey:@"wilayahAsuransiKendaraan"] type:ResultTableDataTypeNormal]];
     [dataSources addObject:[ResultTableData addDataWithLeft:@"Pertanggungan" middle:@"" right:[requestDictionary objectForKey:@"pertanggungan"] type:ResultTableDataTypeNormal]];
     
-    [dataSources addObject:[ResultTableData addDataWithLeft:@"Ass Kombinasi Thn Ke-1" middle:@"" right:[requestDictionary objectForKey:@"asuransiKombinasiTh1"] type:ResultTableDataTypeNormal]];
-    [dataSources addObject:[ResultTableData addDataWithLeft:@"Ass Kombinasi Thn Ke-2" middle:@"" right:[requestDictionary objectForKey:@"asuransiKombinasiTh2"] type:ResultTableDataTypeNormal]];
-    [dataSources addObject:[ResultTableData addDataWithLeft:@"Ass Kombinasi Thn Ke-3" middle:@"" right:[requestDictionary objectForKey:@"asuransiKombinasiTh3"] type:ResultTableDataTypeNormal]];
-    [dataSources addObject:[ResultTableData addDataWithLeft:@"Ass Kombinasi Thn Ke-4" middle:@"" right:[requestDictionary objectForKey:@"asuransiKombinasiTh4"] type:ResultTableDataTypeNormal]];
-    [dataSources addObject:[ResultTableData addDataWithLeft:@"Ass Kombinasi Thn Ke-5" middle:@"" right:[requestDictionary objectForKey:@"asuransiKombinasiTh5"] type:ResultTableDataTypeNormal]];
-    [dataSources addObject:[ResultTableData addDataWithLeft:@"Ass Kombinasi Thn Ke-6" middle:@"" right:[requestDictionary objectForKey:@"asuransiKombinasiTh6"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Ass Kombinasi Thn Ke-1" middle:@"" right:[requestDictionary objectForKey:@"pilihanAsuransiKombinasiTahunPertama"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Ass Kombinasi Thn Ke-2" middle:@"" right:[requestDictionary objectForKey:@"pilihanAsuransiKombinasiTahunKedua"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Ass Kombinasi Thn Ke-3" middle:@"" right:[requestDictionary objectForKey:@"pilihanAsuransiKombinasiTahunKetiga"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Ass Kombinasi Thn Ke-4" middle:@"" right:[requestDictionary objectForKey:@"pilihanAsuransiKombinasiTahunKeempat"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Ass Kombinasi Thn Ke-5" middle:@"" right:[requestDictionary objectForKey:@"pilihanAsuransiKombinasiTahunKelima"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Ass Kombinasi Thn Ke-6" middle:@"" right:[requestDictionary objectForKey:@"pilihanAsuransiKombinasiTahunKeenam"] type:ResultTableDataTypeNormal]];
     
     [dataSources addObject:[ResultTableData addDataWithLeft:@"Opsi Asuransi" middle:@"" right:[requestDictionary objectForKey:@"opsiAsuransiKendaraan"] type:ResultTableDataTypeNormal]];
     [dataSources addObject:[ResultTableData addDataWithLeft:@"Penggunaan" middle:@"" right:[requestDictionary objectForKey:@"penggunaan"] type:ResultTableDataTypeNormal]];
