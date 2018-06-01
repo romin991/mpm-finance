@@ -293,21 +293,33 @@ NSString *const kActionQueryDB = @"QueryDB";
     return string;
 }
 
-+ (UIImage *)barcodeFromString:(NSString *)string{
++ (UIImage *)barcodeFromString:(NSString *)string size:(CGSize)outputSize{
     NSData *data = [string dataUsingEncoding:NSASCIIStringEncoding];
     CIFilter *filter = [CIFilter filterWithName:@"CICode128BarcodeGenerator"];
     [filter setValue:data forKey:@"inputMessage"];
     
-    return [UIImage imageWithCIImage:filter.outputImage];
+    CIImage *image = filter.outputImage;
+    CGRect rect = CGRectIntegral(image.extent);
+    
+    CGAffineTransform transform = CGAffineTransformMakeScale(outputSize.width / rect.size.width, outputSize.height / rect.size.height);
+    CIImage *output = [filter.outputImage imageByApplyingTransform: transform];
+    
+    return [UIImage imageWithCIImage:output];
 }
 
-+ (UIImage *)qrCodeFromString:(NSString *)string{
++ (UIImage *)qrCodeFromString:(NSString *)string size:(CGSize)outputSize{
     NSData *data = [string dataUsingEncoding:NSISOLatin1StringEncoding]; // recommended encoding
     CIFilter *filter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
     [filter setValue:data forKey:@"inputMessage"];
     [filter setValue:@"M" forKey:@"inputCorrectionLevel"];
     
-    return [UIImage imageWithCIImage:filter.outputImage];
+    CIImage *image = filter.outputImage;
+    CGRect rect = CGRectIntegral(image.extent);
+    
+    CGAffineTransform transform = CGAffineTransformMakeScale(outputSize.width / rect.size.width, outputSize.height / rect.size.height);
+    CIImage *output = [filter.outputImage imageByApplyingTransform: transform];
+    
+    return [UIImage imageWithCIImage:output];
 }
 
 + (NSString *)formatToMoney:(NSNumber *)charge{

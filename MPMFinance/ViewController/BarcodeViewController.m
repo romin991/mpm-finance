@@ -21,8 +21,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.qrCoreImageView.image = [MPMGlobal qrCodeFromString:self.barcodeString];
-    self.barcodeImageView.image = [MPMGlobal barcodeFromString:self.barcodeString];
+}
+
+- (void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    self.qrCoreImageView.image = [MPMGlobal qrCodeFromString:self.barcodeString size:self.qrCoreImageView.frame.size];
+    self.barcodeImageView.image = [MPMGlobal barcodeFromString:self.barcodeString size:self.barcodeImageView.frame.size];
     self.barcodeLabel.text = self.barcodeString;
 }
 
