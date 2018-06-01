@@ -345,8 +345,8 @@
     menu.sort = 30;
     menu.menuType = kMenuTypeList;
     menu.isRootMenu = YES;
-    [menu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
-    [menu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
+//    [menu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
+//    [menu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     
     menuList = [[Menu alloc] init];
     menuList.primaryKey = kSubmenuListMAP;
@@ -401,8 +401,8 @@
     menu.sort = 40;
     menu.menuType = kMenuTypeList;
     menu.isRootMenu = YES;
-    [menu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
-    [menu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
+//    [menu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
+//    [menu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     
     menuList = [[Menu alloc] init];
     menuList.imageName = @"";
