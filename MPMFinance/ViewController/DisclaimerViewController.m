@@ -10,6 +10,7 @@
 #import "WorkOrderModel.h"
 #import "BarcodeViewController.h"
 #import "SubmenuViewController.h"
+#import "ReasonViewController.h"
 
 @interface DisclaimerViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate, BarcodeDelegate>
 
@@ -28,9 +29,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.isAgree = false;
-    //[self refreshSelected];
+    [self refreshSelected];
 }
--(void)viewWillAppear:(BOOL)animated{
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
     NSString *contentString = @"Pernyataan Pemohon<br/>1. Dengan ini saya menyatakan, bahwa<br/>a. MPM Finance berhak menyimpan, menggunakan, dan/atau memberikan data-data pribadi saya kepada group,afiliasi, dan konsultan (“Pihak yang Diizinkan”), baik untuk tujuan komersil yang berkaitan dengan produk dan/atau layanan dari MPM Group dan afiliasinya dan/atau tujuan lain sepanjang tidak bertentangan dengan peraturan yang berlaku. Atas persetujuan dan penggunaan data pribadi saya kepada “Pihak yang Diizinkan”, dengan ini saya menyatakan bahwa saya memahami segala konsekuensi yang terjadi di kemudian hari.<br/>b. Menerima penawaran promosi produk dan/atau layanan dari MPM Group dan afiliasinya melalui sarana komunikasi pribadi, antara lain SMS, email, voice mail, telepon dan/atau menggunakan sarana komunikasi lainnya.<br/>2. Saya menyatakan telah menerima, memahami dan mengerti semua informasi yang tertera dan mengakui bahwa data yang tertulis adalah benar.<br/>3. Saya memberikan kuasa kepada MPM Finance untuk memeriksa informasi tersebut dengan cara yang layak menurut MPM Finance.<br/>4. Bahwa data yang saya berikan adalah data yang benar, valid, dan dapat dipertanggung jawabkan secara hukum.<br/>5. Dengan melengkapi informasi dan data-data sebagaimana tersebut diatas, saya menyatakan setuju dan tunduk pada ketentuan yang berlaku pada MPM Finance.<br/><br/><b>www.mpm-finance.com</b><br/><b>Terdaftar dan Diawasi oleh Otoritas Jasa Keuangan (OJK)</b>";
     NSAttributedString *attributedString = [[NSAttributedString alloc]
                                             initWithData: [contentString dataUsingEncoding:NSUnicodeStringEncoding]
@@ -91,22 +95,37 @@
     [SVProgressHUD show];
     [WorkOrderModel postListWorkOrder:self.list dictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
         if (error == nil) {
-            if (dictionary) {
-                @try {
-                    NSString *noRegistrasi = [[dictionary objectForKey:@"data"] objectForKey:@"noRegistrasi"];
-                    
-                    BarcodeViewController *barcodeVC = [[BarcodeViewController alloc] init];
-                    barcodeVC.barcodeString = noRegistrasi;
-                    barcodeVC.modalPresentationStyle = UIModalPresentationFullScreen;
-                    barcodeVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-                    barcodeVC.delegate = self;
-                    
-                    [self presentViewController:barcodeVC animated:YES completion:nil];
-                } @catch (NSException *exception) {
-                    NSLog(@"%@", exception);
-                }
-            }
             [SVProgressHUD dismiss];
+            NSString *noRegistrasi = @"";
+            @try {
+                noRegistrasi = [[dictionary objectForKey:@"data"] objectForKey:@"noRegistrasi"];
+            } @catch (NSException *exception) {
+                NSLog(@"%@", exception);
+            }
+            
+            __weak typeof(self) weakSelf = self;
+            UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:@"" message:@"Apakah anda yakin akan melanjutkan proses?" preferredStyle:UIAlertControllerStyleAlert];
+            
+            [actionSheet addAction:[UIAlertAction actionWithTitle:@"Tidak" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+                ReasonViewController *reasonVC = [[ReasonViewController alloc] init];
+                reasonVC.list = weakSelf.list;
+                reasonVC.noRegistrasi = noRegistrasi;
+                
+                [weakSelf.navigationController pushViewController:reasonVC animated:YES];
+            }]];
+            
+            [actionSheet addAction:[UIAlertAction actionWithTitle:@"Ya" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+                BarcodeViewController *barcodeVC = [[BarcodeViewController alloc] init];
+                barcodeVC.barcodeString = noRegistrasi;
+                barcodeVC.modalPresentationStyle = UIModalPresentationFullScreen;
+                barcodeVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+                barcodeVC.delegate = weakSelf;
+                
+                [weakSelf presentViewController:barcodeVC animated:YES completion:nil];
+            }]];
+            
+            [self presentViewController:actionSheet animated:YES completion:nil];
+            
         } else {
             [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
             [SVProgressHUD dismissWithDelay:1.5];
