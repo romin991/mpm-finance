@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "List.h"
+#import "Menu.h"
 
 @interface DisclaimerViewController : UIViewController
 
+@property Menu *parentMenu;
 @property NSMutableDictionary *valueDictionary;
 @property List *list;
 

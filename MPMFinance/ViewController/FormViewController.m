@@ -290,6 +290,10 @@
                         row.disabled = @NO;
                     }
                 }
+                
+                if ([self.parentMenu.primaryKey isEqualToString:kSubmenuListWorkOrder] && ![row.tag isEqualToString:@"next"]) {
+                    row.disabled = @YES;
+                }
             }
         }
         
@@ -336,6 +340,7 @@
         DisclaimerViewController *disclaimerVC = [[DisclaimerViewController alloc] init];
         disclaimerVC.valueDictionary = self.valueDictionary;
         disclaimerVC.list = self.list;
+        disclaimerVC.parentMenu = self.parentMenu;
         [self.navigationController pushViewController:disclaimerVC animated:true];
         
     } else {

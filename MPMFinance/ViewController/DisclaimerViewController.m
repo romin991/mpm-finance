@@ -11,6 +11,7 @@
 #import "BarcodeViewController.h"
 #import "SubmenuViewController.h"
 #import "ReasonViewController.h"
+#import "AFImageDownloader.h"
 
 @interface DisclaimerViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate, BarcodeDelegate>
 
@@ -18,6 +19,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIButton *agreeButton;
 @property (weak, nonatomic) IBOutlet UIButton *disagreeButton;
+@property (weak, nonatomic) IBOutlet UIButton *viewBarcodeButton;
+@property (weak, nonatomic) IBOutlet UIButton *submitButton;
+@property (weak, nonatomic) IBOutlet UIButton *takePhotoButton;
 
 @property BOOL isAgree;
 
@@ -28,7 +32,35 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.isAgree = false;
+    
+    if ([self.parentMenu.primaryKey isEqualToString:kSubmenuListWorkOrder]) {
+        self.submitButton.hidden = true;
+        self.viewBarcodeButton.hidden = false;
+        self.takePhotoButton.hidden = true;
+        self.isAgree = true;
+        
+        if ([MPMGlobal isStringAnURL:[self.valueDictionary objectForKey:@"ttd"]]) {
+            NSURLRequest *imageRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[self.valueDictionary objectForKey:@"ttd"]]
+                                                          cachePolicy:NSURLRequestReloadRevalidatingCacheData
+                                                      timeoutInterval:60];
+            
+            __weak typeof(self) weakSelf = self;
+            [[AFImageDownloader defaultInstance] downloadImageForURLRequest:imageRequest success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull responseObject) {
+                weakSelf.imageView.image = responseObject;
+            } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
+                
+            }];
+        } else {
+            self.imageView.image = [MPMGlobal decodeFromBase64String:[self.valueDictionary objectForKey:@"ttd"]];
+        }
+        
+    } else {
+        self.submitButton.hidden = false;
+        self.viewBarcodeButton.hidden = true;
+        self.takePhotoButton.hidden = false;
+        self.isAgree = false;
+    }
+    
     [self refreshSelected];
 }
 
@@ -46,6 +78,7 @@
     self.textView.attributedText = attributedString;
     self.textView.font = [UIFont systemFontOfSize:15.0f];
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -68,13 +101,17 @@
 }
 
 - (IBAction)agree:(id)sender {
-    self.isAgree = true;
-    [self refreshSelected];
+    if (![self.parentMenu.primaryKey isEqualToString:kSubmenuListWorkOrder]) {
+        self.isAgree = true;
+        [self refreshSelected];
+    }
 }
 
 - (IBAction)disagree:(id)sender {
-    self.isAgree = false;
-    [self refreshSelected];
+    if (![self.parentMenu.primaryKey isEqualToString:kSubmenuListWorkOrder]) {
+        self.isAgree = false;
+        [self refreshSelected];
+    }
 }
 
 - (void)refreshSelected{
@@ -133,11 +170,25 @@
     }];
 }
 
+- (IBAction)viewBarcode:(id)sender {
+    NSString *noRegistrasi = [self.valueDictionary objectForKey:@"noRegistrasi"];
+    
+    BarcodeViewController *barcodeVC = [[BarcodeViewController alloc] init];
+    barcodeVC.barcodeString = noRegistrasi;
+    barcodeVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    barcodeVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    barcodeVC.delegate = self;
+    
+    [self presentViewController:barcodeVC animated:YES completion:nil];
+}
+
 #pragma mark - Barcode Delegate
 - (void)finish{
-    for (UIViewController *vc in self.navigationController.viewControllers) {
-        if ([vc isKindOfClass:[SubmenuViewController class]]) {
-            [self.navigationController popToViewController:vc animated:NO];
+    if (![self.parentMenu.primaryKey isEqualToString:kSubmenuListWorkOrder]) {
+        for (UIViewController *vc in self.navigationController.viewControllers) {
+            if ([vc isKindOfClass:[SubmenuViewController class]]) {
+                [self.navigationController popToViewController:vc animated:NO];
+            }
         }
     }
 }

@@ -283,7 +283,8 @@
             NSString *message = [responseObject objectForKey:@"message"];
             if (code == 200) {
                 NSDictionary *data = responseObject[@"data"];
-                NSDictionary *dictionary = @{@"noKTP" : data[@"noKtp"],
+                NSDictionary *dictionary = @{@"noRegistrasi" : data[@"noRegistrasi"],
+                                             @"noKTP" : data[@"noKtp"],
                                              @"namaLengkap" : data[@"namaCalon"],
                                              @"tempatLahir" : data[@"tmpLahir"],
                                              @"tanggalLahir" : data[@"tglLahir"],
@@ -354,7 +355,7 @@
                                              
                                              @"catatanTV" : data[@"noteTv"],
                                              @"catatanSS" : data[@"noteSs"],
-                                             @"" : data[@"ttd"],
+                                             @"ttd" : data[@"ttd"],
                                              };
                 
                 if (block) block(dictionary, nil);
@@ -401,7 +402,8 @@
             NSString *message = [responseObject objectForKey:@"message"];
             if (code == 200) {
                 NSDictionary *data = responseObject[@"data"];
-                NSDictionary *dictionary = @{@"noKTP" : data[@"noKtp"],
+                NSDictionary *dictionary = @{@"noRegistrasi" : data[@"noRegistrasi"],
+                                             @"noKTP" : data[@"noKtp"],
                                              @"namaLengkap" : data[@"namaCalon"],
                                              @"tempatLahir" : data[@"tmpLahir"],
                                              @"tanggalLahir" : data[@"tglLahir"],
@@ -472,7 +474,7 @@
                                              
                                              @"catatanTV" : data[@"noteTv"],
                                              @"catatanSS" : data[@"noteSs"],
-                                             @"" : data[@"ttd"],
+                                             @"ttd" : data[@"ttd"],
                                              };
                 
                 if (block) block(dictionary, nil);
@@ -616,7 +618,7 @@
            
            @"noteTv": [dictionary objectForKey:@"catatanTV"] ? [dictionary objectForKey:@"catatanTV"] : @"",
            @"noteSs": [dictionary objectForKey:@"catatanSS"] ? [dictionary objectForKey:@"catatanSS"] : @"",
-           @"ttd": @"",
+           @"ttd": [dictionary objectForKey:@"ttd"] ? [dictionary objectForKey:@"ttd"] : @"",
 //           @"pernyataanPemohon" : @TRUE,
            }];
         

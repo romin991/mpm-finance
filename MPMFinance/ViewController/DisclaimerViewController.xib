@@ -15,8 +15,11 @@
                 <outlet property="agreeButton" destination="Nh4-i9-nYQ" id="8WU-E7-FVP"/>
                 <outlet property="disagreeButton" destination="aBN-KW-eA2" id="ZQs-Ey-9zT"/>
                 <outlet property="imageView" destination="G9o-FB-f8N" id="88z-ZX-tLl"/>
+                <outlet property="submitButton" destination="qes-ou-GGf" id="10E-J1-ssz"/>
+                <outlet property="takePhotoButton" destination="wIP-js-nPq" id="867-9O-IRD"/>
                 <outlet property="textView" destination="HeX-Wx-o4z" id="y1D-K1-FeN"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewBarcodeButton" destination="goH-R3-60D" id="2XU-gC-u6c"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -43,13 +46,27 @@
                         <constraint firstAttribute="height" constant="48" id="vA6-iv-Q8B"/>
                     </constraints>
                 </view>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HeX-Wx-o4z">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HeX-Wx-o4z">
                     <rect key="frame" x="16" y="222" width="343" height="267"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="goH-R3-60D">
+                    <rect key="frame" x="67" y="539" width="240" height="44"/>
+                    <color key="backgroundColor" red="0.94901960780000005" green="0.43529411759999997" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="240" id="4fV-3R-AmI"/>
+                        <constraint firstAttribute="height" constant="44" id="c2p-K9-hV2"/>
+                    </constraints>
+                    <state key="normal" title="View Barcode">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="viewBarcode:" destination="-1" eventType="touchUpInside" id="Gq4-VL-zHg"/>
+                    </connections>
+                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qes-ou-GGf">
                     <rect key="frame" x="67" y="539" width="240" height="44"/>
                     <color key="backgroundColor" red="0.94901960780000005" green="0.43529411759999997" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -122,6 +139,7 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="goH-R3-60D" firstAttribute="top" secondItem="qes-ou-GGf" secondAttribute="top" id="3VZ-jr-fC5"/>
                 <constraint firstItem="Ff1-BL-omE" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="4nw-Q6-M6q"/>
                 <constraint firstItem="G9o-FB-f8N" firstAttribute="top" secondItem="Ff1-BL-omE" secondAttribute="bottom" constant="10" id="C9F-V6-xmq"/>
                 <constraint firstItem="LHr-YY-j0D" firstAttribute="top" secondItem="HeX-Wx-o4z" secondAttribute="bottom" constant="10" id="D1b-qO-AQR"/>
@@ -132,6 +150,7 @@
                 <constraint firstItem="G9o-FB-f8N" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="MSc-P6-r1n"/>
                 <constraint firstItem="qes-ou-GGf" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Psl-mY-7ik"/>
                 <constraint firstItem="LHr-YY-j0D" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Vcx-BF-SEb"/>
+                <constraint firstItem="goH-R3-60D" firstAttribute="bottom" secondItem="qes-ou-GGf" secondAttribute="bottom" id="aiH-5s-auZ"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="HeX-Wx-o4z" secondAttribute="trailing" constant="16" id="c66-aV-U9t"/>
                 <constraint firstItem="Ff1-BL-omE" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="dAE-zt-FKV"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="qes-ou-GGf" secondAttribute="bottom" constant="20" id="hPV-DV-fFm"/>
@@ -139,6 +158,8 @@
                 <constraint firstItem="wIP-js-nPq" firstAttribute="bottom" secondItem="G9o-FB-f8N" secondAttribute="bottom" id="kv0-HS-7le"/>
                 <constraint firstItem="wIP-js-nPq" firstAttribute="top" secondItem="G9o-FB-f8N" secondAttribute="top" id="nma-bM-dSs"/>
                 <constraint firstItem="Ff1-BL-omE" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="nwe-SS-MFu"/>
+                <constraint firstItem="goH-R3-60D" firstAttribute="leading" secondItem="qes-ou-GGf" secondAttribute="leading" id="oXv-7j-wQ4"/>
+                <constraint firstItem="goH-R3-60D" firstAttribute="trailing" secondItem="qes-ou-GGf" secondAttribute="trailing" id="sdn-6P-vYi"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
