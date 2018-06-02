@@ -211,13 +211,22 @@
                         NSLog(@"%@", exception);
                     }
                 }
+                if ([row.tag isEqualToString:@"tanggalLahir"]) {
+                    if ([[row cellForFormController:self] isKindOfClass:XLFormDateCell.class]){
+                        [(XLFormDateCell *)[row cellForFormController:self] setMaximumDate:[NSDate date]];
+                    }
+                }
+                
                 if ([row.tag isEqualToString:@"noKTPPasangan"]) {
                     ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 16;
                 }
                 else if ([row.tag isEqualToString:@"nomorHandphonePasangan"]) {
                     ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 15;
                 }
-                else if ([row.tag isEqualToString:@"rTPasangan"]) {
+                else if ([row.tag isEqualToString:@"rTPasangan"] || [row.tag isEqualToString:@"rTDomisili"]) {
+                    ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 3;
+                }
+                else if ([row.tag isEqualToString:@"rWPasangan"] || [row.tag isEqualToString:@"rWDomisili"]) {
                     ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 3;
                 }
                 else if ([row.tag isEqualToString:@"rWPasangan"]) {
@@ -226,10 +235,7 @@
                 else if ([row.tag isEqualToString:@"rWPasangan"]) {
                     ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 3;
                 }
-                else if ([row.tag isEqualToString:@"rWPasangan"]) {
-                    ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 3;
-                }
-                else if ([row.tag isEqualToString:@"kodeAreaTeleponTempatKerja"]) {
+                else if ([row.tag isEqualToString:@"kodeAreaTeleponTempatKerja"] || [row.tag isEqualToString:@"kodeArea"]) {
                     ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 4;
                 }
                 else if ([row.tag isEqualToString:@"nomorTeleponTempatKerja"]) {
@@ -245,8 +251,8 @@
                     [row.tag isEqualToString:@"nomorTelepon"] ||
                     [row.tag isEqualToString:@"nomorHandphone"] ||
                     
-                    [row.tag isEqualToString:@"rtDomisili"] ||
-                    [row.tag isEqualToString:@"rwDomisili"] ||
+                    [row.tag isEqualToString:@"rTDomisili"] ||
+                    [row.tag isEqualToString:@"rWDomisili"] ||
                     
                     [row.tag isEqualToString:@"noKTPPasangan"] ||
                     [row.tag isEqualToString:@"nomorHandphonePasangan"] ||
@@ -588,9 +594,16 @@
     [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         XLFormValidationStatus * validationStatus = [[obj userInfo] objectForKey:XLValidationStatusErrorKey];
         UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:[self.form indexPathOfFormRow:validationStatus.rowDescriptor]];
+//        XLFormRowDescriptor *row =  [self.form indexPathOfFormRow:validationStatus.rowDescriptor];
+//        if ([row.tag isEqualToString:@"masaBerlakuKTP"]) {
+//            
+//        }
+        
         [self animateCell:cell];
     
     }];
+    
+    
     return array;
 }
 
