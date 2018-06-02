@@ -474,7 +474,7 @@
     }
     
     
-    if ([formRow.tag isEqualToString:@"samadenganalamatlegal"]){
+    if ([formRow.tag isEqualToString:@"samaDenganAlamatLegal"]){
         if ([newValue boolValue]){
             [self setDomicileAddressValueWithTheSameValueAsLegalAddress];
         } else {
@@ -536,7 +536,7 @@
 }
 
 - (void)setDomicileAddressValueWithTheSameValueAsLegalAddress{
-    XLFormRowDescriptor *row = [self.form formRowWithTag:@"samadenganalamatlegal"];
+    XLFormRowDescriptor *row = [self.form formRowWithTag:@"samaDenganAlamatLegal"];
     if ([row.value boolValue]) {
         row = [self.form formRowWithTag:@"alamatDomisili"];
         if (row) {

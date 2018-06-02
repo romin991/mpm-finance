@@ -538,11 +538,11 @@
                                     @"token" : [MPMUserInfo getToken]}];
     
     NSMutableDictionary *dataDictionary = [NSMutableDictionary dictionary];
-    NSString *url = @"input";
+    NSString *url = [[MPMUserInfo getRole] isEqualToString:kRoleCustomer] ? @"customer/input" : @"marketing/input";
     @try {
         if (list){
             [dataDictionary setObject:@(list.primaryKey) forKey:@"id"];
-            url = @"update";
+            url = @"customer/update";
         }
         
         [dataDictionary addEntriesFromDictionary:
@@ -567,7 +567,7 @@
            @"kodeArea" : [dictionary objectForKey:@"kodeArea"] ? [dictionary objectForKey:@"kodeArea"] : @"",
            @"noTlp" : [dictionary objectForKey:@"nomorTelepon"] ? [dictionary objectForKey:@"nomorTelepon"] : @"",
            
-           @"cekAlamatSama" : [dictionary objectForKey:@"samaDenganAlamatLegal"] ? @([[dictionary objectForKey:@"samaDenganAlamatLegal"] integerValue]) : @NO,
+           @"cekAlamatSama" : [dictionary objectForKey:@"samaDenganAlamatLegal"] ? @([[dictionary objectForKey:@"samaDenganAlamatLegal"] integerValue]) : @0,
            @"alamatDomisili" : [dictionary objectForKey:@"alamatDomisili"] ? [dictionary objectForKey:@"alamatDomisili"] : @"",
            @"alamatDomisiliRt" : [dictionary objectForKey:@"rTDomisili"] ? [dictionary objectForKey:@"rTDomisili"] : @"",
            @"alamatDomisiliRw" : [dictionary objectForKey:@"rWDomisili"] ? [dictionary objectForKey:@"rWDomisili"] : @"",
@@ -624,7 +624,7 @@
         
         [param setObject:dataDictionary forKey:@"data"];
         
-        [manager POST:[NSString stringWithFormat:@"%@/pengajuandraft/customer/%@", kApiUrl, url] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [manager POST:[NSString stringWithFormat:@"%@/pengajuandraft/%@", kApiUrl, url] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             @try {
                 NSInteger code = [[responseObject objectForKey:@"statusCode"] integerValue];
                 NSString *message = [responseObject objectForKey:@"message"];
