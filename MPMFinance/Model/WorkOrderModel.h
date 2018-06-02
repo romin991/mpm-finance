@@ -29,5 +29,6 @@
 
 + (void)setBlackListWithID:(NSInteger)pengajuanId type:(NSString *)type completion:(void(^)(NSDictionary *dictionary, NSError *error))block;
 + (void)setApproveWithID:(NSInteger)pengajuanId completion:(void(^)(NSDictionary *dictionary, NSError *error))block; //for officer only i guess
++ (void)setStopProccessWithID:(NSInteger)pengajuanId reason:(NSInteger)reason completion:(void(^)(NSDictionary *dictionary, NSError *error))block;
 + (void)deleteCustomerDraft:(NSNumber *)draftID;
 @end

@@ -290,6 +290,10 @@
                         row.disabled = @NO;
                     }
                 }
+                
+                if ([self.parentMenu.primaryKey isEqualToString:kSubmenuListWorkOrder] && ![row.tag isEqualToString:@"next"]) {
+                    row.disabled = @YES;
+                }
             }
         }
         
@@ -336,6 +340,8 @@
         DisclaimerViewController *disclaimerVC = [[DisclaimerViewController alloc] init];
         disclaimerVC.valueDictionary = self.valueDictionary;
         disclaimerVC.list = self.list;
+        disclaimerVC.parentMenu = self.parentMenu;
+        disclaimerVC.menu = self.menu;
         [self.navigationController pushViewController:disclaimerVC animated:true];
         
     } else {
@@ -348,43 +354,46 @@
             [SVProgressHUD show];
             [FormModel saveValueFrom:self.form to:self.valueDictionary];
             __weak typeof(self) weakSelf = self;
-            [WorkOrderModel postDraftWorkOrder:self.list dictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
-                if (error) {
-                    
-                    NSString *errorMessage = error.localizedDescription;
-                    @try {
-                        NSDictionary *responseObject = [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:NSJSONReadingAllowFragments error:nil];
-                        errorMessage = [responseObject objectForKey:@"message"];
-                    } @catch (NSException *exception) {
-                        NSLog(@"%@", exception);
-                    } @finally {
-                        [SVProgressHUD showErrorWithStatus:errorMessage];
+            
+            if ([self.parentMenu.primaryKey isEqualToString:kSubmenuListWorkOrder]) {
+                [weakSelf goToNextForm];
+                
+            } else {
+                [WorkOrderModel postDraftWorkOrder:self.list dictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
+                    if (error) {
+                        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
                         [SVProgressHUD dismissWithDelay:1.5];
-                    }
-                } else {
-                    if (weakSelf.list == nil) {
-                        @try {
-                            List *list = [[List alloc] init];
-                            list.primaryKey = [[[dictionary objectForKey:@"data"] objectForKey:@"id"] integerValue];
-                            if (list.primaryKey) {
-                                weakSelf.list = list;
+                        
+                    } else {
+                        if (weakSelf.list == nil) {
+                            @try {
+                                List *list = [[List alloc] init];
+                                list.primaryKey = [[[dictionary objectForKey:@"data"] objectForKey:@"id"] integerValue];
+                                if (list.primaryKey) {
+                                    weakSelf.list = list;
+                                }
+                            } @catch (NSException *exception){
+                                NSLog(@"%@", exception);
                             }
-                        } @catch (NSException *exception){
-                            NSLog(@"%@", exception);
                         }
+                        
+                        [SVProgressHUD dismiss];
+                        [weakSelf goToNextForm];
                     }
-                    
-                    [SVProgressHUD dismiss];
-                    FormViewController *nextFormViewController = [[FormViewController alloc] init];
-                    nextFormViewController.menu = weakSelf.menu;
-                    nextFormViewController.index = weakSelf.index + 1;
-                    nextFormViewController.valueDictionary = weakSelf.valueDictionary;
-                    nextFormViewController.list = weakSelf.list;
-                    [weakSelf.navigationController pushViewController:nextFormViewController animated:YES];
-                }
-            }];
+                }];
+            }
         }
     }
+}
+
+- (void)goToNextForm{
+    FormViewController *nextFormViewController = [[FormViewController alloc] init];
+    nextFormViewController.menu = self.menu;
+    nextFormViewController.index = self.index + 1;
+    nextFormViewController.valueDictionary = self.valueDictionary;
+    nextFormViewController.list = self.list;
+    nextFormViewController.parentMenu = self.parentMenu;
+    [self.navigationController pushViewController:nextFormViewController animated:YES];
 }
 
 - (void)setHorizontalLabel{

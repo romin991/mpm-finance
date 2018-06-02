@@ -68,7 +68,18 @@
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        if (block) block(nil, error);
+        NSString *errorMessage = error.localizedDescription;
+        @try{
+            NSDictionary *errorResponse = [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey]
+                                                                          options:NSJSONReadingAllowFragments
+                                                                            error:nil];
+            errorMessage = [errorResponse objectForKey:@"message"];
+        } @catch(NSException *exception) {
+            NSLog(@"%@", exception);
+        }
+        if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                  code:1
+                                              userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(errorMessage, nil)}]);
     }];
 }
 
@@ -138,7 +149,18 @@
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        if (block) block(nil, error);
+        NSString *errorMessage = error.localizedDescription;
+        @try{
+            NSDictionary *errorResponse = [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey]
+                                                                          options:NSJSONReadingAllowFragments
+                                                                            error:nil];
+            errorMessage = [errorResponse objectForKey:@"message"];
+        } @catch(NSException *exception) {
+            NSLog(@"%@", exception);
+        }
+        if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                  code:1
+                                              userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(errorMessage, nil)}]);
     }];
 }
 
@@ -199,7 +221,18 @@
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        if (block) block(nil, error);
+        NSString *errorMessage = error.localizedDescription;
+        @try{
+            NSDictionary *errorResponse = [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey]
+                                                                          options:NSJSONReadingAllowFragments
+                                                                            error:nil];
+            errorMessage = [errorResponse objectForKey:@"message"];
+        } @catch(NSException *exception) {
+            NSLog(@"%@", exception);
+        }
+        if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                  code:1
+                                              userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(errorMessage, nil)}]);
     }];
 }
 
