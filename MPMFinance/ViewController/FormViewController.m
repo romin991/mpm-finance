@@ -245,8 +245,8 @@
                     [row.tag isEqualToString:@"nomorTelepon"] ||
                     [row.tag isEqualToString:@"nomorHandphone"] ||
                     
-                    [row.tag isEqualToString:@"rtDomisili"] ||
-                    [row.tag isEqualToString:@"rwDomisili"] ||
+                    [row.tag isEqualToString:@"rTDomisili"] ||
+                    [row.tag isEqualToString:@"rWDomisili"] ||
                     
                     [row.tag isEqualToString:@"noKTPPasangan"] ||
                     [row.tag isEqualToString:@"nomorHandphonePasangan"] ||
@@ -468,7 +468,7 @@
     }
     
     
-    if ([formRow.tag isEqualToString:@"samadenganalamatlegal"]){
+    if ([formRow.tag isEqualToString:@"samaDenganAlamatLegal"]){
         if ([newValue boolValue]){
             [self setDomicileAddressValueWithTheSameValueAsLegalAddress];
         } else {
@@ -530,7 +530,7 @@
 }
 
 - (void)setDomicileAddressValueWithTheSameValueAsLegalAddress{
-    XLFormRowDescriptor *row = [self.form formRowWithTag:@"samadenganalamatlegal"];
+    XLFormRowDescriptor *row = [self.form formRowWithTag:@"samaDenganAlamatLegal"];
     if ([row.value boolValue]) {
         row = [self.form formRowWithTag:@"alamatDomisili"];
         if (row) {
