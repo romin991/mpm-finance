@@ -74,7 +74,7 @@ const static CGFloat kFloatingLabelFontSize = 11.0f;
 -(void)configure
 {
     [super configure];
-    self.isAlphabetOnly = NO;
+    self.mustAlphabetOnly = NO;
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
     [self.contentView addSubview:self.floatLabeledTextField];
     [self.floatLabeledTextField setDelegate:self];
@@ -136,8 +136,16 @@ const static CGFloat kFloatingLabelFontSize = 11.0f;
         return NO;
     }
     WordsType wordType = [proposedNewString checkWordType];
-    if (self.isAlphabetOnly && wordType != WordsTypeAlphabetOnly) {
-        return NO;
+    if (wordType == WordsTypeNone) {
+        
+    } else {
+        if (self.mustAlphabetOnly && wordType != WordsTypeAlphabetOnly) {
+            return NO;
+        } else if (self.mustAlphabetNumericOnly && (wordType != WordsTypeAlphabetNumeric && wordType != WordsTypeAlphabetOnly)) {
+            return NO;
+        } else if (self.mustAlphabetPunctuationOnly && (wordType != WordsTypeAlphabetPunctuation && wordType != WordsTypeAlphabetOnly) ) {
+            return NO;
+        }
     }
     return [self.formViewController textField:textField shouldChangeCharactersInRange:range replacementString:string];
 }
