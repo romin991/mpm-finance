@@ -23,11 +23,12 @@
 // THE SOFTWARE.
 
 #import "XLFormBaseCell.h"
-
+#import "NSString+MixedCasing.h"
 extern NSString * const XLFormRowDescriptorTypeFloatLabeledTextField;
 
 @interface FloatLabeledTextFieldCell : XLFormBaseCell
 @property NSInteger maximumLength;
+@property BOOL isAlphabetOnly;
 - (void)setKeyboardType:(UIKeyboardType)keyboardType;
 - (void)setKeyboardType:(UIKeyboardType)keyboardType andMaximumLength:(NSInteger) maxLength;
 

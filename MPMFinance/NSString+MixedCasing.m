@@ -26,7 +26,38 @@
     }
     return result;
 }
-
+- (WordsType)checkWordType {
+    WordsType wordType = WordsTypeNone;
+    NSCharacterSet *allowedChars = [NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"];
+    NSRange range = [self rangeOfCharacterFromSet:allowedChars];
+    if (range.location != NSNotFound) {
+        wordType = WordsTypeAlphabetOnly;
+    }
+    allowedChars = [NSCharacterSet characterSetWithCharactersInString:@"!@#$%^&*()'{][}+=-_"];
+    range = [self rangeOfCharacterFromSet:allowedChars];
+    if (range.location != NSNotFound) {
+        if (wordType == WordsTypeAlphabetOnly) {
+            wordType = WordsTypeAlphabetPunctuation;
+        } else {
+            wordType = WordsTypePunctuationOnly;
+        }
+        
+    }
+    
+    allowedChars = [NSCharacterSet characterSetWithCharactersInString:@"1234567890"];
+    range = [self rangeOfCharacterFromSet:allowedChars];
+    if (range.location != NSNotFound) {
+        if (wordType == WordsTypeAlphabetOnly) {
+            wordType = WordsTypeAlphabetNumeric;
+        } else if (wordType == WordsTypeAlphabetPunctuation) {
+            wordType = WordsTypeAll;
+        } else {
+            wordType = WordsTypeNumericOnly;
+        }
+        
+    }
+    return wordType;
+}
 - (NSString *)pascalCased  {
     NSMutableString *result = [NSMutableString new];
     NSArray *words = [self componentsSeparatedByString: @" "];

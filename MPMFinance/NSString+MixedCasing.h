@@ -7,10 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
+typedef NS_ENUM(NSInteger, WordsType) {
+    WordsTypeAlphabetOnly,
+    WordsTypeNumericOnly,
+    WordsTypePunctuationOnly,
+    WordsTypeAlphabetPunctuation,
+    WordsTypeAlphabetNumeric,
+    WordsTypeAll,
+    WordsTypeNone
+};
 
 @interface NSString (MixedCasing)
-
+@property (nonatomic,assign)WordsType wordType;
 - (NSString *)camelCased;
 - (NSString *)pascalCased;
-
+- (WordsType)checkWordType;
 @end

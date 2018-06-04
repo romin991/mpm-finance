@@ -244,6 +244,9 @@
                 else if ([row.tag isEqualToString:@"nomorTeleponEcon"]) {
                     ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 15;
                 }
+                else if ([row.tag isEqualToString:@"namaGadisIbuKandung"]) {
+                    ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).isAlphabetOnly = YES;
+                }
                 if ([row.tag isEqualToString:@"rTSesuaiKTP"] ||
                     [row.tag isEqualToString:@"rWSesuaiKTP"] ||
                     [row.tag isEqualToString:@"kodeArea"] ||
@@ -591,13 +594,22 @@
 -(NSArray *)validateForm
 {
     NSArray * array = [self formValidationErrors];
+    //notcalled because this is null
+    if ([self.form formRowWithTag:@"tanggalLahir"]) {
+        XLFormRowDescriptor *row = [self.form formRowWithTag:@"tanggalLahir"];
+        if ([((NSDate *) row.value) timeIntervalSinceNow] > -536457600 ) {
+            UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:[self.form indexPathOfFormRow:row]];
+            [self animateCell:cell];
+            
+            return @[[NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                         code:1
+                                     userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"Minimal 17 Tahun", nil)}]];
+        }
+    }
     [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         XLFormValidationStatus * validationStatus = [[obj userInfo] objectForKey:XLValidationStatusErrorKey];
         UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:[self.form indexPathOfFormRow:validationStatus.rowDescriptor]];
-//        XLFormRowDescriptor *row =  [self.form indexPathOfFormRow:validationStatus.rowDescriptor];
-//        if ([row.tag isEqualToString:@"masaBerlakuKTP"]) {
-//            
-//        }
+        
         
         [self animateCell:cell];
     
@@ -605,6 +617,7 @@
     
     
     return array;
+    
 }
 
 

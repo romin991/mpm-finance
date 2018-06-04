@@ -44,6 +44,7 @@ const static CGFloat kFloatingLabelFontSize = 11.0f;
 
 +(void)load
 {
+    
     [XLFormViewController.cellClassesForRowDescriptorTypes setObject:[FloatLabeledTextFieldCell class] forKey:XLFormRowDescriptorTypeFloatLabeledTextField];
 }
 
@@ -67,11 +68,13 @@ const static CGFloat kFloatingLabelFontSize = 11.0f;
 - (void)setKeyboardType:(UIKeyboardType)keyboardType andMaximumLength:(NSInteger) maxLength{
     self.floatLabeledTextField.keyboardType = keyboardType;
     self.maximumLength = maxLength;
+    
 }
 
 -(void)configure
 {
     [super configure];
+    self.isAlphabetOnly = NO;
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
     [self.contentView addSubview:self.floatLabeledTextField];
     [self.floatLabeledTextField setDelegate:self];
@@ -128,9 +131,12 @@ const static CGFloat kFloatingLabelFontSize = 11.0f;
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     int newLength = textField.text.length + string.length - range.length;
+    NSString * proposedNewString = [[textField text] stringByReplacingCharactersInRange:range withString:string];
     if (self.maximumLength > 0 && newLength > self.maximumLength) {
-        
-        
+        return NO;
+    }
+    WordsType wordType = [proposedNewString checkWordType];
+    if (self.isAlphabetOnly && wordType != WordsTypeAlphabetOnly) {
         return NO;
     }
     return [self.formViewController textField:textField shouldChangeCharactersInRange:range replacementString:string];
