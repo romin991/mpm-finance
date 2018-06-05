@@ -222,6 +222,13 @@
                 }
                 else if ([row.tag isEqualToString:@"nomorHandphonePasangan"]) {
                     ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 15;
+                }else if ([row.tag isEqualToString:@"nomorKartuKreditAtauKontrak1"]) {
+                    ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 16;
+                    ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).mustAlphabetNumericOnly = YES;
+                }
+                else if ([row.tag isEqualToString:@"nomorKartuKreditAtauKontrak2"]) {
+                    ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 16;
+                    ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).mustAlphabetNumericOnly = YES;
                 }
                 else if ([row.tag isEqualToString:@"rTPasangan"] || [row.tag isEqualToString:@"rTDomisili"]) {
                     ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 3;
@@ -431,6 +438,32 @@
 }
 
 - (void)formRowDescriptorValueHasChanged:(XLFormRowDescriptor *)formRow oldValue:(id)oldValue newValue:(id)newValue{
+    if ([formRow.tag isEqualToString:@"tipeProduk"] && ![newValue isEqual:[NSNull null]]) {
+        
+        XLFormRowDescriptor *row = [self.form formRowWithTag:@"tahunKendaraan"];
+        NSDate *date = [NSDate date];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy"];
+        NSString *yearString = [dateFormatter stringFromDate:date];
+        NSInteger year = yearString.integerValue;
+        
+        NSMutableArray *optionObjects = [NSMutableArray array];
+        if ([((XLFormOptionsObject *)newValue).formValue isEqual:@1]) { // new bike
+            for (int i = 0; i < 3; i++) {
+                [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:@(year - i) displayText:[NSString stringWithFormat:@"%li", (long) year - i]]];
+            }
+        } else if ([((XLFormOptionsObject *)newValue).formValue isEqual:@3]) { // new car
+            for (int i = 0; i < 3; i++) {
+                [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:@(year - i) displayText:[NSString stringWithFormat:@"%li", (long) year - i]]];
+            }
+        } else  { // used car
+            for (int i = 0; i < 16; i++) {
+                [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:@(year - i) displayText:[NSString stringWithFormat:@"%li", (long) year - i]]];
+            }
+        }
+        
+        row.selectorOptions = optionObjects;
+    }
     if ([formRow.tag isEqualToString:@"alamatRumahSesuaiKTP"] ||
         [formRow.tag isEqualToString:@"rTSesuaiKTP"] ||
         [formRow.tag isEqualToString:@"rWSesuaiKTP"]){
@@ -656,7 +689,6 @@
         }
         array = [self formValidationErrors];
         
-    
     }
     [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         XLFormValidationStatus * validationStatus = [[obj userInfo] objectForKey:XLValidationStatusErrorKey];
