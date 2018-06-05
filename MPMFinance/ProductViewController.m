@@ -26,9 +26,9 @@
 }
 - (void)downloadData {
     AFHTTPSessionManager *manager = [MPMGlobal sessionManager];
-    NSDictionary * parameter = @{ @"userid" : [MPMUserInfo getUserInfo][@"userId"],
-                                  @"token" : [MPMUserInfo getToken]};
-    [manager POST:[NSString stringWithFormat:@"%@/product",kApiUrl] parameters:parameter progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+  //  NSDictionary * parameter = @{ @"userid" : [MPMUserInfo getUserInfo][@"userId"],
+                            //      @"token" : [MPMUserInfo getToken]};
+    [manager POST:[NSString stringWithFormat:@"%@/product",kApiUrl] parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             self.products = responseObject[@"data"];
             [self.collectionView reloadData];
