@@ -245,7 +245,13 @@
                     ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 15;
                 }
                 else if ([row.tag isEqualToString:@"namaGadisIbuKandung"]) {
-                    ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).isAlphabetOnly = YES;
+                    ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).mustAlphabetOnly = YES;
+                }
+                else if ([row.tag isEqualToString:@"namaEcon"]) {
+                    ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).mustAlphabetOnly = YES;
+                }
+                else if ([row.tag isEqualToString:@"namaLengkapPasangan"]) {
+                    ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).mustAlphabetPunctuationOnly = YES;
                 }
                 if ([row.tag isEqualToString:@"rTSesuaiKTP"] ||
                     [row.tag isEqualToString:@"rWSesuaiKTP"] ||
@@ -605,6 +611,52 @@
                                          code:1
                                      userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"Minimal 17 Tahun", nil)}]];
         }
+    } else if ([self.form formRowWithTag:@"jenisKelaminPasangan"]) {
+        
+        XLFormRowDescriptor *namaLengkapPasangan = [self.form formRowWithTag:@"namaLengkapPasangan"];
+        XLFormRowDescriptor *nomorHandphonePasangan = [self.form formRowWithTag:@"nomorHandphonePasangan"];
+        XLFormRowDescriptor *tempatLahirPasangan = [self.form formRowWithTag:@"tempatLahirPasangan"];
+        XLFormRowDescriptor *tanggalLahirPasangan = [self.form formRowWithTag:@"tanggalLahirPasangan"];
+        XLFormRowDescriptor *jenisKelaminPasangan = [self.form formRowWithTag:@"jenisKelaminPasangan"];
+        XLFormRowDescriptor *alamatPasangan = [self.form formRowWithTag:@"alamatPasangan"];
+        XLFormRowDescriptor *rTPasangan = [self.form formRowWithTag:@"rTPasangan"];
+        XLFormRowDescriptor *rWPasangan = [self.form formRowWithTag:@"rWPasangan"];
+        XLFormRowDescriptor *kodePosPasangan = [self.form formRowWithTag:@"kodePosPasangan"];
+        XLFormRowDescriptor *masaBerlakuKTPPasangan = [self.form formRowWithTag:@"masaBerlakuKTPPasangan"];
+        XLFormRowDescriptor *kewarganegaraanPasangan = [self.form formRowWithTag:@"kewarganegaraanPasangan"];
+        
+        BOOL isThereAnyValueForSpouse = [namaLengkapPasangan.value length] || [nomorHandphonePasangan.value length] || [tempatLahirPasangan.value length] || tanggalLahirPasangan.value || jenisKelaminPasangan.value || [alamatPasangan.value length]|| [rTPasangan.value length]|| [rWPasangan.value length]|| [kodePosPasangan.value length] || masaBerlakuKTPPasangan.value;
+        if (isThereAnyValueForSpouse) {
+            nomorHandphonePasangan.required = YES;
+            namaLengkapPasangan.required = YES;
+            tempatLahirPasangan.required = YES;
+            tanggalLahirPasangan.required = YES;
+            jenisKelaminPasangan.required = YES;
+            alamatPasangan.required = YES;
+            kewarganegaraanPasangan.required = YES;
+            masaBerlakuKTPPasangan.required = YES;
+            kodePosPasangan.required = YES;
+            rTPasangan.required = YES;
+            rWPasangan.required = YES;
+            
+            
+        } else {
+            nomorHandphonePasangan.required = NO;
+            namaLengkapPasangan.required = NO;
+            tempatLahirPasangan.required = NO;
+            tanggalLahirPasangan.required = NO;
+            jenisKelaminPasangan.required = NO;
+            alamatPasangan.required = NO;
+            kewarganegaraanPasangan.required = NO;
+            masaBerlakuKTPPasangan.required = NO;
+            kodePosPasangan.required = NO;
+            rTPasangan.required = NO;
+            rWPasangan.required = NO;
+            
+        }
+        array = [self formValidationErrors];
+        
+    
     }
     [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         XLFormValidationStatus * validationStatus = [[obj userInfo] objectForKey:XLValidationStatusErrorKey];

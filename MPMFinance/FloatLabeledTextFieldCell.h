@@ -28,7 +28,9 @@ extern NSString * const XLFormRowDescriptorTypeFloatLabeledTextField;
 
 @interface FloatLabeledTextFieldCell : XLFormBaseCell
 @property NSInteger maximumLength;
-@property BOOL isAlphabetOnly;
+@property BOOL mustAlphabetOnly;
+@property BOOL mustAlphabetPunctuationOnly;
+@property BOOL mustAlphabetNumericOnly;
 - (void)setKeyboardType:(UIKeyboardType)keyboardType;
 - (void)setKeyboardType:(UIKeyboardType)keyboardType andMaximumLength:(NSInteger) maxLength;
 
