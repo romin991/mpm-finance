@@ -219,6 +219,7 @@
                 
                 if ([row.tag isEqualToString:@"noKTPPasangan"]) {
                     ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 16;
+                    ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).mustAlphabetNumericOnly = YES;
                 }
                 else if ([row.tag isEqualToString:@"nomorHandphonePasangan"]) {
                     ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 15;
