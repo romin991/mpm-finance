@@ -205,6 +205,29 @@
        
     }];
 }
++ (void) forgotPasswordWithUserName:(NSString *)username withCompletion:(void(^)(NSString *responseString, NSError *error))block{
+    AFHTTPSessionManager *manager = [MPMGlobal sessionManager];
+   // [manager.requestSerializer setValue:@"application/x-www-form-urlencoded; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+
+    AFSecurityPolicy *securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
+    securityPolicy.allowInvalidCertificates = YES;
+    
+    [securityPolicy setValidatesDomainName:NO];
+    [manager setSecurityPolicy:securityPolicy];
+    NSDictionary *param = @{ @"ausername" : username
+                             };
+    [manager POST:[NSString stringWithFormat:@"%@/login/forgot_by_email",kMPMUrl] parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
+        ;
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSError* error;
+        NSDictionary* json = [NSJSONSerialization JSONObjectWithData:responseObject
+                                                             options:kNilOptions error:&error];
+        block(json[@"ind"],nil);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        block(@"",error);
+    }];
+}
 + (void)getAllListWorkOrderPage:(NSInteger)page completion:(void(^)(NSArray *lists, NSError *error))block{
     [WorkOrderModel getListWorkOrderWithStatus:@"clear" page:page completion:block];
 }

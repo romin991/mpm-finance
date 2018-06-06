@@ -67,4 +67,5 @@
 //tracking/getallmarketing
 + (void) getAllMarketingWithCompletion:(void(^)(NSArray *data, NSError *error))block;
 + (void) getAllMarketingTrackingDetail:(NSString *)marketingUserId WithCompletion:(void(^)(NSArray *data, NSError *error))block;
++ (void) forgotPasswordWithUserName:(NSString *)username withCompletion:(void(^)(NSString *responseString, NSError *error))block;
 @end

@@ -27,6 +27,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap)];
+    gesture.numberOfTapsRequired = 1;
+    gesture.numberOfTouchesRequired = 1;
+    [gesture setCancelsTouchesInView:NO];
+    [self.view addGestureRecognizer:gesture];
+    // Do any additional setup after loading the view.
+}
+- (void)handleTap
+{
+    [self.view endEditing:YES];
+    // Handle the tap if you want to
 }
 
 
@@ -46,6 +57,9 @@
  */
 - (IBAction)back:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+- (IBAction)resetPassword:(id)sender {
+    
 }
 
 - (IBAction)signInButtonClicked:(id)sender {
