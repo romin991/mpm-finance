@@ -45,6 +45,8 @@
     [self refreshUI];
     if ([[MPMUserInfo getRole] isEqualToString:kRoleSupervisor]) {
         self.tabHistoryNotif.title = @"Message";
+        [self.tabHistoryNotif setImage:[UIImage imageNamed:@"envelope"]];
+        [self.tabHistoryNotif setSelectedImage:[UIImage imageNamed:@"envelope"]];
         [APIModel getJumlahNotifikasiWithCompletion:^(NSInteger jumlahNotifikasi, NSError *error) {
             if (!error) {
                 if (jumlahNotifikasi > 0) {

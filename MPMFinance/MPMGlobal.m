@@ -13,6 +13,7 @@
 
 //NSString *const kApiUrl = @"http://202.152.10.90:8080/mpmfinancev2"; //prod
 NSString *const kApiUrl = @"http://202.152.10.91:8080/mpmfinancev2"; //dev
+NSString *const kMPMUrl = @"https://www.mpm-finance.com";
 NSString *const kAPIKey = @"AIzaSyCx8uLneXfyNKCV8emCWt-AD4V1kPgrHJw";
 
 NSString *const kRoleCustomer = @"Customer";

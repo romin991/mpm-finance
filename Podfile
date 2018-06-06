@@ -6,7 +6,7 @@ target 'MPMFinance' do
   # use_frameworks!
 
   # Pods for MPMFinance
-    pod 'AFNetworking', '~> 3.1.0'
+    pod 'AFNetworking', '~> 3.2.0'
     pod 'Realm', '~> 2.7.0'
     pod 'Firebase/Core'
     pod 'Firebase/Messaging'

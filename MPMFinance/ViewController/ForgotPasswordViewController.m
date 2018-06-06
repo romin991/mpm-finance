@@ -7,20 +7,34 @@
 //
 
 #import "ForgotPasswordViewController.h"
-
+#import "APIModel.h"
 @interface ForgotPasswordViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UIButton *resetPasswordButton;
-@property (weak, nonatomic) IBOutlet UIButton *resetNavigateButton;
+
 
 @end
 
 @implementation ForgotPasswordViewController
+- (IBAction)cancel:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+ 
+    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap)];
+    gesture.numberOfTapsRequired = 1;
+    gesture.numberOfTouchesRequired = 1;
+    [gesture setCancelsTouchesInView:NO];
+    [self.view addGestureRecognizer:gesture];
     // Do any additional setup after loading the view.
+}
+- (void)handleTap
+{
+    [self.view endEditing:YES];
+    // Handle the tap if you want to
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,10 +43,18 @@
 }
 
 - (IBAction)resetPasswordButtonClicked:(id)sender {
+    [APIModel forgotPasswordWithUserName:self.usernameField.text withCompletion:^(NSString *responseString, NSError *error) {
+        if (!error) {
+            [SVProgressHUD showWithStatus:responseString];
+            [SVProgressHUD dismissWithDelay:1.5];
+            [self.navigationController popViewControllerAnimated:YES];
+        } else {
+            [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+            [SVProgressHUD dismissWithDelay:1.5];
+        }
+    }];
 }
 
-- (IBAction)resetNavigateButtonClicked:(id)sender {
-}
 
 /*
 #pragma mark - Navigation
