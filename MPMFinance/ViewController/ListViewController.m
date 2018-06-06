@@ -20,6 +20,8 @@
 #import <UIScrollView+SVInfiniteScrolling.h>
 #import "OfflineDataManager.h"
 #import "WorkOrderModel.h"
+#import "ViewStepMonitoringViewController.h"
+
 @interface ListViewController ()<UIActionSheetDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -41,7 +43,6 @@
     [super viewDidLoad];
     self.navigationController.navigationBar.translucent = NO;
     // Do any additional setup after loading the view from its nib.
-    [self setDummyHere];
     
     if (self.navigationTitle.length == 0) {
         [self setTitle:self.menu.title];
@@ -191,22 +192,6 @@
     }
 }
 
-#warning remove it
-- (void)setDummyHere{
-    NSMutableArray *dataSource = [NSMutableArray array];
-    
-    List *list = [[List alloc] init];
-    list.title = @"PK1235";
-    list.date = @"12 March 2017";
-    list.assignee = @"Bejo";
-    list.type =
-    list.imageURL = @"https://image.flaticon.com/teams/new/1-freepik.jpg";
-    [dataSource addObject:list];
-    
-    self.lists = [NSMutableArray arrayWithArray:dataSource];
-    if (self.tableView) [self.tableView reloadData];
-}
-
 - (void)rightButtonClicked:(id)sender{
     [self selectedList:nil withSubmenu:self.submenu];
 }
@@ -271,7 +256,15 @@
                         [self selectedList:list withSubmenu:self.submenu];
                     }
                    
-                    
+                    if ([action.actionType isEqualToString:kActionTypeSelfCustomMethod]){
+                        __block NSString *methodName = action.methodName;
+                        if ([ListViewController respondsToSelector:NSSelectorFromString(methodName)]) {
+                            [ListViewController performSelector:NSSelectorFromString(methodName) withObject:self];
+                        } else {
+                            [SVProgressHUD showErrorWithStatus:@"No method found"];
+                            [SVProgressHUD dismissWithDelay:1.5];
+                        }
+                    }
                 }]];
             }
             
@@ -314,6 +307,7 @@
         
     } else if ([submenu.menuType isEqualToString:kMenuTypeFormWorkOrder]){
         FormViewController *formViewController = [[FormViewController alloc] init];
+        formViewController.parentMenu = self.menu;
         formViewController.menu = submenu;
         if (!self.selectedOfflineData) {
             formViewController.list = list;
@@ -408,14 +402,11 @@
         [self.tableView reloadData];
     }
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - Self Custom Method for Action
++ (void)goToStepMonitoring:(ListViewController *)sender{
+    ViewStepMonitoringViewController *vc = [[ViewStepMonitoringViewController alloc] init];
+    [sender.navigationController pushViewController:vc animated:true];
 }
-*/
 
 @end

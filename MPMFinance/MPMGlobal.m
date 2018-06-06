@@ -136,6 +136,7 @@ NSString *const kMenuTypeSetAlternate = @"Set Alternate";
 
 NSString *const kActionTypeForward = @"Forward";
 NSString *const kActionTypeAPICall = @"APICall";
+NSString *const kActionTypeSelfCustomMethod = @"SelfCustomMethod";
 NSString *const kActionQueryDB = @"QueryDB";
 + (NSInteger)limitPerPage{
     return 50;
