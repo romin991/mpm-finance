@@ -115,10 +115,25 @@
                         row.hidden = @(1);
                     }
                 }
+                if ([row.tag isEqualToString:@"tanggalSurvey"]) {
+                    if ([[row cellForFormController:self] isKindOfClass:XLFormDateCell.class]){
+                        [(XLFormDateCell *)[row cellForFormController:self] setMaximumDate:[NSDate date]];
+                        [(XLFormDateCell *)[row cellForFormController:self] setMinimumDate:[NSDate date]];
+                    }
+                }
                 
                 if (self.isReadOnly) {
                     row.disabled = @YES;
+                    
                     [self reloadFormRow:row];
+                } else {
+                    if (![row.tag isEqualToString:@"namaCalonDebitur"] && ![row.tag isEqualToString:@"namaSurveyor"]) {
+                        
+                    } else {
+                        row.disabled = @YES;
+                        
+                        [self reloadFormRow:row];
+                    }
                 }
                 
                 [self otherAdditionalSettingFor:row];
@@ -210,7 +225,18 @@
         [self.form removeFormSection:section];
     }
 }
-
+- (void)formRowDescriptorValueHasChanged:(XLFormRowDescriptor *)formRow oldValue:(id)oldValue newValue:(id)newValue {
+    if ([formRow.tag isEqualToString:@"alamatSurveyDitemukan"]) {
+        if ([newValue isEqual:@1]) {
+            XLFormRowDescriptor *row = [self.form formRowWithTag:@"penjelasan"];
+            row.hidden = @(1);
+        } else {
+            XLFormRowDescriptor *row = [self.form formRowWithTag:@"penjelasan"];
+            row.hidden = @(0);
+        }
+        
+    }
+}
 - (void)setRightBarButton{
     if (!self.isReadOnly) {
         UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save"
