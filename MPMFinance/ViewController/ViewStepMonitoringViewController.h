@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "List.h"
 
 @interface ViewStepMonitoringViewController : UIViewController
+
+@property List *list;
 
 @end

@@ -14,5 +14,6 @@
 
 @property Menu *menu;
 @property NSString *navigationTitle;
+@property List *selectedList;
 
 @end

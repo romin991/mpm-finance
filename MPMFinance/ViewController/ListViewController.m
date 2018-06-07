@@ -222,6 +222,7 @@
     }
     
     if (list){
+        self.selectedList = list;
         if (self.submenu.actions.count > 0) {
             NSString *alertMessage = [NSString stringWithFormat:@"Select action for %@ %@:", list.title, list.assignee];
             UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:@"Select Action"
@@ -406,6 +407,7 @@
 #pragma mark - Self Custom Method for Action
 + (void)goToStepMonitoring:(ListViewController *)sender{
     ViewStepMonitoringViewController *vc = [[ViewStepMonitoringViewController alloc] init];
+    vc.list = sender.selectedList;
     [sender.navigationController pushViewController:vc animated:true];
 }
 
