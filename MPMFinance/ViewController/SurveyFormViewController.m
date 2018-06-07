@@ -110,6 +110,11 @@
                 if ([row.tag isEqualToString:@"hapusInformasiSurveyLingkungan"]){
                     row.action.formSelector = @selector(deleteDataButtonClicked:);
                 }
+                if ([row.tag isEqualToString:@"penjelasan"]){
+                    if ([self.valueDictionary[@"alamatSurveyDitemukan"] isEqualToString:@"1"]) {
+                        row.hidden = @(1);
+                    }
+                }
                 
                 if (self.isReadOnly) {
                     row.disabled = @YES;

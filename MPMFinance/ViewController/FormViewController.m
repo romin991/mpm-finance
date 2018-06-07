@@ -220,6 +220,7 @@
                 
                 if ([row.tag isEqualToString:@"noKTPPasangan"]) {
                     ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 16;
+                    ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).mustAlphabetNumericOnly = YES;
                 }
                 else if ([row.tag isEqualToString:@"nomorHandphonePasangan"]) {
                     ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 15;
@@ -259,7 +260,7 @@
                     ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).mustAlphabetOnly = YES;
                 }
                 else if ([row.tag isEqualToString:@"namaLengkapPasangan"]) {
-                    ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).mustAlphabetPunctuationOnly = YES;
+                    ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).mustAlphabetOnly = YES;
                 }
                 if ([row.tag isEqualToString:@"rTSesuaiKTP"] ||
                     [row.tag isEqualToString:@"rWSesuaiKTP"] ||

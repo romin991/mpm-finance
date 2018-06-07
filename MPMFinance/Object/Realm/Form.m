@@ -370,7 +370,7 @@
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Jarak Tempuh" :@"" :@""]]; //ws
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Lokasi Pemakaian Aset" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Application Priority" :@"" :@""]]; //ws
-    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Tiket Telesales" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Tiket Telesales*" :@"Nomor Tiket Telesales" :@""]];
     
     [form.sections addObject:section];
     
