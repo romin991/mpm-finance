@@ -177,8 +177,22 @@
     action.methodName = @"getMonitoringByUserListWorkOrderPage:completion:"; //pengajuan/getallbyuser with status monitoring
     action.actionType = kActionTypeAPICall;
     [action.roles addObjects:submenu.roles];
-    
     [menuList.dataSources addObject:action];
+    
+    action = [[Action alloc] init];
+    action.name = @"Detail Pengajuan";
+    action.methodName = @""; //pengajuan/getallbyuser with status monitoring
+    action.actionType = kActionTypeForward;
+    [action.roles addObjects:submenu.roles];
+    [menuList.actions addObject:action];
+    
+    action = [[Action alloc] init];
+    action.name = @"View Step Monitoring";
+    action.methodName = @"goToStepMonitoring:";
+    action.actionType = kActionTypeSelfCustomMethod;
+    [action.roles addObjects:submenu.roles];
+    [menuList.actions addObject:action];
+    
     [menuList.submenus addObject:[Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi]]; //#FLOWWARNING maybe not editable for monitoring
     [menuList.roles addObjects:submenu.roles];
     [action.roles addObjects:submenu.roles];

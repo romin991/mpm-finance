@@ -8,6 +8,8 @@
 
 #import "WorkOrderModel.h"
 #import "OfflineData.h"
+#import "ViewStepMonitoring.h"
+
 @implementation WorkOrderModel
 
 + (void)getListWorkOrderBySupervisorWithStatus:(NSString *)status page:(NSInteger)page completion:(void(^)(NSArray *lists, NSError *error))block{
@@ -944,6 +946,61 @@
                                                   code:1
                                               userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(errorMessage, nil)}]);
     }];
+}
+
++ (void)getViewStepMonitoringWithID:(NSInteger)pengajuanId completion:(void(^)(NSArray *datas, NSError *error))block{
+    AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
+    NSDictionary* param = @{@"userid" : [MPMUserInfo getUserInfo][@"userId"],
+                            @"token" : [MPMUserInfo getToken],
+                            @"data" : @{@"id" : @(pengajuanId)}
+                            };
+    NSLog(@"%@",param);
+    [manager POST:[NSString stringWithFormat:@"%@/pengajuan2/milestonecust",kApiUrl] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        @try {
+            NSInteger code = [[responseObject objectForKey:@"statusCode"] integerValue];
+            NSString *message = [responseObject objectForKey:@"message"];
+            if (code == 200) {
+                NSDictionary *data = responseObject[@"data"];
+                NSMutableArray *datas = [NSMutableArray array];
+                for (NSDictionary* listDict in data) {
+                    ViewStepMonitoring *object = [[ViewStepMonitoring alloc] init];
+                    object.label = [listDict objectForKey:@"label"];
+                    object.date = [listDict objectForKey:@"date"];
+                    object.status = [listDict objectForKey:@"status"];
+                    [datas addObject:object];
+                }
+                
+                if (block) block(datas, nil);
+                
+            } else {
+                if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                          code:code
+                                                      userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(message, nil)}]);
+            }
+            
+        } @catch (NSException *exception) {
+            NSLog(@"%@", exception);
+            if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                      code:1
+                                                  userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(exception.reason, nil)}]);
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSString *errorMessage = error.localizedDescription;
+        @try{
+            NSDictionary *errorResponse = [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey]
+                                                                          options:NSJSONReadingAllowFragments
+                                                                            error:nil];
+            errorMessage = [errorResponse objectForKey:@"message"];
+        } @catch(NSException *exception) {
+            NSLog(@"%@", exception);
+        }
+        if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                                  code:1
+                                              userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(errorMessage, nil)}]);
+        
+    }];
+    
 }
 
 @end

@@ -140,6 +140,7 @@ extern NSString *const kApiUrl;
 extern NSString *const kActionTypeForward;
 extern NSString *const kActionQueryDB;
 extern NSString *const kActionTypeAPICall;
+extern NSString *const kActionTypeSelfCustomMethod;
 
 + (NSInteger)limitPerPage;
 + (AFHTTPSessionManager*)sessionManager;

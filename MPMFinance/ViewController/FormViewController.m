@@ -85,7 +85,8 @@
     __block NSError *_error = nil;
     
     if (self.list) {
-        if ([self.parentMenu.primaryKey isEqualToString:kSubmenuListWorkOrder]) {
+        if ([self.parentMenu.primaryKey isEqualToString:kSubmenuListWorkOrder] ||
+            [self.parentMenu.primaryKey isEqualToString:kSubmenuMonitoring]) {
             dispatch_group_enter(group);
             [WorkOrderModel getListWorkOrderDetailCompleteDataWithID:self.list.primaryKey completion:^(NSDictionary *response, NSError *error) {
                 if (error) _error = error;
@@ -314,7 +315,10 @@
                     }
                 }
                 
-                if ([self.parentMenu.primaryKey isEqualToString:kSubmenuListWorkOrder] && ![row.tag isEqualToString:@"next"]) {
+                if (([self.parentMenu.primaryKey isEqualToString:kSubmenuListWorkOrder] ||
+                     [self.parentMenu.primaryKey isEqualToString:kSubmenuMonitoring] ) &&
+                    ![row.tag isEqualToString:@"next"]) {
+                    
                     row.disabled = @YES;
                 }
             }
