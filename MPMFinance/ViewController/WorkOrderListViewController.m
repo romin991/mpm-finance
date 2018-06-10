@@ -347,6 +347,7 @@
         }
         cell.title.text = list.title;
         cell.date.text = list.date;
+        cell.groupLevel.text = list.groupLevel;
         cell.assignee.text = list.assignee;
         
     } else {

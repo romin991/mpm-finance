@@ -171,6 +171,7 @@
                     list.type = listDict[@"tipeProduk"];
                     list.statusColor = listDict[@"color"];
                     list.imageURL = listDict[@"imageIconIos"];
+                    list.groupLevel = listDict[@"groupLevel"];
                     [lists addObject:list];
                 }
                 

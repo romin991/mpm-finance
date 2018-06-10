@@ -15,6 +15,7 @@
 @property NSString *title;
 @property NSString *date;
 @property NSString *assignee;
+@property NSString *groupLevel;
 @property NSString *status;
 @property NSString *statusColor;
 @property NSString *type;

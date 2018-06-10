@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *title;
 @property (weak, nonatomic) IBOutlet UILabel *date;
 @property (weak, nonatomic) IBOutlet UILabel *assignee;
+@property (weak, nonatomic) IBOutlet UILabel *groupLevel;
 @property (weak, nonatomic) IBOutlet UILabel *status;
 
 @end
