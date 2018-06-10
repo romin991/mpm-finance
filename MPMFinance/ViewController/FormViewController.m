@@ -663,7 +663,7 @@
         XLFormRowDescriptor *masaBerlakuKTPPasangan = [self.form formRowWithTag:@"masaBerlakuKTPPasangan"];
         XLFormRowDescriptor *kewarganegaraanPasangan = [self.form formRowWithTag:@"kewarganegaraanPasangan"];
         
-        BOOL isThereAnyValueForSpouse = [namaLengkapPasangan.value length] || [nomorHandphonePasangan.value length] || [tempatLahirPasangan.value length] || tanggalLahirPasangan.value || jenisKelaminPasangan.value || [alamatPasangan.value length]|| [rTPasangan.value length]|| [rWPasangan.value length]|| [kodePosPasangan.value length] || masaBerlakuKTPPasangan.value;
+        BOOL isThereAnyValueForSpouse = [namaLengkapPasangan.value length] || [nomorHandphonePasangan.value length] || [tempatLahirPasangan.value length] || tanggalLahirPasangan.value || [alamatPasangan.value length]|| [rTPasangan.value length]|| [rWPasangan.value length]|| [kodePosPasangan.value length] || masaBerlakuKTPPasangan.value;
         if (isThereAnyValueForSpouse) {
             nomorHandphonePasangan.required = YES;
             namaLengkapPasangan.required = YES;
