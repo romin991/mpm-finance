@@ -15,7 +15,7 @@
 NSString *const kApiUrl = @"http://202.152.10.91:8080/mpmfinancev2"; //dev
 NSString *const kMPMUrl = @"https://www.mpm-finance.com";
 NSString *const kAPIKey = @"AIzaSyCx8uLneXfyNKCV8emCWt-AD4V1kPgrHJw";
-
+NSString *const kGroupLevelOfficer = @"By marketing officer";
 NSString *const kRoleCustomer = @"Customer";
 NSString *const kRoleAgent = @"Agent";
 NSString *const kRoleDealer = @"Dealer";

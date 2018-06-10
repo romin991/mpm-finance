@@ -315,9 +315,11 @@
                     }
                 }
                 
+                NSString *groupLevel = self.list.groupLevel;
                 if (([self.parentMenu.primaryKey isEqualToString:kSubmenuListWorkOrder] ||
                      [self.parentMenu.primaryKey isEqualToString:kSubmenuMonitoring] ) &&
-                    ![row.tag isEqualToString:@"next"]) {
+                    ![row.tag isEqualToString:@"next"] &&
+                    [groupLevel isEqualToString:kGroupLevelOfficer]) {
                     
                     row.disabled = @YES;
                 }

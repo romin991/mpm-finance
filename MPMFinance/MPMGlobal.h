@@ -74,6 +74,7 @@ extern NSString *const kSubmenuMonitoring;
 extern NSString *const kSubmenuDahsyat;
 extern NSString *const kSubmenuUsedCar;
 extern NSString *const kSubmenuNewCar;
+extern NSString *const kGroupLevelOfficer;
 
 extern NSString *const kSubmenuCreditSimulationDahsyat2W;
 extern NSString *const kSubmenuCreditSimulationDahsyat4W;
