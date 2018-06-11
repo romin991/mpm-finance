@@ -173,6 +173,8 @@
 		5C2DED8C20B696D10058FA14 /* SetAlternateDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2DED8A20B696D10058FA14 /* SetAlternateDetailViewController.m */; };
 		5C2DED8D20B696D10058FA14 /* SetAlternateDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C2DED8B20B696D10058FA14 /* SetAlternateDetailViewController.xib */; };
 		5C37215B20B5784200D7F037 /* MessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C37215A20B5784200D7F037 /* MessageTableViewCell.m */; };
+		5C3A1E6A20CE67DE0074322B /* LanguageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C3A1E6720CE67DE0074322B /* LanguageManager.m */; };
+		5C3A1E6B20CE67DE0074322B /* NSBundle+Language.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C3A1E6920CE67DE0074322B /* NSBundle+Language.m */; };
 		5C4587651EE2A02D004AC7FE /* CreditSimulationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4587641EE2A02D004AC7FE /* CreditSimulationViewController.m */; };
 		5C46F5181EE81914009C6AD6 /* KATCircularProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C46F5171EE81914009C6AD6 /* KATCircularProgress.m */; };
 		5C46F51C1EE81966009C6AD6 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C46F51B1EE81966009C6AD6 /* DashboardViewController.m */; };
@@ -495,6 +497,14 @@
 		5C2DED8B20B696D10058FA14 /* SetAlternateDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetAlternateDetailViewController.xib; sourceTree = "<group>"; };
 		5C37215920B5784200D7F037 /* MessageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageTableViewCell.h; sourceTree = "<group>"; };
 		5C37215A20B5784200D7F037 /* MessageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageTableViewCell.m; sourceTree = "<group>"; };
+		5C3A1E6520CE67DE0074322B /* Defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defines.h; sourceTree = "<group>"; };
+		5C3A1E6620CE67DE0074322B /* LanguageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageManager.h; sourceTree = "<group>"; };
+		5C3A1E6720CE67DE0074322B /* LanguageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageManager.m; sourceTree = "<group>"; };
+		5C3A1E6820CE67DE0074322B /* NSBundle+Language.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+Language.h"; sourceTree = "<group>"; };
+		5C3A1E6920CE67DE0074322B /* NSBundle+Language.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+Language.m"; sourceTree = "<group>"; };
+		5C3A1E6C20CE68130074322B /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Main.strings; sourceTree = "<group>"; };
+		5C3A1E6D20CE68130074322B /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		5C3A1E6F20CE68310074322B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		5C4587631EE2A02D004AC7FE /* CreditSimulationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditSimulationViewController.h; sourceTree = "<group>"; };
 		5C4587641EE2A02D004AC7FE /* CreditSimulationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditSimulationViewController.m; sourceTree = "<group>"; };
 		5C46F5161EE81914009C6AD6 /* KATCircularProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KATCircularProgress.h; sourceTree = "<group>"; };
@@ -1197,6 +1207,18 @@
 			name = spv;
 			sourceTree = "<group>";
 		};
+		5C3A1E6420CE67DE0074322B /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				5C3A1E6520CE67DE0074322B /* Defines.h */,
+				5C3A1E6620CE67DE0074322B /* LanguageManager.h */,
+				5C3A1E6720CE67DE0074322B /* LanguageManager.m */,
+				5C3A1E6820CE67DE0074322B /* NSBundle+Language.h */,
+				5C3A1E6920CE67DE0074322B /* NSBundle+Language.m */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
 		5C46F5191EE81958009C6AD6 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -1256,6 +1278,7 @@
 		5C9DB2331EC3310600FC0CC9 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				5C3A1E6420CE67DE0074322B /* Sources */,
 				5C9DB2341EC3312200FC0CC9 /* MPMGlobal.h */,
 				5C9DB2351EC3312200FC0CC9 /* MPMGlobal.m */,
 				5CA4FA0020B5A4E70053CDA1 /* MPMCustomUI.h */,
@@ -1596,10 +1619,12 @@
 				48CDD8421EC9BA1A0038D626 /* SubmenuTableViewCell.m in Sources */,
 				48336A9B1F19111300536771 /* BarcodeViewController.m in Sources */,
 				5C06B74C20BCD0B400D91035 /* SMCalloutView.m in Sources */,
+				5C3A1E6A20CE67DE0074322B /* LanguageManager.m in Sources */,
 				5CA4FA0220B5A4E70053CDA1 /* MPMCustomUI.m in Sources */,
 				48E3E92B20B5C45100E8D170 /* DropdownValueTransformer.m in Sources */,
 				48E3E92720B5C41700E8D170 /* DropdownWSViewController.m in Sources */,
 				4848B1B21F1251E700C9DE21 /* PostalCodeTableViewCell.m in Sources */,
+				5C3A1E6B20CE67DE0074322B /* NSBundle+Language.m in Sources */,
 				4848B1B61F12547700C9DE21 /* PostalCodeValueTransformer.m in Sources */,
 				5C8EB86420956FD4006A3170 /* ActivityHistoryViewController.m in Sources */,
 				481C42BF1F04FDB5007D5C3C /* TopUpModel.m in Sources */,
@@ -1681,6 +1706,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				483F392A1EC3085E00C03253 /* Base */,
+				5C3A1E6C20CE68130074322B /* id */,
+				5C3A1E6F20CE68310074322B /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1689,6 +1716,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				483F392F1EC3085E00C03253 /* Base */,
+				5C3A1E6D20CE68130074322B /* id */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -1700,6 +1728,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -1748,6 +1777,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";

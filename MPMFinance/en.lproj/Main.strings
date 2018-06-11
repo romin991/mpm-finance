@@ -1,0 +1,333 @@
+
+/* Class = "UILabel"; text = "Kode Pos"; ObjectID = "01i-OW-K5B"; */
+"01i-OW-K5B.text" = "Kode Pos";
+
+/* Class = "UITextField"; placeholder = "-"; ObjectID = "0R4-xb-Nrn"; */
+"0R4-xb-Nrn.placeholder" = "-";
+
+/* Class = "UILabel"; text = "Forgot Password"; ObjectID = "0em-rd-2ze"; */
+"0em-rd-2ze.text" = "Forgot Password";
+
+/* Class = "UITextField"; placeholder = "Daftar Sebagai"; ObjectID = "1Ot-k2-o0r"; */
+"1Ot-k2-o0r.placeholder" = "Daftar Sebagai";
+
+/* Class = "UITextField"; placeholder = "-"; ObjectID = "1c6-dV-Ny3"; */
+"1c6-dV-Ny3.placeholder" = "-";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "2NV-GA-sRt"; */
+"2NV-GA-sRt.placeholder" = "Password";
+
+/* Class = "UILabel"; text = "Tenor"; ObjectID = "39w-fp-m6c"; */
+"39w-fp-m6c.text" = "Tenor";
+
+/* Class = "UIButton"; normalTitle = "CANCEL"; ObjectID = "3Cg-H7-GBR"; */
+"3Cg-H7-GBR.normalTitle" = "CANCEL";
+
+/* Class = "UILabel"; text = "Angsuran"; ObjectID = "3QT-uG-3or"; */
+"3QT-uG-3or.text" = "Angsuran";
+
+/* Class = "UITabBarItem"; title = "DAFTAR KONTRAK"; ObjectID = "3hD-PS-u4l"; */
+"3hD-PS-u4l.title" = "DAFTAR KONTRAK";
+
+/* Class = "UIButton"; normalTitle = "Forgot Password? Reset Here"; ObjectID = "4QA-9R-iFV"; */
+"4QA-9R-iFV.normalTitle" = "Forgot Password? Reset Here";
+
+/* Class = "UILabel"; text = "Approve (16.7%)"; ObjectID = "5Ha-nU-77k"; */
+"5Ha-nU-77k.text" = "Approve (16.7%)";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "644-2J-BuH"; */
+"644-2J-BuH.text" = "0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "6WK-VM-Mpp"; */
+"6WK-VM-Mpp.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "RESET PASSWORD"; ObjectID = "7G2-tz-Svb"; */
+"7G2-tz-Svb.normalTitle" = "RESET PASSWORD";
+
+/* Class = "UILabel"; text = "Nomor Telpon"; ObjectID = "7IH-VM-FIk"; */
+"7IH-VM-FIk.text" = "Nomor Telpon";
+
+/* Class = "UILabel"; text = "Tempat Lahir"; ObjectID = "7nn-PD-Y7s"; */
+"7nn-PD-Y7s.text" = "Tempat Lahir";
+
+/* Class = "UITextField"; placeholder = "Date of Birth"; ObjectID = "88d-Ya-peh"; */
+"88d-Ya-peh.placeholder" = "Date of Birth";
+
+/* Class = "UILabel"; text = "-"; ObjectID = "9Lg-fK-j5V"; */
+"9Lg-fK-j5V.text" = "-";
+
+/* Class = "UILabel"; text = "Approve (16.7%)"; ObjectID = "Aej-f0-rlg"; */
+"Aej-f0-rlg.text" = "Approve (16.7%)";
+
+/* Class = "UITextField"; placeholder = "Pilih"; ObjectID = "BL5-AF-lvS"; */
+"BL5-AF-lvS.placeholder" = "Pilih";
+
+/* Class = "UILabel"; text = "-"; ObjectID = "Bnl-2q-QmC"; */
+"Bnl-2q-QmC.text" = "-";
+
+/* Class = "UILabel"; text = "Email"; ObjectID = "Bt9-Dv-VVg"; */
+"Bt9-Dv-VVg.text" = "Email";
+
+/* Class = "UIButton"; normalTitle = "EDIT"; ObjectID = "C3O-OB-57f"; */
+"C3O-OB-57f.normalTitle" = "EDIT";
+
+/* Class = "UILabel"; text = "Pilih Jenis Perhitungan"; ObjectID = "CrG-j6-Tzj"; */
+"CrG-j6-Tzj.text" = "Pilih Jenis Perhitungan";
+
+/* Class = "UILabel"; text = "Email"; ObjectID = "Dfv-YM-LbV"; */
+"Dfv-YM-LbV.text" = "Email";
+
+/* Class = "UIButton"; normalTitle = "SAVE"; ObjectID = "DmF-jz-oD2"; */
+"DmF-jz-oD2.normalTitle" = "SAVE";
+
+/* Class = "UILabel"; text = "Estimasi Harga"; ObjectID = "Dze-3F-iPL"; */
+"Dze-3F-iPL.text" = "Estimasi Harga";
+
+/* Class = "UILabel"; text = "Registration"; ObjectID = "ERe-xg-vfA"; */
+"ERe-xg-vfA.text" = "Registration";
+
+/* Class = "UILabel"; text = "Nomor Telepon"; ObjectID = "EV9-VF-Qrl"; */
+"EV9-VF-Qrl.text" = "Nomor Telepon";
+
+/* Class = "UITextField"; placeholder = "-"; ObjectID = "Ecu-OE-DCj"; */
+"Ecu-OE-DCj.placeholder" = "-";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "Ejm-Y0-Opx"; */
+"Ejm-Y0-Opx.placeholder" = "Password";
+
+/* Class = "UITextField"; text = "Info100%"; ObjectID = "Ejm-Y0-Opx"; */
+"Ejm-Y0-Opx.text" = "Info100%";
+
+/* Class = "UIButton"; normalTitle = "Back"; ObjectID = "F2w-Tb-M5g"; */
+"F2w-Tb-M5g.normalTitle" = "Back";
+
+/* Class = "UIButton"; normalTitle = "LOGIN"; ObjectID = "F5E-Yo-2JV"; */
+"F5E-Yo-2JV.normalTitle" = "LOGIN";
+
+/* Class = "UILabel"; text = "Approve (16.7%)"; ObjectID = "FN9-mG-zIA"; */
+"FN9-mG-zIA.text" = "Approve (16.7%)";
+
+/* Class = "UITextField"; placeholder = "Nama Lengkap"; ObjectID = "FUM-B7-Us0"; */
+"FUM-B7-Us0.placeholder" = "Nama Lengkap";
+
+/* Class = "UITextField"; placeholder = "Username"; ObjectID = "FXB-Yg-kXh"; */
+"FXB-Yg-kXh.placeholder" = "Username";
+
+/* Class = "UITextField"; text = "virgiantari_putri@yahoo.com"; ObjectID = "FXB-Yg-kXh"; */
+"FXB-Yg-kXh.text" = "virgiantari_putri@yahoo.com";
+
+/* Class = "UILabel"; text = "Sign In"; ObjectID = "GsO-Wk-okS"; */
+"GsO-Wk-okS.text" = "Sign In";
+
+/* Class = "UILabel"; text = "Label long label long label"; ObjectID = "Hfy-mf-uQp"; */
+"Hfy-mf-uQp.text" = "Label long label long label";
+
+/* Class = "UITabBarItem"; title = "Home"; ObjectID = "HnO-yi-mmQ"; */
+"HnO-yi-mmQ.title" = "Home";
+
+/* Class = "UILabel"; text = "Logout"; ObjectID = "Inm-aH-eQw"; */
+"Inm-aH-eQw.text" = "Logout";
+
+/* Class = "UITextField"; placeholder = "Old Password"; ObjectID = "IxK-Sn-iEU"; */
+"IxK-Sn-iEU.placeholder" = "Old Password";
+
+/* Class = "UIButton"; normalTitle = "Ubah Kata Sandi"; ObjectID = "J08-gv-g3M"; */
+"J08-gv-g3M.normalTitle" = "Ubah Kata Sandi";
+
+/* Class = "UIButton"; normalTitle = "CANCEL"; ObjectID = "JSd-w8-UH0"; */
+"JSd-w8-UH0.normalTitle" = "CANCEL";
+
+/* Class = "UITextField"; placeholder = "Username"; ObjectID = "Jpw-bk-0Fu"; */
+"Jpw-bk-0Fu.placeholder" = "Username";
+
+/* Class = "UIButton"; normalTitle = "Show"; ObjectID = "L0C-GL-6sY"; */
+"L0C-GL-6sY.normalTitle" = "Show";
+
+/* Class = "UILabel"; text = "Nama Lengkap"; ObjectID = "LBo-RU-Gfq"; */
+"LBo-RU-Gfq.text" = "Nama Lengkap";
+
+/* Class = "UIButton"; normalTitle = "Indonesia"; ObjectID = "MXu-3G-i5M"; */
+"MXu-3G-i5M.normalTitle" = "Indonesia";
+
+/* Class = "UILabel"; text = "*Simulasi kredit di atas tidak mengikat dan dapat berubah sewaktu waktu"; ObjectID = "Mgl-rC-hv5"; */
+"Mgl-rC-hv5.text" = "*Simulasi kredit di atas tidak mengikat dan dapat berubah sewaktu waktu";
+
+/* Class = "UILabel"; text = "Nama Cabang"; ObjectID = "NkV-RF-UPv"; */
+"NkV-RF-UPv.text" = "Nama Cabang";
+
+/* Class = "UIButton"; normalTitle = "Forgot Password? Reset Here"; ObjectID = "Oow-Il-I8z"; */
+"Oow-Il-I8z.normalTitle" = "Forgot Password? Reset Here";
+
+/* Class = "UIButton"; normalTitle = "HITUNG"; ObjectID = "RAA-vK-vTz"; */
+"RAA-vK-vTz.normalTitle" = "HITUNG";
+
+/* Class = "UILabel"; text = "Sumber Aplikasi"; ObjectID = "RqT-Cp-Kn8"; */
+"RqT-Cp-Kn8.text" = "Sumber Aplikasi";
+
+/* Class = "UITextField"; placeholder = "Jenis Kelamin"; ObjectID = "S4H-Et-s9f"; */
+"S4H-Et-s9f.placeholder" = "Jenis Kelamin";
+
+/* Class = "UILabel"; text = "Sign In"; ObjectID = "S8h-tM-zdk"; */
+"S8h-tM-zdk.text" = "Sign In";
+
+/* Class = "UILabel"; text = "Nomor KTP"; ObjectID = "SLP-Ip-5w1"; */
+"SLP-Ip-5w1.text" = "Nomor KTP";
+
+/* Class = "UILabel"; text = "539201714039403"; ObjectID = "U56-eQ-KRS"; */
+"U56-eQ-KRS.text" = "539201714039403";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "Ubc-Qr-fih"; */
+"Ubc-Qr-fih.placeholder" = "Password";
+
+/* Class = "UILabel"; text = "517170600014"; ObjectID = "VAW-cq-7wT"; */
+"VAW-cq-7wT.text" = "517170600014";
+
+/* Class = "UILabel"; text = "Product"; ObjectID = "VFY-Jd-2Yp"; */
+"VFY-Jd-2Yp.text" = "Product";
+
+/* Class = "UITextField"; placeholder = "Place of Birth"; ObjectID = "ViI-bT-N8w"; */
+"ViI-bT-N8w.placeholder" = "Place of Birth";
+
+/* Class = "UILabel"; text = "Approve (16.7%)"; ObjectID = "Vv1-zZ-BRc"; */
+"Vv1-zZ-BRc.text" = "Approve (16.7%)";
+
+/* Class = "UILabel"; text = "Input OTP Code"; ObjectID = "Xxg-BE-QAk"; */
+"Xxg-BE-QAk.text" = "Input OTP Code";
+
+/* Class = "UITextField"; placeholder = "-"; ObjectID = "YnU-m3-cNW"; */
+"YnU-m3-cNW.placeholder" = "-";
+
+/* Class = "UILabel"; text = "Change Password"; ObjectID = "Yof-wV-fx6"; */
+"Yof-wV-fx6.text" = "Change Password";
+
+/* Class = "UILabel"; text = "517170600014"; ObjectID = "Z2e-EY-Ttf"; */
+"Z2e-EY-Ttf.text" = "517170600014";
+
+/* Class = "UITextField"; placeholder = "Address"; ObjectID = "Zlm-4n-xHl"; */
+"Zlm-4n-xHl.placeholder" = "Address";
+
+/* Class = "UITextField"; placeholder = "Confirm Password"; ObjectID = "aG7-Oj-3b6"; */
+"aG7-Oj-3b6.placeholder" = "Confirm Password";
+
+/* Class = "UILabel"; text = "11"; ObjectID = "aND-na-iiu"; */
+"aND-na-iiu.text" = "11";
+
+/* Class = "UILabel"; text = "•"; ObjectID = "bBx-Xx-v4D"; */
+"bBx-Xx-v4D.text" = "•";
+
+/* Class = "UITextField"; placeholder = "-"; ObjectID = "bII-Ys-HJJ"; */
+"bII-Ys-HJJ.placeholder" = "-";
+
+/* Class = "UIButton"; normalTitle = "PENGAJUAN"; ObjectID = "bKe-O3-6i1"; */
+"bKe-O3-6i1.normalTitle" = "PENGAJUAN";
+
+/* Class = "UILabel"; text = "-"; ObjectID = "ctp-9S-VNp"; */
+"ctp-9S-VNp.text" = "-";
+
+/* Class = "UITabBarItem"; title = "History"; ObjectID = "dL1-32-Cgn"; */
+"dL1-32-Cgn.title" = "History";
+
+/* Class = "UILabel"; text = "2017-06-06"; ObjectID = "eQy-bL-cFG"; */
+"eQy-bL-cFG.text" = "2017-06-06";
+
+/* Class = "UIButton"; normalTitle = "SIGN IN"; ObjectID = "gug-AO-MKz"; */
+"gug-AO-MKz.normalTitle" = "SIGN IN";
+
+/* Class = "UILabel"; text = "-"; ObjectID = "h0B-Yv-IuR"; */
+"h0B-Yv-IuR.text" = "-";
+
+/* Class = "UITextField"; placeholder = "-"; ObjectID = "hNE-oc-FCC"; */
+"hNE-oc-FCC.placeholder" = "-";
+
+/* Class = "UILabel"; text = "Jumlah Keseluruhan Berdasarkan Tahun"; ObjectID = "iQ5-nN-5wj"; */
+"iQ5-nN-5wj.text" = "Jumlah Keseluruhan Berdasarkan Tahun";
+
+/* Class = "UITextField"; placeholder = "New Password"; ObjectID = "lms-Uo-TX6"; */
+"lms-Uo-TX6.placeholder" = "New Password";
+
+/* Class = "UIButton"; normalTitle = "SIGN IN"; ObjectID = "mSK-N8-edD"; */
+"mSK-N8-edD.normalTitle" = "SIGN IN";
+
+/* Class = "UILabel"; text = "Alamat"; ObjectID = "nCa-ha-dJL"; */
+"nCa-ha-dJL.text" = "Alamat";
+
+/* Class = "UITextView"; text = "Kata Sandi harus terdiri dari : \n- Setidaknya 6 karakter\n- Spesial karakter\n- Huruf kecil\n- Huruf besar\n- Angka"; ObjectID = "oPq-q4-OiT"; */
+"oPq-q4-OiT.text" = "Kata Sandi harus terdiri dari : \n- Setidaknya 6 karakter\n- Spesial karakter\n- Huruf kecil\n- Huruf besar\n- Angka";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "or0-Vj-NnB"; */
+"or0-Vj-NnB.placeholder" = "Email";
+
+/* Class = "UITabBarItem"; title = "Help"; ObjectID = "pH6-cC-Avx"; */
+"pH6-cC-Avx.title" = "Help";
+
+/* Class = "UILabel"; text = "keenan pearce"; ObjectID = "qB7-5D-igr"; */
+"qB7-5D-igr.text" = "keenan pearce";
+
+/* Class = "UILabel"; text = "Tanggal Lahir"; ObjectID = "qL8-vb-G6l"; */
+"qL8-vb-G6l.text" = "Tanggal Lahir";
+
+/* Class = "UILabel"; text = "Alamat"; ObjectID = "rHu-2N-hGw"; */
+"rHu-2N-hGw.text" = "Alamat";
+
+/* Class = "UIButton"; normalTitle = "REGISTER"; ObjectID = "reI-MY-vmV"; */
+"reI-MY-vmV.normalTitle" = "REGISTER";
+
+/* Class = "UITextField"; placeholder = "Code"; ObjectID = "rzQ-L8-3or"; */
+"rzQ-L8-3or.placeholder" = "Code";
+
+/* Class = "UIButton"; normalTitle = "Show"; ObjectID = "sa1-Gt-nqW"; */
+"sa1-Gt-nqW.normalTitle" = "Show";
+
+/* Class = "UITabBarItem"; title = "My Profile"; ObjectID = "shd-W8-UB0"; */
+"shd-W8-UB0.title" = "My Profile";
+
+/* Class = "UILabel"; text = "Jumlah Keseluruhan Berdasarkan Bulan"; ObjectID = "tYy-r9-IO2"; */
+"tYy-r9-IO2.text" = "Jumlah Keseluruhan Berdasarkan Bulan";
+
+/* Class = "UILabel"; text = "Waiting Approval"; ObjectID = "tm9-zW-tGp"; */
+"tm9-zW-tGp.text" = "Waiting Approval";
+
+/* Class = "UILabel"; text = "Total Bayar Awal"; ObjectID = "tuG-hi-PQc"; */
+"tuG-hi-PQc.text" = "Total Bayar Awal";
+
+/* Class = "UILabel"; text = "Alamat Dealer"; ObjectID = "u1S-4Y-dy7"; */
+"u1S-4Y-dy7.text" = "Alamat Dealer";
+
+/* Class = "UITextField"; placeholder = "ID Card Number"; ObjectID = "uOp-Fa-tbj"; */
+"uOp-Fa-tbj.placeholder" = "ID Card Number";
+
+/* Class = "UILabel"; text = "Jenis Kelamin"; ObjectID = "uRf-3X-1yf"; */
+"uRf-3X-1yf.text" = "Jenis Kelamin";
+
+/* Class = "UIButton"; normalTitle = "SUBMIT"; ObjectID = "uSG-IL-11p"; */
+"uSG-IL-11p.normalTitle" = "SUBMIT";
+
+/* Class = "UITextField"; placeholder = "No Telepon"; ObjectID = "vWp-Na-nM5"; */
+"vWp-Na-nM5.placeholder" = "No Telepon";
+
+/* Class = "UIButton"; normalTitle = "SIGN UP"; ObjectID = "vvW-qa-zAk"; */
+"vvW-qa-zAk.normalTitle" = "SIGN UP";
+
+/* Class = "UILabel"; text = "keenan pearce"; ObjectID = "w6P-my-tTU"; */
+"w6P-my-tTU.text" = "keenan pearce";
+
+/* Class = "UITextField"; placeholder = "Username"; ObjectID = "wKK-5O-RYI"; */
+"wKK-5O-RYI.placeholder" = "Username";
+
+/* Class = "UITabBarItem"; title = "PROFILE"; ObjectID = "xvf-FG-skT"; */
+"xvf-FG-skT.title" = "PROFILE";
+
+/* Class = "UILabel"; text = "User ID"; ObjectID = "yGg-Bj-lfQ"; */
+"yGg-Bj-lfQ.text" = "User ID";
+
+/* Class = "UITextField"; placeholder = "-"; ObjectID = "z3O-h8-bXw"; */
+"z3O-h8-bXw.placeholder" = "-";
+
+/* Class = "UILabel"; text = "-"; ObjectID = "zMR-G1-nlz"; */
+"zMR-G1-nlz.text" = "-";
+
+/* Class = "UIButton"; normalTitle = "Resend OTP Code"; ObjectID = "zPg-xi-hid"; */
+"zPg-xi-hid.normalTitle" = "Resend OTP Code";
+
+/* Class = "UILabel"; text = "11"; ObjectID = "zaS-fx-uN6"; */
+"zaS-fx-uN6.text" = "11";

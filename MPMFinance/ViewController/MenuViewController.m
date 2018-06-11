@@ -12,6 +12,8 @@
 #import "LoginViewController.h"
 #import "RegisterViewController.h"
 #import "APIModel.h"
+#import "LanguageManager.h"
+#import "AppDelegate.h"
 @interface MenuViewController ()<UITabBarDelegate>
 @property (weak, nonatomic) IBOutlet UITabBar *tabBar;
 @property (weak, nonatomic) IBOutlet UIView *signInView;
@@ -37,7 +39,21 @@
     // Do any additional setup after loading the view.
 }
 
-
+- (IBAction)changeLanguage:(id)sender {
+    if ([[LanguageManager currentLanguageCode] isEqualToString:@"id"])
+        [LanguageManager saveLanguageByIndex:0];
+    else
+        [LanguageManager saveLanguageByIndex:1];
+    
+    [self reloadRootViewController];
+}
+- (void)reloadRootViewController
+{
+    AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    NSString *storyboardName = @"Main";
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
+    delegate.window.rootViewController = [storyboard instantiateInitialViewController];
+}
 -(void)viewWillAppear:(BOOL)animated
 {
     

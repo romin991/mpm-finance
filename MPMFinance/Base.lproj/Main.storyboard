@@ -372,6 +372,9 @@
                                 <state key="normal" title="Indonesia">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="changeLanguage:" destination="hvL-vJ-2kv" eventType="touchUpInside" id="xyT-PB-qhr"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoSmall" translatesAutoresizingMaskIntoConstraints="NO" id="GzH-Zy-2cu">
                                 <rect key="frame" x="16" y="20" width="84" height="37"/>
@@ -2769,6 +2772,6 @@
         <image name="uk-flag" width="14" height="14"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9Ie-Iz-vSB"/>
+        <segue reference="raJ-8g-lbX"/>
     </inferredMetricsTieBreakers>
 </document>
