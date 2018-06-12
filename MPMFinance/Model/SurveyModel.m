@@ -46,11 +46,23 @@
                 NSMutableArray *fasilitasRumah = [NSMutableArray array];
                 for (NSDictionary *tempDictionary in [observasiTempatTinggalDictionary objectForKey:@"fasilitasRumah"]) {
                     [fasilitasRumah addObject:@([[tempDictionary objectForKey:@"fasilitasRumah"] integerValue])];
+                    
+                    if ([tempDictionary objectForKey:@"freeTextFasilitas"] &&
+                        ![[tempDictionary objectForKey:@"freeTextFasilitas"] isKindOfClass:NSNull.class] &&
+                        [NSString stringWithFormat:@"%@", [tempDictionary objectForKey:@"freeTextFasilitas"]].length > 0) {
+                        [dictionary setObject:[tempDictionary objectForKey:@"freeTextFasilitas"] forKey:@"fasilitasRumahLainnya"];
+                    }
                 }
                 
                 NSMutableArray *patokanDktRmh = [NSMutableArray array];
                 for (NSDictionary *tempDictionary in [observasiTempatTinggalDictionary objectForKey:@"patokanDktRmh"]) {
                     [patokanDktRmh addObject:@([[tempDictionary objectForKey:@"patokanDktRmh"] integerValue])];
+                    
+                    if ([tempDictionary objectForKey:@"freeText"] &&
+                        ![[tempDictionary objectForKey:@"freeText"] isKindOfClass:NSNull.class] &&
+                        [NSString stringWithFormat:@"%@", [tempDictionary objectForKey:@"freeText"]].length > 0) {
+                        [dictionary setObject:[tempDictionary objectForKey:@"freeText"] forKey:@"patokanDktRmhLainnya"];
+                    }
                 }
                 
                 [dictionary addEntriesFromDictionary:@{@"lingkungan" : @([[observasiTempatTinggalDictionary objectForKey:@"lingkungan"] integerValue]),
@@ -125,10 +137,16 @@
         
         for (NSMutableDictionary *objectDictionary in [dictionary objectForKey:@"fasilitasRumah"]) {
             [objectDictionary setObject:[NSString stringWithFormat:@"%@", [objectDictionary objectForKey:@"fasilitasRumah"]] forKey:@"fasilitasRumah"];
+            if ([[objectDictionary objectForKey:@"fasilitasRumah"] isEqualToString:@"348"]) {
+                [objectDictionary setObject:[NSString stringWithFormat:@"%@", [dictionary objectForKey:@"fasilitasRumahLainnya"]] forKey:@"freeTextFasilitas"];
+            }
         }
         
         for (NSMutableDictionary *objectDictionary in [dictionary objectForKey:@"patokanDktRmh"]) {
             [objectDictionary setObject:[NSString stringWithFormat:@"%@", [objectDictionary objectForKey:@"patokanDktRmh"]] forKey:@"patokanDktRmh"];
+            if ([[objectDictionary objectForKey:@"patokanDktRmh"] isEqualToString:@"347"]) {
+                [objectDictionary setObject:[NSString stringWithFormat:@"%@", [dictionary objectForKey:@"patokanDktRmhLainnya"]] forKey:@"freeText"];
+            }
         }
         
         NSMutableDictionary *observasiTempatTinggal = [NSMutableDictionary dictionaryWithDictionary:

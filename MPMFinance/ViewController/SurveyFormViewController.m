@@ -110,11 +110,6 @@
                 if ([row.tag isEqualToString:@"hapusInformasiSurveyLingkungan"]){
                     row.action.formSelector = @selector(deleteDataButtonClicked:);
                 }
-                if ([row.tag isEqualToString:@"penjelasan"]){
-                    if ([self.valueDictionary[@"alamatSurveyDitemukan"] isEqualToString:@"1"]) {
-                        row.hidden = @(1);
-                    }
-                }
                 if ([row.tag isEqualToString:@"tanggalSurvey"]) {
                     if ([[row cellForFormController:self] isKindOfClass:XLFormDateCell.class]){
                         [(XLFormDateCell *)[row cellForFormController:self] setMaximumDate:[NSDate date]];
@@ -178,6 +173,8 @@
 }
 
 - (void)saveButtonClicked:(id)sender{
+    [self resignFirstResponder];
+    
     NSMutableArray *dataArray = [NSMutableArray array];
     for (XLFormSectionDescriptor *section in self.form.formSections) {
         if ([section.title isEqualToString:@"Informasi Survey Lingkungan"]) {
@@ -227,14 +224,57 @@
 }
 - (void)formRowDescriptorValueHasChanged:(XLFormRowDescriptor *)formRow oldValue:(id)oldValue newValue:(id)newValue {
     if ([formRow.tag isEqualToString:@"alamatSurveyDitemukan"]) {
-        if ([newValue isEqual:@1]) {
+        if ([newValue integerValue] == 1) {
             XLFormRowDescriptor *row = [self.form formRowWithTag:@"penjelasan"];
             row.hidden = @(1);
+            [self reloadFormRow:row];
         } else {
             XLFormRowDescriptor *row = [self.form formRowWithTag:@"penjelasan"];
             row.hidden = @(0);
+            [self reloadFormRow:row];
+        }
+    }
+    if ([formRow.tag isEqualToString:@"fasilitasRumah"]) {
+        NSMutableArray *arrayOfValue = [NSMutableArray array];
+        for (id value in newValue) {
+            id tempValue = value;
+            if ([value isKindOfClass:XLFormOptionsObject.class]) {
+                tempValue = ((XLFormOptionsObject*)value).valueData;
+            }
+            
+            [arrayOfValue addObject:tempValue];
         }
         
+        if ([arrayOfValue containsObject:@(348)]) {
+            XLFormRowDescriptor *row = [self.form formRowWithTag:@"fasilitasRumahLainnya"];
+            row.hidden = @NO;
+            [self reloadFormRow:row];
+        } else {
+            XLFormRowDescriptor *row = [self.form formRowWithTag:@"fasilitasRumahLainnya"];
+            row.hidden = @YES;
+            [self reloadFormRow:row];
+        }
+    }
+    if ([formRow.tag isEqualToString:@"patokanDktRmh"]) {
+        NSMutableArray *arrayOfValue = [NSMutableArray array];
+        for (id value in newValue) {
+            id tempValue = value;
+            if ([value isKindOfClass:XLFormOptionsObject.class]) {
+                tempValue = ((XLFormOptionsObject*)value).valueData;
+            }
+            
+            [arrayOfValue addObject:tempValue];
+        }
+        
+        if ([arrayOfValue containsObject:@(347)]) {
+            XLFormRowDescriptor *row = [self.form formRowWithTag:@"patokanDktRmhLainnya"];
+            row.hidden = @NO;
+            [self reloadFormRow:row];
+        } else {
+            XLFormRowDescriptor *row = [self.form formRowWithTag:@"patokanDktRmhLainnya"];
+            row.hidden = @YES;
+            [self reloadFormRow:row];
+        }
     }
 }
 - (void)setRightBarButton{

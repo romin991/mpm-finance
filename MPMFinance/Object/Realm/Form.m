@@ -876,8 +876,10 @@
     [section.rows addObject:[FormRow new:realm :7 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Lingkungan" :@"" :@"getLingkungan"]];
     [section.rows addObject:[FormRow new:realm :7 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Akses Jalan Masuk" :@"" :@"getAksesjalanmasuk"]];
     [section.rows addObject:[FormRow new:realm :7 :YES :NO :XLFormRowDescriptorTypeMultipleSelector :@"Fasilitas Tempat Tinggal Yang Dimiliki" :@"fasilitasRumah" :@"getFasilitasRumah"]];
+    [section.rows addObject:[FormRow new:realm :7 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Fasilitas Tempat Tinggal Lainnya" :@"fasilitasRumahLainnya" :@""]];
     [section.rows addObject:[FormRow new:realm :7 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Penampakan Depan Rumah" :@"" :@"getPenampakanDpnRmh"]];
     [section.rows addObject:[FormRow new:realm :7 :YES :NO :XLFormRowDescriptorTypeMultipleSelector :@"Patokan Depan Rumah" :@"patokanDktRmh" :@"getPatokanDpnRmh"]];
+    [section.rows addObject:[FormRow new:realm :7 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Patokan Depan Rumah Lainnya" :@"patokanDktRmhLainnya" :@""]];
     [form.sections addObject:section];
     
     section = [[FormSection alloc] init];
