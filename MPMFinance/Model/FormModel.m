@@ -77,6 +77,8 @@
             object = arrayOfValue;
         } else if (row.value != nil && ![row.value isKindOfClass:NSNull.class]){
             object = row.value;
+        } else {
+            object = @"";
         }
         
         if (object) [valueDictionary setObject:object forKey:row.tag];

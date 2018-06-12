@@ -117,11 +117,14 @@
                                @"kelurahan" : data[@"alamat_kantor_kelurahan"],
                                @"kecamatan" : data[@"alamat_kantor_kecamatan"],
                                @"kota" : data[@"alamat_kantor_kota"],
-                               @"lamaBekerjaDalamBulan" : data[@"lama_bekerja"],
                                
                                @"pendapatanPerBulan" : data[@"pendapatan_per_bulan"],
                                @"lamaBekerja" : data[@"lama_bekerja"],
                                @"pendapatanLainnyaPerBulan" : data[@"pendapatan_lain_per_bulan"],
+                               
+                               @"namaPerusahaan" : [data objectForKey:@"nama_perusahaan"] ?: @"",
+                               @"statusPekerjaanSebelumnya" : [data objectForKey:@"status_pekerjaan_sebelumnya"] ?: @"",
+                               @"lamaBekerjaDalamTahun" : [data objectForKey:@"lama_bekerja_sebelumnya"] ?: @"",
                                
                                @"tahun1" : data[@"omset_per_bulan_thn"],
                                @"bulan1" : data[@"omset_per_bulan_bln"],
@@ -349,11 +352,14 @@
                @"alamat_kantor_kelurahan" : [dictionary objectForKey:@"kelurahan"] ?: @"",
                @"alamat_kantor_kecamatan" : [dictionary objectForKey:@"kecamatan"] ?: @"",
                @"alamat_kantor_kota" : [dictionary objectForKey:@"kota"] ?: @"",
-               @"lama_bekerja" : [dictionary objectForKey:@"lamaBekerja"] ?: @"",
                
                @"pendapatan_per_tahun" : [dictionary objectForKey:@"pendapatanPerBulan"] ?: @"",
                @"lama_bekerja" : [dictionary objectForKey:@"lamaBekerja"] ?: @"",
                @"pendapatan_lain_per_bulan" : [dictionary objectForKey:@"pendapatanLainnyaPerBulan"] ?: @"",
+               
+               @"nama_perusahaan" : [dictionary objectForKey:@"namaPerusahaan"] ?: @"",
+               @"status_pekerjaan_sebelumnya" : [dictionary objectForKey:@"statusPekerjaanSebelumnya"] ?: @"",
+               @"lama_bekerja_sebelumnya" : [dictionary objectForKey:@"lamaBekerjaDalamTahun"] ?: @"",
                
                @"omset_per_bulan_thn" : [dictionary objectForKey:@"tahun1"] ?: @"",
                @"omset_per_bulan_bln" : [dictionary objectForKey:@"bulan1"] ?: @"",
@@ -480,7 +486,7 @@
                @"asuransi_kendaraan_kapitalisasi" : [dictionary objectForKey:@"asuransiKendaraanKapitalisasi"] ?: @"",
                @"asuransi_kendaraan_dp" : [dictionary objectForKey:@"asuransiKendaraanDibayarDimuka"] ?: @"",
                @"asuransi_jiwa_dp" : [dictionary objectForKey:@"asuransiJiwaDibayarDimuka"] ?: @"",
-               @"jangka_waktu_asuransi" : [dictionary objectForKey:@"periodeAsuransiJiwa"] ?: @"",
+               @"periode_asuransi_jiwa" : [dictionary objectForKey:@"periodeAsuransiJiwa"] ?: @"",
                }];
             
         } else if (postType == DataMAPPostTypeAset) {

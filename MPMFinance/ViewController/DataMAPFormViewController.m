@@ -75,7 +75,6 @@
     dispatch_group_notify(group, queue, ^{
         NSString *idCabang = [self.valueDictionary objectForKey:@"kodeCabang"] ?: @"";
         NSString *idProduct = [self.valueDictionary objectForKey:@"produk"] ?: @"";
-        NSString *sumberAplikasi = [self.valueDictionary objectForKey:@"sumberAplikasi"] ?: @"";
         
         if ([self.title isEqualToString:@"Data Keluarga"]) {
             NSInteger familyCount = ((NSArray *)[self.valueDictionary objectForKey:@"dataKeluarga"]).count;
@@ -98,14 +97,6 @@
                 }
                 if ([row.tag isEqualToString:@"hapusDataKeluarga"]){
                     row.action.formSelector = @selector(deleteFamilyButtonClicked:);
-                }
-                
-                if ([row.tag isEqualToString:@"kodeCabang"]) {
-                    if ([sumberAplikasi integerValue] == 2) {
-                        row.title = @"Nama KP";
-                    } else if ([sumberAplikasi integerValue] == 1){
-                        row.title = @"Kode Cabang";
-                    }
                 }
                 
                 //Data Aplikasi
@@ -832,6 +823,231 @@
                         [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
                     }
                 }
+                
+                NSArray *tagForMustAlphabetOnly = [NSArray arrayWithObjects:@"namaLengkapSesuaiKTP", @"namaPanggilan", nil];
+                if ([tagForMustAlphabetOnly containsObject:row.tag]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMustAlphabetOnly:YES];
+                    }
+                }
+                
+                if ([row.tag isEqualToString:@"tahunMenempati"]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:4];
+                    }
+                }
+                if ([row.tag isEqualToString:@"nomorNPWP"]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:15];
+                    }
+                }
+                if ([row.tag isEqualToString:@"nomorKartuKeluarga"]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:16];
+                    }
+                }
+                if ([row.tag isEqualToString:@"jumlahTanggungan"]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:2];
+                    }
+                }
+                
+                if ([row.tag isEqualToString:@"rT"]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:3];
+                    }
+                }
+                if ([row.tag isEqualToString:@"rW"]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:3];
+                    }
+                }
+                if ([row.tag isEqualToString:@"lamaBekerja"]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:4];
+                    }
+                }
+                if ([row.tag isEqualToString:@"pendapatanPerBulan"]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:9];
+                    }
+                }
+                if ([row.tag isEqualToString:@"pendapatanLainnyaPerBulan"]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:9];
+                    }
+                }
+                
+                if ([row.tag isEqualToString:@"rTKantorPasangan"]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:3];
+                    }
+                }
+                if ([row.tag isEqualToString:@"rWKantorPasangan"]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:3];
+                    }
+                }
+                
+                if ([row.tag isEqualToString:@"nomorIndukKependudukan"]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:16];
+                    }
+                }
+                
+                if ([row.tag isEqualToString:@"hargaKendaraan"]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:9];
+                    }
+                }
+                if ([row.tag isEqualToString:@"uangMuka"]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:9];
+                    }
+                }
+                if ([row.tag isEqualToString:@"jangkaWaktuPembiayaan"]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:2];
+                    }
+                }
+                if ([row.tag isEqualToString:@"angsuran"]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:9];
+                    }
+                }
+                if ([row.tag isEqualToString:@"jumlahAset"]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:9];
+                    }
+                }
+                if ([row.tag isEqualToString:@"pokokHutang"]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:9];
+                    }
+                }
+                if ([row.tag isEqualToString:@"subsidiUangMuka"]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:9];
+                    }
+                }
+                if ([row.tag isEqualToString:@"totalUangDiterimaMPMF"]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:9];
+                    }
+                }
+                if ([row.tag isEqualToString:@"biayaAdmin"]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:9];
+                    }
+                }
+                if ([row.tag isEqualToString:@"biayaAdminLainnya"]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:9];
+                    }
+                }
+                if ([row.tag isEqualToString:@"biayaFidusia"]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:9];
+                    }
+                }
+                if ([row.tag isEqualToString:@"biayaLain"]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:9];
+                    }
+                }
+                if ([row.tag isEqualToString:@"biayaSurvey"]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:9];
+                    }
+                }
+                if ([row.tag isEqualToString:@"persentaseBiayaProvisi"]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:9];
+                    }
+                }
+                if ([row.tag isEqualToString:@"biayaProvisi"]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:7];
+                    }
+                }
+                if ([row.tag isEqualToString:@"effectiveRate"]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:7];
+                    }
+                }
+                
+                if ([row.tag isEqualToString:@"periodeAsuransi"]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:2];
+                    }
+                }
+                if ([row.tag isEqualToString:@"nilaiPertanggungan"]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:9];
+                    }
+                }
+                if ([row.tag isEqualToString:@"jenisPertanggunganAllRisk"]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:2];
+                    }
+                }
+                if ([row.tag isEqualToString:@"asuransiKendaraanKapitalisasi"]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:9];
+                    }
+                }
+                if ([row.tag isEqualToString:@"asuransiKendaraanDibayarDimuka"]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:9];
+                    }
+                }
+                if ([row.tag isEqualToString:@"asuransiJiwaKreditKapitalisasi"]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:9];
+                    }
+                }
+                if ([row.tag isEqualToString:@"asuransiJiwaDibayarDimuka"]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:9];
+                    }
+                }
+                if ([row.tag isEqualToString:@"nilaiPertanggunganAsuransiJiwa"]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:9];
+                    }
+                }
+                if ([row.tag isEqualToString:@"premiAsuransiKerugianKendaraan"]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:9];
+                    }
+                }
+                if ([row.tag isEqualToString:@"premiAsuransiJiwaKredit"]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:9];
+                    }
+                }
+                if ([row.tag isEqualToString:@"periodeAsuransiJiwa"]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:2];
+                    }
+                }
+                
+                if ([row.tag isEqualToString:@"noRangka"] || [row.tag isEqualToString:@"noMesin"] || [row.tag isEqualToString:@"nomorPolisi"]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMustAlphabetNumericOnly:YES];
+                    }
+                }
+                if ([row.tag isEqualToString:@"warna"] || [row.tag isEqualToString:@"namaBPKB"]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMustAlphabetOnly:YES];
+                    }
+                }
+                
+                if ([row.tag isEqualToString:@"namaPenjamin"] || [row.tag isEqualToString:@"namaPasanganPenjamin"]){
+                    if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMustAlphabetOnly:YES];
+                    }
+                }
             }
         }
         
@@ -884,33 +1100,40 @@
     //else
     //popup error
     
-    if ([self.title isEqualToString:@"Data Keluarga"]) {
-        NSMutableArray *familyArray = [NSMutableArray array];
-        for (XLFormSectionDescriptor *section in self.form.formSections) {
-            if ([section.title isEqualToString:@"Data Keluarga"]) {
-                NSMutableDictionary *familyDictionary = [NSMutableDictionary dictionary];
-                [FormModel saveValueFromSection:section to:familyDictionary];
-                [familyArray addObject:familyDictionary];
-            }
-        }
-        [self.valueDictionary setObject:familyArray forKey:@"dataKeluarga"];
-        
+    NSArray *inputErrors = [self validateForm];
+    if (inputErrors.count > 0) {
+        [SVProgressHUD showErrorWithStatus:((NSError *)inputErrors.firstObject).localizedDescription];
+        [SVProgressHUD dismissWithDelay:1.5];
     } else {
-        [FormModel saveValueFrom:self.form to:self.valueDictionary];
-    }
     
-    [SVProgressHUD show];
-    __block typeof(self) weakSelf = self;
-    [self submitWithCompletionBlock:^(NSError *error) {
-        if (error) {
-            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
-            [SVProgressHUD dismissWithDelay:1.5 completion:nil];
+        if ([self.title isEqualToString:@"Data Keluarga"]) {
+            NSMutableArray *familyArray = [NSMutableArray array];
+            for (XLFormSectionDescriptor *section in self.form.formSections) {
+                if ([section.title isEqualToString:@"Data Keluarga"]) {
+                    NSMutableDictionary *familyDictionary = [NSMutableDictionary dictionary];
+                    [FormModel saveValueFromSection:section to:familyDictionary];
+                    [familyArray addObject:familyDictionary];
+                }
+            }
+            [self.valueDictionary setObject:familyArray forKey:@"dataKeluarga"];
+            
         } else {
-            [SVProgressHUD dismiss];
-            if (weakSelf.delegate) [weakSelf.delegate saveDictionary:weakSelf.valueDictionary];
-            [weakSelf.navigationController popViewControllerAnimated:YES];
-        };
-    }];
+            [FormModel saveValueFrom:self.form to:self.valueDictionary];
+        }
+        
+        [SVProgressHUD show];
+        __block typeof(self) weakSelf = self;
+        [self submitWithCompletionBlock:^(NSError *error) {
+            if (error) {
+                [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+                [SVProgressHUD dismissWithDelay:1.5 completion:nil];
+            } else {
+                [SVProgressHUD dismiss];
+                if (weakSelf.delegate) [weakSelf.delegate saveDictionary:weakSelf.valueDictionary];
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+            };
+        }];
+    }
 }
 
 - (void)submitWithCompletionBlock:(void(^)(NSError *error))block{
@@ -989,6 +1212,11 @@
                 [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
             }
         }
+        if ([row.tag isEqualToString:@"tanggalLahir"]) {
+            if ([[row cellForFormController:self] isKindOfClass:XLFormDateCell.class]){
+                [(XLFormDateCell *)[row cellForFormController:self] setMaximumDate:[NSDate date]];
+            }
+        }
         
         [newSection addFormRow:newRow];
     }
@@ -1028,12 +1256,15 @@
     if ([formRow.tag isEqualToString:@"sumberAplikasi"] && newValue && ![newValue isKindOfClass:NSNull.class]) {
         NSInteger newValueInteger = [((XLFormOptionsObject *)newValue).formValue integerValue];
         if (newValueInteger == 2) {
-            XLFormRowDescriptor *row = [self.form formRowWithTag:@"kodeCabang"];
-            row.title = @"Nama KP";
+            XLFormRowDescriptor *row = [self.form formRowWithTag:@"namaKP"];
+            row.disabled = @NO;
+            row.required = YES;
             [self reloadFormRow:row];
         } else if (newValueInteger == 1){
-            XLFormRowDescriptor *row = [self.form formRowWithTag:@"kodeCabang"];
-            row.title = @"Kode Cabang";
+            XLFormRowDescriptor *row = [self.form formRowWithTag:@"namaKP"];
+            row.value = @"";
+            row.disabled = @YES;
+            row.required = NO;
             [self reloadFormRow:row];
         }
     }
@@ -1061,8 +1292,43 @@
         NSInteger persentage = [newValue integerValue];
         [self.valueDictionary addEntriesFromDictionary:@{@"biayaProvisi" : @(persentage / 100.0),}];
         [FormModel loadValueFrom:self.valueDictionary on:self partialUpdate:
-         [NSArray arrayWithObjects:@"biayaProvisi", nil]];
+        [NSArray arrayWithObjects:@"biayaProvisi", nil]];
     }
+    
+    if ([formRow.tag isEqualToString:@"jenisPertanggunganAllRisk"]) {
+        XLFormRowDescriptor *row = [self.form formRowWithTag:@"jenisPertanggunganTLO"];
+        NSInteger value = [newValue integerValue] * -1 % 10;
+        row.value = [NSString stringWithFormat:@"%li", (long) value];
+    }
+}
+
+- (NSArray *)validateForm {
+    NSArray * array = [self formValidationErrors];
+    
+    [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        XLFormValidationStatus * validationStatus = [[obj userInfo] objectForKey:XLValidationStatusErrorKey];
+        UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:[self.form indexPathOfFormRow:validationStatus.rowDescriptor]];
+        
+        [self animateCell:cell];
+    }];
+
+    return array;
+}
+
+
+#pragma mark - Helper
+
+-(void)animateCell:(UITableViewCell *)cell
+{
+    CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
+    animation.keyPath = @"position.x";
+    animation.values =  @[ @0, @20, @-20, @10, @0];
+    animation.keyTimes = @[@0, @(1 / 6.0), @(3 / 6.0), @(5 / 6.0), @1];
+    animation.duration = 0.3;
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+    animation.additive = YES;
+    
+    [cell.layer addAnimation:animation forKey:@"shake"];
 }
 
 /*
