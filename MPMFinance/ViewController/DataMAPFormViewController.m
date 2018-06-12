@@ -1320,8 +1320,9 @@
     
     if ([formRow.tag isEqualToString:@"jenisPertanggunganAllRisk"]) {
         XLFormRowDescriptor *row = [self.form formRowWithTag:@"jenisPertanggunganTLO"];
-        NSInteger value = [newValue integerValue] * -1 % 10;
+        NSInteger value = [[newValue substringToIndex:1] integerValue] * -1;
         row.value = [NSString stringWithFormat:@"%li", (long) value];
+        [self reloadFormRow:row];
     }
 }
 
