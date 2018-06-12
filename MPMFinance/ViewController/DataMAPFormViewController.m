@@ -415,6 +415,29 @@
                 }
                 
                 //Data Keluarga
+                if ([row.tag isEqualToString:@"hubunganDenganPemohon"]){
+                    dispatch_group_enter(group);
+                    [DropdownModel getDropdownWSType:@"HubunganKeluarga" keyword:@"" idCabang:idCabang additionalURL:@"" completion:^(NSArray *datas, NSError *error) {
+                        @try {
+                            if (error) {
+                                _error = error;
+                                
+                            } else {
+                                NSMutableArray *optionObjects = [NSMutableArray array];
+                                for (Data *data in datas) {
+                                    [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:data.value displayText:data.name]];
+                                }
+                                row.selectorOptions = optionObjects;
+                            }
+                            
+                        } @catch (NSException *exception) {
+                            NSLog(@"%@", exception);
+                        } @finally {
+                            dispatch_group_leave(group);
+                            NSLog(@"leave");
+                        }
+                    }];
+                }
                 
                 //Struktur Pembiayaan
                 if ([row.tag isEqualToString:@"caraPembiayaan"]){
@@ -1217,7 +1240,7 @@
                 [(XLFormDateCell *)[row cellForFormController:self] setMaximumDate:[NSDate date]];
             }
         }
-        
+    
         [newSection addFormRow:newRow];
     }
     [self.form addFormSection:newSection atIndex:self.form.formSections.count -2];
