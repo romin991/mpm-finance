@@ -305,7 +305,7 @@
                 
                 
                 
-                if ([[MPMUserInfo getRole] isEqualToString:kRoleDedicated]){
+                if ([[MPMUserInfo getRole] isEqualToString:kRoleDedicated] || [[MPMUserInfo getRole] isEqualToString:kRoleAgent] ){
                     if ([row.tag isEqualToString:@"noKTP"] ||
                         [row.tag isEqualToString:@"namaLengkap"] ||
                         [row.tag isEqualToString:@"tempatLahir"] ||
