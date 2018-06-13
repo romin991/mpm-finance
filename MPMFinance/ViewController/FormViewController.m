@@ -212,7 +212,7 @@
                         NSLog(@"%@", exception);
                     }
                 }
-                if ([row.tag isEqualToString:@"tanggalLahir"]) {
+                if ([row.tag isEqualToString:@"tanggalLahir"] || [row.tag isEqualToString:@"tanggalLahirPasangan"] ) {
                     if ([[row cellForFormController:self] isKindOfClass:XLFormDateCell.class]){
                         [(XLFormDateCell *)[row cellForFormController:self] setMaximumDate:[NSDate date]];
                     }
@@ -448,6 +448,13 @@
     if ([formRow.tag isEqualToString:@"tipeProduk"] && ![newValue isEqual:[NSNull null]]) {
         
         XLFormRowDescriptor *row = [self.form formRowWithTag:@"tahunKendaraan"];
+        if (![oldValue isEqual:[NSNull null]]) {
+            XLFormRowDescriptor *rowKendaraan = [self.form formRowWithTag:@"tipeKendaraan"];
+            rowKendaraan.value = @"";
+            row.value = @"";
+            [self reloadFormRow:rowKendaraan];
+            [self reloadFormRow:row];
+        }
         NSDate *date = [NSDate date];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"yyyy"];
