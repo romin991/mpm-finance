@@ -14,7 +14,7 @@ target 'MPMFinance' do
     pod 'SVProgressHUD'
     pod 'SVPullToRefresh'
     pod 'IQKeyboardManager'
-    pod 'XLForm', '~> 3.0'
+    pod 'XLForm', '~> 4.0'
     pod 'APAvatarImageView'
     pod 'JVFloatLabeledTextField'
     pod 'GoogleMaps', '= 2.1.0'

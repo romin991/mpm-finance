@@ -63,7 +63,7 @@ PODS:
   - SDWebImage/Core (4.3.0)
   - SVProgressHUD (2.2.2)
   - SVPullToRefresh (0.4.1)
-  - XLForm (3.3.0)
+  - XLForm (4.0.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.2.0)
@@ -78,7 +78,7 @@ DEPENDENCIES:
   - SDWebImage
   - SVProgressHUD
   - SVPullToRefresh
-  - XLForm (~> 3.0)
+  - XLForm (~> 4.0)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -121,8 +121,8 @@ SPEC CHECKSUMS:
   SDWebImage: 6da6c8bca115addc4de8613362e1b15f66333825
   SVProgressHUD: 59b2d3dabacbd051576d21d32293ca7228dc18b0
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
-  XLForm: d5c391dfc62865927b5bcab0a5a0dbfb3e02b0ec
+  XLForm: 04110197c12187dd28a6c7295d3d8b95f4fdb4de
 
-PODFILE CHECKSUM: 3cf780f46a945dcfb222322271cb46f19e034d90
+PODFILE CHECKSUM: 3e89ee35d5c5d8ca7afbbf67049fca2f0ac6a624
 
 COCOAPODS: 1.5.0

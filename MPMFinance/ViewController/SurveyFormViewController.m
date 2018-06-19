@@ -154,6 +154,22 @@
             [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
         }
     }
+    
+    if ([row.tag isEqualToString:@"nama"]){
+        if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+            [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMustAlphabetOnly:YES];
+        }
+    }
+    if ([row.tag isEqualToString:@"jumlahOrang"]){
+        if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+            [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:4];
+        }
+    }
+    if ([row.tag isEqualToString:@"lamaTinggal"]){
+        if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+            [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:2];
+        }
+    }
 }
 
 - (void)checkError:(NSError *)error completion:(void(^)())block{
@@ -175,28 +191,35 @@
 - (void)saveButtonClicked:(id)sender{
     [self resignFirstResponder];
     
-    NSMutableArray *dataArray = [NSMutableArray array];
-    for (XLFormSectionDescriptor *section in self.form.formSections) {
-        if ([section.title isEqualToString:@"Informasi Survey Lingkungan"]) {
-            NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-            [FormModel saveValueFromSection:section to:dictionary];
-            [dataArray addObject:dictionary];
-        } else {
-            [FormModel saveValueFromSection:section to:self.valueDictionary];
-        }
-    }
-    [self.valueDictionary setObject:dataArray forKey:@"informanSurvey"];
+    NSArray *inputErrors = [self validateForm];
+    if (inputErrors.count > 0) {
+        [SVProgressHUD showErrorWithStatus:((NSError *)inputErrors.firstObject).localizedDescription];
+        [SVProgressHUD dismissWithDelay:1.5];
+    } else {
     
-    [SVProgressHUD show];
-    [SurveyModel postSurveyWithList:self.list dictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
-        if (error == nil) {
-            [SVProgressHUD dismiss];
-            [self.navigationController popViewControllerAnimated:YES];
-        } else {
-            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
-            [SVProgressHUD dismissWithDelay:1.5];
+        NSMutableArray *dataArray = [NSMutableArray array];
+        for (XLFormSectionDescriptor *section in self.form.formSections) {
+            if ([section.title isEqualToString:@"Informasi Survey Lingkungan"]) {
+                NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+                [FormModel saveValueFromSection:section to:dictionary];
+                [dataArray addObject:dictionary];
+            } else {
+                [FormModel saveValueFromSection:section to:self.valueDictionary];
+            }
         }
-    }];
+        [self.valueDictionary setObject:dataArray forKey:@"informanSurvey"];
+        
+        [SVProgressHUD show];
+        [SurveyModel postSurveyWithList:self.list dictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
+            if (error == nil) {
+                [SVProgressHUD dismiss];
+                [self.navigationController popViewControllerAnimated:YES];
+            } else {
+                [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+                [SVProgressHUD dismissWithDelay:1.5];
+            }
+        }];
+    }
 }
 
 - (void)addDataButtonClicked:(id)sender{
@@ -277,6 +300,7 @@
         }
     }
 }
+
 - (void)setRightBarButton{
     if (!self.isReadOnly) {
         UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save"
@@ -285,6 +309,35 @@
                                                                          action:@selector(saveButtonClicked:)];
         [self.navigationItem setRightBarButtonItem:barButtonItem];
     }
+}
+
+- (NSArray *)validateForm {
+    NSArray * array = [self formValidationErrors];
+    
+    [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        XLFormValidationStatus * validationStatus = [[obj userInfo] objectForKey:XLValidationStatusErrorKey];
+        UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:[self.form indexPathOfFormRow:validationStatus.rowDescriptor]];
+        
+        [self animateCell:cell];
+    }];
+    
+    return array;
+}
+
+
+#pragma mark - Helper
+
+-(void)animateCell:(UITableViewCell *)cell
+{
+    CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
+    animation.keyPath = @"position.x";
+    animation.values =  @[ @0, @20, @-20, @10, @0];
+    animation.keyTimes = @[@0, @(1 / 6.0), @(3 / 6.0), @(5 / 6.0), @1];
+    animation.duration = 0.3;
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+    animation.additive = YES;
+    
+    [cell.layer addAnimation:animation forKey:@"shake"];
 }
 
 /*
