@@ -14,6 +14,7 @@
 
 @interface MyProfileTableViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
+@property (weak, nonatomic) IBOutlet UITextField *txtNamaCabang;
 @property (weak, nonatomic) IBOutlet APAvatarImageView *profilePictureImageView;
 @property (weak, nonatomic) IBOutlet UITextField *txtDateOfBirth;
 @property (weak, nonatomic) IBOutlet UITextField *txtPhoneNumber;
@@ -87,6 +88,10 @@
     self.txtDateOfBirth.text = [MPMUserInfo getUserInfo][@"dob"];
     self.txtIdCardNumber.text = [MPMUserInfo getUserInfo][@"ktp"];
     self.txtTempatLahir.text = [MPMUserInfo getUserInfo][@"placeOfBirth"];
+    self.txtNamaDealer.text = [MPMUserInfo getUserInfo][@"dealer_name"];
+    self.txtAddressDealer.text = [MPMUserInfo getUserInfo][@"dealer_address"];
+    self.txtNamaCabang.text = [MPMUserInfo getUserInfo][@"namaCabang"];
+    self.txtGender.text = [MPMUserInfo getUserInfo][@"gender"];
     
 }
 
@@ -113,9 +118,83 @@
 }
 
 #pragma mark - Table view delegate
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // the tableview can't be selected 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    CGFloat height = [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    if (indexPath.section == 1 && indexPath.row == 0) { //nama cabang
+        if ([[MPMUserInfo getRole] isEqualToString:kRoleCustomer] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleDealer] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleAgent]) {
+            height = 0;
+        }
+    }
+    
+    if (indexPath.section == 1 && indexPath.row == 3) { //no KTP
+        if ([[MPMUserInfo getRole] isEqualToString:kRoleDedicated] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleSupervisor] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleBM] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleOfficer]) {
+            height = 0;
+        }
+    }
+    
+    if (indexPath.section == 1 && indexPath.row == 4) { //nama dealer
+        if ([[MPMUserInfo getRole] isEqualToString:kRoleCustomer] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleAgent] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleDedicated] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleSupervisor] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleBM] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleOfficer]) {
+            height = 0;
+        }
+    }
+    
+    if (indexPath.section == 1 && indexPath.row == 7) { //tanggal lahir
+        if ([[MPMUserInfo getRole] isEqualToString:kRoleDedicated] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleSupervisor] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleBM] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleOfficer]) {
+            height = 0;
+        }
+    }
+    
+    if (indexPath.section == 1 && indexPath.row == 8) { //tempat lahir
+        if ([[MPMUserInfo getRole] isEqualToString:kRoleDedicated] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleSupervisor] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleBM] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleOfficer]) {
+            height = 0;
+        }
+    }
+    
+    if (indexPath.section == 1 && indexPath.row == 9) { //alamat
+        if ([[MPMUserInfo getRole] isEqualToString:kRoleDedicated] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleSupervisor] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleBM] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleOfficer]) {
+            height = 0;
+        }
+    }
+    
+    if (indexPath.section == 1 && indexPath.row == 10) { //alamat dealer
+        if ([[MPMUserInfo getRole] isEqualToString:kRoleCustomer] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleAgent] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleDedicated] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleSupervisor] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleBM] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleOfficer]) {
+            height = 0;
+        }
+    }
+    
+    if (indexPath.section == 1 && indexPath.row == 11) { //jenis kelamin
+        if ([[MPMUserInfo getRole] isEqualToString:kRoleDedicated] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleSupervisor] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleBM] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleOfficer]) {
+            height = 0;
+        }
+    }
+    return height;
 }
 
 - (IBAction)changeProfilePicture:(id)sender {
