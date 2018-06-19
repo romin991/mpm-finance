@@ -63,7 +63,6 @@ PODS:
   - SDWebImage/Core (4.3.0)
   - SVProgressHUD (2.2.2)
   - SVPullToRefresh (0.4.1)
-  - TPKeyboardAvoiding (1.2.11)
   - XLForm (3.3.0)
 
 DEPENDENCIES:
@@ -79,7 +78,6 @@ DEPENDENCIES:
   - SDWebImage
   - SVProgressHUD
   - SVPullToRefresh
-  - TPKeyboardAvoiding (~> 1.2.11)
   - XLForm (~> 3.0)
 
 SPEC REPOS:
@@ -102,7 +100,6 @@ SPEC REPOS:
     - SDWebImage
     - SVProgressHUD
     - SVPullToRefresh
-    - TPKeyboardAvoiding
     - XLForm
 
 SPEC CHECKSUMS:
@@ -124,9 +121,8 @@ SPEC CHECKSUMS:
   SDWebImage: 6da6c8bca115addc4de8613362e1b15f66333825
   SVProgressHUD: 59b2d3dabacbd051576d21d32293ca7228dc18b0
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
-  TPKeyboardAvoiding: e5ce146b313de063957bfa75a13f1e9b0ff18ab7
   XLForm: d5c391dfc62865927b5bcab0a5a0dbfb3e02b0ec
 
-PODFILE CHECKSUM: c31201c365559ef335ad6fe8279071639009d0b1
+PODFILE CHECKSUM: 3cf780f46a945dcfb222322271cb46f19e034d90
 
 COCOAPODS: 1.5.0

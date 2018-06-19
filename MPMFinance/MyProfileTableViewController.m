@@ -11,9 +11,11 @@
 #import <UIImageView+AFNetworking.h>
 #import "ChangePasswordViewController.h"
 #import "MenuNavigationViewController.h"
+#import "DropdownModel.h"
 
-@interface MyProfileTableViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface MyProfileTableViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UITextField *txtNamaCabang;
 @property (weak, nonatomic) IBOutlet APAvatarImageView *profilePictureImageView;
 @property (weak, nonatomic) IBOutlet UITextField *txtDateOfBirth;
 @property (weak, nonatomic) IBOutlet UITextField *txtPhoneNumber;
@@ -34,6 +36,9 @@
 @property NSString* fileMimeType;
 @property BOOL isEdit;
 @property NSData* imgData;
+@property NSArray *genderOptions;
+@property UIPickerView *pickerView;
+@property Option *selectedOption;
 
 @end
 
@@ -59,6 +64,10 @@
     [gesture setCancelsTouchesInView:NO];
     [self.view addGestureRecognizer:gesture];
     // Do any additional setup after loading the view.
+    
+    self.pickerView = [[UIPickerView alloc] init];
+    self.pickerView.dataSource = self;
+    self.pickerView.delegate = self;
 }
 
 - (void)handleTap
@@ -87,7 +96,26 @@
     self.txtDateOfBirth.text = [MPMUserInfo getUserInfo][@"dob"];
     self.txtIdCardNumber.text = [MPMUserInfo getUserInfo][@"ktp"];
     self.txtTempatLahir.text = [MPMUserInfo getUserInfo][@"placeOfBirth"];
+    self.txtNamaDealer.text = [MPMUserInfo getUserInfo][@"dealer_name"];
+    self.txtAddressDealer.text = [MPMUserInfo getUserInfo][@"dealer_address"];
+    self.txtNamaCabang.text = [MPMUserInfo getUserInfo][@"namaCabang"];
+    self.txtGender.text = [MPMUserInfo getUserInfo][@"gender"];
     
+    [SVProgressHUD show];
+    __weak typeof (self) weakSelf = self;
+    [DropdownModel getDropdownForType:@"getJenisKelamin" completion:^(NSArray *options, NSError *error) {
+        weakSelf.genderOptions = options;
+        [weakSelf.pickerView reloadAllComponents];
+        
+        self.txtGender.inputView = self.pickerView;
+        
+        NSArray *option = [self.genderOptions filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self.primaryKey = %li", [[MPMUserInfo getUserInfo][@"gender"] integerValue]]];
+        if (option.count) {
+            self.selectedOption = (Option *) option.firstObject;
+            self.txtGender.text = self.selectedOption.name;
+        }
+        [SVProgressHUD dismiss];
+    }];
 }
 
 - (IBAction)goToChangePasswordPage:(id)sender {
@@ -101,8 +129,16 @@
     [MPMUserInfo deleteUserInfo];
     self.txtEmail.text = @"";
     self.txtFullName.text = @"";
+    self.txtUserID.text = @"";
+    self.txtPhoneNumber.text = @"";
+    self.txtAddress.text = @"";
     self.txtDateOfBirth.text = @"";
     self.txtIdCardNumber.text = @"";
+    self.txtTempatLahir.text = @"";
+    self.txtNamaDealer.text = @"";
+    self.txtAddressDealer.text = @"";
+    self.txtNamaCabang.text = @"";
+    self.txtGender.text = @"";
     
     if (self.menuViewDelegate) [self.menuViewDelegate selectMenuAtIndex:kHome];
 }
@@ -113,9 +149,83 @@
 }
 
 #pragma mark - Table view delegate
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // the tableview can't be selected 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    CGFloat height = [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    if (indexPath.section == 1 && indexPath.row == 0) { //nama cabang
+        if ([[MPMUserInfo getRole] isEqualToString:kRoleCustomer] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleDealer] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleAgent]) {
+            height = 0;
+        }
+    }
+    
+    if (indexPath.section == 1 && indexPath.row == 3) { //no KTP
+        if ([[MPMUserInfo getRole] isEqualToString:kRoleDedicated] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleSupervisor] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleBM] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleOfficer]) {
+            height = 0;
+        }
+    }
+    
+    if (indexPath.section == 1 && indexPath.row == 4) { //nama dealer
+        if ([[MPMUserInfo getRole] isEqualToString:kRoleCustomer] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleAgent] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleDedicated] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleSupervisor] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleBM] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleOfficer]) {
+            height = 0;
+        }
+    }
+    
+    if (indexPath.section == 1 && indexPath.row == 7) { //tanggal lahir
+        if ([[MPMUserInfo getRole] isEqualToString:kRoleDedicated] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleSupervisor] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleBM] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleOfficer]) {
+            height = 0;
+        }
+    }
+    
+    if (indexPath.section == 1 && indexPath.row == 8) { //tempat lahir
+        if ([[MPMUserInfo getRole] isEqualToString:kRoleDedicated] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleSupervisor] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleBM] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleOfficer]) {
+            height = 0;
+        }
+    }
+    
+    if (indexPath.section == 1 && indexPath.row == 9) { //alamat
+        if ([[MPMUserInfo getRole] isEqualToString:kRoleDedicated] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleSupervisor] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleBM] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleOfficer]) {
+            height = 0;
+        }
+    }
+    
+    if (indexPath.section == 1 && indexPath.row == 10) { //alamat dealer
+        if ([[MPMUserInfo getRole] isEqualToString:kRoleCustomer] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleAgent] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleDedicated] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleSupervisor] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleBM] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleOfficer]) {
+            height = 0;
+        }
+    }
+    
+    if (indexPath.section == 1 && indexPath.row == 11) { //jenis kelamin
+        if ([[MPMUserInfo getRole] isEqualToString:kRoleDedicated] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleSupervisor] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleBM] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleOfficer]) {
+            height = 0;
+        }
+    }
+    return height;
 }
 
 - (IBAction)changeProfilePicture:(id)sender {
@@ -190,8 +300,12 @@
                                         @"dob": self.txtDateOfBirth.text,
                                         @"placeOfBirth": self.txtTempatLahir.text,
                                         @"address": self.txtAddress.text,
-                                        @"gender": self.txtGender.text,
+                                        @"gender": @(self.selectedOption.primaryKey),
                                         @"phone": self.txtPhoneNumber.text,
+                                        @"userId" : self.txtUserID.text,
+                                        @"dealer_name" : self.txtNamaDealer.text,
+                                        @"dealer_address" : self.txtAddressDealer.text,
+                                        @"namaCabang" : self.txtNamaCabang.text,
                                         @"photo": [MPMGlobal encodeToBase64String:self.profilePictureImageView.image]
                                         }
                                 };
@@ -234,6 +348,8 @@
     [_txtAddressDealer setEnabled:enable];
     [_txtGender setEnabled:enable];
     [_txtNamaDealer setEnabled:enable];
+    [_txtNamaCabang setEnabled:enable];
+    [_txtUserID setEnabled:enable];
 }
 
 -(void)onDatePickerValueChanged:(UIDatePicker*)datePicker
@@ -242,6 +358,42 @@
     [dateFormatter setDateFormat:@"dd-MM-YYYY"];
     self.txtDateOfBirth.text = [dateFormatter stringFromDate:datePicker.date];
     
+}
+
+#pragma mark - Picker View
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    return self.genderOptions.count;
+}
+
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component{
+    return 30;
+}
+
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(nullable UIView *)view{
+    if (view == nil) view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)];
+    UILabel *label = [[UILabel alloc] initWithFrame:view.frame];
+    label.textAlignment = NSTextAlignmentCenter;
+    
+    Option *option = [self.genderOptions objectAtIndex:row];
+    if (option) {
+        label.text = option.name;
+    } else {
+        label.text = @"";
+    }
+    [view addSubview:label];
+    return view;
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+    Option *option = [self.genderOptions objectAtIndex:row];
+    if (option) {
+        self.selectedOption = option;
+        self.txtGender.text = self.selectedOption.name;
+    }
 }
 
 /*
