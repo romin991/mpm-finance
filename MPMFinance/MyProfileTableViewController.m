@@ -106,8 +106,16 @@
     [MPMUserInfo deleteUserInfo];
     self.txtEmail.text = @"";
     self.txtFullName.text = @"";
+    self.txtUserID.text = @"";
+    self.txtPhoneNumber.text = @"";
+    self.txtAddress.text = @"";
     self.txtDateOfBirth.text = @"";
     self.txtIdCardNumber.text = @"";
+    self.txtTempatLahir.text = @"";
+    self.txtNamaDealer.text = @"";
+    self.txtAddressDealer.text = @"";
+    self.txtNamaCabang.text = @"";
+    self.txtGender.text = @"";
     
     if (self.menuViewDelegate) [self.menuViewDelegate selectMenuAtIndex:kHome];
 }
@@ -271,6 +279,10 @@
                                         @"address": self.txtAddress.text,
                                         @"gender": self.txtGender.text,
                                         @"phone": self.txtPhoneNumber.text,
+                                        @"userId" : self.txtUserID.text,
+                                        @"dealer_name" : self.txtNamaDealer.text,
+                                        @"dealer_address" : self.txtAddressDealer.text,
+                                        @"namaCabang" : self.txtNamaCabang.text,
                                         @"photo": [MPMGlobal encodeToBase64String:self.profilePictureImageView.image]
                                         }
                                 };
@@ -313,6 +325,8 @@
     [_txtAddressDealer setEnabled:enable];
     [_txtGender setEnabled:enable];
     [_txtNamaDealer setEnabled:enable];
+    [_txtNamaCabang setEnabled:enable];
+    [_txtUserID setEnabled:enable];
 }
 
 -(void)onDatePickerValueChanged:(UIDatePicker*)datePicker
