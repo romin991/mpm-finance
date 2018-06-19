@@ -15,9 +15,11 @@
 #import "LanguageManager.h"
 #import "AppDelegate.h"
 @interface MenuViewController ()<UITabBarDelegate>
+@property (weak, nonatomic) IBOutlet UIButton *languageButton;
 @property (weak, nonatomic) IBOutlet UITabBar *tabBar;
 @property (weak, nonatomic) IBOutlet UIView *signInView;
 @property (weak, nonatomic) IBOutlet UITabBarItem *tabHistoryNotif;
+@property (weak, nonatomic) IBOutlet UIImageView *flagIcon;
 
 @property NSArray *guestMenu;
 @property NSArray *memberMenu;
@@ -40,10 +42,16 @@
 }
 
 - (IBAction)changeLanguage:(id)sender {
-    if ([[LanguageManager currentLanguageCode] isEqualToString:@"id"])
+    if ([[LanguageManager currentLanguageCode] isEqualToString:@"id"]){
+        self.flagIcon.image = [UIImage imageNamed:@"uk-flag"];
+        [self.languageButton setTitle:@"English" forState:UIControlStateNormal];
         [LanguageManager saveLanguageByIndex:0];
-    else
+    }
+    else {
+        self.flagIcon.image = [UIImage imageNamed:@"ico-id"];
+        [self.languageButton setTitle:@"Indonesia" forState:UIControlStateNormal];
         [LanguageManager saveLanguageByIndex:1];
+    }
     
     [self reloadRootViewController];
 }
