@@ -15,6 +15,18 @@
 #import "UploadPhotoTableViewCell.h"
 #import "FloatLabeledTextFieldCell.h"
 
+@interface XLFormDescriptor ()
+
+@property NSArray * allSections;
+
+@end
+
+@interface XLFormSectionDescriptor ()
+
+@property NSArray *allRows;
+
+@end
+
 @interface SurveyFormViewController ()
 
 @property RLMResults *forms;
@@ -103,7 +115,7 @@
     
     dispatch_group_notify(group, queue, ^{
         for (XLFormSectionDescriptor *section in _formDescriptor.formSections) {
-            for (XLFormRowDescriptor *row in section.formRows) {
+            for (XLFormRowDescriptor *row in section.allRows) {
                 if ([row.tag isEqualToString:@"tambahInformasiSurveyLingkungan"]){
                     row.action.formSelector = @selector(addDataButtonClicked:);
                 }
@@ -170,6 +182,12 @@
             [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:2];
         }
     }
+    if ([row.tag isEqualToString:@"ketDomisili"]) {
+        row.hidden = @NO;
+    }
+    if ([row.tag isEqualToString:@"namaOrganisasi"]) {
+        row.hidden = @YES;
+    }
 }
 
 - (void)checkError:(NSError *)error completion:(void(^)())block{
@@ -225,7 +243,7 @@
 - (void)addDataButtonClicked:(id)sender{
     XLFormSectionDescriptor *section = [self.form formSectionAtIndex:2];
     XLFormSectionDescriptor *newSection = [XLFormSectionDescriptor formSectionWithTitle:section.title];
-    for (XLFormRowDescriptor *row in section.formRows) {
+    for (XLFormRowDescriptor *row in section.allRows) {
         XLFormRowDescriptor *newRow = [XLFormRowDescriptor formRowDescriptorWithTag:row.tag rowType:row.rowType title:row.title];
         newRow.required = row.required;
         newRow.disabled = row.disabled;
@@ -297,6 +315,44 @@
             XLFormRowDescriptor *row = [self.form formRowWithTag:@"patokanDktRmhLainnya"];
             row.hidden = @YES;
             [self reloadFormRow:row];
+        }
+    }
+    
+    if ([formRow.tag isEqualToString:@"kebenaranDomisili"]) {
+        XLFormRowDescriptor *selectedRow;
+        for (XLFormSectionDescriptor *section in self.form.allSections){
+            for (XLFormRowDescriptor *row in section.allRows) {
+                if ([row.tag isEqualToString:@"ketDomisili"] && [row.sectionDescriptor isEqual:formRow.sectionDescriptor]) {
+                    selectedRow = row;
+                }
+            }
+        }
+        
+        if ([newValue integerValue] == 1) {
+            selectedRow.hidden = @YES;
+            [self reloadFormRow:selectedRow];
+        } else {
+            selectedRow.hidden = @NO;
+            [self reloadFormRow:selectedRow];
+        }
+    }
+    
+    if ([formRow.tag isEqualToString:@"debiturOrganisasi"]) {
+        XLFormRowDescriptor *selectedRow;
+        for (XLFormSectionDescriptor *section in self.form.allSections){
+            for (XLFormRowDescriptor *row in section.allRows) {
+                if ([row.tag isEqualToString:@"namaOrganisasi"] && [row.sectionDescriptor isEqual:formRow.sectionDescriptor]) {
+                    selectedRow = row;
+                }
+            }
+        }
+        
+        if ([newValue integerValue] == 1) {
+            selectedRow.hidden = @NO;
+            [self reloadFormRow:selectedRow];
+        } else {
+            selectedRow.hidden = @YES;
+            [self reloadFormRow:selectedRow];
         }
     }
 }
