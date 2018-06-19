@@ -231,6 +231,9 @@
                                @"namaKepalaCabang" : data[@"nama_branch_marketing"],
                                @"namaMarketing" : data[@"nama_marketing"],
                                @"rca" : data[@"rca"],
+                               @"redzone" : @{@"redzone" : data[@"redzone"],
+                                              @"pep" : data[@"pep"],
+                                              },
                                
                                @"statusGrouping" : data[@"status_grouping"],
                                }];

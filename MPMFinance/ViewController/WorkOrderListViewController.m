@@ -83,6 +83,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.navigationController.navigationBar.translucent = NO;
     // Do any additional setup after loading the view from its nib.
     [self setDataSources];
     [self setTitle:self.menu.title];

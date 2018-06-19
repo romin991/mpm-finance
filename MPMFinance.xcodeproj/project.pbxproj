@@ -124,6 +124,8 @@
 		4849EEE21EC8815000415E4B /* FormViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4849EEE01EC8815000415E4B /* FormViewController.xib */; };
 		484ADB201F0CE3C10006BCB0 /* IntakeBPKBModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 484ADB1F1F0CE3C10006BCB0 /* IntakeBPKBModel.m */; };
 		484ADB231F0CEDCE0006BCB0 /* SuggestionComplaintModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 484ADB221F0CEDCE0006BCB0 /* SuggestionComplaintModel.m */; };
+		4861771020D95411006AF8A6 /* RedzoneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4861770E20D95411006AF8A6 /* RedzoneTableViewCell.m */; };
+		4861771120D95411006AF8A6 /* RedzoneTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4861770F20D95411006AF8A6 /* RedzoneTableViewCell.xib */; };
 		4866A89A1ECD8B2200A89E98 /* FloatLabeledTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4866A8991ECD8B2200A89E98 /* FloatLabeledTextFieldCell.m */; };
 		487A3AF820C0E067005FA4A8 /* ReasonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 487A3AF620C0E067005FA4A8 /* ReasonViewController.m */; };
 		487A3AF920C0E067005FA4A8 /* ReasonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 487A3AF720C0E067005FA4A8 /* ReasonViewController.xib */; };
@@ -413,6 +415,9 @@
 		484ADB1F1F0CE3C10006BCB0 /* IntakeBPKBModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IntakeBPKBModel.m; path = Model/IntakeBPKBModel.m; sourceTree = "<group>"; };
 		484ADB211F0CEDCE0006BCB0 /* SuggestionComplaintModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SuggestionComplaintModel.h; path = Model/SuggestionComplaintModel.h; sourceTree = "<group>"; };
 		484ADB221F0CEDCE0006BCB0 /* SuggestionComplaintModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SuggestionComplaintModel.m; path = Model/SuggestionComplaintModel.m; sourceTree = "<group>"; };
+		4861770D20D95411006AF8A6 /* RedzoneTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RedzoneTableViewCell.h; path = ViewController/RedzoneTableViewCell.h; sourceTree = "<group>"; };
+		4861770E20D95411006AF8A6 /* RedzoneTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RedzoneTableViewCell.m; path = ViewController/RedzoneTableViewCell.m; sourceTree = "<group>"; };
+		4861770F20D95411006AF8A6 /* RedzoneTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RedzoneTableViewCell.xib; path = ViewController/RedzoneTableViewCell.xib; sourceTree = "<group>"; };
 		4866A8981ECD8B2200A89E98 /* FloatLabeledTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatLabeledTextFieldCell.h; sourceTree = "<group>"; };
 		4866A8991ECD8B2200A89E98 /* FloatLabeledTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatLabeledTextFieldCell.m; sourceTree = "<group>"; };
 		487A3AF520C0E067005FA4A8 /* ReasonViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ReasonViewController.h; path = ViewController/ReasonViewController.h; sourceTree = "<group>"; };
@@ -998,6 +1003,16 @@
 			name = API;
 			sourceTree = "<group>";
 		};
+		4861770C20D953F2006AF8A6 /* Redzone */ = {
+			isa = PBXGroup;
+			children = (
+				4861770D20D95411006AF8A6 /* RedzoneTableViewCell.h */,
+				4861770E20D95411006AF8A6 /* RedzoneTableViewCell.m */,
+				4861770F20D95411006AF8A6 /* RedzoneTableViewCell.xib */,
+			);
+			name = Redzone;
+			sourceTree = "<group>";
+		};
 		4886BAFE1EC4A0F7000F8DBE /* Object */ = {
 			isa = PBXGroup;
 			children = (
@@ -1091,6 +1106,7 @@
 		48CDD8281EC9B1C20038D626 /* DataMAPViewController */ = {
 			isa = PBXGroup;
 			children = (
+				4861770C20D953F2006AF8A6 /* Redzone */,
 				48CDD8291EC9B1FB0038D626 /* SimpleListViewController.h */,
 				48CDD82A1EC9B1FB0038D626 /* SimpleListViewController.m */,
 				48CDD82B1EC9B1FB0038D626 /* SimpleListViewController.xib */,
@@ -1486,6 +1502,7 @@
 				4846271F1F1A0C3B0049A92A /* AssignMarketingListViewController.xib in Resources */,
 				481C42A71F03BAEB007D5C3C /* AcceleratedRepaymentFormViewController.xib in Resources */,
 				4831CD201EDE97A6001EF223 /* SubmenuCollectionViewController.xib in Resources */,
+				4861771120D95411006AF8A6 /* RedzoneTableViewCell.xib in Resources */,
 				482652891EFBFA050002A606 /* NewCarFormViewController.xib in Resources */,
 				4825BFB91F5C3F4800D091AC /* CustomerGetCustomerTableViewCell.xib in Resources */,
 				48E3E92820B5C41700E8D170 /* DropdownWSViewController.xib in Resources */,
@@ -1604,6 +1621,7 @@
 				4866A89A1ECD8B2200A89E98 /* FloatLabeledTextFieldCell.m in Sources */,
 				4828B5B21F4AE1B50071E5FA /* CustomerGetCustomerModel.m in Sources */,
 				481C42861F00EF29007D5C3C /* WorkOrderListTableViewCell.m in Sources */,
+				4861771020D95411006AF8A6 /* RedzoneTableViewCell.m in Sources */,
 				4825BFAE1F5C3EED00D091AC /* IntakeBPKBTableViewCell.m in Sources */,
 				483F39251EC3085E00C03253 /* AppDelegate.m in Sources */,
 				4834284520C8FC0400B92944 /* ViewStepMonitoringTableViewCell.m in Sources */,

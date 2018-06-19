@@ -10,6 +10,7 @@
 #import <XLForm.h>
 #import "FloatLabeledTextFieldCell.h"
 #import "UploadPhotoTableViewCell.h"
+#import "RedzoneTableViewCell.h"
 
 @implementation Form
 
@@ -818,8 +819,13 @@
     
     //===
     section = [[FormSection alloc] init];
+    section.title = @"";
+    [section.rows addObject:[FormRow new:realm :0 :YES :YES :XLFormRowDescriptorTypeRedzone :@"Redzone" :@"redzone" :@""]];
+    [form.sections addObject:section];
+    
+    //===
+    section = [[FormSection alloc] init];
     section.title = @"Data RCA";
-    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Label" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"RCA" :@"" :@""]];
     [form.sections addObject:section];
     

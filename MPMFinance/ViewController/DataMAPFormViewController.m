@@ -16,6 +16,7 @@
 #import "DataMAPModel.h"
 #import "PostalCodeValueTransformer.h"
 #import "DropdownValueTransformer.h"
+#import "RedzoneTableViewCell.h"
 
 @interface DataMAPFormViewController ()
 
@@ -29,6 +30,8 @@
     [super viewDidLoad];
     self.navigationController.navigationBar.translucent = NO;
     // Do any additional setup after loading the view from its nib.
+    
+    [[XLFormViewController cellClassesForRowDescriptorTypes] setObject:@"RedzoneTableViewCell" forKey:XLFormRowDescriptorTypeRedzone];
     
     self.forms = [Form getFormForMenu:self.menu.primaryKey];
     Form *currentForm = [self.forms objectAtIndex:self.index];
