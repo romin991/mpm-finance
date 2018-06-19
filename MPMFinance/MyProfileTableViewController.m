@@ -11,8 +11,9 @@
 #import <UIImageView+AFNetworking.h>
 #import "ChangePasswordViewController.h"
 #import "MenuNavigationViewController.h"
+#import "DropdownModel.h"
 
-@interface MyProfileTableViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface MyProfileTableViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *txtNamaCabang;
 @property (weak, nonatomic) IBOutlet APAvatarImageView *profilePictureImageView;
@@ -35,6 +36,9 @@
 @property NSString* fileMimeType;
 @property BOOL isEdit;
 @property NSData* imgData;
+@property NSArray *genderOptions;
+@property UIPickerView *pickerView;
+@property Option *selectedOption;
 
 @end
 
@@ -60,6 +64,10 @@
     [gesture setCancelsTouchesInView:NO];
     [self.view addGestureRecognizer:gesture];
     // Do any additional setup after loading the view.
+    
+    self.pickerView = [[UIPickerView alloc] init];
+    self.pickerView.dataSource = self;
+    self.pickerView.delegate = self;
 }
 
 - (void)handleTap
@@ -93,6 +101,21 @@
     self.txtNamaCabang.text = [MPMUserInfo getUserInfo][@"namaCabang"];
     self.txtGender.text = [MPMUserInfo getUserInfo][@"gender"];
     
+    [SVProgressHUD show];
+    __weak typeof (self) weakSelf = self;
+    [DropdownModel getDropdownForType:@"getJenisKelamin" completion:^(NSArray *options, NSError *error) {
+        weakSelf.genderOptions = options;
+        [weakSelf.pickerView reloadAllComponents];
+        
+        self.txtGender.inputView = self.pickerView;
+        
+        NSArray *option = [self.genderOptions filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self.primaryKey = %li", [[MPMUserInfo getUserInfo][@"gender"] integerValue]]];
+        if (option.count) {
+            self.selectedOption = (Option *) option.firstObject;
+            self.txtGender.text = self.selectedOption.name;
+        }
+        [SVProgressHUD dismiss];
+    }];
 }
 
 - (IBAction)goToChangePasswordPage:(id)sender {
@@ -277,7 +300,7 @@
                                         @"dob": self.txtDateOfBirth.text,
                                         @"placeOfBirth": self.txtTempatLahir.text,
                                         @"address": self.txtAddress.text,
-                                        @"gender": self.txtGender.text,
+                                        @"gender": @(self.selectedOption.primaryKey),
                                         @"phone": self.txtPhoneNumber.text,
                                         @"userId" : self.txtUserID.text,
                                         @"dealer_name" : self.txtNamaDealer.text,
@@ -335,6 +358,42 @@
     [dateFormatter setDateFormat:@"dd-MM-YYYY"];
     self.txtDateOfBirth.text = [dateFormatter stringFromDate:datePicker.date];
     
+}
+
+#pragma mark - Picker View
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    return self.genderOptions.count;
+}
+
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component{
+    return 30;
+}
+
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(nullable UIView *)view{
+    if (view == nil) view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)];
+    UILabel *label = [[UILabel alloc] initWithFrame:view.frame];
+    label.textAlignment = NSTextAlignmentCenter;
+    
+    Option *option = [self.genderOptions objectAtIndex:row];
+    if (option) {
+        label.text = option.name;
+    } else {
+        label.text = @"";
+    }
+    [view addSubview:label];
+    return view;
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+    Option *option = [self.genderOptions objectAtIndex:row];
+    if (option) {
+        self.selectedOption = option;
+        self.txtGender.text = self.selectedOption.name;
+    }
 }
 
 /*
