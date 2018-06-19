@@ -48,7 +48,10 @@ NSString * const XLFormRowDescriptorTypeTakePhoto = @"XLFormRowDescriptorTypeTak
                 
             }];
         } else {
-            self.pictureImageView.image = [MPMGlobal decodeFromBase64String:self.rowDescriptor.value];
+            UIImage *image = [MPMGlobal decodeFromBase64String:self.rowDescriptor.value];
+            if (image) {
+                self.pictureImageView.image = image;
+            }
         }
     }
 }
