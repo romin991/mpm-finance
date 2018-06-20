@@ -58,7 +58,7 @@
 }
 -(void)loadMoreData
 {
-    [self loadDataForPage:_currentPage++];
+    [self loadDataForPage:_currentPage+=1];
 }
 
 -(void)loadDataForPage:(int)page
