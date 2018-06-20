@@ -316,10 +316,13 @@
                 }
                 
                 NSString *groupLevel = self.list.groupLevel;
-                if (([self.parentMenu.primaryKey isEqualToString:kSubmenuListWorkOrder] ||
-                     [self.parentMenu.primaryKey isEqualToString:kSubmenuMonitoring] ) &&
-                    ![row.tag isEqualToString:@"next"] &&
-                    [groupLevel isEqualToString:kGroupLevelOfficer]) {
+                if ((([self.parentMenu.primaryKey isEqualToString:kSubmenuListWorkOrder] &&
+                    (([[MPMUserInfo getRole] isEqualToString:kRoleSupervisor] ||
+                     [[MPMUserInfo getRole] isEqualToString:kRoleBM]) ||
+                     [groupLevel isEqualToString:kGroupLevelOfficer] )) ||
+                    [self.parentMenu.primaryKey isEqualToString:kSubmenuMonitoring]) &&
+                    ![row.tag isEqualToString:@"next"]
+                    ) {
                     
                     row.disabled = @YES;
                 }
@@ -355,13 +358,24 @@
 }
 
 - (void)nextButtonClicked:(id)sender{
-    NSArray *inputErrors = [self validateForm];
-    if (inputErrors.count > 0)
-    {
-        [SVProgressHUD showErrorWithStatus:((NSError *)inputErrors.firstObject).localizedDescription];
-        [SVProgressHUD dismissWithDelay:1.5];
-        return;
+    NSString *groupLevel = self.list.groupLevel;
+    if (([self.parentMenu.primaryKey isEqualToString:kSubmenuListWorkOrder] &&
+          (([[MPMUserInfo getRole] isEqualToString:kRoleSupervisor] ||
+            [[MPMUserInfo getRole] isEqualToString:kRoleBM]) ||
+           [groupLevel isEqualToString:kGroupLevelOfficer] )) ||
+         [self.parentMenu.primaryKey isEqualToString:kSubmenuMonitoring]) {
+        
+        
+    } else {
+        NSArray *inputErrors = [self validateForm];
+        if (inputErrors.count > 0)
+        {
+            [SVProgressHUD showErrorWithStatus:((NSError *)inputErrors.firstObject).localizedDescription];
+            [SVProgressHUD dismissWithDelay:1.5];
+            return;
+        }
     }
+    
     Form *nextForm = [self.forms objectAtIndex:self.index + 1];
     if ([nextForm.title isEqualToString:@"Disclaimer"]) {
         //save to object, call delegate, then pop navigation

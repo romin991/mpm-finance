@@ -60,29 +60,31 @@
 }
 
 - (void)additionalRule{
-    if (self.list && [self.menu.primaryKey isEqualToString:kSubmenuListWorkOrder]) {
-        __weak typeof(self) weakSelf = self;
-        [SVProgressHUD show];
-        [DataMAPModel checkMAPSubmittedWithID:self.list.primaryKey completion:^(NSDictionary *response, NSError *error) {
-            if (error) {
-                [SVProgressHUD showErrorWithStatus:error.localizedDescription];
-                [SVProgressHUD dismissWithDelay:1.5];
-            } else {
-                @try {
-                    if ([[response objectForKey:@"pengajuan"] integerValue] == 0) {
-                        weakSelf.submenus = [[weakSelf.submenus objectsWhere:@"primaryKey != %@", kSubmenuDataMAP] objectsWhere:@"primaryKey != %@", kSubmenuSurvey];
-                    } else {
-                        [weakSelf.additionalSetting addEntriesFromDictionary:response];
+    if (![[MPMUserInfo getRole] isEqualToString:kRoleSupervisor] && ![[MPMUserInfo getRole] isEqualToString:kRoleBM]) {
+        if (self.list && [self.menu.primaryKey isEqualToString:kSubmenuListWorkOrder]) {
+            __weak typeof(self) weakSelf = self;
+            [SVProgressHUD show];
+            [DataMAPModel checkMAPSubmittedWithID:self.list.primaryKey completion:^(NSDictionary *response, NSError *error) {
+                if (error) {
+                    [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+                    [SVProgressHUD dismissWithDelay:1.5];
+                } else {
+                    @try {
+                        if ([[response objectForKey:@"pengajuan"] integerValue] == 0) {
+                            weakSelf.submenus = [[weakSelf.submenus objectsWhere:@"primaryKey != %@", kSubmenuDataMAP] objectsWhere:@"primaryKey != %@", kSubmenuSurvey];
+                        } else {
+                            [weakSelf.additionalSetting addEntriesFromDictionary:response];
+                        }
+                    } @catch (NSException *exception) {
+                        NSLog(@"%@", exception);
+                    } @finally {
+                        [self.tableView reloadData];
+                        [self.tableView layoutIfNeeded];
+                        [SVProgressHUD dismiss];
                     }
-                } @catch (NSException *exception) {
-                    NSLog(@"%@", exception);
-                } @finally {
-                    [self.tableView reloadData];
-                    [self.tableView layoutIfNeeded];
-                    [SVProgressHUD dismiss];
                 }
-            }
-        }];
+            }];
+        }
     }
 }
 
@@ -124,8 +126,8 @@
             [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
                 [self dismissViewControllerAnimated:YES completion:nil];
             }]];
-            BOOL isMarketing = ![[MPMUserInfo getRole] isEqualToString:kRoleSupervisor] && ![[MPMUserInfo getRole] isEqualToString:kRoleBM];
-            [actionSheet addAction:[UIAlertAction actionWithTitle: isMarketing?@"Edit":@"View" style:isMarketing? UIAlertActionStyleDestructive : UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            
+            [actionSheet addAction:[UIAlertAction actionWithTitle:@"Edit" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
                 SimpleListViewController *simpleListViewController = [[SimpleListViewController alloc] init];
                 simpleListViewController.menu = submenu;
                 simpleListViewController.list = weakSelf.list;
@@ -133,22 +135,20 @@
                 [weakSelf.navigationController pushViewController:simpleListViewController animated:YES];
                 [weakSelf dismissViewControllerAnimated:YES completion:nil];
             }]];
-            if (isMarketing) {
-                [actionSheet addAction:[UIAlertAction actionWithTitle:@"Submit" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-                    [SVProgressHUD show];
-                    [DataMAPModel postDataMAPWithID:self.list.primaryKey completion:^(NSDictionary *response, NSError *error) {
-                        if (error) {
-                            [SVProgressHUD showErrorWithStatus:error.localizedDescription];
-                            [SVProgressHUD dismissWithDelay:1.5];
-                        } else {
-                            [SVProgressHUD showSuccessWithStatus:@"Success"];
-                            [SVProgressHUD dismissWithDelay:1.5];
-                        }
-                    }];
-                    [weakSelf dismissViewControllerAnimated:YES completion:nil];
-                }]];
-            }
-            
+
+            [actionSheet addAction:[UIAlertAction actionWithTitle:@"Submit" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                [SVProgressHUD show];
+                [DataMAPModel postDataMAPWithID:self.list.primaryKey completion:^(NSDictionary *response, NSError *error) {
+                    if (error) {
+                        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+                        [SVProgressHUD dismissWithDelay:1.5];
+                    } else {
+                        [SVProgressHUD showSuccessWithStatus:@"Success"];
+                        [SVProgressHUD dismissWithDelay:1.5];
+                    }
+                }];
+                [weakSelf dismissViewControllerAnimated:YES completion:nil];
+            }]];
             
             [self presentViewController:actionSheet animated:YES completion:nil];
             
