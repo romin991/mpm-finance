@@ -134,11 +134,12 @@
         [self.navigationController.navigationController pushViewController:vc animated:YES];
         return;
     }
-    [WorkOrderModel getListWorkOrderDetailWithID:[self.data[indexPath.row][@"id"] integerValue] completion:^(NSDictionary *response, NSError *error) {
+    [WorkOrderModel getListWorkOrderDetailCompleteDataWithID:[self.data[indexPath.row][@"id"] integerValue] completion:^(NSDictionary *response, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             FormViewController *vc = [[FormViewController alloc] init];
             vc.menu = [Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi];
-            //vc.list =
+            vc.valueDictionary = [NSMutableDictionary dictionaryWithDictionary:response];
+            [self.navigationController.navigationController pushViewController:vc animated:YES];
         });
     }];
 }

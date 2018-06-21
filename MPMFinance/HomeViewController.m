@@ -115,7 +115,7 @@
     imageView.image = [UIImage imageNamed:menu.imageName];
     
     UILabel *label = (UILabel *) [cell viewWithTag:2];
-    label.text = menu.title;
+    label.text = NSLocalizedString(menu.title,@"");
     
     return cell;
 }

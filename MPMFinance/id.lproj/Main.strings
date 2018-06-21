@@ -135,7 +135,7 @@
 "J08-gv-g3M.normalTitle" = "Ubah Kata Sandi";
 
 /* Class = "UIButton"; normalTitle = "CANCEL"; ObjectID = "JSd-w8-UH0"; */
-"JSd-w8-UH0.normalTitle" = "CANCEL";
+"JSd-w8-UH0.normalTitle" = "BATAL";
 
 /* Class = "UITextField"; placeholder = "Username"; ObjectID = "Jpw-bk-0Fu"; */
 "Jpw-bk-0Fu.placeholder" = "Username";

@@ -44,7 +44,7 @@
     section.title = @"Data Pemohon";
     [section.rows addObject:[FormRow new:realm :1 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"No KTP*" :@"" :@"" regex:MPMRegexValidationNumberOnly message:@"No KTP must be number"]];
     [section.rows addObject:[FormRow new:realm :2 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Lengkap*" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :3 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Tempat Lahir*" :@"" :@"" regex:MPMRegexValidationAlphabetMin3Char message:@"Tempat Lahir minimum 3 characters"]];
+    [section.rows addObject:[FormRow new:realm :3 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Tempat Lahir*" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :4 :YES :YES :XLFormRowDescriptorTypeDateInline :@"Tanggal Lahir*" :@"" :@""]];
     
     [section.rows addObject:[FormRow new:realm :5 :YES :YES :XLFormRowDescriptorTypeSelectorPush :@"Jenis Kelamin" :@"" :@"getJenisKelamin"]];

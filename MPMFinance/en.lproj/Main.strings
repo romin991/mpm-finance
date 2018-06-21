@@ -132,7 +132,7 @@
 "IxK-Sn-iEU.placeholder" = "Old Password";
 
 /* Class = "UIButton"; normalTitle = "Ubah Kata Sandi"; ObjectID = "J08-gv-g3M"; */
-"J08-gv-g3M.normalTitle" = "Ubah Kata Sandi";
+"J08-gv-g3M.normalTitle" = "Change Password";
 
 /* Class = "UIButton"; normalTitle = "CANCEL"; ObjectID = "JSd-w8-UH0"; */
 "JSd-w8-UH0.normalTitle" = "CANCEL";
@@ -291,19 +291,19 @@
 "tuG-hi-PQc.text" = "Total Bayar Awal";
 
 /* Class = "UILabel"; text = "Alamat Dealer"; ObjectID = "u1S-4Y-dy7"; */
-"u1S-4Y-dy7.text" = "Alamat Dealer";
+"u1S-4Y-dy7.text" = "Dealer Address";
 
 /* Class = "UITextField"; placeholder = "ID Card Number"; ObjectID = "uOp-Fa-tbj"; */
 "uOp-Fa-tbj.placeholder" = "ID Card Number";
 
 /* Class = "UILabel"; text = "Jenis Kelamin"; ObjectID = "uRf-3X-1yf"; */
-"uRf-3X-1yf.text" = "Jenis Kelamin";
+"uRf-3X-1yf.text" = "Gender";
 
 /* Class = "UIButton"; normalTitle = "SUBMIT"; ObjectID = "uSG-IL-11p"; */
 "uSG-IL-11p.normalTitle" = "SUBMIT";
 
 /* Class = "UITextField"; placeholder = "No Telepon"; ObjectID = "vWp-Na-nM5"; */
-"vWp-Na-nM5.placeholder" = "No Telepon";
+"vWp-Na-nM5.placeholder" = "Telephone Number";
 
 /* Class = "UIButton"; normalTitle = "SIGN UP"; ObjectID = "vvW-qa-zAk"; */
 "vvW-qa-zAk.normalTitle" = "SIGN UP";

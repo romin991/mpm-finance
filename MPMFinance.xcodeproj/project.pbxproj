@@ -207,6 +207,7 @@
 		5CA4FA0C20B5B19C0053CDA1 /* SetAlternateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CA4FA0A20B5B19C0053CDA1 /* SetAlternateTableViewCell.xib */; };
 		5CA4FA0E20B5CEB10053CDA1 /* SetAlternateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CA4FA0D20B5CEB10053CDA1 /* SetAlternateViewController.xib */; };
 		5CBC4C771ECC8A67002ED03C /* MyProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CBC4C761ECC8A67002ED03C /* MyProfileTableViewController.m */; };
+		5CC67A0A20DBCF7A00CD186B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5CC67A0C20DBCF7A00CD186B /* Localizable.strings */; };
 		5CCD2A221EF9577D000336AF /* SendOTPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCD2A211EF9577D000336AF /* SendOTPViewController.m */; };
 		5CCD2D45209EF52000EBC76F /* KontrakKerjaDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCD2D43209EF52000EBC76F /* KontrakKerjaDetailViewController.m */; };
 		5CCD2D46209EF52000EBC76F /* KontrakKerjaDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CCD2D44209EF52000EBC76F /* KontrakKerjaDetailViewController.xib */; };
@@ -563,6 +564,8 @@
 		5CA4FA0D20B5CEB10053CDA1 /* SetAlternateViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetAlternateViewController.xib; sourceTree = "<group>"; };
 		5CBC4C751ECC8A67002ED03C /* MyProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProfileTableViewController.h; sourceTree = "<group>"; };
 		5CBC4C761ECC8A67002ED03C /* MyProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProfileTableViewController.m; sourceTree = "<group>"; };
+		5CC67A0B20DBCF7A00CD186B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5CC67A0D20DBCF7B00CD186B /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5CCD2A201EF9577D000336AF /* SendOTPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendOTPViewController.h; sourceTree = "<group>"; };
 		5CCD2A211EF9577D000336AF /* SendOTPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendOTPViewController.m; sourceTree = "<group>"; };
 		5CCD2D42209EF52000EBC76F /* KontrakKerjaDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KontrakKerjaDetailViewController.h; sourceTree = "<group>"; };
@@ -849,6 +852,7 @@
 				483F392E1EC3085E00C03253 /* LaunchScreen.storyboard */,
 				483F39311EC3085E00C03253 /* Info.plist */,
 				483F39201EC3085E00C03253 /* Supporting Files */,
+				5CC67A0C20DBCF7A00CD186B /* Localizable.strings */,
 			);
 			path = MPMFinance;
 			sourceTree = "<group>";
@@ -1429,6 +1433,7 @@
 			knownRegions = (
 				en,
 				Base,
+				id,
 			);
 			mainGroup = 483F39141EC3085E00C03253;
 			productRefGroup = 483F391E1EC3085E00C03253 /* Products */;
@@ -1458,6 +1463,7 @@
 				4825BF9B1F5C34CE00D091AC /* TopUpTableViewCell.xib in Resources */,
 				4834283A20C83FC900B92944 /* ViewStepMonitoringViewController.xib in Resources */,
 				4825BFC31F5C3F7B00D091AC /* InsuranceClaimTableViewController.xib in Resources */,
+				5CC67A0A20DBCF7A00CD186B /* Localizable.strings in Resources */,
 				5C4D5FB3208F5439004CA73E /* ProductViewController.xib in Resources */,
 				481C42AC1F03BB01007D5C3C /* IntakeBPKBFormViewController.xib in Resources */,
 				483F392B1EC3085E00C03253 /* Main.storyboard in Resources */,
@@ -1737,6 +1743,15 @@
 				5C3A1E6D20CE68130074322B /* id */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		5CC67A0C20DBCF7A00CD186B /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5CC67A0B20DBCF7A00CD186B /* en */,
+				5CC67A0D20DBCF7B00CD186B /* id */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

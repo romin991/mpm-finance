@@ -38,18 +38,22 @@
     self.guestMenu = [[NSArray alloc] initWithArray:guestMutableMenu];
     NSLog(@"%@",[MPMUserInfo getRole]);
     
+    if ([[LanguageManager currentLanguageCode] isEqualToString:@"id"]){
+        self.flagIcon.image = [UIImage imageNamed:@"uk-flag"];
+        [self.languageButton setTitle:@"English" forState:UIControlStateNormal];
+    }
+    else {
+        self.flagIcon.image = [UIImage imageNamed:@"ico-id"];
+        [self.languageButton setTitle:@"Indonesia" forState:UIControlStateNormal];
+    }
     // Do any additional setup after loading the view.
 }
 
 - (IBAction)changeLanguage:(id)sender {
     if ([[LanguageManager currentLanguageCode] isEqualToString:@"id"]){
-        self.flagIcon.image = [UIImage imageNamed:@"uk-flag"];
-        [self.languageButton setTitle:@"English" forState:UIControlStateNormal];
         [LanguageManager saveLanguageByIndex:0];
     }
     else {
-        self.flagIcon.image = [UIImage imageNamed:@"ico-id"];
-        [self.languageButton setTitle:@"Indonesia" forState:UIControlStateNormal];
         [LanguageManager saveLanguageByIndex:1];
     }
     
