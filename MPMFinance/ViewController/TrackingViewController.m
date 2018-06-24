@@ -71,6 +71,12 @@
 
 - (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker{
     CLLocationCoordinate2D location = marker.position;
+    GMSGeocoder *geocoder = [GMSGeocoder geocoder];
+    [geocoder reverseGeocodeCoordinate:location completionHandler:^(GMSReverseGeocodeResponse * _Nullable response, NSError * _Nullable error) {
+        GMSAddress *address = response.firstResult;
+        marker.snippet = [address.lines componentsJoinedByString:@"\n"];
+    }];
+    
     self.camera = [GMSCameraPosition cameraWithLatitude:location.latitude
                                               longitude:location.longitude
                                                    zoom:17];
