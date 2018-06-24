@@ -1413,7 +1413,7 @@
 				TargetAttributes = {
 					483F391C1EC3085E00C03253 = {
 						CreatedOnToolsVersion = 8.3.1;
-						DevelopmentTeam = 7WELLXNPG5;
+						DevelopmentTeam = 3SA922F5MJ;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -1855,12 +1855,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MPMFinance/MPMFinance.entitlements;
-				DEVELOPMENT_TEAM = 7WELLXNPG5;
+				DEVELOPMENT_TEAM = 3SA922F5MJ;
 				GCC_PREFIX_HEADER = MPMFinance/PrefixHeader.pch;
 				INFOPLIST_FILE = MPMFinance/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.infomedia.MPMFinance;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rudysuharyadi.MPMFinance;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1872,12 +1872,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MPMFinance/MPMFinance.entitlements;
-				DEVELOPMENT_TEAM = 7WELLXNPG5;
+				DEVELOPMENT_TEAM = 3SA922F5MJ;
 				GCC_PREFIX_HEADER = MPMFinance/PrefixHeader.pch;
 				INFOPLIST_FILE = MPMFinance/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.infomedia.MPMFinance;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rudysuharyadi.MPMFinance;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

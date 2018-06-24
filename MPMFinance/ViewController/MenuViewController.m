@@ -31,6 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshUI) name:@"UserLoginNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kickUser) name:@"UserKickNotification" object:nil];
     self.memberMenu = [[self.tabBar items] mutableCopy];
     NSMutableArray *guestMutableMenu = [[self.tabBar items] mutableCopy];
     [guestMutableMenu removeObjectAtIndex:3];
@@ -110,6 +111,15 @@
     }
     
 }
+
+- (void)kickUser{
+    [MPMUserInfo deleteUserInfo];
+    if (self.navigationController.viewControllers.count > 1) {
+        [self.navigationController popToRootViewControllerAnimated:true];
+    }
+    [self refreshUI];
+}
+
 -(void)viewWillDisappear:(BOOL)animated
 {
     [self.navigationController setNavigationBarHidden:NO animated:NO];

@@ -53,17 +53,23 @@
             
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             NSString *errorMessage = error.localizedDescription;
+            NSInteger statusCode = 0;
             @try{
                 NSDictionary *errorResponse = [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey]
                                                                               options:NSJSONReadingAllowFragments
                                                                                 error:nil];
                 errorMessage = [errorResponse objectForKey:@"message"];
+                statusCode = [[errorResponse objectForKey:@"statusCode"] integerValue];
             } @catch(NSException *exception) {
                 NSLog(@"%@", exception);
             }
             if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
                                                       code:1
                                                   userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(errorMessage, nil)}]);
+            
+            if (statusCode == 605) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"UserKickNotification" object:nil];
+            }
         }];
         
     } @catch (NSException *exception) {
@@ -115,17 +121,23 @@
             
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             NSString *errorMessage = error.localizedDescription;
+            NSInteger statusCode = 0;
             @try{
                 NSDictionary *errorResponse = [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey]
                                                                               options:NSJSONReadingAllowFragments
                                                                                 error:nil];
                 errorMessage = [errorResponse objectForKey:@"message"];
+                statusCode = [[errorResponse objectForKey:@"statusCode"] integerValue];
             } @catch(NSException *exception) {
                 NSLog(@"%@", exception);
             }
             if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
                                                       code:1
                                                   userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(errorMessage, nil)}]);
+            
+            if (statusCode == 605) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"UserKickNotification" object:nil];
+            }
         }];
         
     } @catch (NSException *exception) {
@@ -183,17 +195,23 @@
             
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             NSString *errorMessage = error.localizedDescription;
+            NSInteger statusCode = 0;
             @try{
                 NSDictionary *errorResponse = [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey]
                                                                               options:NSJSONReadingAllowFragments
                                                                                 error:nil];
                 errorMessage = [errorResponse objectForKey:@"message"];
+                statusCode = [[errorResponse objectForKey:@"statusCode"] integerValue];
             } @catch(NSException *exception) {
                 NSLog(@"%@", exception);
             }
             if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
                                                       code:1
                                                   userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(errorMessage, nil)}]);
+            
+            if (statusCode == 605) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"UserKickNotification" object:nil];
+            }
         }];
         
     } @catch (NSException *exception) {
@@ -234,17 +252,23 @@
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSString *errorMessage = error.localizedDescription;
+        NSInteger statusCode = 0;
         @try{
             NSDictionary *errorResponse = [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey]
                                                                           options:NSJSONReadingAllowFragments
                                                                             error:nil];
             errorMessage = [errorResponse objectForKey:@"message"];
+            statusCode = [[errorResponse objectForKey:@"statusCode"] integerValue];
         } @catch(NSException *exception) {
             NSLog(@"%@", exception);
         }
         if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
                                                   code:1
                                               userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(errorMessage, nil)}]);
+        
+        if (statusCode == 605) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"UserKickNotification" object:nil];
+        }
     }];
 }
 
@@ -277,17 +301,23 @@
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSString *errorMessage = error.localizedDescription;
+        NSInteger statusCode = 0;
         @try{
             NSDictionary *errorResponse = [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey]
                                                                           options:NSJSONReadingAllowFragments
                                                                             error:nil];
             errorMessage = [errorResponse objectForKey:@"message"];
+            statusCode = [[errorResponse objectForKey:@"statusCode"] integerValue];
         } @catch(NSException *exception) {
             NSLog(@"%@", exception);
         }
         if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
                                                   code:1
                                               userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(errorMessage, nil)}]);
+        
+        if (statusCode == 605) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"UserKickNotification" object:nil];
+        }
     }];
 }
 
