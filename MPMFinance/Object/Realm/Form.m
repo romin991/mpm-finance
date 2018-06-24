@@ -303,8 +303,8 @@
     //===
     section = [[FormSection alloc] init];
     section.title = @"Data Vendor";
-    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Catatan TV" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :1 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Catatan SS" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeTextView :@"Catatan TV" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :1 :YES :NO :XLFormRowDescriptorTypeTextView :@"Catatan SS" :@"" :@""]];
    
     [form.sections addObject:section];
     
