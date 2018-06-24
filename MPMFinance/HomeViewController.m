@@ -23,7 +23,7 @@
 #import "MonitoringViewController.h"
 #import "ActivityHistoryViewController.h"
 #import "SetAlternateViewController.h"
-#import "TrackingOfficerViewController.h"
+#import "TrackingViewController.h"
 @interface HomeViewController ()<KASlideShowDelegate,KASlideShowDataSource, UICollectionViewDelegateFlowLayout>
 
 @property RLMResults *menus;
@@ -172,7 +172,7 @@
         [self.navigationController.navigationController pushViewController:vc animated:YES];
         
     } else if ([menu.menuType isEqualToString:kMenuTrackingMarketing]) {
-        TrackingOfficerViewController *vc = [[TrackingOfficerViewController alloc] init];
+        TrackingViewController *vc = [[TrackingViewController alloc] init];
         [self.navigationController.navigationController pushViewController:vc animated:YES];
         
     }

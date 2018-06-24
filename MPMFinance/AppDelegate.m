@@ -24,6 +24,7 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [GMSServices provideAPIKey:kAPIKey];
+    
     [PopulateRealmDatabase removeAllData];
     [PopulateRealmDatabase generateData];
 

@@ -17,6 +17,6 @@ target 'MPMFinance' do
     pod 'XLForm', '~> 4.0'
     pod 'APAvatarImageView'
     pod 'JVFloatLabeledTextField'
-    pod 'GoogleMaps', '= 2.1.0'
+    pod 'GoogleMaps'
     pod 'ASJDropDownMenu'
 end

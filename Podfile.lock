@@ -71,7 +71,7 @@ DEPENDENCIES:
   - ASJDropDownMenu
   - Firebase/Core
   - Firebase/Messaging
-  - GoogleMaps (= 2.1.0)
+  - GoogleMaps
   - IQKeyboardManager
   - JVFloatLabeledTextField
   - Realm (~> 2.7.0)
@@ -123,6 +123,6 @@ SPEC CHECKSUMS:
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
   XLForm: 04110197c12187dd28a6c7295d3d8b95f4fdb4de
 
-PODFILE CHECKSUM: 3e89ee35d5c5d8ca7afbbf67049fca2f0ac6a624
+PODFILE CHECKSUM: 2b81e77527349c054666e22b278b6c4324b61901
 
 COCOAPODS: 1.5.0

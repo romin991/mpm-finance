@@ -127,6 +127,9 @@
 		4861771020D95411006AF8A6 /* RedzoneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4861770E20D95411006AF8A6 /* RedzoneTableViewCell.m */; };
 		4861771120D95411006AF8A6 /* RedzoneTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4861770F20D95411006AF8A6 /* RedzoneTableViewCell.xib */; };
 		4866A89A1ECD8B2200A89E98 /* FloatLabeledTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4866A8991ECD8B2200A89E98 /* FloatLabeledTextFieldCell.m */; };
+		486CF51520DFB7CE00748A15 /* TrackingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 486CF51220DFB7CD00748A15 /* TrackingViewController.m */; };
+		486CF51620DFB7CE00748A15 /* TrackingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 486CF51420DFB7CD00748A15 /* TrackingViewController.xib */; };
+		486CF51920DFB7E900748A15 /* MapModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 486CF51820DFB7E900748A15 /* MapModel.m */; };
 		487A3AF820C0E067005FA4A8 /* ReasonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 487A3AF620C0E067005FA4A8 /* ReasonViewController.m */; };
 		487A3AF920C0E067005FA4A8 /* ReasonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 487A3AF720C0E067005FA4A8 /* ReasonViewController.xib */; };
 		487F39F61ED64F9400D6E580 /* APIModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 487F39F51ED64F9400D6E580 /* APIModel.m */; };
@@ -421,6 +424,11 @@
 		4861770F20D95411006AF8A6 /* RedzoneTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RedzoneTableViewCell.xib; path = ViewController/RedzoneTableViewCell.xib; sourceTree = "<group>"; };
 		4866A8981ECD8B2200A89E98 /* FloatLabeledTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatLabeledTextFieldCell.h; sourceTree = "<group>"; };
 		4866A8991ECD8B2200A89E98 /* FloatLabeledTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatLabeledTextFieldCell.m; sourceTree = "<group>"; };
+		486CF51220DFB7CD00748A15 /* TrackingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TrackingViewController.m; path = ViewController/TrackingViewController.m; sourceTree = "<group>"; };
+		486CF51320DFB7CD00748A15 /* TrackingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TrackingViewController.h; path = ViewController/TrackingViewController.h; sourceTree = "<group>"; };
+		486CF51420DFB7CD00748A15 /* TrackingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TrackingViewController.xib; path = ViewController/TrackingViewController.xib; sourceTree = "<group>"; };
+		486CF51720DFB7E900748A15 /* MapModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapModel.h; path = Model/MapModel.h; sourceTree = "<group>"; };
+		486CF51820DFB7E900748A15 /* MapModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapModel.m; path = Model/MapModel.m; sourceTree = "<group>"; };
 		487A3AF520C0E067005FA4A8 /* ReasonViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ReasonViewController.h; path = ViewController/ReasonViewController.h; sourceTree = "<group>"; };
 		487A3AF620C0E067005FA4A8 /* ReasonViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ReasonViewController.m; path = ViewController/ReasonViewController.m; sourceTree = "<group>"; };
 		487A3AF720C0E067005FA4A8 /* ReasonViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ReasonViewController.xib; path = ViewController/ReasonViewController.xib; sourceTree = "<group>"; };
@@ -879,7 +887,7 @@
 		483F39371EC3513800C03253 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				5C37215520B560DF00D7F037 /* spv */,
+				5C37215520B560DF00D7F037 /* Supervisor */,
 				480A7D0F20B32FAA0005CEB9 /* CustomCell */,
 				48E3E92320B5C3AA00E8D170 /* DropdownWS */,
 				481C428C1F03B8CA007D5C3C /* MarketingOfficerDedicated */,
@@ -1003,6 +1011,8 @@
 				5C8EB86C2095E28A006A3170 /* AcitivityHistoryModel.m */,
 				48A807F120BDAC7A005631F6 /* CalculatorMarketingModel.h */,
 				48A807F220BDAC7A005631F6 /* CalculatorMarketingModel.m */,
+				486CF51720DFB7E900748A15 /* MapModel.h */,
+				486CF51820DFB7E900748A15 /* MapModel.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -1015,6 +1025,23 @@
 				4861770F20D95411006AF8A6 /* RedzoneTableViewCell.xib */,
 			);
 			name = Redzone;
+			sourceTree = "<group>";
+		};
+		486CF51A20DFB80600748A15 /* Unused */ = {
+			isa = PBXGroup;
+			children = (
+				5C06B74A20BCD0B300D91035 /* SMCalloutView.h */,
+				5C06B74B20BCD0B300D91035 /* SMCalloutView.m */,
+				5C0314AD20B829A80046F420 /* TrackingOfficerViewController.h */,
+				5C0314AE20B829A80046F420 /* TrackingOfficerViewController.m */,
+				5C0314AF20B829A80046F420 /* TrackingOfficerViewController.xib */,
+				5C0314B220B842900046F420 /* TrackingAnnotationCalloutView.h */,
+				5C0314B320B842900046F420 /* TrackingAnnotationCalloutView.m */,
+				5C0314B420B842900046F420 /* TrackingAnnotationCalloutView.xib */,
+				5C0314B820B851900046F420 /* DetailTrackingAnnotation.h */,
+				5C0314B920B851900046F420 /* DetailTrackingAnnotation.m */,
+			);
+			name = Unused;
 			sourceTree = "<group>";
 		};
 		4886BAFE1EC4A0F7000F8DBE /* Object */ = {
@@ -1170,21 +1197,15 @@
 			name = ContactUsViewController;
 			sourceTree = "<group>";
 		};
-		5C0314B720B851650046F420 /* tracking */ = {
+		5C0314B720B851650046F420 /* Tracking */ = {
 			isa = PBXGroup;
 			children = (
-				5C06B74A20BCD0B300D91035 /* SMCalloutView.h */,
-				5C06B74B20BCD0B300D91035 /* SMCalloutView.m */,
-				5C0314AD20B829A80046F420 /* TrackingOfficerViewController.h */,
-				5C0314AE20B829A80046F420 /* TrackingOfficerViewController.m */,
-				5C0314AF20B829A80046F420 /* TrackingOfficerViewController.xib */,
-				5C0314B220B842900046F420 /* TrackingAnnotationCalloutView.h */,
-				5C0314B320B842900046F420 /* TrackingAnnotationCalloutView.m */,
-				5C0314B420B842900046F420 /* TrackingAnnotationCalloutView.xib */,
-				5C0314B820B851900046F420 /* DetailTrackingAnnotation.h */,
-				5C0314B920B851900046F420 /* DetailTrackingAnnotation.m */,
+				486CF51A20DFB80600748A15 /* Unused */,
+				486CF51320DFB7CD00748A15 /* TrackingViewController.h */,
+				486CF51220DFB7CD00748A15 /* TrackingViewController.m */,
+				486CF51420DFB7CD00748A15 /* TrackingViewController.xib */,
 			);
-			name = tracking;
+			name = Tracking;
 			sourceTree = "<group>";
 		};
 		5C2553BA20ADAFBD00CB543F /* Manager */ = {
@@ -1196,10 +1217,10 @@
 			name = Manager;
 			sourceTree = "<group>";
 		};
-		5C37215520B560DF00D7F037 /* spv */ = {
+		5C37215520B560DF00D7F037 /* Supervisor */ = {
 			isa = PBXGroup;
 			children = (
-				5C0314B720B851650046F420 /* tracking */,
+				5C0314B720B851650046F420 /* Tracking */,
 				5C37215920B5784200D7F037 /* MessageTableViewCell.h */,
 				5C37215A20B5784200D7F037 /* MessageTableViewCell.m */,
 				5CA4F9FB20B5A2100053CDA1 /* MessageDetailViewController.h */,
@@ -1224,7 +1245,7 @@
 				5CCF977E20B9A814001CF433 /* WorkOderTableViewCell.m */,
 				5CCF977F20B9A814001CF433 /* WorkOderTableViewCell.xib */,
 			);
-			name = spv;
+			name = Supervisor;
 			sourceTree = "<group>";
 		};
 		5C3A1E6420CE67DE0074322B /* Sources */ = {
@@ -1455,6 +1476,7 @@
 				48A807FE20BECAA8005631F6 /* ResultTableViewCell.xib in Resources */,
 				4825BFD21F5C3FCE00D091AC /* CustomerGetCustomerTableViewController.xib in Resources */,
 				5C4D5FC0208F5F0C004CA73E /* ProductDetailViewController.xib in Resources */,
+				486CF51620DFB7CE00748A15 /* TrackingViewController.xib in Resources */,
 				4825BFD71F5C44C800D091AC /* SuggestionTableViewCell.xib in Resources */,
 				483F392D1EC3085E00C03253 /* Assets.xcassets in Resources */,
 				481C42821F00EE23007D5C3C /* WorkOrderListViewController.xib in Resources */,
@@ -1582,6 +1604,7 @@
 				5C9B08F11EC9DB9300B5E9AC /* HistoryViewController.m in Sources */,
 				4825BFB81F5C3F4800D091AC /* CustomerGetCustomerTableViewCell.m in Sources */,
 				5C4D5FBA208F5C18004CA73E /* ProductCollectionViewCell.m in Sources */,
+				486CF51520DFB7CE00748A15 /* TrackingViewController.m in Sources */,
 				4825BFC71F5C3F8F00D091AC /* IntakeBPKBTableViewController.m in Sources */,
 				5C0314B520B842900046F420 /* TrackingAnnotationCalloutView.m in Sources */,
 				48D44D581EE83A2F005FC8DB /* SurveyModel.m in Sources */,
@@ -1655,6 +1678,7 @@
 				481C42B01F03BB22007D5C3C /* SuggestionComplainFormViewController.m in Sources */,
 				4848B1BF1F13842600C9DE21 /* AssetViewController.m in Sources */,
 				5C5C267A208E07B80025DCEB /* KontrakKerjaViewController.m in Sources */,
+				486CF51920DFB7E900748A15 /* MapModel.m in Sources */,
 				48F7F4061EC5C931008DB808 /* Role.m in Sources */,
 				4834283920C83FC900B92944 /* ViewStepMonitoringViewController.m in Sources */,
 				5CBC4C771ECC8A67002ED03C /* MyProfileTableViewController.m in Sources */,
