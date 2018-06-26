@@ -164,12 +164,31 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic may go here, for example:
     // Create the next view controller.
-    SetAlternateDetailViewController *detailViewController = [[SetAlternateDetailViewController alloc] initWithNibName:@"SetAlternateDetailViewController" bundle:nil];
-    detailViewController.data = self.data[indexPath.row];
-    // Pass the selected object to the new view controller.
+    NSDictionary *json = self.data[indexPath.row];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Pilih Menu" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *viewAction = [UIAlertAction actionWithTitle:@"View" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        SetAlternateDetailViewController *detailViewController = [[SetAlternateDetailViewController alloc] initWithNibName:@"SetAlternateDetailViewController" bundle:nil];
+        detailViewController.data = self.data[indexPath.row];
+        // Pass the selected object to the new view controller.
+        
+        // Push the view controller.
+        [self.navigationController pushViewController:detailViewController animated:YES];
+    }];
     
-    // Push the view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        [APIModel cancelAlternateWithId:json[@"id"] andDateBegin:json[@"date"] andMarketing:json[@"mkt"] withCompletion:^(NSString *responseString, NSError *error) {
+            [self loadFirstPage];
+        }];
+    }];
+    
+    [alert addAction:viewAction];
+    if ([json[@"isCancel"] isEqualToNumber:@0]) {
+        [alert addAction:cancelAction];
+    }
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    
 }
 
 

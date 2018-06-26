@@ -241,6 +241,23 @@
        
     }];
 }
++ (void) cancelAlternateWithId:(NSString *)idAlternate andDateBegin:(NSString *)dateBegin andMarketing:(NSString *)marketing withCompletion:(void(^)(NSString *responseString, NSError *error))block{
+    AFHTTPSessionManager *manager = [MPMGlobal sessionManager];
+    NSDictionary *param = @{ @"userid" : [MPMUserInfo getUserInfo][@"userId"],
+                             @"token" : [MPMUserInfo getToken],
+                             @"data" : @{@"id" : idAlternate,
+                                         @"dateBegin" : dateBegin,
+                                         @"marketing" : marketing
+                                         }
+                             };
+    [manager POST:[NSString stringWithFormat:@"%@/pengajuan2/cancelalternate",kApiUrl] parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
+        ;
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        block(responseObject,nil);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        block(nil,error);
+    }];
+}
 + (void) forgotPasswordWithUserName:(NSString *)username withCompletion:(void(^)(NSString *responseString, NSError *error))block{
     AFHTTPSessionManager *manager = [MPMGlobal sessionManager];
    // [manager.requestSerializer setValue:@"application/x-www-form-urlencoded; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];

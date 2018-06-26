@@ -81,7 +81,7 @@ DEPENDENCIES:
   - XLForm (~> 4.0)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - AFNetworking
     - APAvatarImageView
     - ASJDropDownMenu
@@ -125,4 +125,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 2b81e77527349c054666e22b278b6c4324b61901
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.3
