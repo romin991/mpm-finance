@@ -15,6 +15,7 @@
 @property NSArray *dropdownReasons;
 @property NSArray *dropdownListMarketing;
 @property NSArray *dropdownListMarketing2;
+@property BOOL isEdit;
 @end
 
 @implementation SetAlternateDetailViewController
@@ -25,12 +26,25 @@ NSString * const kValidationEndDate = @"kEndDate";
 NSString * const kValidationReason = @"kReason";
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.isEdit = NO;
     [self preloadDropdown];
     
-    UIBarButtonItem *rightBar = [[UIBarButtonItem alloc] initWithTitle:@"Submit" style:UIBarButtonItemStylePlain target:self action:@selector(submit:)];
+    UIBarButtonItem *rightBar;
+    
+    if (self.data) {
+        rightBar = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(edit:)];
+    } else {
+        rightBar = [[UIBarButtonItem alloc] initWithTitle:@"Submit" style:UIBarButtonItemStylePlain target:self action:@selector(submit:)];
+    }
     self.navigationItem.rightBarButtonItem = rightBar;
     self.title = @"Set Alternate";
     // Do any additional setup after loading the view from its nib.
+}
+- (void) edit:(id)sender {
+    self.isEdit = YES;
+    [self preloadDropdown];
+    UIBarButtonItem *rightBar = [[UIBarButtonItem alloc] initWithTitle:@"Submit" style:UIBarButtonItemStylePlain target:self action:@selector(submit:)];
+    self.navigationItem.rightBarButtonItem = rightBar;
 }
 - (void) submit:(id)sender{
     XLFormRowDescriptor *dateBeginRow = [self.form formRowWithTag:kValidationBeginDate];
@@ -42,9 +56,18 @@ NSString * const kValidationReason = @"kReason";
     XLFormRowDescriptor *replacementNameRow = [self.form formRowWithTag:kValidationReplacementName];
     NSString *replacementName = ((XLFormOptionsObject *)replacementNameRow.value).valueData;
     XLFormRowDescriptor *reasonRow = [self.form formRowWithTag:kValidationReason];
-    NSString *reason = [((XLFormOptionsObject *)reasonRow.value).valueData stringValue];
-    
-    [APIModel setAlternateWithWithDateBegin:dateBegin dateEnd:dateEnd marketing:name marketingAlternate:replacementName alasanId:reason Completion:^(NSString *data, NSError *error) {
+    NSString *reason;
+    if (self.isEdit) {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self.name = %@",reasonRow.value];
+        NSArray *result = [self.dropdownReasons filteredArrayUsingPredicate:predicate];
+        if (result.count > 0) {
+            Option *opsi = [result firstObject];
+            reason = [NSString stringWithFormat:@"%li",(long)opsi.primaryKey];
+        }
+    } else {
+        reason = [((XLFormOptionsObject *)reasonRow.value).valueData stringValue];
+    }
+    [APIModel setAlternateWithWithDateBegin:dateBegin dateEnd:dateEnd marketing:name marketingAlternate:replacementName alasanId:reason isEdit:self.isEdit idAlternate:self.data ?self.data[@"id"] : @"" Completion:^(NSString *data, NSError *error) {
         if (!error) {
             [self.navigationController popViewControllerAnimated:YES];
         }
@@ -114,7 +137,7 @@ NSString * const kValidationReason = @"kReason";
     row = [XLFormRowDescriptor formRowDescriptorWithTag:kValidationName rowType:XLFormRowDescriptorTypeSelectorPush title:@"Nama Marketing"];
     row.required = YES;
     if (self.data) {
-        [row setDisabled:@YES];
+        [row setDisabled:@(!self.isEdit)];
         row.value = self.data[@"mkt"];
     }
     
@@ -125,7 +148,7 @@ NSString * const kValidationReason = @"kReason";
    
     row.required = NO;
     if (self.data) {
-        [row setDisabled:@YES];
+        [row setDisabled:@(!self.isEdit)];
         row.value = self.data[@"mktAlternate"];
     }
     //[row addValidator:[XLFormValidator emailValidator]];
@@ -135,7 +158,7 @@ NSString * const kValidationReason = @"kReason";
     row = [XLFormRowDescriptor formRowDescriptorWithTag:kValidationBeginDate rowType:XLFormRowDescriptorTypeDateTime title:@"Tanggal Mulai"];
     row.required = YES;
     if (self.data) {
-        [row setDisabled:@YES];
+        [row setDisabled:@(!self.isEdit)];
         row.value = [MPMGlobal dateTimeFromString:self.data[@"date"]];
     }
     //[row addValidator:[XLFormRegexValidator formRegexValidatorWithMsg:@"At least 6, max 32 characters" regex:@"^(?=.*\\d)(?=.*[A-Za-z]).{6,32}$"]];
@@ -147,7 +170,7 @@ NSString * const kValidationReason = @"kReason";
     row.required = YES;
     //[row addValidator:[XLFormRegexValidator formRegexValidatorWithMsg:@"greater than 50 and less than 100" regex:@"^([5-9][0-9]|100)$"]];
     if (self.data) {
-        [row setDisabled:@YES];
+        [row setDisabled:@(!self.isEdit)];
         row.value = [MPMGlobal dateTimeFromString:self.data[@"date2"]];
     }
     [section addFormRow:row];
@@ -158,7 +181,7 @@ NSString * const kValidationReason = @"kReason";
     row.required = YES;
     //[row addValidator:[XLFormRegexValidator formRegexValidatorWithMsg:@"greater than 50 and less than 100" regex:@"^([5-9][0-9]|100)$"]];
     if (self.data) {
-        [row setDisabled:@YES];
+        [row setDisabled:@(!self.isEdit)];
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self.primaryKey = %i",[self.data[@"reason"] integerValue]];
         NSArray *result = [self.dropdownReasons filteredArrayUsingPredicate:predicate];
         if (result.count > 0) {

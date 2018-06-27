@@ -186,6 +186,8 @@
                                           marketing:(NSString *)marketing
                                  marketingAlternate:(NSString *)marketingAlternate
                                            alasanId:(NSString *)alasanId
+                                isEdit:(BOOL)isEdit
+                           idAlternate:(NSString *)idAlternate
                                          Completion:(void(^)(NSString *data, NSError *error))block {
     AFHTTPSessionManager *manager = [MPMGlobal sessionManager];
     NSDictionary *param = @{ @"userid" : [MPMUserInfo getUserInfo][@"userId"],
@@ -198,7 +200,22 @@
                                      @"alasan" : alasanId
                                      }
                              };
-    [manager POST:[NSString stringWithFormat:@"%@/pengajuan2/setalternate",kApiUrl] parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
+    NSString *urlString = [NSString stringWithFormat:@"%@/pengajuan2/setalternate",kApiUrl];
+    if (isEdit) {
+        urlString = [NSString stringWithFormat:@"%@/pengajuan2/editalternate",kApiUrl];
+        param = @{ @"userid" : [MPMUserInfo getUserInfo][@"userId"],
+                   @"token" : [MPMUserInfo getToken],
+                   @"data": @{
+                           @"id" : [NSString stringWithFormat:@"%@",idAlternate],
+                           @"dateBegin" : dateBegin,
+                           @"dateEnd" : dateEnd,
+                           @"marketing" : marketing,
+                           @"marketingAlternate" : marketingAlternate,
+                           @"alasan" : alasanId
+                           }
+                   };
+    }
+    [manager POST:urlString parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
         ;
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject objectForKey:@"data"]) {
