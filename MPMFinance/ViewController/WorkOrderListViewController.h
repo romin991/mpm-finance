@@ -12,5 +12,6 @@
 @interface WorkOrderListViewController : UIViewController
 
 @property Menu *menu;
+@property NSString *preferredType;
 
 @end

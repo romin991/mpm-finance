@@ -13,6 +13,9 @@
 #import "BarcodeViewController.h"
 #import "SubmenuViewController.h"
 #import "MenuViewController.h"
+#import "HomeViewController.h"
+#import "WorkOrderListViewController.h"
+#import "DataSource.h"
 
 @interface ReasonViewController ()<BarcodeDelegate>
 
@@ -79,17 +82,30 @@
 }
 
 - (void)finish{
-    if ([[MPMUserInfo getRole] isEqualToString:kRoleDedicated]) {
-        for (UIViewController *vc in self.navigationController.viewControllers) {
-            if ([vc isKindOfClass:[MenuViewController class]]) {
-                [self.navigationController popToViewController:vc animated:NO];
+    for (UIViewController *vc in self.navigationController.viewControllers) {
+        if ([vc isKindOfClass:[MenuViewController class]]){
+            MenuViewController *menuVC = (MenuViewController *)vc;
+            MenuNavigationViewController *menuNavigationVC = (MenuNavigationViewController *)[menuVC getContainerViewController];
+            UIViewController *viewController = [menuNavigationVC getSelectedViewController];
+            if ([viewController isKindOfClass:HomeViewController.class]) {
+                HomeViewController *homeVC = (HomeViewController *)viewController;
+                Menu *menu = [Menu getMenuForPrimaryKey:kMenuListWorkOrder];
+                BOOL isMenuAvailable = [homeVC isMenuAvailable:menu];
+                if (isMenuAvailable) {
+                    WorkOrderListViewController *listViewController = [[WorkOrderListViewController alloc] initWithNibName:@"WorkOrderListViewController" bundle:nil];
+                    listViewController.menu = menu;
+                    listViewController.preferredType = kDataSourceTypeBadUsers;
+                    [self.navigationController setViewControllers:@[vc, listViewController] animated:NO];
+                    
+                    return;
+                }
             }
         }
-    } else {
-        for (UIViewController *vc in self.navigationController.viewControllers) {
-            if ([vc isKindOfClass:[SubmenuViewController class]]) {
-                [self.navigationController popToViewController:vc animated:NO];
-            }
+    }
+
+    for (UIViewController *vc in self.navigationController.viewControllers) {
+        if ([vc isKindOfClass:[SubmenuViewController class]]) {
+            [self.navigationController popToViewController:vc animated:NO];
         }
     }
 }

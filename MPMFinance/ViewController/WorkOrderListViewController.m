@@ -89,8 +89,17 @@
     [self setDataSources];
     [self setTitle:self.menu.title];
     
-    self.page = 0;
     self.selectedIndex = 0;
+    if (self.preferredType.length > 0) {
+        for (DataSource *dataSource in self.dataSources) {
+            if ([dataSource.type isEqualToString:self.preferredType]) {
+                NSInteger index = [self.dataSources indexOfObject:dataSource];
+                self.selectedIndex = index;
+            }
+        }
+    }
+    
+    self.page = 0;
     __block WorkOrderListViewController *weakSelf = self;
     [self loadDataForSelectedIndex:self.selectedIndex andPage:self.page];
     
@@ -112,7 +121,7 @@
         [button setTitle:dataSource.name forState:UIControlStateNormal];
         [button setTag:i];
         [button addTarget:self action:@selector(segmentedButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-        if (i == 0){
+        if (i == self.selectedIndex){
             button.titleLabel.font = [UIFont fontWithName:@"Avenir-Heavy" size:18];
         } else {
             button.titleLabel.font = [UIFont fontWithName:@"Avenir-Book" size:18];

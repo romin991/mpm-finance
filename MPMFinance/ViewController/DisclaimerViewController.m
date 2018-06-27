@@ -15,6 +15,7 @@
 #import "HomeViewController.h"
 #import "MenuViewController.h"
 #import "WorkOrderListViewController.h"
+#import "DataSource.h"
 
 @interface DisclaimerViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate, BarcodeDelegate>
 
@@ -208,6 +209,7 @@
                 if (isMenuAvailable) {
                     WorkOrderListViewController *listViewController = [[WorkOrderListViewController alloc] initWithNibName:@"WorkOrderListViewController" bundle:nil];
                     listViewController.menu = menu;
+                    listViewController.preferredType = kDataSourceTypeAll;
                     [self.navigationController setViewControllers:@[vc, listViewController] animated:NO];
 
                     return;
