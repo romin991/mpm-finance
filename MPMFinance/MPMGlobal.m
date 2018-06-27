@@ -281,6 +281,24 @@ NSString *const kActionQueryDB = @"QueryDB";
     else return [formatter stringFromDate:date];
 }
 
++ (NSDate *)timeFromString:(NSString *)object{
+    // ISO8601DateFormatter *formatter = [self getISO8601DateFormatter];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"HH:mm:ss";
+    NSString *string = object;
+    if (string == nil || [string isKindOfClass:[NSNull class]])
+        return [NSDate dateWithTimeIntervalSince1970:0];
+    else
+        return [formatter dateFromString:string];
+}
++ (NSString *)stringFromTime:(NSDate *)object{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"HH:mm:ss";
+    NSDate *date = object;
+    if (date == nil || [date isKindOfClass:[NSNull class]]) return [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:0]];
+    else return [formatter stringFromDate:date];
+}
+
 + (NSString *)MD5fromString:(NSString *)input {
     
     const char * pointer = [input UTF8String];

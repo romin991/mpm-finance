@@ -159,4 +159,6 @@ extern NSString *const kActionTypeSelfCustomMethod;
 + (NSString *)formatToMoney:(NSNumber *)charge;
 + (NSDate *)dateTimeFromString:(NSString *)object;
 + (NSString *)stringFromDateTime:(NSDate *)object;
++ (NSString *)stringFromTime:(NSDate *)object;
++ (NSDate *)timeFromString:(NSString *)object;
 @end

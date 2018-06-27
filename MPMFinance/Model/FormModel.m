@@ -49,39 +49,57 @@
 
 + (void)saveValueFromSection:(XLFormSectionDescriptor *)formSectionDescriptor to:(NSMutableDictionary *)valueDictionary{
     for (XLFormRowDescriptor *row in formSectionDescriptor.formRows) {
-        if (valueDictionary == nil) valueDictionary = [NSMutableDictionary dictionary];
-        id object;
-        if ([row.value isKindOfClass:NSDate.class]){
-            object = [MPMGlobal stringFromDate:row.value];
-        } else if ([row.value isKindOfClass:XLFormOptionsObject.class]){
-            object = ((XLFormOptionsObject *) row.value).formValue;
-        } else if ([row.value isKindOfClass:PostalCode.class]){
-            object = ((PostalCode *) row.value).postalCode;
-        } else if ([row.value isKindOfClass:Asset.class]){
-            object = ((Asset *) row.value).value;
-        } else if ([row.value isKindOfClass:Data.class]){
-            object = ((Data *) row.value).value;
-        } else if ([row.value isKindOfClass:UIImage.class]){
-            object = UIImageJPEGRepresentation(row.value, 0.0f);
-        } else if ([row.value isKindOfClass:NSArray.class]) {
-            NSMutableArray *arrayOfValue = [NSMutableArray array];
-            for (id value in row.value) {
-                id tempValue = value;
-                if ([value isKindOfClass:XLFormOptionsObject.class]) {
-                    tempValue = ((XLFormOptionsObject*)value).valueData;
-                }
+        if (row.tag != nil) {
+            if (valueDictionary == nil) valueDictionary = [NSMutableDictionary dictionary];
+            id object;
+            if ([row.value isKindOfClass:NSDate.class]){
+                if ([row.rowType isEqualToString:XLFormRowDescriptorTypeTime] ||
+                    [row.rowType isEqualToString:XLFormRowDescriptorTypeTimeInline]) {
                     
-                NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:@{row.tag : tempValue}];
-                [arrayOfValue addObject:dictionary];
+                    object = [MPMGlobal stringFromTime:row.value];
+                    
+                } else if ([row.rowType isEqualToString:XLFormRowDescriptorTypeDate] ||
+                           [row.rowType isEqualToString:XLFormRowDescriptorTypeDateInline] ||
+                           [row.rowType isEqualToString:XLFormRowDescriptorTypeDatePicker]) {
+                    
+                    object = [MPMGlobal stringFromDate:row.value];
+                    
+                } else if ([row.rowType isEqualToString:XLFormRowDescriptorTypeDateTime] ||
+                           [row.rowType isEqualToString:XLFormRowDescriptorTypeDateTimeInline]) {
+                    
+                    object = [MPMGlobal stringFromDateTime:row.value];
+                    
+                }
+            } else if ([row.value isKindOfClass:XLFormOptionsObject.class]){
+                object = ((XLFormOptionsObject *) row.value).formValue;
+            } else if ([row.value isKindOfClass:PostalCode.class]){
+                object = ((PostalCode *) row.value).postalCode;
+            } else if ([row.value isKindOfClass:Asset.class]){
+                object = ((Asset *) row.value).value;
+            } else if ([row.value isKindOfClass:Data.class]){
+                object = ((Data *) row.value).value;
+            } else if ([row.value isKindOfClass:UIImage.class]){
+                object = UIImageJPEGRepresentation(row.value, 0.0f);
+            } else if ([row.value isKindOfClass:NSArray.class]) {
+                NSMutableArray *arrayOfValue = [NSMutableArray array];
+                for (id value in row.value) {
+                    id tempValue = value;
+                    if ([value isKindOfClass:XLFormOptionsObject.class]) {
+                        tempValue = ((XLFormOptionsObject*)value).valueData;
+                    }
+                    
+                    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:@{row.tag : tempValue}];
+                    [arrayOfValue addObject:dictionary];
+                }
+                object = arrayOfValue;
+            } else if (row.value != nil && ![row.value isKindOfClass:NSNull.class]){
+                object = row.value;
+            } else {
+                object = @"";
             }
-            object = arrayOfValue;
-        } else if (row.value != nil && ![row.value isKindOfClass:NSNull.class]){
-            object = row.value;
-        } else {
-            object = @"";
+            
+            if (object) [valueDictionary setObject:object forKey:row.tag];
         }
-        
-        if (object) [valueDictionary setObject:object forKey:row.tag];
     }
 }
 
