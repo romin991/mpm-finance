@@ -376,56 +376,51 @@
         }
     }
     
-    Form *nextForm = [self.forms objectAtIndex:self.index + 1];
-    if ([nextForm.title isEqualToString:@"Disclaimer"]) {
-        //save to object, call delegate, then pop navigation
-        [FormModel saveValueFrom:self.form to:self.valueDictionary];
-        DisclaimerViewController *disclaimerVC = [[DisclaimerViewController alloc] init];
-        disclaimerVC.valueDictionary = self.valueDictionary;
-        disclaimerVC.list = self.list;
-        disclaimerVC.parentMenu = self.parentMenu;
-        disclaimerVC.menu = self.menu;
-        [self.navigationController pushViewController:disclaimerVC animated:true];
+    NSArray *errors = [self formValidationErrors];
+    if (errors.count) {
+        [SVProgressHUD showErrorWithStatus:((NSError *)errors.firstObject).localizedDescription];
+        [SVProgressHUD dismissWithDelay:1.5];
         
     } else {
-        NSArray *errors = [self formValidationErrors];
-        if (errors.count) {
-            [SVProgressHUD showErrorWithStatus:((NSError *)errors.firstObject).localizedDescription];
-            [SVProgressHUD dismissWithDelay:1.5];
-            
-        } else {
-            [SVProgressHUD show];
-            [FormModel saveValueFrom:self.form to:self.valueDictionary];
-            __weak typeof(self) weakSelf = self;
-            
-            if ([self.parentMenu.primaryKey isEqualToString:kSubmenuListWorkOrder]) {
-                [weakSelf goToNextForm];
+        [SVProgressHUD show];
+        [FormModel saveValueFrom:self.form to:self.valueDictionary];
+        __weak typeof(self) weakSelf = self;
+        
+        [WorkOrderModel postDraftWorkOrder:self.list dictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
+            if (error) {
+                [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+                [SVProgressHUD dismissWithDelay:1.5];
                 
             } else {
-                [WorkOrderModel postDraftWorkOrder:self.list dictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
-                    if (error) {
-                        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
-                        [SVProgressHUD dismissWithDelay:1.5];
-                        
-                    } else {
-                        if (weakSelf.list == nil) {
-                            @try {
-                                List *list = [[List alloc] init];
-                                list.primaryKey = [[[dictionary objectForKey:@"data"] objectForKey:@"id"] integerValue];
-                                if (list.primaryKey) {
-                                    weakSelf.list = list;
-                                }
-                            } @catch (NSException *exception){
-                                NSLog(@"%@", exception);
-                            }
+                if (weakSelf.list == nil) {
+                    @try {
+                        List *list = [[List alloc] init];
+                        list.primaryKey = [[[dictionary objectForKey:@"data"] objectForKey:@"id"] integerValue];
+                        if (list.primaryKey) {
+                            weakSelf.list = list;
                         }
-                        
-                        [SVProgressHUD dismiss];
-                        [weakSelf goToNextForm];
+                    } @catch (NSException *exception){
+                        NSLog(@"%@", exception);
                     }
-                }];
+                }
+                
+                [SVProgressHUD dismiss];
+                
+                Form *nextForm = [weakSelf.forms objectAtIndex:self.index + 1];
+                if ([nextForm.title isEqualToString:@"Disclaimer"]) {
+                    //save to object, call delegate, then pop navigation
+                    DisclaimerViewController *disclaimerVC = [[DisclaimerViewController alloc] init];
+                    disclaimerVC.valueDictionary = weakSelf.valueDictionary;
+                    disclaimerVC.list = weakSelf.list;
+                    disclaimerVC.parentMenu = weakSelf.parentMenu;
+                    disclaimerVC.menu = weakSelf.menu;
+                    [weakSelf.navigationController pushViewController:disclaimerVC animated:true];
+                    
+                } else {
+                    [weakSelf goToNextForm];
+                }
             }
-        }
+        }];
     }
 }
 
