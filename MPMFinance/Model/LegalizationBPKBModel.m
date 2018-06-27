@@ -97,7 +97,7 @@
         
         [param setObject:dataDictionary forKey:@"data"];
         
-        [manager POST:[NSString stringWithFormat:@"%@/bpkb/pengambilan", kApiUrl] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [manager POST:[NSString stringWithFormat:@"%@/bpkb/legalisir", kApiUrl] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             @try {
                 NSInteger code = [[responseObject objectForKey:@"statusCode"] integerValue];
                 NSString *message = [responseObject objectForKey:@"message"];
