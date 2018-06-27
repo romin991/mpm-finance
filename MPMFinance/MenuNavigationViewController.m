@@ -59,6 +59,18 @@
     }
 }
 
+- (UIViewController *)getSelectedViewController{
+    if (self.selectedIndex == kHome){
+        return self.homeVC;
+    } else if (self.selectedIndex == kHistory){
+        return self.historyVC;
+    } else if (self.selectedIndex == kHelp){
+        return self.helpVC;
+    } else if (self.selectedIndex == kProfile){
+        return self.myProfileVC;
+    }
+    return nil;
+}
 
 /*
 #pragma mark - Navigation

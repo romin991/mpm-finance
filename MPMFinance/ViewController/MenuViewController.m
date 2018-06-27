@@ -149,6 +149,10 @@
     [_containerView setSelectedIndex:index];
 }
 
+- (MenuNavigationViewController *)getContainerViewController{
+    return _containerView;
+}
+
 - (void)dismissAll{
     [self dismissViewControllerAnimated:true completion:nil];
 }

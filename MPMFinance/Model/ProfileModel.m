@@ -8,6 +8,7 @@
 
 #import "ProfileModel.h"
 #import "MPMUserInfo.h"
+@import Firebase;
 
 @implementation ProfileModel
 
@@ -89,7 +90,7 @@
                             @"token" : @"",
                             @"data" : @{
                                     @"password" : [MPMGlobal MD5fromString:password],
-                                    @"deviceId" : @"fcmid here",
+                                    @"deviceId" : [[FIRInstanceID instanceID] token],
                                     @"loginFrom" : @"mobile"
                                     }
                             };

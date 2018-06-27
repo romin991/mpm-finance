@@ -7,20 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@class MenuNavigationViewController;
-
-typedef enum{
-    kHome,
-    kHistory,
-    kHelp,
-    kProfile
-} ContainerView;
+#import "MenuNavigationViewController.h"
 
 @protocol MenuViewDelegate<NSObject>
 
 - (void)selectMenuAtIndex:(ContainerView)index;
 - (void)dismissAll;
+- (MenuNavigationViewController *)getContainerViewController;
 
 @end
 

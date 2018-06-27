@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Menu.h"
 
 @interface HomeViewController : UIViewController
+
+- (BOOL)isMenuAvailable:(Menu *)menu;
 
 @end

@@ -123,6 +123,10 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     Menu *menu = [self.menus objectAtIndex:indexPath.row];
+    [self menuSelected:menu];
+}
+
+- (void)menuSelected:(Menu *)menu{
     if ([menu.menuType isEqualToString:kMenuTypeList]){
         ListViewController *listViewController = [[ListViewController alloc] initWithNibName:@"ListViewController" bundle:nil];
         listViewController.menu = menu;
@@ -142,7 +146,7 @@
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         ContactUsViewController *submenuCollectionViewController = [storyboard instantiateViewControllerWithIdentifier:@"ContactUsViewController"];
         [self.navigationController.navigationController pushViewController:submenuCollectionViewController animated:YES];
-    
+        
     } else if ([menu.menuType isEqualToString:kMenuTypeDashboard]){
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         DashboardViewController *submenuCollectionViewController = [storyboard instantiateViewControllerWithIdentifier:@"DashboardViewController"];
@@ -162,7 +166,7 @@
         ActivityHistoryViewController *legalizationBPKBViewController = [[ActivityHistoryViewController alloc] init];
         legalizationBPKBViewController.menu = menu;
         [self.navigationController.navigationController pushViewController:legalizationBPKBViewController animated:YES];
-    
+        
     } else if ([menu.menuType isEqualToString:kMenuSetAlternate]) {
         SetAlternateViewController *vc = [[SetAlternateViewController alloc] init];
         [self.navigationController.navigationController pushViewController:vc animated:YES];
@@ -176,8 +180,14 @@
         [self.navigationController.navigationController pushViewController:vc animated:YES];
         
     }
+}
 
-
+- (BOOL)isMenuAvailable:(Menu *)menu {
+    NSInteger index = [self.menus indexOfObject:menu];
+    if (index != NSNotFound) {
+        return YES;
+    }
+    return NO;
 }
 
 /*

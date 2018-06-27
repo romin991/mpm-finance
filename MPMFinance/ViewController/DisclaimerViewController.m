@@ -12,6 +12,9 @@
 #import "SubmenuViewController.h"
 #import "ReasonViewController.h"
 #import "AFImageDownloader.h"
+#import "HomeViewController.h"
+#import "MenuViewController.h"
+#import "WorkOrderListViewController.h"
 
 @interface DisclaimerViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate, BarcodeDelegate>
 
@@ -149,18 +152,18 @@
             } @catch (NSException *exception) {
                 NSLog(@"%@", exception);
             }
-            
+
             __weak typeof(self) weakSelf = self;
             UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:@"" message:@"Apakah anda yakin akan melanjutkan proses?" preferredStyle:UIAlertControllerStyleAlert];
-            
+
             [actionSheet addAction:[UIAlertAction actionWithTitle:@"Tidak" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
                 ReasonViewController *reasonVC = [[ReasonViewController alloc] init];
                 reasonVC.list = weakSelf.list;
                 reasonVC.noRegistrasi = noRegistrasi;
-                
+
                 [weakSelf.navigationController pushViewController:reasonVC animated:YES];
             }]];
-            
+
             [actionSheet addAction:[UIAlertAction actionWithTitle:@"Ya" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
                 BarcodeViewController *barcodeVC = [[BarcodeViewController alloc] init];
                 barcodeVC.barcodeString = noRegistrasi;
@@ -170,9 +173,9 @@
                 
                 [weakSelf presentViewController:barcodeVC animated:YES completion:nil];
             }]];
-            
+
             [self presentViewController:actionSheet animated:YES completion:nil];
-            
+
         } else {
             [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
             [SVProgressHUD dismissWithDelay:1.5];
@@ -193,6 +196,25 @@
 }
 
 - (void)close{
+    for (UIViewController *vc in self.navigationController.viewControllers) {
+        if ([vc isKindOfClass:[MenuViewController class]]){
+            MenuViewController *menuVC = (MenuViewController *)vc;
+            MenuNavigationViewController *menuNavigationVC = (MenuNavigationViewController *)[menuVC getContainerViewController];
+            UIViewController *viewController = [menuNavigationVC getSelectedViewController];
+            if ([viewController isKindOfClass:HomeViewController.class]) {
+                HomeViewController *homeVC = (HomeViewController *)viewController;
+                Menu *menu = [Menu getMenuForPrimaryKey:kMenuListWorkOrder];
+                BOOL isMenuAvailable = [homeVC isMenuAvailable:menu];
+                if (isMenuAvailable) {
+                    WorkOrderListViewController *listViewController = [[WorkOrderListViewController alloc] initWithNibName:@"WorkOrderListViewController" bundle:nil];
+                    listViewController.menu = menu;
+                    [self.navigationController setViewControllers:@[vc, list] animated:NO];
+
+                    return;
+                }
+            }
+        }
+    }
     for (UIViewController *vc in self.navigationController.viewControllers) {
         if ([vc isKindOfClass:[SubmenuViewController class]]) {
             [self.navigationController popToViewController:vc animated:NO];
