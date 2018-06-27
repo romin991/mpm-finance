@@ -208,7 +208,7 @@
                 if (isMenuAvailable) {
                     WorkOrderListViewController *listViewController = [[WorkOrderListViewController alloc] initWithNibName:@"WorkOrderListViewController" bundle:nil];
                     listViewController.menu = menu;
-                    [self.navigationController setViewControllers:@[vc, list] animated:NO];
+                    [self.navigationController setViewControllers:@[vc, listViewController] animated:NO];
 
                     return;
                 }
