@@ -73,7 +73,7 @@
             } else {
                 NSMutableArray *optionObjects = [NSMutableArray array];
                 for (Data *data in datas) {
-                    [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:@(data.id) displayText:data.value]];
+                    [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:data.value displayText:data.value]];
                 }
                 row.selectorOptions = optionObjects;
                 [SVProgressHUD dismiss];

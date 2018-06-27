@@ -86,22 +86,13 @@
     
     NSMutableDictionary *dataDictionary = [NSMutableDictionary dictionary];
     @try {
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-        
-        NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
-        [timeFormatter setDateFormat:@"hh:mm:ss"];
-        
-        NSDate *date = [MPMGlobal dateFromString:[dictionary objectForKey:@"tanggalPengambilanDokumen"]];
-        
         [dataDictionary addEntriesFromDictionary:@{
             @"noKontrak" : [dictionary objectForKey:@"noKontrak"] ?: @"",
             @"nama" : [dictionary objectForKey:@"nama"] ?: @"",
             @"noPlat" : [dictionary objectForKey:@"nomorPlat"] ?: @"",
-            @"statusKontrak" : [dictionary objectForKey:@"statusKontrak"] ?: @"",
             @"status" : @1,
-            @"tglPengambilanDoc" : [dateFormatter stringFromDate:date] ?: @"",
-            @"jamPengambilan" : [timeFormatter stringFromDate:date] ?: @"",
+            @"tglPengambilanDoc" : [dictionary objectForKey:@"tanggalPengambilanDokumen"] ?: @"",
+            @"jamPengambilan" : [dictionary objectForKey:@"jamPengambilanDokumen"] ?: @"",
             }];
         
         [param setObject:dataDictionary forKey:@"data"];
