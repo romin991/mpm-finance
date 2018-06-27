@@ -104,6 +104,18 @@
     [FormModel saveValueFrom:self.form to:self.valueDictionary];
     
     //call api here
+    [SVProgressHUD show];
+    __block typeof (self) weakSelf = self;
+    [IntakeBPKBModel postIntakeBPKBWithDictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
+        if (error == nil) {
+            [SVProgressHUD dismiss];
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+            
+        } else {
+            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+            [SVProgressHUD dismissWithDelay:1.5];
+        }
+    }];
 }
 
 - (void)formRowDescriptorValueHasChanged:(XLFormRowDescriptor *)formRow oldValue:(id)oldValue newValue:(id)newValue{
