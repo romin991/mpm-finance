@@ -28,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *takePhotoButton;
 
 @property BOOL isAgree;
+@property BOOL isPhotoTaken;
 
 @end
 
@@ -64,7 +65,8 @@
         self.submitButton.hidden = false;
         self.viewBarcodeButton.hidden = true;
         self.takePhotoButton.hidden = false;
-        self.isAgree = false;
+        self.isAgree = true;
+        self.isPhotoTaken = false;
     }
     
     [self refreshSelected];
@@ -111,6 +113,7 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     [picker dismissViewControllerAnimated:YES completion:^(void){
         self.imageView.image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+        self.isPhotoTaken = true;
     }];
 }
 
@@ -139,6 +142,27 @@
 }
 
 - (IBAction)submit:(id)sender {
+    if (self.isPhotoTaken == false) {
+        [SVProgressHUD showErrorWithStatus:@"Please take picture of your signature"];
+        [SVProgressHUD dismissWithDelay:1.5];
+    } else {
+    
+        __weak typeof(self) weakSelf = self;
+        UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:@"" message:@"Apakah anda yakin dengan data yang telah anda isikan?" preferredStyle:UIAlertControllerStyleAlert];
+        
+        [actionSheet addAction:[UIAlertAction actionWithTitle:@"Tidak" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            
+        }]];
+        
+        [actionSheet addAction:[UIAlertAction actionWithTitle:@"Ya" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+            [weakSelf submitNow];
+        }]];
+        
+        [self presentViewController:actionSheet animated:YES completion:nil];
+    }
+}
+
+- (void)submitNow{
     [self.valueDictionary addEntriesFromDictionary:@{@"ttd" : [MPMGlobal encodeToBase64String:self.imageView.image],
                                                      @"pernyataanPemohon" : @(self.isAgree),
                                                      }];
@@ -153,18 +177,18 @@
             } @catch (NSException *exception) {
                 NSLog(@"%@", exception);
             }
-
+            
             __weak typeof(self) weakSelf = self;
             UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:@"" message:@"Apakah anda yakin akan melanjutkan proses?" preferredStyle:UIAlertControllerStyleAlert];
-
+            
             [actionSheet addAction:[UIAlertAction actionWithTitle:@"Tidak" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
                 ReasonViewController *reasonVC = [[ReasonViewController alloc] init];
                 reasonVC.list = weakSelf.list;
                 reasonVC.noRegistrasi = noRegistrasi;
-
+                
                 [weakSelf.navigationController pushViewController:reasonVC animated:YES];
             }]];
-
+            
             [actionSheet addAction:[UIAlertAction actionWithTitle:@"Ya" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
                 BarcodeViewController *barcodeVC = [[BarcodeViewController alloc] init];
                 barcodeVC.barcodeString = noRegistrasi;
@@ -174,9 +198,9 @@
                 
                 [weakSelf presentViewController:barcodeVC animated:YES completion:nil];
             }]];
-
+            
             [self presentViewController:actionSheet animated:YES completion:nil];
-
+            
         } else {
             [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
             [SVProgressHUD dismissWithDelay:1.5];
