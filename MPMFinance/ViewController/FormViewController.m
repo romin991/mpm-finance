@@ -43,6 +43,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.navigationBar.translucent = NO;
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    }
     CGRect frame = self.tableView.frame;
     frame.origin.y += 44;
     frame.size.height -= 44;
@@ -153,7 +156,7 @@
                     row.action.formSelector = @selector(nextButtonClicked:);
                 }
                 
-                if ([row.tag isEqualToString:@"kodeposSesuaiKTP"] || [row.tag isEqualToString:@"kodeposDomisili"] || [row.tag isEqualToString:@"kodePosPasangan"]){
+                if ([row.tag isEqualToString:@"kelurahanSesuaiKTP"] || [row.tag isEqualToString:@"kelurahanDomisili"] || [row.tag isEqualToString:@"kelurahanPasangan"]){
                     row.action.viewControllerNibName = @"PostalCodeViewController";
                     row.valueTransformer = [PostalCodeValueTransformer class];
                 }
@@ -218,48 +221,52 @@
                     }
                 }
                 
+                if ([row.tag isEqualToString:@"namaLengkap"]) {
+                    ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).mustAlphabetOnly = YES;
+                }
                 if ([row.tag isEqualToString:@"noKTPPasangan"]) {
                     ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 16;
                     ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).mustAlphabetNumericOnly = YES;
                 }
-                else if ([row.tag isEqualToString:@"nomorHandphonePasangan"]) {
+                if ([row.tag isEqualToString:@"nomorHandphonePasangan"]) {
                     ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 15;
-                }else if ([row.tag isEqualToString:@"nomorKartuKreditAtauKontrak1"]) {
+                }
+                if ([row.tag isEqualToString:@"nomorKartuKreditAtauKontrak1"]) {
                     ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 16;
                     ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).mustAlphabetNumericOnly = YES;
                 }
-                else if ([row.tag isEqualToString:@"nomorKartuKreditAtauKontrak2"]) {
+                if ([row.tag isEqualToString:@"nomorKartuKreditAtauKontrak2"]) {
                     ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 16;
                     ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).mustAlphabetNumericOnly = YES;
                 }
-                else if ([row.tag isEqualToString:@"rTPasangan"] || [row.tag isEqualToString:@"rTDomisili"]) {
+                if ([row.tag isEqualToString:@"rTPasangan"] || [row.tag isEqualToString:@"rTDomisili"]) {
                     ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 3;
                 }
-                else if ([row.tag isEqualToString:@"rWPasangan"] || [row.tag isEqualToString:@"rWDomisili"]) {
+                if ([row.tag isEqualToString:@"rWPasangan"] || [row.tag isEqualToString:@"rWDomisili"]) {
                     ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 3;
                 }
-                else if ([row.tag isEqualToString:@"rWPasangan"]) {
+                if ([row.tag isEqualToString:@"rWPasangan"]) {
                     ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 3;
                 }
-                else if ([row.tag isEqualToString:@"rWPasangan"]) {
+                if ([row.tag isEqualToString:@"rWPasangan"]) {
                     ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 3;
                 }
-                else if ([row.tag isEqualToString:@"kodeAreaTeleponTempatKerja"] || [row.tag isEqualToString:@"kodeArea"]) {
+                if ([row.tag isEqualToString:@"kodeAreaTeleponTempatKerja"] || [row.tag isEqualToString:@"kodeArea"]) {
                     ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 4;
                 }
-                else if ([row.tag isEqualToString:@"nomorTeleponTempatKerja"]) {
+                if ([row.tag isEqualToString:@"nomorTeleponTempatKerja"]) {
                     ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 15;
                 }
-                else if ([row.tag isEqualToString:@"nomorTeleponEcon"]) {
+                if ([row.tag isEqualToString:@"nomorTeleponEcon"]) {
                     ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 15;
                 }
-                else if ([row.tag isEqualToString:@"namaGadisIbuKandung"]) {
+                if ([row.tag isEqualToString:@"namaGadisIbuKandung"]) {
                     ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).mustAlphabetOnly = YES;
                 }
-                else if ([row.tag isEqualToString:@"namaEcon"]) {
+                if ([row.tag isEqualToString:@"namaEcon"]) {
                     ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).mustAlphabetOnly = YES;
                 }
-                else if ([row.tag isEqualToString:@"namaLengkapPasangan"]) {
+                if ([row.tag isEqualToString:@"namaLengkapPasangan"]) {
                     ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).mustAlphabetOnly = YES;
                 }
                 if ([row.tag isEqualToString:@"rTSesuaiKTP"] ||
@@ -494,45 +501,45 @@
         [self setDomicileAddressValueWithTheSameValueAsLegalAddress];
     }
     
-    if ([formRow.tag isEqualToString:@"kodeposSesuaiKTP"] && newValue != nil && [newValue isKindOfClass:PostalCode.class]) {
+    if ([formRow.tag isEqualToString:@"kelurahanSesuaiKTP"] && newValue != nil && [newValue isKindOfClass:PostalCode.class]) {
         @try {
             PostalCode *postalCode = (PostalCode *)newValue;
             //set value
             [self.valueDictionary addEntriesFromDictionary:@{@"kecamatanSesuaiKTP" : postalCode.subDistrict,
-                                                             @"kelurahanSesuaiKTP" : postalCode.disctrict,
+                                                             @"kodeposSesuaiKTP" : postalCode.postalCode,
                                                              @"kotaSesuaiKTP" : postalCode.city,}];
             [FormModel loadValueFrom:self.valueDictionary on:self partialUpdate:
-             [NSArray arrayWithObjects:@"kecamatanSesuaiKTP", @"kelurahanSesuaiKTP", @"kotaSesuaiKTP", nil]];
+             [NSArray arrayWithObjects:@"kecamatanSesuaiKTP", @"kodeposSesuaiKTP", @"kotaSesuaiKTP", nil]];
             [self setDomicileAddressValueWithTheSameValueAsLegalAddress];
         } @catch (NSException *exception) {
             NSLog(@"%@", exception);
         }
     }
     
-    if ([formRow.tag isEqualToString:@"kodeposDomisili"] && newValue != nil && [newValue isKindOfClass:PostalCode.class]) {
+    if ([formRow.tag isEqualToString:@"kelurahanDomisili"] && newValue != nil && [newValue isKindOfClass:PostalCode.class]) {
         @try {
             PostalCode *postalCode = (PostalCode *)newValue;
             //set value
             [self.valueDictionary addEntriesFromDictionary:@{@"kecamatanDomisili" : postalCode.subDistrict,
-                                                             @"kelurahanDomisili" : postalCode.disctrict,
+                                                             @"kodeposDomisili" : postalCode.postalCode,
                                                              @"kotaDomisili" : postalCode.city,}];
             
             [FormModel loadValueFrom:self.valueDictionary on:self partialUpdate:
-             [NSArray arrayWithObjects:@"kecamatanDomisili", @"kelurahanDomisili", @"kotaDomisili", nil]];
+             [NSArray arrayWithObjects:@"kecamatanDomisili", @"kodeposDomisili", @"kotaDomisili", nil]];
         } @catch (NSException *exception) {
             NSLog(@"%@", exception);
         }
     }
-    if ([formRow.tag isEqualToString:@"kodePosPasangan"] && newValue != nil && [newValue isKindOfClass:PostalCode.class]) {
+    if ([formRow.tag isEqualToString:@"kelurahanPasangan"] && newValue != nil && [newValue isKindOfClass:PostalCode.class]) {
         @try {
             PostalCode *postalCode = (PostalCode *)newValue;
             //set value
             [self.valueDictionary addEntriesFromDictionary:@{@"kecamatanPasangan" : postalCode.subDistrict,
-                                                             @"kelurahanPasangan" : postalCode.disctrict,
+                                                             @"kodePosPasangan" : postalCode.postalCode,
                                                              @"kotaPasangan" : postalCode.city,}];
             
             [FormModel loadValueFrom:self.valueDictionary on:self partialUpdate:
-             [NSArray arrayWithObjects:@"kecamatanPasangan", @"kelurahanPasangan", @"kotaPasangan", nil]];
+             [NSArray arrayWithObjects:@"kecamatanPasangan", @"kodePosPasangan", @"kotaPasangan", nil]];
         } @catch (NSException *exception) {
             NSLog(@"%@", exception);
         }
@@ -566,7 +573,6 @@
             
             row = [self.form formRowWithTag:@"kodeposDomisili"];
             if (row) {
-                row.disabled = @NO;
                 row.value = nil;
                 [self reloadFormRow:row];
             }
@@ -579,6 +585,7 @@
             
             row = [self.form formRowWithTag:@"kelurahanDomisili"];
             if (row) {
+                row.disabled = @NO;
                 row.value = @"";
                 [self reloadFormRow:row];
             }
@@ -626,7 +633,6 @@
         
         row = [self.form formRowWithTag:@"kodeposDomisili"];
         if (row) {
-            row.disabled = @YES;
             row.value = [self.form formRowWithTag:@"kodeposSesuaiKTP"].value;
             [self reloadFormRow:row];
         }
@@ -639,6 +645,7 @@
         
         row = [self.form formRowWithTag:@"kelurahanDomisili"];
         if (row) {
+            row.disabled = @YES;
             row.value = [self.form formRowWithTag:@"kelurahanSesuaiKTP"].value;
             [self reloadFormRow:row];
         }
@@ -677,11 +684,11 @@
         XLFormRowDescriptor *alamatPasangan = [self.form formRowWithTag:@"alamatPasangan"];
         XLFormRowDescriptor *rTPasangan = [self.form formRowWithTag:@"rTPasangan"];
         XLFormRowDescriptor *rWPasangan = [self.form formRowWithTag:@"rWPasangan"];
-        XLFormRowDescriptor *kodePosPasangan = [self.form formRowWithTag:@"kodePosPasangan"];
+        XLFormRowDescriptor *kelurahanPasangan = [self.form formRowWithTag:@"kelurahanPasangan"];
         XLFormRowDescriptor *masaBerlakuKTPPasangan = [self.form formRowWithTag:@"masaBerlakuKTPPasangan"];
         XLFormRowDescriptor *kewarganegaraanPasangan = [self.form formRowWithTag:@"kewarganegaraanPasangan"];
         
-        BOOL isThereAnyValueForSpouse = [namaLengkapPasangan.value length] || [nomorHandphonePasangan.value length] || [tempatLahirPasangan.value length] || tanggalLahirPasangan.value || [alamatPasangan.value length]|| [rTPasangan.value length]|| [rWPasangan.value length]|| [kodePosPasangan.value length] || masaBerlakuKTPPasangan.value;
+        BOOL isThereAnyValueForSpouse = [namaLengkapPasangan.value length] || [nomorHandphonePasangan.value length] || [tempatLahirPasangan.value length] || tanggalLahirPasangan.value || [alamatPasangan.value length]|| [rTPasangan.value length]|| [rWPasangan.value length]|| [kelurahanPasangan.value length] || masaBerlakuKTPPasangan.value;
         if (isThereAnyValueForSpouse) {
             nomorHandphonePasangan.required = YES;
             namaLengkapPasangan.required = YES;
@@ -691,7 +698,7 @@
             alamatPasangan.required = YES;
             kewarganegaraanPasangan.required = YES;
             masaBerlakuKTPPasangan.required = YES;
-            kodePosPasangan.required = YES;
+            kelurahanPasangan.required = YES;
             rTPasangan.required = YES;
             rWPasangan.required = YES;
             
@@ -705,7 +712,7 @@
             alamatPasangan.required = NO;
             kewarganegaraanPasangan.required = NO;
             masaBerlakuKTPPasangan.required = NO;
-            kodePosPasangan.required = NO;
+            kelurahanPasangan.required = NO;
             rTPasangan.required = NO;
             rWPasangan.required = NO;
             

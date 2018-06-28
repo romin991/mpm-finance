@@ -23,6 +23,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.navigationBar.translucent = NO;
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    }
     // Do any additional setup after loading the view from its nib.
     RLMResults *forms = [Form getFormForMenu:self.menu.primaryKey];
     Form *currentForm = forms.firstObject;

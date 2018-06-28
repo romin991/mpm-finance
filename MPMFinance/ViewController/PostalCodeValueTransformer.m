@@ -27,7 +27,7 @@
     if (!value) return nil;
     if ([value isKindOfClass:PostalCode.class]) {
         PostalCode *postalCode = (PostalCode *)value;
-        return [NSString stringWithFormat:@"%@", postalCode.postalCode];
+        return [NSString stringWithFormat:@"%@", postalCode.disctrict];
     }
     if ([value isKindOfClass:XLFormOptionsObject.class]) {
         XLFormOptionsObject *object = (XLFormOptionsObject *)value;

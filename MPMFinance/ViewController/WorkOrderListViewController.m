@@ -85,6 +85,10 @@
     [super viewDidLoad];
     
     self.navigationController.navigationBar.translucent = NO;
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    }
+    
     // Do any additional setup after loading the view from its nib.
     [self setDataSources];
     [self setTitle:self.menu.title];

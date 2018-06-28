@@ -38,6 +38,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.navigationBar.translucent = NO;
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    }
     
     [[XLFormViewController cellClassesForRowDescriptorTypes] setObject:@"UploadPhotoTableViewCell" forKey:XLFormRowDescriptorTypeTakePhoto];
     
