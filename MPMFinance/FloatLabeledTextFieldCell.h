@@ -31,6 +31,7 @@ extern NSString * const XLFormRowDescriptorTypeFloatLabeledTextField;
 @property BOOL mustAlphabetOnly;
 @property BOOL mustAlphabetPunctuationOnly;
 @property BOOL mustAlphabetNumericOnly;
+@property BOOL mustNumericOnly;
 - (void)setKeyboardType:(UIKeyboardType)keyboardType;
 - (void)setKeyboardType:(UIKeyboardType)keyboardType andMaximumLength:(NSInteger) maxLength;
 

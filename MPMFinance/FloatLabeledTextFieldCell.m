@@ -141,9 +141,11 @@ const static CGFloat kFloatingLabelFontSize = 11.0f;
     } else {
         if (self.mustAlphabetOnly && wordType != WordsTypeAlphabetOnly) {
             return NO;
-        } else if (self.mustAlphabetNumericOnly && (wordType != WordsTypeAlphabetNumeric && wordType != WordsTypeAlphabetOnly)) {
+        } else if (self.mustAlphabetNumericOnly && (wordType != WordsTypeNumericOnly && wordType != WordsTypeAlphabetNumeric && wordType != WordsTypeAlphabetOnly)) {
             return NO;
-        } else if (self.mustAlphabetPunctuationOnly && (wordType != WordsTypeAlphabetPunctuation && wordType != WordsTypeAlphabetOnly) ) {
+        } else if (self.mustAlphabetPunctuationOnly && (wordType != WordsTypePunctuationOnly && wordType != WordsTypeAlphabetPunctuation && wordType != WordsTypeAlphabetOnly) ) {
+            return NO;
+        } else if (self.mustNumericOnly && wordType != WordsTypeNumericOnly){
             return NO;
         }
     }

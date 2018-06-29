@@ -33,7 +33,7 @@
 @property (weak, nonatomic) IBOutlet UIView *labelView;
 
 @property RLMResults *forms;
-
+@property BOOL isReadOnly;
 @property NSString *idCabang;
 
 @end
@@ -233,11 +233,11 @@
                 }
                 if ([row.tag isEqualToString:@"nomorKartuKreditAtauKontrak1"]) {
                     ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 16;
-                    ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).mustAlphabetNumericOnly = YES;
+                    ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).mustNumericOnly = YES;
                 }
                 if ([row.tag isEqualToString:@"nomorKartuKreditAtauKontrak2"]) {
                     ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 16;
-                    ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).mustAlphabetNumericOnly = YES;
+                    ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).mustNumericOnly = YES;
                 }
                 if ([row.tag isEqualToString:@"rTPasangan"] || [row.tag isEqualToString:@"rTDomisili"]) {
                     ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 3;
@@ -292,7 +292,9 @@
                     
                     [row.tag isEqualToString:@"kodeAreaTeleponTempatKerja"] ||
                     [row.tag isEqualToString:@"nomorTeleponTempatKerja"] ||
-                    [row.tag isEqualToString:@"nomorTeleponEcon"]
+                    [row.tag isEqualToString:@"nomorTeleponEcon"] ||
+                    [row.tag isEqualToString:@"nomorKartuKreditAtauKontrak1"] ||
+                    [row.tag isEqualToString:@"nomorKartuKreditAtauKontrak2"] 
                     ){
                     
                     //Set keyboard type to numberPad
@@ -331,6 +333,7 @@
                     ![row.tag isEqualToString:@"next"]
                     ) {
                     
+                    self.isReadOnly = YES;
                     row.disabled = @YES;
                 }
             }
@@ -552,21 +555,21 @@
         } else {
             XLFormRowDescriptor *row = [self.form formRowWithTag:@"alamatDomisili"];
             if (row) {
-                row.disabled = @NO;
+                row.disabled = self.isReadOnly ? @YES : @NO;
                 row.value = @"";
                 [self reloadFormRow:row];
             }
             
             row = [self.form formRowWithTag:@"rTDomisili"];
             if (row) {
-                row.disabled = @NO;
+                row.disabled = self.isReadOnly ? @YES : @NO;
                 row.value = @"";
                 [self reloadFormRow:row];
             }
             
             row = [self.form formRowWithTag:@"rWDomisili"];
             if (row) {
-                row.disabled = @NO;
+                row.disabled = self.isReadOnly ? @YES : self.isReadOnly ? @YES : @NO;
                 row.value = @"";
                 [self reloadFormRow:row];
             }
@@ -585,7 +588,7 @@
             
             row = [self.form formRowWithTag:@"kelurahanDomisili"];
             if (row) {
-                row.disabled = @NO;
+                row.disabled = self.isReadOnly ? @YES : @NO;
                 row.value = @"";
                 [self reloadFormRow:row];
             }

@@ -39,7 +39,8 @@
     // Do any additional setup after loading the view from its nib.
     [self setTitle:self.menu.title];
     
-    if ([self.parentMenu.primaryKey isEqualToString:kSubmenuListWorkOrder]) {
+    if ([self.parentMenu.primaryKey isEqualToString:kSubmenuListWorkOrder] ||
+        [self.parentMenu.primaryKey isEqualToString:kSubmenuMonitoring]) {
         self.submitButton.hidden = true;
         self.viewBarcodeButton.hidden = false;
         self.takePhotoButton.hidden = true;
