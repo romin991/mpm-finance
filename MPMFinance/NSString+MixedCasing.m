@@ -28,13 +28,18 @@
 }
 - (WordsType)checkWordType {
     WordsType wordType = WordsTypeNone;
-    NSCharacterSet *allowedChars = [NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"];
-    NSRange range = [self rangeOfCharacterFromSet:allowedChars];
+    NSCharacterSet *alphabetSet = [NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "];
+    NSCharacterSet *numericSet = [NSCharacterSet characterSetWithCharactersInString:@"1234567890"];
+    NSMutableCharacterSet *alphaNumericSet = [[NSMutableCharacterSet alloc] init];
+    [alphaNumericSet formUnionWithCharacterSet:alphabetSet];
+    [alphaNumericSet formUnionWithCharacterSet:numericSet];
+    
+    NSRange range = [self rangeOfCharacterFromSet:alphabetSet];
     if (range.location != NSNotFound) {
         wordType = WordsTypeAlphabetOnly;
     }
-    allowedChars = [NSCharacterSet characterSetWithCharactersInString:@"!@#$%^&*()'{][}+=-_"];
-    range = [self rangeOfCharacterFromSet:allowedChars];
+    
+    range = [self rangeOfCharacterFromSet:[alphaNumericSet invertedSet]];
     if (range.location != NSNotFound) {
         if (wordType == WordsTypeAlphabetOnly) {
             wordType = WordsTypeAlphabetPunctuation;
@@ -44,8 +49,7 @@
         
     }
     
-    allowedChars = [NSCharacterSet characterSetWithCharactersInString:@"1234567890"];
-    range = [self rangeOfCharacterFromSet:allowedChars];
+    range = [self rangeOfCharacterFromSet:numericSet];
     if (range.location != NSNotFound) {
         if (wordType == WordsTypeAlphabetOnly) {
             wordType = WordsTypeAlphabetNumeric;
