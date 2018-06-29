@@ -15,9 +15,9 @@
 
 NSString *const MPMRegexValidationMax3Number = @"^(?=.*\\d)(?=.*[0-9]).{1,3}$";
 NSString *const MPMRegexValidationNumberOnly = @"^([0-9]*|[0-9]*[.][0-9]*)$";
-NSString *const MPMRegexValidationAlphaNumeric = @"^[a-zA-Z0-9']+$";
-NSString *const MPMRegexValidationAlphabetOnly = @"^[a-zA-Z']+$";
-NSString *const MPMRegexValidationAlphabetPunctuationOnly = @"^[a-zA-Z!@#$%^&*()']+$";
+NSString *const MPMRegexValidationAlphaNumeric = @"^[a-zA-Z0-9\\s']+$";
+NSString *const MPMRegexValidationAlphabetOnly = @"^[a-zA-Z\\s']+$";
+NSString *const MPMRegexValidationAlphabetPunctuationOnly = @"^[a-zA-Z!@#$%^&*()\\s']+$";
 NSString *const MPMRegexValidationAlphabetMin3Char = @"^[a-zA-Z']{3,}$";
 //XLFormRowDescriptorTypeFloatLabeledTextField
 //extern NSString *const XLFormRowDescriptorTypeAccount;
