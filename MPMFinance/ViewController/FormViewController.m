@@ -319,7 +319,8 @@
                         [row.tag isEqualToString:@"namaLengkap"] ||
                         [row.tag isEqualToString:@"tempatLahir"] ||
                         [row.tag isEqualToString:@"tanggalLahir"] ||
-                        [row.tag isEqualToString:@"jenisKelamin"]) {
+                        [row.tag isEqualToString:@"jenisKelamin"] ||
+                        [row.tag isEqualToString:@"nomorHandphone"]) {
                         row.disabled = @NO;
                     }
                 }

@@ -65,7 +65,7 @@
     [section.rows addObject:[FormRow new:realm :13 :YES :YES :XLFormRowDescriptorTypeSelectorPush :@"Kewarganegaraan" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :14 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kode Area" :@"" :@""]];
     [section.rows addObject:[FormRow new:realm :15 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Telepon" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :16 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Handphone" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :16 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Handphone" :@"" :@""]];
     
     [form.sections addObject:section];
     
