@@ -162,6 +162,9 @@
 
 - (void)loadDataForSelectedIndex:(NSInteger)index andPage:(NSInteger)page{
     [SVProgressHUD show];
+    if (self.dataSources.count < 1) {
+        return;
+    }
     DataSource *dataSource = [self.dataSources objectAtIndex:index];
     if (dataSource) {
         __block WorkOrderListViewController *weakSelf = self;

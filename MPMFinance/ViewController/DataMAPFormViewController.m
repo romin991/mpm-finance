@@ -1325,6 +1325,9 @@
     }
     
     if ([formRow.tag isEqualToString:@"jenisPertanggunganAllRisk"]) {
+        if ([newValue isEqualToString:@""]) {
+            return;
+        }
         XLFormRowDescriptor *row = [self.form formRowWithTag:@"jenisPertanggunganTLO"];
         NSInteger value = [[newValue substringToIndex:1] integerValue] * -1;
         row.value = [NSString stringWithFormat:@"%li", (long) value];

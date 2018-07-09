@@ -139,6 +139,9 @@ const static CGFloat kFloatingLabelFontSize = 11.0f;
     if (wordType == WordsTypeNone) {
         
     } else {
+        if (wordType == notAllowedPunctuation) {
+            return NO;
+        }
         if (self.mustAlphabetOnly && wordType != WordsTypeAlphabetOnly) {
             return NO;
         } else if (self.mustAlphabetNumericOnly && (wordType != WordsTypeNumericOnly && wordType != WordsTypeAlphabetNumeric && wordType != WordsTypeAlphabetOnly)) {

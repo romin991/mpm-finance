@@ -268,6 +268,7 @@
                 }
                 if ([row.tag isEqualToString:@"namaLengkapPasangan"]) {
                     ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).mustAlphabetOnly = YES;
+                    ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).maximumLength = 20;
                 }
                 if ([row.tag isEqualToString:@"rTSesuaiKTP"] ||
                     [row.tag isEqualToString:@"rWSesuaiKTP"] ||
@@ -388,6 +389,9 @@
     }
     
     NSArray *errors = [self formValidationErrors];
+    if ([self.parentMenu.primaryKey isEqualToString:kMenuMonitoring] || [self.parentMenu.primaryKey isEqualToString:kSubmenuListWorkOrder]) {
+        errors = nil;
+    }
     if (errors.count) {
         [SVProgressHUD showErrorWithStatus:((NSError *)errors.firstObject).localizedDescription];
         [SVProgressHUD dismissWithDelay:1.5];

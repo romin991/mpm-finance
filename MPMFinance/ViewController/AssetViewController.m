@@ -29,7 +29,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.assets = [NSArray array];
-    
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
     XLFormDescriptor *form = self.rowDescriptor.sectionDescriptor.formDescriptor;
     FormViewController *formViewController = (FormViewController *)form.delegate;
     NSDictionary *valueDictionary = formViewController.valueDictionary;
@@ -86,7 +86,8 @@
     } @catch (NSException * e) {
         NSLog(@"Exception : %@", e);
     }
-    
+    cell.textLabel.numberOfLines = 0;
+    cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     if (asset){
         cell.textLabel.text = asset.name;
     } else {
@@ -95,6 +96,8 @@
     
     return cell;
 }
+
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

@@ -13,6 +13,7 @@ typedef NS_ENUM(NSInteger, WordsType) {
     WordsTypePunctuationOnly,
     WordsTypeAlphabetPunctuation,
     WordsTypeAlphabetNumeric,
+    notAllowedPunctuation,
     WordsTypeAll,
     WordsTypeNone
 };

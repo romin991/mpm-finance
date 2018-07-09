@@ -86,6 +86,11 @@
     
     self.textView.attributedText = attributedString;
     self.textView.font = [UIFont systemFontOfSize:15.0f];
+    NSString *first = self.parentMenu.primaryKey;
+    NSString *second = [NSString stringWithFormat:@"%@ ",kMenuMonitoring];
+    if ([first isEqualToString:second]) {
+        
+    }
 }
 
 - (void)setRightBarButton{
@@ -119,6 +124,11 @@
 }
 
 - (IBAction)agree:(id)sender {
+    NSString *first = self.parentMenu.primaryKey;
+    NSString *second = [NSString stringWithFormat:@"%@ ",kMenuMonitoring];
+    if ([first isEqualToString:second]) {
+        return;
+    }
     if (![self.parentMenu.primaryKey isEqualToString:kSubmenuListWorkOrder]) {
         self.isAgree = true;
         [self refreshSelected];
@@ -126,6 +136,11 @@
 }
 
 - (IBAction)disagree:(id)sender {
+    NSString *first = self.parentMenu.primaryKey;
+    NSString *second = [NSString stringWithFormat:@"%@ ",kMenuMonitoring];
+    if ([first isEqualToString:second]) {
+        return;
+    }
     if (![self.parentMenu.primaryKey isEqualToString:kSubmenuListWorkOrder]) {
         self.isAgree = false;
         [self refreshSelected];
@@ -133,6 +148,10 @@
 }
 
 - (void)refreshSelected{
+    if ([self.parentMenu.primaryKey isEqualToString:kMenuMonitoring]) {
+        self.agreeButton.tintColor = [UIColor grayColor];
+        self.disagreeButton.tintColor = [UIColor grayColor];
+    }
     if (self.isAgree) {
         self.agreeButton.selected = true;
         self.disagreeButton.selected = false;
@@ -252,7 +271,13 @@
 #pragma mark - Barcode Delegate
 - (void)finish{
     if (![self.parentMenu.primaryKey isEqualToString:kSubmenuListWorkOrder]) {
-        [self close];
+        if ([[MPMUserInfo getRole] isEqualToString:kRoleCustomer] || [[MPMUserInfo getRole] isEqualToString:kRoleDealer]) {
+            NSArray *viewControllers = self.navigationController.viewControllers;
+            
+            [self.navigationController popToViewController:viewControllers[1] animated:YES];
+        } else {
+            [self close];
+        }
     }
 }
 
