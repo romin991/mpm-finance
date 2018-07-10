@@ -139,6 +139,7 @@
             FormViewController *vc = [[FormViewController alloc] init];
             vc.menu = [Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi];
             vc.valueDictionary = [NSMutableDictionary dictionaryWithDictionary:response];
+            vc.isFromHistory = YES;
             [self.navigationController.navigationController pushViewController:vc animated:YES];
         });
     }];

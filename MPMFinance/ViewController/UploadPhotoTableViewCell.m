@@ -57,6 +57,10 @@ NSString * const XLFormRowDescriptorTypeTakePhoto = @"XLFormRowDescriptorTypeTak
 }
 
 - (IBAction)takePicture:(id)sender {
+    
+    if ([self.rowDescriptor.disabled isEqual:@YES]) {
+        return;
+    }
     [SVProgressHUD show];
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
     imagePickerController.delegate = self;

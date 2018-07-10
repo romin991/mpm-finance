@@ -132,9 +132,12 @@
                     }
                 }
                 
+                
                 if (self.isReadOnly) {
                     row.disabled = @YES;
-                    
+                    if ([row.rowType isEqualToString:XLFormRowDescriptorTypeTakePhoto]) {
+                        
+                    }
                     [self reloadFormRow:row];
                 } else {
                     if (![row.tag isEqualToString:@"namaCalonDebitur"] && ![row.tag isEqualToString:@"namaSurveyor"]) {

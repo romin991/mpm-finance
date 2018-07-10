@@ -338,6 +338,11 @@
                     self.isReadOnly = YES;
                     row.disabled = @YES;
                 }
+                
+                if (self.isFromHistory == YES && ![row.tag isEqualToString:@"next"]) {
+                    row.disabled = @YES;
+                    self.isReadOnly = YES;
+                }
             }
         }
         

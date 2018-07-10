@@ -141,6 +141,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 #pragma mark - Table view data source
 
 
@@ -166,6 +167,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     if ([[MPMUserInfo getRole] isEqualToString:kRoleSupervisor]) {
         if (!self.userId) {
             MonitoringViewController *vc = [[MonitoringViewController alloc] init];

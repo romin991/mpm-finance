@@ -16,6 +16,7 @@
 
 @property Menu *parentMenu;
 @property Menu *menu;
+@property BOOL isFromHistory;
 @property NSInteger index;
 @property NSMutableDictionary *valueDictionary;
 @property List *list;
