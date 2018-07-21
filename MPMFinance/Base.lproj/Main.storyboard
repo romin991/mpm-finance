@@ -3459,39 +3459,39 @@
                         <outlet property="flagTotalGoLive" destination="mYJ-Yt-SEp" id="VrD-RN-pmZ"/>
                         <outlet property="flagTotalGoLive2" destination="wAd-or-uz8" id="W8h-kJ-Gu2"/>
                         <outlet property="flagTotalGoLive3" destination="1Dd-Pp-MVF" id="shj-KE-vUp"/>
-                        <outlet property="flagTotalGoLive4" destination="T9K-Vq-sTp" id="gtq-ed-3F9"/>
+                        <outlet property="flagTotalGoLive4" destination="Yr1-n1-fpZ" id="XPI-Z7-wdX"/>
                         <outlet property="flagTotalNegativeList" destination="hcd-l4-8Fv" id="IG3-lZ-fK6"/>
                         <outlet property="flagTotalNegativeList2" destination="UEV-fB-Vsp" id="H1U-xl-5r8"/>
                         <outlet property="flagTotalNegativeList3" destination="gXZ-Gv-nYe" id="iyG-28-gSW"/>
-                        <outlet property="flagTotalNegativeList4" destination="TJp-FW-Kly" id="k3x-gW-gkU"/>
+                        <outlet property="flagTotalNegativeList4" destination="Yhw-8E-5ZN" id="13y-Rd-Cxw"/>
                         <outlet property="flagTotalNewApp" destination="QDf-5a-5Sa" id="XQQ-SS-AM2"/>
                         <outlet property="flagTotalNewApp2" destination="4kJ-h8-uLa" id="4b7-UR-5r2"/>
                         <outlet property="flagTotalNewApp3" destination="Rip-lr-D8B" id="lWj-IO-E9F"/>
-                        <outlet property="flagTotalNewApp4" destination="Yth-aX-aH5" id="1Kq-3X-ze6"/>
+                        <outlet property="flagTotalNewApp4" destination="J6a-gM-A3v" id="3pj-vq-Nr5"/>
                         <outlet property="flagTotalOnProgress" destination="wpa-ju-0fI" id="sae-1f-0wq"/>
                         <outlet property="flagTotalOnProgress2" destination="JsC-u0-bc8" id="zcM-gs-DJP"/>
                         <outlet property="flagTotalOnProgress3" destination="XXi-d9-ciH" id="zJY-XX-06y"/>
-                        <outlet property="flagTotalOnProgress4" destination="0qG-Hl-Ads" id="sgR-iW-nNx"/>
+                        <outlet property="flagTotalOnProgress4" destination="ZAZ-Aw-Jn9" id="XP4-tt-T7b"/>
                         <outlet property="flagTotalProcessConfins" destination="ZzU-UH-QW1" id="rAp-1m-hsr"/>
                         <outlet property="flagTotalProcessConfins2" destination="pCW-Gi-8tP" id="UwX-bW-pi7"/>
                         <outlet property="flagTotalProcessConfins3" destination="C0K-iY-LY7" id="inm-ej-v0k"/>
-                        <outlet property="flagTotalProcessConfins4" destination="9Gm-im-J2x" id="4mf-FY-98V"/>
+                        <outlet property="flagTotalProcessConfins4" destination="wCX-C0-o8h" id="DmX-SC-pLa"/>
                         <outlet property="flagTotalStopProcess" destination="qcI-EO-636" id="jjG-t6-WaR"/>
                         <outlet property="flagTotalStopProcess2" destination="gAS-sT-WaD" id="0dE-8j-cKu"/>
                         <outlet property="flagTotalStopProcess3" destination="eQ2-1q-O7W" id="mdd-dJ-sYF"/>
-                        <outlet property="flagTotalStopProcess4" destination="8SE-2d-vj0" id="osg-ge-zjK"/>
+                        <outlet property="flagTotalStopProcess4" destination="jKK-VB-eIB" id="28t-9d-ape"/>
                         <outlet property="flagTotalSubmitMap" destination="Nc8-Gp-2JC" id="HNa-6C-rid"/>
                         <outlet property="flagTotalSubmitMap2" destination="0L9-BK-Hes" id="tkf-MZ-IBO"/>
                         <outlet property="flagTotalSubmitMap3" destination="ZfT-fy-cjB" id="gxk-se-14Z"/>
-                        <outlet property="flagTotalSubmitMap4" destination="hfc-uJ-MjO" id="9gr-7T-X1n"/>
+                        <outlet property="flagTotalSubmitMap4" destination="JDl-JZ-GmP" id="090-Wa-Ejm"/>
                         <outlet property="flagTotalSubmitSurvey" destination="Z15-9d-WYX" id="1e4-gD-GTn"/>
                         <outlet property="flagTotalSubmitSurvey2" destination="DEs-Fv-rho" id="vyt-gO-iIY"/>
                         <outlet property="flagTotalSubmitSurvey3" destination="uSo-6v-Rbe" id="5lm-Fy-its"/>
-                        <outlet property="flagTotalSubmitSurvey4" destination="QlY-BY-nPT" id="PR6-cD-BHV"/>
+                        <outlet property="flagTotalSubmitSurvey4" destination="LZk-pO-YDc" id="tPl-nN-TKP"/>
                         <outlet property="flagTotalWaitingGetData" destination="43w-iZ-rO9" id="FHm-6g-16d"/>
                         <outlet property="flagTotalWaitingGetData2" destination="e1x-of-C73" id="28i-po-evb"/>
                         <outlet property="flagTotalWaitingGetData3" destination="Tgo-hS-kAP" id="bqS-G8-Bzd"/>
-                        <outlet property="flagTotalWaitingGetData4" destination="sDQ-lY-ICC" id="hV2-FN-Xih"/>
+                        <outlet property="flagTotalWaitingGetData4" destination="aao-NH-2zM" id="8Hf-EU-SoS"/>
                         <outlet property="progressChartMonth1" destination="cNV-FD-6cV" id="b0m-xV-TcJ"/>
                         <outlet property="progressChartMonth2" destination="jQ0-pf-FWR" id="5Xl-Rp-Z8m"/>
                         <outlet property="progressChartMonthSumberAplikasi" destination="gLf-yM-LWA" id="Jqz-eP-yqr"/>

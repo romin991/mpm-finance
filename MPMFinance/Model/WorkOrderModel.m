@@ -720,7 +720,7 @@
                                     @"token" : [MPMUserInfo getToken]}];
     
     NSMutableDictionary *dataDictionary = [NSMutableDictionary dictionary];
-    NSString *url = [[MPMUserInfo getRole] isEqualToString:kRoleCustomer] ? @"customer/input" : @"marketing/input";
+    NSString *url = [[MPMUserInfo getRole] isEqualToString:kRoleCustomer] ? @"customer/input" : @"marketing/update";
     @try {
         if (list){
             [dataDictionary setObject:@(list.primaryKey) forKey:@"id"];
@@ -957,15 +957,20 @@
         }
     }];
 }
-
-+ (void)setStopProccessWithID:(NSInteger)pengajuanId reason:(NSInteger)reason completion:(void(^)(NSDictionary *dictionary, NSError *error))block{
++ (void)setStopProccessWithID:(NSInteger)pengajuanId reason:(NSInteger)reason completion:(void(^)(NSDictionary *dictionary, NSError *error))block {
+    [self setStopProccessWithID:pengajuanId reason:reason tipe:@"stopProccess" completion:block];
+}
++ (void)setStopProccessWithID:(NSInteger)pengajuanId completion:(void(^)(NSDictionary *dictionary, NSError *error))block {
+    [self setStopProccessWithID:pengajuanId reason:0 tipe:@"next" completion:block];
+}
++ (void)setStopProccessWithID:(NSInteger)pengajuanId reason:(NSInteger)reason tipe:(NSString*)tipe completion:(void(^)(NSDictionary *dictionary, NSError *error))block{
     AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
     NSMutableDictionary* param = [NSMutableDictionary dictionaryWithDictionary:
                                   @{@"userid" :[MPMUserInfo getUserInfo][@"userId"],
                                     @"token" : [MPMUserInfo getToken],
                                     @"data" : @{@"id" : [NSString stringWithFormat:@"%li", (long)pengajuanId],
-                                                @"tipe" : @"stopProccess",
-                                                @"reason" : [NSString stringWithFormat:@"%li", (long)reason],
+                                                @"tipe" : tipe,
+                                                @"reason" : reason == 0 ? @"" : [NSString stringWithFormat:@"%li", (long)reason],
                                                 }
                                     }];
     
@@ -1010,6 +1015,8 @@
         }
     }];
 }
+
+
 
 + (void)getViewStepMonitoringWithID:(NSInteger)pengajuanId completion:(void(^)(NSArray *datas, NSError *error))block{
     AFHTTPSessionManager* manager = [MPMGlobal sessionManager];

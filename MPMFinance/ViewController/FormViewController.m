@@ -75,8 +75,6 @@
 }
 
 -(BOOL)textField:(XLFormRowDescriptor *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    NSLog(@"DAFUK");
-    
     return YES;
 }
 
@@ -701,7 +699,7 @@
         XLFormRowDescriptor *masaBerlakuKTPPasangan = [self.form formRowWithTag:@"masaBerlakuKTPPasangan"];
         XLFormRowDescriptor *kewarganegaraanPasangan = [self.form formRowWithTag:@"kewarganegaraanPasangan"];
         
-        BOOL isThereAnyValueForSpouse = [namaLengkapPasangan.value length] || [nomorHandphonePasangan.value length] || [tempatLahirPasangan.value length] || tanggalLahirPasangan.value || [alamatPasangan.value length]|| [rTPasangan.value length]|| [rWPasangan.value length]|| [kelurahanPasangan.value length] || masaBerlakuKTPPasangan.value;
+        BOOL isThereAnyValueForSpouse = [namaLengkapPasangan.value length] || [nomorHandphonePasangan.value length] || [tempatLahirPasangan.value length] || [alamatPasangan.value length]|| [rTPasangan.value length]|| [rWPasangan.value length]|| [kelurahanPasangan.value length] || masaBerlakuKTPPasangan.value;
         if (isThereAnyValueForSpouse) {
             nomorHandphonePasangan.required = YES;
             namaLengkapPasangan.required = YES;

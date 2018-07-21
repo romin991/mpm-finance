@@ -33,5 +33,5 @@
 + (void)deleteCustomerDraft:(NSNumber *)draftID;
 
 + (void)getViewStepMonitoringWithID:(NSInteger)pengajuanId completion:(void(^)(NSArray *datas, NSError *error))block;
-
++ (void)setStopProccessWithID:(NSInteger)pengajuanId completion:(void(^)(NSDictionary *dictionary, NSError *error))block;
 @end

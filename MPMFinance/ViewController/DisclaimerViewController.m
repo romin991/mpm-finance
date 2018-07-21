@@ -41,8 +41,11 @@
     
     if ([self.parentMenu.primaryKey isEqualToString:kSubmenuListWorkOrder] ||
         [self.parentMenu.primaryKey isEqualToString:kSubmenuMonitoring]) {
-        self.submitButton.hidden = true;
-        self.viewBarcodeButton.hidden = false;
+        if ([self.list.status isEqualToString:@"Work Order Marketing"]) {
+            self.submitButton.hidden = true;
+            self.viewBarcodeButton.hidden = false;
+        }
+        self.isPhotoTaken = true;
         self.takePhotoButton.hidden = true;
         self.isAgree = true;
         [self setRightBarButton];
@@ -210,6 +213,7 @@
             }]];
             
             [actionSheet addAction:[UIAlertAction actionWithTitle:@"Ya" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+                [WorkOrderModel setStopProccessWithID:weakSelf.list.primaryKey completion:nil];
                 BarcodeViewController *barcodeVC = [[BarcodeViewController alloc] init];
                 barcodeVC.barcodeString = noRegistrasi;
                 barcodeVC.modalPresentationStyle = UIModalPresentationFullScreen;
@@ -278,6 +282,9 @@
         } else {
             [self close];
         }
+    }
+    else {
+        [self close];
     }
 }
 
