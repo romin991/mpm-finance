@@ -11,6 +11,7 @@
 #import "MyProfileContainerViewController.h"
 @interface MyProfileNavigationViewController ()<UITabBarDelegate>
 @property (weak, nonatomic) IBOutlet UITabBar *tabBar;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topConstraint;
 @property MyProfileContainerViewController *containerView;
 @end
 
@@ -21,7 +22,13 @@
    
     // Do any additional setup after loading the view.
 }
-
+-(void)viewWillAppear:(BOOL)animated
+{
+  if (![[MPMUserInfo getRole] isEqualToString:kRoleCustomer]) {
+    self.tabBar.hidden = YES;
+    self.topConstraint.active = NO;
+  }
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

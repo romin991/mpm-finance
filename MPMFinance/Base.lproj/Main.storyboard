@@ -484,7 +484,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ArO-fn-ZfG">
+                            <tabBar contentMode="scaleToFill" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="ArO-fn-ZfG">
                                 <rect key="frame" x="0.0" y="20" width="375" height="49"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <items>
@@ -512,7 +512,8 @@
                         <constraints>
                             <constraint firstItem="ArO-fn-ZfG" firstAttribute="leading" secondItem="H80-2j-oVU" secondAttribute="leading" id="ELk-Xi-j0V"/>
                             <constraint firstAttribute="trailing" secondItem="ejU-IW-fJv" secondAttribute="trailing" id="FBD-wx-0tH"/>
-                            <constraint firstItem="lXR-db-r6n" firstAttribute="top" secondItem="ejU-IW-fJv" secondAttribute="bottom" id="Ila-We-UdV"/>
+                            <constraint firstItem="lXR-db-r6n" firstAttribute="top" secondItem="ejU-IW-fJv" secondAttribute="bottom" priority="750" id="Ila-We-UdV"/>
+                            <constraint firstItem="ejU-IW-fJv" firstAttribute="top" secondItem="cW6-J1-Bv1" secondAttribute="bottom" priority="750" id="Z0Q-jg-dqd"/>
                             <constraint firstItem="ejU-IW-fJv" firstAttribute="top" secondItem="ArO-fn-ZfG" secondAttribute="bottom" id="Zoa-H0-kqL"/>
                             <constraint firstItem="ArO-fn-ZfG" firstAttribute="width" secondItem="H80-2j-oVU" secondAttribute="width" id="jpb-Sw-Y1i"/>
                             <constraint firstItem="ejU-IW-fJv" firstAttribute="leading" secondItem="H80-2j-oVU" secondAttribute="leading" id="mdZ-4j-U9Q"/>
@@ -521,6 +522,7 @@
                     </view>
                     <connections>
                         <outlet property="tabBar" destination="ArO-fn-ZfG" id="DNr-cm-fGv"/>
+                        <outlet property="topConstraint" destination="sou-mm-z1i" id="oUc-8C-UKL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rhj-8s-peY" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -215,7 +215,7 @@
     
 //=======
     submenu = [[Menu alloc] init];
-    submenu.imageName = @"UsedCarIcon";
+    submenu.imageName = @"new_car_gray";
     submenu.primaryKey = kSubmenuUsedCar;
     submenu.indonesiaTitle = submenu.primaryKey;
     submenu.sort = 1;
@@ -228,7 +228,7 @@
     
 //========
     submenu = [[Menu alloc] init];
-    submenu.imageName = @"NewCarIcon";
+    submenu.imageName = @"new_car_red";
     submenu.primaryKey = kSubmenuNewCar;
     submenu.indonesiaTitle = submenu.primaryKey;
     submenu.sort = 2;
@@ -711,7 +711,7 @@
 + (void)generateSubmenusForCustomerDealerWithRealm:(RLMRealm *)realm{
 //==CreditSimulation===================================================================================================
     Menu *submenu = [[Menu alloc] init];
-    submenu.imageName = @"NewBike";
+    submenu.imageName = @"new_motorcyle_yellow";
     submenu.primaryKey = kSubmenuCreditSimulationNewBike;
     submenu.indonesiaTitle = @"Pembiayaan Motor Baru";
     submenu.englishTitle = @"New Bike";
@@ -725,7 +725,7 @@
     
     //==========
     submenu = [[Menu alloc] init];
-    submenu.imageName = @"NewCarIcon";
+    submenu.imageName = @"new_car_red";
     submenu.primaryKey = kSubmenuCreditSimulationNewCar;
     submenu.indonesiaTitle = @"Pembiayaan Mobil Baru";
     submenu.englishTitle = @"New Car";
@@ -739,7 +739,7 @@
     
     //==========
     submenu = [[Menu alloc] init];
-    submenu.imageName = @"UsedCarIcon";
+    submenu.imageName = @"new_car_gray";
     submenu.primaryKey = kSubmenuCreditSimulationUsedCar;
     submenu.indonesiaTitle = @"Pembiayaan Mobil Bekas";
     submenu.englishTitle = @"Used Car";
