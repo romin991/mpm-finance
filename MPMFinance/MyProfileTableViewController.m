@@ -288,6 +288,7 @@
         
     } else {
         _isEdit = NO;
+      [SVProgressHUD show];
         [self setTextFieldsEnable:NO];
         [((UIButton * )sender) setTitle:@"EDIT" forState:UIControlStateNormal];
         NSDictionary *param = @{
@@ -314,6 +315,11 @@
             ;
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             NSLog(@"%@",responseObject);
+          [SVProgressHUD dismiss];
+          UIAlertController* alertVC = [UIAlertController alertControllerWithTitle:@"Success" message:responseObject[@"message"] preferredStyle:UIAlertControllerStyleAlert];
+          [alertVC addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil]];
+          [super presentViewController:alertVC animated:YES completion:nil];
+          
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             if (error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] != nil) {
                 NSDictionary *errorDict = [NSJSONSerialization JSONObjectWithData:error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:0 error:nil];

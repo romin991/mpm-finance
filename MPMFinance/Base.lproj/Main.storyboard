@@ -871,9 +871,9 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Estimasi Harga" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dze-3F-iPL">
-                                        <rect key="frame" x="8" y="110" width="114" height="21"/>
+                                        <rect key="frame" x="8" y="110" width="300" height="21"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="114" id="b6H-iQ-GCa"/>
+                                            <constraint firstAttribute="width" constant="300" id="b6H-iQ-GCa"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -960,7 +960,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*Simulasi kredit di atas tidak mengikat dan dapat berubah sewaktu waktu" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="292" translatesAutoresizingMaskIntoConstraints="NO" id="Mgl-rC-hv5">
-                                        <rect key="frame" x="14" y="395" width="277.5" height="53"/>
+                                        <rect key="frame" x="49" y="395" width="277.5" height="53"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="53" id="IC8-Th-Zxg"/>
                                         </constraints>
@@ -989,7 +989,6 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="bKe-O3-6i1" firstAttribute="centerX" secondItem="hkl-b2-nLm" secondAttribute="centerX" id="3Rd-ds-CWH"/>
-                                    <constraint firstItem="Mgl-rC-hv5" firstAttribute="leading" secondItem="hkl-b2-nLm" secondAttribute="leading" constant="14" id="3ks-JA-qDd"/>
                                     <constraint firstItem="RAA-vK-vTz" firstAttribute="top" secondItem="hkl-b2-nLm" secondAttribute="top" constant="456" id="5ct-cW-PYV"/>
                                     <constraint firstAttribute="bottom" secondItem="bKe-O3-6i1" secondAttribute="bottom" constant="24" id="6Jt-5k-8QA"/>
                                     <constraint firstItem="CrG-j6-Tzj" firstAttribute="leading" secondItem="hkl-b2-nLm" secondAttribute="leading" constant="8" id="77d-vK-k8A"/>
@@ -1003,6 +1002,7 @@
                                     <constraint firstItem="CrG-j6-Tzj" firstAttribute="top" secondItem="hkl-b2-nLm" secondAttribute="top" constant="43" id="HhQ-bK-4DQ"/>
                                     <constraint firstItem="39w-fp-m6c" firstAttribute="leading" secondItem="hkl-b2-nLm" secondAttribute="leading" constant="8" id="IXK-xg-F8q"/>
                                     <constraint firstItem="3QT-uG-3or" firstAttribute="top" secondItem="644-2J-BuH" secondAttribute="bottom" constant="8" id="KYf-pQ-2Bf"/>
+                                    <constraint firstItem="Mgl-rC-hv5" firstAttribute="centerX" secondItem="hkl-b2-nLm" secondAttribute="centerX" id="NJu-of-4yK"/>
                                     <constraint firstAttribute="trailing" secondItem="inj-RW-RTy" secondAttribute="trailing" constant="5" id="Ou9-0f-Zzy"/>
                                     <constraint firstItem="bKe-O3-6i1" firstAttribute="top" secondItem="RAA-vK-vTz" secondAttribute="bottom" constant="8" id="S0U-nX-ppt"/>
                                     <constraint firstAttribute="trailing" secondItem="7qe-bn-gPu" secondAttribute="trailing" constant="5" id="S8z-E1-lpp"/>

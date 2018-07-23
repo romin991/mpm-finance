@@ -104,8 +104,9 @@
     }
     else {
         if ([self.menuType isEqualToString:@"Pembiayaan Motor Baru"]) {
-            [self.lblAngsuran setHidden:YES];
-            [self.txtTotalBayarAwal setHidden:YES];
+            [self.lblDP setHidden:YES];
+          self.txtUangMuka.hidden = YES;
+          
         }
         self.jenisHitungPickerView = [[UIPickerView alloc] init];
         self.jenisHitungPickerView.delegate = self;
@@ -221,6 +222,8 @@
             self.txtAngsuran.text = responseObject[@"data"][@"angsuran"];
             if (isDahsyat) {
                 self.txtTotalBayarAwal.text = [self formatToRupiah:responseObject[@"data"][@"pencairanMaks"]];
+            } else if ([self.txtJenisPerhitungan.text isEqualToString:@"Estimasi Angsuran"]) {
+              self.txtTotalBayarAwal.text = [self formatToRupiah:responseObject[@"data"][@"hargaKendaraan"]];
             } else
                 self.txtTotalBayarAwal.text = [self formatToRupiah:responseObject[@"data"][@"totalBayarAwal"]];
             [self.btnPengajuan setHidden:NO];

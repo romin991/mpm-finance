@@ -216,9 +216,10 @@
                 if ([row.tag isEqualToString:@"tanggalLahir"] || [row.tag isEqualToString:@"tanggalLahirPasangan"] ) {
                     if ([[row cellForFormController:self] isKindOfClass:XLFormDateCell.class]){
                         [(XLFormDateCell *)[row cellForFormController:self] setMaximumDate:[NSDate date]];
+                      [(XLFormDateCell *)[row cellForFormController:self] setMinimumDate:[NSDate dateWithTimeIntervalSinceNow:-536112000]];
                     }
                 }
-                
+              
                 if ([row.tag isEqualToString:@"namaLengkap"]) {
                     ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).mustAlphabetOnly = YES;
                 }
