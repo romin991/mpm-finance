@@ -39,9 +39,8 @@
     // Do any additional setup after loading the view from its nib.
     [self setTitle:self.menu.title];
     
-    if ([self.parentMenu.primaryKey isEqualToString:kSubmenuListWorkOrder] ||
-        [self.parentMenu.primaryKey isEqualToString:kSubmenuMonitoring]) {
-        if ([self.list.status isEqualToString:@"Work Order Marketing"]) {
+    if (self.isReadOnly) {
+        if (self.isReadOnly) {
             self.submitButton.hidden = true;
             self.viewBarcodeButton.hidden = false;
         }

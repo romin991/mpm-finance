@@ -71,7 +71,17 @@
     XLFormRowDescriptor *numpadRow = [self.form formRowWithTag:@"nomorHandphone"];
     if ([[numpadRow cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
         [(FloatLabeledTextFieldCell *)[numpadRow cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
+      [(FloatLabeledTextFieldCell *)[numpadRow cellForFormController:self]  setMaximumLength:15];
     }
+  XLFormRowDescriptor *namaRow = [self.form formRowWithTag:@"nama"];
+  if ([[namaRow cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+    [(FloatLabeledTextFieldCell *)[namaRow cellForFormController:self] setMustAlphabetOnly:YES];
+  }
+  XLFormRowDescriptor *tahunRow = [self.form formRowWithTag:@"tahunKendaraan"];
+  if ([[tahunRow cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+    [(FloatLabeledTextFieldCell *)[tahunRow cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
+    [(FloatLabeledTextFieldCell *)[tahunRow cellForFormController:self] setMaximumLength:4];
+  }
     
     self.form = formDescriptor;
 }

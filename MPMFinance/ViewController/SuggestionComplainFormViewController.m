@@ -12,7 +12,7 @@
 #import "CustomerModel.h"
 #import "SuggestionComplaintModel.h"
 #import "FloatLabeledTextFieldCell.h"
-
+#import "SuggestionComplaintTableViewController.h"
 @interface SuggestionComplainFormViewController ()
 
 @property NSMutableDictionary *valueDictionary;
@@ -124,12 +124,18 @@
     subJenisMasalah.selectorOptions = optionObjects;
     
     //Set keyboard type to numberPad
-    XLFormRowDescriptor *numpadRow = [self.form formRowWithTag:@"nomorHandphone"];
+    XLFormRowDescriptor *numpadRow = [self.form formRowWithTag:@"noHP"];
     if ([[numpadRow cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
         [(FloatLabeledTextFieldCell *)[numpadRow cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
+      numpadRow.value = [MPMUserInfo getUserInfo][@"phone"];
     }
-    
-    numpadRow = [self.form formRowWithTag:@"nomorHandphoneBaru"];
+  
+  XLFormRowDescriptor *emailRow = [self.form formRowWithTag:@"email"];
+  if ([[emailRow cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+    [(FloatLabeledTextFieldCell *)[emailRow cellForFormController:self] setMustAlphabetPunctuationOnly:YES];
+  }
+  
+    numpadRow = [self.form formRowWithTag:@"nomorhandphonebaruJikaDiubah"];
     if ([[numpadRow cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
         [(FloatLabeledTextFieldCell *)[numpadRow cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
     }
@@ -137,9 +143,10 @@
     numpadRow = [self.form formRowWithTag:@"nomorTelepon"];
     if ([[numpadRow cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
         [(FloatLabeledTextFieldCell *)[numpadRow cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
+      
     }
     
-    numpadRow = [self.form formRowWithTag:@"nomorTeleponBaru"];
+    numpadRow = [self.form formRowWithTag:@"nomorTeleponBaruJikaDiubah"];
     if ([[numpadRow cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
         [(FloatLabeledTextFieldCell *)[numpadRow cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
     }
@@ -181,7 +188,9 @@
                     }
                 } else {
                     [SVProgressHUD dismiss];
-                    [self.navigationController popViewControllerAnimated:YES];
+                  SuggestionComplaintTableViewController *vc = [[SuggestionComplaintTableViewController alloc] init];
+                  
+                    [self.navigationController pushViewController:vc animated:YES];
                 }
             }];
             
@@ -200,7 +209,9 @@
                     }
                 } else {
                     [SVProgressHUD dismiss];
-                    [self.navigationController popViewControllerAnimated:YES];
+                  SuggestionComplaintTableViewController *vc = [[SuggestionComplaintTableViewController alloc] init];
+                  
+                  [self.navigationController pushViewController:vc animated:YES];
                 }
             }];
         }
@@ -249,9 +260,9 @@
 - (void)resetForm{
     NSDictionary *dictionary = @{@"nama" : @"",
                                  @"nomorTelepon" : @"",
-                                 @"nomorTeleponBaru" : @"",
+                                 @"nomorTeleponBaruJikaDiubah" : @"",
                                  @"nomorHandphone" : @"",
-                                 @"nomorHandphoneBaru" : @"",
+                                 @"nomorhandphonebaruJikaDiubah" : @"",
                                  @"alamat" : @"",
                                  @"email" : @"",
                                  @"kronologisMasalah" : @"",

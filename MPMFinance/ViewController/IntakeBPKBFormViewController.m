@@ -125,6 +125,18 @@
     if ([formRow.tag isEqualToString:@"noKontrak"]){
         self.agreementNo = newValue != nil && ![newValue isKindOfClass:NSNull.class] ? ((XLFormOptionsObject *) newValue).formDisplayText : @"";
         [self performSelector:@selector(fillRowData) withObject:nil afterDelay:0.1];
+    } else if ([formRow.tag isEqualToString:@"tanggalPengembalianDokumen"]) {
+      NSDate *aDate = formRow.value;
+      NSCalendar *calendar = [NSCalendar currentCalendar];
+      NSRange weekdayRange = [calendar maximumRangeOfUnit:NSCalendarUnitWeekday];
+      NSDateComponents *components = [calendar components:NSCalendarUnitWeekday fromDate:aDate];
+      NSUInteger weekdayOfDate = [components weekday];
+      
+      if (weekdayOfDate == weekdayRange.location || weekdayOfDate == weekdayRange.length) {
+        //the date falls somewhere on the first or last days of the week
+        NSLog(@"weekend!");
+      }
+      
     }
 }
 

@@ -14,14 +14,15 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtHarga;
 @property (weak, nonatomic) IBOutlet UITextField *txtLamaPembiayaan;
 @property (weak, nonatomic) IBOutlet UITextField *txtUangMuka; // nilai pembiayaan di dahsyat2w dan 4w
-@property (weak, nonatomic) IBOutlet UILabel *txtTotalBayarAwal;
-@property (weak, nonatomic) IBOutlet UILabel *txtAngsuran;
+@property (weak, nonatomic) IBOutlet UILabel *txtValue1;
+@property (weak, nonatomic) IBOutlet UILabel *txtValue2;
 @property (weak, nonatomic) IBOutlet UIButton *btnPengajuan;
 @property (weak, nonatomic) IBOutlet UITextField *txtJenisPerhitungan;
 
-@property (weak, nonatomic) IBOutlet UILabel *lblDP;
+@property (weak, nonatomic) IBOutlet UILabel *lblValue2;
 @property NSNumber *harga;
-@property (weak, nonatomic) IBOutlet UILabel *lblAngsuran;
+@property NSNumber *harga2;
+@property (weak, nonatomic) IBOutlet UILabel *lblValue1;
 @property (weak, nonatomic) IBOutlet UILabel *lblJenisHitung;
 @property UIPickerView *tenorPickerView;
 @property UIPickerView *jenisHitungPickerView;
@@ -82,30 +83,65 @@
     } else {
         
         self.txtJenisPerhitungan.text = self.jenisHitungs[row];
+      if ([self.menuType isEqualToString:@"Pembiayaan Motor Baru"]) {
         if ([self.txtJenisPerhitungan.text isEqualToString:@"Estimasi Harga"]) {
-            self.lblAngsuran.text = @"Estimasi Angsuran";
-            self.lblJenisHitung.text = @"Estimasi Harga";
+          self.lblValue1.text = @"Estimasi Angsuran";
+          self.lblJenisHitung.text = @"Estimasi Harga";
         } else {
-            self.lblJenisHitung.text = @"Estimasi Angsuran";
-            self.lblAngsuran.text = @"Estimasi Harga";
+          self.lblJenisHitung.text = @"Estimasi Angsuran";
+          self.lblValue1.text = @"Estimasi Harga";
         }
+      }
+      else if ([self.menuType isEqualToString:@"Pembiayaan Mobil Baru"] || [self.menuType isEqualToString:@"Pembiayaan Mobil Bekas"]) {
+        if ([self.txtJenisPerhitungan.text isEqualToString:@"Estimasi Harga"]) {
+          self.lblValue2.text = @"Estimasi Angsuran";
+          self.lblJenisHitung.text = @"Estimasi Harga";
+        } else {
+          self.lblJenisHitung.text = @"Estimasi Angsuran";
+          self.lblValue2.text = @"Estimasi Harga";
+        }
+      }
+      else if ([self.menuType isEqualToString:@"Dahsyat - Multiguna Motor"]) {
+        if ([self.txtJenisPerhitungan.text isEqualToString:@"Estimasi Harga"]) {
+          self.lblValue2.text = @"Estimasi Angsuran";
+          self.lblJenisHitung.text = @"Estimasi Harga";
+        } else {
+          self.lblJenisHitung.text = @"Estimasi Angsuran";
+          self.lblValue2.text = @"Estimasi Harga";
+        }
+      }
+      else if ([self.menuType isEqualToString:@"Dahsyat - Multiguna Mobil"]) {
+        if ([self.txtJenisPerhitungan.text isEqualToString:@"Estimasi Harga"]) {
+          self.lblValue2.text = @"Estimasi Angsuran";
+          self.lblJenisHitung.text = @"Estimasi Harga";
+        } else {
+          self.lblJenisHitung.text = @"Estimasi Angsuran";
+          self.lblValue2.text = @"Estimasi Harga";
+        }
+        
+      }
+      else if ([self.menuType isEqualToString:kSubmenuCreditSimulationProperty]) {
+        
+      }
+      
+      
     }
 }
 -(void)refreshUI
 {
     
     if ([self.menuType isEqualToString:@"Dahsyat - Multiguna Motor"] || [self.menuType isEqualToString:@"Dahsyat - Multiguna Mobil"]) {
-        self.lblDP.hidden = NO;
-        self.lblDP.text = @"Nilai Pembiayaan";
+        self.lblValue2.hidden = NO;
+        self.lblValue2.text = @"Nilai Pembiayaan";
         self.txtUangMuka.hidden = NO;
         self.lblPencairan.text = @"Nilai Pencairan";
-        self.lblAngsuran.text = @"Pencairan Maksimal";
+        self.lblValue1.text = @"Pencairan Maksimal";
         self.txtJenisPerhitungan.delegate = self;
     }
     else {
         if ([self.menuType isEqualToString:@"Pembiayaan Motor Baru"]) {
-            [self.lblDP setHidden:YES];
-          self.txtUangMuka.hidden = YES;
+            [self.lblValue2 setHidden:YES];
+            self.txtValue2.hidden = YES;
           
         }
         self.jenisHitungPickerView = [[UIPickerView alloc] init];
@@ -113,6 +149,26 @@
         self.jenisHitungPickerView.dataSource = self;
         self.txtJenisPerhitungan.inputView = self.jenisHitungPickerView;
     }
+  
+  
+  if ([self.menuType isEqualToString:@"Pembiayaan Motor Baru"]) {
+    self.lblValue1.text = @"Estimasi Angsuran";
+  }
+  else if ([self.menuType isEqualToString:@"Pembiayaan Mobil Baru"] || [self.menuType isEqualToString:@"Pembiayaan Mobil Bekas"]) {
+    self.lblValue1.text = @"Total Bayar Awal";
+    self.lblValue2.text = @"Angsuran";
+  }
+  else if ([self.menuType isEqualToString:@"Dahsyat - Multiguna Motor"]) {
+    
+  }
+  else if ([self.menuType isEqualToString:@"Dahsyat - Multiguna Mobil"]) {
+    
+    
+  }
+  else if ([self.menuType isEqualToString:kSubmenuCreditSimulationProperty]) {
+    
+  }
+  
     self.txtHarga.delegate = self;
 }
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
@@ -136,8 +192,13 @@
         range.location == textField.text.length) {
         formattedString = [formattedString stringByAppendingString:@"."];
     }
-    
+  
+  if ([textField isEqual:self.txtHarga]) {
     _harga = number;
+  } else if ([textField isEqual:_txtJenisPerhitungan]) {
+    _harga2 = number;
+  }
+  
     textField.text = formattedString;
     return NO;
 }
@@ -185,7 +246,7 @@
         if (!_harga || self.txtLamaPembiayaan.text.length < 1) {
             return;
         }
-        biayaTenor = @{@"nilaiPencairan" : _txtJenisPerhitungan.text,
+        biayaTenor = @{@"nilaiPencairan" : _harga2,
                        @"hargaKendaraan" : _harga,
                        @"lamaPembiayaan" : self.txtLamaPembiayaan.text
                        };
@@ -218,19 +279,45 @@
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"%@",responseObject);
         if ([responseObject[@"statusCode"] isEqual:@200]) {
-            
-            self.txtAngsuran.text = responseObject[@"data"][@"angsuran"];
-            if (isDahsyat) {
-                self.txtTotalBayarAwal.text = [self formatToRupiah:responseObject[@"data"][@"pencairanMaks"]];
-            } else if ([self.txtJenisPerhitungan.text isEqualToString:@"Estimasi Angsuran"]) {
-              self.txtTotalBayarAwal.text = [self formatToRupiah:responseObject[@"data"][@"hargaKendaraan"]];
-            } else
-                self.txtTotalBayarAwal.text = [self formatToRupiah:responseObject[@"data"][@"totalBayarAwal"]];
-            [self.btnPengajuan setHidden:NO];
-            
+          if ([self.menuType isEqualToString:@"Pembiayaan Motor Baru"]) {
+            if ([self.txtJenisPerhitungan.text isEqualToString:@"Estimasi Harga"]) {
+               self.txtValue1.text = responseObject[@"data"][@"angsuran"];
+            } else {
+               self.txtValue1.text = responseObject[@"data"][@"hargaKendaraan"];
+            }
+          } else if ([self.menuType isEqualToString:@"Pembiayaan Mobil Baru"] || [self.menuType isEqualToString:@"Pembiayaan Mobil Bekas"]) {
+            if ([self.txtJenisPerhitungan.text isEqualToString:@"Estimasi Harga"]) {
+              
+              self.txtValue1.text = responseObject[@"data"][@"totalBayarAwal"];
+              self.txtValue2.text = responseObject[@"data"][@"angsuran"];
+            } else {
+              self.txtValue1.text = responseObject[@"data"][@"hargaKendaraan"];
+              self.txtValue2.text = responseObject[@"data"][@"totalBayarAwal"];
+            }
+          }
+          else if ([self.menuType isEqualToString:@"Dahsyat - Multiguna Motor"]) {
+            self.txtValue1.text = responseObject[@"data"][@"pencairanMaks"];
+            self.txtValue2.text = responseObject[@"data"][@"angsuran"];
+          }
+          else if ([self.menuType isEqualToString:@"Dahsyat - Multiguna Mobil"]) {
+            self.txtValue1.text = responseObject[@"data"][@"pencairanMaks"];
+            self.txtValue2.text = responseObject[@"data"][@"angsuran"];
+          }
+          
+          NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+          [numberFormatter setGroupingSeparator:@","];
+          [numberFormatter setGroupingSize:3];
+          [numberFormatter setUsesGroupingSeparator:YES];
+          [numberFormatter setDecimalSeparator:@"."];
+          [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+          [numberFormatter setMaximumFractionDigits:2];
+          self.txtValue1.text = [numberFormatter stringFromNumber:[NSNumber numberWithDouble:[self.txtValue1.text doubleValue]]];
+         self.txtValue2.text = [numberFormatter stringFromNumber:[NSNumber numberWithDouble:[self.txtValue2.text doubleValue]]];
+                                 
+          [self.btnPengajuan setHidden:NO];
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        ;
+      NSLog(@"%@",error);
     }];
     
 }

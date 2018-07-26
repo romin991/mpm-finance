@@ -16,5 +16,6 @@
 @property Menu *menu;
 @property NSMutableDictionary *valueDictionary;
 @property List *list;
+@property BOOL isReadOnly;
 
 @end

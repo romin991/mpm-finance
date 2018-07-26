@@ -61,7 +61,7 @@
         
     }
     range = [self rangeOfCharacterFromSet:notAllowedPunctuationSet];
-    if (range.location != NSNotFound) {
+    if (range.location != NSNotFound && wordType == notAllowedPunctuationSet) {
         wordType = notAllowedPunctuation;
     }
     return wordType;

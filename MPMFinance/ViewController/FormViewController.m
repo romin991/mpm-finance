@@ -215,8 +215,18 @@
                 }
                 if ([row.tag isEqualToString:@"tanggalLahir"] || [row.tag isEqualToString:@"tanggalLahirPasangan"] ) {
                     if ([[row cellForFormController:self] isKindOfClass:XLFormDateCell.class]){
-                        [(XLFormDateCell *)[row cellForFormController:self] setMaximumDate:[NSDate date]];
-                      [(XLFormDateCell *)[row cellForFormController:self] setMinimumDate:[NSDate dateWithTimeIntervalSinceNow:-536112000]];
+                      
+                      
+                      NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+                      NSDate *currentDate = [NSDate date];
+                      NSDateComponents *comps = [[NSDateComponents alloc] init];
+                      [comps setYear:-17];
+                      NSDate *minDate = [gregorian dateByAddingComponents:comps toDate:currentDate  options:0];
+                      [comps setYear:-150];
+                      NSDate *maxDate = [gregorian dateByAddingComponents:comps toDate:currentDate  options:0];
+                      
+                      [(XLFormDateCell *)[row cellForFormController:self] setMaximumDate:minDate];
+                      
                     }
                 }
               
@@ -433,6 +443,7 @@
                     disclaimerVC.list = weakSelf.list;
                     disclaimerVC.parentMenu = weakSelf.parentMenu;
                     disclaimerVC.menu = weakSelf.menu;
+                    disclaimerVC.isReadOnly = YES;
                     [weakSelf.navigationController pushViewController:disclaimerVC animated:true];
                     
                 } else {

@@ -161,13 +161,13 @@
          @{@"noKontrak" : [dictionary objectForKey:@"noKontrak"] ?: @"",
            @"subJnsMasalah" : [dictionary objectForKey:@"subJenisMasalah"] ?: @"",
            @"email" : [dictionary objectForKey:@"email"] ?: @"",
-           @"noHpBaru" : [dictionary objectForKey:@"nomorHandphoneBaru"] ?: @"",
+           @"noHpBaru" : [dictionary objectForKey:@"nomorhandphonebaruJikaDiubah"] ?: @"",
            @"kronologiMasalah" : [dictionary objectForKey:@"kronologisMasalah"] ?: @"",
            @"noTlp" : [dictionary objectForKey:@"nomorTelepon"] ?: @"",
            @"noHp" : [dictionary objectForKey:@"nomorHandphone"] ?: @"",
            @"nama" : [dictionary objectForKey:@"nama"] ?: @"",
            @"alamat" : [dictionary objectForKey:@"alamat"] ?: @"",
-           @"noTlpBaru" : [dictionary objectForKey:@"nomorTeleponBaru"] ?: @"",
+           @"noTlpBaru" : [dictionary objectForKey:@"nomorTeleponBaruJikaDiubah"] ?: @"",
            @"penjelasanMasalah" : [dictionary objectForKey:@"penjelasanMasalah"] ?: @"",
            }];
         

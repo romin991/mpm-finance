@@ -39,7 +39,7 @@
     self.guestMenu = [[NSArray alloc] initWithArray:guestMutableMenu];
     NSLog(@"%@",[MPMUserInfo getRole]);
     
-    if ([[LanguageManager currentLanguageCode] isEqualToString:@"id"]){
+    if ([[LanguageManager currentLanguageCode] isEqualToString:@"en"]){
         self.flagIcon.image = [UIImage imageNamed:@"uk-flag"];
         [self.languageButton setTitle:@"English" forState:UIControlStateNormal];
     }

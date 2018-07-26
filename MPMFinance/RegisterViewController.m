@@ -190,6 +190,9 @@
     self.txtPassword.secureTextEntry = !self.txtPassword.isSecureTextEntry;
     self.txtConfirmPassword.secureTextEntry = !self.txtConfirmPassword.isSecureTextEntry;
 }
+- (IBAction)back:(id)sender {
+  [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 
 - (IBAction)signUp:(id)sender {
@@ -208,7 +211,7 @@
                             @"token" : @"",
                             @"data" : @{@"username" : self.txtFirstName.text,
                                         @"ktp" : self.txtIDCardNumber.text,
-                                        @"password" : self.txtPassword.text,
+                                        @"password" : [MPMGlobal MD5fromString:self.txtPassword.text],
                                         @"dob" : self.txtDateOfBirth.text,
                                         @"placeOfBirth" : self.txtPlaceOfBirth.text,
                                         @"address" : self.txtAddress.text,

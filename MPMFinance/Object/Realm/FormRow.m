@@ -404,9 +404,9 @@ NSString *const MPMRegexValidationAlphabetMin3Char = @"^[a-zA-Z']{3,}$";
 + (void)generateComplaintFieldsWithRealm:(RLMRealm*)realm{
     [[FormRow new:realm :24 :0 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama"] setDisabled:YES];
     [FormRow new:realm :24 :1 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Telepon"];
-    [FormRow new:realm :24 :2 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Telepon Baru"];
+    [FormRow new:realm :24 :2 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Telepon Baru (Jika Diubah)"];
     [FormRow new:realm :24 :3 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Handphone"];
-    [FormRow new:realm :24 :4 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Handphone Baru"];
+    [FormRow new:realm :24 :4 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Handphone Baru (Jika Diubah)"];
     [FormRow new:realm :24 :5 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Alamat"];
     [FormRow new:realm :24 :6 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Email"];
     [FormRow new:realm :24 :7 :YES :XLFormRowDescriptorTypeSelectorPush :@"Sub Jenis Masalah"];// :46];
