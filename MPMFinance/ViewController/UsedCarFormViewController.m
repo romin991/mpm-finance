@@ -78,9 +78,11 @@
                     NSInteger year = yearString.integerValue;
                     
                     NSMutableArray *optionObjects = [NSMutableArray array];
-                    for(int i = 0; i < 11; i++) {
-                        NSString *stringValue = [NSString stringWithFormat:@"%li", (long)year-1];
+                    for(int i = 0; i < 12; i++) {
+                      
+                        NSString *stringValue = [NSString stringWithFormat:@"%li", (long)year];
                         [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:stringValue displayText:stringValue]];
+                      year -= 1;
                     }
                     row.selectorOptions = optionObjects;
                     row.value = optionObjects.firstObject;
@@ -252,6 +254,8 @@
                     //Set keyboard type to numberPad
                     if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
                         [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
+                      [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMustNumericOnly:YES];
+                      [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:12];
                     }
                 }
                 
@@ -262,6 +266,8 @@
                     //Set keyboard type to numberPad
                     if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
                         [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setKeyboardType:UIKeyboardTypeDecimalPad];
+                      [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMustNumericOnly:YES];
+                      [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:6];
                     }
                 }
             }

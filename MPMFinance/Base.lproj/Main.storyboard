@@ -890,9 +890,9 @@
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tenor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39w-fp-m6c">
-                                        <rect key="frame" x="8" y="177" width="43.5" height="21"/>
+                                        <rect key="frame" x="8" y="177" width="200" height="21"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="43.5" id="BnE-Zu-a3u"/>
+                                            <constraint firstAttribute="width" constant="200" id="BnE-Zu-a3u"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>

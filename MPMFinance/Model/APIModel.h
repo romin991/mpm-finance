@@ -72,4 +72,5 @@
 + (void) forgotPasswordWithUserName:(NSString *)username withCompletion:(void(^)(NSString *responseString, NSError *error))block;
 
 + (void) cancelAlternateWithId:(NSString *)idAlternate andDateBegin:(NSString *)dateBegin andMarketing:(NSString *)marketing withCompletion:(void(^)(NSString *responseString, NSError *error))block;
++ (void) getProfileWithCompletion:(void(^)(NSDictionary *responseDictionary, NSError *error))block;
 @end

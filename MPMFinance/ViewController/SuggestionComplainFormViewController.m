@@ -114,7 +114,7 @@
     
     XLFormSectionDescriptor *pengaduan = [formDescriptor.formSections objectAtIndex:3];
     pengaduan.hidden = @"$kategori.value.formValue == 'Saran'";
-    
+  
     XLFormSectionDescriptor *saran = [formDescriptor.formSections objectAtIndex:2];
     saran.hidden = @"$kategori.value.formValue == 'Pengaduan'";
     
@@ -128,21 +128,25 @@
     if ([[numpadRow cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
         [(FloatLabeledTextFieldCell *)[numpadRow cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
       numpadRow.value = [MPMUserInfo getUserInfo][@"phone"];
+      numpadRow.disabled = @(YES);
     }
   
   XLFormRowDescriptor *emailRow = [self.form formRowWithTag:@"email"];
   if ([[emailRow cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
     [(FloatLabeledTextFieldCell *)[emailRow cellForFormController:self] setMustAlphabetPunctuationOnly:YES];
+    emailRow.disabled = @(YES);
   }
   
     numpadRow = [self.form formRowWithTag:@"nomorhandphonebaruJikaDiubah"];
     if ([[numpadRow cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
         [(FloatLabeledTextFieldCell *)[numpadRow cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
+      
     }
     
     numpadRow = [self.form formRowWithTag:@"nomorTelepon"];
     if ([[numpadRow cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
         [(FloatLabeledTextFieldCell *)[numpadRow cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
+        numpadRow.disabled = @(YES);
       
     }
     

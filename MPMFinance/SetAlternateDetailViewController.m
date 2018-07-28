@@ -160,7 +160,9 @@ NSString * const kValidationReason = @"kReason";
     if (self.data) {
         [row setDisabled:@(!self.isEdit)];
         row.value = [MPMGlobal dateTimeFromString:self.data[@"date"]];
+      
     }
+   [(XLFormDateCell *)[row cellForFormController:self] setMaximumDate:[NSDate date]];
     //[row addValidator:[XLFormRegexValidator formRegexValidatorWithMsg:@"At least 6, max 32 characters" regex:@"^(?=.*\\d)(?=.*[A-Za-z]).{6,32}$"]];
     [section addFormRow:row];
     
@@ -173,6 +175,7 @@ NSString * const kValidationReason = @"kReason";
         [row setDisabled:@(!self.isEdit)];
         row.value = [MPMGlobal dateTimeFromString:self.data[@"date2"]];
     }
+   [(XLFormDateCell *)[row cellForFormController:self] setMaximumDate:[NSDate date]];
     [section addFormRow:row];
     
     

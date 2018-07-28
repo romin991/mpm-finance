@@ -72,7 +72,7 @@
     
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     [self refreshUI];
-    if ([[MPMUserInfo getRole] isEqualToString:kRoleSupervisor]) {
+    if ([[MPMUserInfo getRole] isEqualToString:kRoleSupervisor] || [[MPMUserInfo getRole] isEqualToString:kRoleBM]) {
         self.tabHistoryNotif.title = @"Message";
         [self.tabHistoryNotif setImage:[UIImage imageNamed:@"envelope"]];
         [self.tabHistoryNotif setSelectedImage:[UIImage imageNamed:@"envelope"]];

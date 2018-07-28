@@ -79,6 +79,9 @@ const static CGFloat kFloatingLabelFontSize = 11.0f;
     [self.contentView addSubview:self.floatLabeledTextField];
     [self.floatLabeledTextField setDelegate:self];
     [self.contentView addConstraints:[self layoutConstraints]];
+    [self.floatLabeledTextField addTarget:self
+                action:@selector(textFieldDidChange:)
+      forControlEvents:UIControlEventEditingChanged];
 }
 
 -(void)update
@@ -152,14 +155,16 @@ const static CGFloat kFloatingLabelFontSize = 11.0f;
             return NO;
         }
     }
+  
     return [self.formViewController textField:textField shouldChangeCharactersInRange:range replacementString:string];
 }
 
+
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
+  
     [self.formViewController textFieldDidBeginEditing:textField];
 }
-
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     [self textFieldDidChange:textField];

@@ -12,7 +12,7 @@
 #import "ChangePasswordViewController.h"
 #import "MenuNavigationViewController.h"
 #import "DropdownModel.h"
-
+#import "APIModel.h"
 @interface MyProfileTableViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *txtNamaCabang;
@@ -88,18 +88,25 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@",error);
     }];
-    self.txtEmail.text = [MPMUserInfo getUserInfo][@"email"];
-    self.txtFullName.text = [MPMUserInfo getUserInfo][@"username"];
-    self.txtUserID.text = [MPMUserInfo getUserInfo][@"userId"];
-    self.txtPhoneNumber.text = [MPMUserInfo getUserInfo][@"phone"];
-    self.txtAddress.text = [MPMUserInfo getUserInfo][@"address"];
-    self.txtDateOfBirth.text = [MPMUserInfo getUserInfo][@"dob"];
-    self.txtIdCardNumber.text = [MPMUserInfo getUserInfo][@"ktp"];
-    self.txtTempatLahir.text = [MPMUserInfo getUserInfo][@"placeOfBirth"];
-    self.txtNamaDealer.text = [MPMUserInfo getUserInfo][@"dealer_name"];
-    self.txtAddressDealer.text = [MPMUserInfo getUserInfo][@"dealer_address"];
-    self.txtNamaCabang.text = [MPMUserInfo getUserInfo][@"namaCabang"];
-    self.txtGender.text = [MPMUserInfo getUserInfo][@"gender"];
+  
+  [APIModel getProfileWithCompletion:^(NSDictionary *responseDictionary, NSError *error) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+      self.txtEmail.text = responseDictionary[@"email"];
+      self.txtFullName.text = responseDictionary[@"username"];
+      self.txtUserID.text = responseDictionary[@"userId"];
+      self.txtPhoneNumber.text = responseDictionary[@"phone"];
+      self.txtAddress.text = responseDictionary[@"address"];
+      self.txtDateOfBirth.text = responseDictionary[@"dob"];
+      self.txtIdCardNumber.text = responseDictionary[@"ktp"];
+      self.txtTempatLahir.text = responseDictionary[@"placeOfBirth"];
+      self.txtNamaDealer.text = responseDictionary[@"dealer_name"];
+      self.txtAddressDealer.text = responseDictionary[@"dealer_address"];
+      self.txtNamaCabang.text = responseDictionary[@"namaCabang"];
+      self.txtGender.text = [MPMUserInfo getUserInfo][@"gender"];  
+    });
+    
+  }];
+  
     
     [SVProgressHUD show];
     __weak typeof (self) weakSelf = self;
@@ -348,14 +355,14 @@
     [_txtPhoneNumber setEnabled:enable];
     [_txtEmail setEnabled:enable];
     [_txtFullName setEnabled:enable];
-    [_txtIdCardNumber setEnabled:enable];
+//    [_txtIdCardNumber setEnabled:enable];
     [_txtTempatLahir setEnabled:enable];
     [_txtAddress setEnabled:enable];
     [_txtAddressDealer setEnabled:enable];
     [_txtGender setEnabled:enable];
-    [_txtNamaDealer setEnabled:enable];
-    [_txtNamaCabang setEnabled:enable];
-    [_txtUserID setEnabled:enable];
+//    [_txtNamaDealer setEnabled:enable];
+//    [_txtNamaCabang setEnabled:enable];
+//    [_txtUserID setEnabled:enable];
 }
 
 -(void)onDatePickerValueChanged:(UIDatePicker*)datePicker

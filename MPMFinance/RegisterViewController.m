@@ -12,7 +12,7 @@
 #import <AFHTTPSessionManager.h>
 #import "NJOPasswordStrengthEvaluator.h"
 @interface RegisterViewController ()
-<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
+<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIPickerViewDelegate,UIPickerViewDataSource,UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet APAvatarImageView *profilePictureImageView;
@@ -73,7 +73,16 @@
     [self.view addGestureRecognizer:gesture];
 
     [self.profilePictureImageView setBorderColor:[UIColor orangeColor]];
+  self.txtIDCardNumber.delegate = self;
     // Do any additional setup after loading the view.
+}
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+  if (textField == self.txtIDCardNumber) {
+    int newLength = self.txtIDCardNumber.text.length + string.length - range.length;
+    return newLength <= 16;
+  }
+  return YES;
 }
 - (void)handleTap
 {

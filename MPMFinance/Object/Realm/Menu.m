@@ -211,6 +211,8 @@
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleBM]];
+  
     [realm addObject:submenu];
     
 //=======
@@ -224,6 +226,7 @@
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
+    [submenu.roles addObject:[Role objectForPrimaryKey:kRoleBM]];
     [realm addObject:submenu];
     
 //========
@@ -237,6 +240,7 @@
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleSupervisor]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
+  [submenu.roles addObject:[Role objectForPrimaryKey:kRoleBM]];
     [realm addObject:submenu];
     
 //=====================================================================================================
@@ -248,6 +252,7 @@
     submenu.borderColor = @"F26F21";
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
+  [submenu.roles addObject:[Role objectForPrimaryKey:kRoleBM]];
     [realm addObject:submenu];
     
 //=====================================================================================================
@@ -259,6 +264,7 @@
     submenu.borderColor = @"B00000";
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleOfficer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDedicated]];
+  [submenu.roles addObject:[Role objectForPrimaryKey:kRoleBM]];
     [realm addObject:submenu];
     
 }
