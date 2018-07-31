@@ -107,6 +107,19 @@ NSString * const kValidationReason = @"kReason";
         } @finally {
         }
     }];
+  XLFormRowDescriptor *row = [self.form formRowWithTag:kValidationName];
+  if (!row) {
+    return;
+  }
+  [APIModel getListMarketingAlternateWithWithUserId:row.value Completion:^(NSArray *data, NSError *error) {
+    self.dropdownListMarketing2 = data;
+    XLFormRowDescriptor *row = [self.form formRowWithTag:kValidationReplacementName];
+    NSMutableArray *optionObjects = [NSMutableArray array];
+    for (NSDictionary *data in self.dropdownListMarketing2) {
+      [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:data[@"userid"] displayText:data[@"nama"]]];
+    }
+    row.selectorOptions = optionObjects;
+  }];
 }
 
 -(void)formRowDescriptorValueHasChanged:(XLFormRowDescriptor *)formRow oldValue:(id)oldValue newValue:(id)newValue
@@ -162,7 +175,7 @@ NSString * const kValidationReason = @"kReason";
         row.value = [MPMGlobal dateTimeFromString:self.data[@"date"]];
       
     }
-   [(XLFormDateCell *)[row cellForFormController:self] setMaximumDate:[NSDate date]];
+   [(XLFormDateCell *)[row cellForFormController:self] setMinimumDate:[NSDate date]];
     //[row addValidator:[XLFormRegexValidator formRegexValidatorWithMsg:@"At least 6, max 32 characters" regex:@"^(?=.*\\d)(?=.*[A-Za-z]).{6,32}$"]];
     [section addFormRow:row];
     
@@ -175,7 +188,7 @@ NSString * const kValidationReason = @"kReason";
         [row setDisabled:@(!self.isEdit)];
         row.value = [MPMGlobal dateTimeFromString:self.data[@"date2"]];
     }
-   [(XLFormDateCell *)[row cellForFormController:self] setMaximumDate:[NSDate date]];
+   [(XLFormDateCell *)[row cellForFormController:self] setMinimumDate:[NSDate date]];
     [section addFormRow:row];
     
     

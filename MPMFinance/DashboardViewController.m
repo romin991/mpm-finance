@@ -248,7 +248,7 @@
     
     
     NSString *urlString;
-    if (![[MPMUserInfo getRole] isEqualToString:kRoleAgent]) {
+    if (![[MPMUserInfo getRole] isEqualToString:kRoleAgent] && ![[MPMUserInfo getRole] isEqualToString:kRoleSupervisor]) {
         urlString = @"dropdown/produkmarketing";
         param = @{@"userid" : [MPMUserInfo getUserInfo][@"userId"],
                   @"token" : [MPMUserInfo getToken],
@@ -383,8 +383,11 @@
                   @"data" : @{@"tipe" : @"month",
                               @"product_id" : produkId
                               }};
-    
-        [manager POST:[NSString stringWithFormat:@"%@/dasboard2/marketing-by-product",kApiUrl] parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
+  NSString *urlString = [NSString stringWithFormat:@"%@/dasboard2/marketing-by-product",kApiUrl];
+  if ([[MPMUserInfo getRole] isEqualToString:kRoleSupervisor]) {
+    urlString = [NSString stringWithFormat:@"%@/dasboard2/spv-by-status-and-product",kApiUrl];
+  }
+        [manager POST:urlString parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
             ;
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             if ([responseObject[@"statusCode"] isEqual:@200]) {
@@ -477,7 +480,11 @@
               @"data" : @{@"tipe" : @"month",
                           @"product_id" : produkId
                           }};
-    [manager POST:[NSString stringWithFormat:@"%@/dasboard2/marketing-by-grouplevel-and-product",kApiUrl] parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
+  NSString *urlString = [NSString stringWithFormat:@"%@/dasboard2/marketing-by-grouplevel-and-product",kApiUrl];
+  if ([[MPMUserInfo getRole] isEqualToString:kRoleSupervisor]) {
+    urlString =[NSString stringWithFormat:@"%@/dasboard2/spv-by-sumber-aplikasi",kApiUrl];
+  }
+    [manager POST:urlString parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
         ;
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"statusCode"] isEqual:@200]) {
@@ -532,7 +539,12 @@
               @"data" : @{@"tipe" : @"year",
                           @"product_id" : produkId
                           }};
-    [manager POST:[NSString stringWithFormat:@"%@/dasboard2/marketing-by-grouplevel-and-product",kApiUrl] parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
+  
+  NSString *urlString = [NSString stringWithFormat:@"%@/dasboard2/marketing-by-grouplevel-and-product",kApiUrl];
+  if ([[MPMUserInfo getRole] isEqualToString:kRoleSupervisor]) {
+    urlString =[NSString stringWithFormat:@"%@/dasboard2/spv-by-sumber-aplikasi",kApiUrl];
+  }
+    [manager POST:urlString parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
         ;
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"statusCode"] isEqual:@200]) {
@@ -587,8 +599,11 @@
               @"data" : @{@"tipe" : @"year",
                           @"product_id" : produkId
                           }};
-    
-    [manager POST:[NSString stringWithFormat:@"%@/dasboard2/marketing-by-product",kApiUrl] parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
+  NSString *urlString = [NSString stringWithFormat:@"%@/dasboard2/marketing-by-product",kApiUrl];
+  if ([[MPMUserInfo getRole] isEqualToString:kRoleSupervisor]) {
+    urlString = [NSString stringWithFormat:@"%@/dasboard2/spv-by-status-and-product",kApiUrl];
+  }
+    [manager POST:urlString parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
         ;
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"statusCode"] isEqual:@200]) {

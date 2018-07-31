@@ -10,6 +10,7 @@
 #import <APAvatarImageView.h>
 #import "SendOTPViewController.h"
 #import <AFHTTPSessionManager.h>
+#import "NSString+MixedCasing.h"
 #import "NJOPasswordStrengthEvaluator.h"
 @interface RegisterViewController ()
 <UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIPickerViewDelegate,UIPickerViewDataSource,UITextFieldDelegate>
@@ -55,6 +56,9 @@
                            @"code" : @"4"}];
     UIDatePicker* datePicker = [[UIDatePicker alloc] init];
     datePicker.datePickerMode = UIDatePickerModeDate;
+  self.txtIDCardNumber.delegate = self;
+  self.txtNoTelpon.delegate = self;
+  self.txtFirstName.delegate = self;
     [datePicker addTarget:self action:@selector(onDatePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
     self.txtDateOfBirth.inputView = datePicker;
     self.genderPicker = [[UIPickerView alloc] init];
@@ -78,10 +82,32 @@
 }
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-  if (textField == self.txtIDCardNumber) {
-    int newLength = self.txtIDCardNumber.text.length + string.length - range.length;
-    return newLength <= 16;
+  int newLength = textField.text.length + string.length - range.length;
+ 
+  
+ NSString * proposedNewString = [[textField text] stringByReplacingCharactersInRange:range withString:string];
+  WordsType wordType = [proposedNewString checkWordType];
+  if (wordType == WordsTypeNone) {
+    
+  } else {
+    if (wordType == notAllowedPunctuation) {
+      return NO;
+    }
+    if (self.txtFirstName == textField && wordType != WordsTypeAlphabetOnly) {
+      return NO;
+    } else if (self.txtIDCardNumber == textField && wordType != WordsTypeNumericOnly) {
+      return NO;
+    } else if (self.txtNoTelpon == textField && wordType != WordsTypeNumericOnly) {
+      return NO;
+    }
   }
+  
+  if (textField == self.txtIDCardNumber) {
+    return newLength <= 16;
+  } else if (textField == self.txtNoTelpon) {
+    return newLength <= 15;
+  }
+  
   return YES;
 }
 - (void)handleTap

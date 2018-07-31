@@ -87,7 +87,7 @@
     }
 //    [ProfileModel checkTokenWithCompletion:^(BOOL isExpired) {
 //        if (isExpired) {
-//            [MPMUserInfo deleteUserInfo];
+//            [MPMUserInfo deleteUserInfo]; 
 //            [self refreshUI];
 //        };
 //    }];

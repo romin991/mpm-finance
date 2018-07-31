@@ -4445,7 +4445,7 @@
                                             <action selector="changeProfilePicture:" destination="Afh-kt-GVi" eventType="touchUpInside" id="xkx-QQ-7tX"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date of Birth" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="88d-Ya-peh">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tanggal Lahir" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="88d-Ya-peh">
                                         <rect key="frame" x="62" y="425" width="220" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="5K9-SA-Kjv"/>
@@ -4482,7 +4482,7 @@
                                             <constraint firstAttribute="height" constant="1" id="uoH-N2-PLc"/>
                                         </constraints>
                                     </view>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zlm-4n-xHl">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Alamat Sesuai KTP" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zlm-4n-xHl">
                                         <rect key="frame" x="62" y="511" width="220" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="ZtV-6c-Msx"/>
@@ -4499,7 +4499,7 @@
                                             <constraint firstAttribute="height" constant="48" id="h1G-e4-Zr5"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                        <state key="normal" title="SIGN UP">
+                                        <state key="normal" title="DAFTAR">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -4513,7 +4513,7 @@
                                             <constraint firstAttribute="height" constant="1" id="6rZ-Xk-4le"/>
                                         </constraints>
                                     </view>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="No Telepon" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vWp-Na-nM5">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nomor Handphone" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vWp-Na-nM5">
                                         <rect key="frame" x="62" y="597" width="220" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="v3q-2B-9Cs"/>
@@ -4531,7 +4531,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Place of Birth" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ViI-bT-N8w">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tempat Lahir" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ViI-bT-N8w">
                                         <rect key="frame" x="62" y="468" width="220" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="RPt-hx-LxX"/>
@@ -4563,7 +4563,7 @@
                                             <constraint firstAttribute="height" constant="1" id="bfs-At-IcE"/>
                                         </constraints>
                                     </view>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ID Card Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uOp-Fa-tbj">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nomot KTP" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uOp-Fa-tbj">
                                         <rect key="frame" x="62" y="339" width="220" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="x80-hQ-Ey7"/>
@@ -4586,7 +4586,7 @@
                                             <constraint firstAttribute="height" constant="1" id="6eS-DY-kqK"/>
                                         </constraints>
                                     </view>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nama Lengkap" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FUM-B7-Us0">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nama Lengkap Sesuai KTP" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FUM-B7-Us0">
                                         <rect key="frame" x="62" y="296" width="220" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="urL-wT-r56"/>
@@ -4595,7 +4595,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2NV-GA-sRt">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Kata Sandi " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2NV-GA-sRt">
                                         <rect key="frame" x="62" y="640" width="220" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="tGu-rv-6VE"/>
@@ -4620,7 +4620,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="or0-Vj-NnB">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Alamat Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="or0-Vj-NnB">
                                         <rect key="frame" x="62" y="382" width="220" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="31J-ME-Cgs"/>
@@ -4629,7 +4629,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aG7-Oj-3b6">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Ulangi Kata Sandi" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aG7-Oj-3b6">
                                         <rect key="frame" x="62" y="833" width="220" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="Rup-Zq-f6Z"/>
@@ -4708,6 +4708,7 @@
                                     <constraint firstItem="2NV-GA-sRt" firstAttribute="leading" secondItem="Gor-wz-XZs" secondAttribute="leading" id="Bf0-aY-6oM"/>
                                     <constraint firstItem="Gor-wz-XZs" firstAttribute="trailing" secondItem="2NV-GA-sRt" secondAttribute="trailing" id="BzM-ml-00e"/>
                                     <constraint firstItem="3DO-Zi-pqK" firstAttribute="trailing" secondItem="vWp-Na-nM5" secondAttribute="trailing" id="CN1-qc-3YK"/>
+                                    <constraint firstItem="1Ot-k2-o0r" firstAttribute="leading" secondItem="FUM-B7-Us0" secondAttribute="leading" id="CZO-IV-4IC"/>
                                     <constraint firstItem="BKP-kA-b8l" firstAttribute="centerX" secondItem="WSu-RS-qQ3" secondAttribute="centerX" id="CdD-t4-Vjw"/>
                                     <constraint firstItem="lE9-VH-iyX" firstAttribute="leading" secondItem="FhX-hC-pqz" secondAttribute="leading" id="DY2-X4-lFk"/>
                                     <constraint firstItem="sa1-Gt-nqW" firstAttribute="top" secondItem="2NV-GA-sRt" secondAttribute="bottom" constant="-37" id="Dgv-wu-2PZ"/>
@@ -4746,7 +4747,6 @@
                                     <constraint firstItem="88d-Ya-peh" firstAttribute="trailing" secondItem="wNc-Ba-F7w" secondAttribute="trailing" id="Ymg-qk-pLN"/>
                                     <constraint firstItem="3DO-Zi-pqK" firstAttribute="trailing" secondItem="Gor-wz-XZs" secondAttribute="trailing" id="aEP-XK-SFM"/>
                                     <constraint firstItem="2NV-GA-sRt" firstAttribute="trailing" secondItem="8X2-ss-7ZS" secondAttribute="trailing" id="anO-60-1gf"/>
-                                    <constraint firstItem="1Ot-k2-o0r" firstAttribute="leading" secondItem="3tr-74-BWZ" secondAttribute="leading" constant="62" id="aqS-1a-ivn"/>
                                     <constraint firstItem="FhX-hC-pqz" firstAttribute="trailing" secondItem="S4H-Et-s9f" secondAttribute="trailing" id="bBG-FQ-hWE"/>
                                     <constraint firstItem="2NV-GA-sRt" firstAttribute="leading" secondItem="8X2-ss-7ZS" secondAttribute="leading" id="bzZ-zG-S4L"/>
                                     <constraint firstItem="vvW-qa-zAk" firstAttribute="top" secondItem="qrz-mf-Amd" secondAttribute="bottom" constant="38" id="ck5-d2-UWE"/>
@@ -4811,7 +4811,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kxz-mt-VkI" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1585" y="1799"/>
+            <point key="canvasLocation" x="1844" y="1608"/>
         </scene>
         <!--SendOTP View Controller-->
         <scene sceneID="cem-Ba-bNh">

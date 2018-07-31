@@ -180,7 +180,7 @@
     // Combine the new text with the old; then remove any
     // commas from the textField before formatting
     NSString *combinedText = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    NSString *numberWithoutCommas = [combinedText stringByReplacingOccurrencesOfString:@"," withString:@""];
+    NSString *numberWithoutCommas = [combinedText stringByReplacingOccurrencesOfString:@"." withString:@""];
     NSNumber *number = [formatter numberFromString:numberWithoutCommas];
     
     NSString *formattedString = [formatter stringFromNumber:number];
@@ -305,10 +305,10 @@
           }
           
           NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
-          [numberFormatter setGroupingSeparator:@","];
+          [numberFormatter setGroupingSeparator:@"."];
           [numberFormatter setGroupingSize:3];
           [numberFormatter setUsesGroupingSeparator:YES];
-          [numberFormatter setDecimalSeparator:@"."];
+          [numberFormatter setDecimalSeparator:@","];
           [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
           [numberFormatter setMaximumFractionDigits:2];
           self.txtValue1.text = [numberFormatter stringFromNumber:[NSNumber numberWithDouble:[self.txtValue1.text doubleValue]]];

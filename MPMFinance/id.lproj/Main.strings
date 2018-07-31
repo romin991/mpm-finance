@@ -15,7 +15,7 @@
 "1c6-dV-Ny3.placeholder" = "-";
 
 /* Class = "UITextField"; placeholder = "Password"; ObjectID = "2NV-GA-sRt"; */
-"2NV-GA-sRt.placeholder" = "Password";
+"2NV-GA-sRt.placeholder" = "Kata Sandi";
 
 /* Class = "UILabel"; text = "Tenor"; ObjectID = "39w-fp-m6c"; */
 "39w-fp-m6c.text" = "Tenor";
@@ -108,7 +108,7 @@
 "FN9-mG-zIA.text" = "Approve (16.7%)";
 
 /* Class = "UITextField"; placeholder = "Nama Lengkap"; ObjectID = "FUM-B7-Us0"; */
-"FUM-B7-Us0.placeholder" = "Nama Lengkap";
+"FUM-B7-Us0.placeholder" = "Nama Lengkap Sesuai KTP";
 
 /* Class = "UITextField"; placeholder = "Username"; ObjectID = "FXB-Yg-kXh"; */
 "FXB-Yg-kXh.placeholder" = "Username";
@@ -144,7 +144,7 @@
 "L0C-GL-6sY.normalTitle" = "Show";
 
 /* Class = "UILabel"; text = "Nama Lengkap"; ObjectID = "LBo-RU-Gfq"; */
-"LBo-RU-Gfq.text" = "Nama Lengkap";
+"LBo-RU-Gfq.text" = "Nama Lengkap Sesuai KTP";
 
 /* Class = "UIButton"; normalTitle = "Indonesia"; ObjectID = "MXu-3G-i5M"; */
 "MXu-3G-i5M.normalTitle" = "Indonesia";
@@ -177,7 +177,7 @@
 "U56-eQ-KRS.text" = "539201714039403";
 
 /* Class = "UITextField"; placeholder = "Password"; ObjectID = "Ubc-Qr-fih"; */
-"Ubc-Qr-fih.placeholder" = "Password";
+"Ubc-Qr-fih.placeholder" = "Kata Sandi";
 
 /* Class = "UILabel"; text = "517170600014"; ObjectID = "VAW-cq-7wT"; */
 "VAW-cq-7wT.text" = "517170600014";
@@ -186,7 +186,7 @@
 "VFY-Jd-2Yp.text" = "Product";
 
 /* Class = "UITextField"; placeholder = "Place of Birth"; ObjectID = "ViI-bT-N8w"; */
-"ViI-bT-N8w.placeholder" = "Place of Birth";
+"ViI-bT-N8w.placeholder" = "Tempat Lahir";
 
 /* Class = "UILabel"; text = "Approve (16.7%)"; ObjectID = "Vv1-zZ-BRc"; */
 "Vv1-zZ-BRc.text" = "Approve (16.7%)";
@@ -204,10 +204,10 @@
 "Z2e-EY-Ttf.text" = "517170600014";
 
 /* Class = "UITextField"; placeholder = "Address"; ObjectID = "Zlm-4n-xHl"; */
-"Zlm-4n-xHl.placeholder" = "Address";
+"Zlm-4n-xHl.placeholder" = "Alamat Sesuai KTP";
 
 /* Class = "UITextField"; placeholder = "Confirm Password"; ObjectID = "aG7-Oj-3b6"; */
-"aG7-Oj-3b6.placeholder" = "Confirm Password";
+"aG7-Oj-3b6.placeholder" = "Ulangi Kata Sandi";
 
 /* Class = "UILabel"; text = "11"; ObjectID = "aND-na-iiu"; */
 "aND-na-iiu.text" = "11";
@@ -255,7 +255,7 @@
 "oPq-q4-OiT.text" = "Kata Sandi harus terdiri dari : \n- Setidaknya 6 karakter\n- Spesial karakter\n- Huruf kecil\n- Huruf besar\n- Angka";
 
 /* Class = "UITextField"; placeholder = "Email"; ObjectID = "or0-Vj-NnB"; */
-"or0-Vj-NnB.placeholder" = "Email";
+"or0-Vj-NnB.placeholder" = "Alamat Email";
 
 /* Class = "UITabBarItem"; title = "Help"; ObjectID = "pH6-cC-Avx"; */
 "pH6-cC-Avx.title" = "Help";
@@ -293,8 +293,8 @@
 /* Class = "UILabel"; text = "Alamat Dealer"; ObjectID = "u1S-4Y-dy7"; */
 "u1S-4Y-dy7.text" = "Alamat Dealer";
 
-/* Class = "UITextField"; placeholder = "ID Card Number"; ObjectID = "uOp-Fa-tbj"; */
-"uOp-Fa-tbj.placeholder" = "ID Card Number";
+/* Class = "UITextField"; placeholder = "Nomor KTP"; ObjectID = "uOp-Fa-tbj"; */
+"uOp-Fa-tbj.placeholder" = "Nomor KTP";
 
 /* Class = "UILabel"; text = "Jenis Kelamin"; ObjectID = "uRf-3X-1yf"; */
 "uRf-3X-1yf.text" = "Jenis Kelamin";
@@ -303,7 +303,7 @@
 "uSG-IL-11p.normalTitle" = "SUBMIT";
 
 /* Class = "UITextField"; placeholder = "No Telepon"; ObjectID = "vWp-Na-nM5"; */
-"vWp-Na-nM5.placeholder" = "No Telepon";
+"vWp-Na-nM5.placeholder" = "Nomor Handphone";
 
 /* Class = "UIButton"; normalTitle = "SIGN UP"; ObjectID = "vvW-qa-zAk"; */
 "vvW-qa-zAk.normalTitle" = "SIGN UP";
