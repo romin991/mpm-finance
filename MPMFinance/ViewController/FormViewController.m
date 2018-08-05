@@ -60,8 +60,10 @@
     
     [self setTitle:self.menu.title];
     [self setHorizontalLabel];
-    
+  if (self.isFromHistory) {
     [SVProgressHUD show];
+  }
+  
     __block FormViewController *weakSelf = self;
     
     if (self.valueDictionary.count == 0) self.valueDictionary = [NSMutableDictionary dictionary];
@@ -324,14 +326,14 @@
                 
                 
                 
-                if ([[MPMUserInfo getRole] isEqualToString:kRoleDedicated] || [[MPMUserInfo getRole] isEqualToString:kRoleAgent] ){
+                if ( [[MPMUserInfo getRole] isEqualToString:kRoleAgent]){
                     if ([row.tag isEqualToString:@"noKTP"] ||
                         [row.tag isEqualToString:@"namaLengkap"] ||
                         [row.tag isEqualToString:@"tempatLahir"] ||
                         [row.tag isEqualToString:@"tanggalLahir"] ||
                         [row.tag isEqualToString:@"jenisKelamin"] ||
                         [row.tag isEqualToString:@"nomorHandphone"]) {
-                        row.disabled = @NO;
+                        row.disabled = @YES;
                     }
                 }
                 
@@ -343,12 +345,13 @@
                     [self.parentMenu.primaryKey isEqualToString:kSubmenuMonitoring]) &&
                     ![row.tag isEqualToString:@"next"]
                     ) {
-                    
+                  self.isFromHistory = YES;
                     self.isReadOnly = YES;
                     row.disabled = @YES;
                 }
                 
                 if (self.isFromHistory == YES && ![row.tag isEqualToString:@"next"]) {
+                    NSLog(@"lalala %@",row.tag);
                     row.disabled = @YES;
                     self.isReadOnly = YES;
                 }
@@ -393,17 +396,20 @@
         
         
     } else {
+      if (self.isFromHistory == NO) {
         NSArray *inputErrors = [self validateForm];
         if (inputErrors.count > 0)
         {
-            [SVProgressHUD showErrorWithStatus:((NSError *)inputErrors.firstObject).localizedDescription];
-            [SVProgressHUD dismissWithDelay:1.5];
-            return;
+          [SVProgressHUD showErrorWithStatus:((NSError *)inputErrors.firstObject).localizedDescription];
+          [SVProgressHUD dismissWithDelay:1.5];
+          return;
         }
+      }
+      
     }
     
     NSArray *errors = [self formValidationErrors];
-    if ([self.parentMenu.primaryKey isEqualToString:kMenuMonitoring] || [self.parentMenu.primaryKey isEqualToString:kSubmenuListWorkOrder]) {
+    if ([self.parentMenu.primaryKey isEqualToString:kMenuMonitoring] || [self.parentMenu.primaryKey isEqualToString:kSubmenuListWorkOrder] || self.isFromHistory) {
         errors = nil;
     }
     if (errors.count) {
@@ -411,7 +417,10 @@
         [SVProgressHUD dismissWithDelay:1.5];
         
     } else {
+      if (!self.isFromHistory) {
         [SVProgressHUD show];
+      }
+      
         [FormModel saveValueFrom:self.form to:self.valueDictionary];
         __weak typeof(self) weakSelf = self;
         
@@ -443,7 +452,10 @@
                     disclaimerVC.list = weakSelf.list;
                     disclaimerVC.parentMenu = weakSelf.parentMenu;
                     disclaimerVC.menu = weakSelf.menu;
-                    disclaimerVC.isReadOnly = YES;
+                    disclaimerVC.isReadOnly = self.isReadOnly;
+                  if ((!self.isReadOnly || !self.isFromHistory) && [[MPMUserInfo getRole] isEqualToString:kRoleDedicated]) {
+                    disclaimerVC.needToShowWorkOrder = YES;
+                  }
                     [weakSelf.navigationController pushViewController:disclaimerVC animated:true];
                     
                 } else {
@@ -461,6 +473,8 @@
     nextFormViewController.valueDictionary = self.valueDictionary;
     nextFormViewController.list = self.list;
     nextFormViewController.parentMenu = self.parentMenu;
+  nextFormViewController.isFromHistory = self.isFromHistory;
+  nextFormViewController.isReadOnly = self.isReadOnly;
     [self.navigationController pushViewController:nextFormViewController animated:YES];
 }
 
@@ -575,21 +589,21 @@
         } else {
             XLFormRowDescriptor *row = [self.form formRowWithTag:@"alamatDomisili"];
             if (row) {
-                row.disabled = self.isReadOnly ? @YES : @NO;
+                row.disabled = (self.isReadOnly || self.isFromHistory) ? @YES : @NO;
                 row.value = @"";
                 [self reloadFormRow:row];
             }
             
             row = [self.form formRowWithTag:@"rTDomisili"];
             if (row) {
-                row.disabled = self.isReadOnly ? @YES : @NO;
+                row.disabled = (self.isReadOnly || self.isFromHistory) ? @YES : @NO;
                 row.value = @"";
                 [self reloadFormRow:row];
             }
             
             row = [self.form formRowWithTag:@"rWDomisili"];
             if (row) {
-                row.disabled = self.isReadOnly ? @YES : self.isReadOnly ? @YES : @NO;
+              row.disabled = (self.isReadOnly || self.isFromHistory) ? @YES : @NO;
                 row.value = @"";
                 [self reloadFormRow:row];
             }
@@ -608,7 +622,7 @@
             
             row = [self.form formRowWithTag:@"kelurahanDomisili"];
             if (row) {
-                row.disabled = self.isReadOnly ? @YES : @NO;
+                row.disabled = (self.isReadOnly || self.isFromHistory) ? @YES : @NO;
                 row.value = @"";
                 [self reloadFormRow:row];
             }
@@ -710,7 +724,8 @@
         XLFormRowDescriptor *kelurahanPasangan = [self.form formRowWithTag:@"kelurahanPasangan"];
         XLFormRowDescriptor *masaBerlakuKTPPasangan = [self.form formRowWithTag:@"masaBerlakuKTPPasangan"];
         XLFormRowDescriptor *kewarganegaraanPasangan = [self.form formRowWithTag:@"kewarganegaraanPasangan"];
-        
+      
+      
         BOOL isThereAnyValueForSpouse = [namaLengkapPasangan.value length] || [nomorHandphonePasangan.value length] || [tempatLahirPasangan.value length] || [alamatPasangan.value length]|| [rTPasangan.value length]|| [rWPasangan.value length]|| [kelurahanPasangan.value length] || masaBerlakuKTPPasangan.value;
         if (isThereAnyValueForSpouse) {
             nomorHandphonePasangan.required = YES;
@@ -742,6 +757,17 @@
         }
         array = [self formValidationErrors];
         
+    } else if ([self.form formRowWithTag:@"pinjamanTempatLain1"]){
+      XLFormRowDescriptor *pinjamanTempatLain1 = [self.form formRowWithTag:@"pinjamanTempatLain1"];
+      XLFormRowDescriptor *nomorKartuKreditAtauKontrak1 = [self.form formRowWithTag:@"nomorKartuKreditAtauKontrak1"];
+      XLFormRowDescriptor *pinjamanTempatLain2 = [self.form formRowWithTag:@"pinjamanTempatLain2"];
+      XLFormRowDescriptor *nomorKartuKreditAtauKontrak2 = [self.form formRowWithTag:@"nomorKartuKreditAtauKontrak2"];
+      if (pinjamanTempatLain1.value != nil) {
+        nomorKartuKreditAtauKontrak1.required = YES;
+      }
+      if (pinjamanTempatLain2.value != nil) {
+        nomorKartuKreditAtauKontrak2.required = YES;
+      }
     }
     [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         XLFormValidationStatus * validationStatus = [[obj userInfo] objectForKey:XLValidationStatusErrorKey];

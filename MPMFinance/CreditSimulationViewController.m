@@ -184,7 +184,9 @@
     NSNumber *number = [formatter numberFromString:numberWithoutCommas];
     
     NSString *formattedString = [formatter stringFromNumber:number];
-    
+  if ([[number stringValue] length] > 9) {
+    return NO;
+  }
     // If the last entry was a decimal or a zero after a decimal,
     // re-add it here because the formatter will naturally remove
     // it.

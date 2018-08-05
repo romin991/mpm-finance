@@ -14,6 +14,10 @@
 #import "NJOPasswordStrengthEvaluator.h"
 @interface RegisterViewController ()
 <UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIPickerViewDelegate,UIPickerViewDataSource,UITextFieldDelegate>
+@property (weak, nonatomic) IBOutlet UIView *dealerView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *dealerConstraint;
+@property (weak, nonatomic) IBOutlet UITextField *txtNamaDealer;
+@property (weak, nonatomic) IBOutlet UITextField *txtAlamatDealer;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet APAvatarImageView *profilePictureImageView;
@@ -40,27 +44,29 @@
 
 @property NSArray *genderArray;
 @property NSArray *groupLevelArray;
-
+@property UIDatePicker* datePicker;
 @end
 
 @implementation RegisterViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+  self.dealerView.hidden = YES;
     _genderArray = @[@"male", @"female"];
     _groupLevelArray = @[@{@"name" : @"Customer",
                            @"code" : @"2"},
                          @{@"name" : @"Agent",
                            @"code" : @"3"},
-                         @{@"name" : @"Dealer",
+                         @{@"name" : @"Sales Dealer",
                            @"code" : @"4"}];
-    UIDatePicker* datePicker = [[UIDatePicker alloc] init];
-    datePicker.datePickerMode = UIDatePickerModeDate;
+    self.datePicker = [[UIDatePicker alloc] init];
+    self.datePicker.datePickerMode = UIDatePickerModeDate;
+  self.datePicker.maximumDate =  [NSDate date];
   self.txtIDCardNumber.delegate = self;
   self.txtNoTelpon.delegate = self;
   self.txtFirstName.delegate = self;
-    [datePicker addTarget:self action:@selector(onDatePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
-    self.txtDateOfBirth.inputView = datePicker;
+    [self.datePicker addTarget:self action:@selector(onDatePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
+    self.txtDateOfBirth.inputView = self.datePicker;
     self.genderPicker = [[UIPickerView alloc] init];
     self.genderPicker.dataSource = self;
     self.genderPicker.delegate = self;
@@ -117,6 +123,14 @@
 }
 -(void)onDatePickerValueChanged:(UIDatePicker*)datePicker
 {
+  if ([self.datePicker.date timeIntervalSinceNow] > -536457600){
+    UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"Error" message:@"Usia Anda di bawah 17 tahun" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* okButton = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    }];
+    [alertController addAction:okButton];
+    [self presentViewController:alertController animated:YES completion:nil];
+    return;
+  }
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"YYYY-MM-dd"];
     self.txtDateOfBirth.text = [dateFormatter stringFromDate:datePicker.date];
@@ -218,6 +232,14 @@
     else if (pickerView == self.groupLevelPicker) {
         self.txtGroupLevel.text = self.groupLevelArray[row][@"name"];
         _selectedGroupLevel = self.groupLevelArray[row][@"code"];
+      if ([self.txtGroupLevel.text isEqualToString:@"Sales Dealer"]) {
+        self.dealerConstraint.active = NO;
+        self.dealerView.hidden = NO;
+      } else {
+        self.dealerConstraint.active = YES;
+        self.dealerView.hidden = YES;
+  
+      }
     }
 }
 - (IBAction)showHidePassword:(id)sender {
@@ -254,6 +276,23 @@
                                         @"phone" : self.txtNoTelpon.text,
                                         @"groupLevel" : self.selectedGroupLevel ? self.selectedGroupLevel : @"",
                                         @"email" : self.txtEmail.text}};
+      if ([self.selectedGroupLevel isEqualToString:@"4"]) {
+        param = @{@"userid" : @"",
+                  @"token" : @"",
+                  @"data" : @{@"username" : self.txtFirstName.text,
+                              @"ktp" : self.txtIDCardNumber.text,
+                              @"password" : [MPMGlobal MD5fromString:self.txtPassword.text],
+                              @"dob" : self.txtDateOfBirth.text,
+                              @"placeOfBirth" : self.txtPlaceOfBirth.text,
+                              @"address" : self.txtAddress.text,
+                              @"gender" : self.txtJenisKelamin.text,
+                              @"phone" : self.txtNoTelpon.text,
+                              @"groupLevel" : self.selectedGroupLevel ? self.selectedGroupLevel : @"",
+                              @"email" : self.txtEmail.text,
+                              @"dealer_name" : self.txtNamaDealer.text,
+                              @"dealer_address" : self.txtAlamatDealer.text
+                              }};
+      }
     } @catch(NSException *exception) {
         NSLog(@"%@", exception);
     }
@@ -267,8 +306,12 @@
         [SVProgressHUD dismiss];
         @try {
             if ([responseObject[@"statusCode"] integerValue] == 200) {
-                UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"Success" message:@"Register Success" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"Success" message:responseObject[@"message"] preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction* okButton = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                  if ([self.selectedGroupLevel isEqualToString:@"4"] || [self.selectedGroupLevel isEqualToString:@"3"]) {
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                    return;
+                  }
                     [self performSegueWithIdentifier:@"sendOTPViewController" sender:self];
                 }];
                 [alertController addAction:okButton];

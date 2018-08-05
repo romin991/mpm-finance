@@ -102,7 +102,6 @@
       self.txtNamaDealer.text = responseDictionary[@"dealer_name"];
       self.txtAddressDealer.text = responseDictionary[@"dealer_address"];
       self.txtNamaCabang.text = responseDictionary[@"namaCabang"];
-      self.txtGender.text = [MPMUserInfo getUserInfo][@"gender"];  
     });
     
   }];
@@ -123,6 +122,7 @@
         }
         [SVProgressHUD dismiss];
     }];
+  [self.tableView reloadData];
 }
 
 - (IBAction)goToChangePasswordPage:(id)sender {

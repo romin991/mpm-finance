@@ -16,7 +16,7 @@
 #import "MenuViewController.h"
 #import "WorkOrderListViewController.h"
 #import "DataSource.h"
-
+#import "Menu.h"
 @interface DisclaimerViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate, BarcodeDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextView *textView;
@@ -39,7 +39,7 @@
     // Do any additional setup after loading the view from its nib.
     [self setTitle:self.menu.title];
     
-    if (self.isReadOnly) {
+    if (self.isReadOnly || [self.valueDictionary objectForKey:@"ttd"]) {
         if (self.isReadOnly) {
             self.submitButton.hidden = true;
             self.viewBarcodeButton.hidden = false;
@@ -244,26 +244,28 @@
 }
 
 - (void)close{
-    for (UIViewController *vc in self.navigationController.viewControllers) {
-        if ([vc isKindOfClass:[MenuViewController class]]){
-            MenuViewController *menuVC = (MenuViewController *)vc;
-            MenuNavigationViewController *menuNavigationVC = (MenuNavigationViewController *)[menuVC getContainerViewController];
-            UIViewController *viewController = [menuNavigationVC getSelectedViewController];
-            if ([viewController isKindOfClass:HomeViewController.class]) {
-                HomeViewController *homeVC = (HomeViewController *)viewController;
-                Menu *menu = [Menu getMenuForPrimaryKey:kMenuListWorkOrder];
-                BOOL isMenuAvailable = [homeVC isMenuAvailable:menu];
-                if (isMenuAvailable) {
-                    WorkOrderListViewController *listViewController = [[WorkOrderListViewController alloc] initWithNibName:@"WorkOrderListViewController" bundle:nil];
-                    listViewController.menu = menu;
-                    listViewController.preferredType = kDataSourceTypeAll;
-                    [self.navigationController setViewControllers:@[vc, listViewController] animated:NO];
-
-                    return;
-                }
-            }
-        }
-    }
+ 
+//  
+//    for (UIViewController *vc in self.navigationController.viewControllers) {
+//        if ([vc isKindOfClass:[MenuViewController class]]){
+//            MenuViewController *menuVC = (MenuViewController *)vc;
+//            MenuNavigationViewController *menuNavigationVC = (MenuNavigationViewController *)[menuVC getContainerViewController];
+//            UIViewController *viewController = [menuNavigationVC getSelectedViewController];
+//            if ([viewController isKindOfClass:HomeViewController.class]) {
+//                HomeViewController *homeVC = (HomeViewController *)viewController;
+//                Menu *menu = [Menu getMenuForPrimaryKey:kMenuListWorkOrder];
+//                BOOL isMenuAvailable = [homeVC isMenuAvailable:menu];
+//                if (isMenuAvailable) {
+//                    WorkOrderListViewController *listViewController = [[WorkOrderListViewController alloc] initWithNibName:@"WorkOrderListViewController" bundle:nil];
+//                    listViewController.menu = menu;
+//                    listViewController.preferredType = kDataSourceTypeAll;
+//                    [self.navigationController setViewControllers:@[vc, listViewController] animated:NO];
+//
+//                    return;
+//                }
+//            }
+//        }
+//    }
     for (UIViewController *vc in self.navigationController.viewControllers) {
         if ([vc isKindOfClass:[SubmenuViewController class]]) {
             [self.navigationController popToViewController:vc animated:NO];
@@ -273,7 +275,14 @@
 
 #pragma mark - Barcode Delegate
 - (void)finish{
-    if (![self.parentMenu.primaryKey isEqualToString:kSubmenuListWorkOrder]) {
+  
+  if (self.needToShowWorkOrder) {
+    WorkOrderListViewController *listViewController = [[WorkOrderListViewController alloc] initWithNibName:@"WorkOrderListViewController" bundle:nil];
+    listViewController.menu = [Menu getMenuForPrimaryKey:kMenuListWorkOrder];
+    [self.navigationController pushViewController:listViewController animated:YES];;
+    return;
+  }
+   else if (![self.parentMenu.primaryKey isEqualToString:kSubmenuListWorkOrder]) {
         if ([[MPMUserInfo getRole] isEqualToString:kRoleCustomer] || [[MPMUserInfo getRole] isEqualToString:kRoleDealer]) {
             NSArray *viewControllers = self.navigationController.viewControllers;
             

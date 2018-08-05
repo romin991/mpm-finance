@@ -17,5 +17,5 @@
 @property NSMutableDictionary *valueDictionary;
 @property List *list;
 @property BOOL isReadOnly;
-
+@property BOOL needToShowWorkOrder;
 @end

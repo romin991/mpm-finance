@@ -219,12 +219,12 @@
 		5CCD2D50209EF57600EBC76F /* QRCodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCD2D4D209EF57600EBC76F /* QRCodeGenerator.m */; };
 		5CCF978020B9A814001CF433 /* WorkOderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCF977E20B9A814001CF433 /* WorkOderTableViewCell.m */; };
 		5CCF978120B9A814001CF433 /* WorkOderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CCF977F20B9A814001CF433 /* WorkOderTableViewCell.xib */; };
-		5CDC30421EC3E274001D97DB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC30411EC3E274001D97DB /* GoogleService-Info.plist */; };
 		5CF497B81ED330FF0005327D /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF497B71ED330FF0005327D /* RegisterViewController.m */; };
 		5CF6819C1EC747A60056ACD3 /* KASlideShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF6819B1EC747A60056ACD3 /* KASlideShow.m */; };
 		5CFD0271208C7876008CCF30 /* MyProfileNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFD0270208C7876008CCF30 /* MyProfileNavigationViewController.m */; };
 		5CFD0274208C7BFB008CCF30 /* MyProfileContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFD0273208C7BFB008CCF30 /* MyProfileContainerViewController.m */; };
 		5CFF0A7520AADAE200198E60 /* NJOPasswordStrengthEvaluator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFF0A7420AADAE100198E60 /* NJOPasswordStrengthEvaluator.m */; };
+		C330A958211215DC000F01AE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C330A957211215DC000F01AE /* GoogleService-Info.plist */; };
 		D3738F410048C92A1AE2571B /* libPods-MPMFinance.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F2B2C34A7F4351773F253B9A /* libPods-MPMFinance.a */; };
 /* End PBXBuildFile section */
 
@@ -589,7 +589,6 @@
 		5CCF977E20B9A814001CF433 /* WorkOderTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WorkOderTableViewCell.m; sourceTree = "<group>"; };
 		5CCF977F20B9A814001CF433 /* WorkOderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkOderTableViewCell.xib; sourceTree = "<group>"; };
 		5CD07BD91EC342B0007C8C08 /* MPMFinance.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MPMFinance.entitlements; sourceTree = "<group>"; };
-		5CDC30411EC3E274001D97DB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5CF497B61ED330FF0005327D /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		5CF497B71ED330FF0005327D /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		5CF6819A1EC747A60056ACD3 /* KASlideShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KASlideShow.h; sourceTree = "<group>"; };
@@ -601,6 +600,7 @@
 		5CFF0A7320AADAE100198E60 /* NJOPasswordStrengthEvaluator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NJOPasswordStrengthEvaluator.h; sourceTree = "<group>"; };
 		5CFF0A7420AADAE100198E60 /* NJOPasswordStrengthEvaluator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJOPasswordStrengthEvaluator.m; sourceTree = "<group>"; };
 		B57DB931C16BC9C4B3252B1C /* Pods-MPMFinance.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MPMFinance.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MPMFinance/Pods-MPMFinance.debug.xcconfig"; sourceTree = "<group>"; };
+		C330A957211215DC000F01AE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F2B2C34A7F4351773F253B9A /* libPods-MPMFinance.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MPMFinance.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F475CB99739A3281EC48B7D3 /* Pods-MPMFinance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MPMFinance.release.xcconfig"; path = "Pods/Target Support Files/Pods-MPMFinance/Pods-MPMFinance.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -871,8 +871,8 @@
 				5CFF0A7320AADAE100198E60 /* NJOPasswordStrengthEvaluator.h */,
 				5CFF0A7420AADAE100198E60 /* NJOPasswordStrengthEvaluator.m */,
 				5CCD2D47209EF57600EBC76F /* QRCodeGenerator */,
-				5CDC30411EC3E274001D97DB /* GoogleService-Info.plist */,
 				483F39211EC3085E00C03253 /* main.m */,
+				C330A957211215DC000F01AE /* GoogleService-Info.plist */,
 				5C9DB2371EC3314200FC0CC9 /* PrefixHeader.pch */,
 				4866A8981ECD8B2200A89E98 /* FloatLabeledTextFieldCell.h */,
 				4866A8991ECD8B2200A89E98 /* FloatLabeledTextFieldCell.m */,
@@ -1508,10 +1508,10 @@
 				5C0314B120B829A80046F420 /* TrackingOfficerViewController.xib in Resources */,
 				4848B1B31F1251E700C9DE21 /* PostalCodeTableViewCell.xib in Resources */,
 				48A807F920BEC83F005631F6 /* ResultCalculatorViewController.xib in Resources */,
+				C330A958211215DC000F01AE /* GoogleService-Info.plist in Resources */,
 				5CCD2D46209EF52000EBC76F /* KontrakKerjaDetailViewController.xib in Resources */,
 				483CC5BA20AC957C0084BC6B /* DisclaimerViewController.xib in Resources */,
 				5C8EB86A2095D76B006A3170 /* XLFormActivityTableViewCell.xib in Resources */,
-				5CDC30421EC3E274001D97DB /* GoogleService-Info.plist in Resources */,
 				48CDD8351EC9B3AD0038D626 /* SimpleListTableViewCell.xib in Resources */,
 				481C42B11F03BB22007D5C3C /* SuggestionComplainFormViewController.xib in Resources */,
 				48336A9C1F19111300536771 /* BarcodeViewController.xib in Resources */,

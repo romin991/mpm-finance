@@ -19,6 +19,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 @interface MPMGlobal : NSObject
 extern NSString *const kAPIKey;
+extern NSString *const kBaseUrl;
 extern NSString *const kRoleCustomer;
 extern NSString *const kRoleAgent;
 extern NSString *const kRoleDealer;

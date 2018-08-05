@@ -47,6 +47,7 @@
                                              @"tanggalLahir" : [data objectForKey:@"dob"],
                                              @"jenisKelamin" : @([[data objectForKey:@"gender"] integerValue]),
                                              @"nomorHandphone" : [data objectForKey:@"phone"],
+                                             @"alamatRumahSesuaiKTP" : [data objectForKey:@"address"]
                                              };
                 
                 if (block) block(dictionary, nil);
