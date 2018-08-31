@@ -31,6 +31,9 @@
     [self.view addGestureRecognizer:gesture];
     // Do any additional setup after loading the view.
 }
+- (IBAction)back:(id)sender {
+  [self dismissViewControllerAnimated:YES completion:nil];
+}
 - (void)handleTap
 {
     [self.view endEditing:YES];

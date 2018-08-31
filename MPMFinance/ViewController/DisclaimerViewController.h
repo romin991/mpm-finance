@@ -17,5 +17,7 @@
 @property NSMutableDictionary *valueDictionary;
 @property List *list;
 @property BOOL isReadOnly;
+@property BOOL isFromMonitoring;
+@property BOOL isFromHistory;
 @property BOOL needToShowWorkOrder;
 @end

@@ -67,9 +67,16 @@ NSString * const kValidationReason = @"kReason";
     } else {
         reason = [((XLFormOptionsObject *)reasonRow.value).valueData stringValue];
     }
-    [APIModel setAlternateWithWithDateBegin:dateBegin dateEnd:dateEnd marketing:name marketingAlternate:replacementName alasanId:reason isEdit:self.isEdit idAlternate:self.data ?self.data[@"id"] : @"" Completion:^(NSString *data, NSError *error) {
+    [APIModel setAlternateWithWithDateBegin:dateBegin dateEnd:dateEnd marketing:name marketingAlternate:replacementName alasanId:reason isEdit:self.isEdit idAlternate:self.data ?self.data[@"id"] : @"" Completion:^(NSDictionary *data, NSError *error) {
         if (!error) {
+          if ([data[@"status"] isEqualToString:@"failed"]) {
+            [SVProgressHUD showErrorWithStatus:data[@"message"]];
+            [SVProgressHUD dismissWithDelay:1.5];
+          }else
             [self.navigationController popViewControllerAnimated:YES];
+        } else {
+          [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+          [SVProgressHUD dismissWithDelay:1.5];
         }
     }];
 }
@@ -134,6 +141,8 @@ NSString * const kValidationReason = @"kReason";
             }
             row.selectorOptions = optionObjects;
         }];
+    } else if ([formRow.tag isEqualToString:kValidationReplacementName]) {
+      formRow.title = @"Nama marketing yang ..";
     }
 }
 -(void)initializeForm
@@ -158,7 +167,6 @@ NSString * const kValidationReason = @"kReason";
     
     // Email
     row = [XLFormRowDescriptor formRowDescriptorWithTag:kValidationReplacementName rowType:XLFormRowDescriptorTypeSelectorPush title:@"Nama Marketing yang Menggantikan"];
-   
     row.required = NO;
     if (self.data) {
         [row setDisabled:@(!self.isEdit)];

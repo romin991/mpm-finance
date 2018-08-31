@@ -162,4 +162,7 @@ extern NSString *const kActionTypeSelfCustomMethod;
 + (NSString *)stringFromDateTime:(NSDate *)object;
 + (NSString *)stringFromTime:(NSDate *)object;
 + (NSDate *)timeFromString:(NSString *)object;
++ (NSString *)formatToRupiah:(NSString *)charge;
++ (NSArray *)getAllFieldShouldContainThousandSeparator;
++ (BOOL)isValidEmail:(NSString *)str;
 @end

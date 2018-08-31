@@ -55,6 +55,7 @@
                 marker.title = datum[@"fullName"];
                 marker.snippet = datum[@"userid"];
                 marker.map = weakSelf.mapView;
+              marker.userData = datum;
             }
         }
     }];
@@ -85,23 +86,56 @@
 }
 
 - (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker{
-    CLLocationCoordinate2D location = marker.position;
-    CLLocation *destinationLocation = [[CLLocation alloc] initWithLatitude:location.latitude longitude:location.longitude];
-    self.camera = [GMSCameraPosition cameraWithLatitude:location.latitude longitude:location.longitude zoom:12];
-    [self.mapView animateToCameraPosition:self.camera];
-  
-    __weak typeof(self) weakSelf = self;
-    [SVProgressHUD show];
-    [MapModel fetchPolylineWithOrigin:self.currentLocation destination:destinationLocation completionHandler:^(GMSPolyline *polyLine, NSError *error) {
-        if (error) {
+  NSMutableArray *locations = [NSMutableArray array];
+  CLLocation *markerLocation = [[CLLocation alloc] initWithLatitude:marker.position.latitude longitude:marker.position.longitude];
+  [locations addObject:markerLocation];
+  NSLog(@"%@",marker.userData);
+  __weak typeof(self) weakSelf = self;
+  [APIModel getAllMarketingTrackingDetail:marker.userData[@"userid"] WithCompletion:^(NSArray *data, NSError *error) {
+    if (!error) {
+      for (NSDictionary *datum in data) {
+        CLLocationCoordinate2D location = CLLocationCoordinate2DMake([datum[@"lat"] doubleValue], [datum[@"lng"] doubleValue]);
+        GMSMarker *marker = [[GMSMarker alloc] init];
+        marker.position = CLLocationCoordinate2DMake([datum[@"lat"] doubleValue], [datum[@"lng"] doubleValue]);
+        marker.title = datum[@"fullName"];
+        marker.snippet = datum[@"userid"];
+        marker.map = weakSelf.mapView;
+        marker.userData = datum;
+            CLLocation *locationForLocations = [[CLLocation alloc] initWithLatitude:location.latitude longitude:location.longitude];
+        [locations addObject:locationForLocations];
+      }
+      for (int i = 0; i < (locations.count - 1); i++) {
+        CLLocation *origin = locations[i];
+        CLLocation *destination = locations[i+1];
+        [MapModel fetchPolylineWithOrigin:origin destination:destination completionHandler:^(GMSPolyline *polyLine, NSError *error) {
+          if (error) {
             [SVProgressHUD showErrorWithStatus:error.localizedDescription];
             [SVProgressHUD dismissWithDelay:1.5];
-        } else {
-            [SVProgressHUD dismiss];
+          } else {
+            
             polyLine.strokeWidth = 2.f;
             polyLine.map = weakSelf.mapView;
-        }
-    }];
+          }
+        }];
+      }
+    }
+  }];
+//    CLLocation *destinationLocation = [[CLLocation alloc] initWithLatitude:location.latitude longitude:location.longitude];
+//    self.camera = [GMSCameraPosition cameraWithLatitude:location.latitude longitude:location.longitude zoom:12];
+//    [self.mapView animateToCameraPosition:self.camera];
+  
+//    __weak typeof(self) weakSelf = self;
+//    [SVProgressHUD show];
+//    [MapModel fetchPolylineWithOrigin:self.currentLocation destination:destinationLocation completionHandler:^(GMSPolyline *polyLine, NSError *error) {
+//        if (error) {
+//            [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+//            [SVProgressHUD dismissWithDelay:1.5];
+//        } else {
+//            [SVProgressHUD dismiss];
+//            polyLine.strokeWidth = 2.f;
+//            polyLine.map = weakSelf.mapView;
+//        }
+//    }];
 }
 
 

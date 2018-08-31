@@ -504,6 +504,7 @@
                                              @"catatanTV" : data[@"noteTv"],
                                              @"catatanSS" : data[@"noteSs"],
                                              @"ttd" : data[@"ttd"],
+                                             @"pernyataanPemohon" : data[@"pernyataanPemohon"]
                                              };
                 
                 if (block) block(dictionary, nil);
@@ -720,7 +721,20 @@
                                     @"token" : [MPMUserInfo getToken]}];
     
     NSMutableDictionary *dataDictionary = [NSMutableDictionary dictionary];
-    NSString *url = [[MPMUserInfo getRole] isEqualToString:kRoleCustomer] ? @"customer/input" : @"marketing/update";
+  NSString *url;
+  if ([[MPMUserInfo getRole] isEqualToString:kRoleDedicated]) {
+    if ([list.status isEqualToString:@"Draft"] || [list.status isEqualToString:@"Draft Tidak Lengkap"] || list.status == nil) {
+      url = @"marketing/input";
+    } else {
+      url = @"marketing/update";
+    }
+  } else {
+    if ([[MPMUserInfo getRole] isEqualToString:kRoleDealer]) {
+      url = @"dealer/input";
+    } else {
+      url =  @"customer/input";
+    }
+  }
     @try {
         if (list){
             [dataDictionary setObject:@(list.primaryKey) forKey:@"id"];

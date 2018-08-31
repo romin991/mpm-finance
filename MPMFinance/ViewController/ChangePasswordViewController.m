@@ -24,7 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.strictValidator = [NJOPasswordValidator validatorWithRules:@[[NJOLengthRule ruleWithRange:NSMakeRange(6, 64)], [NJORequiredCharacterRule lowercaseCharacterRequiredRule], [NJORequiredCharacterRule uppercaseCharacterRequiredRule], [NJORequiredCharacterRule symbolCharacterRequiredRule]]];
+    self.strictValidator = [NJOPasswordValidator validatorWithRules:@[[NJOLengthRule ruleWithRange:NSMakeRange(6, 64)], [NJORequiredCharacterRule lowercaseCharacterRequiredRule], [NJORequiredCharacterRule uppercaseCharacterRequiredRule], [NJORequiredCharacterRule symbolCharacterRequiredRule],[NJORequiredCharacterRule decimalDigitCharacterRequiredRule]]];
     // Do any additional setup after loading the view.
 }
 
@@ -53,24 +53,30 @@
     
 }
 - (IBAction)save:(id)sender {
-    if (![self isValidPassword:self.passwordField.text]) {
-        
-        
-    } else {
+  
+  if (![[MPMGlobal MD5fromString:self.oldPasswordField.text] isEqualToString:[MPMUserInfo getPassword]]) {
+    [SVProgressHUD showErrorWithStatus:@"Old Password is not matched"];
+    [SVProgressHUD dismissWithDelay:1.5];
+    return;
+  }
+  if (![self isValidPassword:self.passwordField.text]) {
+    return;
+    
+  }
         [SVProgressHUD show];
         [ProfileModel changePassword:self.oldPasswordField.text password:self.passwordField.text completion:^(NSDictionary *dictionary, NSError *error) {
             [SVProgressHUD dismiss];
             if (!error) {
                 [SVProgressHUD showSuccessWithStatus:@"Change Password Success"];
                 [SVProgressHUD dismissWithDelay:1.5 completion:^{
-                    [self dismissViewControllerAnimated:YES completion:nil];
+                  [self.navigationController popViewControllerAnimated:YES];
                 }];
             } else {
                 [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
                 [SVProgressHUD dismissWithDelay:1.5];
             }
         }];
-    }
+  
 }
 
 /*

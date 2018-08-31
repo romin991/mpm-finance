@@ -67,7 +67,7 @@ NSString *const kSubmenuSurvey = @"Survey";
 NSString *const kSubmenuMelengkapiData = @"Melengkapi Data";
 NSString *const kSubmenuAssignMarketing = @"Assign Marketing";
 
-NSString *const kSubmenuListPengajuanApplikasi = @"List Pengajuan Aplikasi";
+NSString *const kSubmenuListPengajuanApplikasi = @"Form Pengajuan Aplikasi";
 NSString *const kSubmenuMonitoring = @"Monitoring ";
 
 NSString *const kSubmenuDahsyat = @"Dahsyat";
@@ -313,7 +313,22 @@ NSString *const kActionQueryDB = @"QueryDB";
     
     return string;
 }
++ (NSString *)formatToRupiah:(NSString *)charge{
+  
+  NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc]init];
+  numberFormatter.locale = [NSLocale currentLocale];// this ensures the right separator behavior
+  numberFormatter.numberStyle = NSNumberFormatterDecimalStyle;
+  numberFormatter.usesGroupingSeparator = YES;
+  [numberFormatter setGroupingSeparator:@"."];
+  NSInteger chargeDouble = [charge integerValue];
+  NSNumber *chargeNumber = [NSNumber numberWithInteger:chargeDouble];
+  NSString *theString = [numberFormatter stringFromNumber:chargeNumber];
+  return theString;
+}
 
++ (NSArray *)getAllFieldShouldContainThousandSeparator {
+  return  @[@"biayaSurvey", @"biayaCekBlokirBPKB", @"nilaiTunaiSebagian",@"dpRupiah",@"otrKendaraan",@"pendapatanLainnyaPerBulan",@"pendapatanPerBulan",@"hargaKendaraan",@"totalBayarAwal",@"jumlahAset",@"angsuran",@"pokokHutang",@"subsidiUangMuka",@"totalUangDiterimaMPMF",@"biayaAdmin",@"biayaAdminLainnya",@"biayaFidusia",@"biayaLain",@"biayaSurvey",@"persentaseBiayaProvisi",@"nilaiPertanggungan",@"asuransiKendaraanKapitalisasi",@"asuransiKendaraanDibayarDimuka",@"asuransiJiwaKreditKapitalisasi",@"asuransiJiwaDibayarDimuka",@"nilaiPertanggunganAsuransiJiwa",@"premiAsuransiKerugianKendaraan",@"premiAsuransiJiwaKredit",@"gajiPokok",@"tunjanganTetap",@"insentif",@"lembur",@"bonus",@"total",@"totalUangMukaDiterimaMPMF",@"omzet1",@"omzet2",@"omzet3",@"omzet4",@"omzet5",@"omzet6"];
+}
 + (UIImage *)barcodeFromString:(NSString *)string size:(CGSize)outputSize{
     NSData *data = [string dataUsingEncoding:NSASCIIStringEncoding];
     CIFilter *filter = [CIFilter filterWithName:@"CICode128BarcodeGenerator"];
@@ -327,7 +342,12 @@ NSString *const kActionQueryDB = @"QueryDB";
     
     return [UIImage imageWithCIImage:output];
 }
-
++ (BOOL)isValidEmail:(NSString *)str
+{
+  NSString *emailRegex = @"[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}";
+  NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+  return [emailTest evaluateWithObject:str];
+}
 + (UIImage *)qrCodeFromString:(NSString *)string size:(CGSize)outputSize{
     NSData *data = [string dataUsingEncoding:NSISOLatin1StringEncoding]; // recommended encoding
     CIFilter *filter = [CIFilter filterWithName:@"CIQRCodeGenerator"];

@@ -56,15 +56,24 @@
     }];
     
 }
+- (IBAction)back:(id)sender {
+  [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
 
 - (IBAction)resend:(id)sender {
     AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
     [manager POST:[NSString stringWithFormat:@"%@/register/resendotp",kApiUrl] parameters:@{@"userid" : self.userId,@"token" : @""} progress:^(NSProgress * _Nonnull uploadProgress) {
         ;
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        ;
+      UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"Status" message:responseObject[@"message"] preferredStyle:UIAlertControllerStyleAlert];
+      UIAlertAction* okButton = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil];
+      [alertController addAction:okButton];
+      [self presentViewController:alertController animated:YES completion:nil];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        ;
+      UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+      UIAlertAction* okButton = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil];
+      [alertController addAction:okButton];
+      [self presentViewController:alertController animated:YES completion:nil];
     }];
 }
 

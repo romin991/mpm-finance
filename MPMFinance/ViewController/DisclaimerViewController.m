@@ -16,7 +16,10 @@
 #import "MenuViewController.h"
 #import "WorkOrderListViewController.h"
 #import "DataSource.h"
+#import "HistoryViewController.h"
 #import "Menu.h"
+#import "AppDelegate.h"
+#import "ListViewController.h"
 @interface DisclaimerViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate, BarcodeDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextView *textView;
@@ -39,14 +42,19 @@
     // Do any additional setup after loading the view from its nib.
     [self setTitle:self.menu.title];
     
-    if (self.isReadOnly || [self.valueDictionary objectForKey:@"ttd"]) {
+    if (self.isReadOnly || ([self.valueDictionary objectForKey:@"ttd"] && [[self.valueDictionary objectForKey:@"ttd"] length] > 0)) {
         if (self.isReadOnly) {
             self.submitButton.hidden = true;
             self.viewBarcodeButton.hidden = false;
         }
         self.isPhotoTaken = true;
         self.takePhotoButton.hidden = true;
+      if ([self.valueDictionary objectForKey:@"pernyataanPemohon"] && [[self.valueDictionary objectForKey:@"pernyataanPemohon"] isEqual:@0]) {
+        self.isAgree = false;
+      } else {
         self.isAgree = true;
+      }
+      
         [self setRightBarButton];
         
         if ([MPMGlobal isStringAnURL:[self.valueDictionary objectForKey:@"ttd"]]) {
@@ -128,7 +136,7 @@
 - (IBAction)agree:(id)sender {
     NSString *first = self.parentMenu.primaryKey;
     NSString *second = [NSString stringWithFormat:@"%@ ",kMenuMonitoring];
-    if ([first isEqualToString:second]) {
+    if (self.isReadOnly) {
         return;
     }
     if (![self.parentMenu.primaryKey isEqualToString:kSubmenuListWorkOrder]) {
@@ -140,7 +148,7 @@
 - (IBAction)disagree:(id)sender {
     NSString *first = self.parentMenu.primaryKey;
     NSString *second = [NSString stringWithFormat:@"%@ ",kMenuMonitoring];
-    if ([first isEqualToString:second]) {
+    if (self.isReadOnly) {
         return;
     }
     if (![self.parentMenu.primaryKey isEqualToString:kSubmenuListWorkOrder]) {
@@ -190,6 +198,7 @@
                                                      }];
     
     [SVProgressHUD show];
+  
     [WorkOrderModel postListWorkOrder:self.list dictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
         if (error == nil) {
             [SVProgressHUD dismiss];
@@ -201,6 +210,17 @@
             }
             
             __weak typeof(self) weakSelf = self;
+          //if customer, no need to show stop process
+          if ([[MPMUserInfo getRole] isEqualToString:kRoleCustomer] || [[MPMUserInfo getRole] isEqualToString:kRoleDealer] || [[MPMUserInfo getRole] isEqualToString:kRoleAgent]) {
+            BarcodeViewController *barcodeVC = [[BarcodeViewController alloc] init];
+            barcodeVC.barcodeString = noRegistrasi;
+            barcodeVC.modalPresentationStyle = UIModalPresentationFullScreen;
+            barcodeVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+            barcodeVC.delegate = weakSelf;
+            
+            [weakSelf presentViewController:barcodeVC animated:YES completion:nil];
+            return ;
+          }
             UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:@"" message:@"Apakah anda yakin akan melanjutkan proses?" preferredStyle:UIAlertControllerStyleAlert];
             
             [actionSheet addAction:[UIAlertAction actionWithTitle:@"Tidak" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
@@ -212,7 +232,7 @@
             }]];
             
             [actionSheet addAction:[UIAlertAction actionWithTitle:@"Ya" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
-                [WorkOrderModel setStopProccessWithID:weakSelf.list.primaryKey completion:nil];
+                [WorkOrderModel setStopProccessWithID:[[[dictionary objectForKey:@"data"] objectForKey:@"id"] integerValue] completion:nil];
                 BarcodeViewController *barcodeVC = [[BarcodeViewController alloc] init];
                 barcodeVC.barcodeString = noRegistrasi;
                 barcodeVC.modalPresentationStyle = UIModalPresentationFullScreen;
@@ -233,7 +253,6 @@
 
 - (IBAction)viewBarcode:(id)sender {
     NSString *noRegistrasi = [self.valueDictionary objectForKey:@"noRegistrasi"];
-    
     BarcodeViewController *barcodeVC = [[BarcodeViewController alloc] init];
     barcodeVC.barcodeString = noRegistrasi;
     barcodeVC.modalPresentationStyle = UIModalPresentationFullScreen;
@@ -266,24 +285,55 @@
 //            }
 //        }
 //    }
-    for (UIViewController *vc in self.navigationController.viewControllers) {
+  NSArray *vcs = [[self.navigationController.viewControllers reverseObjectEnumerator] allObjects];
+    for (UIViewController *vc in vcs) {
         if ([vc isKindOfClass:[SubmenuViewController class]]) {
             [self.navigationController popToViewController:vc animated:NO];
+          return;
+        } else if ([vc isKindOfClass:[ListViewController class]]) {
+          [self.navigationController popToViewController:vc animated:NO];
+          return;
         }
     }
+  
+  [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 #pragma mark - Barcode Delegate
 - (void)finish{
   
-  if (self.needToShowWorkOrder) {
-    WorkOrderListViewController *listViewController = [[WorkOrderListViewController alloc] initWithNibName:@"WorkOrderListViewController" bundle:nil];
-    listViewController.menu = [Menu getMenuForPrimaryKey:kMenuListWorkOrder];
-    [self.navigationController pushViewController:listViewController animated:YES];;
-    return;
+  if ([[MPMUserInfo getRole] isEqualToString:kRoleDedicated] && ([self.list.status isEqualToString:@"Draft"] || [self.list.status isEqualToString:@"Draft Tidak Lengkap"] || !self.list.status)) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        UINavigationController *mainNavigation = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateInitialViewController];
+        WorkOrderListViewController *listViewController2 = [[WorkOrderListViewController alloc] initWithNibName:@"WorkOrderListViewController" bundle:nil];
+        listViewController2.menu = [Menu getMenuForPrimaryKey:kMenuListWorkOrder];
+        [mainNavigation pushViewController:listViewController2 animated:YES];
+        AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        delegate.window.rootViewController = mainNavigation;
+        return;
+  }
+  else if (self.needToShowWorkOrder) {
+    [self close];
+//    [self.navigationController popToRootViewControllerAnimated:YES];
+//    UINavigationController *mainNavigation = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateInitialViewController];
+//    WorkOrderListViewController *listViewController2 = [[WorkOrderListViewController alloc] initWithNibName:@"WorkOrderListViewController" bundle:nil];
+//    listViewController2.menu = [Menu getMenuForPrimaryKey:kMenuListWorkOrder];
+//    SubmenuViewController *submenuViewController = [[SubmenuViewController alloc] init];
+//    submenuViewController.menu = self.menu;
+//    submenuViewController.list = self.list;
+//    [mainNavigation pushViewController:listViewController2 animated:YES];
+//    [mainNavigation pushViewController:submenuViewController animated:YES];
+//    AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+//    delegate.window.rootViewController = mainNavigation;
+//    return;
+  } else if (self.isFromMonitoring) {
+    UIViewController *vc = self.navigationController.viewControllers[2];
+    [self.navigationController popToViewController:vc animated:YES];
+  } else if(self.isFromHistory) {
+    [self.navigationController popToRootViewControllerAnimated:YES];
   }
    else if (![self.parentMenu.primaryKey isEqualToString:kSubmenuListWorkOrder]) {
-        if ([[MPMUserInfo getRole] isEqualToString:kRoleCustomer] || [[MPMUserInfo getRole] isEqualToString:kRoleDealer]) {
+        if ([[MPMUserInfo getRole] isEqualToString:kRoleCustomer] || [[MPMUserInfo getRole] isEqualToString:kRoleDealer] || [[MPMUserInfo getRole] isEqualToString:kRoleAgent]) {
             NSArray *viewControllers = self.navigationController.viewControllers;
             
             [self.navigationController popToViewController:viewControllers[1] animated:YES];

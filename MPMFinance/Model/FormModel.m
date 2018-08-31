@@ -11,7 +11,7 @@
 #import "PostalCode.h"
 #import "Asset.h"
 #import "Data.h"
-
+#import "FloatLabeledTextFieldCell.h"
 @implementation FormModel
 
 + (void)loadValueFrom:(NSDictionary *)dictionary to:(XLFormDescriptor *)formDescriptor on:(XLFormViewController *)formViewController{
@@ -97,7 +97,18 @@
             } else {
                 object = @"";
             }
-            
+          
+          
+          if ([[MPMGlobal getAllFieldShouldContainThousandSeparator] containsObject:row.tag]) {
+            NSString *newObject = object;
+            @try {
+            object = [newObject stringByReplacingOccurrencesOfString:@"." withString:@""];
+            }
+            @catch(NSException *e) {
+              
+            }
+          }
+          NSLog(@"%@ %@",object,row.tag);
             if (object) [valueDictionary setObject:object forKey:row.tag];
         }
     }
@@ -172,7 +183,7 @@
 + (void)loadValueFrom:(NSDictionary *)dictionary to:(XLFormSectionDescriptor *)section on:(XLFormViewController *)formViewController partialUpdate:(NSArray *)fields{
     [section.formRows enumerateObjectsUsingBlock:^(XLFormRowDescriptor *row, NSUInteger idx, BOOL *stop) {
         id value;
-        NSLog(@"%@",row.tag);
+      NSLog(@"%@",row.tag);
         
         if ([dictionary objectForKey:row.tag] && (fields.count == 0 || [fields containsObject:row.tag])){
             value = [dictionary objectForKey:row.tag];
@@ -182,6 +193,7 @@
                 row.value = [MPMGlobal dateFromString:value];
             } else if ([row.rowType isEqualToString:XLFormRowDescriptorTypeSelectorPush]){
                 row.value = row.selectorOptions.count ? [XLFormOptionsObject formOptionsOptionForValue:value fromOptions:row.selectorOptions] : [NSString stringWithFormat:@"%@", value];
+             
             } else if ([row.rowType isEqualToString:XLFormRowDescriptorTypeImage]){
                 row.value = [UIImage imageWithData:value];
             } else if ([row.rowType isEqualToString:XLFormRowDescriptorTypeButton]){
@@ -226,8 +238,12 @@
             
             if (formRow.optionType.length) {
                 dispatch_group_enter(group);
-                NSLog(@"enter");
-                [DropdownModel getDropdownForType:formRow.optionType completion:^(NSArray *options, NSError *error) {
+                NSLog(@"enter %@",formRow.optionType);
+              NSString *optionType = formRow.optionType;
+              if ([formRow.optionType isEqualToString:@"getProduct"] && [[MPMUserInfo getRole] isEqualToString:kRoleAgent]) {
+                optionType = @"getProductByAgent";
+              }
+                [DropdownModel getDropdownForType:optionType completion:^(NSArray *options, NSError *error) {
                     @try {
                         if (error) {
                             weakError = error;

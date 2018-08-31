@@ -135,7 +135,6 @@
 + (void)postSurveyWithList:(List *)list dictionary:(NSDictionary *)dictionary completion:(void(^)(NSDictionary *dictionary, NSError *error))block{
     AFHTTPSessionManager *manager = [MPMGlobal sessionManager];
     NSMutableDictionary *param;
-    @try {
         param = [NSMutableDictionary dictionaryWithDictionary:
                                       @{@"userid" :[MPMUserInfo getUserInfo][@"userId"],
                                         @"token" : [MPMUserInfo getToken],
@@ -212,9 +211,7 @@
                                        }];
         
         [param setObject:data forKey:@"data"];
-    } @catch(NSException *exception) {
-        NSLog(@"%@", exception);
-    }
+     
     
     [manager POST:[NSString stringWithFormat:@"%@/survey/insert", kApiUrl] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         @try {

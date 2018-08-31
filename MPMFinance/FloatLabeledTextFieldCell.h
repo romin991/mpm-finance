@@ -32,6 +32,9 @@ extern NSString * const XLFormRowDescriptorTypeFloatLabeledTextField;
 @property BOOL mustAlphabetPunctuationOnly;
 @property BOOL mustAlphabetNumericOnly;
 @property BOOL mustNumericOnly;
+@property BOOL isPercentage;
+@property BOOL disableSpace;
+@property BOOL shouldGiveThousandSeparator;
 - (void)setKeyboardType:(UIKeyboardType)keyboardType;
 - (void)setKeyboardType:(UIKeyboardType)keyboardType andMaximumLength:(NSInteger) maxLength;
 

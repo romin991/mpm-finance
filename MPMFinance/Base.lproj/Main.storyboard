@@ -208,12 +208,13 @@
                         <outlet property="signInButton" destination="mSK-N8-edD" id="mut-dD-Z3H"/>
                         <outlet property="usernameField" destination="FXB-Yg-kXh" id="GMd-pV-uaJ"/>
                         <segue destination="Afh-kt-GVi" kind="show" identifier="signUpSegue" id="9Ie-Iz-vSB"/>
+                        <segue destination="sUU-AU-rwb" kind="show" identifier="sendOTPViewController" id="yQg-nx-raE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="ZLg-WN-JTH" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="917" y="922"/>
+            <point key="canvasLocation" x="922" y="953"/>
         </scene>
         <!--Forgot Password View Controller-->
         <scene sceneID="4u2-bd-V5p">
@@ -305,6 +306,15 @@
                                             <action selector="cancel:" destination="FhT-3c-Ds2" eventType="touchUpInside" id="oB8-hi-fll"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gGg-Vs-W7I">
+                                        <rect key="frame" x="8" y="8" width="34" height="30"/>
+                                        <state key="normal" title="Back"/>
+                                        <connections>
+                                            <action selector="back:" destination="ZLg-WN-JTH" eventType="touchUpInside" id="1lq-hU-PLG"/>
+                                            <action selector="back:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Jam-b1-qMf"/>
+                                            <action selector="back:" destination="FhT-3c-Ds2" eventType="touchUpInside" id="TFu-qk-lTU"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -318,8 +328,10 @@
                                     <constraint firstItem="3Cg-H7-GBR" firstAttribute="leading" secondItem="gCE-Jt-IGV" secondAttribute="leading" constant="40" id="S8a-9O-39V"/>
                                     <constraint firstItem="3Cg-H7-GBR" firstAttribute="top" secondItem="7G2-tz-Svb" secondAttribute="bottom" constant="20" id="ZxC-rK-5Xs"/>
                                     <constraint firstAttribute="trailing" secondItem="7G2-tz-Svb" secondAttribute="trailing" constant="40" id="fvj-TB-qBU"/>
+                                    <constraint firstItem="gGg-Vs-W7I" firstAttribute="top" secondItem="0em-rd-2ze" secondAttribute="top" id="s1j-3I-Pc2"/>
                                     <constraint firstItem="0em-rd-2ze" firstAttribute="top" secondItem="gCE-Jt-IGV" secondAttribute="top" constant="8" id="vda-R7-HWN"/>
                                     <constraint firstItem="7G2-tz-Svb" firstAttribute="top" secondItem="S1h-F3-e8s" secondAttribute="bottom" constant="75" id="vyb-fE-Ryz"/>
+                                    <constraint firstItem="0em-rd-2ze" firstAttribute="leading" secondItem="gGg-Vs-W7I" secondAttribute="trailing" constant="-42" id="zyM-k7-Cq8"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -348,7 +360,7 @@
         <!--Menu View Controller-->
         <scene sceneID="oqN-Lg-9sg">
             <objects>
-                <viewController id="hvL-vJ-2kv" customClass="MenuViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MenuViewController" id="hvL-vJ-2kv" customClass="MenuViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dSh-LE-Q8T"/>
                         <viewControllerLayoutGuide type="bottom" id="RE8-6S-OXT"/>
@@ -704,7 +716,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="t06-6X-vtn">
+                                                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="t06-6X-vtn">
                                                     <rect key="frame" x="8" y="5" width="82" height="68"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="68" id="TbG-1P-uYx"/>
@@ -4715,12 +4727,12 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="128" id="XNr-21-tUt"/>
                                         </constraints>
-                                        <string key="text">Kata Sandi harus terdiri dari : - Setidaknya 6 karakter
+                                        <string key="text">Kata Sandi harus terdiri dari :  - Setidaknya 6 karakter
 - Spesial karakter
 - Huruf kecil
 - Huruf besar
-- Angka</string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+- Angka (Contoh Password : Password123$)</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SPo-US-Tpu">
@@ -4728,6 +4740,13 @@
                                         <state key="normal" title="Back"/>
                                         <connections>
                                             <action selector="back:" destination="Afh-kt-GVi" eventType="touchUpInside" id="uET-RK-Aea"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jCZ-S3-Jea">
+                                        <rect key="frame" x="240" y="838" width="38" height="30"/>
+                                        <state key="normal" title="Show"/>
+                                        <connections>
+                                            <action selector="showHidePassword:" destination="Afh-kt-GVi" eventType="touchUpInside" id="YHm-sd-GIg"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -4739,9 +4758,10 @@
                                     <constraint firstItem="FUM-B7-Us0" firstAttribute="trailing" secondItem="WSu-RS-qQ3" secondAttribute="trailing" id="1O7-Js-E9w"/>
                                     <constraint firstItem="uOp-Fa-tbj" firstAttribute="trailing" secondItem="wMp-Wo-2f8" secondAttribute="trailing" id="1no-td-oeb"/>
                                     <constraint firstItem="or0-Vj-NnB" firstAttribute="trailing" secondItem="wNc-Ba-F7w" secondAttribute="trailing" id="2te-PH-ebZ"/>
+                                    <constraint firstItem="jCZ-S3-Jea" firstAttribute="leading" secondItem="aG7-Oj-3b6" secondAttribute="trailing" constant="-42" id="37h-VS-5WE"/>
                                     <constraint firstItem="S4H-Et-s9f" firstAttribute="leading" secondItem="3DO-Zi-pqK" secondAttribute="leading" id="3UC-u9-GSH"/>
                                     <constraint firstItem="bkS-1y-xV1" firstAttribute="leading" secondItem="ViI-bT-N8w" secondAttribute="leading" id="3gQ-2F-yIx"/>
-                                    <constraint firstItem="FUM-B7-Us0" firstAttribute="top" secondItem="omH-PQ-nhc" secondAttribute="bottom" priority="750" constant="1" id="4K4-ZB-Mw2"/>
+                                    <constraint firstItem="FUM-B7-Us0" firstAttribute="top" secondItem="omH-PQ-nhc" secondAttribute="bottom" priority="250" constant="1" id="4K4-ZB-Mw2"/>
                                     <constraint firstItem="wMp-Wo-2f8" firstAttribute="top" secondItem="or0-Vj-NnB" secondAttribute="top" id="5y3-pX-c0T"/>
                                     <constraint firstItem="8X2-ss-7ZS" firstAttribute="trailing" secondItem="qrz-mf-Amd" secondAttribute="trailing" id="6cH-eu-Kp8"/>
                                     <constraint firstItem="IGe-jP-Xlx" firstAttribute="top" secondItem="ERe-xg-vfA" secondAttribute="bottom" constant="42" id="6x5-iu-mLf"/>
@@ -4783,6 +4803,7 @@
                                     <constraint firstItem="bkS-1y-xV1" firstAttribute="trailing" secondItem="lE9-VH-iyX" secondAttribute="trailing" id="Uig-oT-zUa"/>
                                     <constraint firstItem="SPo-US-Tpu" firstAttribute="top" secondItem="3tr-74-BWZ" secondAttribute="top" constant="8" id="W2F-hc-Vqb"/>
                                     <constraint firstItem="bkS-1y-xV1" firstAttribute="leading" secondItem="lE9-VH-iyX" secondAttribute="leading" id="W6N-wv-pF0"/>
+                                    <constraint firstItem="jCZ-S3-Jea" firstAttribute="top" secondItem="IXi-r6-Pez" secondAttribute="bottom" constant="18" id="WCo-eT-TeT"/>
                                     <constraint firstItem="bkS-1y-xV1" firstAttribute="top" secondItem="88d-Ya-peh" secondAttribute="bottom" constant="-1" id="Wcm-wM-D2N"/>
                                     <constraint firstItem="ERe-xg-vfA" firstAttribute="centerX" secondItem="IGe-jP-Xlx" secondAttribute="centerX" id="X0h-bZ-LmK"/>
                                     <constraint firstItem="8X2-ss-7ZS" firstAttribute="trailing" secondItem="aG7-Oj-3b6" secondAttribute="trailing" id="X1E-aI-4Md"/>
@@ -4953,6 +4974,15 @@
                                             <constraint firstAttribute="height" constant="44" id="scM-fZ-Lqd"/>
                                         </constraints>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l0I-9w-mNe">
+                                        <rect key="frame" x="8" y="8" width="34" height="30"/>
+                                        <state key="normal" title="Back"/>
+                                        <connections>
+                                            <action selector="back:" destination="ZLg-WN-JTH" eventType="touchUpInside" id="gei-Cz-EF6"/>
+                                            <action selector="back:" destination="BYZ-38-t0r" eventType="touchUpInside" id="i4B-qK-93F"/>
+                                            <action selector="back:" destination="sUU-AU-rwb" eventType="touchUpInside" id="qp0-5V-Jxk"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -4964,8 +4994,10 @@
                                     <constraint firstItem="uSG-IL-11p" firstAttribute="leading" secondItem="amc-F8-NK5" secondAttribute="leading" constant="40" id="Ak1-fO-DZX"/>
                                     <constraint firstAttribute="trailing" secondItem="zPg-xi-hid" secondAttribute="trailing" constant="40" id="DeS-Pq-Iuq"/>
                                     <constraint firstItem="AYB-Fl-zIb" firstAttribute="leading" secondItem="amc-F8-NK5" secondAttribute="leading" id="GRR-eu-kXL"/>
+                                    <constraint firstItem="l0I-9w-mNe" firstAttribute="top" secondItem="amc-F8-NK5" secondAttribute="top" constant="8" id="HMZ-fG-skP"/>
                                     <constraint firstItem="zPg-xi-hid" firstAttribute="leading" secondItem="amc-F8-NK5" secondAttribute="leading" constant="40" id="dhj-R0-Rxh"/>
                                     <constraint firstAttribute="trailing" secondItem="uSG-IL-11p" secondAttribute="trailing" constant="40" id="eJO-NS-Pr3"/>
+                                    <constraint firstItem="Xxg-BE-QAk" firstAttribute="leading" secondItem="l0I-9w-mNe" secondAttribute="trailing" constant="-42" id="es5-fY-t7k"/>
                                     <constraint firstAttribute="trailing" secondItem="Xxg-BE-QAk" secondAttribute="trailing" id="heP-NR-FaA"/>
                                     <constraint firstItem="zPg-xi-hid" firstAttribute="top" secondItem="uSG-IL-11p" secondAttribute="bottom" constant="33" id="m1k-cH-gy0"/>
                                     <constraint firstItem="Xxg-BE-QAk" firstAttribute="top" secondItem="amc-F8-NK5" secondAttribute="top" constant="8" id="ve8-4A-CaP"/>
@@ -4991,7 +5023,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gfu-8t-IF6" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1548" y="2538"/>
+            <point key="canvasLocation" x="276" y="2637"/>
         </scene>
         <!--Kontrak Kerja View Controller-->
         <scene sceneID="qC1-LC-Gci">
@@ -5089,6 +5121,7 @@
         <image name="uk-flag" width="14" height="14"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9Ie-Iz-vSB"/>
+        <segue reference="yQg-nx-raE"/>
+        <segue reference="raJ-8g-lbX"/>
     </inferredMetricsTieBreakers>
 </document>

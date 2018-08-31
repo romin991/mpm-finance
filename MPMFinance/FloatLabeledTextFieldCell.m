@@ -75,6 +75,7 @@ const static CGFloat kFloatingLabelFontSize = 11.0f;
 {
     [super configure];
     self.mustAlphabetOnly = NO;
+    self.floatLabeledTextField.keyboardType = UIKeyboardTypeASCIICapable;
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
     [self.contentView addSubview:self.floatLabeledTextField];
     [self.floatLabeledTextField setDelegate:self];
@@ -132,10 +133,30 @@ const static CGFloat kFloatingLabelFontSize = 11.0f;
     return [self.formViewController textFieldShouldEndEditing:textField];
 }
 
+- (NSString *)formatToRupiah:(NSString *)charge{
+  
+  NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc]init];
+  numberFormatter.locale = [NSLocale currentLocale];// this ensures the right separator behavior
+  numberFormatter.numberStyle = NSNumberFormatterDecimalStyle;
+  numberFormatter.usesGroupingSeparator = YES;
+  NSInteger chargeDouble = [charge integerValue];
+  NSNumber *chargeNumber = [NSNumber numberWithInteger:chargeDouble];
+  NSString *theString = [numberFormatter stringFromNumber:chargeNumber];
+  return theString;
+}
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     int newLength = textField.text.length + string.length - range.length;
     NSString * proposedNewString = [[textField text] stringByReplacingCharactersInRange:range withString:string];
+  if ([string isEqualToString:@" "] && self.disableSpace) {
+    return NO;
+  }
     if (self.maximumLength > 0 && newLength > self.maximumLength) {
+      if (self.shouldGiveThousandSeparator) {
+        NSString *filtered = [proposedNewString stringByReplacingOccurrencesOfString:@"." withString:@""];
+        if (filtered.length > self.maximumLength) {
+          return NO;
+        }
+      } else 
         return NO;
     }
     WordsType wordType = [proposedNewString checkWordType];
@@ -155,6 +176,57 @@ const static CGFloat kFloatingLabelFontSize = 11.0f;
             return NO;
         }
     }
+  
+  if (self.shouldGiveThousandSeparator) {
+    // First check whether the replacement string's numeric...
+    NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:@"0123456789"] invertedSet];
+    NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
+    bool isNumeric = [string isEqualToString:filtered];
+    
+    // Then if the replacement string's numeric, or if it's
+    // a backspace, or if it's a decimal point and the text
+    // field doesn't already contain a decimal point,
+    // reformat the new complete number using
+    // NSNumberFormatterDecimalStyle
+    if (isNumeric ||
+        [string isEqualToString:@""] ||
+        ([string isEqualToString:@"."] &&
+         [textField.text rangeOfString:@"."].location == NSNotFound)) {
+          
+          // Create the decimal style formatter
+          NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+          [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+          [formatter setGroupingSeparator:@"."];
+          [formatter setMaximumFractionDigits:10];
+          
+          // Combine the new text with the old; then remove any
+          // commas from the textField before formatting
+          NSString *combinedText = [textField.text stringByReplacingCharactersInRange:range withString:string];
+          NSString *numberWithoutCommas = [combinedText stringByReplacingOccurrencesOfString:@"." withString:@""];
+          NSNumber *number = [formatter numberFromString:numberWithoutCommas];
+          
+          NSString *formattedString = [formatter stringFromNumber:number];
+          
+          // If the last entry was a decimal or a zero after a decimal,
+          // re-add it here because the formatter will naturally remove
+          // it.
+          if ([string isEqualToString:@"."] &&
+              range.location == textField.text.length) {
+            formattedString = [formattedString stringByAppendingString:@"."];
+          }
+          
+          textField.text = formattedString;
+          return NO;
+        }
+
+    
+  }
+  
+  if (self.isPercentage) {
+    if ([proposedNewString integerValue] > 100) {
+      return NO;
+    }
+  }
   
     return [self.formViewController textField:textField shouldChangeCharactersInRange:range replacementString:string];
 }

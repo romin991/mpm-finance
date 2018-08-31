@@ -108,7 +108,7 @@
             if (code == 200) {
                 NSDictionary *data = [responseObject objectForKey:@"data"];
                 [MPMUserInfo save:data];
-                
+              [MPMUserInfo savePassword:[MPMGlobal MD5fromString:password]];
                 if (block) block(data, nil);
                 
             } else {

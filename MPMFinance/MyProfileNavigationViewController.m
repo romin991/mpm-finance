@@ -24,10 +24,10 @@
 }
 -(void)viewWillAppear:(BOOL)animated
 {
-//  if (![[MPMUserInfo getRole] isEqualToString:kRoleCustomer]) {
-//    self.tabBar.hidden = YES;
-//    self.topConstraint.active = NO;
-//  }
+  if (![[MPMUserInfo getRole] isEqualToString:kRoleCustomer]) {
+    self.tabBar.hidden = YES;
+    self.topConstraint.active = NO;
+  }
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

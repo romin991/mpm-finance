@@ -65,7 +65,7 @@
                                            alasanId:(NSString *)alasanId
                                              isEdit:(BOOL)isEdit
                                         idAlternate:(NSString *)idAlternate
-                            Completion:(void(^)(NSString *data, NSError *error))block;
+                            Completion:(void(^)(NSDictionary *data, NSError *error))block;
 //tracking/getallmarketing
 + (void) getAllMarketingWithCompletion:(void(^)(NSArray *data, NSError *error))block;
 + (void) getAllMarketingTrackingDetail:(NSString *)marketingUserId WithCompletion:(void(^)(NSArray *data, NSError *error))block;

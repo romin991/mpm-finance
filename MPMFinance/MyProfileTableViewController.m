@@ -13,7 +13,8 @@
 #import "MenuNavigationViewController.h"
 #import "DropdownModel.h"
 #import "APIModel.h"
-@interface MyProfileTableViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
+#import "NSString+MixedCasing.h"
+@interface MyProfileTableViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate,UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *txtNamaCabang;
 @property (weak, nonatomic) IBOutlet APAvatarImageView *profilePictureImageView;
@@ -55,6 +56,7 @@
     self.profilePictureImageView.borderWidth = 1;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
+  
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     
@@ -68,8 +70,42 @@
     self.pickerView = [[UIPickerView alloc] init];
     self.pickerView.dataSource = self;
     self.pickerView.delegate = self;
+  [self setupDefaultEnabledField];
+  [self setDelegate];
 }
-
+-(void)setDelegate{
+  self.txtFullName.delegate = self;
+  self.txtPhoneNumber.delegate = self;
+  self.txtEmail.delegate = self;
+  
+  self.txtPhoneNumber.keyboardType = UIKeyboardTypePhonePad;
+  
+  
+}
+- (void)setupDefaultEnabledField{
+  [_txtUserID setEnabled:NO];
+  [_txtIdCardNumber setEnabled:NO];
+  [_txtNamaCabang setEnabled:NO];
+  
+}
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+  WordsType wordType = [string checkWordType];
+  if ([string isEqualToString:@""]) {
+    return YES;
+  }
+  int newLength = textField.text.length + string.length - range.length;
+  if (textField == self.txtFullName && wordType == WordsTypeAlphabetOnly && newLength <=50  ) {
+    return YES;
+  } else if (textField == self.txtPhoneNumber && wordType == WordsTypeNumericOnly && newLength <=15  ) {
+    return YES;
+  } else if (textField == self.txtEmail && newLength <=50  ) {
+    return YES;
+  } else
+  {
+    return NO;
+  }
+}
 - (void)handleTap
 {
     [self.view endEditing:YES];
@@ -287,6 +323,22 @@
     [self.profilePictureImageView setImage:image];
 }
 
+-(void)onDatePickerValueChanged:(UIDatePicker*)datePicker
+{
+  if ([datePicker.date timeIntervalSinceNow] > -536457600){
+    UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"Error" message:@"Usia Anda di bawah 17 tahun" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* okButton = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    }];
+    [alertController addAction:okButton];
+    [self presentViewController:alertController animated:YES completion:nil];
+    return;
+  }
+  NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+  [dateFormatter setDateFormat:@"dd-MM-YYYY"];
+  self.txtDateOfBirth.text = [dateFormatter stringFromDate:datePicker.date];
+  
+}
+
 - (IBAction)editSave:(id)sender {
     if (!_isEdit) {
         [self setTextFieldsEnable:YES];
@@ -294,10 +346,15 @@
         _isEdit = YES;
         
     } else {
+      if (![MPMGlobal isValidEmail:self.txtEmail.text]) {
+        [SVProgressHUD showErrorWithStatus:@"Invalid Email Format"];
+        return;
+      }
         _isEdit = NO;
       [SVProgressHUD show];
         [self setTextFieldsEnable:NO];
         [((UIButton * )sender) setTitle:@"EDIT" forState:UIControlStateNormal];
+      
         NSDictionary *param = @{
                                 @"userid": [MPMUserInfo getUserInfo][@"userId"],
                                 @"token": [MPMUserInfo getToken],
@@ -365,13 +422,7 @@
 //    [_txtUserID setEnabled:enable];
 }
 
--(void)onDatePickerValueChanged:(UIDatePicker*)datePicker
-{
-    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"dd-MM-YYYY"];
-    self.txtDateOfBirth.text = [dateFormatter stringFromDate:datePicker.date];
-    
-}
+
 
 #pragma mark - Picker View
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{

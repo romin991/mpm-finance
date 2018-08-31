@@ -188,7 +188,7 @@
                                            alasanId:(NSString *)alasanId
                                 isEdit:(BOOL)isEdit
                            idAlternate:(NSString *)idAlternate
-                                         Completion:(void(^)(NSString *data, NSError *error))block {
+                                         Completion:(void(^)(NSDictionary *data, NSError *error))block {
     AFHTTPSessionManager *manager = [MPMGlobal sessionManager];
     NSDictionary *param = @{ @"userid" : [MPMUserInfo getUserInfo][@"userId"],
                              @"token" : [MPMUserInfo getToken],
@@ -219,7 +219,7 @@
         ;
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject objectForKey:@"data"]) {
-            block(responseObject[@"data"],nil);
+            block(responseObject,nil);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSString *errorMessage = error.localizedDescription;

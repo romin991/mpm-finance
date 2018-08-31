@@ -17,6 +17,9 @@
 @property Menu *parentMenu;
 @property Menu *menu;
 @property BOOL isFromHistory;
+@property BOOL isFromMonitoring;
+@property BOOL isMelengkapi;
+@property BOOL isReadOnly;
 @property NSInteger index;
 @property NSMutableDictionary *valueDictionary;
 @property List *list;

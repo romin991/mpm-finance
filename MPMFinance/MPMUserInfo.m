@@ -47,6 +47,20 @@
         return dictionary[@"token"];
     
 }
++ (void)savePassword:(NSString *)password {
+  NSData *dataSave = [NSKeyedArchiver archivedDataWithRootObject:password];
+  [[NSUserDefaults standardUserDefaults] setObject:dataSave forKey:@"password"];
+  [[NSUserDefaults standardUserDefaults] synchronize];
+}
++(NSString *)getPassword{
+  NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"password"];
+  NSString *dictionary = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+  if (!dictionary) {
+    return nil;
+  }
+  else
+    return dictionary;
+}
 
 + (void)save:(NSDictionary *)dictionary{
     NSData *dataSave = [NSKeyedArchiver archivedDataWithRootObject:dictionary];

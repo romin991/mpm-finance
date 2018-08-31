@@ -30,7 +30,7 @@
     WordsType wordType = WordsTypeNone;
     NSCharacterSet *alphabetSet = [NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "];
     NSCharacterSet *numericSet = [NSCharacterSet characterSetWithCharactersInString:@"1234567890"];
-    NSCharacterSet *punctuationSet = [NSCharacterSet characterSetWithCharactersInString:@"():;/£\",*_-.[]\{}<>?=!@#$%^&`~|'"];
+    NSCharacterSet *punctuationSet = [NSCharacterSet characterSetWithCharactersInString:@"():;/£\",*_-.[]\\{}<>?=!@#$%^&+`~|'"];
     
     NSCharacterSet *notAllowedPunctuationSet = [NSCharacterSet characterSetWithCharactersInString:@"*&^\\%$#@![]{}<>?=!@#$%^&`~|'"];
     

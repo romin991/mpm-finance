@@ -35,7 +35,7 @@
 
 - (void)setDataSources{
     self.dataSources = [NSMutableArray array];
-    
+  
     //supervisor
     if ([[MPMUserInfo getRole] isEqualToString:kRoleSupervisor]) {
         DataSource *dataSource = [[DataSource alloc] init];
@@ -80,10 +80,13 @@
         [self.dataSources addObject:dataSource];
     }
 }
-
+- (void)back:(id)sender {
+  [self.navigationController popToRootViewControllerAnimated:YES];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+  UIBarButtonItem *leftBar = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(back:)];
+  self.navigationItem.leftBarButtonItem = leftBar;
     self.navigationController.navigationBar.translucent = NO;
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.navigationController.interactivePopGestureRecognizer.enabled = NO;
@@ -93,7 +96,6 @@
     [self setDataSources];
     [self setTitle:self.menu.title];
     
-    self.selectedIndex = 0;
     if (self.preferredType.length > 0) {
         for (DataSource *dataSource in self.dataSources) {
             if ([dataSource.type isEqualToString:self.preferredType]) {
@@ -103,10 +105,8 @@
         }
     }
     
-    self.page = 0;
     __block WorkOrderListViewController *weakSelf = self;
-    [self loadDataForSelectedIndex:self.selectedIndex andPage:self.page];
-    
+  
     [self.tableView addPullToRefreshWithActionHandler:^{
         [weakSelf loadDataForSelectedIndex:weakSelf.selectedIndex andPage:0];
     }];
@@ -192,6 +192,17 @@
     }
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+  self.lists = [NSMutableArray array];
+  [self.tableView reloadData];
+  self.page = 0;
+  self.selectedIndex = 0;
+  
+  
+  [self loadDataForSelectedIndex:self.selectedIndex andPage:self.page];
+}
+
 - (void)loadDataWithList:(NSArray *)lists page:(NSInteger)page error:(NSError *)error{
     dispatch_async(dispatch_get_main_queue(), ^{
         //set the result here
@@ -255,7 +266,30 @@
             
         } else if ([dataSource.type isEqualToString:kDataSourceTypeBadUsers]){
             //showing popup you sure want to proceed?
+          UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:@"Apakah anda yakin untuk melakukan stop proses?" preferredStyle:UIAlertControllerStyleAlert];
+          [alertController addAction:[UIAlertAction actionWithTitle:@"Tidak" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            //nothing
             
+          }]];
+          [alertController addAction:[UIAlertAction actionWithTitle:@"Ya" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            //approve
+            [SVProgressHUD show];
+            [WorkOrderModel setStopProccessWithID:list.primaryKey reason:342 completion:^(NSDictionary *dictionary, NSError *error) {
+              if (error) {
+                [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+                [SVProgressHUD dismissWithDelay:1.5];
+              } else {
+                [self loadDataForSelectedIndex:self.selectedIndex andPage:0];
+                UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+                [button setTag:0];
+                [self segmentedButtonClicked:button];
+                [SVProgressHUD dismiss];
+              }
+            }];
+            
+          }]];
+          
+          [self presentViewController:alertController animated:YES completion:nil];
         } else if ([dataSource.type isEqualToString:kDataSourceTypeNeedApproval]){
             //showing popup you sure want to proceed?
             UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Approve" message:@"Are you sure want to approve?" preferredStyle:UIAlertControllerStyleAlert];
@@ -272,6 +306,9 @@
                         [SVProgressHUD dismissWithDelay:1.5];
                     } else {
                         [self loadDataForSelectedIndex:self.selectedIndex andPage:0];
+                      UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+                      [button setTag:0];
+                      [self segmentedButtonClicked:button];
                         [SVProgressHUD dismiss];
                     }
                 }];

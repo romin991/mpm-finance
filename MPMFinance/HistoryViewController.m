@@ -100,7 +100,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     NSLog(@"history appear");
-
+  [self loadFirstPage];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

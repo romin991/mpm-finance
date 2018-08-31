@@ -94,7 +94,8 @@
     } @catch (NSException * e) {
         NSLog(@"Exception : %@", e);
     }
-    
+  cell.textLabel.numberOfLines = 0;
+  cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     if (data){
         cell.textLabel.text = data.name;
     } else {

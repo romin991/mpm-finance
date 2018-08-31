@@ -25,7 +25,7 @@
             NSString *message = [responseObject objectForKey:@"message"];
             if (code == 200) {
                 NSDictionary *data = responseObject[@"data"];
-                
+              NSLog(@"%@",data);
                 if (block) block(data, nil);
                 
             } else {
@@ -90,6 +90,7 @@
                                @"produk" : @([data[@"product"] integerValue]),
                                @"sourceOfApplication" : data[@"src_of_app"],
                                @"productOffering" : data[@"product_offering"],
+                               @"product" : data[@"product"],
                                @"jarakTempuh" : data[@"jarak_tempuh"],
                                @"lokasiPemakaianAset" : @([data[@"daerah"] integerValue]),
                                @"applicationPriority" : data[@"app_priority"],
@@ -151,8 +152,8 @@
                                @"omzet6" : data[@"omset_per_bulan_6"],
                                
                                @"gajiPokok" : data[@"gaji_pokok"],
-                               @"tunjanganPokok" : data[@"tunjangan_tetap"],
-                               @"intensif" : data[@"insentif"],
+                               @"tunjanganTetap" : data[@"tunjangan_tetap"],
+                               @"insentif" : data[@"insentif"],
                                @"lembur" : data[@"lembur"],
                                @"bonus" : data[@"bonus"],
                                @"total" : data[@"total"],
@@ -367,14 +368,14 @@
                @"alamat_kantor_kecamatan" : [dictionary objectForKey:@"kecamatan"] ?: @"",
                @"alamat_kantor_kota" : [dictionary objectForKey:@"kota"] ?: @"",
                
-               @"pendapatan_per_tahun" : [dictionary objectForKey:@"pendapatanPerBulan"] ?: @"",
+               @"pendapatan_per_bulan" : [dictionary objectForKey:@"pendapatanPerBulan"] ?: @"",
                @"lama_bekerja" : [dictionary objectForKey:@"lamaBekerja"] ?: @"",
                @"pendapatan_lain_per_bulan" : [dictionary objectForKey:@"pendapatanLainnyaPerBulan"] ?: @"",
                
                @"nama_perusahaan" : [dictionary objectForKey:@"namaPerusahaan"] ?: @"",
                @"status_pekerjaan_sebelumnya" : [dictionary objectForKey:@"statusPekerjaanSebelumnya"] ?: @"",
                @"lama_bekerja_sebelumnya" : [dictionary objectForKey:@"lamaBekerjaDalamTahun"] ?: @"",
-               
+               @"tunjangan_tetap" : [dictionary objectForKey:@"tunjanganTetap"] ? : @"",
                @"omset_per_bulan_thn" : [dictionary objectForKey:@"tahun1"] ?: @"",
                @"omset_per_bulan_bln" : [dictionary objectForKey:@"bulan1"] ?: @"",
                @"omset_per_bulan" : [dictionary objectForKey:@"omzet1"] ?: @"",
@@ -396,7 +397,7 @@
                
                @"gaji_pokok" : [dictionary objectForKey:@"gajiPokok"] ?: @"",
                @"tunjangan_tetap" : [dictionary objectForKey:@"tunjanganPokok"] ?: @"",
-               @"insentif" : [dictionary objectForKey:@"intensif"] ?: @"",
+               @"insentif" : [dictionary objectForKey:@"insentif"] ?: @"",
                @"lembur" : [dictionary objectForKey:@"lembur"] ?: @"",
                @"bonus" : [dictionary objectForKey:@"bonus"] ?: @"",
                @"total" : [dictionary objectForKey:@"total"] ?: @"",
@@ -553,7 +554,7 @@
             
             [dataDictionary addEntriesFromDictionary:
              @{@"id_pengajuan" : [dictionary objectForKey:@"idPengajuan"] ?: @"",
-               @"rca" : [dictionary objectForKey:@"rca"] ?: @"",
+               @"rca" : [dictionary objectForKey:@"rCA"] ?: @"",
                }];
             
         }

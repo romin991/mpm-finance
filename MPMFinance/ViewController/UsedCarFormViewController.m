@@ -256,6 +256,7 @@
                         [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
                       [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMustNumericOnly:YES];
                       [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:12];
+                      ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).shouldGiveThousandSeparator = YES;
                     }
                 }
                 

@@ -42,6 +42,7 @@
 
 @property RLMResults *submenus;
 @property NSMutableDictionary *additionalSetting;
+@property BOOL shouldBeReadOnly;
 
 @end
 
@@ -53,10 +54,15 @@
     [self setTitle:@"Detail"];
     self.banner.image = [UIImage imageNamed:self.menu.backgroundImageName];
     self.icon.image = [UIImage imageNamed:self.menu.circleIconImageName];
-    self.submenus = [Menu getSubmenuForMenu:self.menu.primaryKey role:[MPMUserInfo getRole]];
+  
     
     self.additionalSetting = [NSMutableDictionary dictionary];
-    [self additionalRule];
+    //[self additionalRule];
+}
+-(void)viewWillAppear:(BOOL)animated{
+  _shouldBeReadOnly = NO;
+  self.submenus = [Menu getSubmenuForMenu:self.menu.primaryKey role:[MPMUserInfo getRole]];
+  [self additionalRule];
 }
 
 - (void)additionalRule{
@@ -73,6 +79,7 @@
                         if ([[response objectForKey:@"pengajuan"] integerValue] == 0) {
                             weakSelf.submenus = [[weakSelf.submenus objectsWhere:@"primaryKey != %@", kSubmenuDataMAP] objectsWhere:@"primaryKey != %@", kSubmenuSurvey];
                         } else {
+                          weakSelf.shouldBeReadOnly = YES;
                             [weakSelf.additionalSetting addEntriesFromDictionary:response];
                         }
                     } @catch (NSException *exception) {
@@ -115,6 +122,7 @@
         FormViewController *formViewController = [[FormViewController alloc] init];
         formViewController.parentMenu = self.menu;
         formViewController.menu = submenu;
+      formViewController.isReadOnly = _shouldBeReadOnly;
         formViewController.list = self.list;
         [self.navigationController pushViewController:formViewController animated:YES];
         

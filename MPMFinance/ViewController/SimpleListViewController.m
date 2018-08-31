@@ -51,7 +51,9 @@
     [DataMAPModel getDataMAPWithID:self.list.primaryKey completion:^(NSDictionary *response, NSError *error) {
         if (error == nil) {
             if (response) {
-                weakSelf.valueDictionary = [NSMutableDictionary dictionaryWithDictionary:response];
+              NSMutableDictionary *responseMutable = [NSMutableDictionary dictionaryWithDictionary:response];
+              [responseMutable setObject:response[@"rca"] forKey:@"rCA"];
+                weakSelf.valueDictionary = [NSMutableDictionary dictionaryWithDictionary:responseMutable];
                 
                 if ([weakSelf.valueDictionary objectForKey:@"statusGrouping"] && [[weakSelf.valueDictionary objectForKey:@"statusGrouping"] isKindOfClass:NSArray.class]) {
                     weakSelf.statusGrouping = [weakSelf.valueDictionary objectForKey:@"statusGrouping"];

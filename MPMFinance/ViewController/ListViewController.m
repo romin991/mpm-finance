@@ -62,10 +62,8 @@
         [self.navigationItem setRightBarButtonItem:rightButton];
     }
     
-    self.page = 0;
-    self.selectedIndex = 0;
     __block ListViewController *weakSelf = self;
-    [self loadDataForSelectedIndex:self.selectedIndex andPage:self.page];
+  
     
     if (self.submenu.isOnePageOnly == NO) {
         [self.tableView addPullToRefreshWithActionHandler:^{
@@ -77,6 +75,13 @@
     }
     
     [self setupSegmentedControl];
+}
+-(void)viewWillAppear:(BOOL)animated{
+  self.page = 0;
+  self.selectedIndex = 0;
+  
+  
+  [self loadDataForSelectedIndex:self.selectedIndex andPage:self.page];
 }
 
 - (void)setupSegmentedControl{
@@ -313,6 +318,9 @@
         FormViewController *formViewController = [[FormViewController alloc] init];
         formViewController.parentMenu = self.menu;
         formViewController.menu = submenu;
+      if ([self.menu.primaryKey isEqualToString:@"Monitoring "]) {
+        formViewController.isFromMonitoring = YES;
+      }
         if (!self.selectedOfflineData) {
             formViewController.list = list;
         }

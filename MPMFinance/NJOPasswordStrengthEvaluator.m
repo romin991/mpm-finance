@@ -308,7 +308,7 @@ static inline __attribute__((const)) NJOPasswordStrength NJOPasswordStrengthForE
 }
 
 - (NSString *)localizedErrorDescription {
-    return [NSString stringWithFormat:NSLocalizedStringFromTable(@"Must be within range %@", @"Navajo", nil), NSStringFromRange(self.range)];
+    return [NSString stringWithFormat:NSLocalizedStringFromTable(@"Password Must be greater or equal to %i", @"Navajo", nil), self.range.location];
 }
 
 @end

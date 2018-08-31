@@ -57,6 +57,7 @@
     
     [self preparingValueWithCompletion:^{
         [self preparingFormDescriptorWithCompletion:^{
+          [weakSelf.valueDictionary addEntriesFromDictionary:@{@"namaSurveyor" : [MPMUserInfo getUserInfo][@"username"]}];
             [FormModel loadValueFrom:weakSelf.valueDictionary on:weakSelf partialUpdate:nil];
             
             NSInteger count = ((NSArray *)[self.valueDictionary objectForKey:@"informanSurvey"]).count;
@@ -131,7 +132,12 @@
                         [(XLFormDateCell *)[row cellForFormController:self] setMinimumDate:[NSDate date]];
                     }
                 }
-                
+              if ([row.tag isEqualToString:@"terakhirBerinteraksiDenganDebitur"]) {
+                row.height = 100;
+              }
+              if ([row.tag isEqualToString:@"patokanDktRmh"]) {
+                row.height = 100;
+              }
                 
                 if (self.isReadOnly) {
                     row.disabled = @YES;
@@ -148,7 +154,8 @@
                         [self reloadFormRow:row];
                     }
                 }
-                
+              
+              
                 [self otherAdditionalSettingFor:row];
             }
         }
@@ -178,6 +185,9 @@
             [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMustAlphabetOnly:YES];
         }
     }
+  if ([row.tag isEqualToString:@"fasilitasRumah"]){
+    row.height = 130;
+  }
     if ([row.tag isEqualToString:@"jumlahOrang"]){
         if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
             [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:4];
@@ -226,6 +236,9 @@
             if ([section.title isEqualToString:@"Informasi Survey Lingkungan"]) {
                 NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
                 [FormModel saveValueFromSection:section to:dictionary];
+              if ([[dictionary objectForKey:@"kebenaranDomisili"] isEqual:@1]) {
+                [dictionary setValue:@"" forKey:@"ketDomisili"];
+              }
                 [dataArray addObject:dictionary];
             } else {
                 [FormModel saveValueFromSection:section to:self.valueDictionary];
@@ -247,6 +260,9 @@
 }
 
 - (void)addDataButtonClicked:(id)sender{
+  if (self.form.formSections.count > 7) {
+    return;
+  }
     XLFormSectionDescriptor *section = [self.form formSectionAtIndex:2];
     XLFormSectionDescriptor *newSection = [XLFormSectionDescriptor formSectionWithTitle:section.title];
     for (XLFormRowDescriptor *row in section.allRows) {
@@ -260,6 +276,7 @@
         
         [newSection addFormRow:newRow];
     }
+  
     [self.form addFormSection:newSection atIndex:self.form.formSections.count -2];
 }
 
@@ -281,7 +298,27 @@
             [self reloadFormRow:row];
         }
     }
+  if ([formRow.tag isEqualToString:@"frekuensiDidatangiPenagihUtang"]) {
+    
+    formRow.title = @"Frekuensi didatangi...";
+  }
+  if ([formRow.tag isEqualToString:@"terakhirBerinteraksiDenganDebitur"]) {
+    formRow.title = @"Terakhir Berinteraksi...";
+  }
     if ([formRow.tag isEqualToString:@"fasilitasRumah"]) {
+      if (((NSArray *) newValue).count > 0) {
+        if (((NSArray *) newValue).count == 1) {
+          formRow.title = @"Fasilitas...";
+        } else if (((NSArray *) newValue).count == 2) {
+          formRow.title = @"Fasilitas...";
+        } else if (((NSArray *) newValue).count == 3) {
+          formRow.title = @"Fasi...";
+        } else {
+          formRow.title = @"Fas...";
+        }
+        
+      }
+      
         NSMutableArray *arrayOfValue = [NSMutableArray array];
         for (id value in newValue) {
             id tempValue = value;
@@ -303,6 +340,18 @@
         }
     }
     if ([formRow.tag isEqualToString:@"patokanDktRmh"]) {
+      if (((NSArray *) newValue).count > 0) {
+        if (((NSArray *) newValue).count == 1) {
+          formRow.title = @"Patokan...";
+        } else if (((NSArray *) newValue).count == 2) {
+          formRow.title = @"Patok...";
+        } else if (((NSArray *) newValue).count == 3) {
+          formRow.title = @"Pato...";
+        } else {
+          formRow.title = @"Pat...";
+        }
+        
+      }
         NSMutableArray *arrayOfValue = [NSMutableArray array];
         for (id value in newValue) {
             id tempValue = value;

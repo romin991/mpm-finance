@@ -15,10 +15,10 @@
 @interface RegisterViewController ()
 <UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIPickerViewDelegate,UIPickerViewDataSource,UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIView *dealerView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *dealerConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *dealerConstraint;
 @property (weak, nonatomic) IBOutlet UITextField *txtNamaDealer;
 @property (weak, nonatomic) IBOutlet UITextField *txtAlamatDealer;
-
+@property (readwrite, nonatomic, strong) NJOPasswordValidator *strictValidator;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet APAvatarImageView *profilePictureImageView;
 @property (weak, nonatomic) IBOutlet UITextField *txtFirstName;
@@ -38,6 +38,7 @@
 @property NSString* fileMimeType;
 @property NSString* imgDataString;
 @property NSString* selectedGroupLevel;
+@property NSString* selectedGender;
 
 @property UIPickerView* genderPicker;
 @property UIPickerView* groupLevelPicker;
@@ -52,6 +53,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
   self.dealerView.hidden = YES;
+  self.strictValidator = [NJOPasswordValidator validatorWithRules:@[[NJOLengthRule ruleWithRange:NSMakeRange(6, 64)], [NJORequiredCharacterRule lowercaseCharacterRequiredRule], [NJORequiredCharacterRule uppercaseCharacterRequiredRule], [NJORequiredCharacterRule symbolCharacterRequiredRule],[NJORequiredCharacterRule decimalDigitCharacterRequiredRule]]];
     _genderArray = @[@"male", @"female"];
     _groupLevelArray = @[@{@"name" : @"Customer",
                            @"code" : @"2"},
@@ -85,6 +87,22 @@
     [self.profilePictureImageView setBorderColor:[UIColor orangeColor]];
   self.txtIDCardNumber.delegate = self;
     // Do any additional setup after loading the view.
+}
+-(BOOL)isValidPassword:(NSString *)checkString{
+  
+  NSArray *failingRules = nil;
+  if([self.strictValidator validatePassword:checkString failingRules:&failingRules]){
+    return YES;
+  } else {
+    for (id <NJOPasswordRule> rule in failingRules) {
+      [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"%@\n", [rule localizedErrorDescription]]];
+      [SVProgressHUD dismissWithDelay:1.5];
+      break;
+    }
+    
+    return NO;
+  }
+  
 }
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
@@ -132,7 +150,7 @@
     return;
   }
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"YYYY-MM-dd"];
+    [dateFormatter setDateFormat:@"dd-MM-YYYY"];
     self.txtDateOfBirth.text = [dateFormatter stringFromDate:datePicker.date];
 
 }
@@ -238,14 +256,20 @@
       } else {
         self.dealerConstraint.active = YES;
         self.dealerView.hidden = YES;
+        [self.view layoutIfNeeded];
   
       }
     }
 }
 - (IBAction)showHidePassword:(id)sender {
+  if (((UIButton *)sender).tag == 2) {
+    [((UIButton *)sender) setTitle:self.txtConfirmPassword.isSecureTextEntry?@"Hide" : @"Show" forState:UIControlStateNormal];
+    self.txtConfirmPassword.secureTextEntry = !self.txtConfirmPassword.isSecureTextEntry;
+  } else {
     [((UIButton *)sender) setTitle:self.txtPassword.isSecureTextEntry?@"Hide" : @"Show" forState:UIControlStateNormal];
     self.txtPassword.secureTextEntry = !self.txtPassword.isSecureTextEntry;
-    self.txtConfirmPassword.secureTextEntry = !self.txtConfirmPassword.isSecureTextEntry;
+  }
+    
 }
 - (IBAction)back:(id)sender {
   [self dismissViewControllerAnimated:YES completion:nil];
@@ -261,8 +285,12 @@
         }];
         [alertController addAction:okButton];
         [self presentViewController:alertController animated:YES completion:nil];
+        [SVProgressHUD dismiss];
         return;
     }
+  if (![self isValidPassword:self.txtPassword.text]) {
+    return;
+  }
     @try {
         param = @{@"userid" : @"",
                             @"token" : @"",
@@ -272,7 +300,7 @@
                                         @"dob" : self.txtDateOfBirth.text,
                                         @"placeOfBirth" : self.txtPlaceOfBirth.text,
                                         @"address" : self.txtAddress.text,
-                                        @"gender" : self.txtJenisKelamin.text,
+                                        @"gender" : [self.txtJenisKelamin.text isEqualToString:@"male"] ? @"14" : @"15",
                                         @"phone" : self.txtNoTelpon.text,
                                         @"groupLevel" : self.selectedGroupLevel ? self.selectedGroupLevel : @"",
                                         @"email" : self.txtEmail.text}};
@@ -285,7 +313,7 @@
                               @"dob" : self.txtDateOfBirth.text,
                               @"placeOfBirth" : self.txtPlaceOfBirth.text,
                               @"address" : self.txtAddress.text,
-                              @"gender" : self.txtJenisKelamin.text,
+                              @"gender" : [self.txtJenisKelamin.text isEqualToString:@"male"] ? @"14" : @"15",
                               @"phone" : self.txtNoTelpon.text,
                               @"groupLevel" : self.selectedGroupLevel ? self.selectedGroupLevel : @"",
                               @"email" : self.txtEmail.text,
@@ -316,10 +344,16 @@
                 }];
                 [alertController addAction:okButton];
                 [self presentViewController:alertController animated:YES completion:nil];
+            } else {
+              UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"Error" message:responseObject[@"message"] preferredStyle:UIAlertControllerStyleAlert];
+              UIAlertAction* okButton = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil];
+              [alertController addAction:okButton];
+              [self presentViewController:alertController animated:YES completion:nil];
             }
         
         } @catch(NSException *exception) {
             NSLog(@"%@", exception);
+          
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

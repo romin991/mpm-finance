@@ -11,7 +11,7 @@
 #import "MPMUserInfo.h"
 #import "RegisterViewController.h"
 #import "ProfileModel.h"
-
+#import "SendOTPViewController.h"
 @interface LoginViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
@@ -78,7 +78,9 @@
             [SVProgressHUD dismissWithDelay:1.5 completion:^{
                 [self dismissViewControllerAnimated:YES completion:nil];
             }];
-        } else {
+        } else if ([error.localizedDescription isEqualToString:@"input otp"]) {
+          [self performSegueWithIdentifier:@"sendOTPViewController" sender:self];
+        }else {
             [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
             [SVProgressHUD dismissWithDelay:1.5];
         }
@@ -101,6 +103,11 @@
         RegisterViewController *vc = (RegisterViewController *)segue.destinationViewController;
         vc.menuViewDelegate = self.menuViewDelegate;
         
+    } else if ([segue.identifier isEqualToString:@"sendOTPViewController"]) {
+      SendOTPViewController *vc = [segue destinationViewController];
+      vc.userId = self.usernameField.text;
+      vc.password = self.passwordField.text;
+      vc.menuViewDelegate = self.menuViewDelegate;
     }
 }
 
