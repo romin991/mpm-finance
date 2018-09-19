@@ -20,6 +20,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 @interface MPMGlobal : NSObject
 extern NSString *const kAPIKey;
 extern NSString *const kBaseUrl;
+extern NSString *const kBaseUrlWithoutPort;
 extern NSString *const kRoleCustomer;
 extern NSString *const kRoleAgent;
 extern NSString *const kRoleDealer;
@@ -45,7 +46,7 @@ extern NSString *const kMenuLegalisirFCBPKB;
 extern NSString *const kMenuKlaimAsuransi;
 extern NSString *const kMenuCreditSimulation;
 extern NSString *const kMenuPelunasanDipercepat;
-extern NSString *const kMenuPengembalianBPKB;
+extern NSString *const kMenuPengambilanBPKB;
 extern NSString *const kMenuSaranPengaduan;
 extern NSString *const kMenuCustomerGetCustomer;
 
@@ -144,6 +145,7 @@ extern NSString *const kActionQueryDB;
 extern NSString *const kActionTypeAPICall;
 extern NSString *const kActionTypeSelfCustomMethod;
 
++ (double) doubleValue:(NSString *)aString;
 + (NSInteger)limitPerPage;
 + (AFHTTPSessionManager*)sessionManager;
 + (NSString *)encodeToBase64String:(UIImage *)image;
@@ -153,6 +155,7 @@ extern NSString *const kActionTypeSelfCustomMethod;
 + (UIColor *)colorFromHexString:(NSString *)hexString;
 + (NSString *)removeTimeFromString:(NSString *)object;
 + (NSString *)stringFromDate:(NSDate *)object;
++ (NSString *)stringFromDate2:(NSDate *)object;
 + (NSDate *)dateFromString:(NSString *)object;
 + (NSString *)MD5fromString:(NSString *)input;
 + (UIImage *)barcodeFromString:(NSString *)string size:(CGSize)outputSize;
@@ -161,6 +164,7 @@ extern NSString *const kActionTypeSelfCustomMethod;
 + (NSDate *)dateTimeFromString:(NSString *)object;
 + (NSString *)stringFromDateTime:(NSDate *)object;
 + (NSString *)stringFromTime:(NSDate *)object;
++ (NSDate *)dateFromString2:(NSString *)object;
 + (NSDate *)timeFromString:(NSString *)object;
 + (NSString *)formatToRupiah:(NSString *)charge;
 + (NSArray *)getAllFieldShouldContainThousandSeparator;

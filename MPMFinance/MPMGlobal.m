@@ -13,6 +13,7 @@
 
 //NSString *const kApiUrl = @"http://202.152.10.90:8080/mpmfinancev2"; //prod
 NSString *const kBaseUrl = @"http://202.152.10.91:8080"; //dev
+NSString *const kBaseUrlWithoutPort = @"http://202.152.10.91"; //dev
 NSString *const kApiUrl = @"http://202.152.10.91:8080/mpmfinancev2"; //dev
 NSString *const kMPMUrl = @"https://www.mpm-finance.com";
 NSString *const kAPIKey = @"AIzaSyCx8uLneXfyNKCV8emCWt-AD4V1kPgrHJw";
@@ -42,7 +43,7 @@ NSString *const kMenuLegalisirFCBPKB = @"Legalisir FC BPKB";
 NSString *const kMenuKlaimAsuransi = @"Klaim Asuransi";
 NSString *const kMenuCreditSimulation = @"Credit Simulation";
 NSString *const kMenuPelunasanDipercepat = @"Pelunasan Dipercepat";
-NSString *const kMenuPengembalianBPKB = @"Pengembalian BPKB";
+NSString *const kMenuPengambilanBPKB = @"Pengambilan BPKB ";
 NSString *const kMenuSaranPengaduan = @"Saran & Pengaduan";
 NSString *const kMenuCustomerGetCustomer = @"Customer Get Customer";
 NSString *const kMenuSetAlternate = @"Set Alternate";
@@ -253,6 +254,13 @@ NSString *const kActionQueryDB = @"QueryDB";
     if (date == nil || [date isKindOfClass:[NSNull class]]) return [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:0]];
     else return [formatter stringFromDate:date];
 }
++ (NSString *)stringFromDate2:(NSDate *)object{
+  NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+  formatter.dateFormat = @"yyyy-MM-dd";
+  NSDate *date = object;
+  if (date == nil || [date isKindOfClass:[NSNull class]]) return [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:0]];
+  else return [formatter stringFromDate:date];
+}
 
 + (NSDate *)dateFromString:(NSString *)object{
    // ISO8601DateFormatter *formatter = [self getISO8601DateFormatter];
@@ -263,6 +271,16 @@ NSString *const kActionQueryDB = @"QueryDB";
         return [NSDate dateWithTimeIntervalSince1970:0];
     else
         return [formatter dateFromString:string];
+}
++ (NSDate *)dateFromString2:(NSString *)object{
+  // ISO8601DateFormatter *formatter = [self getISO8601DateFormatter];
+  NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+  formatter.dateFormat = @"yyyy-MM-dd";
+  NSString *string = object;
+  if (string == nil || [string isKindOfClass:[NSNull class]])
+    return [NSDate dateWithTimeIntervalSince1970:0];
+  else
+    return [formatter dateFromString:string];
 }
 + (NSDate *)dateTimeFromString:(NSString *)object{
     // ISO8601DateFormatter *formatter = [self getISO8601DateFormatter];
@@ -326,8 +344,13 @@ NSString *const kActionQueryDB = @"QueryDB";
   return theString;
 }
 
++ (double) doubleValue:(NSString *)aString {
+  NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+  formatter.decimalSeparator = @",";
+  return [[formatter numberFromString:aString] doubleValue];
+}
 + (NSArray *)getAllFieldShouldContainThousandSeparator {
-  return  @[@"biayaSurvey", @"biayaCekBlokirBPKB", @"nilaiTunaiSebagian",@"dpRupiah",@"otrKendaraan",@"pendapatanLainnyaPerBulan",@"pendapatanPerBulan",@"hargaKendaraan",@"totalBayarAwal",@"jumlahAset",@"angsuran",@"pokokHutang",@"subsidiUangMuka",@"totalUangDiterimaMPMF",@"biayaAdmin",@"biayaAdminLainnya",@"biayaFidusia",@"biayaLain",@"biayaSurvey",@"persentaseBiayaProvisi",@"nilaiPertanggungan",@"asuransiKendaraanKapitalisasi",@"asuransiKendaraanDibayarDimuka",@"asuransiJiwaKreditKapitalisasi",@"asuransiJiwaDibayarDimuka",@"nilaiPertanggunganAsuransiJiwa",@"premiAsuransiKerugianKendaraan",@"premiAsuransiJiwaKredit",@"gajiPokok",@"tunjanganTetap",@"insentif",@"lembur",@"bonus",@"total",@"totalUangMukaDiterimaMPMF",@"omzet1",@"omzet2",@"omzet3",@"omzet4",@"omzet5",@"omzet6"];
+  return  @[@"biayaSurvey", @"biayaCekBlokirBPKB", @"nilaiTunaiSebagian",@"dpRupiah",@"otrKendaraan",@"pendapatanLainnyaPerBulan",@"pendapatanPerBulan",@"hargaKendaraan",@"totalBayarAwal",@"jumlahAset",@"angsuran",@"pokokHutang",@"subsidiUangMuka",@"totalUangDiterimaMPMF",@"biayaAdmin",@"biayaAdminLainnya",@"biayaFidusia",@"biayaLain",@"biayaSurvey",@"nilaiPertanggungan",@"asuransiKendaraanKapitalisasi",@"asuransiKendaraanDibayarDimuka",@"asuransiJiwaKreditKapitalisasi",@"asuransiJiwaDibayarDimuka",@"nilaiPertanggunganAsuransiJiwa",@"premiAsuransiKerugianKendaraan",@"premiAsuransiJiwaKredit",@"gajiPokok",@"tunjanganTetap",@"insentif",@"lembur",@"bonus",@"total",@"totalUangMukaDiterimaMPMF",@"omzet1",@"omzet2",@"omzet3",@"omzet4",@"omzet5",@"omzet6",@"biayaProvisi",@"pokokHutang",@"hargaKisaran",@"outstanding",@"otrPriceList",@"others",];
 }
 + (UIImage *)barcodeFromString:(NSString *)string size:(CGSize)outputSize{
     NSData *data = [string dataUsingEncoding:NSASCIIStringEncoding];

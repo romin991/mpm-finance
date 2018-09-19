@@ -64,7 +64,7 @@ NSString * const XLFormRowDescriptorTypeFormActivity = @"XLFormRowDescriptorType
     self.txtAkhirTempo.text = value[@"maturityDate"];
     self.txtMulaiTempo.text = value[@"duedate"];
     self.txtTanggalBayar.text = value[@"paidDate"];
-    self.txtPembayaranDiterima.text = [MPMGlobal formatToMoney:value[@"totalOutstandingInstallment"]];
+    self.txtPembayaranDiterima.text = [MPMGlobal formatToMoney:value[@"paidAmount"]];
     NSLog(@"value %@",value);
 }
 

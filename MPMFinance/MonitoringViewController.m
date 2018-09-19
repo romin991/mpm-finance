@@ -26,7 +26,7 @@
     [super viewDidLoad];
     __weak MonitoringViewController *weakSelf = self;
     
-    [self loadFirstPage];
+  
     [self.tableView addPullToRefreshWithActionHandler:^{
         [weakSelf loadFirstPage];
     }];
@@ -38,6 +38,9 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"WorkOderTableViewCell" bundle:nil] forCellReuseIdentifier:@"WOCell"];
     self.title = @"Monitoring";
     // Do any additional setup after loading the view from its nib.
+}
+-(void)viewWillAppear:(BOOL)animated{
+  [self loadFirstPage];
 }
 -(void)loadFirstPage
 {
@@ -62,10 +65,9 @@
     if ([[MPMUserInfo getRole] isEqualToString:kRoleSupervisor]) {
         
         if(self.userId) {
-            url = [NSString stringWithFormat:@"%@/pengajuan/getworkorderbymarketingandproduct",kApiUrl];
+            url = [NSString stringWithFormat:@"%@/pengajuan/getworkorderbymarketing",kApiUrl];
             param = @{@"data" : @{@"limit" : @10,
                                   @"offset" : @(offset),
-                                  @"tipeProduk" : @"1",
                                   @"status" : @"all"
                                   },
                       @"userid" : self.userId,
@@ -80,7 +82,7 @@
             url = [NSString stringWithFormat:@"%@/pengajuan/getallmarketingbybm",kApiUrl];
             param = @{@"data" : @{@"limit" : @10,
                                   @"offset" : @(offset),
-                                  @"tipeProduk" : self.tipeProduk,
+                                  @"tipeProduk" : self.idProduk,
                                   @"spv" : self.spv
                                   },
                       @"userid" : [MPMUserInfo getUserInfo][@"userId"],
@@ -89,7 +91,7 @@
             url = [NSString stringWithFormat:@"%@/pengajuan/getworkorderbymarketingandproduct",kApiUrl];
             param = @{@"data" : @{@"limit" : @10,
                                   @"offset" : @(offset),
-                                  @"tipeProduk" : @"1",
+                                  @"tipeProduk" : self.idProduk,
                                   @"status" : @"all"
                                   },
                       @"userid" : self.userId,
@@ -106,7 +108,15 @@
         
     }
     
-    
+  if (self.isReassign) {
+    url = [NSString stringWithFormat:@"%@/pengajuan2/getlistmarketingbyspvandtipeproduk",kApiUrl];
+    param = @{@"data" : @{@"limit" : @10,
+                          @"offset" : @(offset),
+                          @"id" : self.idProduk
+                          },
+              @"userid" : [MPMUserInfo getUserInfo][@"userId"],
+              @"token" : [MPMUserInfo getToken]};
+  }
     AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
     
     
@@ -136,6 +146,7 @@
         [weakSelf.tableView.pullToRefreshView stopAnimating];
     }];
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -143,7 +154,6 @@
 
 
 #pragma mark - Table view data source
-
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.data.count;
@@ -168,28 +178,65 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+  if ([self.data[indexPath.row] objectForKey:@"status"] && [self.data[indexPath.row][@"status"] isEqualToString:@"Waiting for Marketing"]) {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Opsi" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *actionView = [UIAlertAction actionWithTitle:@"View" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+      [self goToDetailWith:indexPath];
+    }];
+    UIAlertAction *actionReAssign = [UIAlertAction actionWithTitle:@"Re-Assign" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+      MonitoringViewController *vc = [[MonitoringViewController alloc] init];
+      vc.idProduk = [self.data[indexPath.row][@"id"] stringValue];
+      vc.isReassign = YES;
+      vc.userId = self.data[indexPath.row][@"userid"];
+      [self.navigationController pushViewController:vc animated:YES];
+    }];
+    UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+      ;
+    }];
+    [alertController addAction:actionView];
+    [alertController addAction:actionReAssign];
+    [alertController addAction:actionCancel];
+    [self presentViewController:alertController animated:YES completion:nil];
+    return;
+  }
+  
+  if (self.isReassign) {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Konfirmasi" message:@"Apakah anda yakin untuk reassign?" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *actionView = [UIAlertAction actionWithTitle:@"Ya" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+      NSString *url = [NSString stringWithFormat:@"%@/pengajuan2/assignmarketing",kApiUrl];
+      NSDictionary *param = @{@"data" : @{
+                                  @"id" : self.idProduk,
+                                  @"marketingId" : self.data[indexPath.row][@"userid"]
+                                  },
+                              @"userid" : [MPMUserInfo getUserInfo][@"userId"],
+                              @"token" : [MPMUserInfo getToken]};
+      AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
+      [manager POST:url parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [self.navigationController popToViewController:self.navigationController.viewControllers[1] animated:YES];
+      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        ;
+      }];
+    }];
+    UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:@"Tidak" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+      ;
+    }];
+    [alertController addAction:actionView];
+    [alertController addAction:actionCancel];
+    [self presentViewController:alertController animated:YES completion:nil];
+    
+    return;
+  }
+  
+  
     if ([[MPMUserInfo getRole] isEqualToString:kRoleSupervisor]) {
         if (!self.userId) {
             MonitoringViewController *vc = [[MonitoringViewController alloc] init];
-            vc.idProduk = self.idProduk;
+            vc.idProduk = 0;
             vc.userId = self.data[indexPath.row][@"userid"];
             [self.navigationController pushViewController:vc animated:YES];
         }
         else {
-            Menu *submenu = [Menu getMenuForPrimaryKey:kSubmenuListWorkOrder];
-            List *list = [[List alloc] init];
-            list.primaryKey = [self.data[indexPath.row][@"id"] integerValue];
-            list.imageURL = self.data[indexPath.row][@"imageIconIos"];
-            list.title = self.data[indexPath.row][@"noRegistrasi"];
-            list.date = self.data[indexPath.row][@"tanggal"];
-            list.assignee = self.data[indexPath.row][@"namaPengaju"];
-            list.status = self.data[indexPath.row][@"status"];
-            list.statusColor = self.data[indexPath.row][@"color"];
-            list.type = self.data[indexPath.row][@"idStatus"];
-            SubmenuViewController *submenuViewController = [[SubmenuViewController alloc] init];
-            submenuViewController.menu = submenu;
-            submenuViewController.list = list;
-            [self.navigationController pushViewController:submenuViewController animated:YES];
+          [self goToDetailWith:indexPath];
 
         }
     }
@@ -226,6 +273,23 @@
             [self.navigationController pushViewController:submenuViewController animated:YES];
         }
     }
+}
+
+- (void)goToDetailWith:(NSIndexPath *)indexPath{
+  Menu *submenu = [Menu getMenuForPrimaryKey:kSubmenuListWorkOrder];
+  List *list = [[List alloc] init];
+  list.primaryKey = [self.data[indexPath.row][@"id"] integerValue];
+  list.imageURL = self.data[indexPath.row][@"imageIconIos"];
+  list.title = self.data[indexPath.row][@"noRegistrasi"];
+  list.date = self.data[indexPath.row][@"tanggal"];
+  list.assignee = self.data[indexPath.row][@"namaPengaju"];
+  list.status = self.data[indexPath.row][@"status"];
+  list.statusColor = self.data[indexPath.row][@"color"];
+  list.type = self.data[indexPath.row][@"idStatus"];
+  SubmenuViewController *submenuViewController = [[SubmenuViewController alloc] init];
+  submenuViewController.menu = submenu;
+  submenuViewController.list = list;
+  [self.navigationController pushViewController:submenuViewController animated:YES];
 }
 
 

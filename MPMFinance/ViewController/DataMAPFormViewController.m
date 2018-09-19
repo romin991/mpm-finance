@@ -153,6 +153,13 @@
                   }
                 }
               
+              if ([[MPMGlobal getAllFieldShouldContainThousandSeparator] containsObject:row.tag]) {
+                if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                  [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:9];
+                  [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMustNumericOnly:YES];
+                  [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setShouldGiveThousandSeparator:YES];
+                }
+              }
                 
                 if ([row.tag isEqualToString:@"submit"]){
                     row.action.formSelector = @selector(saveButtonClicked:);
@@ -245,13 +252,7 @@
                     }];
                 }
               
-              if ([[MPMGlobal getAllFieldShouldContainThousandSeparator] containsObject:row.tag]) {
-                if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
-                  [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:9];
-                  [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
-                  [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setShouldGiveThousandSeparator:YES];
-                }
-              }
+              
               
                 if ([row.tag isEqualToString:@"productOffering"]){
                     dispatch_group_enter(group);
@@ -910,7 +911,7 @@
                                                     @"pendapatanPerBulan", @"lamaBekerja",@"lamaBekerjaDalamTahun", @"pendapatanLainnyaPerBulan",
                                                     @"rTKantorPasangan", @"rWKantorPasangan",
                                                     @"nomorIndukKependudukan",@"totalBayarAwal",
-                                                    @"hargaKendaraan", @"totalBayarAwal", @"jangkaWaktuPembiayaan", @"angsuran", @"jumlahAset", @"pokokHutang", @"subsidiUangMuka", @"totalUangMukaDiterimaMPMF", @"biayaAdmin", @"biayaAdminLainnya", @"biayaFidusia", @"biayaLain", @"biayaSurvey", @"persentaseBiayaProvisi", @"effectiveRate",
+                                                    @"hargaKendaraan", @"totalBayarAwal", @"jangkaWaktuPembiayaan", @"angsuran", @"jumlahAset", @"pokokHutang", @"subsidiUangMuka", @"totalUangMukaDiterimaMPMF", @"biayaAdmin", @"biayaAdminLainnya", @"biayaFidusia", @"biayaLain", @"biayaSurvey",
                                                     @"periodeAsuransi", @"nilaiPertanggungan", @"jenisPertanggunganAllRisk", @"jenisPertanggunganTLO", @"asuransiJiwaKreditKapitalisasi", @"asuransiJiwaDibayarDimuka", @"nilaiPertanggunganAsuransiJiwa", @"premiAsuransiKerugianKendaraan", @"premiAsuransiJiwaKredit", @"periodeAsuransiJiwa",
                                                     @"silinder",
                                                     nil];
@@ -1044,6 +1045,7 @@
                 if ([row.tag isEqualToString:@"totalUangDiterimaMPMF"]){
                     if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
                         [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:9];
+                      [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
                       [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMustNumericOnly:YES];
                     }
                 }
@@ -1074,7 +1076,8 @@
                 }
                 if ([row.tag isEqualToString:@"persentaseBiayaProvisi"]){
                     if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
-                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:3];
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:7];
+                      [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setIsPercentage:YES];
                       [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMustNumericOnly:YES];
                     }
                 }
@@ -1085,7 +1088,7 @@
                 }
                 if ([row.tag isEqualToString:@"effectiveRate"]){
                     if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
-                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:3];
+                        [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:7];
                       [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMustNumericOnly:YES];
                       [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setIsPercentage:YES];
                     }
@@ -1110,6 +1113,7 @@
                 if ([row.tag isEqualToString:@"jenisPertanggunganAllRisk"]){
                     if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
                         [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:2];
+                      [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
                       [(FloatLabeledTextFieldCell *)[row cellForFormController:self]  setMustNumericOnly:YES];
                     }
                 }
@@ -1384,6 +1388,9 @@
 }
 
 - (void)addFamilyButtonClicked:(id)sender{
+  if (self.form.formSections.count >= 8) {
+    return;
+  }
     XLFormSectionDescriptor *section = [self.form formSectionAtIndex:0];
     XLFormSectionDescriptor *newSection = [XLFormSectionDescriptor formSectionWithTitle:section.title];
     for (XLFormRowDescriptor *row in section.formRows) {
@@ -1541,10 +1548,14 @@
     }
     
     if ([formRow.tag isEqualToString:@"persentaseBiayaProvisi"] || [formRow.tag isEqualToString:@"pokokHutang"]) {
+      double newValueDouble = 0.0f;
       if ([newValue isEqual:[NSNull null]]) {
-        return;
+        newValueDouble = 0.0f;
+      } else {
+        newValueDouble = [MPMGlobal doubleValue:newValue];
       }
-        NSInteger persentage = [newValue integerValue];
+      
+      double persentage = newValueDouble;
         XLFormRowDescriptor *row = [self.form formRowWithTag:@"pokokHutang"];
       
       double  pokokHutang = [[row.value stringByReplacingOccurrencesOfString:@"." withString:@""] doubleValue];
@@ -1610,7 +1621,7 @@
       } else
       bonus = [[bonusRow.value stringByReplacingOccurrencesOfString:@"." withString:@""] doubleValue];
     }
-    double total = gajiPokok + tunjangan + lembur + insentif + bonus + total;
+    double total = gajiPokok + tunjangan + lembur + insentif + bonus;
     totalRow.value = @(total);
     [self reloadFormRow:totalRow];
     
@@ -1618,6 +1629,17 @@
   
   if (self.isReadOnly) {
     formRow.disabled = @(YES);
+  }
+  if ([[MPMGlobal getAllFieldShouldContainThousandSeparator] containsObject:formRow.tag]) {
+    // Create the decimal style formatter
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    [formatter setGroupingSeparator:@"."];
+    [formatter setMaximumFractionDigits:10];
+    if ([formRow.value isKindOfClass:[NSNumber class]]) {
+      formRow.value = [formatter stringFromNumber:formRow.value];
+    }
+    
   }
 }
 
@@ -1656,6 +1678,8 @@
                                userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"Gaji Pokok tidak boleh 0", nil)}]];
     }
   }
+  
+  
    if ([self.form formRowWithTag:@"omzet1"] || [self.form formRowWithTag:@"omzet2"] || [self.form formRowWithTag:@"omzet3"] || [self.form formRowWithTag:@"omzet4"]|| [self.form formRowWithTag:@"omzet5"] || [self.form formRowWithTag:@"omzet6"]) {
     XLFormRowDescriptor *row = [self.form formRowWithTag:@"omzet1"];
     if ([row.value integerValue] == 0  && row.value) {

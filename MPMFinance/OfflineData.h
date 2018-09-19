@@ -9,11 +9,15 @@
 #import <Realm.h>
 #import "List.h"
 @interface OfflineData : RLMObject
-@property NSString *primaryKey; //noRegistrasi
+@property NSInteger remoteId;
+@property NSString *userId;
+@property NSString *primaryKey; //local id (increment)
 @property NSData *data;
 @property NSDate *saveDate;
 - (NSDictionary *)getDataDictionary;
-+ (void)save:(NSDictionary *)dict;
++ (void)save:(NSDictionary *)dict into:(NSString*)primary withRemoteId:(NSInteger)remoteId;
 - (List *)convertToList;
++ (OfflineData *)getById:(NSInteger *)remoteId;
++ (void) deleteAll;
 + (void)deleteOfflineData:(OfflineData *)data;
 @end

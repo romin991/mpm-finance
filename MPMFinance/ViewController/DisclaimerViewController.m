@@ -20,8 +20,10 @@
 #import "Menu.h"
 #import "AppDelegate.h"
 #import "ListViewController.h"
+#import "OfflineData.h"
+#import "Reachability.h"
 @interface DisclaimerViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate, BarcodeDelegate>
-
+@property (nonatomic) Reachability *hostReachability;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIButton *agreeButton;
@@ -79,8 +81,28 @@
         self.isAgree = true;
         self.isPhotoTaken = false;
     }
-    
+  NSString *remoteHostName = @"www.apple.com";
+  self.hostReachability = [Reachability reachabilityWithHostName:remoteHostName];
+  [self.hostReachability startNotifier];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
+  
     [self refreshSelected];
+}
+
+/*!
+ * Called by Reachability whenever status changes.
+ */
+- (void) reachabilityChanged:(NSNotification *)note
+{
+  Reachability* curReach = [note object];
+  NetworkStatus netStatus = [curReach currentReachabilityStatus];
+  if (netStatus == NotReachable) {
+    [self.submitButton setTitle:@"Simpan Semua" forState:UIControlStateNormal];
+  } else {
+    [self.submitButton setTitle:@"Submit" forState:UIControlStateNormal];
+  }
+  
+  
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -212,6 +234,7 @@
             __weak typeof(self) weakSelf = self;
           //if customer, no need to show stop process
           if ([[MPMUserInfo getRole] isEqualToString:kRoleCustomer] || [[MPMUserInfo getRole] isEqualToString:kRoleDealer] || [[MPMUserInfo getRole] isEqualToString:kRoleAgent]) {
+            [OfflineData deleteOfflineData:[OfflineData getById:self.list.primaryKey]];
             BarcodeViewController *barcodeVC = [[BarcodeViewController alloc] init];
             barcodeVC.barcodeString = noRegistrasi;
             barcodeVC.modalPresentationStyle = UIModalPresentationFullScreen;
@@ -238,15 +261,22 @@
                 barcodeVC.modalPresentationStyle = UIModalPresentationFullScreen;
                 barcodeVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
                 barcodeVC.delegate = weakSelf;
-                
+              
                 [weakSelf presentViewController:barcodeVC animated:YES completion:nil];
             }]];
             
             [self presentViewController:actionSheet animated:YES completion:nil];
             
         } else {
-            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+          if (self.hostReachability.currentReachabilityStatus == NotReachable){
+            [SVProgressHUD showErrorWithStatus:@"Pengajuan anda berada di list offline, silahkan melengkapinya pada saat anda online."];
             [SVProgressHUD dismissWithDelay:1.5];
+            [self.navigationController popToViewController:self.navigationController.viewControllers[2] animated:YES];
+            return;
+          }
+          [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+          [SVProgressHUD dismissWithDelay:1.5];
+          
         }
     }];
 }

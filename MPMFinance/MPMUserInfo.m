@@ -8,6 +8,7 @@
 
 #import "MPMUserInfo.h"
 
+#import "OfflineData.h"
 #define kGroupLevelNil 0
 #define kGroupLevelCustomer 2
 #define kGroupLevelAgent 3

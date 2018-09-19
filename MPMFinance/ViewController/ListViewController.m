@@ -78,8 +78,18 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
   self.page = 0;
+  self.selectedOfflineData = nil;
   self.selectedIndex = 0;
-  
+  if ([[OfflineData allObjects] count] > 0 && [self.menu.title isEqualToString:kSubmenuListPengajuanApplikasi]) {
+    UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"" message:@"Silahkan lanjutkan pengajuan awal anda pada menu offline." preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* okButton = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+      self.page = 0;
+      self.selectedIndex = 1;
+      [self loadDataForSelectedIndex:self.selectedIndex andPage:self.page];
+    }];
+    [alertController addAction:okButton];
+    [self presentViewController:alertController animated:YES completion:nil];
+  }
   
   [self loadDataForSelectedIndex:self.selectedIndex andPage:self.page];
 }
@@ -173,8 +183,7 @@
                 }
                 
                 if (error) {
-                    [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
-                    [SVProgressHUD dismissWithDelay:1.5];
+                  
                 } else {
                     [SVProgressHUD dismiss];
                 }
@@ -189,7 +198,7 @@
         [myInvocation setArgument:&handler atIndex:3];
         [myInvocation retainArguments];
         
-        [SVProgressHUD show];
+       // [SVProgressHUD show];
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             [myInvocation invoke];
         });
@@ -224,6 +233,18 @@
             list = ((OfflineData *)[self.lists objectAtIndex:indexPath.row]).convertToList;
         } else {
             list = [self.lists objectAtIndex:indexPath.row];
+          if ([OfflineData getById:list.primaryKey]) {
+            UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"" message:@"Silahkan lanjutkan pengajuan awal anda pada menu offline." preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction* okButton = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+              self.page = 0;
+              self.selectedIndex = 1;
+              [self loadDataForSelectedIndex:self.selectedIndex andPage:self.page];
+            }];
+            [alertController addAction:okButton];
+            [self presentViewController:alertController animated:YES completion:nil];
+            return;
+            
+          }
         }
     } @catch (NSException * e) {
         NSLog(@"Exception : %@", e);
@@ -325,7 +346,7 @@
             formViewController.list = list;
         }
         else {
-            formViewController.list = nil;
+          formViewController.list = [self.selectedOfflineData convertToList];
             formViewController.valueDictionary = [NSMutableDictionary dictionaryWithDictionary:[self.selectedOfflineData getDataDictionary]];
         }
         [self.navigationController pushViewController:formViewController animated:YES];
@@ -359,7 +380,7 @@
     
     if (list){
         if (list.imageURL.length > 0){
-            cell.icon.image = nil;
+            cell.icon.image = [UIImage imageNamed:@"AppIcon"];
             [cell.icon setContentMode:UIViewContentModeScaleAspectFit];
             NSURLRequest *imageRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:list.imageURL]
                                                           cachePolicy:NSURLRequestReturnCacheDataElseLoad
@@ -367,13 +388,15 @@
             
             __weak UIImageView *weakImageView = cell.icon;
             [cell.icon setImageWithURLRequest:imageRequest
-                             placeholderImage:nil
+                             placeholderImage:[UIImage imageNamed:@"AppIcon"]
                                       success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
                                           if (weakImageView) weakImageView.image = image;
                                       }
                                       failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
                                           if (weakImageView) weakImageView.image = nil;
                                       }];
+        } else {
+          cell.icon.image = [UIImage imageNamed:@"AppIcon"];
         }
         
         if (list.status.length > 0) {

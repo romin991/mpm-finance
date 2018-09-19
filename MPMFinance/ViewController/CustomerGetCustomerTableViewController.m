@@ -21,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.datas = [NSArray array];
-    self.title = self.menu.title;
+    self.title = @"History Customer Get CUstomer";
     [CustomerGetCustomerModel getListCustomerGetCustomerCompletion:^(NSArray *responses, NSError *error) {
         self.datas = responses;
         [self.tableView reloadData];

@@ -29,8 +29,8 @@
 - (WordsType)checkWordType {
     WordsType wordType = WordsTypeNone;
     NSCharacterSet *alphabetSet = [NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "];
-    NSCharacterSet *numericSet = [NSCharacterSet characterSetWithCharactersInString:@"1234567890"];
-    NSCharacterSet *punctuationSet = [NSCharacterSet characterSetWithCharactersInString:@"():;/£\",*_-.[]\\{}<>?=!@#$%^&+`~|'"];
+    NSCharacterSet *numericSet = [NSCharacterSet characterSetWithCharactersInString:@"1234567890,."];
+    NSCharacterSet *punctuationSet = [NSCharacterSet characterSetWithCharactersInString:@"():;/£\"*_-[]\\{}<>?=!@#$%^&+`~|'"];
     
     NSCharacterSet *notAllowedPunctuationSet = [NSCharacterSet characterSetWithCharactersInString:@"*&^\\%$#@![]{}<>?=!@#$%^&`~|'"];
     
@@ -55,6 +55,8 @@
             wordType = WordsTypeAlphabetNumeric;
         } else if (wordType == WordsTypeAlphabetPunctuation) {
             wordType = WordsTypeAll;
+        } else if(wordType == WordsTypePunctuationOnly){
+          wordType = WordsTypeAlphabetPunctuation;
         } else {
             wordType = WordsTypeNumericOnly;
         }

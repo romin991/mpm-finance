@@ -30,7 +30,10 @@
                     row.value = [UIImage imageWithData:value];
                 } else if ([row.rowType isEqualToString:XLFormRowDescriptorTypeButton]){
                     //do nothing, no need to include on dictionary
-                } else {
+                } else if ([[MPMGlobal getAllFieldShouldContainThousandSeparator] containsObject:row.tag]){
+                  row.value = [MPMGlobal formatToRupiah:value];
+                }
+                else {
                     row.value = value;
                 }
             }
@@ -92,7 +95,8 @@
                     [arrayOfValue addObject:dictionary];
                 }
                 object = arrayOfValue;
-            } else if (row.value != nil && ![row.value isKindOfClass:NSNull.class]){
+            }
+            else if (row.value != nil && ![row.value isKindOfClass:NSNull.class]){
                 object = row.value;
             } else {
                 object = @"";

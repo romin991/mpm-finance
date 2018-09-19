@@ -84,6 +84,10 @@
                 
             }
         }];
+    } else {
+      self.tabHistoryNotif.title = @"Riwayat";
+      [self.tabHistoryNotif setImage:[UIImage imageNamed:@"HistoryIcon"]];
+      [self.tabHistoryNotif setSelectedImage:[UIImage imageNamed:@"HistoryIcon"]];
     }
 //    [ProfileModel checkTokenWithCompletion:^(BOOL isExpired) {
 //        if (isExpired) {

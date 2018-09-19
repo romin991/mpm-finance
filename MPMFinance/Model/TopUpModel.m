@@ -92,9 +92,9 @@
            @"noPlat" : [dictionary objectForKey:@"nomorPlat"] ?: @"",
            @"nama" : [dictionary objectForKey:@"nama"] ?: @"",
            @"noKontrak" : [dictionary objectForKey:@"noKontrak"] ?: @"",
-           @"outstanding" : [dictionary objectForKey:@"outstanding"] ?: @"",
-           @"jumlah" : [dictionary objectForKey:@"jumlahYangDiterima"] ?: @"",
-           @"harga" : [dictionary objectForKey:@"hargaKisaran"] ?: @"",
+           @"outstanding" : [[dictionary objectForKey:@"outstanding"] stringByReplacingOccurrencesOfString:@"." withString:@""] ?: @"",
+           @"jumlah" : [[dictionary objectForKey:@"jumlahYangDiterima"] stringByReplacingOccurrencesOfString:@"." withString:@""] ?: @"",
+           @"harga" : [[dictionary objectForKey:@"hargaKisaran"] stringByReplacingOccurrencesOfString:@"." withString:@""] ?: @"",
            }];
         
         [param setObject:dataDictionary forKey:@"data"];

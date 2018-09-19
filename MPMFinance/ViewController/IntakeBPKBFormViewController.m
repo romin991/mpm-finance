@@ -11,7 +11,7 @@
 #import "Form.h"
 #import "CustomerModel.h"
 #import "IntakeBPKBModel.h"
-
+#import "IntakeBPKBTableViewController.h"
 @interface IntakeBPKBFormViewController ()
 
 @property NSMutableDictionary *valueDictionary;
@@ -35,6 +35,10 @@
     [SVProgressHUD show];
     __block typeof(self) weakSelf = self;
     XLFormDescriptor *formDescriptor;
+  dispatch_group_t group = dispatch_group_create();
+  dispatch_queue_t queue = dispatch_get_main_queue();
+  dispatch_group_enter(group);
+  
     [FormModel generate:formDescriptor form:currentForm completion:^(XLFormDescriptor *formDescriptor, NSError *error) {
         if (error){
             [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
@@ -46,9 +50,24 @@
             weakSelf.form = formDescriptor;
             [SVProgressHUD dismiss];
             [weakSelf setAdditionalRow];
+          dispatch_group_leave(group);
             
         }
     }];
+  
+  dispatch_group_notify(group, queue, ^{
+    for (XLFormSectionDescriptor *section in self.form.formSections) {
+      for (XLFormRowDescriptor *row in section.formRows) {
+        
+        if ([row.tag isEqualToString:@"tanggalPengambilanDokumen"]) {
+          if ([[row cellForFormController:self] isKindOfClass:XLFormDateCell.class]){
+            [(XLFormDateCell *)[row cellForFormController:self] setMinimumDate:[NSDate date]];
+          }
+        }
+      }
+      
+    }
+  });
 }
 
 - (void)didReceiveMemoryWarning {
@@ -112,7 +131,8 @@
     [IntakeBPKBModel postIntakeBPKBWithDictionary:self.valueDictionary completion:^(NSDictionary *dictionary, NSError *error) {
         if (error == nil) {
             [SVProgressHUD dismiss];
-            [weakSelf.navigationController popViewControllerAnimated:YES];
+          IntakeBPKBTableViewController *viewController = [[IntakeBPKBTableViewController alloc] init];
+          [self.navigationController pushViewController:viewController animated:YES];
             
         } else {
             [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
@@ -125,19 +145,55 @@
     if ([formRow.tag isEqualToString:@"noKontrak"]){
         self.agreementNo = newValue != nil && ![newValue isKindOfClass:NSNull.class] ? ((XLFormOptionsObject *) newValue).formDisplayText : @"";
         [self performSelector:@selector(fillRowData) withObject:nil afterDelay:0.1];
-    } else if ([formRow.tag isEqualToString:@"tanggalPengembalianDokumen"]) {
-      NSDate *aDate = formRow.value;
-      NSCalendar *calendar = [NSCalendar currentCalendar];
-      NSRange weekdayRange = [calendar maximumRangeOfUnit:NSCalendarUnitWeekday];
-      NSDateComponents *components = [calendar components:NSCalendarUnitWeekday fromDate:aDate];
-      NSUInteger weekdayOfDate = [components weekday];
-      
-      if (weekdayOfDate == weekdayRange.location || weekdayOfDate == weekdayRange.length) {
-        //the date falls somewhere on the first or last days of the week
-        NSLog(@"weekend!");
-      }
-      
     }
+  
+  if ([formRow.tag isEqualToString:@"tanggalPengambilanDokumen"])  {
+    NSInteger weekday = [[NSCalendar currentCalendar] component:NSCalendarUnitWeekday
+                                                       fromDate:newValue];
+    if (weekday == 7 || weekday == 1) {
+      UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"Layanan ini hanya tersedia dari senin - jumat" preferredStyle:UIAlertControllerStyleAlert];
+      UIAlertAction *action = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        if (![oldValue isEqual:[NSNull null]]) {
+          formRow.value = oldValue;
+          [self reloadFormRow:formRow];
+        } else {
+          NSDateComponents *dayComponent = [[NSDateComponents alloc] init];
+          if (weekday == 7) {
+            dayComponent.day = 2;
+          } else if (weekday == 1) {
+            dayComponent.day = 1;
+          }
+          NSCalendar *theCalendar = [NSCalendar currentCalendar];
+          NSDate *nextDate = [theCalendar dateByAddingComponents:dayComponent toDate:newValue options:0];
+          formRow.value = nextDate;
+          [self reloadFormRow:formRow];
+        }
+      }];
+      [alert addAction:action];
+      [self presentViewController:alert animated:YES completion:nil];
+    }
+  }
+  if ([formRow.tag isEqualToString:@"jamPengambilanDokumen"])  {
+    NSDate *newTime = [MPMGlobal timeFromString:[MPMGlobal stringFromTime:newValue]];
+    NSDate *time1 = [MPMGlobal timeFromString:@"08:30:00"];
+    NSDate *time2 = [MPMGlobal timeFromString:@"16:00:00"];
+    NSComparisonResult result1 = [newTime compare:time1];
+    NSComparisonResult result2 = [newTime compare:time2];
+    
+    if (result1 != NSOrderedDescending || result2 != NSOrderedAscending) {
+      UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"Layanan ini hanya tersedia dari pukul 08:30 - 16:00" preferredStyle:UIAlertControllerStyleAlert];
+      UIAlertAction *action = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        if ([[oldValue class] isKindOfClass:[NSNull class]]) {
+          formRow.value = oldValue;
+          [self reloadFormRow:formRow];
+        }
+        
+      }];
+      [alert addAction:action];
+      [self presentViewController:alert animated:YES completion:nil];
+    }
+    
+  }
 }
 
 - (void)fillRowData{

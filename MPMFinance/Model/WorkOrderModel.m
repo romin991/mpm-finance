@@ -567,7 +567,7 @@
 
 
 
-+ (void)postDraftWorkOrder:(List *)list dictionary:(NSDictionary *)dictionary completion:(void(^)(NSDictionary *dictionary, NSError *error))block{
++ (void)postDraftWorkOrder:(List *)list dictionary:(NSDictionary *)dictionary isOffline:(BOOL)isOffline completion:(void(^)(NSDictionary *dictionary, NSError *error))block{
     AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
     NSMutableDictionary* param = [NSMutableDictionary dictionaryWithDictionary:
                                   @{@"userid" :[MPMUserInfo getUserInfo][@"userId"],
@@ -576,7 +576,7 @@
     NSMutableDictionary *dataDictionary = [NSMutableDictionary dictionary];
     NSString *url = [[MPMUserInfo getRole] isEqualToString:kRoleCustomer] ? @"customer/input" : @"marketing/input";
     @try {
-        if (list){
+        if (list && list.primaryKey != 0){
             [dataDictionary setObject:@(list.primaryKey) forKey:@"id"];
             url = @"customer/update";
         }
@@ -662,6 +662,10 @@
         
         [manager POST:[NSString stringWithFormat:@"%@/pengajuandraft/%@", kApiUrl, url] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             @try {
+                if ([[responseObject objectForKey:@"data"] objectForKey:@"id"] && ![list.guid isEqualToString:@""])
+                {
+                  [OfflineData save:dictionary into:list.guid withRemoteId:[responseObject[@"data"][@"id"] integerValue]];
+                }
                 NSInteger code = [[responseObject objectForKey:@"statusCode"] integerValue];
                 NSString *message = [responseObject objectForKey:@"message"];
                 if (code == 200) {
@@ -683,7 +687,7 @@
             }
             
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            [OfflineData save:dictionary];
+            [OfflineData save:dictionary into:list.guid withRemoteId:list.primaryKey];
             NSString *errorMessage = error.localizedDescription;
             NSInteger statusCode = 0;
             @try{
@@ -723,7 +727,7 @@
     NSMutableDictionary *dataDictionary = [NSMutableDictionary dictionary];
   NSString *url;
   if ([[MPMUserInfo getRole] isEqualToString:kRoleDedicated]) {
-    if ([list.status isEqualToString:@"Draft"] || [list.status isEqualToString:@"Draft Tidak Lengkap"] || list.status == nil) {
+    if ([list.status isEqualToString:@"Draft"] || [list.status isEqualToString:@"Draft Tidak Lengkap"] || list.status == nil || list.primaryKey < 1) {
       url = @"marketing/input";
     } else {
       url = @"marketing/update";
@@ -826,6 +830,7 @@
                 NSInteger code = [[responseObject objectForKey:@"statusCode"] integerValue];
                 NSString *message = [responseObject objectForKey:@"message"];
                 if (code == 200) {
+                  [OfflineData deleteOfflineData:[OfflineData getById:list.primaryKey]];
                     if (block) block(responseObject, nil);
                     
                 } else {
@@ -845,6 +850,8 @@
             NSString *errorMessage = error.localizedDescription;
             NSInteger statusCode = 0;
             @try{
+                [OfflineData save:dictionary into:list.guid withRemoteId:list.primaryKey];
+              
                 NSDictionary *errorResponse = [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey]
                                                                               options:NSJSONReadingAllowFragments
                                                                                 error:nil];

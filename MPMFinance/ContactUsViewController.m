@@ -320,7 +320,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             self.lblEmail.text = responseObject[@"data"][@"email"];
             self.lblNamaCabang.text = responseObject[@"data"][@"namaCabang"];
-            self.lblAlamat.text = responseObject[@"data"][@"address"];
+            self.lblAlamat.text = responseObject[@"data"][@"alamat"];
             self.lblKodePos.text = responseObject[@"data"][@"kodePos"];
             self.lblNomorTelpon.text = responseObject[@"data"][@"telp"];
             [self reloadMapsWithLat:responseObject[@"data"][@"lat"] andLon:responseObject[@"data"][@"lng"]];

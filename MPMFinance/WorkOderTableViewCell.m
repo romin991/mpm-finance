@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *namaPengaju;
 @property (weak, nonatomic) IBOutlet UILabel *groupLevel;
 @property (weak, nonatomic) IBOutlet UILabel *status;
+@property (weak, nonatomic) IBOutlet UILabel *tanggal;
 
 @end
 @implementation WorkOderTableViewCell
@@ -32,6 +33,9 @@
     self.namaPengaju.text = data[@"namaPengaju"];
     self.groupLevel.text = data[@"groupLevel"];
     self.status.text = data[@"status"];
+  self.tanggal.text = data[@"tanggal"];
+  self.status.textColor = [MPMGlobal colorFromHexString:data[@"color"]];
+  [MPMGlobal giveBorderTo:self.status withBorderColor:data[@"color"] withCornerRadius:8.0f];
     [self.imageIcon setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
         self.imageIcon.image = image;
         [self setNeedsLayout];

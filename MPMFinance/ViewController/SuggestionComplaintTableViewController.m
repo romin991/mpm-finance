@@ -57,6 +57,11 @@
     }
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+  [self.navigationController popToViewController:self.navigationController.viewControllers[1] animated:YES];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

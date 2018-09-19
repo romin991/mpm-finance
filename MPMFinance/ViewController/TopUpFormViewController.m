@@ -12,7 +12,7 @@
 #import "CustomerModel.h"
 #import "TopUpModel.h"
 #import "FloatLabeledTextFieldCell.h"
-
+#import "TopUpHistoryTableViewController.h"
 @interface TopUpFormViewController ()
 
 @property NSMutableDictionary *valueDictionary;
@@ -23,6 +23,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+  dispatch_group_t group = dispatch_group_create();
+  dispatch_queue_t queue = dispatch_get_main_queue();
     self.navigationController.navigationBar.translucent = NO;
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.navigationController.interactivePopGestureRecognizer.enabled = NO;
@@ -35,6 +37,7 @@
     [SVProgressHUD show];
     __block typeof(self) weakSelf = self;
     XLFormDescriptor *formDescriptor;
+  dispatch_group_enter(group);
     [FormModel generate:formDescriptor form:currentForm completion:^(XLFormDescriptor *formDescriptor, NSError *error) {
         if (error){
             [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
@@ -46,14 +49,28 @@
             weakSelf.form = formDescriptor;
             [SVProgressHUD dismiss];
             [weakSelf setAdditionalRow];
-            
-//            __block typeof(self) weakWeakSelf = weakSelf;
-//            [weakSelf setAdditionalFormDescriptor:formDescriptor completion:^(XLFormDescriptor *formDescriptor, NSError *error) {
-//                weakWeakSelf.form = formDescriptor;
-//                [SVProgressHUD dismiss];
-//            }];
+          dispatch_group_leave(group);
         }
     }];
+  
+  dispatch_group_notify(group, queue, ^{
+    for (XLFormSectionDescriptor *section in self.form.formSections) {
+      for (XLFormRowDescriptor *row in section.formRows) {
+        if ([[MPMGlobal getAllFieldShouldContainThousandSeparator] containsObject:row.tag]){
+          [((FloatLabeledTextFieldCell *)[row cellForFormController:self]) setShouldGiveThousandSeparator:YES];
+          [((FloatLabeledTextFieldCell *)[row cellForFormController:self]) setMaximumLength:12];
+        }
+      }
+      
+    }
+    
+  });
+  
+  UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(back:)];
+  self.navigationItem.leftBarButtonItem = backButton;
+}
+- (void)back:(id)sender {
+  [self.navigationController popToViewController:self.navigationController.viewControllers[1] animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -138,7 +155,9 @@
                 }
             } else {
                 [SVProgressHUD dismiss];
-                [self.navigationController popViewControllerAnimated:YES];
+              TopUpHistoryTableViewController *viewController = [[TopUpHistoryTableViewController alloc] init];
+              viewController.menuTitle = @"Top Up History";
+              [self.navigationController pushViewController:viewController animated:YES];
             }
         }];
     }
@@ -165,13 +184,15 @@
             }
         }];
     }
-    
+  
     if (newValue != nil && ![newValue isKindOfClass:NSNull.class] && [formRow.tag isEqualToString:@"hargaKisaran"]){
         XLFormRowDescriptor *outstanding = [self.form formRowWithTag:@"outstanding"];
         XLFormRowDescriptor *row = [self.form formRowWithTag:@"jumlahYangDiterima"];
         NSInteger value = 0;
         @try {
-            value = [newValue integerValue] - [outstanding.value integerValue];
+          NSString *newNewValue = [newValue stringByReplacingOccurrencesOfString:@"." withString:@""];
+          NSString *newOutstanding = [outstanding.value stringByReplacingOccurrencesOfString:@"." withString:@""];
+          value = [newNewValue integerValue] - [newOutstanding integerValue];
             if (value < 0) {
                 [SVProgressHUD showErrorWithStatus:@"Harga kisaran harus lebih besar daripada outstanding"];
                 [SVProgressHUD dismissWithDelay:1.5];
@@ -181,7 +202,8 @@
             NSLog(@"%@", exception);
             
         } @finally {
-            row.value = @(value > 0 ? value : 0);
+            row.value = [MPMGlobal formatToMoney:@(value > 0 ? value : 0)];
+          
             [self reloadFormRow:row];
             
         }

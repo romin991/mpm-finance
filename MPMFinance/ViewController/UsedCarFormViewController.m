@@ -62,6 +62,11 @@
     dispatch_group_notify(group, queue, ^{
         for (XLFormSectionDescriptor *section in _formDescriptor.formSections) {
             for (XLFormRowDescriptor *row in section.formRows) {
+              [row.cellConfig setObject:[UIFont systemFontOfSize:10.0f] forKey:@"textLabel.font"];
+              [row.cellConfig setObject:[UIFont systemFontOfSize:10.0f] forKey:@"detailTextLabel.font"];
+              
+              
+
                 if ([row.tag isEqualToString:@"calculate"]) {
                     row.action.formSelector = @selector(calculateNow:);
                 }
@@ -196,6 +201,7 @@
                     [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:@"Combination" displayText:@"Combination"]];
                     row.selectorOptions = optionObjects;
                     row.value = optionObjects.firstObject;
+                  
                 }
                 
                 if ([row.tag isEqualToString:@"pilihanAsuransiKombinasiTahunPertama"]){
@@ -204,6 +210,8 @@
                     [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:@"TLO" displayText:@"TLO"]];
                     row.selectorOptions = optionObjects;
                     row.value = optionObjects.firstObject;
+                  
+                  
                 }
                 
                 if ([row.tag isEqualToString:@"pilihanAsuransiKombinasiTahunKedua"]){
@@ -212,6 +220,7 @@
                     [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:@"TLO" displayText:@"TLO"]];
                     row.selectorOptions = optionObjects;
                     row.value = optionObjects.firstObject;
+                  
                 }
                 
                 if ([row.tag isEqualToString:@"pilihanAsuransiKombinasiTahunKetiga"]){
@@ -220,6 +229,8 @@
                     [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:@"TLO" displayText:@"TLO"]];
                     row.selectorOptions = optionObjects;
                     row.value = optionObjects.firstObject;
+                  
+                  
                 }
                 
                 if ([row.tag isEqualToString:@"pilihanAsuransiKombinasiTahunKeempat"]){
@@ -228,6 +239,7 @@
                     [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:@"TLO" displayText:@"TLO"]];
                     row.selectorOptions = optionObjects;
                     row.value = optionObjects.firstObject;
+                  
                 }
                 
                 if ([row.tag isEqualToString:@"pilihanAsuransiKombinasiTahunKelima"]){
@@ -236,6 +248,7 @@
                     [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:@"TLO" displayText:@"TLO"]];
                     row.selectorOptions = optionObjects;
                     row.value = optionObjects.firstObject;
+                  
                 }
                 
                 if ([row.tag isEqualToString:@"pilihanAsuransiKombinasiTahunKeenam"]){
@@ -244,6 +257,7 @@
                     [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:@"TLO" displayText:@"TLO"]];
                     row.selectorOptions = optionObjects;
                     row.value = optionObjects.firstObject;
+                  
                 }
                 
                 //other setting
@@ -255,7 +269,7 @@
                     if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
                         [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
                       [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMustNumericOnly:YES];
-                      [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:12];
+                      [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:15];
                       ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).shouldGiveThousandSeparator = YES;
                     }
                 }
@@ -268,7 +282,7 @@
                     if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
                         [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setKeyboardType:UIKeyboardTypeDecimalPad];
                       [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMustNumericOnly:YES];
-                      [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:6];
+                      [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:15];
                     }
                 }
             }
@@ -350,6 +364,10 @@
             XLFormRowDescriptor *dpRupiahRow = [self.form formRowWithTag:@"dpRupiah"];
             dpRupiahRow.value = [[[otrKendaraan decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:newValue]] decimalNumberByDividingBy:[NSDecimalNumber decimalNumberWithString:@"100"]] stringValue];
             [self reloadFormRow:dpRupiahRow];
+        }if ([formRow.tag isEqualToString:@"pilihanAsuransiKombinasiTahunKetiga"]&& ![newValue isEqual:[NSNull null]]){
+          if ([((XLFormOptionsObject *) newValue).formValue length] > 0) {
+            formRow.title = @"Pilihan Asuransi Tahun 3";
+          }
         }
     } @catch (NSException *exception) {
         NSLog(@"%@", exception);

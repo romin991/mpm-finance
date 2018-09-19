@@ -225,6 +225,8 @@
 		5CFD0274208C7BFB008CCF30 /* MyProfileContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFD0273208C7BFB008CCF30 /* MyProfileContainerViewController.m */; };
 		5CFF0A7520AADAE200198E60 /* NJOPasswordStrengthEvaluator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFF0A7420AADAE100198E60 /* NJOPasswordStrengthEvaluator.m */; };
 		C330A958211215DC000F01AE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C330A957211215DC000F01AE /* GoogleService-Info.plist */; };
+		C33F39072152216000C0C765 /* AcceleratedResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C33F39052152216000C0C765 /* AcceleratedResultViewController.m */; };
+		C3FF9ECD213D654100739069 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = C3FF9ECB213D654100739069 /* Reachability.m */; };
 		D3738F410048C92A1AE2571B /* libPods-MPMFinance.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F2B2C34A7F4351773F253B9A /* libPods-MPMFinance.a */; };
 /* End PBXBuildFile section */
 
@@ -601,6 +603,10 @@
 		5CFF0A7420AADAE100198E60 /* NJOPasswordStrengthEvaluator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJOPasswordStrengthEvaluator.m; sourceTree = "<group>"; };
 		B57DB931C16BC9C4B3252B1C /* Pods-MPMFinance.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MPMFinance.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MPMFinance/Pods-MPMFinance.debug.xcconfig"; sourceTree = "<group>"; };
 		C330A957211215DC000F01AE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C33F39042152216000C0C765 /* AcceleratedResultViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AcceleratedResultViewController.h; sourceTree = "<group>"; };
+		C33F39052152216000C0C765 /* AcceleratedResultViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AcceleratedResultViewController.m; sourceTree = "<group>"; };
+		C3FF9ECB213D654100739069 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		C3FF9ECC213D654100739069 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		F2B2C34A7F4351773F253B9A /* libPods-MPMFinance.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MPMFinance.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F475CB99739A3281EC48B7D3 /* Pods-MPMFinance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MPMFinance.release.xcconfig"; path = "Pods/Target Support Files/Pods-MPMFinance/Pods-MPMFinance.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -719,6 +725,8 @@
 				481C42A31F03BAEB007D5C3C /* AcceleratedRepaymentFormViewController.h */,
 				481C42A41F03BAEB007D5C3C /* AcceleratedRepaymentFormViewController.m */,
 				481C42A51F03BAEB007D5C3C /* AcceleratedRepaymentFormViewController.xib */,
+				C33F39042152216000C0C765 /* AcceleratedResultViewController.h */,
+				C33F39052152216000C0C765 /* AcceleratedResultViewController.m */,
 			);
 			name = AcceleratedRepaymentViewController;
 			sourceTree = "<group>";
@@ -1319,6 +1327,8 @@
 		5C9DB2331EC3310600FC0CC9 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				C3FF9ECC213D654100739069 /* Reachability.h */,
+				C3FF9ECB213D654100739069 /* Reachability.m */,
 				5C3A1E6420CE67DE0074322B /* Sources */,
 				5C9DB2341EC3312200FC0CC9 /* MPMGlobal.h */,
 				5C9DB2351EC3312200FC0CC9 /* MPMGlobal.m */,
@@ -1603,6 +1613,7 @@
 				4825BFA41F5C3EC100D091AC /* InsuranceClaimTableViewCell.m in Sources */,
 				5C9B08F11EC9DB9300B5E9AC /* HistoryViewController.m in Sources */,
 				4825BFB81F5C3F4800D091AC /* CustomerGetCustomerTableViewCell.m in Sources */,
+				C3FF9ECD213D654100739069 /* Reachability.m in Sources */,
 				5C4D5FBA208F5C18004CA73E /* ProductCollectionViewCell.m in Sources */,
 				486CF51520DFB7CE00748A15 /* TrackingViewController.m in Sources */,
 				4825BFC71F5C3F8F00D091AC /* IntakeBPKBTableViewController.m in Sources */,
@@ -1657,6 +1668,7 @@
 				481C42811F00EE23007D5C3C /* WorkOrderListViewController.m in Sources */,
 				4848B1BB1F13840700C9DE21 /* AssetValueTransformer.m in Sources */,
 				4846272A1F1AFA9A0049A92A /* Marketing.m in Sources */,
+				C33F39072152216000C0C765 /* AcceleratedResultViewController.m in Sources */,
 				48A807FD20BECAA8005631F6 /* ResultTableViewCell.m in Sources */,
 				4886BAFD1EC42EDD000F8DBE /* MenuViewController.m in Sources */,
 				483F1E981EF2874F005D3945 /* ProfileModel.m in Sources */,

@@ -36,6 +36,18 @@
     [super viewDidLoad];
     NSLog(@"%@",self.menuType);
     self.tenors = @[@12,@18,@24,@30,@36];
+  
+  if ([self.menuType isEqualToString:@"Pembiayaan Mobil Baru"] || [self.menuType isEqualToString:@"Pembiayaan Mobil Bekas"]) {
+    self.tenors = @[@11,@12,@23,@24,@35,@36,@47,@48,@59,@60];
+    
+  }
+  else if ([self.menuType isEqualToString:@"Dahsyat - Multiguna Motor"]) {
+    self.tenors = @[@6,@10,@12,@18,@24];
+    
+  }
+  else if ([self.menuType isEqualToString:@"Dahsyat - Multiguna Mobil"]) {
+    self.tenors = @[@12,@24,@35,@48];
+  }
     self.jenisHitungs = @[@"Estimasi Harga", @"Estimasi Angsuran"];
     [self refreshUI];
     self.tenorPickerView = [[UIPickerView alloc] init];
@@ -84,6 +96,7 @@
         
         self.txtJenisPerhitungan.text = self.jenisHitungs[row];
       if ([self.menuType isEqualToString:@"Pembiayaan Motor Baru"]) {
+        
         if ([self.txtJenisPerhitungan.text isEqualToString:@"Estimasi Harga"]) {
           self.lblValue1.text = @"Estimasi Angsuran";
           self.lblJenisHitung.text = @"Estimasi Harga";
@@ -93,6 +106,7 @@
         }
       }
       else if ([self.menuType isEqualToString:@"Pembiayaan Mobil Baru"] || [self.menuType isEqualToString:@"Pembiayaan Mobil Bekas"]) {
+        self.tenors = @[@11,@12,@23,@24,@35,@36,@47,@48,@59,@60];
         if ([self.txtJenisPerhitungan.text isEqualToString:@"Estimasi Harga"]) {
           self.lblValue2.text = @"Estimasi Angsuran";
           self.lblJenisHitung.text = @"Estimasi Harga";
@@ -102,6 +116,7 @@
         }
       }
       else if ([self.menuType isEqualToString:@"Dahsyat - Multiguna Motor"]) {
+        self.tenors = @[@6,@10,@12,@18,@24];
         if ([self.txtJenisPerhitungan.text isEqualToString:@"Estimasi Harga"]) {
           self.lblValue2.text = @"Estimasi Angsuran";
           self.lblJenisHitung.text = @"Estimasi Harga";
@@ -111,6 +126,7 @@
         }
       }
       else if ([self.menuType isEqualToString:@"Dahsyat - Multiguna Mobil"]) {
+        self.tenors = @[@12,@24,@35,@48];
         if ([self.txtJenisPerhitungan.text isEqualToString:@"Estimasi Harga"]) {
           self.lblValue2.text = @"Estimasi Angsuran";
           self.lblJenisHitung.text = @"Estimasi Harga";
@@ -134,7 +150,6 @@
         self.lblValue2.hidden = NO;
         self.lblValue2.text = @"Nilai Pembiayaan";
         self.txtUangMuka.hidden = NO;
-        self.lblPencairan.text = @"Nilai Pencairan";
         self.lblValue1.text = @"Pencairan Maksimal";
         self.txtJenisPerhitungan.delegate = self;
     }
@@ -219,10 +234,70 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (BOOL)validate {
+  BOOL isValid = YES;
+  NSInteger estimasiHargaAtauAngsuran = [[self.txtHarga.text stringByReplacingOccurrencesOfString:@"." withString:@""] integerValue];
+  if ([self.txtJenisPerhitungan.text isEqualToString:@"Estimasi Harga"]) {
+    if ([self.menuType isEqualToString:@"Pembiayaan Motor Baru"] && estimasiHargaAtauAngsuran < 4200000) {
+      [SVProgressHUD showErrorWithStatus:@"Estimasi Harga minimal 4.200.000"];
+      isValid = NO;
+    } else if ([self.menuType isEqualToString:@"Pembiayaan Mobil Baru"] && estimasiHargaAtauAngsuran < 17000000) {
+      [SVProgressHUD showErrorWithStatus:@"Estimasi Harga minimal 17.000.000"];
+      isValid = NO;
+    }  else if ([self.menuType isEqualToString:@"Pembiayaan Mobil Bekas"] && estimasiHargaAtauAngsuran < 17000000) {
+      [SVProgressHUD showErrorWithStatus:@"Estimasi Harga minimal 17.000.000"];
+      isValid = NO;
+    }
+    
+    
+  } else if ([self.txtJenisPerhitungan.text isEqualToString:@"Estimasi Angsuran"]) {
+    if ([self.menuType isEqualToString:@"Pembiayaan Motor Baru"] && estimasiHargaAtauAngsuran < 250000) {
+      [SVProgressHUD showErrorWithStatus:@"Estimasi Angsuran minimal 250.000"];
+      isValid = NO;
+    } else if ([self.menuType isEqualToString:@"Pembiayaan Mobil Baru"] && estimasiHargaAtauAngsuran < 250000) {
+      [SVProgressHUD showErrorWithStatus:@"Estimasi Angsuran minimal 250.000"];
+      isValid = NO;
+    }  else if ([self.menuType isEqualToString:@"Pembiayaan Mobil Bekas"] && estimasiHargaAtauAngsuran < 250000) {
+      [SVProgressHUD showErrorWithStatus:@"Estimasi Angsuran minimal 250.000"];
+      isValid = NO;
+    }
+  } else {
+    if ([self.menuType isEqualToString:@"Dahsyat - Multiguna Motor"]) {
+      NSInteger nilaiPencairan = [[self.txtJenisPerhitungan.text stringByReplacingOccurrencesOfString:@"." withString:@""] integerValue];
+      if (estimasiHargaAtauAngsuran < 4200000) {
+        [SVProgressHUD showErrorWithStatus:@"Estimasi Harga minimal 4.200.000"];
+        isValid = NO;
+      }
+      else if (nilaiPencairan < 2500000) {
+        [SVProgressHUD showErrorWithStatus:@"Nilai Pencairan minimal 2.500.000"];
+        isValid = NO;
+      }
+      
+    }  else if ([self.menuType isEqualToString:@"Dahsyat - Multiguna Mobil"] ) {
+      NSInteger nilaiPencairan = [[self.txtJenisPerhitungan.text stringByReplacingOccurrencesOfString:@"." withString:@""] integerValue];
+      if (estimasiHargaAtauAngsuran < 17000000) {
+        [SVProgressHUD showErrorWithStatus:@"Estimasi Harga minimal 17.000.000"];
+        isValid = NO;
+      }
+      else if (nilaiPencairan < 10000000) {
+        [SVProgressHUD showErrorWithStatus:@"Nilai Pencairan minimal 10.000.000"];
+        isValid = NO;
+      }
+      
+    }
+  }
+  [SVProgressHUD dismissWithDelay:1.0f];
+  
+  return isValid;
+}
 - (IBAction)hitung:(id)sender {
+  
     if (self.txtJenisPerhitungan.text.length < 1) {
         return;
     }
+  if (![self validate]) {
+    return;
+  }
     AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
     NSString* urlString;
     BOOL isDahsyat = NO;

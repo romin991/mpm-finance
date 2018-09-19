@@ -147,6 +147,45 @@
 @property (weak, nonatomic) IBOutlet UILabel *txtJumlahYear2;
 
 
+//dealer level
+@property (strong, nonatomic) IBOutlet KATCircularProgress *progressChartMonthDealer;
+@property (weak, nonatomic) IBOutlet UIView *flagTotalNewAppDealerMonth;
+@property (weak, nonatomic) IBOutlet UIView *flagTotalProgressOfficerDealerMonth;
+@property (weak, nonatomic) IBOutlet UIView *flagTotalOfficerCompleteDealerMonth;
+@property (weak, nonatomic) IBOutlet UIView *flagTotalAppSubmittedDealerMonth;
+@property (weak, nonatomic) IBOutlet UIView *flagTotalContractActiveDealerMonth;
+@property (weak, nonatomic) IBOutlet UIView *flagTotalAppStopDealerMonth;
+
+@property (weak, nonatomic) IBOutlet UILabel *txtTotalNewAppDealerMonth;
+@property (weak, nonatomic) IBOutlet UILabel *txtTotalProgressOfficerDealerMonth;
+@property (weak, nonatomic) IBOutlet UILabel *txtTotalOfficerCompleteDealerMonth;
+@property (weak, nonatomic) IBOutlet UILabel *txtTotalAppSubmittedDealerMonth;
+@property (weak, nonatomic) IBOutlet UILabel *txtTotalContractActiveDealerMonth;
+@property (weak, nonatomic) IBOutlet UILabel *txtTotalAppStopDealerMonth;
+
+
+@property (weak, nonatomic) IBOutlet UILabel *txtJumlahBulanDealer;
+
+@property (strong, nonatomic) IBOutlet KATCircularProgress *progressChartYearDealer;
+@property (weak, nonatomic) IBOutlet UIView *flagTotalNewAppDealerYear;
+@property (weak, nonatomic) IBOutlet UIView *flagTotalProgressOfficerDealerYear;
+@property (weak, nonatomic) IBOutlet UIView *flagTotalOfficerCompleteDealerYear;
+@property (weak, nonatomic) IBOutlet UIView *flagTotalAppSubmittedDealerYear;
+@property (weak, nonatomic) IBOutlet UIView *flagTotalContractActiveDealerYear;
+@property (weak, nonatomic) IBOutlet UIView *flagTotalAppStopDealerYear;
+
+@property (weak, nonatomic) IBOutlet UILabel *txtTotalNewAppDealerYear;
+@property (weak, nonatomic) IBOutlet UILabel *txtTotalProgressOfficerDealerYear;
+@property (weak, nonatomic) IBOutlet UILabel *txtTotalOfficerCompleteDealerYear;
+@property (weak, nonatomic) IBOutlet UILabel *txtTotalAppSubmittedDealerYear;
+@property (weak, nonatomic) IBOutlet UILabel *txtTotalContractActiveDealerYear;
+@property (weak, nonatomic) IBOutlet UILabel *txtTotalAppStopDealerYear;
+
+
+@property (weak, nonatomic) IBOutlet UILabel *txtJumlahTahunDealer;
+@property NSDictionary *selectedGroupLevel;
+
+
 
 @end
 
@@ -223,32 +262,31 @@
     self.flagTotalByDealer2.backgroundColor = [UIColor blueColor];
     self.flagTotalByMarketing2.backgroundColor = [UIColor redColor];
     self.flagTotalByAgent2.backgroundColor = [UIColor grayColor];
+  
+  
+  self.flagTotalNewAppDealerMonth.backgroundColor = [UIColor cyanColor];
+  self.flagTotalProgressOfficerDealerMonth.backgroundColor = [UIColor blueColor];
+  self.flagTotalOfficerCompleteDealerMonth.backgroundColor = [UIColor redColor];
+  self.flagTotalAppSubmittedDealerMonth.backgroundColor = [UIColor grayColor];
+  self.flagTotalContractActiveDealerMonth.backgroundColor = [UIColor greenColor];
+  self.flagTotalAppStopDealerMonth.backgroundColor = [UIColor purpleColor];
+  
+  self.flagTotalNewAppDealerYear.backgroundColor = [UIColor cyanColor];
+  self.flagTotalProgressOfficerDealerYear.backgroundColor = [UIColor blueColor];
+  self.flagTotalOfficerCompleteDealerYear.backgroundColor = [UIColor redColor];
+  self.flagTotalAppSubmittedDealerYear.backgroundColor = [UIColor grayColor];
+  self.flagTotalContractActiveDealerYear.backgroundColor = [UIColor greenColor];
+  self.flagTotalAppStopDealerYear.backgroundColor = [UIColor purpleColor];
     
 }
 -(void)downloadData
 {
     AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
     NSDictionary* param;
-    
-//    param = @{@"userid" : [MPMUserInfo getUserInfo][@"userId"],
-//              @"token" : [MPMUserInfo getToken],
-//              @"data" : @{@"tipe" : @"year"}};
-//    [manager POST:[NSString stringWithFormat:@"%@/dasboard",kApiUrl] parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
-//        ;
-//    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        if ([responseObject[@"statusCode"] isEqual:@200]) {
-//            [self addSliceItemsForProgressChart:self.progressChartTahun WithTotalReject:responseObject[@"data"][@"reject"] andApprove:responseObject[@"data"][@"approve"]];
-//            self.txtJumlahTahun.text = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"jumlah"]];
-////            self.txtApproveTahun.text = [NSString stringWithFormat:@"Approve (%@ %%)",responseObject[@"data"][@"approve"]];
-////            self.txtRejectTahun.text = [NSString stringWithFormat:@"Reject (%@ %%)",responseObject[@"data"][@"reject"]];
-//        };
-//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//        ;
-//    }];
-    
+  
     
     NSString *urlString;
-    if (![[MPMUserInfo getRole] isEqualToString:kRoleAgent] && ![[MPMUserInfo getRole] isEqualToString:kRoleSupervisor]) {
+    if (![[MPMUserInfo getRole] isEqualToString:kRoleAgent] && ![[MPMUserInfo getRole] isEqualToString:kRoleSupervisor] && ![[MPMUserInfo getRole] isEqualToString:kRoleBM] && ![[MPMUserInfo getRole] isEqualToString:kRoleDealer]) {
         urlString = @"dropdown/produkmarketing";
         param = @{@"userid" : [MPMUserInfo getUserInfo][@"userId"],
                   @"token" : [MPMUserInfo getToken],
@@ -272,7 +310,7 @@
         }
     }];
     
-    if ([[MPMUserInfo getRole] isEqualToString:kRoleSupervisor]) {
+    if ([[MPMUserInfo getRole] isEqualToString:kRoleSupervisor] || [[MPMUserInfo getRole] isEqualToString:kRoleBM]) {
         urlString = @"dasboard2/spv-list-group-level";
         param = @{@"userid" : [MPMUserInfo getUserInfo][@"userId"],
                   @"token" : [MPMUserInfo getToken]};
@@ -363,12 +401,12 @@
         [self downloadSumberAplikasiDataByYearForId:self.produkArray[row][@"id"]];
     } else if (pickerView == self.groupLevelPicker) {
         self.txtGroupLevel.text = self.groupLevels[row][@"value"];
-        
+      self.selectedGroupLevel = self.groupLevels[row];
         [self downloadUserList:self.groupLevels[row][@"id"]];
     } else if (pickerView == self.userPicker) {
         self.txtUser.text = self.users[row][@"nama"];
-        [self downloadMarketingProductByUserDataMonthForId:@"" groupLevel:self.groupLevels[row][@"id"] userId:self.users[row][@"userid"]];
-        [self downloadMarketingProductByUserDataYearForId:@"" groupLevel:self.groupLevels[row][@"id"] userId:self.users[row][@"userid"]];
+        [self downloadMarketingProductByUserDataMonthForId:@"" groupLevel:self.selectedGroupLevel[@"id"] userId:self.users[row][@"userid"]];
+        [self downloadMarketingProductByUserDataYearForId:@"" groupLevel:self.selectedGroupLevel[@"id"] userId:self.users[row][@"userid"]];
         //[self downloadUserList:self.groupLevels[row][@"id"]];
     }
     
@@ -381,16 +419,21 @@
         param = @{@"userid" : [MPMUserInfo getUserInfo][@"userId"],
                   @"token" : [MPMUserInfo getToken],
                   @"data" : @{@"tipe" : @"month",
-                              @"product_id" : produkId
+                              @"product_id" : [produkId isEqual:@0] ? @"" : produkId
                               }};
   NSString *urlString = [NSString stringWithFormat:@"%@/dasboard2/marketing-by-product",kApiUrl];
   if ([[MPMUserInfo getRole] isEqualToString:kRoleSupervisor]) {
     urlString = [NSString stringWithFormat:@"%@/dasboard2/spv-by-status-and-product",kApiUrl];
+  } else if ([[MPMUserInfo getRole] isEqualToString:kRoleBM]) {
+    urlString = [NSString stringWithFormat:@"%@/dasboard2/bm-by-status-and-product",kApiUrl];
+  } else if ([[MPMUserInfo getRole] isEqualToString:kRoleDealer] || [[MPMUserInfo getRole] isEqualToString:kRoleAgent]) {
+    urlString = [NSString stringWithFormat:@"%@/dasboard2/eksternal",kApiUrl];
   }
         [manager POST:urlString parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
             ;
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             if ([responseObject[@"statusCode"] isEqual:@200]) {
+              if (![[MPMUserInfo getRole] isEqualToString:kRoleDealer] && ![[MPMUserInfo getRole] isEqualToString:kRoleAgent]) {
                 [self.progressChartMonth1.sliceItems removeAllObjects];
                  //Create Slice items with value and section color
                 SliceItem *item1 = [[SliceItem alloc] init];
@@ -464,6 +507,58 @@
                 self.txtJumlahBulan.text = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"jumlah"]];
     //            self.txtApproveTahun.text = [NSString stringWithFormat:@"Approve (%@ %%)",responseObject[@"data"][@"approve"]];
     //            self.txtRejectTahun.text = [NSString stringWithFormat:@"Reject (%@ %%)",responseObject[@"data"][@"reject"]];
+              } else {
+                [self.progressChartMonthDealer.sliceItems removeAllObjects];
+                //Create Slice items with value and section color
+                SliceItem *item1 = [[SliceItem alloc] init];
+                item1.itemValue = [responseObject[@"data"][@"new_application_precentage"] doubleValue]; // value should be a float value
+                item1.itemColor = [UIColor cyanColor]; // color should be a UIColor value
+                self.flagTotalNewAppDealerMonth.backgroundColor = [UIColor cyanColor];
+                
+                SliceItem *item2 = [[SliceItem alloc] init];
+                item2.itemValue = [responseObject[@"data"][@"progress_officer_precentage"] doubleValue];
+                item2.itemColor = [UIColor blueColor];
+                self.flagTotalProgressOfficerDealerMonth.backgroundColor = [UIColor blueColor];
+                
+                SliceItem *item3 = [[SliceItem alloc] init];
+                item3.itemValue = [responseObject[@"data"][@"officer_complete_precentage"] doubleValue];
+                item3.itemColor = [UIColor redColor];
+                self.flagTotalOfficerCompleteDealerMonth.backgroundColor = [UIColor redColor];
+                
+                SliceItem *item4 = [[SliceItem alloc] init];
+                item4.itemValue = [responseObject[@"data"][@"app_submitted_precentage"] doubleValue];
+                item4.itemColor = [UIColor grayColor];
+                self.flagTotalAppSubmittedDealerMonth.backgroundColor = [UIColor grayColor];
+                
+                SliceItem *item5 = [[SliceItem alloc] init];
+                item5.itemValue = [responseObject[@"data"][@"contract_active_precentage"] doubleValue];
+                item5.itemColor = [UIColor greenColor];
+                self.flagTotalContractActiveDealerMonth.backgroundColor = [UIColor greenColor];
+                
+                SliceItem *item6 = [[SliceItem alloc] init];
+                item6.itemValue = [responseObject[@"data"][@"app_stop_precentage"] doubleValue];
+                item6.itemColor = [UIColor purpleColor];
+                self.flagTotalAppStopDealerMonth.backgroundColor = [UIColor purpleColor];
+                
+                //Add SliceItems objects to the sliceItems NSMutable array of KATProgressChart.
+                [self.progressChartMonthDealer.sliceItems addObject:item1];
+                [self.progressChartMonthDealer.sliceItems addObject:item2];
+                [self.progressChartMonthDealer.sliceItems addObject:item3];
+                [self.progressChartMonthDealer.sliceItems addObject:item4];
+                [self.progressChartMonthDealer.sliceItems addObject:item5];
+                [self.progressChartMonthDealer.sliceItems addObject:item6];
+                [self.progressChartMonthDealer reloadData]; // reload the chart.
+                
+                //todo change the correct color and change the flag color and change the label
+                self.txtTotalNewAppDealerMonth.text = [NSString stringWithFormat:@"%@ (%@%%)",responseObject[@"data"][@"new_application_total"],responseObject[@"data"][@"new_application_precentage"] ? responseObject[@"data"][@"new_application_precentage"] : @"0.00"];
+                self.txtTotalProgressOfficerDealerMonth.text = [NSString stringWithFormat:@"%@ (%@%%)",responseObject[@"data"][@"progress_officer_total"],responseObject[@"data"][@"progress_officer_precentage"]];
+                self.txtTotalOfficerCompleteDealerMonth.text = [NSString stringWithFormat:@"%@ (%@%%)",responseObject[@"data"][@"officer_complete_total"],responseObject[@"data"][@"officer_complete_precentage"]];
+                self.txtTotalAppSubmittedDealerMonth.text = [NSString stringWithFormat:@"%@ (%@%%)",responseObject[@"data"][@"app_submitted_total"],responseObject[@"data"][@"app_submitted_precentage"]];
+                self.txtTotalContractActiveDealerMonth.text = [NSString stringWithFormat:@"%@ (%@%%)",responseObject[@"data"][@"contract_active_total"],responseObject[@"data"][@"contract_active_precentage"]];
+                self.txtTotalAppStopDealerMonth.text = [NSString stringWithFormat:@"%@ (%@%%)",responseObject[@"data"][@"app_stop_total"],responseObject[@"data"][@"app_stop_precentage"]];
+                
+                self.txtJumlahBulanDealer.text = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"jumlah"]];
+              }
             };
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             ;
@@ -478,11 +573,13 @@
     param = @{@"userid" : [MPMUserInfo getUserInfo][@"userId"],
               @"token" : [MPMUserInfo getToken],
               @"data" : @{@"tipe" : @"month",
-                          @"product_id" : produkId
+                          @"product_id" : [produkId isEqual:@0] ? @"" : produkId
                           }};
   NSString *urlString = [NSString stringWithFormat:@"%@/dasboard2/marketing-by-grouplevel-and-product",kApiUrl];
   if ([[MPMUserInfo getRole] isEqualToString:kRoleSupervisor]) {
     urlString =[NSString stringWithFormat:@"%@/dasboard2/spv-by-sumber-aplikasi",kApiUrl];
+  }  else if ([[MPMUserInfo getRole] isEqualToString:kRoleBM]) {
+    urlString =[NSString stringWithFormat:@"%@/dasboard2/bm-by-sumber-aplikasi",kApiUrl];
   }
     [manager POST:urlString parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
         ;
@@ -537,12 +634,14 @@
     param = @{@"userid" : [MPMUserInfo getUserInfo][@"userId"],
               @"token" : [MPMUserInfo getToken],
               @"data" : @{@"tipe" : @"year",
-                          @"product_id" : produkId
+                          @"product_id" : [produkId isEqual:@0] ? @"" : produkId
                           }};
   
   NSString *urlString = [NSString stringWithFormat:@"%@/dasboard2/marketing-by-grouplevel-and-product",kApiUrl];
   if ([[MPMUserInfo getRole] isEqualToString:kRoleSupervisor]) {
     urlString =[NSString stringWithFormat:@"%@/dasboard2/spv-by-sumber-aplikasi",kApiUrl];
+  } else if ([[MPMUserInfo getRole] isEqualToString:kRoleBM]) {
+    urlString =[NSString stringWithFormat:@"%@/dasboard2/bm-by-sumber-aplikasi",kApiUrl];
   }
     [manager POST:urlString parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
         ;
@@ -597,16 +696,23 @@
     param = @{@"userid" : [MPMUserInfo getUserInfo][@"userId"],
               @"token" : [MPMUserInfo getToken],
               @"data" : @{@"tipe" : @"year",
-                          @"product_id" : produkId
+                          @"product_id" : [produkId isEqual:@0] ? @"" : produkId
                           }};
   NSString *urlString = [NSString stringWithFormat:@"%@/dasboard2/marketing-by-product",kApiUrl];
   if ([[MPMUserInfo getRole] isEqualToString:kRoleSupervisor]) {
     urlString = [NSString stringWithFormat:@"%@/dasboard2/spv-by-status-and-product",kApiUrl];
+  } else if ([[MPMUserInfo getRole] isEqualToString:kRoleBM]) {
+    urlString = [NSString stringWithFormat:@"%@/dasboard2/bm-by-status-and-product",kApiUrl];
+  }  else if ([[MPMUserInfo getRole] isEqualToString:kRoleDealer] || [[MPMUserInfo getRole] isEqualToString:kRoleAgent]) {
+    urlString = [NSString stringWithFormat:@"%@/dasboard2/eksternal",kApiUrl];
   }
     [manager POST:urlString parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
         ;
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"statusCode"] isEqual:@200]) {
+          if (![[MPMUserInfo getRole] isEqualToString:kRoleDealer] && ![[MPMUserInfo getRole] isEqualToString:kRoleAgent]) {
+            
+          
             [self.progressChartYear.sliceItems removeAllObjects];
             //Create Slice items with value and section color
             SliceItem *item1 = [[SliceItem alloc] init];
@@ -678,7 +784,52 @@
             self.txtTotalGoLive2.text = [NSString stringWithFormat:@"%@ (%@%%)",responseObject[@"data"][@"go_live_total"],responseObject[@"data"][@"go_live_precentage"]];
             
             self.txtJumlahTahun.text = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"jumlah"]];
-
+          } else {
+            [self.progressChartYearDealer.sliceItems removeAllObjects];
+            //Create Slice items with value and section color
+            SliceItem *item1 = [[SliceItem alloc] init];
+            item1.itemValue = [responseObject[@"data"][@"new_application_precentage"] doubleValue]; // value should be a float value
+            item1.itemColor = [UIColor cyanColor]; // color should be a UIColor value
+            
+            SliceItem *item2 = [[SliceItem alloc] init];
+            item2.itemValue = [responseObject[@"data"][@"progress_officer_precentage"] doubleValue];
+            item2.itemColor = [UIColor blueColor];
+            
+            SliceItem *item3 = [[SliceItem alloc] init];
+            item3.itemValue = [responseObject[@"data"][@"officer_complete_precentage"] doubleValue];
+            item3.itemColor = [UIColor redColor];
+            
+            SliceItem *item4 = [[SliceItem alloc] init];
+            item4.itemValue = [responseObject[@"data"][@"app_submitted_precentage"] doubleValue];
+            item4.itemColor = [UIColor grayColor];
+            
+            SliceItem *item5 = [[SliceItem alloc] init];
+            item5.itemValue = [responseObject[@"data"][@"contract_active_precentage"] doubleValue];
+            item5.itemColor = [UIColor greenColor];
+            
+            SliceItem *item6 = [[SliceItem alloc] init];
+            item6.itemValue = [responseObject[@"data"][@"app_stop_precentage"] doubleValue];
+            item6.itemColor = [UIColor purpleColor];
+            
+            //Add SliceItems objects to the sliceItems NSMutable array of KATProgressChart.
+            [self.progressChartYearDealer.sliceItems addObject:item1];
+            [self.progressChartYearDealer.sliceItems addObject:item2];
+            [self.progressChartYearDealer.sliceItems addObject:item3];
+            [self.progressChartYearDealer.sliceItems addObject:item4];
+            [self.progressChartYearDealer.sliceItems addObject:item5];
+            [self.progressChartYearDealer.sliceItems addObject:item6];
+            [self.progressChartYearDealer reloadData]; // reload the chart.
+            
+            //todo change the correct color and change the flag color and change the label
+            self.txtTotalNewAppDealerYear.text = [NSString stringWithFormat:@"%@ (%@%%)",responseObject[@"data"][@"new_application_total"],responseObject[@"data"][@"new_application_precentage"] ? responseObject[@"data"][@"new_application_precentage"] : @"0.00"];
+            self.txtTotalProgressOfficerDealerYear.text = [NSString stringWithFormat:@"%@ (%@%%)",responseObject[@"data"][@"progress_officer_total"],responseObject[@"data"][@"progress_officer_precentage"]];
+            self.txtTotalOfficerCompleteDealerYear.text = [NSString stringWithFormat:@"%@ (%@%%)",responseObject[@"data"][@"officer_complete_total"],responseObject[@"data"][@"officer_complete_precentage"]];
+            self.txtTotalAppSubmittedDealerYear.text = [NSString stringWithFormat:@"%@ (%@%%)",responseObject[@"data"][@"app_submitted_total"],responseObject[@"data"][@"app_submitted_precentage"]];
+            self.txtTotalContractActiveDealerYear.text = [NSString stringWithFormat:@"%@ (%@%%)",responseObject[@"data"][@"contract_active_total"],responseObject[@"data"][@"contract_active_precentage"]];
+            self.txtTotalAppStopDealerYear.text = [NSString stringWithFormat:@"%@ (%@%%)",responseObject[@"data"][@"app_stop_total"],responseObject[@"data"][@"app_stop_precentage"]];
+            
+            self.txtJumlahTahunDealer.text = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"jumlah"]];
+          }
         };
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         ;
@@ -690,18 +841,20 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
         return 91;
-    } else if (indexPath.row == 1 || indexPath.row == 2) {
+    } else if ((indexPath.row == 1 || indexPath.row == 2) && ![[MPMUserInfo getRole] isEqualToString:kRoleDealer] && ![[MPMUserInfo getRole] isEqualToString:kRoleAgent]) {
         return 720;
     } else if (indexPath.row == 3 && (![[MPMUserInfo getRole] isEqualToString:kRoleAgent] && ![[MPMUserInfo getRole] isEqualToString:kRoleDealer])) {
         return 50;
     } else if ((indexPath.row == 4 || indexPath.row == 5) && (![[MPMUserInfo getRole] isEqualToString:kRoleAgent] && ![[MPMUserInfo getRole] isEqualToString:kRoleDealer]) ) {
         return 534;
-    } else if (indexPath.row == 6 && (![[MPMUserInfo getRole] isEqualToString:kRoleAgent] && ![[MPMUserInfo getRole] isEqualToString:kRoleDealer])) {
+    } else if (indexPath.row == 6 && (![[MPMUserInfo getRole] isEqualToString:kRoleAgent] && ![[MPMUserInfo getRole] isEqualToString:kRoleDealer] && ![[MPMUserInfo getRole] isEqualToString:kRoleDedicated])) {
         return 137;
-    } else if ((indexPath.row == 7 || indexPath.row == 8) && (![[MPMUserInfo getRole] isEqualToString:kRoleAgent] && ![[MPMUserInfo getRole] isEqualToString:kRoleDealer] && ![[MPMUserInfo getRole] isEqualToString:kRoleOfficer]))
-    {
+    } else if ((indexPath.row == 7 || indexPath.row == 8) && (![[MPMUserInfo getRole] isEqualToString:kRoleAgent] && ![[MPMUserInfo getRole] isEqualToString:kRoleDealer] && ![[MPMUserInfo getRole] isEqualToString:kRoleDedicated])) {
         return 720;
-    }else return 0;
+    } else if ((indexPath.row == 9 || indexPath.row == 10) && ([[MPMUserInfo getRole] isEqualToString:kRoleDealer] || [[MPMUserInfo getRole] isEqualToString:kRoleAgent])) {
+      return 649;
+    }
+    else return 0;
 }
 
 - (void) downloadUserList:(NSNumber *)userLevel {
@@ -713,7 +866,13 @@
               @"data" : @{
                           @"user_level" : userLevel
                           }};
-    [manager POST:[NSString stringWithFormat:@"%@/dasboard2/spv-list-users",kApiUrl] parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
+  NSString *urlString;
+  if ([[MPMUserInfo getRole] isEqualToString:kRoleSupervisor]) {
+    urlString = [NSString stringWithFormat:@"%@/dasboard2/spv-list-users",kApiUrl];
+  } else {
+    urlString = [NSString stringWithFormat:@"%@/dasboard2/bm-list-users",kApiUrl];
+  }
+    [manager POST:urlString parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
         ;
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"statusCode"] isEqual:@200]) {
@@ -740,7 +899,13 @@
                           @"group_level" : groupLevel? groupLevel : @"",
                           @"user_id" : userId? userId : @""
                           }};
-    [manager POST:[NSString stringWithFormat:@"%@/dasboard2/spv-by-status-and-product-per-users",kApiUrl] parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
+  NSString *urlString;
+  if ([[MPMUserInfo getRole] isEqualToString:kRoleSupervisor]) {
+    urlString = [NSString stringWithFormat:@"%@/dasboard2/spv-by-status-and-product-per-users",kApiUrl];
+  } else if ([[MPMUserInfo getRole] isEqualToString:kRoleBM]) {
+    urlString = [NSString stringWithFormat:@"%@/dasboard2/bm-by-status-and-product-per-users",kApiUrl];
+  }
+    [manager POST:urlString parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
         ;
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"statusCode"] isEqual:@200]) {
@@ -825,7 +990,13 @@
                           @"group_level" : groupLevel? groupLevel : @"",
                           @"user_id" : userId? userId : @""
                           }};
-    [manager POST:[NSString stringWithFormat:@"%@/dasboard2/spv-by-status-and-product-per-users",kApiUrl] parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
+  NSString *urlString;
+  if ([[MPMUserInfo getRole] isEqualToString:kRoleSupervisor]) {
+    urlString = [NSString stringWithFormat:@"%@/dasboard2/spv-by-status-and-product-per-users",kApiUrl];
+  } else if ([[MPMUserInfo getRole] isEqualToString:kRoleBM]) {
+    urlString = [NSString stringWithFormat:@"%@/dasboard2/bm-by-status-and-product-per-users",kApiUrl];
+  }
+    [manager POST:urlString parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
         ;
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"statusCode"] isEqual:@200]) {
@@ -868,16 +1039,16 @@
             item9.itemColor = [UIColor orangeColor];
             
             //Add SliceItems objects to the sliceItems NSMutable array of KATProgressChart.
-            [self.progressChartMonth2.sliceItems addObject:item1];
-            [self.progressChartMonth2.sliceItems addObject:item2];
-            [self.progressChartMonth2.sliceItems addObject:item3];
-            [self.progressChartMonth2.sliceItems addObject:item4];
-            [self.progressChartMonth2.sliceItems addObject:item5];
-            [self.progressChartMonth2.sliceItems addObject:item6];
-            [self.progressChartMonth2.sliceItems addObject:item7];
-            [self.progressChartMonth2.sliceItems addObject:item8];
-            [self.progressChartMonth2.sliceItems addObject:item9];
-            [self.progressChartMonth2 reloadData]; // reload the chart.
+            [self.progressChartYear2.sliceItems addObject:item1];
+            [self.progressChartYear2.sliceItems addObject:item2];
+            [self.progressChartYear2.sliceItems addObject:item3];
+            [self.progressChartYear2.sliceItems addObject:item4];
+            [self.progressChartYear2.sliceItems addObject:item5];
+            [self.progressChartYear2.sliceItems addObject:item6];
+            [self.progressChartYear2.sliceItems addObject:item7];
+            [self.progressChartYear2.sliceItems addObject:item8];
+            [self.progressChartYear2.sliceItems addObject:item9];
+            [self.progressChartYear2 reloadData]; // reload the chart.
             
             //todo change the correct color and change the flag color and change the label
             self.txtTotalNewApp4.text = [NSString stringWithFormat:@"%@ (%@%%)",responseObject[@"data"][@"new_application_total"],responseObject[@"data"][@"new_application_precentage"] ? responseObject[@"data"][@"new_application_precentage"] : @"0.00"];

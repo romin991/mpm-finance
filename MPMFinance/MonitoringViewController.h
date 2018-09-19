@@ -13,4 +13,5 @@
 @property NSString *tipeProduk;
 @property NSString *spv;
 @property NSString *userId;
+@property BOOL isReassign;
 @end

@@ -1,4 +1,4 @@
-//
+  //
 //  MyProfileNavigationViewController.m
 //  MPMFinance
 //
@@ -11,7 +11,7 @@
 #import "MyProfileContainerViewController.h"
 @interface MyProfileNavigationViewController ()<UITabBarDelegate>
 @property (weak, nonatomic) IBOutlet UITabBar *tabBar;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightConstraint;
 @property MyProfileContainerViewController *containerView;
 @end
 
@@ -26,7 +26,10 @@
 {
   if (![[MPMUserInfo getRole] isEqualToString:kRoleCustomer]) {
     self.tabBar.hidden = YES;
-    self.topConstraint.active = NO;
+    self.heightConstraint.constant = 0;
+  } else {
+    self.tabBar.hidden = NO;
+    self.heightConstraint.constant = 49;
   }
 }
 - (void)didReceiveMemoryWarning {

@@ -11,6 +11,7 @@
 @interface List : NSObject
 
 @property NSInteger primaryKey;
+@property NSString * guid;
 @property NSString *imageURL;
 @property NSString *title;
 @property NSString *date;

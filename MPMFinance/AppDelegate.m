@@ -10,7 +10,7 @@
 #import "PopulateRealmDatabase.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import <IQKeyboardManager.h>
-
+#import <AFNetworking.h>
 #define SYSTEM_VERSION_GRATERTHAN_OR_EQUALTO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
 @import Firebase;
@@ -27,7 +27,7 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
     
     [PopulateRealmDatabase removeAllData];
     [PopulateRealmDatabase generateData];
-
+  [self reachabilitySetup];
     // Override point for customization after application launch.
     
     UIBarButtonItem *barButtonAppearance = [UIBarButtonItem appearance];
@@ -114,6 +114,25 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
             break;
     }
 }
+- (void)reachabilitySetup {
+  [AFNetworkReachabilityManager.sharedManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status)
+   {
+     switch (status)
+     {
+       case AFNetworkReachabilityStatusNotReachable:
+         NSLog(@"Not reachable");
+         break;
+       case AFNetworkReachabilityStatusReachableViaWiFi:
+       AFNetworkReachabilityStatusReachableViaWWAN:
+         NSLog(@"Reachable");
+         break;
+       default:
+         NSLog(@"Unknown status!");
+         break;
+     }
+   }];
+}
+
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {}
 

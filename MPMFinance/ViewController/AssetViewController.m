@@ -39,6 +39,9 @@
         for (XLFormRowDescriptor *row in section.formRows) {
             if ([row.tag isEqualToString:@"tipeProduk"]){
                 if (row.value) {
+                  if ([row.value isKindOfClass:[NSString class]]) {
+                    self.idProduct = row.value;
+                  } else
                     self.idProduct = ((XLFormOptionsObject *) row.value).formValue;
                 }
             }

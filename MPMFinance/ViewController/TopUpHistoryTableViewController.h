@@ -12,5 +12,5 @@
 @interface TopUpHistoryTableViewController : UITableViewController
 
 @property Menu *menu;
-
+@property NSString *menuTitle;
 @end

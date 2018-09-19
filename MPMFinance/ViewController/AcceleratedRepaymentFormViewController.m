@@ -11,11 +11,11 @@
 #import "Form.h"
 #import "CustomerModel.h"
 #import "AcceleratedRepaymentModel.h"
-
+#import "AcceleratedResultViewController.h"
 @interface AcceleratedRepaymentFormViewController ()
 
 @property NSMutableDictionary *valueDictionary;
-
+@property NSDate *selectedTanggal;
 @end
 
 @implementation AcceleratedRepaymentFormViewController
@@ -34,6 +34,10 @@
     [SVProgressHUD show];
     __block typeof(self) weakSelf = self;
     XLFormDescriptor *formDescriptor;
+  dispatch_group_t group = dispatch_group_create();
+  dispatch_queue_t queue = dispatch_get_main_queue();
+  dispatch_group_enter(group);
+  
     [FormModel generate:formDescriptor form:currentForm completion:^(XLFormDescriptor *formDescriptor, NSError *error) {
         if (error){
             [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
@@ -45,9 +49,22 @@
             weakSelf.form = formDescriptor;
             [SVProgressHUD dismiss];
             [weakSelf setAdditionalRow];
+          dispatch_group_leave(group);
             
         }
     }];
+  
+  dispatch_group_notify(group, queue, ^{
+    for (XLFormSectionDescriptor *section in self.form.formSections) {
+      for (XLFormRowDescriptor *row in section.formRows) {
+        if ([row.tag isEqualToString:@"tanggalPelunasan"]) {
+          if ([[row cellForFormController:self] isKindOfClass:XLFormDateCell.class]){
+            [(XLFormDateCell *)[row cellForFormController:self] setMinimumDate:[NSDate date]];
+          }
+        }
+      }
+    }
+  });
 }
 
 - (void)didReceiveMemoryWarning {
@@ -76,7 +93,7 @@
             } else {
                 NSMutableArray *optionObjects = [NSMutableArray array];
                 for (Data *data in datas) {
-                    [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:@(data.id) displayText:data.value]];
+                    [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:data.value displayText:data.value]];
                 }
                 row2.selectorOptions = optionObjects;
                 [SVProgressHUD dismiss];
@@ -107,7 +124,6 @@
 - (void)submitNow:(XLFormRowDescriptor *)row{
     NSLog(@"submitNow called");
     [self deselectFormRow:row];
-    
     NSArray *errors = [self formValidationErrors];
     if (errors.count) {
         [SVProgressHUD showErrorWithStatus:((NSError *)errors.firstObject).localizedDescription];
@@ -130,7 +146,13 @@
                 }
             } else {
                 [SVProgressHUD dismiss];
-                [self.navigationController popViewControllerAnimated:YES];
+              AcceleratedResultViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AcceleratedResultViewController"];
+              vc.dict = dictionary[@"data"];
+              vc.tanggal = self.selectedTanggal;
+              
+              [self.navigationController pushViewController:vc animated:YES];
+              return;
+              
             }
         }];
     }
@@ -156,6 +178,8 @@
                 [SVProgressHUD dismissWithDelay:1.5];
             }
         }];
+    } else if ([formRow.tag isEqualToString:@"tanggalPelunasan"]) {
+      self.selectedTanggal = newValue;
     }
 }
 

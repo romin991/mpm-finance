@@ -19,6 +19,7 @@
 @property NSString *agreementNo;
 @property NSString *claimType;
 
+
 @end
 
 @implementation InsuranceClaimFormViewController
@@ -105,7 +106,11 @@
     XLFormSectionDescriptor *section3 = [XLFormSectionDescriptor formSection];
     section3.title = @"";
     [formDescriptor addFormSection:section3];
-    
+  
+  XLFormRowDescriptor *row4 = [XLFormRowDescriptor formRowDescriptorWithTag:nil rowType:XLFormRowDescriptorTypeButton title:@"Call"];
+  row4.action.formSelector = @selector(call);
+  [section3 addFormRow:row4];
+  
     XLFormRowDescriptor *row3 = [XLFormRowDescriptor formRowDescriptorWithTag:nil rowType:XLFormRowDescriptorTypeButton title:@"Submit"];
     row3.action.formSelector = @selector(submitNow:);
     [section3 addFormRow:row3];
@@ -119,7 +124,12 @@
     self.form = formDescriptor;
 }
 
-
+- (void)call {
+  if ([self.valueDictionary objectForKey:@"hotline"]) {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",self.valueDictionary[@"hotline"]]]];
+  }
+  
+}
 
 - (void)submitNow:(XLFormRowDescriptor *)row{
     NSLog(@"submitNow called");

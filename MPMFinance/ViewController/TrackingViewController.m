@@ -87,22 +87,25 @@
 
 - (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker{
   NSMutableArray *locations = [NSMutableArray array];
+  marker.map = nil;
   CLLocation *markerLocation = [[CLLocation alloc] initWithLatitude:marker.position.latitude longitude:marker.position.longitude];
   [locations addObject:markerLocation];
   NSLog(@"%@",marker.userData);
   __weak typeof(self) weakSelf = self;
   [APIModel getAllMarketingTrackingDetail:marker.userData[@"userid"] WithCompletion:^(NSArray *data, NSError *error) {
     if (!error) {
+      int i = data.count;
       for (NSDictionary *datum in data) {
         CLLocationCoordinate2D location = CLLocationCoordinate2DMake([datum[@"lat"] doubleValue], [datum[@"lng"] doubleValue]);
         GMSMarker *marker = [[GMSMarker alloc] init];
         marker.position = CLLocationCoordinate2DMake([datum[@"lat"] doubleValue], [datum[@"lng"] doubleValue]);
-        marker.title = datum[@"fullName"];
+        marker.title =  [NSString stringWithFormat:@"%i - %@",i, datum[@"fullName"]];
         marker.snippet = datum[@"userid"];
         marker.map = weakSelf.mapView;
         marker.userData = datum;
             CLLocation *locationForLocations = [[CLLocation alloc] initWithLatitude:location.latitude longitude:location.longitude];
         [locations addObject:locationForLocations];
+        i--;
       }
       for (int i = 0; i < (locations.count - 1); i++) {
         CLLocation *origin = locations[i];

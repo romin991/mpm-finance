@@ -169,14 +169,14 @@
         }
         
     } else if ([submenu.menuType isEqualToString:kMenuTypeFormSurvey]) {
-        if ([self.additionalSetting objectForKey:@"map"] && [[self.additionalSetting objectForKey:@"map"] integerValue] == 0) {
+        if ([self.additionalSetting objectForKey:@"survey"] && [[self.additionalSetting objectForKey:@"survey"] integerValue] == 0) {
             __weak typeof(self) weakSelf = self;
             UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:self.list.title message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
-            
+          
             [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
                 [weakSelf dismissViewControllerAnimated:YES completion:nil];
             }]];
-            
+          
             [actionSheet addAction:[UIAlertAction actionWithTitle:@"Edit" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
                 SurveyFormViewController *surveyViewController = [[SurveyFormViewController alloc] init];
                 surveyViewController.menu = submenu;
@@ -185,7 +185,7 @@
                 [weakSelf.navigationController pushViewController:surveyViewController animated:YES];
                 [weakSelf dismissViewControllerAnimated:YES completion:nil];
             }]];
-            
+          
             [actionSheet addAction:[UIAlertAction actionWithTitle:@"Submit" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                 [SVProgressHUD show];
                 [SurveyModel postSurveyWithID:self.list.primaryKey completion:^(NSDictionary *response, NSError *error) {
@@ -199,9 +199,9 @@
                 }];
                 [weakSelf dismissViewControllerAnimated:YES completion:nil];
             }]];
-            
+          
             [self presentViewController:actionSheet animated:YES completion:nil];
-            
+          
         } else {
             SurveyFormViewController *surveyViewController = [[SurveyFormViewController alloc] init];
             surveyViewController.menu = submenu;
@@ -231,7 +231,12 @@
         [self.navigationController pushViewController:listViewController animated:YES];
         
     } else if ([submenu.menuType isEqualToString:kMenuTypeCreditSimulation]){
-        CreditSimulationViewController *creditSimulation = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"CreditSimulationViewController"];
+      CreditSimulationViewController *creditSimulation;
+      if ([submenu.title containsString:@"Dahsyat"]) {
+        creditSimulation = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"CreditSimulationViewController2"];
+      } else {
+        creditSimulation = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"CreditSimulationViewController"];
+      }
         creditSimulation.menuType = submenu.title;
         [self.navigationController pushViewController:creditSimulation animated:YES];
         

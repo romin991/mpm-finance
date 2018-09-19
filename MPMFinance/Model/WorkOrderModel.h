@@ -24,7 +24,7 @@
 + (void)getListWorkOrderDetailWithID:(NSInteger)pengajuanId completion:(void(^)(NSDictionary *response, NSError *error))block;
 + (void)getListWorkOrderDetailCompleteDataWithID:(NSInteger)pengajuanId completion:(void(^)(NSDictionary *response, NSError *error))block;
 
-+ (void)postDraftWorkOrder:(List *)list dictionary:(NSDictionary *)dictionary completion:(void(^)(NSDictionary *dictionary, NSError *error))block;
++ (void)postDraftWorkOrder:(List *)list dictionary:(NSDictionary *)dictionary isOffline:(BOOL)isOffline completion:(void(^)(NSDictionary *dictionary, NSError *error))block;
 + (void)postListWorkOrder:(List *)list dictionary:(NSDictionary *)dictionary completion:(void(^)(NSDictionary *dictionary, NSError *error))block;
 
 + (void)setBlackListWithID:(NSInteger)pengajuanId type:(NSString *)type completion:(void(^)(NSDictionary *dictionary, NSError *error))block;

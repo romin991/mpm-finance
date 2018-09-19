@@ -42,10 +42,12 @@
     [super viewDidLoad];
     self.imageViewQR.image = [[[QRCodeGenerator alloc] initWithString:[self.data[@"noreg"] stringValue]] getImage];
     self.imageViewBarcode.image = [UIImage imageWithCIImage: [self generateBarcode:[self.data[@"noreg"] stringValue]]];
-    self.lblTotalDenda.text = [NSString stringWithFormat:@"Rp. %@",[MPMGlobal formatToMoney:self.data[@"installmentAmmount"]]];
+    self.lblTotalDenda.text = [NSString stringWithFormat:@"Rp. %@",[MPMGlobal formatToMoney:self.data[@"totLCAmount"]]];
     self.noKontrak.text = [self.data[@"noreg"] stringValue];
     self.warna.text = self.data[@"color"];
     self.nomorPlat.text = self.data[@"licPlate"];
+  self.jenisAset.text = self.data[@"desc"];
+  self.estimasiAngsuran.text = [NSString stringWithFormat:@"Rp %@",[MPMGlobal formatToRupiah:self.data[@"installmentAmmount"]]];
     self.lblTotalTerlambat.text = [self.data[@"totLCDays"] stringValue];
     // Do any additional setup after loading the view from its nib.
 }

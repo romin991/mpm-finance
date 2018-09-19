@@ -667,7 +667,7 @@
     menu.imageName = @"pengembalianBPKBIcon";
     menu.backgroundImageName = @"OnlineSubmissionBackground";
     menu.circleIconImageName = @"OnlineSubmissionCircleIcon";
-    menu.primaryKey = kMenuPengembalianBPKB;
+    menu.primaryKey = kMenuPengambilanBPKB;
     menu.indonesiaTitle = menu.primaryKey;
     menu.englishTitle = @"BPKB Pick Up";
     menu.sort = 20;

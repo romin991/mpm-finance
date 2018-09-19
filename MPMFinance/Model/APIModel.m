@@ -300,7 +300,7 @@
     [manager setSecurityPolicy:securityPolicy];
     NSDictionary *param = @{ @"ausername" : username
                              };
-    [manager POST:[NSString stringWithFormat:@"%@/login/forgot_by_email",kBaseUrl] parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
+    [manager POST:[NSString stringWithFormat:@"%@/login/forgot_by_email",kBaseUrlWithoutPort] parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
         ;
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSError* error;
@@ -426,7 +426,7 @@
     }];
 }
 
-+ (void)getListPengembalianBPKB:(void(^)(NSArray *lists, NSError *error))block
++ (void)getListPengambilanBPKB:(void(^)(NSArray *lists, NSError *error))block
 {
     AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
     NSDictionary* param = @{@"userid" :[MPMUserInfo getUserInfo][@"userId"],

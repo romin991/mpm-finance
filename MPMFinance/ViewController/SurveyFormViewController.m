@@ -260,14 +260,14 @@
 }
 
 - (void)addDataButtonClicked:(id)sender{
-  if (self.form.formSections.count > 7) {
+  if (self.form.formSections.count > 6) {
     return;
   }
     XLFormSectionDescriptor *section = [self.form formSectionAtIndex:2];
     XLFormSectionDescriptor *newSection = [XLFormSectionDescriptor formSectionWithTitle:section.title];
     for (XLFormRowDescriptor *row in section.allRows) {
         XLFormRowDescriptor *newRow = [XLFormRowDescriptor formRowDescriptorWithTag:row.tag rowType:row.rowType title:row.title];
-        newRow.required = row.required;
+        //newRow.required = row.required;
         newRow.disabled = row.disabled;
         newRow.hidden = row.hidden;
         newRow.selectorTitle = row.selectorTitle;

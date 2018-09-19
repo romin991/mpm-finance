@@ -8,6 +8,7 @@
 
 #import "ProfileModel.h"
 #import "MPMUserInfo.h"
+#import "OfflineData.h"
 @import Firebase;
 
 @implementation ProfileModel
@@ -92,7 +93,7 @@
                             @"token" : @"",
                             @"data" : @{
                                     @"password" : [MPMGlobal MD5fromString:password],
-                                    @"deviceId" : [[FIRInstanceID instanceID] token],
+                                    @"deviceId" : [[FIRInstanceID instanceID] token]? [[FIRInstanceID instanceID] token] : @"" ,
                                     @"loginFrom" : @"mobile"
                                     }
                             };
@@ -108,6 +109,8 @@
             if (code == 200) {
                 NSDictionary *data = [responseObject objectForKey:@"data"];
                 [MPMUserInfo save:data];
+              [OfflineData deleteAll];
+              
               [MPMUserInfo savePassword:[MPMGlobal MD5fromString:password]];
                 if (block) block(data, nil);
                 

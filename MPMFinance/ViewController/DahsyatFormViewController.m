@@ -249,7 +249,7 @@
                 
                 //other setting
                 NSArray *tagForKeyboardNumberPad = [NSArray arrayWithObjects:
-                                                    @"otrPriceList",
+                                                    @"otrPriceList",@"others",
                                                     nil];
                 if ([tagForKeyboardNumberPad containsObject:row.tag]){
                     //Set keyboard type to numberPad
@@ -261,16 +261,22 @@
                 }
                 
                 NSArray *tagForKeyboardDecimalPad = [NSArray arrayWithObjects:
-                                                     @"loanOfValue", @"runningRate", @"feeAgent", @"others",
+                                                     @"loanOfValue", @"runningRate", @"feeAgent",
                                                      nil];
                 if ([tagForKeyboardDecimalPad containsObject:row.tag]){
                     //Set keyboard type to numberPad
                     if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
                         [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setKeyboardType:UIKeyboardTypeDecimalPad];
                       [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMustNumericOnly:YES];
-                      [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:12];
+                      [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:6];
                     }
                 }
+              
+              if ([[MPMGlobal getAllFieldShouldContainThousandSeparator] containsObject:row.tag]) {
+                if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+                  [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setShouldGiveThousandSeparator:YES];
+                }
+              }
             }
         }
         

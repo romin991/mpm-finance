@@ -12,6 +12,7 @@
 #import "CustomerModel.h"
 #import "CustomerGetCustomerModel.h"
 #import "FloatLabeledTextFieldCell.h"
+#import "CustomerGetCustomerTableViewController.h"
 
 @interface CustomerGetCustomerFormViewController ()
 
@@ -112,7 +113,8 @@
                 }
             } else {
                 [SVProgressHUD dismiss];
-                [self.navigationController popViewControllerAnimated:YES];
+              CustomerGetCustomerTableViewController *viewController = [[CustomerGetCustomerTableViewController alloc] init];
+              [self.navigationController pushViewController:viewController animated:YES];
             }
         }];
     }

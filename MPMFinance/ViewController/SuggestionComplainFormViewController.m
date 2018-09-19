@@ -127,17 +127,29 @@
     XLFormRowDescriptor *numpadRow = [self.form formRowWithTag:@"noHP"];
     if ([[numpadRow cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
         [(FloatLabeledTextFieldCell *)[numpadRow cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
-      numpadRow.value = [MPMUserInfo getUserInfo][@"phone"];
-      numpadRow.disabled = @(YES);
+     /// numpadRow.value = [MPMUserInfo getUserInfo][@"phone"];
+      numpadRow.disabled = @YES;
     }
+  XLFormRowDescriptor *nomorHandphoneRow = [self.form formRowWithTag:@"nomorHandphone"];
+  if ([[nomorHandphoneRow cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+    [(FloatLabeledTextFieldCell *)[nomorHandphoneRow cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
+    /// numpadRow.value = [MPMUserInfo getUserInfo][@"phone"];
+    nomorHandphoneRow.disabled = @YES;
+  }
   
   XLFormRowDescriptor *emailRow = [self.form formRowWithTag:@"email"];
   if ([[emailRow cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
     [(FloatLabeledTextFieldCell *)[emailRow cellForFormController:self] setMustAlphabetPunctuationOnly:YES];
-    emailRow.disabled = @(YES);
+    emailRow.disabled = @(NO);
   }
   
+  emailRow = [self.form formRowWithTag:@"alamat"];
+  if ([[emailRow cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+   // [(FloatLabeledTextFieldCell *)[emailRow cellForFormController:self] setMustAlphabetPunctuationOnly:YES];
+    emailRow.disabled = @YES;
+  }
     numpadRow = [self.form formRowWithTag:@"nomorhandphonebaruJikaDiubah"];
+  numpadRow.required = NO;
     if ([[numpadRow cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
         [(FloatLabeledTextFieldCell *)[numpadRow cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
       
@@ -166,7 +178,11 @@
 - (void)submitNow:(XLFormRowDescriptor *)row{
     NSLog(@"submitNow called");
     [self deselectFormRow:row];
-    
+  if (![MPMGlobal isValidEmail:[[self.form formValues] valueForKey:@"email"]]) {
+    [SVProgressHUD showErrorWithStatus:@"Email Tidak Valid"];
+    [SVProgressHUD dismissWithDelay:1.0f];
+    return ;
+  }
     NSArray *errors = [self formValidationErrors];
     if (errors.count) {
         [SVProgressHUD showErrorWithStatus:((NSError *)errors.firstObject).localizedDescription];
@@ -249,6 +265,7 @@
             if (error == nil) {
                 if (dictionary) {
                     weakSelf.valueDictionary = [NSMutableDictionary dictionaryWithDictionary:dictionary];
+                  [weakSelf.valueDictionary addEntriesFromDictionary:@{@"noHP" : dictionary[@"nomorHandphone"]}];
                     [FormModel loadValueFrom:weakSelf.valueDictionary to:weakSelf.form on:weakSelf];
                 }
                 [SVProgressHUD dismiss];

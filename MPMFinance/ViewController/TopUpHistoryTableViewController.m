@@ -21,13 +21,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.datas = [NSArray array];
+  if (self.menuTitle.length > 0) {
+    self.title = self.menuTitle;
+  } else
     self.title = self.menu.title;
     [TopUpModel getListTopUpCompletion:^(NSArray *responses, NSError *error) {
         self.datas = responses;
         [self.tableView reloadData];
     }];
+  UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(back:)];
+  self.navigationItem.leftBarButtonItem = backButton;
 }
-
+- (void)back:(id)sender {
+  [self.navigationController popToViewController:self.navigationController.viewControllers[1] animated:YES];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

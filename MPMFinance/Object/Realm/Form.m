@@ -439,9 +439,9 @@
   
   
     [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Kelurahan" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kecamatan" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kota" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kode Pos" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :0 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kecamatan" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :0 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kota" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :0 :YES :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kode Pos" :@"" :@""]];
   [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"RT" :@"" :@""]];
   [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"RW" :@"" :@""]];
     [form.sections addObject:section];
@@ -870,39 +870,39 @@
     
     section = [[FormSection alloc] init];
     section.title = @"Survey";
-    [section.rows addObject:[FormRow new:realm :0 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Calon Debitur" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :1 :YES :NO :XLFormRowDescriptorTypeDateInline :@"Tanggal Survey" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :2 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Surveyor" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :3 :YES :NO :XLFormRowDescriptorTypeBooleanCheck :@"Alamat Survey Ditemukan" :@"" :@""]];// :27];
-    [section.rows addObject:[FormRow new:realm :4 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Penjelasan" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :0 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Calon Debitur" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :1 :NO :NO :XLFormRowDescriptorTypeDateInline :@"Tanggal Survey" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :2 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Surveyor" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :3 :NO :NO :XLFormRowDescriptorTypeBooleanCheck :@"Alamat Survey Ditemukan" :@"" :@""]];// :27];
+    [section.rows addObject:[FormRow new:realm :4 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Penjelasan" :@"" :@""]];
     [form.sections addObject:section];
     
     section = [[FormSection alloc] init];
     section.title = @"Observasi Tempat Tinggal";
-    [section.rows addObject:[FormRow new:realm :7 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Kondisi Tempat Tinggal" :@"" :@"getKondisiTmptTggl"]];
-    [section.rows addObject:[FormRow new:realm :7 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Lingkungan" :@"" :@"getLingkungan"]];
-    [section.rows addObject:[FormRow new:realm :7 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Akses Jalan Masuk" :@"" :@"getAksesjalanmasuk"]];
-    [section.rows addObject:[FormRow new:realm :7 :YES :NO :XLFormRowDescriptorTypeMultipleSelector :@"Fasilitas Tempat Tinggal Yang Dimiliki" :@"fasilitasRumah" :@"getFasilitasRumah"]];
+    [section.rows addObject:[FormRow new:realm :7 :NO :NO :XLFormRowDescriptorTypeSelectorPush :@"Kondisi Tempat Tinggal" :@"" :@"getKondisiTmptTggl"]];
+    [section.rows addObject:[FormRow new:realm :7 :NO :NO :XLFormRowDescriptorTypeSelectorPush :@"Lingkungan" :@"" :@"getLingkungan"]];
+    [section.rows addObject:[FormRow new:realm :7 :NO :NO :XLFormRowDescriptorTypeSelectorPush :@"Akses Jalan Masuk" :@"" :@"getAksesjalanmasuk"]];
+    [section.rows addObject:[FormRow new:realm :7 :NO :NO :XLFormRowDescriptorTypeMultipleSelector :@"Fasilitas Tempat Tinggal Yang Dimiliki" :@"fasilitasRumah" :@"getFasilitasRumah"]];
     [section.rows addObject:[FormRow new:realm :7 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Fasilitas Tempat Tinggal Lainnya" :@"fasilitasRumahLainnya" :@""]];
-    [section.rows addObject:[FormRow new:realm :7 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Penampakan Depan Rumah" :@"" :@"getPenampakanDpnRmh"]];
-    [section.rows addObject:[FormRow new:realm :7 :YES :NO :XLFormRowDescriptorTypeMultipleSelector :@"Patokan Depan Rumah" :@"patokanDktRmh" :@"getPatokanDpnRmh"]];
+    [section.rows addObject:[FormRow new:realm :7 :NO :NO :XLFormRowDescriptorTypeSelectorPush :@"Penampakan Depan Rumah" :@"" :@"getPenampakanDpnRmh"]];
+    [section.rows addObject:[FormRow new:realm :7 :NO :NO :XLFormRowDescriptorTypeMultipleSelector :@"Patokan Depan Rumah" :@"patokanDktRmh" :@"getPatokanDpnRmh"]];
     [section.rows addObject:[FormRow new:realm :7 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Patokan Depan Rumah Lainnya" :@"patokanDktRmhLainnya" :@""]];
     [form.sections addObject:section];
     
     section = [[FormSection alloc] init];
     section.title = @"Informasi Survey Lingkungan";
-    [section.rows addObject:[FormRow new:realm :5 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :6 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Hubungan" :@"" :@"getHubungan_checklist"]];
-    [section.rows addObject:[FormRow new:realm :7 :YES :NO :XLFormRowDescriptorTypeBooleanCheck :@"Kebenaran Domisili" :@"" :@""]];// :27];
-    [section.rows addObject:[FormRow new:realm :8 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Penjelasan" :@"ketDomisili" :@""]];
-    [section.rows addObject:[FormRow new:realm :9 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Status Kepemilikan Rumah" :@"" :@"getStatuskepemilikanrumahSurvey"]];// :13];
-    [section.rows addObject:[FormRow new:realm :10 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Lama Tinggal (dalam tahun)" :@"lamaTinggal" :@""]];
-    [section.rows addObject:[FormRow new:realm :11 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Jumlah orang yang tinggal serumah" :@"jumlahOrang" :@""]];
-    [section.rows addObject:[FormRow new:realm :9 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Terakhir berinteraksi dengan debitur" :@"" :@"getLastInteraksiDebitur"]];
-    [section.rows addObject:[FormRow new:realm :9 :YES :NO :XLFormRowDescriptorTypeSelectorPush :@"Frekuensi didatangi penagih utang" :@"" :@"getFrekuensiDebtCollector"]];
-    [section.rows addObject:[FormRow new:realm :7 :YES :NO :XLFormRowDescriptorTypeBooleanCheck :@"Debitur anggota paguyuban / partai / LSM" :@"debiturOrganisasi" :@""]];
-    [section.rows addObject:[FormRow new:realm :12 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Organisasi" :@"" :@""]];
-    [section.rows addObject:[FormRow new:realm :12 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Informasi Lain" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :5 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :6 :NO :NO :XLFormRowDescriptorTypeSelectorPush :@"Hubungan" :@"" :@"getHubungan_checklist"]];
+    [section.rows addObject:[FormRow new:realm :7 :NO :NO :XLFormRowDescriptorTypeBooleanCheck :@"Kebenaran Domisili" :@"" :@""]];// :27];
+    [section.rows addObject:[FormRow new:realm :8 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Penjelasan" :@"ketDomisili" :@""]];
+    [section.rows addObject:[FormRow new:realm :9 :NO :NO :XLFormRowDescriptorTypeSelectorPush :@"Status Kepemilikan Rumah" :@"" :@"getStatuskepemilikanrumahSurvey"]];// :13];
+    [section.rows addObject:[FormRow new:realm :10 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Lama Tinggal (dalam tahun)" :@"lamaTinggal" :@""]];
+    [section.rows addObject:[FormRow new:realm :11 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Jumlah orang yang tinggal serumah" :@"jumlahOrang" :@""]];
+    [section.rows addObject:[FormRow new:realm :9 :NO :NO :XLFormRowDescriptorTypeSelectorPush :@"Terakhir berinteraksi dengan debitur" :@"" :@"getLastInteraksiDebitur"]];
+    [section.rows addObject:[FormRow new:realm :9 :NO :NO :XLFormRowDescriptorTypeSelectorPush :@"Frekuensi didatangi penagih utang" :@"" :@"getFrekuensiDebtCollector"]];
+    [section.rows addObject:[FormRow new:realm :7 :NO :NO :XLFormRowDescriptorTypeBooleanCheck :@"Debitur anggota paguyuban / partai / LSM" :@"debiturOrganisasi" :@""]];
+    [section.rows addObject:[FormRow new:realm :12 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama Organisasi" :@"" :@""]];
+    [section.rows addObject:[FormRow new:realm :12 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Informasi Lain" :@"" :@""]];
     [form.sections addObject:section];
     
     //====
@@ -916,15 +916,15 @@
     //====
     section = [[FormSection alloc] init];
     section.title = @"Hasil Pengamatan";
-    [section.rows addObject:[FormRow new:realm :19 :YES :NO :XLFormRowDescriptorTypeTakePhoto :@"Foto Rumah Tampak Depan" :@"fotoRmhDpn" :@""]];
-    [section.rows addObject:[FormRow new:realm :19 :YES :NO :XLFormRowDescriptorTypeTakePhoto :@"Foto Tampak Jalan Menuju Rumah" :@"fotoJlnRmh" :@""]];
-    [section.rows addObject:[FormRow new:realm :19 :YES :NO :XLFormRowDescriptorTypeTakePhoto :@"Foto KTP Debitur" :@"fotoKtpDebitur" :@""]];
-    [section.rows addObject:[FormRow new:realm :19 :YES :NO :XLFormRowDescriptorTypeTakePhoto :@"Foto KTP Pasangan" :@"fotoKtpPasangan" :@""]];
-    [section.rows addObject:[FormRow new:realm :19 :YES :NO :XLFormRowDescriptorTypeTakePhoto :@"Foto Kartu Keluarga 1" :@"fotoKk1" :@""]];
-    [section.rows addObject:[FormRow new:realm :19 :YES :NO :XLFormRowDescriptorTypeTakePhoto :@"Foto Kartu Keluarga 2" :@"fotoKk2" :@""]];
-    [section.rows addObject:[FormRow new:realm :19 :YES :NO :XLFormRowDescriptorTypeTakePhoto :@"Foto Bukti Kepemilikan Rumah" :@"fotoBuktiKepemilikanRmh" :@""]];
-    [section.rows addObject:[FormRow new:realm :19 :YES :NO :XLFormRowDescriptorTypeTakePhoto :@"Foto Bukti Usaha 1" :@"fotoUsaha1" :@""]];
-    [section.rows addObject:[FormRow new:realm :19 :YES :NO :XLFormRowDescriptorTypeTakePhoto :@"Foto Bukti Usaha 2" :@"fotoUsaha2" :@""]];
+    [section.rows addObject:[FormRow new:realm :19 :NO :NO :XLFormRowDescriptorTypeTakePhoto :@"Foto Rumah Tampak Depan" :@"fotoRmhDpn" :@""]];
+    [section.rows addObject:[FormRow new:realm :19 :NO :NO :XLFormRowDescriptorTypeTakePhoto :@"Foto Tampak Jalan Menuju Rumah" :@"fotoJlnRmh" :@""]];
+    [section.rows addObject:[FormRow new:realm :19 :NO :NO :XLFormRowDescriptorTypeTakePhoto :@"Foto KTP Debitur" :@"fotoKtpDebitur" :@""]];
+    [section.rows addObject:[FormRow new:realm :19 :NO :NO :XLFormRowDescriptorTypeTakePhoto :@"Foto KTP Pasangan" :@"fotoKtpPasangan" :@""]];
+    [section.rows addObject:[FormRow new:realm :19 :NO :NO :XLFormRowDescriptorTypeTakePhoto :@"Foto Kartu Keluarga 1" :@"fotoKk1" :@""]];
+    [section.rows addObject:[FormRow new:realm :19 :NO :NO :XLFormRowDescriptorTypeTakePhoto :@"Foto Kartu Keluarga 2" :@"fotoKk2" :@""]];
+    [section.rows addObject:[FormRow new:realm :19 :NO :NO :XLFormRowDescriptorTypeTakePhoto :@"Foto Bukti Kepemilikan Rumah" :@"fotoBuktiKepemilikanRmh" :@""]];
+    [section.rows addObject:[FormRow new:realm :19 :NO :NO :XLFormRowDescriptorTypeTakePhoto :@"Foto Bukti Usaha 1" :@"fotoUsaha1" :@""]];
+    [section.rows addObject:[FormRow new:realm :19 :NO :NO :XLFormRowDescriptorTypeTakePhoto :@"Foto Bukti Usaha 2" :@"fotoUsaha2" :@""]];
     [form.sections addObject:section];
     
     [form.menus addObject:[Menu objectForPrimaryKey:kSubmenuSurvey]];
