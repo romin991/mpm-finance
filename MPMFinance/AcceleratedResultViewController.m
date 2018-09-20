@@ -27,7 +27,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
   [self setupDataWithDictionary:self.dict andTanggalnya:self.tanggal];
-    // Do any additional setup after loading the view from its nib.
+  UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(back:)];
+  self.navigationItem.leftBarButtonItem = backButton;
+}
+- (void)back:(id)sender {
+  [self.navigationController popToViewController:self.navigationController.viewControllers[1] animated:YES];
 }
 
 - (void)setupDataWithDictionary:(NSDictionary *)dict andTanggalnya:(NSDate *)tanggal{

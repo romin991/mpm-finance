@@ -11,7 +11,7 @@
 #import "Form.h"
 #import "CustomerModel.h"
 #import "InsuranceModel.h"
-
+#import "InsuranceClaimTableViewController.h"
 @interface InsuranceClaimFormViewController ()
 
 @property NSMutableDictionary *valueDictionary;
@@ -60,6 +60,12 @@
 }
 
 - (void)setAdditionalRow{
+  for (XLFormSectionDescriptor *sections in self.form.formSections) {
+    for (XLFormRowDescriptor *row in sections.formRows) {
+//      [row.cellConfig setObject:[UIFont systemFontOfSize:12.0f] forKey:@"textLabel.font"];
+//      [row.cellConfig setObject:[UIFont systemFontOfSize:12.0f] forKey:@"detailTextLabel.font"];
+    }
+  }
     XLFormDescriptor *formDescriptor = self.form;
     
     XLFormSectionDescriptor *section = [XLFormSectionDescriptor formSection];
@@ -157,7 +163,8 @@
                 }
             } else {
                 [SVProgressHUD dismiss];
-                [self.navigationController popViewControllerAnimated:YES];
+              InsuranceClaimTableViewController *viewController = [[InsuranceClaimTableViewController alloc] init];
+              [self.navigationController pushViewController:viewController animated:YES];
             }
         }];
     }

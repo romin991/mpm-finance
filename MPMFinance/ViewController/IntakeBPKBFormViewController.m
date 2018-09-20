@@ -58,7 +58,8 @@
   dispatch_group_notify(group, queue, ^{
     for (XLFormSectionDescriptor *section in self.form.formSections) {
       for (XLFormRowDescriptor *row in section.formRows) {
-        
+        [row.cellConfig setObject:[UIFont systemFontOfSize:12.0f] forKey:@"textLabel.font"];
+        [row.cellConfig setObject:[UIFont systemFontOfSize:12.0f] forKey:@"detailTextLabel.font"];
         if ([row.tag isEqualToString:@"tanggalPengambilanDokumen"]) {
           if ([[row cellForFormController:self] isKindOfClass:XLFormDateCell.class]){
             [(XLFormDateCell *)[row cellForFormController:self] setMinimumDate:[NSDate date]];

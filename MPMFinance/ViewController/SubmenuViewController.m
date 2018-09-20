@@ -293,7 +293,6 @@
         
     } else if ([submenu.menuType isEqualToString:kMenuTypeListInsuranceClaim]){
         InsuranceClaimTableViewController *viewController = [[InsuranceClaimTableViewController alloc] init];
-        viewController.menu = submenu;
         [self.navigationController pushViewController:viewController animated:YES];
         
     } else if ([submenu.menuType isEqualToString:kMenuTypeListPengambilanBPKB]){

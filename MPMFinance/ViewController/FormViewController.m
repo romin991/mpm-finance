@@ -436,6 +436,7 @@
                       [row.tag isEqualToString:@"jenisKelamin"] ||
                       [row.tag isEqualToString:@"nomorHandphone"]
                       ) {
+                    row.required = NO;
                     row.disabled = @YES;
                   }
                 } else {
@@ -863,7 +864,7 @@
   NSArray * array = [NSArray array];
     //notcalled because this is null
     if ([self.form formRowWithTag:@"tanggalLahir"]) {
-      if (!self.hostReachability.currentReachabilityStatus == NotReachable){
+      if (self.hostReachability.currentReachabilityStatus != NotReachable){
         XLFormRowDescriptor *row = [self.form formRowWithTag:@"tanggalLahir"];
         if ([((NSDate *) row.value) timeIntervalSinceNow] > -536457600 ) {
             UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:[self.form indexPathOfFormRow:row]];
@@ -877,7 +878,7 @@
     }
      if ([self.form formRowWithTag:@"noKTP"]) {
       XLFormRowDescriptor *row = [self.form formRowWithTag:@"noKTP"];
-      if ([row.value length] < 16 ) {
+      if ([row.value length] < 16 && self.hostReachability.currentReachabilityStatus != NotReachable) {
         UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:[self.form indexPathOfFormRow:row]];
         [self animateCell:cell];
         
@@ -962,10 +963,10 @@
       XLFormRowDescriptor *nomorKartuKreditAtauKontrak1 = [self.form formRowWithTag:@"nomorKartuKreditAtauKontrak1"];
       XLFormRowDescriptor *pinjamanTempatLain2 = [self.form formRowWithTag:@"pinjamanTempatLain2"];
       XLFormRowDescriptor *nomorKartuKreditAtauKontrak2 = [self.form formRowWithTag:@"nomorKartuKreditAtauKontrak2"];
-      if (pinjamanTempatLain1.value != nil && ![pinjamanTempatLain1.value isEqualToString:@""]) {
+      if (pinjamanTempatLain1.value != nil && ![((XLFormOptionsObject *)pinjamanTempatLain1.value).valueData isEqual:@0]) {
         nomorKartuKreditAtauKontrak1.required = YES;
       }
-      if (pinjamanTempatLain2.value != nil && ![pinjamanTempatLain2.value isEqualToString:@""]) {
+      if (pinjamanTempatLain2.value != nil && ![((XLFormOptionsObject *)pinjamanTempatLain2.value).valueData isEqual:@0]) {
         nomorKartuKreditAtauKontrak2.required = YES;
       }
       

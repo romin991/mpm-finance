@@ -441,7 +441,7 @@ NSString *const MPMRegexValidationAlphabetMin3Char = @"^[a-zA-Z']{3,}$";
     [[FormRow new:realm :28 :3 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Hotline"] setDisabled:YES];
     [FormRow new:realm :28 :4 :YES :XLFormRowDescriptorTypeDate :@"Tanggal Kejadian"];
     [FormRow new:realm :28 :5 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Lokasi"];
-    [FormRow new:realm :28 :6 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kronologis Kecelakaan"];
+    [FormRow new:realm :28 :6 :YES :XLFormRowDescriptorTypeTextView :@"Kronologis Kecelakaan"];
 }
 
 + (void)generateLegalisirBPKBWithRealm:(RLMRealm *)realm{

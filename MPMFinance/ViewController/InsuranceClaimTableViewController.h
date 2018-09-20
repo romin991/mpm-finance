@@ -11,6 +11,5 @@
 
 @interface InsuranceClaimTableViewController : UITableViewController
 
-@property Menu *menu;
 
 @end

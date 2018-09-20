@@ -21,13 +21,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.datas = [NSArray array];
-    self.title = self.menu.title;
+    self.title = @"History Of Insurance Claim";
     [InsuranceModel getListInsuranceCompletion:^(NSArray *responses, NSError *error) {
         self.datas = responses;
         [self.tableView reloadData];
     }];
+  UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(back:)];
+  self.navigationItem.leftBarButtonItem = backButton;
 }
-
+- (void)back:(id)sender {
+  [self.navigationController popToViewController:self.navigationController.viewControllers[1] animated:YES];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
