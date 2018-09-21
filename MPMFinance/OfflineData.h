@@ -17,6 +17,7 @@
 - (NSDictionary *)getDataDictionary;
 + (void)save:(NSDictionary *)dict into:(NSString*)primary withRemoteId:(NSInteger)remoteId;
 - (List *)convertToList;
++ (OfflineData *)searchOfflineData:(NSString *)primaryKey;
 + (OfflineData *)getById:(NSInteger *)remoteId;
 + (void) deleteAll;
 + (void)deleteOfflineData:(OfflineData *)data;

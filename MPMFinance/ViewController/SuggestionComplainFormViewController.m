@@ -139,7 +139,6 @@
   
   XLFormRowDescriptor *emailRow = [self.form formRowWithTag:@"email"];
   if ([[emailRow cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
-    [(FloatLabeledTextFieldCell *)[emailRow cellForFormController:self] setMustAlphabetPunctuationOnly:YES];
     emailRow.disabled = @(NO);
   }
   
@@ -152,12 +151,15 @@
   numpadRow.required = NO;
     if ([[numpadRow cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
         [(FloatLabeledTextFieldCell *)[numpadRow cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
+      [(FloatLabeledTextFieldCell *)[numpadRow cellForFormController:self] setMaximumLength:20];
+      [(FloatLabeledTextFieldCell *)[numpadRow cellForFormController:self] setMustNumericOnly:YES];
       
     }
     
     numpadRow = [self.form formRowWithTag:@"nomorTelepon"];
     if ([[numpadRow cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
         [(FloatLabeledTextFieldCell *)[numpadRow cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
+      [(FloatLabeledTextFieldCell *)[numpadRow cellForFormController:self] setMustNumericOnly:YES];
         numpadRow.disabled = @(YES);
       
     }
@@ -165,11 +167,15 @@
     numpadRow = [self.form formRowWithTag:@"nomorTeleponBaruJikaDiubah"];
     if ([[numpadRow cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
         [(FloatLabeledTextFieldCell *)[numpadRow cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
+      [(FloatLabeledTextFieldCell *)[numpadRow cellForFormController:self] setMustNumericOnly:YES];
+      [(FloatLabeledTextFieldCell *)[numpadRow cellForFormController:self] setMaximumLength:20];
     }
     
     numpadRow = [self.form formRowWithTag:@"noHP"];
     if ([[numpadRow cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
         [(FloatLabeledTextFieldCell *)[numpadRow cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
+      [(FloatLabeledTextFieldCell *)[numpadRow cellForFormController:self] setMustNumericOnly:YES];
+      [(FloatLabeledTextFieldCell *)[numpadRow cellForFormController:self] setMaximumLength:20];
     }
 
     self.form = formDescriptor;

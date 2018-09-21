@@ -662,9 +662,11 @@
         
         [manager POST:[NSString stringWithFormat:@"%@/pengajuandraft/%@", kApiUrl, url] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             @try {
-                if ([[responseObject objectForKey:@"data"] objectForKey:@"id"] && ![list.guid isEqualToString:@""])
+                if ([[responseObject objectForKey:@"data"] objectForKey:@"id"] && ![list.guid isEqualToString:@""] )
                 {
-                  [OfflineData save:dictionary into:list.guid withRemoteId:[responseObject[@"data"][@"id"] integerValue]];
+                  if ([OfflineData searchOfflineData:list.guid]) {
+                    [OfflineData save:dictionary into:list.guid withRemoteId:[responseObject[@"data"][@"id"] integerValue]];
+                  }
                 }
                 NSInteger code = [[responseObject objectForKey:@"statusCode"] integerValue];
                 NSString *message = [responseObject objectForKey:@"message"];

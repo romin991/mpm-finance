@@ -98,7 +98,7 @@
                    @"token" : [MPMUserInfo getToken],
                    @"data" : @{@"hargaKendaraan" : [dictionary objectForKey:@"otrKendaraan"],
                                @"dp" : [dictionary objectForKey:@"dpPercentage"],
-                               @"nilaiDp" : [[dictionary objectForKey:@"dpRupiah"] stringByReplacingOccurrencesOfString:@"." withString:@""],
+                               @"nilaiDp" : [[dictionary objectForKey:@"dpRupiah"] stringByReplacingOccurrencesOfString:@"," withString:@""],
                                @"tahunKendaraan" : [dictionary objectForKey:@"tahunKendaraan"],
                                @"tenor" : [dictionary objectForKey:@"tenor"],
                                @"tipePembayaran" : [dictionary objectForKey:@"tipePembayaran"],
