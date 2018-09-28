@@ -180,6 +180,11 @@
     if ([otherDay day] == [today day]) {
       
       [(XLFormDateCell *)[timeRow cellForFormController:self] setMinimumDate:[NSDate date]];
+      if ([[NSDate date] compare:timeRow.value] != NSOrderedAscending) {
+        timeRow.value = [NSDate date];
+        
+        [self reloadFormRow:timeRow];
+      }
     } else {
       [(XLFormDateCell *)[timeRow cellForFormController:self] setMinimumDate:[NSDate dateWithTimeIntervalSince1970:0]];
     }

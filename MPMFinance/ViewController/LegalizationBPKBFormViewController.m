@@ -204,10 +204,7 @@
     if ([otherDay day] == [today day]) {
       
       [(XLFormDateCell *)[timeRow cellForFormController:self] setMinimumDate:[NSDate date]];
-      NSCalendar *calendar = [NSCalendar currentCalendar];
-      NSDateComponents *comps = [calendar components:(NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond) fromDate:newValue];
-      NSDate *newDate = [calendar dateByAddingComponents: comps toDate: timeRow.value options:0];
-      if ([[NSDate date] compare:newDate] == NSOrderedDescending) {
+      if ([[NSDate date] compare:timeRow.value] != NSOrderedAscending) {
         timeRow.value = [NSDate date];
         
         [self reloadFormRow:timeRow];
