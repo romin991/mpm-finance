@@ -289,7 +289,7 @@
   }];
 }
 + (void) forgotPasswordWithUserName:(NSString *)username withCompletion:(void(^)(NSString *responseString, NSError *error))block{
-    AFHTTPSessionManager *manager = [MPMGlobal sessionManager];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
    // [manager.requestSerializer setValue:@"application/x-www-form-urlencoded; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
 

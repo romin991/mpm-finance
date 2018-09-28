@@ -96,7 +96,7 @@
         param = [NSMutableDictionary dictionaryWithDictionary:
                  @{@"userid" :[MPMUserInfo getUserInfo][@"userId"],
                    @"token" : [MPMUserInfo getToken],
-                   @"data" : @{@"hargaKendaraan" : [dictionary objectForKey:@"otrKendaraan"],
+                   @"data" : @{@"hargaKendaraan" : [[dictionary objectForKey:@"otrKendaraan"] stringByReplacingOccurrencesOfString:@"." withString:@""],
                                @"dp" : [dictionary objectForKey:@"dpPercentage"],
                                @"nilaiDp" : [[dictionary objectForKey:@"dpRupiah"] stringByReplacingOccurrencesOfString:@"," withString:@""],
                                @"tahunKendaraan" : [dictionary objectForKey:@"tahunKendaraan"],

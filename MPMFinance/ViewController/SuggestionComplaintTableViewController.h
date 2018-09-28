@@ -12,5 +12,5 @@
 @interface SuggestionComplaintTableViewController : UITableViewController
 
 @property Menu *menu;
-
+@property int selectedSegment;
 @end

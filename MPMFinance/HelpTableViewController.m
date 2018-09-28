@@ -8,6 +8,7 @@
 
 #import "HelpTableViewController.h"
 #import "ProductDetailViewController.h"
+#import "LanguageManager.h"
 @interface HelpTableViewController ()
 @property NSArray *data;
 @end
@@ -47,7 +48,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ProductDetailViewController *detailVC = [[ProductDetailViewController alloc] init];
-    detailVC.contentString = self.data[indexPath.row][@"deskripsi"];
+  detailVC.contentString = [LanguageManager isEnglish] ? self.data[indexPath.row][@"deskripsi"] : self.data[indexPath.row][@"deskripsi_id"];
     [self.navigationController.navigationController pushViewController:detailVC animated:YES];
 }
 
@@ -57,7 +58,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     UILabel *title = [cell viewWithTag:2];
     //UIImageView *icon = [cell viewWithTag:1];
-    title.text = self.data[indexPath.row][@"jenis"];
+  title.text =  [LanguageManager isEnglish] ? self.data[indexPath.row][@"jenis"] : self.data[indexPath.row][@"jenis_id"];
     
     return cell;
 }

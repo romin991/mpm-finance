@@ -421,6 +421,9 @@
     return cell;
 }
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+  if ([self.menu.primaryKey isEqualToString:@"Monitoring "]) {
+    return NO;
+  } else 
     return YES;
 }
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {

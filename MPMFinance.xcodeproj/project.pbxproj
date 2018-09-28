@@ -226,6 +226,9 @@
 		5CFF0A7520AADAE200198E60 /* NJOPasswordStrengthEvaluator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFF0A7420AADAE100198E60 /* NJOPasswordStrengthEvaluator.m */; };
 		C330A958211215DC000F01AE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C330A957211215DC000F01AE /* GoogleService-Info.plist */; };
 		C33F39072152216000C0C765 /* AcceleratedResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C33F39052152216000C0C765 /* AcceleratedResultViewController.m */; };
+		C3CBD685215E71B7009F307C /* MPMImageViewerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CBD683215E71B7009F307C /* MPMImageViewerViewController.m */; };
+		C3CBD686215E71B7009F307C /* MPMImageViewerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3CBD684215E71B7009F307C /* MPMImageViewerViewController.xib */; };
+		C3CBD68E215E752E009F307C /* EXPhotoViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CBD68D215E752E009F307C /* EXPhotoViewer.m */; };
 		C3FF9ECD213D654100739069 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = C3FF9ECB213D654100739069 /* Reachability.m */; };
 		D3738F410048C92A1AE2571B /* libPods-MPMFinance.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F2B2C34A7F4351773F253B9A /* libPods-MPMFinance.a */; };
 /* End PBXBuildFile section */
@@ -605,6 +608,11 @@
 		C330A957211215DC000F01AE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C33F39042152216000C0C765 /* AcceleratedResultViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AcceleratedResultViewController.h; sourceTree = "<group>"; };
 		C33F39052152216000C0C765 /* AcceleratedResultViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AcceleratedResultViewController.m; sourceTree = "<group>"; };
+		C3CBD682215E71B7009F307C /* MPMImageViewerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPMImageViewerViewController.h; sourceTree = "<group>"; };
+		C3CBD683215E71B7009F307C /* MPMImageViewerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPMImageViewerViewController.m; sourceTree = "<group>"; };
+		C3CBD684215E71B7009F307C /* MPMImageViewerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MPMImageViewerViewController.xib; sourceTree = "<group>"; };
+		C3CBD68C215E752E009F307C /* EXPhotoViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXPhotoViewer.h; sourceTree = "<group>"; };
+		C3CBD68D215E752E009F307C /* EXPhotoViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXPhotoViewer.m; sourceTree = "<group>"; };
 		C3FF9ECB213D654100739069 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		C3FF9ECC213D654100739069 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		F2B2C34A7F4351773F253B9A /* libPods-MPMFinance.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MPMFinance.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -857,6 +865,7 @@
 			isa = PBXGroup;
 			children = (
 				5CD07BD91EC342B0007C8C08 /* MPMFinance.entitlements */,
+				C3CBD68B215E752E009F307C /* EXPhotoViewer */,
 				4886BAFE1EC4A0F7000F8DBE /* Object */,
 				5C9DB23A1EC338B700FC0CC9 /* Model */,
 				5C9DB2331EC3310600FC0CC9 /* Global */,
@@ -914,6 +923,9 @@
 				5CF497B71ED330FF0005327D /* RegisterViewController.m */,
 				5CCD2A201EF9577D000336AF /* SendOTPViewController.h */,
 				5CCD2A211EF9577D000336AF /* SendOTPViewController.m */,
+				C3CBD682215E71B7009F307C /* MPMImageViewerViewController.h */,
+				C3CBD683215E71B7009F307C /* MPMImageViewerViewController.m */,
+				C3CBD684215E71B7009F307C /* MPMImageViewerViewController.xib */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -1399,6 +1411,16 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		C3CBD68B215E752E009F307C /* EXPhotoViewer */ = {
+			isa = PBXGroup;
+			children = (
+				C3CBD68C215E752E009F307C /* EXPhotoViewer.h */,
+				C3CBD68D215E752E009F307C /* EXPhotoViewer.m */,
+			);
+			name = EXPhotoViewer;
+			path = "../../../../Downloads/EXPhotoViewer-master/EXPhotoViewer";
+			sourceTree = "<group>";
+		};
 		C3D09070AC4F3BE170AAB938 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1483,6 +1505,7 @@
 			files = (
 				483F39301EC3085E00C03253 /* LaunchScreen.storyboard in Resources */,
 				4846E2301EE66A70000C08B7 /* DataMAPFormViewController.xib in Resources */,
+				C3CBD686215E71B7009F307C /* MPMImageViewerViewController.xib in Resources */,
 				48A807FE20BECAA8005631F6 /* ResultTableViewCell.xib in Resources */,
 				4825BFD21F5C3FCE00D091AC /* CustomerGetCustomerTableViewController.xib in Resources */,
 				5C4D5FC0208F5F0C004CA73E /* ProductDetailViewController.xib in Resources */,
@@ -1683,6 +1706,7 @@
 				48E3E92B20B5C45100E8D170 /* DropdownValueTransformer.m in Sources */,
 				48E3E92720B5C41700E8D170 /* DropdownWSViewController.m in Sources */,
 				4848B1B21F1251E700C9DE21 /* PostalCodeTableViewCell.m in Sources */,
+				C3CBD68E215E752E009F307C /* EXPhotoViewer.m in Sources */,
 				5C3A1E6B20CE67DE0074322B /* NSBundle+Language.m in Sources */,
 				4848B1B61F12547700C9DE21 /* PostalCodeValueTransformer.m in Sources */,
 				5C8EB86420956FD4006A3170 /* ActivityHistoryViewController.m in Sources */,
@@ -1696,6 +1720,7 @@
 				5CBC4C771ECC8A67002ED03C /* MyProfileTableViewController.m in Sources */,
 				48E3E92E20B5C93F00E8D170 /* XLFormBaseDropdownViewController.m in Sources */,
 				4825BFC21F5C3F7B00D091AC /* InsuranceClaimTableViewController.m in Sources */,
+				C3CBD685215E71B7009F307C /* MPMImageViewerViewController.m in Sources */,
 				484ADB231F0CEDCE0006BCB0 /* SuggestionComplaintModel.m in Sources */,
 				5CFF0A7520AADAE200198E60 /* NJOPasswordStrengthEvaluator.m in Sources */,
 				5C46F5181EE81914009C6AD6 /* KATCircularProgress.m in Sources */,

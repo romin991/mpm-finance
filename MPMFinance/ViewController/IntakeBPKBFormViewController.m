@@ -172,6 +172,16 @@
       }];
       [alert addAction:action];
       [self presentViewController:alert animated:YES completion:nil];
+      return;
+    }
+    NSDateComponents *otherDay = [[NSCalendar currentCalendar] components:NSCalendarUnitEra | NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:formRow.value];
+    NSDateComponents *today = [[NSCalendar currentCalendar] components:NSCalendarUnitEra | NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:[NSDate date]];
+    XLFormRowDescriptor *timeRow = [self.form formRowWithTag:@"jamPengambilanDokumen"];
+    if ([otherDay day] == [today day]) {
+      
+      [(XLFormDateCell *)[timeRow cellForFormController:self] setMinimumDate:[NSDate date]];
+    } else {
+      [(XLFormDateCell *)[timeRow cellForFormController:self] setMinimumDate:[NSDate dateWithTimeIntervalSince1970:0]];
     }
   }
   if ([formRow.tag isEqualToString:@"jamPengambilanDokumen"])  {

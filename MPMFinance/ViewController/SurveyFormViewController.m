@@ -120,6 +120,8 @@
     dispatch_group_notify(group, queue, ^{
         for (XLFormSectionDescriptor *section in _formDescriptor.formSections) {
             for (XLFormRowDescriptor *row in section.allRows) {
+              [row.cellConfig setObject:[UIFont systemFontOfSize:10.0f] forKey:@"textLabel.font"];
+              [row.cellConfig setObject:[UIFont systemFontOfSize:10.0f] forKey:@"detailTextLabel.font"];
                 if ([row.tag isEqualToString:@"tambahInformasiSurveyLingkungan"]){
                     row.action.formSelector = @selector(addDataButtonClicked:);
                 }

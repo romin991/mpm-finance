@@ -9,6 +9,8 @@
 #import "ProductViewController.h"
 #import "ProductCollectionViewCell.h"
 #import "ProductDetailViewController.h"
+#import <UIImageView+AFNetworking.h>
+#import "LanguageManager.h"
 @interface ProductViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property NSArray *products;
@@ -51,13 +53,14 @@
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     ProductCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
-    [cell.image setImage:[UIImage imageNamed:[NSString stringWithFormat:@"product-%li",(long)indexPath.row]]];
-    cell.title.text = _products[indexPath.row][@"desc"];
+  [cell.image setImageWithURL:[NSURL URLWithString:_products[indexPath.row][@"imageIconIos"]]];
+  
+  cell.title.text = [LanguageManager isEnglish] ? _products[indexPath.row][@"desc"] : _products[indexPath.row][@"desc_id"];
     return cell;
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     ProductDetailViewController *detailVC = [[ProductDetailViewController alloc] init];
-    detailVC.contentString = self.products[indexPath.row][@"description"];
+    detailVC.contentString = [LanguageManager isEnglish] ? _products[indexPath.row][@"description"] : _products[indexPath.row][@"description_id"];
     [self.navigationController pushViewController:detailVC animated:YES];
     
 }

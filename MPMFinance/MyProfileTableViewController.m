@@ -30,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtGender;
 @property (weak, nonatomic) IBOutlet UITextField *txtNamaDealer;
 @property (weak, nonatomic) IBOutlet UIButton *changePasswordButton;
+@property (weak, nonatomic) IBOutlet UIButton *btnChangeProfile;
 
 @property NSString* fileName;
 @property NSString* fileSize;
@@ -127,6 +128,7 @@
   
   [APIModel getProfileWithCompletion:^(NSDictionary *responseDictionary, NSError *error) {
     dispatch_async(dispatch_get_main_queue(), ^{
+      [MPMUserInfo updateProfile:responseDictionary];
       self.txtEmail.text = responseDictionary[@"email"];
       self.txtFullName.text = responseDictionary[@"username"];
       self.txtUserID.text = responseDictionary[@"userId"];
@@ -380,6 +382,7 @@
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             NSLog(@"%@",responseObject);
           [SVProgressHUD dismiss];
+          [MPMUserInfo updateProfile:responseObject[@"data"]];
           UIAlertController* alertVC = [UIAlertController alertControllerWithTitle:@"Success" message:responseObject[@"message"] preferredStyle:UIAlertControllerStyleAlert];
           [alertVC addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil]];
           [super presentViewController:alertVC animated:YES completion:nil];
@@ -411,6 +414,7 @@
     [_txtDateOfBirth setEnabled:enable];
     [_txtPhoneNumber setEnabled:enable];
     [_txtEmail setEnabled:enable];
+  [_btnChangeProfile setEnabled:enable];
     [_txtFullName setEnabled:enable];
 //    [_txtIdCardNumber setEnabled:enable];
     [_txtTempatLahir setEnabled:enable];

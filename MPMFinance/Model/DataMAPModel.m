@@ -129,7 +129,7 @@
                                @"pendapatanLainnyaPerBulan" : data[@"pendapatan_lain_per_bulan"],
                                
                                @"namaPerusahaan" : [data objectForKey:@"nama_perusahaan"] ?: @"",
-                               @"statusPekerjaanSebelumnya" : [data objectForKey:@"status_pekerjaan_sebelumnya"] ?: @"",
+                               @"statusPekerjaanSebelumnya" : [data objectForKey:@"status_pekerjaan_sebelumnya"] ? @([[data objectForKey:@"status_pekerjaan_sebelumnya"] integerValue]): @"",
                                @"lamaBekerjaDalamTahun" : [data objectForKey:@"lama_bekerja_sebelumnya"] ?: @"",
                                
                                @"tahun1" : data[@"omset_per_bulan_thn"],

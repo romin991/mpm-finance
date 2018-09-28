@@ -191,7 +191,7 @@
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
     [formatter setMaximumFractionDigits:10];
-    
+  [formatter setGroupingSeparator:@"."];
     // Combine the new text with the old; then remove any
     // commas from the textField before formatting
     NSString *combinedText = [textField.text stringByReplacingCharactersInRange:range withString:string];
@@ -335,7 +335,7 @@
     }
     else if ([self.menuType isEqualToString:@"Pembiayaan Mobil Baru"] || [self.menuType isEqualToString:@"Pembiayaan Mobil Bekas"]) {
         urlString = [NSString stringWithFormat:@"%@/simulation/mycar",kApiUrl];
-        [param addEntriesFromDictionary:@{@"jenisKendaraan" : self.menuType
+      [param addEntriesFromDictionary:@{@"jenisKendaraan" : [self.menuType isEqualToString:@"Pembiayaan Mobil Baru"] ? @"New Car" : @"Used Car"
                                           }];
     }
     else if ([self.menuType isEqualToString:@"Dahsyat - Multiguna Motor"]) {
@@ -368,8 +368,8 @@
               self.txtValue1.text = responseObject[@"data"][@"totalBayarAwal"];
               self.txtValue2.text = responseObject[@"data"][@"angsuran"];
             } else {
-              self.txtValue1.text = responseObject[@"data"][@"hargaKendaraan"];
-              self.txtValue2.text = responseObject[@"data"][@"totalBayarAwal"];
+              self.txtValue2.text = responseObject[@"data"][@"hargaKendaraan"];
+              self.txtValue1.text = responseObject[@"data"][@"totalBayarAwal"];
             }
           }
           else if ([self.menuType isEqualToString:@"Dahsyat - Multiguna Motor"]) {

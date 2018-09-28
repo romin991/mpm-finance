@@ -726,6 +726,7 @@
     submenu.sort = 2;
     submenu.borderColor = @"F26F21";
     [submenu.roles addObject:[Role objectForPrimaryKey:kNoRole]];
+  [submenu.roles addObject:[Role objectForPrimaryKey:kRoleAgent]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [realm addObject:submenu];
@@ -740,6 +741,7 @@
     submenu.menuType = kMenuTypeCreditSimulation;
     submenu.borderColor = @"B30808";
     [submenu.roles addObject:[Role objectForPrimaryKey:kNoRole]];
+  [submenu.roles addObject:[Role objectForPrimaryKey:kRoleAgent]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [realm addObject:submenu];
@@ -755,6 +757,7 @@
     submenu.borderColor = @"546E7A";
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kNoRole]];
+  [submenu.roles addObject:[Role objectForPrimaryKey:kRoleAgent]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [realm addObject:submenu];
     
@@ -768,6 +771,7 @@
     submenu.menuType = kMenuTypeCreditSimulation;
     submenu.borderColor = @"1875D1";
     [submenu.roles addObject:[Role objectForPrimaryKey:kNoRole]];
+  [submenu.roles addObject:[Role objectForPrimaryKey:kRoleAgent]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [realm addObject:submenu];
@@ -782,6 +786,7 @@
     submenu.menuType = kMenuTypeCreditSimulation;
     submenu.borderColor = @"1875D1";
     [submenu.roles addObject:[Role objectForPrimaryKey:kNoRole]];
+  [submenu.roles addObject:[Role objectForPrimaryKey:kRoleAgent]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [realm addObject:submenu];
@@ -797,6 +802,7 @@
     submenu.borderColor = @"33691E";
     [submenu.roles addObject:[Role objectForPrimaryKey:kNoRole]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleDealer]];
+  [submenu.roles addObject:[Role objectForPrimaryKey:kRoleAgent]];
     [submenu.roles addObject:[Role objectForPrimaryKey:kRoleCustomer]];
     [realm addObject:submenu];
 

@@ -332,7 +332,7 @@
 #pragma mark - Barcode Delegate
 - (void)finish{
   
-  if ([[MPMUserInfo getRole] isEqualToString:kRoleDedicated] && ([self.list.status isEqualToString:@"Draft"] || [self.list.status isEqualToString:@"Draft Tidak Lengkap"] || !self.list.status)) {
+  if ([[MPMUserInfo getRole] isEqualToString:kRoleDedicated] && ([self.list.status isEqualToString:@"Draft"] || [self.list.status isEqualToString:@"Draft Tidak Lengkap"] || !self.list.status) && !self.isFromHistory) {
         [self.navigationController popToRootViewControllerAnimated:YES];
         UINavigationController *mainNavigation = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateInitialViewController];
         WorkOrderListViewController *listViewController2 = [[WorkOrderListViewController alloc] initWithNibName:@"WorkOrderListViewController" bundle:nil];

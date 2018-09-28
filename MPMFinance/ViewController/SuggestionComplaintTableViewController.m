@@ -27,9 +27,9 @@
     self.segmentedControl = [[UISegmentedControl alloc] initWithFrame:CGRectMake(10, 10, self.tableView.frame.size.width - 20, 29)];
     [self.segmentedControl insertSegmentWithTitle:@"Pengaduan" atIndex:0 animated:NO];
     [self.segmentedControl insertSegmentWithTitle:@"Saran" atIndex:0 animated:NO];
-    [self.segmentedControl setSelectedSegmentIndex:0];
+    [self.segmentedControl setSelectedSegmentIndex:self.selectedSegment];
     [self.segmentedControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
-    
+  
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 49)];
     [view addSubview:self.segmentedControl];
     

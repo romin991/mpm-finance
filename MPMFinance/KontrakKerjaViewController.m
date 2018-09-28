@@ -28,6 +28,7 @@
                   forControlEvents:UIControlEventValueChanged];
     self.tableView.refreshControl = self.refreshControl;
     // Do any additional setup after loading the view.
+  [self loadListContract];
 }
 
 - (void)didReceiveMemoryWarning {

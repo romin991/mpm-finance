@@ -215,7 +215,7 @@
                 } else {
                     [SVProgressHUD dismiss];
                   SuggestionComplaintTableViewController *vc = [[SuggestionComplaintTableViewController alloc] init];
-                  
+                  vc.selectedSegment = 0;
                     [self.navigationController pushViewController:vc animated:YES];
                 }
             }];
@@ -236,7 +236,7 @@
                 } else {
                     [SVProgressHUD dismiss];
                   SuggestionComplaintTableViewController *vc = [[SuggestionComplaintTableViewController alloc] init];
-                  
+                  vc.selectedSegment = 1;
                   [self.navigationController pushViewController:vc animated:YES];
                 }
             }];

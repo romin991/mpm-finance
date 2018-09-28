@@ -225,7 +225,7 @@
                     //Set keyboard type to numberPad
                     if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
                         [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setKeyboardType:UIKeyboardTypeDecimalPad];
-                      [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:15];
+                      [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:12];
                       [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMustNumericOnly:YES];
                     }
                 }

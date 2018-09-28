@@ -262,6 +262,24 @@ NSString *const kActionQueryDB = @"QueryDB";
   else return [formatter stringFromDate:date];
 }
 
++ (NSDateFormatter *)getDateFormatter{
+  return [MPMGlobal getDateFormatterWithLocale:@"en_GB"];
+}
+
++ (NSDateFormatter *)getDateFormatterWithLocale:(NSString*)locale{
+  NSDateFormatter *dateTimeFormatter = [[NSDateFormatter alloc] init];
+  NSLocale* formatterLocale;
+  if (![locale isEqualToString:@""]) {
+    formatterLocale = [[NSLocale alloc] initWithLocaleIdentifier:locale]; //for 24 hour format
+    [dateTimeFormatter setLocale:formatterLocale];
+  }
+  [dateTimeFormatter setCalendar:[[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierISO8601]];
+  [dateTimeFormatter setTimeZone:[NSTimeZone localTimeZone]];
+  [dateTimeFormatter setDateStyle:NSDateFormatterLongStyle];
+  [dateTimeFormatter setTimeStyle:NSDateFormatterShortStyle];
+  return dateTimeFormatter;
+}
+
 + (NSDate *)dateFromString:(NSString *)object{
    // ISO8601DateFormatter *formatter = [self getISO8601DateFormatter];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -285,6 +303,7 @@ NSString *const kActionQueryDB = @"QueryDB";
 + (NSDate *)dateTimeFromString:(NSString *)object{
     // ISO8601DateFormatter *formatter = [self getISO8601DateFormatter];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+  formatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_GB"];
     formatter.dateFormat = @"dd-MM-yyyy HH:mm:ss";
     NSString *string = object;
     if (string == nil || [string isKindOfClass:[NSNull class]])
@@ -294,6 +313,7 @@ NSString *const kActionQueryDB = @"QueryDB";
 }
 + (NSString *)stringFromDateTime:(NSDate *)object{
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+  formatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_GB"];
     formatter.dateFormat = @"dd-MM-yyyy HH:mm:ss";
     NSDate *date = object;
     if (date == nil || [date isKindOfClass:[NSNull class]]) return [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:0]];

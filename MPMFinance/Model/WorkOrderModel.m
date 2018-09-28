@@ -371,8 +371,8 @@
                                              @"namaEcon" : data[@"namaEcon"],
                                              @"nomorTeleponEcon" : data[@"noTlpEcon"],
                                              
-                                             @"pinjamanTempatLain1" : data[@"pinjamanLain"],
-                                             @"pinjamanTempatLain2" : data[@"pinjamanLain2"],
+                                             @"pinjamanTempatLain1" : @([data[@"pinjamanLain"] integerValue]),
+                                             @"pinjamanTempatLain2" : @([data[@"pinjamanLain2"] integerValue]),
                                              @"nomorKartuKreditAtauKontrak1" : data[@"noCc1"],
                                              @"nomorKartuKreditAtauKontrak2" : data[@"noCc2"],
                                              
@@ -496,8 +496,8 @@
                                              @"namaEcon" : data[@"namaEcon"],
                                              @"nomorTeleponEcon" : data[@"noTlpEcon"],
                                              
-                                             @"pinjamanTempatLain1" : data[@"pinjamanLain"],
-                                             @"pinjamanTempatLain2" : data[@"pinjamanLain2"],
+                                             @"pinjamanTempatLain1" : @([data[@"pinjamanLain"] integerValue]),
+                                             @"pinjamanTempatLain2" : @([data[@"pinjamanLain2"] integerValue]),
                                              @"nomorKartuKreditAtauKontrak1" : data[@"noCc1"],
                                              @"nomorKartuKreditAtauKontrak2" : data[@"noCc2"],
                                              
@@ -712,6 +712,7 @@
         
     } @catch (NSException *exception) {
         NSLog(@"%@", exception);
+      [OfflineData save:dictionary into:list.guid withRemoteId:list.primaryKey];
         if (block) block(nil, [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
                                                   code:1
                                               userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(exception.reason, nil)}]);

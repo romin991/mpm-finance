@@ -21,6 +21,7 @@
                 <outlet property="lblTotalTerlambat" destination="seG-h1-Bgt" id="pa7-rc-AVY"/>
                 <outlet property="noKontrak" destination="r0h-gd-7Zt" id="X25-Jh-fw8"/>
                 <outlet property="nomorPlat" destination="dHL-Mb-e4H" id="xHy-Rm-MEn"/>
+                <outlet property="qrCode" destination="QNL-34-n7T" id="VDh-Qs-LbL"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="warna" destination="dsq-A8-MYO" id="Q1V-BC-Y3W"/>
             </connections>
@@ -177,6 +178,13 @@
                         <constraint firstAttribute="width" constant="156" id="URj-k1-Hyc"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QNL-34-n7T">
+                    <rect key="frame" x="67" y="617" width="240" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>

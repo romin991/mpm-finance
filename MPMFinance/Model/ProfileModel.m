@@ -109,6 +109,7 @@
             if (code == 200) {
                 NSDictionary *data = [responseObject objectForKey:@"data"];
                 [MPMUserInfo save:data];
+              [MPMUserInfo updateProfile:data[@"customerProfile"]];
               [OfflineData deleteAll];
               
               [MPMUserInfo savePassword:[MPMGlobal MD5fromString:password]];

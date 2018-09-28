@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *warna;
 @property (weak, nonatomic) IBOutlet UILabel *nomorPlat;
 @property (weak, nonatomic) IBOutlet UILabel *estimasiAngsuran;
+@property (weak, nonatomic) IBOutlet UILabel *qrCode;
 //{
 //    "statusCode": 200,
 //    "status": "success",
@@ -63,7 +64,7 @@
     NSData *barCodeData = [dataString dataUsingEncoding:NSASCIIStringEncoding];
     [barCodeFilter setValue:barCodeData forKey:@"inputMessage"];
     [barCodeFilter setValue:[NSNumber numberWithFloat:0] forKey:@"inputQuietSpace"];
-    
+  self.qrCode.text = dataString;
     CIImage *barCodeImage = barCodeFilter.outputImage;
     return barCodeImage;
 }

@@ -72,7 +72,7 @@
     XLFormRowDescriptor *numpadRow = [self.form formRowWithTag:@"nomorHandphone"];
     if ([[numpadRow cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
         [(FloatLabeledTextFieldCell *)[numpadRow cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
-      [(FloatLabeledTextFieldCell *)[numpadRow cellForFormController:self]  setMaximumLength:15];
+      [(FloatLabeledTextFieldCell *)[numpadRow cellForFormController:self]  setMaximumLength:12];
     }
   XLFormRowDescriptor *namaRow = [self.form formRowWithTag:@"nama"];
   if ([[namaRow cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){

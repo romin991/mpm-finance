@@ -29,13 +29,13 @@
 }
 
 +(NSDictionary *)getUserInfo{
-    NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"userInfo"];
+    NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"profile"];
     NSDictionary *dictionary = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     if (!dictionary) {
         return nil;
     }
     else
-        return dictionary[@"customerProfile"];
+        return dictionary;
 }
 
 + (NSString *)getToken{
@@ -71,12 +71,23 @@
     //need notify these UI to be refreshed :
     //-HomeViewcontroller
     //-...
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"UserLoginNotification" object:nil];
+  
+}
++ (void)updateProfile:(NSDictionary *)dictionary{
+  NSData *dataSave = [NSKeyedArchiver archivedDataWithRootObject:dictionary];
+  [[NSUserDefaults standardUserDefaults] setObject:dataSave forKey:@"profile"];
+  [[NSUserDefaults standardUserDefaults] synchronize];
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"UserLoginNotification" object:nil];
+  //need notify these UI to be refreshed :
+  //-HomeViewcontroller
+  //-...
 }
 
 + (void)deleteUserInfo{
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"userInfo"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+  [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"profile"];
+  [[NSUserDefaults standardUserDefaults] synchronize];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"UserLoginNotification" object:nil];
 }
 

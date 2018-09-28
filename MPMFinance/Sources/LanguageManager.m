@@ -15,6 +15,9 @@ static NSString * const LanguageSaveKey = @"currentLanguageKey";
 
 @implementation LanguageManager
 
++ (BOOL)isEnglish {
+  return [[self currentLanguageCode] isEqualToString:@"en"];
+}
 + (void)setupCurrentLanguage
 {
     NSString *currentLanguage = [[NSUserDefaults standardUserDefaults] objectForKey:LanguageSaveKey];

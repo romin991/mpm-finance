@@ -22,6 +22,7 @@ typedef NS_ENUM(NSInteger, ELanguage)
 + (NSArray *)languageStrings;
 + (NSString *)currentLanguageString;
 + (NSString *)currentLanguageCode;
++ (BOOL)isEnglish;
 + (NSInteger)currentLanguageIndex;
 + (void)saveLanguageByIndex:(NSInteger)index;
 + (BOOL)isCurrentLanguageRTL;

@@ -130,7 +130,10 @@
       dispatch_group_enter(group);
       [ProfileModel getProfileDataWithCompletion:^(NSDictionary *dictionary, NSError *error) {
         if (error) _error = error;
-        if (dictionary) [weakSelf.valueDictionary addEntriesFromDictionary:dictionary];
+        if (dictionary && !(weakSelf.isFromHistory || weakSelf.isFromMonitoring)) {
+          [weakSelf.valueDictionary addEntriesFromDictionary:dictionary];
+          
+        }
         
         dispatch_group_leave(group);
       }];
@@ -171,8 +174,16 @@
   }
     
     dispatch_group_notify(group, queue, ^{
-        [weakSelf.valueDictionary addEntriesFromDictionary:@{@"kewarganegaraan" : @"WNI",
-                                                             @"kewarganegaraanPasangan" : @"WNI",
+      NSString *kewarganegaraan = @"WNI";
+      NSString *kewarganegaraanPasangan = @"WNI";
+      if ([weakSelf.valueDictionary objectForKey:@"kewarganegaraan"]) {
+        kewarganegaraan = weakSelf.valueDictionary[@"kewarganegaraan"];
+      }
+      if ([weakSelf.valueDictionary objectForKey:@"kewarganegaraanPasangan"]) {
+        kewarganegaraanPasangan = weakSelf.valueDictionary[@"kewarganegaraanPasangan"];
+      }
+        [weakSelf.valueDictionary addEntriesFromDictionary:@{@"kewarganegaraan" : kewarganegaraan,
+                                                             @"kewarganegaraanPasangan" : kewarganegaraanPasangan,
                                                              @"kodeCabang" : [MPMUserInfo getIdCabang],
                                                              }];
       
@@ -927,14 +938,6 @@
           
           noKTPPasangan.required = YES;
           
-          if ([noKTPPasangan.value length] < 16) {
-            UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:[self.form indexPathOfFormRow:noKTPPasangan]];
-            [self animateCell:cell];
-            
-            return @[[NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
-                                         code:1
-                                     userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"No KTP Minimal 16 Karakter", nil)}]];
-          }
           
             
             
@@ -963,11 +966,16 @@
       XLFormRowDescriptor *nomorKartuKreditAtauKontrak1 = [self.form formRowWithTag:@"nomorKartuKreditAtauKontrak1"];
       XLFormRowDescriptor *pinjamanTempatLain2 = [self.form formRowWithTag:@"pinjamanTempatLain2"];
       XLFormRowDescriptor *nomorKartuKreditAtauKontrak2 = [self.form formRowWithTag:@"nomorKartuKreditAtauKontrak2"];
-      if (pinjamanTempatLain1.value != nil && ![((XLFormOptionsObject *)pinjamanTempatLain1.value).valueData isEqual:@0]) {
+      if (![pinjamanTempatLain1.value isKindOfClass:[NSString class]] && pinjamanTempatLain1.value != nil) {
         nomorKartuKreditAtauKontrak1.required = YES;
       }
-      if (pinjamanTempatLain2.value != nil && ![((XLFormOptionsObject *)pinjamanTempatLain2.value).valueData isEqual:@0]) {
+      else {
+        nomorKartuKreditAtauKontrak1.required = NO;
+      }
+      if (![pinjamanTempatLain2.value isKindOfClass:[NSString class]] && pinjamanTempatLain2.value != nil) {
         nomorKartuKreditAtauKontrak2.required = YES;
+      } else {
+        nomorKartuKreditAtauKontrak2.required = NO;
       }
       
     } else if ([self.form formRowWithTag:@"namaTempatKerja"]){

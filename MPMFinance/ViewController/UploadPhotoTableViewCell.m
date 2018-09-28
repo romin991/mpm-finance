@@ -8,7 +8,7 @@
 
 #import "UploadPhotoTableViewCell.h"
 #import "AFImageDownloader.h"
-
+#import "EXPhotoViewer.h"
 NSString * const XLFormRowDescriptorTypeTakePhoto = @"XLFormRowDescriptorTypeTakePhoto";
 
 @interface UploadPhotoTableViewCell()<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
@@ -57,17 +57,31 @@ NSString * const XLFormRowDescriptorTypeTakePhoto = @"XLFormRowDescriptorTypeTak
 }
 
 - (IBAction)takePicture:(id)sender {
+  
+  if (self.pictureImageView.image) {
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"" message:@"Pilih Opsi:" preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *takePhoto = [UIAlertAction actionWithTitle:@"Ambil Gambar" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+      [SVProgressHUD show];
+      UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+      imagePickerController.delegate = self;
+      imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+      [self.formViewController presentViewController:imagePickerController animated:true completion:^{
+        [SVProgressHUD dismiss];
+      }];
+    }];
+    UIAlertAction *zoom = [UIAlertAction actionWithTitle:@"Lihat Gambar" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+      [EXPhotoViewer showImageFrom:self.pictureImageView];
+      return;
+    }];
+    [controller addAction:takePhoto];
+    [controller addAction:zoom];
+    [self.formViewController presentViewController:controller animated:YES completion:nil];
     
+  }
     if ([self.rowDescriptor.disabled isEqual:@YES]) {
         return;
     }
-    [SVProgressHUD show];
-    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
-    imagePickerController.delegate = self;
-    imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-    [self.formViewController presentViewController:imagePickerController animated:true completion:^{
-        [SVProgressHUD dismiss];
-    }];
+  
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{

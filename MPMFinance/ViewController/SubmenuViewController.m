@@ -80,6 +80,7 @@
                             weakSelf.submenus = [[weakSelf.submenus objectsWhere:@"primaryKey != %@", kSubmenuDataMAP] objectsWhere:@"primaryKey != %@", kSubmenuSurvey];
                         } else {
                           weakSelf.shouldBeReadOnly = YES;
+                          weakSelf.additionalSetting = [NSMutableDictionary dictionary];
                             [weakSelf.additionalSetting addEntriesFromDictionary:response];
                         }
                     } @catch (NSException *exception) {
@@ -152,6 +153,7 @@
                         [SVProgressHUD dismissWithDelay:1.5];
                     } else {
                         [SVProgressHUD showSuccessWithStatus:@"Success"];
+                      [self additionalRule];
                         [SVProgressHUD dismissWithDelay:1.5];
                     }
                 }];
@@ -194,6 +196,9 @@
                         [SVProgressHUD dismissWithDelay:1.5];
                     } else {
                         [SVProgressHUD showSuccessWithStatus:@"Success"];
+                      [weakSelf.additionalSetting setValue:@"1" forKey:@"survey"];
+                      [weakSelf.tableView reloadData];
+                      [weakSelf.tableView layoutIfNeeded];
                         [SVProgressHUD dismissWithDelay:1.5];
                     }
                 }];

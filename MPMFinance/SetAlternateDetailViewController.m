@@ -48,6 +48,8 @@ NSString * const kValidationReason = @"kReason";
 }
 - (void) submit:(id)sender{
     XLFormRowDescriptor *dateBeginRow = [self.form formRowWithTag:kValidationBeginDate];
+  NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+  
     NSString *dateBegin = [MPMGlobal stringFromDateTime:dateBeginRow.value];
     XLFormRowDescriptor *dateEndRow = [self.form formRowWithTag:kValidationEndDate];
     NSString *dateEnd = [MPMGlobal stringFromDateTime:dateEndRow.value];
@@ -180,6 +182,7 @@ NSString * const kValidationReason = @"kReason";
     row.required = YES;
     if (self.data) {
         [row setDisabled:@(!self.isEdit)];
+      [(XLFormDateCell *)[row cellForFormController:self] setLocale:[NSLocale localeWithLocaleIdentifier:@"en_GB"]];
         row.value = [MPMGlobal dateTimeFromString:self.data[@"date"]];
       
     }
@@ -194,6 +197,7 @@ NSString * const kValidationReason = @"kReason";
     //[row addValidator:[XLFormRegexValidator formRegexValidatorWithMsg:@"greater than 50 and less than 100" regex:@"^([5-9][0-9]|100)$"]];
     if (self.data) {
         [row setDisabled:@(!self.isEdit)];
+      [(XLFormDateCell *)[row cellForFormController:self] setLocale:[NSLocale localeWithLocaleIdentifier:@"en_GB"]];
         row.value = [MPMGlobal dateTimeFromString:self.data[@"date2"]];
     }
    [(XLFormDateCell *)[row cellForFormController:self] setMinimumDate:[NSDate date]];
@@ -213,13 +217,13 @@ NSString * const kValidationReason = @"kReason";
             row.value = firstResult.name;
         }
         
-    } else {
+    }
         NSMutableArray *optionObjects = [NSMutableArray array];
         for (Option *data in self.dropdownReasons) {
             [optionObjects addObject:[XLFormOptionsObject formOptionsObjectWithValue:@(data.primaryKey) displayText:data.name]];
         }
         row.selectorOptions = optionObjects;
-    }
+    
     [section addFormRow:row];
     
     self.form = formDescriptor;

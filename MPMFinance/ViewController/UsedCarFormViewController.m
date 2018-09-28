@@ -269,7 +269,7 @@
                     if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
                         [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
                       [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMustNumericOnly:YES];
-                      [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:15];
+                      [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:12];
                       ((FloatLabeledTextFieldCell *)[row cellForFormController:self]).shouldGiveThousandSeparator = YES;
                     }
                 }
@@ -282,7 +282,7 @@
                     if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
                         [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setKeyboardType:UIKeyboardTypeDecimalPad];
                       [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMustNumericOnly:YES];
-                      [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:15];
+                      [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:12];
                     }
                 }
             }
@@ -353,16 +353,16 @@
     @try {
         if ([formRow.tag isEqualToString:@"otrKendaraan"]) {
             XLFormRowDescriptor *dpRow = [self.form formRowWithTag:@"dpPercentage"];
-            NSDecimalNumber *dpPercentage = [NSDecimalNumber decimalNumberWithString:dpRow.value];
+            NSDecimalNumber *dpPercentage = [NSDecimalNumber decimalNumberWithString:[dpRow.value stringByReplacingOccurrencesOfString:@"." withString:@""]];
             XLFormRowDescriptor *dpRupiahRow = [self.form formRowWithTag:@"dpRupiah"];
-            dpRupiahRow.value = [[[dpPercentage decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:newValue]] decimalNumberByDividingBy:[NSDecimalNumber decimalNumberWithString:@"100"]] stringValue];
+            dpRupiahRow.value = [MPMGlobal formatToRupiah:[[[dpPercentage decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:newValue]] decimalNumberByDividingBy:[NSDecimalNumber decimalNumberWithString:@"100"]] stringValue]];
             [self reloadFormRow:dpRupiahRow];
         }
         if ([formRow.tag isEqualToString:@"dpPercentage"]) {
             XLFormRowDescriptor *otrKendaraanRow = [self.form formRowWithTag:@"otrKendaraan"];
-            NSDecimalNumber *otrKendaraan = [NSDecimalNumber decimalNumberWithString:otrKendaraanRow.value];
+            NSDecimalNumber *otrKendaraan = [NSDecimalNumber decimalNumberWithString:[otrKendaraanRow.value stringByReplacingOccurrencesOfString:@"." withString:@""]];
             XLFormRowDescriptor *dpRupiahRow = [self.form formRowWithTag:@"dpRupiah"];
-            dpRupiahRow.value = [[[otrKendaraan decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:newValue]] decimalNumberByDividingBy:[NSDecimalNumber decimalNumberWithString:@"100"]] stringValue];
+            dpRupiahRow.value = [MPMGlobal formatToRupiah:[[[otrKendaraan decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:newValue]] decimalNumberByDividingBy:[NSDecimalNumber decimalNumberWithString:@"100"]] stringValue]];
             [self reloadFormRow:dpRupiahRow];
         }if ([formRow.tag isEqualToString:@"pilihanAsuransiKombinasiTahunKetiga"]&& ![newValue isEqual:[NSNull null]]){
           if ([((XLFormOptionsObject *) newValue).formValue length] > 0) {

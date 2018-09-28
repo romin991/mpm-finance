@@ -14,6 +14,7 @@
 + (NSDictionary *)getUserInfo;
 + (void)deleteUserInfo;
 + (void)save:(NSDictionary *)dictionary;
++ (void)updateProfile:(NSDictionary *)dictionary;
 + (void)savePassword:(NSString *)password;
 +(NSString *)getPassword;
 + (NSString *)getToken;

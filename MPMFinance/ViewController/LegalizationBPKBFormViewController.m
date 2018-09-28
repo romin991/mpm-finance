@@ -196,9 +196,30 @@
       }];
       [alert addAction:action];
       [self presentViewController:alert animated:YES completion:nil];
+      return;
+    }
+    NSDateComponents *otherDay = [[NSCalendar currentCalendar] components:NSCalendarUnitEra | NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:formRow.value];
+    NSDateComponents *today = [[NSCalendar currentCalendar] components:NSCalendarUnitEra | NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:[NSDate date]];
+    XLFormRowDescriptor *timeRow = [self.form formRowWithTag:@"jamPengambilanDokumen"];
+    if ([otherDay day] == [today day]) {
+      
+      [(XLFormDateCell *)[timeRow cellForFormController:self] setMinimumDate:[NSDate date]];
+      NSCalendar *calendar = [NSCalendar currentCalendar];
+      NSDateComponents *comps = [calendar components:(NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond) fromDate:newValue];
+      NSDate *newDate = [calendar dateByAddingComponents: comps toDate: timeRow.value options:0];
+      if ([[NSDate date] compare:newDate] == NSOrderedDescending) {
+        timeRow.value = [NSDate date];
+        
+        [self reloadFormRow:timeRow];
+      }
+      
+    } else {
+      [(XLFormDateCell *)[timeRow cellForFormController:self] setMinimumDate:[NSDate dateWithTimeIntervalSince1970:0]];
     }
   }
   if ([formRow.tag isEqualToString:@"jamPengambilanDokumen"])  {
+    
+    
     NSDate *newTime = [MPMGlobal timeFromString:[MPMGlobal stringFromTime:newValue]];
     NSDate *time1 = [MPMGlobal timeFromString:@"08:30:00"];
     NSDate *time2 = [MPMGlobal timeFromString:@"16:00:00"];

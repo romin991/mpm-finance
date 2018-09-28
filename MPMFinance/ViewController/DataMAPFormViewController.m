@@ -146,6 +146,9 @@
             _refSectionPNS = section;
           }
             for (XLFormRowDescriptor *row in section.formRows) {
+              [row.cellConfig setObject:[UIFont systemFontOfSize:10.0f] forKey:@"textLabel.font"];
+              [row.cellConfig setObject:[UIFont systemFontOfSize:10.0f] forKey:@"detailTextLabel.font"];
+              
                 if (self.isReadOnly) {
                     row.disabled = @YES;
                   if ([section.title isEqualToString:@"Submit"]) {
@@ -1649,13 +1652,23 @@
   
   if ([self.form formRowWithTag:@"pendapatanPerBulan"]) {
     XLFormRowDescriptor *row = [self.form formRowWithTag:@"pendapatanPerBulan"];
-    if ([row.value isEqual:@0] ) {
+    if ([row.value integerValue] < 1) {
       UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:[self.form indexPathOfFormRow:row]];
       [self animateCell:cell];
       
       return @[[NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
                                    code:1
                                userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"Pendapatan Per Bulan tidak boleh 0", nil)}]];
+    }
+  } if ([self.form formRowWithTag:@"jumlahAset"]) {
+    XLFormRowDescriptor *row = [self.form formRowWithTag:@"jumlahAset"];
+    if ([row.value integerValue] < 1) {
+      UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:[self.form indexPathOfFormRow:row]];
+      [self animateCell:cell];
+      
+      return @[[NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+                                   code:1
+                               userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"Jumlah Aset tidak boleh 0", nil)}]];
     }
   } if ([self.form formRowWithTag:@"lamaBekerja"]) {
     XLFormRowDescriptor *row = [self.form formRowWithTag:@"lamaBekerja"];

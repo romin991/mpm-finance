@@ -65,9 +65,9 @@
         cell.noPlat.text = [dictionary objectForKey:@"noPlat"];
         cell.nama.text = [dictionary objectForKey:@"nama"];
         cell.unit.text = [NSString stringWithFormat:@"%li", [[dictionary objectForKey:@"unit"] integerValue]];
-        cell.harga.text = [NSString stringWithFormat:@"%li", [[dictionary objectForKey:@"harga"] integerValue]];
-        cell.outstanding.text = [NSString stringWithFormat:@"%li", [[dictionary objectForKey:@"outstanding"] integerValue]];
-        cell.jumlah.text = [NSString stringWithFormat:@"%li", [[dictionary objectForKey:@"jumlah"] integerValue]];;
+        cell.harga.text = [MPMGlobal formatToRupiah:[NSString stringWithFormat:@"%li", [[dictionary objectForKey:@"harga"] integerValue]]];
+        cell.outstanding.text = [MPMGlobal formatToRupiah:[NSString stringWithFormat:@"%li", [[dictionary objectForKey:@"outstanding"] integerValue]]];
+        cell.jumlah.text =[MPMGlobal formatToRupiah:[NSString stringWithFormat:@"%li", [[dictionary objectForKey:@"jumlah"] integerValue]]];
     } @catch (NSException *exception) {
         NSLog(@"%@", exception);
     }
