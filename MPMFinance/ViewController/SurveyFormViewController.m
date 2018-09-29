@@ -144,10 +144,11 @@
                 if (self.isReadOnly) {
                     row.disabled = @YES;
                     if ([row.rowType isEqualToString:XLFormRowDescriptorTypeTakePhoto]) {
-                        
+                      [(UploadPhotoTableViewCell *)[row cellForFormController:self] setIsViewOnly:YES];
                     }
                     [self reloadFormRow:row];
                 } else {
+                  
                     if (![row.tag isEqualToString:@"namaCalonDebitur"] && ![row.tag isEqualToString:@"namaSurveyor"]) {
                         
                     } else {

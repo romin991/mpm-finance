@@ -11,5 +11,5 @@
 extern NSString * const XLFormRowDescriptorTypeTakePhoto;
 
 @interface UploadPhotoTableViewCell : XLFormBaseCell
-
+@property BOOL isViewOnly;
 @end

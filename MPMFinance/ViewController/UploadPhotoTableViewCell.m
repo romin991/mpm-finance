@@ -73,14 +73,13 @@ NSString * const XLFormRowDescriptorTypeTakePhoto = @"XLFormRowDescriptorTypeTak
       [EXPhotoViewer showImageFrom:self.pictureImageView];
       return;
     }];
-    [controller addAction:takePhoto];
+    if (!self.isViewOnly) {
+      [controller addAction:takePhoto];
+    }
     [controller addAction:zoom];
     [self.formViewController presentViewController:controller animated:YES completion:nil];
     
   }
-    if ([self.rowDescriptor.disabled isEqual:@YES]) {
-        return;
-    }
   
 }
 
