@@ -364,13 +364,18 @@ NSString *const kActionQueryDB = @"QueryDB";
   return theString;
 }
 
-+ (double) doubleValue:(NSString *)aString {
++ (double) doubleValue:(id )aString {
   NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
   formatter.decimalSeparator = @",";
-  return [[formatter numberFromString:aString] doubleValue];
+  if ([aString isKindOfClass:[NSString class]]) {
+    return [[formatter numberFromString:aString] doubleValue];
+  } else {
+    return [aString doubleValue];
+  }
+  
 }
 + (NSArray *)getAllFieldShouldContainThousandSeparator {
-  return  @[@"biayaSurvey", @"biayaCekBlokirBPKB", @"nilaiTunaiSebagian",@"dpRupiah",@"otrKendaraan",@"pendapatanLainnyaPerBulan",@"pendapatanPerBulan",@"hargaKendaraan",@"totalBayarAwal",@"jumlahAset",@"angsuran",@"pokokHutang",@"subsidiUangMuka",@"totalUangDiterimaMPMF",@"biayaAdmin",@"biayaAdminLainnya",@"biayaFidusia",@"biayaLain",@"biayaSurvey",@"nilaiPertanggungan",@"asuransiKendaraanKapitalisasi",@"asuransiKendaraanDibayarDimuka",@"asuransiJiwaKreditKapitalisasi",@"asuransiJiwaDibayarDimuka",@"nilaiPertanggunganAsuransiJiwa",@"premiAsuransiKerugianKendaraan",@"premiAsuransiJiwaKredit",@"gajiPokok",@"tunjanganTetap",@"insentif",@"lembur",@"bonus",@"total",@"totalUangMukaDiterimaMPMF",@"omzet1",@"omzet2",@"omzet3",@"omzet4",@"omzet5",@"omzet6",@"biayaProvisi",@"pokokHutang",@"hargaKisaran",@"outstanding",@"otrPriceList",@"others",];
+  return  @[@"biayaSurvey", @"biayaCekBlokirBPKB", @"nilaiTunaiSebagian",@"dpRupiah",@"otrKendaraan",@"pendapatanLainnyaPerBulan",@"pendapatanPerBulan",@"hargaKendaraan",@"totalBayarAwal",@"jumlahAset",@"angsuran",@"pokokHutang",@"subsidiUangMuka",@"totalUangDiterimaMPMF",@"biayaAdmin",@"biayaAdminLainnya",@"biayaFidusia",@"biayaLain",@"biayaSurvey",@"nilaiPertanggungan",@"asuransiKendaraanKapitalisasi",@"asuransiKendaraanDibayarDimuka",@"asuransiJiwaKreditKapitalisasi",@"asuransiJiwaDibayarDimuka",@"nilaiPertanggunganAsuransiJiwa",@"premiAsuransiKerugianKendaraan",@"premiAsuransiJiwaKredit",@"gajiPokok",@"tunjanganTetap",@"insentif",@"lembur",@"bonus",@"total",@"totalUangMukaDiterimaMPMF",@"omzet1",@"omzet2",@"omzet3",@"omzet4",@"omzet5",@"omzet6",@"biayaProvisi",@"hargaKisaran",@"outstanding",@"otrPriceList",@"others"];
 }
 + (UIImage *)barcodeFromString:(NSString *)string size:(CGSize)outputSize{
     NSData *data = [string dataUsingEncoding:NSASCIIStringEncoding];

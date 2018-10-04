@@ -16,6 +16,7 @@
 
 @property Menu *parentMenu;
 @property Menu *menu;
+@property NSNumber *tipeProduk;
 @property BOOL isFromHistory;
 @property BOOL isFromMonitoring;
 @property BOOL isMelengkapi;

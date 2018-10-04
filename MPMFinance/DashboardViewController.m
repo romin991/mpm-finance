@@ -57,6 +57,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *txtTotalWaitingGetData2;
 
 @property (weak, nonatomic) IBOutlet UILabel *txtJumlahTahun;
+@property (weak, nonatomic) IBOutlet UILabel *bmNotFoundProductLabel;
 
 //sumber aplikasi
 @property (weak, nonatomic) IBOutlet UIView *flagTotalByCustomer;
@@ -180,6 +181,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *txtTotalAppSubmittedDealerYear;
 @property (weak, nonatomic) IBOutlet UILabel *txtTotalContractActiveDealerYear;
 @property (weak, nonatomic) IBOutlet UILabel *txtTotalAppStopDealerYear;
+@property (weak, nonatomic) IBOutlet UITableViewCell *bmProductNotAvailableCell;
 
 
 @property (weak, nonatomic) IBOutlet UILabel *txtJumlahTahunDealer;
@@ -283,7 +285,11 @@
 {
     AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
     NSDictionary* param;
-  
+  if ([[MPMUserInfo getRole] isEqualToString:kRoleBM]) {
+    [self bmGetProductNotAvailable];
+  } else {
+    self.bmProductNotAvailableCell.hidden = YES;
+  }
     
     NSString *urlString;
     if (![[MPMUserInfo getRole] isEqualToString:kRoleAgent] && ![[MPMUserInfo getRole] isEqualToString:kRoleSupervisor] && ![[MPMUserInfo getRole] isEqualToString:kRoleBM] && ![[MPMUserInfo getRole] isEqualToString:kRoleDealer]) {
@@ -311,6 +317,8 @@
     }];
     
     if ([[MPMUserInfo getRole] isEqualToString:kRoleSupervisor] || [[MPMUserInfo getRole] isEqualToString:kRoleBM]) {
+      
+      
         urlString = @"dasboard2/spv-list-group-level";
         param = @{@"userid" : [MPMUserInfo getUserInfo][@"userId"],
                   @"token" : [MPMUserInfo getToken]};
@@ -839,19 +847,22 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
+  if (indexPath.row == 0 && [[MPMUserInfo getRole] isEqualToString:kRoleBM]) {
+    return 45;
+  }
+  else if (indexPath.row == 1) {
         return 91;
-    } else if ((indexPath.row == 1 || indexPath.row == 2) && ![[MPMUserInfo getRole] isEqualToString:kRoleDealer] && ![[MPMUserInfo getRole] isEqualToString:kRoleAgent]) {
+    } else if ((indexPath.row == 2 || indexPath.row == 3) && ![[MPMUserInfo getRole] isEqualToString:kRoleDealer] && ![[MPMUserInfo getRole] isEqualToString:kRoleAgent]) {
         return 720;
-    } else if (indexPath.row == 3 && (![[MPMUserInfo getRole] isEqualToString:kRoleAgent] && ![[MPMUserInfo getRole] isEqualToString:kRoleDealer])) {
+    } else if (indexPath.row == 4 && (![[MPMUserInfo getRole] isEqualToString:kRoleAgent] && ![[MPMUserInfo getRole] isEqualToString:kRoleDealer])) {
         return 50;
-    } else if ((indexPath.row == 4 || indexPath.row == 5) && (![[MPMUserInfo getRole] isEqualToString:kRoleAgent] && ![[MPMUserInfo getRole] isEqualToString:kRoleDealer]) ) {
+    } else if ((indexPath.row == 5 || indexPath.row == 6) && (![[MPMUserInfo getRole] isEqualToString:kRoleAgent] && ![[MPMUserInfo getRole] isEqualToString:kRoleDealer]) ) {
         return 534;
-    } else if (indexPath.row == 6 && (![[MPMUserInfo getRole] isEqualToString:kRoleAgent] && ![[MPMUserInfo getRole] isEqualToString:kRoleDealer] && ![[MPMUserInfo getRole] isEqualToString:kRoleDedicated])) {
+    } else if (indexPath.row == 7 && (![[MPMUserInfo getRole] isEqualToString:kRoleAgent] && ![[MPMUserInfo getRole] isEqualToString:kRoleDealer] && ![[MPMUserInfo getRole] isEqualToString:kRoleDedicated])) {
         return 137;
-    } else if ((indexPath.row == 7 || indexPath.row == 8) && (![[MPMUserInfo getRole] isEqualToString:kRoleAgent] && ![[MPMUserInfo getRole] isEqualToString:kRoleDealer] && ![[MPMUserInfo getRole] isEqualToString:kRoleDedicated])) {
+    } else if ((indexPath.row == 8 || indexPath.row == 9) && (![[MPMUserInfo getRole] isEqualToString:kRoleAgent] && ![[MPMUserInfo getRole] isEqualToString:kRoleDealer] && ![[MPMUserInfo getRole] isEqualToString:kRoleDedicated])) {
         return 720;
-    } else if ((indexPath.row == 9 || indexPath.row == 10) && ([[MPMUserInfo getRole] isEqualToString:kRoleDealer] || [[MPMUserInfo getRole] isEqualToString:kRoleAgent])) {
+    } else if ((indexPath.row == 10 || indexPath.row == 11) && ([[MPMUserInfo getRole] isEqualToString:kRoleDealer] || [[MPMUserInfo getRole] isEqualToString:kRoleAgent])) {
       return 649;
     }
     else return 0;
@@ -888,7 +899,20 @@
     
 }
 
-
+- (void) bmGetProductNotAvailable {
+  AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
+  NSDictionary* param;
+  param = @{@"userid" : [MPMUserInfo getUserInfo][@"userId"],
+            @"token" : [MPMUserInfo getToken]
+                        };
+  [manager POST:[NSString stringWithFormat:@"%@/dasboard2/bm-get-product-not-available",kApiUrl] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    if ([responseObject objectForKey:@"data"]) {
+      self.bmNotFoundProductLabel.text = [NSString stringWithFormat:@"Produk Tidak Ditemukan: %i",[responseObject[@"data"] integerValue]];
+    }
+  } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    ;
+  }];
+}
 - (void) downloadMarketingProductByUserDataMonthForId:(NSString *)produkId groupLevel:(NSString *)groupLevel userId:(NSNumber *)userId {
     AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
     NSDictionary* param;

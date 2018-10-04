@@ -126,7 +126,7 @@
     __block FormViewController *weakSelf = self;
     __block NSError *_error = nil;
   if (self.isReloadData) {
-    if ([[MPMUserInfo getRole] isEqualToString:kRoleCustomer]) {
+    if ([[MPMUserInfo getRole] isEqualToString:kRoleCustomer] && !self.isFromMonitoring) {
       dispatch_group_enter(group);
       [ProfileModel getProfileDataWithCompletion:^(NSDictionary *dictionary, NSError *error) {
         if (error) _error = error;
@@ -153,7 +153,7 @@
             [WorkOrderModel getListWorkOrderDetailCompleteDataWithID:self.list.primaryKey completion:^(NSDictionary *response, NSError *error) {
                 if (error) _error = error;
                 if (response && weakSelf.valueDictionary.count < 1) [weakSelf.valueDictionary addEntriesFromDictionary:response];
-                
+              
                 dispatch_group_leave(group);
             }];
             
@@ -162,7 +162,6 @@
             [WorkOrderModel getListWorkOrderDetailWithID:self.list.primaryKey completion:^(NSDictionary *response, NSError *error) {
                 if (error) _error = error;
                 if (response) [weakSelf.valueDictionary addEntriesFromDictionary:response];
-                
                 dispatch_group_leave(group);
             }];
         }
@@ -187,7 +186,7 @@
                                                              @"kodeCabang" : [MPMUserInfo getIdCabang],
                                                              }];
       
-        if ([[MPMUserInfo getRole] isEqualToString:kRoleCustomer] && (![weakSelf.valueDictionary objectForKey:@"namaLengkap"] || [weakSelf.list.status isEqualToString:@"Draft"] || [weakSelf.list.status isEqualToString:@"Draft Tidak Lengkap"]) ) {
+        if ([[MPMUserInfo getRole] isEqualToString:kRoleCustomer] && !self.isFromMonitoring ) {
             dispatch_group_enter(group);
             [ProfileModel getProfileDataWithCompletion:^(NSDictionary *dictionary, NSError *error) {
                 if (error) _error = error;
@@ -238,7 +237,9 @@
                     row.valueTransformer = [AssetValueTransformer class];
                   row.height = 100;
                     __block XLFormRowDescriptor *weakRow = row;
-                    
+                  if (![self.tipeProduk isEqual:@(0)] && self.tipeProduk != nil ) {
+                    [self.valueDictionary setValue:self.tipeProduk forKey:@"tipeProduk"];
+                  }
                     NSString *idCabang = [self.valueDictionary objectForKey:@"kodeCabang"];
                     NSString *idProduct = [self.valueDictionary objectForKey:@"tipeProduk"];
                     NSString *tipeKendaraan = [self.valueDictionary objectForKey:@"tipeKendaraan"];
@@ -568,63 +569,87 @@
       if(self.isFromHistory == NO)
         [FormModel saveValueFrom:self.form to:self.valueDictionary];
         __weak typeof(self) weakSelf = self;
-        
-      [WorkOrderModel postDraftWorkOrder:self.list dictionary:self.valueDictionary isOffline:(self.hostReachability.currentReachabilityStatus == NotReachable) completion:^(NSDictionary *dictionary, NSError *error) {
-            if (error && error.code != 1) {
-                [SVProgressHUD showErrorWithStatus:error.localizedDescription];
-                [SVProgressHUD dismissWithDelay:1.5];
-                
-            } else {
-                if (weakSelf.list == nil) {
-                    @try {
-                        List *list = [[List alloc] init];
-                        list.primaryKey = [[[dictionary objectForKey:@"data"] objectForKey:@"id"] integerValue];
-                        if (list.primaryKey) {
-                            weakSelf.list = list;
-                        }
-                    } @catch (NSException *exception){
-                        NSLog(@"%@", exception);
-                    }
+      
+      if (!self.isFromHistory) {
+        [WorkOrderModel postDraftWorkOrder:self.list dictionary:self.valueDictionary isOffline:(self.hostReachability.currentReachabilityStatus == NotReachable) completion:^(NSDictionary *dictionary, NSError *error) {
+          if (error && error.code != 1) {
+            [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+            [SVProgressHUD dismissWithDelay:1.5];
+            
+          } else {
+            if (weakSelf.list == nil) {
+              @try {
+                List *list = [[List alloc] init];
+                list.primaryKey = [[[dictionary objectForKey:@"data"] objectForKey:@"id"] integerValue];
+                if (list.primaryKey) {
+                  weakSelf.list = list;
                 }
-              
-              if (weakSelf.list.primaryKey == 0) {
-                @try {
-                  weakSelf.list.primaryKey = [[[dictionary objectForKey:@"data"] objectForKey:@"id"] integerValue];
-                  
-                } @catch (NSException *exception){
-                  NSLog(@"%@", exception);
-                }
+              } @catch (NSException *exception){
+                NSLog(@"%@", exception);
               }
-                
-                [SVProgressHUD dismiss];
-                
-                Form *nextForm = [weakSelf.forms objectAtIndex:self.index + 1];
-                if ([nextForm.title isEqualToString:@"Disclaimer"]) {
-                    //save to object, call delegate, then pop navigation
-                    DisclaimerViewController *disclaimerVC = [[DisclaimerViewController alloc] init];
-                    disclaimerVC.valueDictionary = weakSelf.valueDictionary;
-                    disclaimerVC.list = weakSelf.list;
-                    disclaimerVC.parentMenu = weakSelf.parentMenu;
-                    disclaimerVC.menu = weakSelf.menu;
-                  disclaimerVC.isFromMonitoring = weakSelf.isFromMonitoring;
-                    disclaimerVC.isReadOnly = self.isReadOnly;
-                  disclaimerVC.isFromHistory = self.isFromHistory;
-                  if ([weakSelf.list.status isEqualToString:@"Work Order Marketing"] && [[MPMUserInfo getRole] isEqualToString:kRoleDedicated]) {
-                    disclaimerVC.needToShowWorkOrder = YES;
-                  }
-                    [weakSelf.navigationController pushViewController:disclaimerVC animated:true];
-                    
-                } else {
-                    [weakSelf goToNextForm];
-                }
             }
+            
+            if (weakSelf.list.primaryKey == 0) {
+              @try {
+                weakSelf.list.primaryKey = [[[dictionary objectForKey:@"data"] objectForKey:@"id"] integerValue];
+                
+              } @catch (NSException *exception){
+                NSLog(@"%@", exception);
+              }
+            }
+            
+            [SVProgressHUD dismiss];
+            
+            Form *nextForm = [weakSelf.forms objectAtIndex:self.index + 1];
+            if ([nextForm.title isEqualToString:@"Disclaimer"]) {
+              //save to object, call delegate, then pop navigation
+              DisclaimerViewController *disclaimerVC = [[DisclaimerViewController alloc] init];
+              disclaimerVC.valueDictionary = weakSelf.valueDictionary;
+              disclaimerVC.list = weakSelf.list;
+              disclaimerVC.parentMenu = weakSelf.parentMenu;
+              disclaimerVC.menu = weakSelf.menu;
+              disclaimerVC.isFromMonitoring = weakSelf.isFromMonitoring;
+              disclaimerVC.isReadOnly = self.isReadOnly;
+              disclaimerVC.isFromHistory = self.isFromHistory;
+              if ([weakSelf.list.status isEqualToString:@"Work Order Marketing"] && [[MPMUserInfo getRole] isEqualToString:kRoleDedicated]) {
+                disclaimerVC.needToShowWorkOrder = YES;
+              }
+              [weakSelf.navigationController pushViewController:disclaimerVC animated:true];
+              
+            } else {
+              [weakSelf goToNextForm];
+            }
+          }
         }];
+      } else {
+        Form *nextForm = [weakSelf.forms objectAtIndex:self.index + 1];
+        if ([nextForm.title isEqualToString:@"Disclaimer"]) {
+          //save to object, call delegate, then pop navigation
+          DisclaimerViewController *disclaimerVC = [[DisclaimerViewController alloc] init];
+          disclaimerVC.valueDictionary = weakSelf.valueDictionary;
+          disclaimerVC.list = weakSelf.list;
+          disclaimerVC.parentMenu = weakSelf.parentMenu;
+          disclaimerVC.menu = weakSelf.menu;
+          disclaimerVC.isFromMonitoring = weakSelf.isFromMonitoring;
+          disclaimerVC.isReadOnly = self.isReadOnly;
+          disclaimerVC.isFromHistory = self.isFromHistory;
+          if ([weakSelf.list.status isEqualToString:@"Work Order Marketing"] && [[MPMUserInfo getRole] isEqualToString:kRoleDedicated]) {
+            disclaimerVC.needToShowWorkOrder = YES;
+          }
+          [weakSelf.navigationController pushViewController:disclaimerVC animated:true];
+          
+        } else {
+          [weakSelf goToNextForm];
+        }
+      }
+      
     }
 }
 
 - (void)goToNextForm{
     FormViewController *nextFormViewController = [[FormViewController alloc] init];
     nextFormViewController.menu = self.menu;
+  nextFormViewController.tipeProduk = self.tipeProduk;
     nextFormViewController.index = self.index + 1;
   nextFormViewController.isFromMonitoring = self.isFromMonitoring;
     nextFormViewController.valueDictionary = self.valueDictionary;
@@ -889,7 +914,7 @@
     }
      if ([self.form formRowWithTag:@"noKTP"]) {
       XLFormRowDescriptor *row = [self.form formRowWithTag:@"noKTP"];
-      if ([row.value length] < 16 && self.hostReachability.currentReachabilityStatus != NotReachable) {
+      if ([row.value length] < 16 && self.hostReachability.currentReachabilityStatus != NotReachable && ![[MPMUserInfo getRole] isEqualToString:kRoleCustomer]) {
         UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:[self.form indexPathOfFormRow:row]];
         [self animateCell:cell];
         

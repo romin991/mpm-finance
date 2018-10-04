@@ -60,12 +60,7 @@ NSString * const kValidationReason = @"kReason";
     XLFormRowDescriptor *reasonRow = [self.form formRowWithTag:kValidationReason];
     NSString *reason;
     if (self.isEdit) {
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self.name = %@",reasonRow.value];
-        NSArray *result = [self.dropdownReasons filteredArrayUsingPredicate:predicate];
-        if (result.count > 0) {
-            Option *opsi = [result firstObject];
-            reason = [NSString stringWithFormat:@"%li",(long)opsi.primaryKey];
-        }
+        reason = [((XLFormOptionsObject *)reasonRow.value).valueData stringValue];
     } else {
         reason = [((XLFormOptionsObject *)reasonRow.value).valueData stringValue];
     }
@@ -166,10 +161,11 @@ NSString * const kValidationReason = @"kReason";
     }
     
     [section addFormRow:row];
-    
+  
     // Email
     row = [XLFormRowDescriptor formRowDescriptorWithTag:kValidationReplacementName rowType:XLFormRowDescriptorTypeSelectorPush title:@"Nama Marketing yang Menggantikan"];
     row.required = NO;
+  
     if (self.data) {
         [row setDisabled:@(!self.isEdit)];
         row.value = self.data[@"mktAlternate"];
@@ -227,6 +223,14 @@ NSString * const kValidationReason = @"kReason";
     [section addFormRow:row];
     
     self.form = formDescriptor;
+  
+  for (XLFormSectionDescriptor *section in self.form.formSections) {
+    for (XLFormRowDescriptor *row in section.formRows) {
+      [row.cellConfig setObject:[UIFont systemFontOfSize:10.0f] forKey:@"textLabel.font"];
+      [row.cellConfig setObject:[UIFont systemFontOfSize:10.0f] forKey:@"detailTextLabel.font"];
+    }
+  }
+  
 }
 
 /*

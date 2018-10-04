@@ -150,7 +150,17 @@
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     [picker dismissViewControllerAnimated:YES completion:^(void){
-        self.imageView.image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+      UIImage *capturedImage = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+      CGRect rect = CGRectMake(0,0,capturedImage.size.width/6,capturedImage.size.height/6);
+      UIGraphicsBeginImageContext( rect.size );
+      [capturedImage drawInRect:rect];
+      UIImage *picture1 = UIGraphicsGetImageFromCurrentImageContext();
+      UIGraphicsEndImageContext();
+      
+      NSData *imageDataForResize = UIImageJPEGRepresentation(picture1,0.1);
+      UIImage *img=[UIImage imageWithData:imageDataForResize];
+      capturedImage = img;
+      self.imageView.image = capturedImage;
         self.isPhotoTaken = true;
     }];
 }
@@ -328,11 +338,20 @@
   
   [self.navigationController popToRootViewControllerAnimated:YES];
 }
-
+- (BOOL)containViewController:(Class) vcClass {
+  for (UIViewController *vc in self.navigationController.viewControllers) {
+    if ([vc isKindOfClass:vcClass]) {
+      return YES;
+    }
+  }
+  return NO;
+}
 #pragma mark - Barcode Delegate
 - (void)finish{
   
-  if ([[MPMUserInfo getRole] isEqualToString:kRoleDedicated] && ([self.list.status isEqualToString:@"Draft"] || [self.list.status isEqualToString:@"Draft Tidak Lengkap"] || !self.list.status) && !self.isFromHistory) {
+  
+  
+  if ([[MPMUserInfo getRole] isEqualToString:kRoleDedicated] && (!self.isFromHistory || [self containViewController:[ListViewController class]])) {
         [self.navigationController popToRootViewControllerAnimated:YES];
         UINavigationController *mainNavigation = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateInitialViewController];
         WorkOrderListViewController *listViewController2 = [[WorkOrderListViewController alloc] initWithNibName:@"WorkOrderListViewController" bundle:nil];
@@ -341,6 +360,10 @@
         AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
         delegate.window.rootViewController = mainNavigation;
         return;
+  } else if ([[MPMUserInfo getRole] isEqualToString:kRoleDedicated] && (!self.isFromHistory || [self containViewController:[WorkOrderListViewController class]])) {
+    [self.navigationController popToViewController:self.navigationController.viewControllers[2] animated:YES];
+    
+    return;
   }
   else if (self.needToShowWorkOrder) {
     [self close];
@@ -356,11 +379,12 @@
 //    AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
 //    delegate.window.rootViewController = mainNavigation;
 //    return;
-  } else if (self.isFromMonitoring) {
+  }else if(self.isFromHistory) {
+    [self.navigationController popToRootViewControllerAnimated:YES];
+  }
+  else if (self.isFromMonitoring) {
     UIViewController *vc = self.navigationController.viewControllers[2];
     [self.navigationController popToViewController:vc animated:YES];
-  } else if(self.isFromHistory) {
-    [self.navigationController popToRootViewControllerAnimated:YES];
   }
    else if (![self.parentMenu.primaryKey isEqualToString:kSubmenuListWorkOrder]) {
         if ([[MPMUserInfo getRole] isEqualToString:kRoleCustomer] || [[MPMUserInfo getRole] isEqualToString:kRoleDealer] || [[MPMUserInfo getRole] isEqualToString:kRoleAgent]) {

@@ -116,15 +116,8 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self setTextFieldsEnable:NO];
-    AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
-    [manager GET:[MPMUserInfo getUserInfo][@"photo"] parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
-        ;
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"%@",responseObject);
-        self.profilePictureImageView.image = [UIImage imageWithData:responseObject];
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"%@",error);
-    }];
+  
+  
   
   [APIModel getProfileWithCompletion:^(NSDictionary *responseDictionary, NSError *error) {
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -140,6 +133,7 @@
       self.txtNamaDealer.text = responseDictionary[@"dealer_name"];
       self.txtAddressDealer.text = responseDictionary[@"dealer_address"];
       self.txtNamaCabang.text = responseDictionary[@"namaCabang"];
+      [self.profilePictureImageView setImageWithURL:[NSURL URLWithString:responseDictionary[@"photo"]]];
     });
     
   }];
@@ -184,7 +178,7 @@
     self.txtAddressDealer.text = @"";
     self.txtNamaCabang.text = @"";
     self.txtGender.text = @"";
-    
+  self.profilePictureImageView.image = nil;
     if (self.menuViewDelegate) [self.menuViewDelegate selectMenuAtIndex:kHome];
 }
 

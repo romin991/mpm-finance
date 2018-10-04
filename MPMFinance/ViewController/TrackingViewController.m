@@ -49,14 +49,19 @@
             
         } else {
             [SVProgressHUD dismiss];
+          GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] init];
             for (NSDictionary *datum in data) {
                 GMSMarker *marker = [[GMSMarker alloc] init];
                 marker.position = CLLocationCoordinate2DMake([datum[@"lat"] doubleValue], [datum[@"lng"] doubleValue]);
                 marker.title = datum[@"fullName"];
                 marker.snippet = datum[@"userid"];
                 marker.map = weakSelf.mapView;
+              bounds = [bounds includingCoordinate:marker.position];
               marker.userData = datum;
             }
+          
+          [weakSelf.mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:30.0f]];
+          
         }
     }];
 }
@@ -93,7 +98,9 @@
   NSLog(@"%@",marker.userData);
   __weak typeof(self) weakSelf = self;
   [APIModel getAllMarketingTrackingDetail:marker.userData[@"userid"] WithCompletion:^(NSArray *data, NSError *error) {
+    
     if (!error) {
+      GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] init];
       int i = data.count;
       for (NSDictionary *datum in data) {
         CLLocationCoordinate2D location = CLLocationCoordinate2DMake([datum[@"lat"] doubleValue], [datum[@"lng"] doubleValue]);
@@ -103,10 +110,12 @@
         marker.snippet = datum[@"userid"];
         marker.map = weakSelf.mapView;
         marker.userData = datum;
+        bounds = [bounds includingCoordinate:marker.position];
             CLLocation *locationForLocations = [[CLLocation alloc] initWithLatitude:location.latitude longitude:location.longitude];
         [locations addObject:locationForLocations];
         i--;
       }
+      [weakSelf.mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:30.0f]];
       for (int i = 0; i < (locations.count - 1); i++) {
         CLLocation *origin = locations[i];
         CLLocation *destination = locations[i+1];

@@ -312,11 +312,25 @@
          // formRow.value = [self formatToRupiah:formRow.value];
         }
         if ([formRow.tag isEqualToString:@"dpPercentage"]) {
+          NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+          [formatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
+          [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+          [formatter setGroupingSeparator:@""];
+          [formatter setDecimalSeparator:@","];
+          NSNumber * newValueNumber;
+          if ([((NSString *)newValue) containsString:@","]) {
+            newValueNumber = [formatter numberFromString:newValue];
+          } else {
+            newValueNumber = @([newValue doubleValue]);
+          }
+          
+          NSDecimalNumber *newValueDecimalNumber = [NSDecimalNumber decimalNumberWithDecimal:[newValueNumber decimalValue]];
             XLFormRowDescriptor *otrKendaraanRow = [self.form formRowWithTag:@"otrKendaraan"];
           NSString *numberWithoutCommas = [otrKendaraanRow.value stringByReplacingOccurrencesOfString:@"." withString:@""];
             NSDecimalNumber *otrKendaraan = [NSDecimalNumber decimalNumberWithString:numberWithoutCommas];
             XLFormRowDescriptor *dpRupiahRow = [self.form formRowWithTag:@"dpRupiah"];
-            dpRupiahRow.value = [[[otrKendaraan decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:newValue]] decimalNumberByDividingBy:[NSDecimalNumber decimalNumberWithString:@"100"]] stringValue];
+          
+            dpRupiahRow.value = [[[otrKendaraan decimalNumberByMultiplyingBy:newValueDecimalNumber] decimalNumberByDividingBy:[NSDecimalNumber decimalNumberWithString:@"100"]] stringValue];
           dpRupiahRow.value = [self formatToRupiah:dpRupiahRow.value];
             [self reloadFormRow:dpRupiahRow];
         }

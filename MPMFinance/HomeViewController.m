@@ -23,21 +23,22 @@
 #import "MonitoringViewController.h"
 #import "ActivityHistoryViewController.h"
 #import "SetAlternateViewController.h"
+#import <CoreLocation/CoreLocation.h>
 #import "TrackingViewController.h"
-@interface HomeViewController ()<KASlideShowDelegate,KASlideShowDataSource, UICollectionViewDelegateFlowLayout>
+@interface HomeViewController ()<KASlideShowDelegate,KASlideShowDataSource, UICollectionViewDelegateFlowLayout,CLLocationManagerDelegate>
 
 @property RLMResults *menus;
 @property (weak, nonatomic) IBOutlet UICollectionView *menuCollectionView;
 @property (strong,nonatomic) IBOutlet KASlideShow * slideshow;
 @property NSMutableArray * datasource;
-
+@property CLLocationManager *locationManager;
 @end
 
 @implementation HomeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.menus = [Menu getMenuForRole:[MPMUserInfo getRole]];
+  [self refreshUI];
     // KASlideshow
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshUI) name:@"UserLoginNotification" object:nil];
     self.datasource = [NSMutableArray array];
@@ -49,13 +50,51 @@
     [_slideshow setTransitionType:KASlideShowTransitionSlideHorizontal]; // Choose a transition type (fade or slide)
     [_slideshow setImagesContentMode:UIViewContentModeScaleAspectFill]; // Choose a content mode for images to display
     [_slideshow addGesture:KASlideShowGestureTap]; // Gesture to go previous/next directly on the image
+  
+    _locationManager = [[CLLocationManager alloc] init];
+    _locationManager.delegate = self;
+    _locationManager.distanceFilter = kCLDistanceFilterNone;
+    _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+  [_locationManager requestWhenInUseAuthorization];
+    [_locationManager startUpdatingLocation];
 
 }
 -(void)refreshUI
 {
     self.menus = [Menu getMenuForRole:[MPMUserInfo getRole]];
+  if (![[MPMUserInfo getRole] isEqualToString:kNoRole]) {
+    [NSTimer scheduledTimerWithTimeInterval:5.0f target:self
+                                   selector:@selector(updateLocation) userInfo:nil repeats:YES];
+    
+  }
     [self.menuCollectionView reloadData];
 }
+
+- (void) updateLocation {
+  if (self.locationManager.location.coordinate.latitude == 0 || ![[MPMUserInfo getRole] isEqualToString:kRoleDedicated]) {
+    return;
+  }
+  AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
+  NSDictionary* param = @{@"userid" : [MPMUserInfo getUserInfo][@"userId"],
+                          @"token" : [MPMUserInfo getToken],
+                          @"data" : @{@"lat" : [NSString stringWithFormat:@"%lf",self.locationManager.location.coordinate.latitude],@"lng" : [NSString stringWithFormat:@"%lf",self.locationManager.location.coordinate.longitude]}
+                          };
+  [manager POST:[NSString stringWithFormat:@"%@/tracking/insertmarketing",kApiUrl] parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
+    
+  } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSLog(@"%@",responseObject);
+    
+    
+  } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    
+  }];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+  NSLog(@"OldLocation %f %f", oldLocation.coordinate.latitude, oldLocation.coordinate.longitude);
+  NSLog(@"NewLocation %f %f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
+}
+
 -(void)reloadSlideShow
 {
     AFHTTPSessionManager* manager = [MPMGlobal sessionManager];

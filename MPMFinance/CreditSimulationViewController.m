@@ -18,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *txtValue2;
 @property (weak, nonatomic) IBOutlet UIButton *btnPengajuan;
 @property (weak, nonatomic) IBOutlet UITextField *txtJenisPerhitungan;
-
+@property NSNumber *tipeProduk;
 @property (weak, nonatomic) IBOutlet UILabel *lblValue2;
 @property NSNumber *harga;
 @property NSNumber *harga2;
@@ -96,7 +96,7 @@
         
         self.txtJenisPerhitungan.text = self.jenisHitungs[row];
       if ([self.menuType isEqualToString:@"Pembiayaan Motor Baru"]) {
-        
+        self.tipeProduk = @(1);
         if ([self.txtJenisPerhitungan.text isEqualToString:@"Estimasi Harga"]) {
           self.lblValue1.text = @"Estimasi Angsuran";
           self.lblJenisHitung.text = @"Estimasi Harga";
@@ -107,6 +107,11 @@
       }
       else if ([self.menuType isEqualToString:@"Pembiayaan Mobil Baru"] || [self.menuType isEqualToString:@"Pembiayaan Mobil Bekas"]) {
         self.tenors = @[@11,@12,@23,@24,@35,@36,@47,@48,@59,@60];
+        if ([self.menuType isEqualToString:@"Pembiayaan Mobil Baru"]) {
+          self.tipeProduk = @(3);
+        } else {
+          self.tipeProduk = @(4);
+        }
         if ([self.txtJenisPerhitungan.text isEqualToString:@"Estimasi Harga"]) {
           self.lblValue2.text = @"Estimasi Angsuran";
           self.lblJenisHitung.text = @"Estimasi Harga";
@@ -117,6 +122,7 @@
       }
       else if ([self.menuType isEqualToString:@"Dahsyat - Multiguna Motor"]) {
         self.tenors = @[@6,@10,@12,@18,@24];
+        self.tipeProduk = @(7);
         if ([self.txtJenisPerhitungan.text isEqualToString:@"Estimasi Harga"]) {
           self.lblValue2.text = @"Estimasi Angsuran";
           self.lblJenisHitung.text = @"Estimasi Harga";
@@ -127,6 +133,7 @@
       }
       else if ([self.menuType isEqualToString:@"Dahsyat - Multiguna Mobil"]) {
         self.tenors = @[@12,@24,@35,@48];
+        self.tipeProduk = @(8);
         if ([self.txtJenisPerhitungan.text isEqualToString:@"Estimasi Harga"]) {
           self.lblValue2.text = @"Estimasi Angsuran";
           self.lblJenisHitung.text = @"Estimasi Harga";
@@ -404,6 +411,7 @@
     FormViewController *formViewController = [[FormViewController alloc] init];
     formViewController.menu = menu;
     formViewController.list = nil;
+  formViewController.tipeProduk = self.tipeProduk;
     [self.navigationController pushViewController:formViewController animated:YES];
 }
 

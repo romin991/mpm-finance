@@ -1080,7 +1080,7 @@
                 if ([row.tag isEqualToString:@"persentaseBiayaProvisi"]){
                     if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
                         [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:7];
-                      [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setIsPercentage:YES];
+                      [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setKeyboardType:UIKeyboardTypeDecimalPad];
                       [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMustNumericOnly:YES];
                     }
                 }
@@ -1093,7 +1093,8 @@
                     if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
                         [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:7];
                       [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMustNumericOnly:YES];
-                      [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setIsPercentage:YES];
+                      [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setKeyboardType:UIKeyboardTypeDecimalPad];
+                      
                     }
                 }
                 
@@ -1423,6 +1424,9 @@
 }
 
 - (void)deleteFamilyButtonClicked:(id)sender{
+  if (self.form.formSections.count <= 3) {
+    return;
+  }
     [self.form removeFormSectionAtIndex:self.form.formSections.count - 3];
 }
 
@@ -1462,11 +1466,6 @@
       formRow.title = @"Hubungan Econ Dengan ...";
     }
     
-  }
-  if ([formRow.tag isEqualToString:@"areaKendaraan"]&& ![newValue isEqual:[NSNull null]]){
-    if ([((XLFormOptionsObject *) newValue).formValue length] > 0) {
-      formRow.title = @"Area Kendar...";
-    }
   }
     if ([formRow.tag isEqualToString:@"sumberAplikasi"] && newValue && ![newValue isKindOfClass:NSNull.class]) {
       
@@ -1552,16 +1551,34 @@
     
     if ([formRow.tag isEqualToString:@"persentaseBiayaProvisi"] || [formRow.tag isEqualToString:@"pokokHutang"]) {
       double newValueDouble = 0.0f;
+      
       if ([newValue isEqual:[NSNull null]]) {
         newValueDouble = 0.0f;
       } else {
-        newValueDouble = [MPMGlobal doubleValue:newValue];
+       // newValueDouble = [MPMGlobal doubleValue:newValue];
+      }
+      double persentage = 0;
+      double  pokokHutang = 0;
+      if ([formRow.tag isEqualToString:@"persentaseBiayaProvisi"]) {
+        XLFormRowDescriptor *row = [self.form formRowWithTag:@"pokokHutang"];
+        persentage = [formRow.value doubleValue];
+        if ([row.value isKindOfClass:[NSString class]] ) {
+          pokokHutang = [[row.value stringByReplacingOccurrencesOfString:@"." withString:@""] doubleValue];
+        } else {
+          pokokHutang = [row.value doubleValue];
+        }
+        
+      } else {
+         XLFormRowDescriptor *row = [self.form formRowWithTag:@"persentaseBiayaProvisi"];
+        persentage = [row.value doubleValue];
+        if ([newValue isKindOfClass:[NSString class]] ) {
+          pokokHutang = [[newValue stringByReplacingOccurrencesOfString:@"." withString:@""] doubleValue];
+        } else {
+          pokokHutang = [newValue doubleValue];
+        }
       }
       
-      double persentage = newValueDouble;
-        XLFormRowDescriptor *row = [self.form formRowWithTag:@"pokokHutang"];
       
-      double  pokokHutang = [[row.value stringByReplacingOccurrencesOfString:@"." withString:@""] doubleValue];
       XLFormRowDescriptor *biayaProvisiRow = [self.form formRowWithTag:@"biayaProvisi"];
       biayaProvisiRow.value = @((persentage / 100.0)* pokokHutang);
       [self reloadFormRow:biayaProvisiRow];
@@ -1641,7 +1658,7 @@
     [formatter setMaximumFractionDigits:10];
     if ([formRow.value isKindOfClass:[NSNumber class]]) {
       formRow.value = [formatter stringFromNumber:formRow.value];
-    }
+    } 
     
   }
 }

@@ -730,7 +730,7 @@
     NSMutableDictionary *dataDictionary = [NSMutableDictionary dictionary];
   NSString *url;
   if ([[MPMUserInfo getRole] isEqualToString:kRoleDedicated]) {
-    if ([list.status isEqualToString:@"Draft"] || [list.status isEqualToString:@"Draft Tidak Lengkap"] || list.status == nil || list.primaryKey < 1) {
+    if ([list.status isEqualToString:@"Draft"] || [list.status isEqualToString:@"Draft Tidak Lengkap"] || [OfflineData getById:list.primaryKey] != nil || list.status == nil || list.primaryKey < 1) {
       url = @"marketing/input";
     } else {
       url = @"marketing/update";
