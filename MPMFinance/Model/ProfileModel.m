@@ -130,6 +130,7 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSString *errorMessage = error.localizedDescription;
         NSInteger statusCode = 0;
+        NSLog(errorMessage);
         @try{
             NSDictionary *errorResponse = [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey]
                                                                           options:NSJSONReadingAllowFragments

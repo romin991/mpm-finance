@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1lC-WT-m55">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1lC-WT-m55">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -59,7 +59,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="szo-Y6-gC1">
                                         <rect key="frame" x="0.0" y="72" width="343" height="86"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="virgiantari_putri@yahoo.com" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FXB-Yg-kXh">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FXB-Yg-kXh">
                                                 <rect key="frame" x="62" y="0.0" width="261" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="Lhf-el-bSI"/>
@@ -68,7 +68,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Info100%" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ejm-Y0-Opx">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ejm-Y0-Opx">
                                                 <rect key="frame" x="62" y="42" width="261" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="9Sn-QX-puF"/>
@@ -233,10 +233,10 @@
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SignInLogo" translatesAutoresizingMaskIntoConstraints="NO" id="BE6-Ci-3pN">
-                                <rect key="frame" x="116" y="85" width="143" height="64"/>
+                                <rect key="frame" x="179.5" y="109" width="16" height="16"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gCE-Jt-IGV">
-                                <rect key="frame" x="16" y="181" width="343" height="466"/>
+                                <rect key="frame" x="16" y="157" width="343" height="490"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forgot Password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0em-rd-2ze">
                                         <rect key="frame" x="0.0" y="8" width="343" height="31"/>
@@ -265,7 +265,7 @@
                                         <rect key="frame" x="0.0" y="72" width="343" height="44"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wKK-5O-RYI">
-                                                <rect key="frame" x="62" y="0.0" width="261" height="44"/>
+                                                <rect key="frame" x="50" y="0.0" width="273" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="9CM-ZD-ul3"/>
                                                 </constraints>
@@ -274,7 +274,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EmailIcon" translatesAutoresizingMaskIntoConstraints="NO" id="FBv-Yu-s7d">
-                                                <rect key="frame" x="20" y="12" width="28" height="20"/>
+                                                <rect key="frame" x="20" y="12" width="16" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="ZC7-AQ-1km"/>
                                                 </constraints>
@@ -5879,10 +5879,10 @@
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SignInLogo" translatesAutoresizingMaskIntoConstraints="NO" id="VgY-hu-kDc">
-                                <rect key="frame" x="116" y="85" width="143" height="64"/>
+                                <rect key="frame" x="179.5" y="109" width="16" height="16"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="amc-F8-NK5">
-                                <rect key="frame" x="16" y="181" width="343" height="466"/>
+                                <rect key="frame" x="16" y="157" width="343" height="490"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Input OTP Code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xxg-BE-QAk">
                                         <rect key="frame" x="0.0" y="8" width="343" height="31"/>
@@ -5924,7 +5924,7 @@
                                         <rect key="frame" x="0.0" y="72" width="343" height="44"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rzQ-L8-3or">
-                                                <rect key="frame" x="62" y="0.0" width="261" height="44"/>
+                                                <rect key="frame" x="50" y="0.0" width="273" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="Ea5-l5-XIl"/>
                                                 </constraints>
@@ -5933,7 +5933,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EmailIcon" translatesAutoresizingMaskIntoConstraints="NO" id="aDG-10-egn">
-                                                <rect key="frame" x="20" y="12" width="28" height="20"/>
+                                                <rect key="frame" x="20" y="12" width="16" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="LG9-Ry-C0E"/>
                                                 </constraints>
@@ -6293,6 +6293,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="yQg-nx-raE"/>
-        <segue reference="raJ-8g-lbX"/>
+        <segue reference="9Ie-Iz-vSB"/>
     </inferredMetricsTieBreakers>
 </document>
