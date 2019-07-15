@@ -8,7 +8,7 @@
 
 #import "Menu.h"
 #import "MPMUserInfo.h"
-
+#import "LanguageManager.h"
 @implementation Menu
 
 + (NSString *)primaryKey {
@@ -37,6 +37,9 @@
 
 - (NSString *)title{
     //if user select english, then return englishTitle, etc
+  if ([LanguageManager isEnglish]) {
+    return self.englishTitle;
+  } else
     return self.indonesiaTitle;
 }
 
@@ -123,6 +126,7 @@
     Menu *menuList = [[Menu alloc] init];
     menuList.primaryKey = kSubmenuListOnlineSubmission;
     menuList.indonesiaTitle = menuList.primaryKey;
+  
     menuList.sort = 0;
     menuList.menuType = kMenuTypeSubmenu;
     
@@ -559,6 +563,7 @@
     menu.backgroundImageName = @"OnlineSubmissionBackground";
     menu.circleIconImageName = @"OnlineSubmissionCircleIcon";
     menu.primaryKey = kMenuOnlineSubmission;
+  menu.englishTitle = @"Online Submission";
     menu.indonesiaTitle = menu.primaryKey;
     menu.sort = 10;
     menu.menuType = kMenuTypeSubmenu;
@@ -578,6 +583,7 @@
     menu.circleIconImageName = @"DashboardCircleIcon";
     menu.primaryKey = kMenuDashboard;
     menu.indonesiaTitle = menu.primaryKey;
+    menu.englishTitle = menu.primaryKey;
     menu.sort = 50;
     menu.menuType = kMenuTypeDashboard;
     menu.isRootMenu = YES;

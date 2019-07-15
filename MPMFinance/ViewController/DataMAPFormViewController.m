@@ -24,6 +24,7 @@
 @property RLMResults *forms;
 @property XLFormSectionDescriptor *refSection;
 @property XLFormSectionDescriptor *refSectionPNS;
+@property XLFormSectionDescriptor *oldJobSection;
 @end
 
 @implementation DataMAPFormViewController
@@ -144,6 +145,8 @@
           }
           else if ([section.title isEqualToString:@"PNS / Karyawan Swasta"]) {
             _refSectionPNS = section;
+          } else if ([section.title isEqualToString:@"Data Pekerjaan Sebelumnya"]) {
+            _oldJobSection = section;
           }
             for (XLFormRowDescriptor *row in section.formRows) {
               [row.cellConfig setObject:[UIFont systemFontOfSize:10.0f] forKey:@"textLabel.font"];
@@ -1082,6 +1085,7 @@
                         [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:7];
                       [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setKeyboardType:UIKeyboardTypeDecimalPad];
                       [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMustNumericOnly:YES];
+                      [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setIsPercentage:YES];
                     }
                 }
                 if ([row.tag isEqualToString:@"biayaProvisi"]){
@@ -1094,7 +1098,7 @@
                         [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:7];
                       [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMustNumericOnly:YES];
                       [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setKeyboardType:UIKeyboardTypeDecimalPad];
-                      
+                      [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setIsPercentage:YES];
                     }
                 }
                 
@@ -1417,7 +1421,6 @@
                 [(XLFormDateCell *)[newRow cellForFormController:self] setMaximumDate:[NSDate date]];
             }
         }
-    
         [newSection addFormRow:newRow];
     }
     [self.form addFormSection:newSection atIndex:self.form.formSections.count -2];
@@ -1532,6 +1535,17 @@
       
     }
   if ([formRow.tag isEqualToString:@"lamaBekerja"]) {
+    XLFormSectionDescriptor *section;
+   // if (self.form.formSections.count == 2) {
+    
+    
+    NSInteger lamaBekerja = ![newValue isKindOfClass:[NSNull class]] ? [newValue integerValue] : 0;
+    if (lamaBekerja > 3) {
+      
+      _oldJobSection.hidden = @YES;
+    } else {
+            _oldJobSection.hidden = @NO;
+    }
     [self.form forceEvaluate];
   }
     if ([formRow.tag isEqualToString:@"kelurahanKantorPasangan"] && newValue != nil && [newValue isKindOfClass:PostalCode.class]) {
@@ -1561,7 +1575,8 @@
       double  pokokHutang = 0;
       if ([formRow.tag isEqualToString:@"persentaseBiayaProvisi"]) {
         XLFormRowDescriptor *row = [self.form formRowWithTag:@"pokokHutang"];
-        persentage = [formRow.value doubleValue];
+        
+        persentage = [[formRow.value stringByReplacingOccurrencesOfString:@"," withString:@"."] doubleValue];
         if ([row.value isKindOfClass:[NSString class]] ) {
           pokokHutang = [[row.value stringByReplacingOccurrencesOfString:@"." withString:@""] doubleValue];
         } else {
@@ -1570,11 +1585,11 @@
         
       } else {
          XLFormRowDescriptor *row = [self.form formRowWithTag:@"persentaseBiayaProvisi"];
-        persentage = [row.value doubleValue];
+        persentage = [[row.value stringByReplacingOccurrencesOfString:@"," withString:@"."] doubleValue];
         if ([newValue isKindOfClass:[NSString class]] ) {
           pokokHutang = [[newValue stringByReplacingOccurrencesOfString:@"." withString:@""] doubleValue];
         } else {
-          pokokHutang = [newValue doubleValue];
+          pokokHutang = [newValue isEqual:[NSNull null]]? 0 : [newValue doubleValue];
         }
       }
       

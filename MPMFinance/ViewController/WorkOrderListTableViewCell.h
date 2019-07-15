@@ -16,5 +16,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *assignee;
 @property (weak, nonatomic) IBOutlet UILabel *groupLevel;
 @property (weak, nonatomic) IBOutlet UILabel *status;
+@property (weak, nonatomic) IBOutlet UILabel *redZone;
 
 @end

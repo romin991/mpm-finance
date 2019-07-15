@@ -13,8 +13,9 @@
 #import "FloatLabeledTextFieldCell.h"
 #import "CalculatorMarketingModel.h"
 #import "ResultCalculatorViewController.h"
+#import "AgreementCardViewController.h"
 #import "ResultTableData.h"
-
+#import "AgreementCardViewController.h"
 @interface DahsyatFormViewController ()
 
 @property NSMutableDictionary *valueDictionary;
@@ -268,6 +269,7 @@
                     if ([[row cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
                         [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setKeyboardType:UIKeyboardTypeDecimalPad];
                       [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMustNumericOnly:YES];
+                      [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setIsPercentage:YES];
                       [(FloatLabeledTextFieldCell *)[row cellForFormController:self] setMaximumLength:6];
                     }
                 }
@@ -313,9 +315,42 @@
         block();
     }
 }
+- (NSArray *)validateForm {
+  NSMutableArray * array = [NSMutableArray arrayWithArray:[self formValidationErrors]];
+  [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    XLFormValidationStatus * validationStatus = [[obj userInfo] objectForKey:XLValidationStatusErrorKey];
+    UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:[self.form indexPathOfFormRow:validationStatus.rowDescriptor]];
+    
+    [self animateCell:cell];
+  }];
+  
+  return array;
+}
 
+
+#pragma mark - Helper
+
+-(void)animateCell:(UITableViewCell *)cell
+{
+  CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
+  animation.keyPath = @"position.x";
+  animation.values =  @[ @0, @20, @-20, @10, @0];
+  animation.keyTimes = @[@0, @(1 / 6.0), @(3 / 6.0), @(5 / 6.0), @1];
+  animation.duration = 0.3;
+  animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+  animation.additive = YES;
+  
+  [cell.layer addAnimation:animation forKey:@"shake"];
+}
 - (void)calculateNow:(XLFormRowDescriptor *)row{
-    NSLog(@"calculateNow called");
+  NSLog(@"calculateNow called");
+  NSArray *inputErrors = [self validateForm];
+  if (inputErrors.count > 0) {
+    [SVProgressHUD showErrorWithStatus:((NSError *)inputErrors.firstObject).localizedDescription];
+    [SVProgressHUD dismissWithDelay:1.5];
+    return;
+    
+  }
     [self deselectFormRow:row];
     [FormModel saveValueFrom:self.form to:self.valueDictionary];
     
@@ -332,6 +367,9 @@
             if ([dictionary objectForKey:@"data"]) {
                 ResultCalculatorViewController *resultVC = [[ResultCalculatorViewController alloc] init];
                 resultVC.dataSources = [self setupDataSourcesRequest:self.valueDictionary response:[dictionary objectForKey:@"data"]];
+              resultVC.isDahsyat = YES;
+              resultVC.requestDictionary = self.valueDictionary;
+              resultVC.responseDictionary = [dictionary objectForKey:@"data"];
                 [weakSelf.navigationController pushViewController:resultVC animated:true];
             } else {
                 [SVProgressHUD showErrorWithStatus:@"Dictionary not found"];
@@ -350,7 +388,7 @@
     [dataSources addObject:[ResultTableData addDataWithLeft:@"Perincian" middle:@"" right:@"" type:ResultTableDataTypeHeader]];
     [dataSources addObject:[ResultTableData addDataWithLeft:@"OTR (for system)" middle:[responseDictionary objectForKey:@"persenOTR"] right:[responseDictionary objectForKey:@"otr"] type:ResultTableDataTypeNormal]];
     [dataSources addObject:[ResultTableData addDataWithLeft:@"Price List" middle:@"" right:[responseDictionary objectForKey:@"otr"] type:ResultTableDataTypeNormal]];
-    [dataSources addObject:[ResultTableData addDataWithLeft:@"Down Payment" middle:[responseDictionary objectForKey:@"persenDP"] right:[responseDictionary objectForKey:@"nilaiDP"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Down Payment" middle:[NSString stringWithFormat:@"%@%%",[responseDictionary objectForKey:@"persenDP"]] right:[responseDictionary objectForKey:@"nilaiDP"] type:ResultTableDataTypeNormal]];
     [dataSources addObject:[ResultTableData addDataWithLeft:@"NTF" middle:[responseDictionary objectForKey:@"persenNtf"] right:[responseDictionary objectForKey:@"ntf"] type:ResultTableDataTypeNormal]];
     [dataSources addObject:[ResultTableData addDataWithLeft:@"NTF Capitalization" middle:@"" right:[responseDictionary objectForKey:@"ntfKapitalisasi"] type:ResultTableDataTypeNormal]];
     [dataSources addObject:[ResultTableData addDataWithLeft:@"Rate Flat" middle:@"" right:[responseDictionary objectForKey:@"rateFlat"] type:ResultTableDataTypeNormal]];
@@ -383,5 +421,8 @@
     
     return dataSources;
 }
+
+
+
 
 @end

@@ -109,13 +109,34 @@
     }
     
   if (self.isReassign) {
-    url = [NSString stringWithFormat:@"%@/pengajuan2/getlistmarketingbyspvandtipeproduk",kApiUrl];
-    param = @{@"data" : @{@"limit" : @10,
-                          @"offset" : @(offset),
-                          @"id" : self.idProduk
-                          },
-              @"userid" : [MPMUserInfo getUserInfo][@"userId"],
-              @"token" : [MPMUserInfo getToken]};
+    if ([[MPMUserInfo getRole] isEqualToString:kRoleBM]) {
+      url = [NSString stringWithFormat:@"%@/pengajuan2/getmktreassignbm",kApiUrl];
+      param = @{@"data" : @{@"limit" : @10,
+                            @"offset" : @0,
+                            @"spv": self.spv,
+                            @"tipeProduk": self.tipeProduk,
+                            @"mkt": self.mkt
+                            },
+                @"userid" : [MPMUserInfo getUserInfo][@"userId"],
+                @"token" : [MPMUserInfo getToken]};
+      /*
+       "tipeProduk": 1,
+       "spv": "IpviviS",
+       "mkt": "FirmanM",
+       "offset": 0,
+       "limit": 10
+       */
+    }else
+    {
+      url = [NSString stringWithFormat:@"%@/pengajuan2/getlistmarketingbyspvandtipeproduk",kApiUrl];
+      param = @{@"data" : @{@"limit" : @10,
+                            @"offset" : @(offset),
+                            @"id" : self.idProduk
+                            },
+                @"userid" : [MPMUserInfo getUserInfo][@"userId"],
+                @"token" : [MPMUserInfo getToken]};
+    }
+    
   }
     AFHTTPSessionManager* manager = [MPMGlobal sessionManager];
     
@@ -187,6 +208,9 @@
       MonitoringViewController *vc = [[MonitoringViewController alloc] init];
       vc.idProduk = [self.data[indexPath.row][@"id"] stringValue];
       vc.isReassign = YES;
+      vc.tipeProduk = [self.data[indexPath.row][@"tipeProduk"] stringValue];
+      vc.spv = self.spv;
+      vc.mkt = self.mkt;
       vc.userId = self.data[indexPath.row][@"userid"];
       [self.navigationController pushViewController:vc animated:YES];
     }];
@@ -254,6 +278,8 @@
         } else if(self.tipeProduk) {
             MonitoringViewController *vc = [[MonitoringViewController alloc] init];
             vc.idProduk = self.idProduk;
+          vc.mkt = self.data[indexPath.row][@"userid"];
+          vc.spv = self.spv;
             vc.userId = self.data[indexPath.row][@"userid"];
             [self.navigationController pushViewController:vc animated:YES];
         } else if(self.userId) {
@@ -270,6 +296,7 @@
             SubmenuViewController *submenuViewController = [[SubmenuViewController alloc] init];
             submenuViewController.menu = submenu;
             submenuViewController.list = list;
+          submenuViewController.isFromMonitoring = YES;
             [self.navigationController pushViewController:submenuViewController animated:YES];
         }
     }
@@ -289,6 +316,7 @@
   SubmenuViewController *submenuViewController = [[SubmenuViewController alloc] init];
   submenuViewController.menu = submenu;
   submenuViewController.list = list;
+  submenuViewController.isFromMonitoring = YES;
   [self.navigationController pushViewController:submenuViewController animated:YES];
 }
 

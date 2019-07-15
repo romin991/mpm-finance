@@ -10,6 +10,8 @@
 #import "DropdownModel.h"
 #import "PostalCode.h"
 #import "Asset.h"
+#import "UploadPhotoTableViewCell.h"
+#import <AFImageDownloader.h>
 #import "Data.h"
 #import "FloatLabeledTextFieldCell.h"
 @implementation FormModel
@@ -199,6 +201,8 @@
                 row.value = row.selectorOptions.count ? [XLFormOptionsObject formOptionsOptionForValue:value fromOptions:row.selectorOptions] : [NSString stringWithFormat:@"%@", value];
              
             } else if ([row.rowType isEqualToString:XLFormRowDescriptorTypeImage]){
+              
+              
                 row.value = [UIImage imageWithData:value];
             } else if ([row.rowType isEqualToString:XLFormRowDescriptorTypeButton]){
                 //do nothing, no need to include on dictionary

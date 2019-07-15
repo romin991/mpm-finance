@@ -1,3 +1,4 @@
+
 //
 //  FormViewController.m
 //  MPMFinance
@@ -130,7 +131,8 @@
       dispatch_group_enter(group);
       [ProfileModel getProfileDataWithCompletion:^(NSDictionary *dictionary, NSError *error) {
         if (error) _error = error;
-        if (dictionary && !(weakSelf.isFromHistory || weakSelf.isFromMonitoring)) {
+        if (dictionary && !(weakSelf.isFromHistory || weakSelf.isFromMonitoring || ([weakSelf.valueDictionary objectForKey:@"alamatRumahSesuaiKTP"] && [weakSelf.valueDictionary[@"alamatRumahSesuaiKTP"] length] > 0))) {
+          NSLog(@"kjlkjlkewjfklwefjlwekfjweklfjewklfjkljwflkwjefklwj");
           [weakSelf.valueDictionary addEntriesFromDictionary:dictionary];
           
         }
@@ -190,9 +192,12 @@
             dispatch_group_enter(group);
             [ProfileModel getProfileDataWithCompletion:^(NSDictionary *dictionary, NSError *error) {
                 if (error) _error = error;
-                if (dictionary) [weakSelf.valueDictionary addEntriesFromDictionary:dictionary];
+                if (dictionary && !(weakSelf.isFromHistory || weakSelf.isFromMonitoring || ([weakSelf.valueDictionary objectForKey:@"alamatRumahSesuaiKTP"] && [weakSelf.valueDictionary[@"alamatRumahSesuaiKTP"] length] > 0))) {
+                  NSLog(@"aaaaabbbbbbbbcccccccccddddddddeeeee");
+                  [weakSelf.valueDictionary addEntriesFromDictionary:dictionary];
                 
                 dispatch_group_leave(group);
+                }
             }];
         }
     
@@ -231,6 +236,11 @@
                     row.action.viewControllerNibName = @"PostalCodeViewController";
                     row.valueTransformer = [PostalCodeValueTransformer class];
                 }
+              if ([row.tag isEqualToString:@"tipeProduk"]) {
+                if (![self.tipeProduk isEqual:@(0)] && self.tipeProduk != nil ) {
+                  row.disabled = @YES;
+                }
+              }
                 
                 if ([row.tag isEqualToString:@"tipeKendaraan"]){
                     row.action.viewControllerNibName = @"AssetViewController";
@@ -466,7 +476,7 @@
                     [self.parentMenu.primaryKey isEqualToString:kSubmenuMonitoring]) &&
                     ![row.tag isEqualToString:@"next"]
                     ) {
-                  self.isFromHistory = YES;
+                  //self.isFromHistory = YES;
                     self.isReadOnly = YES;
                     row.disabled = @YES;
                 }
@@ -608,6 +618,7 @@
               disclaimerVC.list = weakSelf.list;
               disclaimerVC.parentMenu = weakSelf.parentMenu;
               disclaimerVC.menu = weakSelf.menu;
+              disclaimerVC.isFromMonitoringPengajuanOnline = weakSelf.isFromMonitoringPengajuanOnline;
               disclaimerVC.isFromMonitoring = weakSelf.isFromMonitoring;
               disclaimerVC.isReadOnly = self.isReadOnly;
               disclaimerVC.isFromHistory = self.isFromHistory;
@@ -630,6 +641,7 @@
           disclaimerVC.list = weakSelf.list;
           disclaimerVC.parentMenu = weakSelf.parentMenu;
           disclaimerVC.menu = weakSelf.menu;
+          disclaimerVC.isFromMonitoringPengajuanOnline = weakSelf.isFromMonitoringPengajuanOnline;
           disclaimerVC.isFromMonitoring = weakSelf.isFromMonitoring;
           disclaimerVC.isReadOnly = self.isReadOnly;
           disclaimerVC.isFromHistory = self.isFromHistory;
@@ -651,6 +663,7 @@
     nextFormViewController.menu = self.menu;
   nextFormViewController.tipeProduk = self.tipeProduk;
     nextFormViewController.index = self.index + 1;
+  nextFormViewController.isFromMonitoringPengajuanOnline = self.isFromMonitoringPengajuanOnline;
   nextFormViewController.isFromMonitoring = self.isFromMonitoring;
     nextFormViewController.valueDictionary = self.valueDictionary;
     nextFormViewController.list = self.list;

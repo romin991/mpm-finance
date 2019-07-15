@@ -11,5 +11,7 @@
 @interface ResultCalculatorViewController : UIViewController
 
 @property NSMutableArray *dataSources;
-
+@property BOOL isDahsyat;
+@property NSDictionary *requestDictionary;
+@property NSDictionary *responseDictionary;
 @end

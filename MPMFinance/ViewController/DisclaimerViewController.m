@@ -351,7 +351,11 @@
   
   
   
-  if ([[MPMUserInfo getRole] isEqualToString:kRoleDedicated] && (!self.isFromHistory || [self containViewController:[ListViewController class]])) {
+  if ([[MPMUserInfo getRole] isEqualToString:kRoleDedicated] && !self.isFromMonitoringPengajuanOnline && !self.isReadOnly && (!self.isFromHistory || [self containViewController:[ListViewController class]])) {
+    if ([self.list.status isEqualToString:@"Work Order Marketing"]) {
+      [self close];
+      return;
+    }
         [self.navigationController popToRootViewControllerAnimated:YES];
         UINavigationController *mainNavigation = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateInitialViewController];
         WorkOrderListViewController *listViewController2 = [[WorkOrderListViewController alloc] initWithNibName:@"WorkOrderListViewController" bundle:nil];
@@ -380,10 +384,17 @@
 //    delegate.window.rootViewController = mainNavigation;
 //    return;
   }else if(self.isFromHistory) {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    if (self.isFromMonitoring) {
+      [self.navigationController popToViewController:self.navigationController.viewControllers[3] animated:YES];
+    } else
+      [self.navigationController popToRootViewControllerAnimated:YES];
   }
   else if (self.isFromMonitoring) {
-    UIViewController *vc = self.navigationController.viewControllers[2];
+    UIViewController *vc = self.navigationController.viewControllers[5];
+    if (self.isFromMonitoringPengajuanOnline) {
+      vc = self.navigationController.viewControllers[2];
+    }
+    
     [self.navigationController popToViewController:vc animated:YES];
   }
    else if (![self.parentMenu.primaryKey isEqualToString:kSubmenuListWorkOrder]) {

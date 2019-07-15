@@ -147,12 +147,12 @@
    // [(FloatLabeledTextFieldCell *)[emailRow cellForFormController:self] setMustAlphabetPunctuationOnly:YES];
     emailRow.disabled = @YES;
   }
-    numpadRow = [self.form formRowWithTag:@"nomorhandphonebaruJikaDiubah"];
-  numpadRow.required = NO;
-    if ([[numpadRow cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
-        [(FloatLabeledTextFieldCell *)[numpadRow cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
-      [(FloatLabeledTextFieldCell *)[numpadRow cellForFormController:self] setMaximumLength:20];
-      [(FloatLabeledTextFieldCell *)[numpadRow cellForFormController:self] setMustNumericOnly:YES];
+  XLFormRowDescriptor * nomorhandphonebaruJikaDiubah = [self.form formRowWithTag:@"nomorHandphoneBaruJikaDiubah"];
+  nomorhandphonebaruJikaDiubah.required = NO;
+    if ([[nomorhandphonebaruJikaDiubah cellForFormController:self] isKindOfClass:FloatLabeledTextFieldCell.class]){
+        [(FloatLabeledTextFieldCell *)[nomorhandphonebaruJikaDiubah cellForFormController:self] setKeyboardType:UIKeyboardTypeNumberPad];
+      [(FloatLabeledTextFieldCell *)[nomorhandphonebaruJikaDiubah cellForFormController:self] setMaximumLength:20];
+      [(FloatLabeledTextFieldCell *)[nomorhandphonebaruJikaDiubah cellForFormController:self] setMustNumericOnly:YES];
       
     }
     

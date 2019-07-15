@@ -1021,8 +1021,8 @@
     
     section = [[FormSection alloc] init];
     section.title = @"Opsi Komponen Biaya Tunai";
-    [section.rows addObject:[FormRow new:realm :26 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Biaya Survey (Jika Ada)" :@"biayaSurvey" :@""]];
-    [section.rows addObject:[FormRow new:realm :27 :YES :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Biaya Cek / Blokir BPKB (Jika Ada)" :@"biayaCekBlokirBPKB" :@""]];
+    [section.rows addObject:[FormRow new:realm :26 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Biaya Survey (Jika Ada)" :@"biayaSurvey" :@""]];
+    [section.rows addObject:[FormRow new:realm :27 :NO :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Biaya Cek / Blokir BPKB (Jika Ada)" :@"biayaCekBlokirBPKB" :@""]];
     [form.sections addObject:section];
     
     section = [[FormSection alloc] init];

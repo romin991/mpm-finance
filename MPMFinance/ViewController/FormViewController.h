@@ -18,6 +18,7 @@
 @property Menu *menu;
 @property NSNumber *tipeProduk;
 @property BOOL isFromHistory;
+@property BOOL isFromMonitoringPengajuanOnline;
 @property BOOL isFromMonitoring;
 @property BOOL isMelengkapi;
 @property BOOL isReadOnly;

@@ -14,6 +14,8 @@
 #import "DropdownModel.h"
 #import "APIModel.h"
 #import "NSString+MixedCasing.h"
+#import "UIImageView+clearCache.h"
+#import <AFImageDownloader.h>
 @interface MyProfileTableViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate,UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *txtNamaCabang;
@@ -31,7 +33,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtNamaDealer;
 @property (weak, nonatomic) IBOutlet UIButton *changePasswordButton;
 @property (weak, nonatomic) IBOutlet UIButton *btnChangeProfile;
-
+@property BOOL isChangeImage;
 @property NSString* fileName;
 @property NSString* fileSize;
 @property NSString* fileType;
@@ -133,7 +135,19 @@
       self.txtNamaDealer.text = responseDictionary[@"dealer_name"];
       self.txtAddressDealer.text = responseDictionary[@"dealer_address"];
       self.txtNamaCabang.text = responseDictionary[@"namaCabang"];
-      [self.profilePictureImageView setImageWithURL:[NSURL URLWithString:responseDictionary[@"photo"]]];
+      if (!self.isChangeImage) {
+        AFImageDownloader *imageDownloader = [AFImageDownloader   defaultInstance];
+        
+        NSURLCache *urlCache = imageDownloader.sessionManager.session.configuration.URLCache;
+        
+        [urlCache removeAllCachedResponses];
+        
+        [imageDownloader.imageCache removeImageWithIdentifier:responseDictionary[@"photo"]];
+        
+        
+        [self.profilePictureImageView setImageWithURL:[NSURL URLWithString:responseDictionary[@"photo"]]];
+      }
+      
     });
     
   }];
@@ -315,7 +329,7 @@
     NSData *data = UIImageJPEGRepresentation(image, 0.5);
     self.imgData = data;
     self.fileName = fileName;
-    
+  self.isChangeImage = YES;
     [self.profilePictureImageView setImage:image];
 }
 
@@ -342,7 +356,7 @@
         _isEdit = YES;
         
     } else {
-      if (![MPMGlobal isValidEmail:self.txtEmail.text]) {
+      if (![MPMGlobal isValidEmail:self.txtEmail.text] && ![[MPMUserInfo getRole] isEqualToString:kRoleDedicated]) {
         [SVProgressHUD showErrorWithStatus:@"Invalid Email Format"];
         return;
       }
@@ -350,7 +364,7 @@
       [SVProgressHUD show];
         [self setTextFieldsEnable:NO];
         [((UIButton * )sender) setTitle:@"EDIT" forState:UIControlStateNormal];
-      
+      self.isChangeImage = NO;
         NSDictionary *param = @{
                                 @"userid": [MPMUserInfo getUserInfo][@"userId"],
                                 @"token": [MPMUserInfo getToken],

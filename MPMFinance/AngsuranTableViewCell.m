@@ -1,22 +1,18 @@
 //
-//  WorkOrderListTableViewCell.m
+//  AngsuranTableViewCell.m
 //  MPMFinance
 //
-//  Created by Rudy Suharyadi on 6/26/17.
-//  Copyright © 2017 MPMFinance. All rights reserved.
+//  Created by Romin Adi Santoso on 12/10/18.
+//  Copyright © 2018 MPMFinance. All rights reserved.
 //
 
-#import "WorkOrderListTableViewCell.h"
+#import "AngsuranTableViewCell.h"
 
-@implementation WorkOrderListTableViewCell
+@implementation AngsuranTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-}
-
-- (void)showRedZone {
-  
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

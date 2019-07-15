@@ -37,6 +37,13 @@ NSString * const XLFormRowDescriptorTypeTakePhoto = @"XLFormRowDescriptorTypeTak
     self.titleLabel.text = self.rowDescriptor.title;
     if ([self.rowDescriptor.value isKindOfClass:NSString.class]) {
         if ([MPMGlobal isStringAnURL:self.rowDescriptor.value]) {
+                        AFImageDownloader *imageDownloader = [AFImageDownloader   defaultInstance];
+          
+                        NSURLCache *urlCache = imageDownloader.sessionManager.session.configuration.URLCache;
+          
+                        [urlCache removeAllCachedResponses];
+          
+                        [imageDownloader.imageCache removeImageWithIdentifier:self.rowDescriptor.value];
             NSURLRequest *imageRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:self.rowDescriptor.value]
                                                           cachePolicy:NSURLRequestReloadRevalidatingCacheData
                                                       timeoutInterval:60];

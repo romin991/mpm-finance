@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ResultCalculatorViewController">
             <connections>
+                <outlet property="agreementButton" destination="1Dn-ET-frM" id="SeK-SV-W3J"/>
                 <outlet property="tableView" destination="Ci8-SN-Fe7" id="vHz-Ds-MnZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -22,20 +23,28 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="20" estimatedRowHeight="20" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ci8-SN-Fe7">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="486"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="EQj-X3-ky1"/>
                         <outlet property="delegate" destination="-1" id="Z8e-z5-43C"/>
                     </connections>
                 </tableView>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Dn-ET-frM">
+                    <rect key="frame" x="112" y="553" width="150" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Lihat Agreement Card"/>
+                    <connections>
+                        <action selector="lihatAgreement:" destination="-1" eventType="touchUpInside" id="7y2-nw-QG1"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="Ci8-SN-Fe7" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="L6J-Hl-cxV"/>
                 <constraint firstItem="Ci8-SN-Fe7" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="Pb9-oF-AmV"/>
                 <constraint firstItem="Ci8-SN-Fe7" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="vWG-YN-oJ2"/>
-                <constraint firstItem="Ci8-SN-Fe7" firstAttribute="bottom" secondItem="Q5M-cg-NOt" secondAttribute="bottom" id="xVp-nr-U90"/>
+                <constraint firstItem="Ci8-SN-Fe7" firstAttribute="bottom" secondItem="Q5M-cg-NOt" secondAttribute="bottom" constant="-117" id="xVp-nr-U90"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>

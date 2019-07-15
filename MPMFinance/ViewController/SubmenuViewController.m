@@ -123,6 +123,7 @@
         FormViewController *formViewController = [[FormViewController alloc] init];
         formViewController.parentMenu = self.menu;
         formViewController.menu = submenu;
+      formViewController.isFromMonitoring = _shouldBeReadOnly;
       formViewController.isReadOnly = _shouldBeReadOnly;
         formViewController.list = self.list;
         [self.navigationController pushViewController:formViewController animated:YES];

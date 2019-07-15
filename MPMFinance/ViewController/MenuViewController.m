@@ -85,7 +85,7 @@
             }
         }];
     } else {
-      self.tabHistoryNotif.title = @"Riwayat";
+      self.tabHistoryNotif.title = NSLocalizedString(@"Riwayat", nil); 
       [self.tabHistoryNotif setImage:[UIImage imageNamed:@"HistoryIcon"]];
       [self.tabHistoryNotif setSelectedImage:[UIImage imageNamed:@"HistoryIcon"]];
     }
@@ -100,6 +100,7 @@
 }
 -(void)refreshUI
 {
+  self.tabHistoryNotif.badgeValue = nil;
     [self.tabBar setSelectedItem:[self.tabBar.items objectAtIndex:0]];
     if (![MPMUserInfo getUserInfo])
     {

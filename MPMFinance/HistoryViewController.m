@@ -140,7 +140,7 @@
             vc.menu = [Menu objectForPrimaryKey:kSubmenuFormPengajuanApplikasi];
             vc.valueDictionary = [NSMutableDictionary dictionaryWithDictionary:response];
             vc.isFromHistory = YES;
-          vc.isFromMonitoring = YES;
+          vc.isFromMonitoring = NO;
             [self.navigationController.navigationController pushViewController:vc animated:YES];
         });
     }];

@@ -226,9 +226,14 @@
 		5CFF0A7520AADAE200198E60 /* NJOPasswordStrengthEvaluator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFF0A7420AADAE100198E60 /* NJOPasswordStrengthEvaluator.m */; };
 		C330A958211215DC000F01AE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C330A957211215DC000F01AE /* GoogleService-Info.plist */; };
 		C33F39072152216000C0C765 /* AcceleratedResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C33F39052152216000C0C765 /* AcceleratedResultViewController.m */; };
+		C34A6E732169D81700A61400 /* UIImageView+clearCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C34A6E722169D81700A61400 /* UIImageView+clearCache.m */; };
 		C3CBD685215E71B7009F307C /* MPMImageViewerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CBD683215E71B7009F307C /* MPMImageViewerViewController.m */; };
 		C3CBD686215E71B7009F307C /* MPMImageViewerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3CBD684215E71B7009F307C /* MPMImageViewerViewController.xib */; };
 		C3CBD68E215E752E009F307C /* EXPhotoViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CBD68D215E752E009F307C /* EXPhotoViewer.m */; };
+		C3EEE5462170DF83002E89E5 /* AngsuranTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EEE5442170DF83002E89E5 /* AngsuranTableViewCell.m */; };
+		C3EEE5472170DF83002E89E5 /* AngsuranTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3EEE5452170DF83002E89E5 /* AngsuranTableViewCell.xib */; };
+		C3EEE54B2170E0C7002E89E5 /* AgreementCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EEE5492170E0C7002E89E5 /* AgreementCardViewController.m */; };
+		C3EEE54C2170E0C7002E89E5 /* AgreementCardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3EEE54A2170E0C7002E89E5 /* AgreementCardViewController.xib */; };
 		C3FF9ECD213D654100739069 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = C3FF9ECB213D654100739069 /* Reachability.m */; };
 		D3738F410048C92A1AE2571B /* libPods-MPMFinance.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F2B2C34A7F4351773F253B9A /* libPods-MPMFinance.a */; };
 /* End PBXBuildFile section */
@@ -608,11 +613,19 @@
 		C330A957211215DC000F01AE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C33F39042152216000C0C765 /* AcceleratedResultViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AcceleratedResultViewController.h; sourceTree = "<group>"; };
 		C33F39052152216000C0C765 /* AcceleratedResultViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AcceleratedResultViewController.m; sourceTree = "<group>"; };
+		C34A6E712169D81700A61400 /* UIImageView+clearCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+clearCache.h"; sourceTree = "<group>"; };
+		C34A6E722169D81700A61400 /* UIImageView+clearCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+clearCache.m"; sourceTree = "<group>"; };
 		C3CBD682215E71B7009F307C /* MPMImageViewerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPMImageViewerViewController.h; sourceTree = "<group>"; };
 		C3CBD683215E71B7009F307C /* MPMImageViewerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPMImageViewerViewController.m; sourceTree = "<group>"; };
 		C3CBD684215E71B7009F307C /* MPMImageViewerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MPMImageViewerViewController.xib; sourceTree = "<group>"; };
 		C3CBD68C215E752E009F307C /* EXPhotoViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXPhotoViewer.h; sourceTree = "<group>"; };
 		C3CBD68D215E752E009F307C /* EXPhotoViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXPhotoViewer.m; sourceTree = "<group>"; };
+		C3EEE5432170DF83002E89E5 /* AngsuranTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AngsuranTableViewCell.h; sourceTree = "<group>"; };
+		C3EEE5442170DF83002E89E5 /* AngsuranTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AngsuranTableViewCell.m; sourceTree = "<group>"; };
+		C3EEE5452170DF83002E89E5 /* AngsuranTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AngsuranTableViewCell.xib; sourceTree = "<group>"; };
+		C3EEE5482170E0C7002E89E5 /* AgreementCardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AgreementCardViewController.h; sourceTree = "<group>"; };
+		C3EEE5492170E0C7002E89E5 /* AgreementCardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AgreementCardViewController.m; sourceTree = "<group>"; };
+		C3EEE54A2170E0C7002E89E5 /* AgreementCardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AgreementCardViewController.xib; sourceTree = "<group>"; };
 		C3FF9ECB213D654100739069 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		C3FF9ECC213D654100739069 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		F2B2C34A7F4351773F253B9A /* libPods-MPMFinance.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MPMFinance.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1110,6 +1123,12 @@
 				48A807FC20BECAA8005631F6 /* ResultTableViewCell.xib */,
 				48A807FF20BEECCA005631F6 /* ResultTableData.h */,
 				48A8080020BEECCA005631F6 /* ResultTableData.m */,
+				C3EEE5432170DF83002E89E5 /* AngsuranTableViewCell.h */,
+				C3EEE5442170DF83002E89E5 /* AngsuranTableViewCell.m */,
+				C3EEE5452170DF83002E89E5 /* AngsuranTableViewCell.xib */,
+				C3EEE5482170E0C7002E89E5 /* AgreementCardViewController.h */,
+				C3EEE5492170E0C7002E89E5 /* AgreementCardViewController.m */,
+				C3EEE54A2170E0C7002E89E5 /* AgreementCardViewController.xib */,
 			);
 			name = ResultCalculatorViewController;
 			sourceTree = "<group>";
@@ -1346,6 +1365,8 @@
 				5C9DB2351EC3312200FC0CC9 /* MPMGlobal.m */,
 				5CA4FA0020B5A4E70053CDA1 /* MPMCustomUI.h */,
 				5CA4FA0120B5A4E70053CDA1 /* MPMCustomUI.m */,
+				C34A6E712169D81700A61400 /* UIImageView+clearCache.h */,
+				C34A6E722169D81700A61400 /* UIImageView+clearCache.m */,
 			);
 			name = Global;
 			sourceTree = "<group>";
@@ -1520,6 +1541,7 @@
 				4825BFC31F5C3F7B00D091AC /* InsuranceClaimTableViewController.xib in Resources */,
 				5CC67A0A20DBCF7A00CD186B /* Localizable.strings in Resources */,
 				5C4D5FB3208F5439004CA73E /* ProductViewController.xib in Resources */,
+				C3EEE54C2170E0C7002E89E5 /* AgreementCardViewController.xib in Resources */,
 				481C42AC1F03BB01007D5C3C /* IntakeBPKBFormViewController.xib in Resources */,
 				483F392B1EC3085E00C03253 /* Main.storyboard in Resources */,
 				481C42B61F03BB3B007D5C3C /* CustomerGetCustomerFormViewController.xib in Resources */,
@@ -1528,6 +1550,7 @@
 				4825BFAF1F5C3EED00D091AC /* IntakeBPKBTableViewCell.xib in Resources */,
 				482652811EFBF9DA0002A606 /* UsedCarFormViewController.xib in Resources */,
 				5C2DED8D20B696D10058FA14 /* SetAlternateDetailViewController.xib in Resources */,
+				C3EEE5472170DF83002E89E5 /* AngsuranTableViewCell.xib in Resources */,
 				5C8EB86520956FD4006A3170 /* ActivityHistoryViewController.xib in Resources */,
 				4848B1A81F124BFB00C9DE21 /* PostalCodeViewController.xib in Resources */,
 				4849EEE21EC8815000415E4B /* FormViewController.xib in Resources */,
@@ -1676,10 +1699,12 @@
 				5CF6819C1EC747A60056ACD3 /* KASlideShow.m in Sources */,
 				481C428A1F013784007D5C3C /* DataSource.m in Sources */,
 				481C42AB1F03BB01007D5C3C /* IntakeBPKBFormViewController.m in Sources */,
+				C3EEE5462170DF83002E89E5 /* AngsuranTableViewCell.m in Sources */,
 				5C0314AB20B7F5780046F420 /* MonitoringTableViewCell.m in Sources */,
 				4849EEE11EC8815000415E4B /* FormViewController.m in Sources */,
 				483A9D931F0BAB9F0033F714 /* InsuranceModel.m in Sources */,
 				484ADB201F0CE3C10006BCB0 /* IntakeBPKBModel.m in Sources */,
+				C3EEE54B2170E0C7002E89E5 /* AgreementCardViewController.m in Sources */,
 				5C9DB2361EC3312200FC0CC9 /* MPMGlobal.m in Sources */,
 				4866A89A1ECD8B2200A89E98 /* FloatLabeledTextFieldCell.m in Sources */,
 				4828B5B21F4AE1B50071E5FA /* CustomerGetCustomerModel.m in Sources */,
@@ -1765,6 +1790,7 @@
 				4848B1A71F124BFB00C9DE21 /* PostalCodeViewController.m in Sources */,
 				4886BB051EC4ABD1000F8DBE /* PopulateRealmDatabase.m in Sources */,
 				5C586E9A1ECB183200A5A626 /* HelpTableViewController.m in Sources */,
+				C34A6E732169D81700A61400 /* UIImageView+clearCache.m in Sources */,
 				5CF497B81ED330FF0005327D /* RegisterViewController.m in Sources */,
 				5CA4F9FE20B5A2100053CDA1 /* MessageDetailViewController.m in Sources */,
 				483514841EFAC32500207458 /* FormModel.m in Sources */,

@@ -18,6 +18,7 @@
 @property List *list;
 @property BOOL isReadOnly;
 @property BOOL isFromMonitoring;
+@property BOOL isFromMonitoringPengajuanOnline;
 @property BOOL isFromHistory;
 @property BOOL needToShowWorkOrder;
 @end

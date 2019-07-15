@@ -16,8 +16,11 @@
                             @"token" : [MPMUserInfo getToken],
                             @"data" : @{@"tipe" : type}
                             };
-    
-    [manager POST:[NSString stringWithFormat:@"%@/dropdown", kApiUrl] parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+  NSString *urlString = [NSString stringWithFormat:@"%@/dropdown", kApiUrl];
+  if ([[MPMUserInfo getRole] isEqualToString:kRoleDealer] && [type isEqualToString:@"getProduct"]) {
+    urlString = [NSString stringWithFormat:@"%@/dropdown/dealergetproduk", kApiUrl];
+  }
+    [manager POST:urlString parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         @try {
             NSInteger code = [[responseObject objectForKey:@"statusCode"] integerValue];
             NSString *message = [responseObject objectForKey:@"message"];

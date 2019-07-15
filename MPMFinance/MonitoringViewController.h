@@ -12,6 +12,7 @@
 @property NSString *idProduk;
 @property NSString *tipeProduk;
 @property NSString *spv;
+@property NSString *mkt;
 @property NSString *userId;
 @property BOOL isReassign;
 @end

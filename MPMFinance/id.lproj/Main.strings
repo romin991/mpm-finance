@@ -258,7 +258,7 @@
 "or0-Vj-NnB.placeholder" = "Alamat Email";
 
 /* Class = "UITabBarItem"; title = "Help"; ObjectID = "pH6-cC-Avx"; */
-"pH6-cC-Avx.title" = "Help";
+"pH6-cC-Avx.title" = "Bantuan";
 
 /* Class = "UILabel"; text = "keenan pearce"; ObjectID = "qB7-5D-igr"; */
 "qB7-5D-igr.text" = "keenan pearce";
@@ -279,7 +279,7 @@
 "sa1-Gt-nqW.normalTitle" = "Show";
 
 /* Class = "UITabBarItem"; title = "My Profile"; ObjectID = "shd-W8-UB0"; */
-"shd-W8-UB0.title" = "My Profile";
+"shd-W8-UB0.title" = "Profil Saya";
 
 /* Class = "UILabel"; text = "Jumlah Keseluruhan Berdasarkan Bulan"; ObjectID = "tYy-r9-IO2"; */
 "tYy-r9-IO2.text" = "Jumlah Keseluruhan Berdasarkan Bulan";

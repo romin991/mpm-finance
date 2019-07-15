@@ -271,7 +271,42 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (NSArray *)validateForm {
+  NSMutableArray * array = [NSMutableArray arrayWithArray:[self formValidationErrors]];
+  [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    XLFormValidationStatus * validationStatus = [[obj userInfo] objectForKey:XLValidationStatusErrorKey];
+    UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:[self.form indexPathOfFormRow:validationStatus.rowDescriptor]];
+    
+    [self animateCell:cell];
+  }];
+  
+  return array;
+}
+
+
+#pragma mark - Helper
+
+-(void)animateCell:(UITableViewCell *)cell
+{
+  CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
+  animation.keyPath = @"position.x";
+  animation.values =  @[ @0, @20, @-20, @10, @0];
+  animation.keyTimes = @[@0, @(1 / 6.0), @(3 / 6.0), @(5 / 6.0), @1];
+  animation.duration = 0.3;
+  animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+  animation.additive = YES;
+  
+  [cell.layer addAnimation:animation forKey:@"shake"];
+}
+
 - (void)calculateNow:(XLFormRowDescriptor *)row{
+  NSArray *inputErrors = [self validateForm];
+  if (inputErrors.count > 0) {
+      [SVProgressHUD showErrorWithStatus:((NSError *)inputErrors.firstObject).localizedDescription];
+      [SVProgressHUD dismissWithDelay:1.5];
+      return;
+      
+  }
     NSLog(@"calculateNow called");
     [self deselectFormRow:row];
     [FormModel saveValueFrom:self.form to:self.valueDictionary];
@@ -354,7 +389,7 @@
     [dataSources addObject:[ResultTableData addDataWithLeft:@"Refund Bunga" middle:[NSString stringWithFormat:@"%@%%",[requestDictionary objectForKey:@"refundBunga"]] right:@"" type:ResultTableDataTypeNormal]];
     [dataSources addObject:[ResultTableData addDataWithLeft:@"Refund Asuransi" middle:[NSString stringWithFormat:@"%@%%",[requestDictionary objectForKey:@"refundAsuransi"]] right:@"" type:ResultTableDataTypeNormal]];
     [dataSources addObject:[ResultTableData addDataWithLeft:@"Running Rate" middle:[NSString stringWithFormat:@"%@%%",[responseDictionary objectForKey:@"running_Rate"]] right:@"flat per tahun" type:ResultTableDataTypeRightTextAlignmentLeft]];
-    [dataSources addObject:[ResultTableData addDataWithLeft:@"Biaya Provisi" middle:[NSString stringWithFormat:@"%@%%",[requestDictionary objectForKey:@"uppingProvisi"]] right:[requestDictionary objectForKey:@"biayaProvisi"] type:ResultTableDataTypeRightTextAlignmentLeft]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Biaya Provisi" middle:@"1,000%" right:[requestDictionary objectForKey:@"biayaProvisi"] type:ResultTableDataTypeRightTextAlignmentLeft]];
     [dataSources addObject:[ResultTableData addDataWithLeft:@"Upping Provisi" middle:[NSString stringWithFormat:@"%@%%",[requestDictionary objectForKey:@"uppingProvisi"]] right:@"" type:ResultTableDataTypeNormal]];
     [dataSources addObject:[ResultTableData addDataWithLeft:@"Opsi Asuransi Jiwa" middle:[requestDictionary objectForKey:@"opsiAsuransiJiwa"] right:[requestDictionary objectForKey:@"opsiAsuransiJiwaKapitalisasi"] type:ResultTableDataTypeRightTextAlignmentLeft]];
     [dataSources addObject:[ResultTableData addDataWithLeft:@"Opsi Biaya Admin" middle:[requestDictionary objectForKey:@"opsiBiayaAdministrasi"] right:@"" type:ResultTableDataTypeNormal]];
@@ -368,12 +403,12 @@
     [dataSources addObject:[ResultTableData addDataWithLeft:@"Pertanggungan" middle:@"" right:[requestDictionary objectForKey:@"pertanggungan"] type:ResultTableDataTypeNormal]];
     [dataSources addObject:[ResultTableData addDataWithLeft:@"Opsi Asuransi" middle:@"" right:[requestDictionary objectForKey:@"opsiAsuransiKendaraan"] type:ResultTableDataTypeNormal]];
     [dataSources addObject:[ResultTableData addDataWithLeft:@"Penggunaan" middle:@"" right:[requestDictionary objectForKey:@"penggunaan"] type:ResultTableDataTypeNormal]];
-    [dataSources addObject:[ResultTableData addDataWithLeft:@"Nilai Tunai Sebagian" middle:@"" right:[requestDictionary objectForKey:@"nilaiTunaiSebagian"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Nilai Tunai Sebagian" middle:@"" right:[MPMGlobal formatToRupiah:[requestDictionary objectForKey:@"nilaiTunaiSebagian"]] type:ResultTableDataTypeNormal]];
     [dataSources addObject:[ResultTableData addDataWithLeft:@"" middle:@"" right:@"" type:ResultTableDataTypeNormal]];
     
     //Struktur Pembiayaan
     [dataSources addObject:[ResultTableData addDataWithLeft:@"Struktur Pembiayaan" middle:@"" right:@"" type:ResultTableDataTypeHeader]];
-    [dataSources addObject:[ResultTableData addDataWithLeft:@"Harga OTR Kendaraan" middle:@"" right:[requestDictionary objectForKey:@"otrKendaraan"] type:ResultTableDataTypeNormal]];
+    [dataSources addObject:[ResultTableData addDataWithLeft:@"Harga OTR Kendaraan" middle:@"" right:[MPMGlobal formatToRupiah:[requestDictionary objectForKey:@"otrKendaraan"]] type:ResultTableDataTypeNormal]];
     [dataSources addObject:[ResultTableData addDataWithLeft:@"Uang Muka" middle:[NSString stringWithFormat:@"%@%%", [requestDictionary objectForKey:@"dpPercentage"]] right:[responseDictionary objectForKey:@"struktur_pembiayaan_uang_muka"] type:ResultTableDataTypeNormal]];
     [dataSources addObject:[ResultTableData addDataWithLeft:@"Pokok Hutang" middle:@"" right:[responseDictionary objectForKey:@"struktur_pembiayaan_pokok_utang"] type:ResultTableDataTypeNormal]];
     

@@ -341,6 +341,7 @@
         formViewController.menu = submenu;
       if ([self.menu.primaryKey isEqualToString:@"Monitoring "]) {
         formViewController.isFromMonitoring = YES;
+        formViewController.isFromMonitoringPengajuanOnline = YES;
       }
         if (!self.selectedOfflineData) {
             formViewController.list = list;

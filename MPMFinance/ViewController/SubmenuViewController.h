@@ -14,5 +14,6 @@
 
 @property Menu *menu;
 @property List *list;
+@property BOOL isFromMonitoring;
 
 @end

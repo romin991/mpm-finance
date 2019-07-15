@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Avenir.ttc">
-            <string>Avenir-Book</string>
-        </array>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -76,6 +70,15 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Red Zone" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Xm-jJ-Z7e">
+                        <rect key="frame" x="230" y="50" width="70" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="70" id="CEn-Gp-sqP"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.94901960780000005" green="0.43529411759999997" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="INw-Y8-OL7" firstAttribute="leading" secondItem="IFa-s6-DAC" secondAttribute="trailing" constant="8" id="14i-bE-gha"/>
@@ -84,6 +87,8 @@
                     <constraint firstItem="aUU-yp-6yu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="7" id="8e7-iM-kuG"/>
                     <constraint firstItem="IFa-s6-DAC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="C2e-cg-2nj"/>
                     <constraint firstItem="yca-9z-8KE" firstAttribute="top" secondItem="INw-Y8-OL7" secondAttribute="bottom" constant="4" id="Epu-02-xv6"/>
+                    <constraint firstItem="9Xm-jJ-Z7e" firstAttribute="top" secondItem="aUU-yp-6yu" secondAttribute="bottom" constant="8" id="NAZ-5w-2gh"/>
+                    <constraint firstAttribute="trailing" secondItem="9Xm-jJ-Z7e" secondAttribute="trailing" constant="20" id="aY7-I7-SjY"/>
                     <constraint firstItem="s1S-k2-SgV" firstAttribute="leading" secondItem="IFa-s6-DAC" secondAttribute="trailing" constant="8" id="d8L-Rc-vyk"/>
                     <constraint firstItem="aUU-yp-6yu" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="nY1-HL-SgD"/>
                     <constraint firstItem="yca-9z-8KE" firstAttribute="leading" secondItem="IFa-s6-DAC" secondAttribute="trailing" constant="8" id="uGi-hF-9Nf"/>
@@ -97,9 +102,11 @@
                 <outlet property="date" destination="aUU-yp-6yu" id="pYI-aB-E1S"/>
                 <outlet property="groupLevel" destination="INw-Y8-OL7" id="shq-iJ-tuZ"/>
                 <outlet property="icon" destination="IFa-s6-DAC" id="fCJ-Sa-UPQ"/>
+                <outlet property="redZone" destination="9Xm-jJ-Z7e" id="dtz-z9-sEd"/>
                 <outlet property="status" destination="yca-9z-8KE" id="Oei-Jn-YNy"/>
                 <outlet property="title" destination="s1S-k2-SgV" id="ZLs-ql-EKU"/>
             </connections>
+            <point key="canvasLocation" x="137.59999999999999" y="119.64017991004499"/>
         </tableViewCell>
     </objects>
 </document>

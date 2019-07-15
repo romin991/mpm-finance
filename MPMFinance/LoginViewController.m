@@ -76,6 +76,7 @@
         if (!error) {
             [SVProgressHUD showSuccessWithStatus:@"Login Success"];
             [SVProgressHUD dismissWithDelay:1.5 completion:^{
+              [self.loginDelegate loginDidSuccess];
                 [self dismissViewControllerAnimated:YES completion:nil];
             }];
         } else if ([error.localizedDescription isEqualToString:@"input otp"]) {

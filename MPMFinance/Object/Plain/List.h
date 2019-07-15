@@ -20,5 +20,6 @@
 @property NSString *status;
 @property NSString *statusColor;
 @property NSString *type;
+@property NSInteger redZone;
 
 @end

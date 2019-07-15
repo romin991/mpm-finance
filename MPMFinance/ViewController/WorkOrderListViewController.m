@@ -394,12 +394,20 @@
         
         if (list.status.length > 0) {
             [MPMGlobal giveBorderTo:cell.status withBorderColor:list.statusColor withCornerRadius:8.0f];
+          
             cell.status.text = list.status;
             cell.status.textColor = [MPMGlobal colorFromHexString:list.statusColor];
             cell.status.hidden = NO;
         } else {
             cell.status.hidden = YES;
         }
+      [MPMGlobal giveBorderTo:cell.redZone withBorderColor:@"#F26F21" withCornerRadius:8.0f];
+      if (list.redZone == 1) {
+        
+        [cell.redZone setHidden:NO];
+      } else {
+        [cell.redZone setHidden:YES];
+      }
         cell.title.text = list.title;
         cell.date.text = list.date;
         cell.groupLevel.text = list.groupLevel;

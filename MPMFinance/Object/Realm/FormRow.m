@@ -407,7 +407,7 @@ NSString *const MPMRegexValidationAlphabetMin3Char = @"^[a-zA-Z']{3,}$";
     [FormRow new:realm :24 :2 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Telepon Baru (Jika Diubah)"];
     [FormRow new:realm :24 :3 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Handphone"];
     [FormRow new:realm :24 :4 :NO :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Handphone Baru (Jika Diubah)"];
-    [[FormRow new:realm :24 :5 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Alamat"] setDisabled:YES];
+    [[FormRow new:realm :24 :5 :YES :XLFormRowDescriptorTypeTextView :@"Alamat"] setDisabled:YES];
     [FormRow new:realm :24 :6 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Email"];
     [FormRow new:realm :24 :7 :YES :XLFormRowDescriptorTypeSelectorPush :@"Sub Jenis Masalah"];// :46];
     [FormRow new:realm :24 :8 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Kronologis Masalah"];
@@ -417,7 +417,7 @@ NSString *const MPMRegexValidationAlphabetMin3Char = @"^[a-zA-Z']{3,}$";
 + (void)generateSuggestionFieldsWithRealm:(RLMRealm*)realm{
     [[FormRow new:realm :25 :0 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nama"] setDisabled:YES];
     [[FormRow new:realm :25 :1 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Nomor Handphone"] setKey:@"noHP"];
-    [[FormRow new:realm :25 :2 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Alamat"] setDisabled:YES];
+    [[FormRow new:realm :25 :2 :YES :XLFormRowDescriptorTypeTextView :@"Alamat"] setDisabled:YES];
     [FormRow new:realm :25 :3 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Email"];
     [FormRow new:realm :25 :4 :YES :XLFormRowDescriptorTypeFloatLabeledTextField :@"Saran"];
 }

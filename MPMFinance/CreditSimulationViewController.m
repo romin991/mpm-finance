@@ -9,7 +9,8 @@
 #import "CreditSimulationViewController.h"
 #import "Menu.h"
 #import "FormViewController.h"
-@interface CreditSimulationViewController ()<UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
+#import "LoginViewController.h"
+@interface CreditSimulationViewController ()<UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource,LoginDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *lblPencairan;
 @property (weak, nonatomic) IBOutlet UITextField *txtHarga;
 @property (weak, nonatomic) IBOutlet UITextField *txtLamaPembiayaan;
@@ -32,6 +33,9 @@
 
 @implementation CreditSimulationViewController
 
+-(void)loginDidSuccess {
+  [self pengajuan:nil];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSLog(@"%@",self.menuType);
@@ -346,12 +350,21 @@
                                           }];
     }
     else if ([self.menuType isEqualToString:@"Dahsyat - Multiguna Motor"]) {
+      if ((_harga2.doubleValue / _harga.doubleValue) > 0.6) {
+        [SVProgressHUD showErrorWithStatus:@"max pencairan 60% dari estimasi harga"];
+        [SVProgressHUD dismissWithDelay:1.0f];
+      }
         urlString = [NSString stringWithFormat:@"%@/simulation/dahsyat2w",kApiUrl];
         isDahsyat = YES;
     }
     else if ([self.menuType isEqualToString:@"Dahsyat - Multiguna Mobil"]) {
+      if ((_harga2.doubleValue / _harga.doubleValue) > 0.6) {
+        [SVProgressHUD showErrorWithStatus:@"max pencairan 60% dari estimasi harga"];
+        [SVProgressHUD dismissWithDelay:1.0f];
+      }
         urlString = [NSString stringWithFormat:@"%@/simulation/dahsyat4w",kApiUrl];
         isDahsyat = YES;
+      
     
     }
     else if ([self.menuType isEqualToString:kSubmenuCreditSimulationProperty]) {
@@ -406,13 +419,22 @@
     
 }
 - (IBAction)pengajuan:(id)sender {
+  if ([[MPMUserInfo getRole] isEqualToString:kNoRole]) {
+    
+    LoginViewController *loginVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    loginVC.loginDelegate = self;
+    [self presentViewController:loginVC animated:YES completion:nil];
+  } else {
+    
+  
     Menu *menu = [Menu getMenuForPrimaryKey:kSubmenuListOnlineSubmission];
     
     FormViewController *formViewController = [[FormViewController alloc] init];
     formViewController.menu = menu;
     formViewController.list = nil;
-  formViewController.tipeProduk = self.tipeProduk;
+    formViewController.tipeProduk = self.tipeProduk;
     [self.navigationController pushViewController:formViewController animated:YES];
+  }
 }
 
 /*

@@ -182,6 +182,7 @@
                     list.statusColor = listDict[@"color"];
                     list.imageURL = listDict[@"imageIconIos"];
                     list.groupLevel = listDict[@"groupLevel"];
+                  list.redZone = [listDict[@"redzone"] integerValue];
                     [lists addObject:list];
                 }
                 

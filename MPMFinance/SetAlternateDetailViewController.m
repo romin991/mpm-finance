@@ -52,6 +52,11 @@ NSString * const kValidationReason = @"kReason";
   
     NSString *dateBegin = [MPMGlobal stringFromDateTime:dateBeginRow.value];
     XLFormRowDescriptor *dateEndRow = [self.form formRowWithTag:kValidationEndDate];
+  if ([((NSDate*)dateBeginRow.value) compare:dateEndRow.value] == NSOrderedDescending) {
+    [SVProgressHUD showErrorWithStatus:@"Tanggal selesai harus lebih besar dari tanggal mulai"];
+    [SVProgressHUD dismissWithDelay:1.0f];
+    return;
+  }
     NSString *dateEnd = [MPMGlobal stringFromDateTime:dateEndRow.value];
     XLFormRowDescriptor *nameRow = [self.form formRowWithTag:kValidationName];
     NSString *name = ((XLFormOptionsObject *)nameRow.value).valueData;
@@ -59,8 +64,13 @@ NSString * const kValidationReason = @"kReason";
     NSString *replacementName = ((XLFormOptionsObject *)replacementNameRow.value).valueData;
     XLFormRowDescriptor *reasonRow = [self.form formRowWithTag:kValidationReason];
     NSString *reason;
-    if (self.isEdit) {
-        reason = [((XLFormOptionsObject *)reasonRow.value).valueData stringValue];
+    if ([reasonRow.value isKindOfClass:[NSString class]]) {
+      NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self.name = %@",reasonRow.value];
+      NSArray *result = [self.dropdownReasons filteredArrayUsingPredicate:predicate];
+      if (result.count > 0) {
+        Option *opsi = [result firstObject];
+        reason = [NSString stringWithFormat:@"%li",(long)opsi.primaryKey];
+      }
     } else {
         reason = [((XLFormOptionsObject *)reasonRow.value).valueData stringValue];
     }
